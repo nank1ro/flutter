@@ -97,7 +97,9 @@ obvious way to express "this node sits here", and not something `PLAN.md` asked
 for; the plan's Phase 4 sketch names `pushTransform`, `pushOpacity` and
 `addPicture` only. At ten thousand nodes the offset layer cost **15,200 µs** per
 frame against **2,500 µs** for adding the pictures at an offset, measured
-against each other in the same session — a 6x difference, and the single largest thing in the frame. Ten thousand engine
+against each other in the same session under the older sequential harness — a
+6x difference, far larger than that harness's ordering bias, and the single
+largest thing in the frame. Ten thousand engine
 layers per frame is the wrong shape. `SceneCompositor` therefore has no
 `pushOffset`.
 
@@ -120,7 +122,7 @@ The walk not being retained is the honest limit of this design. `addRetained`,
 which would let an unchanged subtree cost one call, needs a persistent
 `EngineLayer` per subtree and a `_needsAddToScene`-style dirty propagation — that
 is what `rendering/layer.dart` already is. Scene mode deliberately does not
-rebuild that, because at roughly 0.15 µs per node per frame (§6: 1500
+rebuild that, because at roughly 0.18 µs per node per frame (§6: 1818
 µs to walk ten thousand nodes) the walk is not the problem the fork exists to
 solve.
 
@@ -209,81 +211,94 @@ never be sold as one.
 
 ## 6. Numbers
 
-`dev/benchmarks/microbenchmarks/test/reactivity/b9_scene_mode_test.dart`. Apple
-M1, macOS 26.5.1, debug `flutter test -j 1`, one file at a time. Median of 3
-runs' medians and the min across those 3 runs, in µs per frame, 2 significant
-figures. Same machine, same harness and same protocol as
-[`BENCHMARKS.md`](BENCHMARKS.md), so the two sets of numbers can be divided by
-each other.
+`dev/benchmarks/microbenchmarks/test/reactivity/b9_scene_mode_test.dart`. Same
+machine, harness and protocol as [`BENCHMARKS.md`](BENCHMARKS.md): Apple M1,
+macOS 26.5.1, debug `flutter test -j 1`, one file at a time, three process
+runs, six interleaved and rotated rounds per run with the first two discarded.
+Median of the three run medians, min across their mins, and the spread across
+the three run medians, in microseconds per frame.
 
-*Headless* is the scene's own frame work — `flushSignals()` plus `composeFrame`
-onto a real `ui.SceneBuilder` plus `build()` — that is, standalone mode with the
-platform's present call removed. *Embedded* is the same scene inside a
-`SceneView`, measured through `tester.pump()`, so it includes the whole framework
-frame.
+**Every comparison on this page is now in-process.** The classic-tree rows
+below are not carried over from another file: they are variants of the same
+`b9` scenario, interleaved with the scene rows, on the *same workload* -- a
+paint-only move of one or of all ten thousand sprites, `ReactiveOffset` in the
+classic tree and `ROffset` in the collapsed one, two render objects per sprite
+in each. Neither classic variant has a `RepaintBoundary` per sprite, because
+the scene has no per-node retention either; that keeps the three models
+comparable and makes these classic numbers higher than B1's, which does have
+one.
 
-| Workload | Path | median (µs) | min (µs) |
-| --- | --- | --- | --- |
-| move 1 of 10,000 nodes | headless | 1500 | 1500 |
-| move 1 of 10,000 nodes | embedded | 4700 | 4500 |
-| move all 10,000, one `batch` | headless | 3200 | 3100 |
-| move all 10,000, one `batch` | embedded | 7900 | 7600 |
-| 50,000 particles, one `PictureNode`, re-recorded every frame | headless | 120 | 120 |
-| mount + compose + dispose 10,000 nodes | headless | 39000 | 31000 |
+*Headless* is the scene's own frame work -- `flushSignals()` plus
+`composeFrame` onto a real `ui.SceneBuilder` plus `build()` -- that is,
+standalone mode with the platform's present call removed. It has no framework
+frame around it and is therefore **not** comparable with the classic rows;
+*embedded* -- the same scene inside a `SceneView`, measured through
+`tester.pump()` -- is, because it includes the whole framework frame. Both are
+reported because headless is what a standalone game actually runs.
+
+| Workload | Path | median (us) | min (us) | spread |
+| --- | --- | --- | --- | --- |
+| move 1 of 10,000 nodes | headless | 1818 | 1476 | 24% |
+| move 1 of 10,000 nodes | embedded | 4815 | 4432 | 5% |
+| move all 10,000, one `batch` | headless | 5471 | 3909 | 18% |
+| move all 10,000, one `batch` | embedded | 7591 | 6690 | 4% |
+| 50,000 particles, one `PictureNode`, re-recorded every frame | headless | 117 | 115 | 0% |
+| mount + compose + dispose 10,000 nodes | headless | 41848 | 36233 | 2% |
 
 Every row carries a liveness assertion in the test. The move rows assert
-`debugRecordCount == 1` for all ten thousand nodes after the loop — not one
-picture was re-recorded — and that the frame count matches the iteration count.
-The particle row asserts exactly one re-record per frame; the mount row asserts,
-outside the timed body, that ten thousand nodes really were built and disposed.
+`debugRecordCount == 1` for all ten thousand nodes after the loop -- not one
+picture was re-recorded -- and that the compose count matches the iteration
+count. The particle row asserts exactly one re-record per frame; the mount row
+asserts, outside the timed body, that ten thousand nodes really were built and
+disposed.
 
 ### Against the classic tree
 
-Against the **best-practice** baselines in [`BENCHMARKS.md`](BENCHMARKS.md) —
-`ValueListenableBuilder` for B1/B2, a `CustomPainter` driven by a `Listenable`
-for B3, plain `Container` leaves for B8 — and, where it is the more interesting
-comparison, against the Phase 3 leaf-binding rows from the same table.
-
-| Scenario | Best practice | Phase 3 leaf | Scene mode | vs best practice |
+| Workload | Phase 3 leaf | Phase 5 collapsed | Scene embedded | Scene headless |
 | --- | --- | --- | --- | --- |
-| B1, update 1 of 10,000 | 6700 µs | 8500 µs | 1500 headless / 4700 embedded | **4.5x** headless, **1.4x** embedded |
-| B2, update all 10,000 | 53000 µs | 17000 µs | 3200 headless / 7900 embedded | **17x** headless, **6.7x** embedded |
-| B3, 50,000 particles | 370 µs | 350 µs | 120 µs | **3.1x** |
-| B8, mount 10,000 | 1000000 µs | 730000 µs | 39000 µs (mount **and** compose **and** dispose) | **26x** |
+| move 1 of 10,000 | 12695 | 11459 | 4815 (**2.64x** / 2.38x) | 1818 (6.98x / 6.30x)† |
+| move all 10,000, one batch | 42538 | 40677 | 7591 (**5.60x** / 5.36x) | 5471 (7.78x / 7.43x)† |
+| 50,000 particles | 234 | n/a‡ | not measured | 117 (2.00x)† |
+| mount + compose + dispose 10,000 | 812049 | 532588 | not measured | 41848 (19.4x / 12.7x)† |
+
+Ratios are "against Phase 3 leaf / against Phase 5 collapsed".
+† Headless against a full framework frame is an unequal comparison; it is the
+ceiling, not the like-for-like number. The like-for-like number is the
+embedded column.
+‡ `RCustomPaint` was removed from the Phase 5 spike, so there is no collapsed
+particle variant.
 
 Read those honestly:
 
 - **Mounting is where scene mode wins by an order of magnitude.** Ten thousand
   plain objects against ten thousand widget + element + render-object triples,
-  with layout. 26x, and the scene-mode figure includes a full compose and the
-  disposal that B8 measures as a separate row (17,000 µs on the baseline).
-- **Updating all ten thousand is where the model wins.** One `batch`, one flush,
-  ten thousand cached-field writes, one walk: 17x the `ValueListenableBuilder`
-  baseline headless, and 5.3x Phase 3's leaf bindings, which already removed
-  every rebuild. What is left after leaf bindings is the per-node layout and
-  paint, and that is what scene mode removes.
-- **Updating one of ten thousand is a smaller win, not a tie.** Both paths
-  re-walk ten thousand somethings — the classic tree lays out and paints ten
-  thousand render objects, the scene re-adds ten thousand pictures — so scene
-  mode is 4.5x faster headless and 1.4x faster embedded, not the order of
-  magnitude the other rows show. Neither number is O(1) in the number of
-  nodes, and that is the next real problem (see below).
-- **B3 is close to parity in kind, not in degree.** 120 µs against 370 µs is a
-  real 3.1x, but the workload is one `drawRawPoints` of 100,000 floats either
-  way; what scene mode removes is the `CustomPaint` render object and the
-  repaint plumbing around it, not the drawing.
-- **B1/B2/B8's classic-tree numbers are dominated by `Stack` layout and paint**,
-  as `BENCHMARKS.md` already notes. Scene mode has no layout at all, which is a
-  large part of why it wins, and is exactly the trade being made.
+  with layout: 19.4x against Phase 3, and still 12.7x against the collapsed
+  node model, which has already removed the widget and the element. What is
+  left after both is the render object, and that is what scene mode removes.
+- **Updating all ten thousand is the clearest steady-state win.** 5.60x
+  embedded against Phase 3's leaf bindings, which had already removed every
+  rebuild.
+- **Updating one of ten thousand is a smaller win, not a tie.** 2.64x embedded.
+  Both paths re-walk ten thousand somethings -- the classic tree lays out and
+  paints ten thousand render objects, the scene re-adds ten thousand pictures
+  -- so neither is O(1) in the number of nodes, and that is the next real
+  problem (see below).
+- **The particle row is 2.0x, and the workload is one `drawRawPoints` of
+  100,000 floats either way.** What scene mode removes there is the
+  `CustomPaint` render object and the repaint plumbing around it, not the
+  drawing.
+- **Scene mode beats the collapsed node model on every row**, by 2.4x to 12.7x
+  headless-to-embedded caveats aside. That comparison is one of the two
+  reasons [`PHASE5_DECISION.md`](PHASE5_DECISION.md) still says not to build
+  Phase 5.
 
-This table was refreshed 2026-09-04 on an idle machine, one file at a time,
-`flutter test -j 1`, three runs each — see `BENCHMARKS.md`'s note on this
-session. An earlier version of this table was measured while sharing the
-machine with other agents' test runs, which inflated several rows (the
-embedded rows by up to 40%, one particle-row run by nearly 3x); that is why
-this table's ratios differ substantially from that earlier pass, especially
-on B1/B2 embedded, which were previously read as a tie and now show a real,
-if modest, win.
+**Supersedes the earlier table.** A previous revision of this section compared
+scene rows measured in `b9` against classic rows measured in `b1`, `b3` and
+`b8` -- different processes -- and both sides ran their variants sequentially
+in file order, which is worth up to ~2x on its own. Those ratios (4.5x / 1.4x
+on move-one, 17x / 6.7x on move-all, 3.1x on particles, 26x on mount) are
+withdrawn. The direction of every one of them survived; the magnitudes did
+not.
 
 ## 7. Open problems
 

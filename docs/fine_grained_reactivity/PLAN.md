@@ -562,6 +562,33 @@ Known follow-ups, deliberately not done here:
   user builder from layout are still untracked. `SliverChildListDelegate`
   needs nothing: it holds already-built widgets.
 
+**Numbers.** Full table and protocol in [`BENCHMARKS.md`](BENCHMARKS.md);
+2026-09-04, interleaved and in-process against the best-practice baseline,
+µs per `pump()`:
+
+| Scenario | best practice | Phase 2 signal-in-build | vs |
+| --- | --- | --- | --- |
+| B1, one of 10,000 sprites | 7005 | 7006 | 1.00x |
+| B2, all 10,000, one batch | 33851 | 35759 | 0.95x |
+| B4, text leaf at depth 50 | 318 | 322 | 0.99x |
+| B5, leaf at depth 100 | 352 | 355 | 0.99x |
+| B6, one of 1,000 rows | 392 | 387 | 1.01x |
+| B7, Material grid, tracking **off** → **on** | 4198 | 4142 | 1.01x |
+
+**Phase 2 is parity, and parity is the pass condition.** A
+`ValueListenableBuilder` leaf and a signal-reading leaf both end in exactly one
+element rebuild, so they do the same work; what Phase 2 removes is the wrapper
+widget, the builder closure and the opt-in, not the rebuild. Removing the
+rebuild itself is Phase 3. An earlier pass read Phase 2 as 1.4x faster on B4
+and B5; that was position-in-file and does not survive interleaving.
+
+**A1 holds as far as three runs can tell.** B7 is a true A/B on one tree with
+the framework's own `debugTrackSignalReadsInBuild` toggle: tracking-on reads
+1.3% *faster* on the median and 0.2% slower on the min, with a 7-8% run-to-run
+spread. The sign flips between the two statistics, which is what "no effect
+this harness can resolve" looks like. It is not proof of zero cost. Reactivity
+stays default-on.
+
 ### Phase 3 — Leaf bindings, control flow, and the game loop
 
 This is the phase where the goal is actually achieved for ordinary UI.
@@ -815,51 +842,61 @@ simulating it.
   reloaded prop closure only takes effect if the widget is replaced. This is
   the Phase 3 instance of the hot-reload problem section 6 describes.
 
-**Numbers.** Full table and caveats in
-[`BENCHMARKS.md`](BENCHMARKS.md); the short version, against the
-best-practice baseline re-measured in the same session (refreshed 2026-09-04,
-one idle machine, `flutter test -j 1`, one file at a time — see
-`BENCHMARKS.md` for the full protocol):
+**Numbers.** Full table, protocol and caveats in
+[`BENCHMARKS.md`](BENCHMARKS.md). Every row below was measured in the same
+process as the baseline it is compared against, with the same number of render
+objects per item on both sides, interleaved and rotated so that position in
+the file cannot masquerade as a result (2026-09-04, idle machine,
+`flutter test -j 1`, one file at a time, three process runs, median of the
+three run medians, µs per `pump()`):
 
-| Scenario | Phase 3 leaf | vs best practice | rebuilds per write |
-| --- | --- | --- | --- |
-| B1, one of 10,000 sprites | 8500 µs | 0.79x | 0, was 1 |
-| B2, all 10,000 sprites, one batch | 17000 µs | 3.1x | 0, was 10,000 |
-| B2 ceiling, one `ReactiveCustomPaint` | 190 µs | see note¹ | 0 |
-| B3, 50,000 particles | 350 µs | 1.1x | 0 |
-| B4, text leaf at depth 50 | 290 µs | 1.9x | 0, was 1 |
-| B8, mount 10,000 reactive leaves | 730000 µs | 1.4x | n/a |
+| Scenario | best practice | Phase 3 leaf | vs | rebuilds per write |
+| --- | --- | --- | --- | --- |
+| B1, one of 10,000 sprites | 7005 | 6359 | 1.10x | 0, was 1 |
+| B2, all 10,000 sprites, one batch | 33851 | 16109 | **2.10x** | 0, was 10,000 |
+| B3, 50,000 particles | 332 | 340 | 0.98x | 0 |
+| B4, text leaf at depth 50 | 318 | 267 | **1.19x** | 0, was 1 |
+| B5, leaf at depth 100 | 352 | 294 | **1.20x** | 0, was 1 |
+| B6, one of 1,000 rows | 392 | 375 | 1.05x | 0, was 1 |
+| B8, mount 10,000 reactive leaves | 737172 | 749281 | 0.98x | n/a |
+| B8, unmount 10,000 reactive leaves | 4815 | 6673 | 0.72x | n/a |
 
-¹ The ceiling row does one signal write and one repaint for all 10,000
-positions, not 10,000 writes like the B2 leaf row above it, so a ratio
-against the best-practice baseline (10,000 writes) compares different
-workloads and is not reported — same reasoning as `BENCHMARKS.md`. Against
-the B2 Phase 3 leaf row directly above (17,000 µs) it is 89x.
+Four of these deserve to be stated plainly rather than left to a table.
 
-Three of these deserve to be stated plainly rather than left to a table.
-
-*B1 did not improve, and the prediction in section 8 that it would gain an
+*B1 did not improve much, and the prediction in section 8 that it would gain an
 order of magnitude was wrong.* Laying out and painting a `Stack` of 10,000
-`Positioned` children costs 7–8 ms per frame whatever changed, so removing the
-last rebuild out of ten thousand elements is unmeasurable against it. Phase 3
-takes B1's rebuild count from one to zero and its wall clock nowhere. B4, which
-has no such denominator, is the scenario where the same mechanism shows 1.9x.
+`Positioned` children costs 6–7 ms per frame whatever changed, so removing the
+last rebuild out of ten thousand elements is barely measurable against it.
+Phase 3 takes B1's rebuild count from one to zero and its wall clock 10%. B4
+and B5, which have no such denominator, are where the same mechanism shows
+1.19x and 1.20x.
 
-*The ceiling row is not a measurement of the update mechanism, and should not
-be read as one.* It does one signal write and one repaint through a single
-`ReactiveCustomPaint` over a `Float32List`, where every other B2 row does
-10,000 writes into 10,000 render objects. What its 190 µs against 17,000 µs
-shows is the cost of the *nodes* — one draw call versus ten thousand render
-objects laid out and painted — not the cost of invalidation, which is why
-`BENCHMARKS.md` reports it as a note rather than a speedup. It is still the
-case for Phase 4 (scene mode): almost all of the per-sprite cost is the
-framework's own per-node layout and paint, and no amount of finer-grained
-invalidation touches it. Leaf bindings already removed the rebuild, so what is
-left to remove is the node, not the diff.
+*B2 is where the mechanism shows.* When all 10,000 sprites change, the
+baseline runs 10,000 builder closures, allocates 10,000 widgets and diffs
+10,000 children; the leaf variant runs 10,000 effects, each writing one field
+on a render object, all in one batch and one flush. 2.10x, and it is a real
+difference in what the frame does.
+
+*Reactive leaves cost slightly more to set up and tear down than plain ones,
+and the earlier claim that they cost less was a shape artefact.* An owner, an
+effect and a graph edge per leaf are not free: 0.98x on mount and 0.72x on
+unmount against a plain `ColoredBox` with the same render-object count. The
+old "1.4x cheaper to mount" used `Container` as the baseline, which is a
+`StatelessWidget` and adds a component element per node, so it measured a
+missing element rather than the effect machinery.
 
 *B3 is parity, and that is a pass.* Replacing a hand-wired
 `CustomPainter`-plus-`Listenable` with one batched signal write is within a
 few percent either direction of the baseline — parity, not a regression.
+
+*The B2 ceiling row is deliberately not in this table.* One
+`ReactiveCustomPaint` drawing all 10,000 positions costs 176 µs, but it does
+one signal write and one repaint where every other B2 row does 10,000 writes
+into 10,000 render objects. It is a different workload, so `BENCHMARKS.md`
+reports it without a ratio against anything. What it says qualitatively —
+almost all of the per-sprite cost is the framework's own per-node layout and
+paint — is the case for Phase 4, and Phase 4's own B9 rows measure it properly,
+on the same workload.
 
 **Ergonomics: `implicit_call_tearoffs` fights the callable-signal design.**
 Phase 0 made `Signal` callable so that `ReactiveOpacity(opacity: myOpacity)`
@@ -959,7 +996,9 @@ read changes, plus its `TransformEngineLayer`/`OpacityEngineLayer` handed back
 as `oldLayer` in standalone mode. A per-node offset layer, the obvious way to
 place a node, cost 15,200 µs per frame at ten thousand nodes against 2,500 µs
 for adding the pictures at an accumulated offset (the two measured against each
-other in one session), so translation is folded
+other in one session, under the older sequential harness — a 6x gap is far
+larger than that harness's ordering bias, so the conclusion stands even though
+the exact figures were not re-measured), so translation is folded
 into `addPicture` and only rotation, scale and opacity push a layer.
 
 **Two embeddings, as promised.** Standalone `scene.attachToView(view)` returns
@@ -970,14 +1009,16 @@ applications with no `WidgetsBinding`. Embedded `SceneView` paints into
 `PaintingContext.canvas` and relies on the binding's pre-build signal flush,
 so a write made after that flush composes one frame late.
 
-**What it costs, honestly** (full numbers in `SCENE_MODE.md`): mounting ten
-thousand nodes is roughly 26x cheaper than ten thousand widget + element +
-render-object triples, and moving all ten thousand in one batch 17x cheaper
-than the `ValueListenableBuilder` baseline and 5.3x cheaper than Phase 3's leaf
-bindings, which had already removed every rebuild; moving *one* of ten thousand
-is a smaller but real win too, 4.5x headless and 1.4x embedded, because both
-the classic tree and the scene still re-walk ten thousand somethings rather
-than skipping unchanged nodes.
+**What it costs, honestly** (full numbers in `SCENE_MODE.md`, all measured in
+the same process as the classic-tree rows they are compared against, on the
+same paint-only move workload): embedded — a whole framework frame on both
+sides — scene mode is **2.64x** Phase 3's leaf bindings on moving one of ten
+thousand and **5.60x** on moving all ten thousand in one batch, and its
+headless path, which is what a standalone game runs, is 6.98x and 7.78x.
+Mounting, composing and disposing ten thousand nodes is **19.4x** cheaper than
+ten thousand widget + element + render-object triples. Moving *one* of ten
+thousand is the smallest win, because both the classic tree and the scene still
+re-walk ten thousand somethings rather than skipping unchanged nodes.
 
 **Open problems**, none of which the plan anticipated: the walk is O(nodes)
 every frame with nothing retaining an unchanged subtree (`addRetained` would
@@ -1017,6 +1058,42 @@ substantial rewriting.
 
 **What breaks.** Potentially everything downstream of `Widget`. This phase
 does not begin without a written decision recording the spike's numbers.
+
+#### As implemented
+
+**The spike was built and measured; the migration was not, and will not be.**
+`packages/flutter/lib/reactive_nodes.dart` over `src/reactive_nodes/nodes.dart`
+and `node_host.dart`: `RNode`, `RComponent`, the primitives (`RBox`, `ROffset`,
+`RPadding`, `ROpacity`, `RRepaintBoundary`, `RText`, `RStack` + `RPositioned`),
+control flow (`RShow`, `RFor`), and `NodeHost`. No existing framework file was
+edited.
+
+**Numbers**, re-derived 2026-09-04 from interleaved, in-process,
+shape-matched measurements — the collapsed variants now live in B1, B2, B4, B5,
+B6, B8 and B9 next to the rows they are compared against, not in a file of
+their own:
+
+| Scenario | Phase 3 leaf | Phase 5 collapsed | vs |
+| --- | --- | --- | --- |
+| B1, one of 10,000 sprites | 6359 | 6414 | 0.99x |
+| B2, all 10,000, one batch | 16109 | 11743 | **1.37x** |
+| B4, text leaf at depth 50 | 267 | 273 | 0.98x |
+| B5, leaf at depth 100 | 294 | 297 | 0.99x |
+| B6, one of 1,000 rows | 375 | 383 | 0.98x |
+| B9, move one of 10,000 | 12695 | 11459 | 1.11x |
+| B9, move all 10,000 | 42538 | 40677 | 1.05x |
+| B8, mount 10,000 | 749281 | 423757 | **1.77x** |
+| B8, unmount 10,000 | 6673 | 2883 | **2.31x** |
+
+**The gate fires.** This section's bar is "single-digit percent for realistic
+UI". On the four UI-shaped rows — B1, B4, B5, B6 — the answer is -2% to -1%.
+The wins are confined to an all-ten-thousand-sprites batch and to mount and
+teardown, and embedded scene mode is 2.38x to 5.36x better than the collapsed
+model on the same workloads in the same process. **Phase 5 does not happen.**
+The full write-up, including what is worth keeping from the spike
+(component-once effect semantics, `RPositioned`'s rule that layout inputs are
+not props, `NodeHost` as a pattern), is in
+[`PHASE5_DECISION.md`](PHASE5_DECISION.md).
 
 ### Phase 6 — Optional compile step
 

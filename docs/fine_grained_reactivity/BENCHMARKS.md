@@ -27,14 +27,23 @@ before the first framework edit (Phase 0).
 | B6 | Wide list, 1,000 rows, one row's colour changes | Comparison against `InheritedWidget` dependency notification. |
 | B7 | Existing `bench_build_material_checkbox` from macrobenchmarks | Compatibility cost: the reactive `Element` must not slow down ordinary Material builds. |
 | B8 | Mount and unmount 10,000 nodes | Owner/effect lifecycle overhead, and the disposal path. |
-| B9 | Scene mode: B1 and B3 re-run against the retained scene graph | The payoff of skipping widgets, elements, and render objects. |
+| B9 | Scene mode: move-one, move-all, particles and mount/dispose, each against the matched Phase 3 leaf and Phase 5 collapsed variants in the same process | The payoff of skipping widgets, elements, and render objects. |
 
 B7 is the guard that matters most politically inside the fork: the whole
 premise is that per-element tracking costs nothing when no signal is read.
 
 ## Running
 
-Microbenchmarks (build and propagate cost, no device required):
+The B1-B9 harness (build, layout and paint-record cost, no device required).
+One file per scenario, every variant of that scenario inside it, run one file
+at a time with `-j 1`:
+
+```sh
+cd dev/benchmarks/microbenchmarks
+../../../bin/flutter test -j 1 test/reactivity/b1_single_sprite_update_test.dart
+```
+
+The signal-core microbenchmark (no widgets):
 
 ```sh
 cd dev/benchmarks/microbenchmarks
@@ -60,274 +69,221 @@ cd packages/flutter && ../../bin/flutter test test/widgets/framework_test.dart
 
 ## Results
 
-### Phase 0 baseline (2026-09-04)
+All numbers below come from one measurement pass on 2026-09-04. They replace
+every earlier per-phase table in this document; see **History** at the end for
+why the earlier numbers are not comparable and are not reproduced.
 
-The Phase 0 harness lives in `dev/benchmarks/microbenchmarks/test/reactivity/`,
-one file per scenario (`b1_single_sprite_update_test.dart` ...
-`b8_mount_unmount_test.dart`, plus a `b9_scene_mode_test.dart` stub — see
-below). Each file uses `testWidgets` + a `Stopwatch` around **`tester.pump()`
-only** — that is the entire timed region: build, layout, and paint-record,
-under the debug-mode JIT with framework asserts on. There is no on-screen GPU
-raster under `flutter test`, so the "raster" and "alloc/frame" columns below
-are n/a for this baseline; getting real numbers for those needs a
-profile-mode run on a physical device via `dev/benchmarks/macrobenchmarks`,
-out of scope for this pass. These numbers are for **relative comparison
-between baseline and fork only** — they are not representative of
-release/profile-mode performance.
+### Methodology
 
-Where a scenario names two baselines in BENCHMARKS.md's description (B1, B6),
-both are measured: the "best current practice" a careful Flutter dev already
-uses (`ValueListenableBuilder` per leaf), and the naive baseline the doc
-calls out explicitly (`setState`-on-root / `InheritedWidget`) as the number
-the fork's fine-grained update must beat.
+**The harness.** `dev/benchmarks/microbenchmarks/test/reactivity/` holds one
+file per scenario, B1-B9, over a shared harness in
+`reactivity_bench_common.dart`. Every variant of a scenario -- the
+best-practice baseline, the naive baseline, Phase 2's signal-in-build, Phase
+3's leaf binding, Phase 5's collapsed node tree, and Phase 4's scene where it
+applies -- lives in that one file and runs in that one process.
 
-**"Baseline" is defined as the numbers recorded at commit `36c235d` (the
-`docs: fine-grained reactivity fork plan` commit), before any
-`packages/flutter` edits landed.** Re-running the harness under a parent
-Flutter SDK checked out elsewhere on disk is not meaningful: this workspace's
-`pubspec.yaml` resolves against *this* repo's `packages/flutter`, so a
-different SDK binary run against this pubspec is an ill-defined comparison.
-Use this fork's own `flutter` binary for every run, baseline and fork alike;
-what makes a number "baseline" is the git commit it was measured at, not
-which `flutter` binary ran it.
+**Variants are interleaved, not sequential.** A variant is a function that
+mounts its own tree, runs its own warmup and timed iterations, drops the tree
+again, and returns the median of the timed iterations. `runInterleaved` runs
+every variant once per round for **R = 6 rounds**, starting round `r` at
+variant `r % n` and wrapping, and **discards the first D = 2 rounds**. What is
+reported per process run is the median across the remaining rounds, the min
+across them, and the raw per-round values.
 
-**Machine**: Apple M1, macOS 26.5.1 (build 25F80).
-**Flutter**: this fork's own binary, built from commit `36c235d`, engine
-`11d79658c444477b06513d32b52c8c4ccb7276b0`, Dart 3.13.1. `packages/flutter`
-at this commit only adds `src/foundation/signals.dart` (unused by the
-framework yet), so behavior is stable-equivalent.
+This is the correction that made the pass necessary. The Dart VM's JIT warms
+up across a file, and the old harness ran each variant once, in file order:
+position in the file was worth up to ~2x. B4's three near-identical variants
+read 545 / 408 / 291 us purely in that order, and the old "B4 collapsed is
+0.76x, i.e. slower" result reverses to parity once the order is controlled.
+The drift is still visible in the raw rounds -- B4's first round runs ~2.5x
+its last -- but it now falls on every variant equally.
 
-Run command (from `dev/benchmarks/microbenchmarks`), whole directory or one
-file at a time:
+**Protocol.** Apple M1, macOS 26.5.1, this fork's own binary, debug-mode JIT
+with framework asserts on. `../../../bin/flutter test -j 1`, **one file at a
+time**, **3 process runs per file**, on an otherwise idle machine (no other
+test run in flight; an editor and two agent sessions were resident). Reported
+below: the **median of the 3 process runs' medians**, the **min across their
+mins**, and the **spread**, `(max - min) / min` over the three run medians.
 
 ```sh
 cd dev/benchmarks/microbenchmarks
-../../../bin/flutter test test/reactivity/
-# or a single scenario:
-../../../bin/flutter test test/reactivity/b1_single_sprite_update_test.dart
+../../../bin/flutter test -j 1 test/reactivity/b1_single_sprite_update_test.dart
 ```
 
-Each number below is the **median of 3 runs' medians**, plus the **min
-across those 3 runs**, both rounded to 2 significant figures. Warmup/timed
-counts vary by scenario, not a single "20 + 200" protocol: B1/B4/B5/B6
-best-practice and fork rows use 20 warmup + 200 timed (their naive/legacy
-baselines use 5 warmup + 50 timed); B2 uses 3 warmup + 30 timed; B3 uses 5
-warmup + 60 timed; B7 uses 20 warmup + 300 timed; B8's mount/unmount uses 3
-warmup + 20 timed pairs — see each file for exact counts. Run-to-run
-variance was high (individual-run medians differing by tens of percent),
-which is why 3 runs and a min column are reported rather than a single run.
+**Shape matching.** Variants of a scenario have the same number of render
+objects per sprite / row / node, so a ratio is a ratio of mechanisms and not
+of tree sizes. Under the tight `Positioned` rows of `mountAllInRows` a child
+needs no `SizedBox` of its own, so the no-op `SizedBox` that used to sit under
+the reactive leaves is gone. Per-scenario counts:
 
-| Scenario | Variant | median (µs/op) | min (µs/op) | pump (ms) | Baseline raster (ms) | Fork build (ms) | Fork raster (ms) | Alloc/frame | Phase | Date |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| B1 | `ValueListenableBuilder`, update 1 of 10,000 (best practice) | 8500 | 7700 | 8.5 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B1 | `setState` on root, rebuilds all 10,000 (naive) | 53000 | 42000 | 53 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B2 | `ValueListenableBuilder`, update all 10,000/frame | 74000 | 62000 | 74 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B3 | `CustomPainter`, draw 50,000 particle positions | 540 | 390 | 0.54 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B4 | `ValueListenableBuilder` leaf update, depth 50 | 1200 | 460 | 1.2 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B5 | Deep static tree (depth 100), leaf update, ancestors verified not rebuilt | 1200 | 490 | 1.2 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B6 | `ValueListenableBuilder`, update 1 of 1,000 rows (best practice) | 670 | 610 | 0.67 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B6 | `InheritedWidget`, update 1 row notifies all 1,000 dependents | 7800 | 6300 | 7.8 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B7 | 10x10 Material checkbox grid rebuild | 7900 | 5300 | 7.9 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B8 | Mount 10,000 leaf nodes | 1200000 | 970000 | 1200 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B8 | Unmount 10,000 leaf nodes | 20000 | 13000 | 20 | n/a | — | — | n/a | 0 | 2026-09-04 |
-| B9 | n/a — no legacy retained-scene-graph baseline exists; compare fork against B1/B3 rows above | n/a | n/a | n/a | n/a | — | — | n/a | 0 | 2026-09-04 |
+| Scenario | Classic shape | Collapsed shape | Render objects per item |
+| --- | --- | --- | --- |
+| B1 | `Positioned > RepaintBoundary > (Reactive)ColoredBox` | `RPositioned > RRepaintBoundary > RBox` | 2 |
+| B2 | `Positioned > (Reactive)ColoredBox` | `RPositioned > RBox` | 1 |
+| B3 | one `(Reactive)CustomPaint` | n/a (`RCustomPaint` was removed) | 1 |
+| B4 | 50 x `Padding` + text leaf | 50 x `RPadding` + `RText` | 51 |
+| B5 | 100 x counting widget wrapping `Padding` + text leaf | 100 x `RPadding` + `RText` | 101 |
+| B6 | `Positioned > RepaintBoundary > (Reactive)ColoredBox` | `RPositioned > RRepaintBoundary > RBox` | 2 |
+| B7 | 10x10 Material checkbox grid, identical in both variants | n/a | identical |
+| B8 | `Positioned > (Reactive)ColoredBox` | `RPositioned > RBox` | 1 |
+| B9 | `Positioned > ReactiveOffset > ColoredBox` | `RPositioned > ROffset > RBox` | 2 (scene: none) |
 
-B1/B2/B6/B8's sprite/row/node lists are laid out with `mountAllInRows`
-(a `Stack` of `Positioned` children), not `ListView(children: ...)`: the
-latter's `Sliver` machinery only mounts elements intersecting the viewport
-plus cache extent (roughly 850 of 10,000 for B1/B2/B8, a fraction of 1,000
-for B6), which would have made every "N sprites/rows/nodes" scenario
-actually exercise far fewer than N. Each affected test asserts
-`find.byType(Positioned)` equals the full count once, so a future
-regression back to partial mounting fails loudly.
+Element counts cannot be matched and are the mechanism, not the shape: a
+`ValueListenableBuilder` adds a `StatefulElement` per item, Phase 2 a
+`StatelessElement`, Phase 3 and Phase 5 none. The collapsed variants also add
+one `NodeHost` render object for the whole tree, and B9's scene has no render
+objects at all, which is the point of it.
 
-Device, Flutter revision, and engine hash for each run go in a footnote under
-the row, not in the row itself; see the machine/Flutter block above this
-table for Phase 0.
+**Liveness.** Every variant asserts that it did the work it claims. Classic
+variants count builds (`expect(buildCount, kTimed)`) or assert a `_BuildProbe`
+above the leaf built **zero** times; leaf and collapsed variants additionally
+assert the render object holds the last value written; collapsed variants
+assert the component body ran exactly once and that property effects ran once
+per write; B5 asserts no ancestor rebuilt or re-ran its binding, with two
+negative checks proving both counters can detect ancestor work; B8 asserts
+`signal.subs` is null after teardown; B9 asserts `debugRecordCount == 1` for
+all ten thousand scene nodes after a move loop.
 
-All numbers in this section (Phase 2 and Phase 3) were measured in one idle
-session on 2026-09-04; earlier concurrent-run numbers were up to 2x inflated.
+**What is still not measured.** Raster time, steady-state heap, and per-frame
+allocation. `flutter test` has no on-screen GPU raster and these are debug-mode
+JIT numbers with framework asserts on. They are for **relative comparison
+between variants measured in the same process**, and are not representative of
+release or profile mode.
 
-### Phase 2: tracked `build()` on every element (2026-09-04)
+### The table
 
-Same harness, same machine (Apple M1, macOS 26.5.1), same fork binary. The
-fork variants live in the same files as their baselines, one `testWidgets` per
-variant: B1 gives each sprite its own `Signal<Color>` read in the sprite's own
-build (no builder widget, no `BuildContext` dependency), B4 and B5 put a
-signal-reading leaf at the bottom of the deep tree, B6 gives each row its own
-signal. B7 is unchanged by design and is the A1 regression guard.
+Median and min in microseconds per `pump()` (per composed frame for the scene's
+headless rows). "vs" is against the row marked `--` in the same scenario, and
+every ratio on this page is computed from two rows of this table.
 
-**These runs are not comparable to the Phase 0 table above**, and the Phase 0
-numbers were not re-used for the comparison. Phase 0 was measured with several
-benchmark files running concurrently under `flutter test`, which inflates and
-destabilises every number in it (re-running the Phase 0 command here reproduces
-that: B6's `ValueListenableBuilder` baseline reads ~3500 µs concurrently and
-~640 µs alone). Every number below is from `flutter test -j 1` on **one file at
-a time**, and each baseline was re-measured in the same session as the fork
-variant it is compared against, on the same build of the framework. Median of
-3 runs' medians, plus the min across those 3 runs, in µs per `pump()`.
-
-| Scenario | Variant | median (µs/op) | min (µs/op) | vs baseline |
-| --- | --- | --- | --- | --- |
-| B1 | `ValueListenableBuilder`, update 1 of 10,000 (best practice) | 6700 | 6400 | — |
-| B1 | `setState` on root, rebuilds all 10,000 (naive) | 54000 | 45000 | — |
-| B1 | **fork**: `Signal<Color>` read in the sprite's own build | 7600 | 7300 | 0.88x best practice, 7.1x faster than naive |
-| B4 | `ValueListenableBuilder` leaf update, depth 50 | 540 | 380 | — |
-| B4 | **fork**: signal-reading leaf, depth 50 | 400 | 310 | 1.4x faster |
-| B5 | Deep static tree (depth 100), `ValueListenableBuilder` leaf | 520 | 370 | — |
-| B5 | **fork**: signal-reading leaf, ancestors verified not rebuilt | 370 | 290 | 1.4x faster |
-| B6 | `ValueListenableBuilder`, update 1 of 1,000 rows (best practice) | 640 | 590 | — |
-| B6 | `InheritedWidget`, update 1 row notifies all 1,000 | 7300 | 6100 | — |
-| B6 | **fork**: `Signal<Color>` per row | 610 | 550 | 1.0x best practice, 12x faster than InheritedWidget |
-| B7 | 10x10 Material checkbox grid, **tracking disabled** | 4612 | 3697 | — |
-| B7 | 10x10 Material checkbox grid, **tracking enabled** | 4642 | 3710 | +0.7% median, +0.4% min |
-
-**No regression detectable above the ~1% noise floor at n=3.** B7 was
-measured as a true A/B on the same working tree: the
-`ComponentElement.performRebuild` tracking call was swapped for a plain
-`build()` for the first three runs and restored for the next three, so the only
-difference between the two rows is the tracking scope. The cost of wrapping
-every Material build in a tracking scope that reads no signal is +0.7% on the
-median and +0.4% on the min, which is inside this harness's run-to-run spread
-(the three medians on each side differ by up to 1%) — this is not proof of
-zero cost, only that three runs can't distinguish it from zero. This A/B can
-be reproduced directly with the framework's debug toggle
-`debugTrackSignalReadsInBuild` (landing in `framework.dart` alongside this
-phase's tracking work) instead of hand-editing `performRebuild`. Reactivity
-stays default-on.
-
-The same A/B on B8 (one run each): mount 10,000 nodes 1,167,107 µs untracked
-against 1,185,740 µs tracked (+1.6%), unmount 19,493 µs against 19,748 µs
-(+1.3%). A single run can't separate real cost from noise here — no causal
-claim should be drawn from it; a 3-run B8 A/B is future work if this number
-matters.
-
-B1 and B6's headline numbers are dominated by laying out and painting a
-10,000-child and 1,000-child `Stack`, not by build cost — that's why the
-fork lands within noise of the best-practice baseline instead of visibly
-beating it on median µs/op. The number that actually demonstrates the
-fork's effect is the builder-count assertion in each test
-(`expect(_spriteBuilds, timedIterations)` / `expect(_rowBuilds,
-timedIterations)`): exactly one element rebuilds per write, against all
-10,000/1,000 for the naive baseline. What the fork removes is the wrapper
-widget, the builder closure and the opt-in, not the rebuild — both a
-`ValueListenableBuilder` leaf and a signal-reading leaf end in exactly one
-element rebuild, so they do the same work. Removing the rebuild itself is
-Phase 3 (leaf prop bindings), and B1/B6 are the rows that should move then.
-B4 and B5 are faster because the baseline's `ValueListenableBuilder` is
-itself a `StatefulWidget` whose element rebuilds a child widget, where the
-fork's leaf is a single `StatelessWidget`.
-
-### Phase 3: leaf prop bindings (2026-09-04)
-
-Same harness, same machine (Apple M1, macOS 26.5.1), same fork binary, same
-protocol as Phase 2: `flutter test -j 1` on one file at a time, median of 3
-runs' medians, plus the min across those 3 runs, in µs per `pump()`. Every
-baseline in the table was re-measured in the same session as the fork variant
-it is compared against; the Phase 0 and Phase 2 numbers were **not** re-used.
-
-The Phase 3 variants live in the same files as their baselines. Each one binds
-a `Signal` straight to a render-object setter and asserts two things: that the
-render object really took the value (liveness), and that a `_BuildProbe`
-`StatelessWidget` sitting above the leaf built **zero** times during the timed
-loop. Only render-object elements sit between the probe and the leaf, and a
-render-object element cannot be marked dirty on its own, so a probe count of
-zero means nothing on the path from the root to the leaf rebuilt.
-
-| Scenario | Variant | median (µs/op) | min (µs/op) | rebuilds/write | vs best practice |
+| Scenario | Variant | median | min | spread | vs |
 | --- | --- | --- | --- | --- | --- |
-| B1 | `ValueListenableBuilder`, update 1 of 10,000 (best practice) | 6700 | 6400 | 1 | — |
-| B1 | `setState` on root, rebuilds all 10,000 (naive) | 54000 | 45000 | 10,000 | 0.12x |
-| B1 | Phase 2: `Signal<Color>` read in the sprite's own build | 7600 | 7300 | 1 | 0.88x |
-| B1 | **Phase 3 leaf**: `ReactiveColoredBox` bound to a `Signal<Color>` | 8500 | 7400 | **0** | 0.79x |
-| B2 | `ValueListenableBuilder`, update all 10,000/frame | 53000 | 49000 | 10,000 | — |
-| B2 | **Phase 3 leaf**: 10,000 `ReactiveColoredBox`, one batch | 17000 | 17000 | **0** | **3.1x** |
-| B2 | **B2 ceiling**: one draw call for 10,000 positions (not the same workload) | 190 | 180 | **0** | see note¹ |
-| B3 | `CustomPainter` + `Listenable` repaint, 50,000 particles | 370 | 340 | 0 | — |
-| B3 | **Phase 3**: `ReactiveCustomPaint`, one batch, one repaint | 350 | 330 | **0** | ≈1x (parity) |
-| B4 | `ValueListenableBuilder` leaf update, depth 50 | 540 | 380 | 1 | — |
-| B4 | Phase 2: signal-reading leaf, depth 50 | 400 | 310 | 1 | 1.4x |
-| B4 | **Phase 3 leaf**: `ReactiveText` bound to a `Signal<String>`, depth 50 | 290 | 250 | **0** | **1.9x** |
-| B8 | Mount 10,000 plain `Container` leaves | 1000000 | 950000 | n/a | — |
-| B8 | **Phase 3**: mount 10,000 `ReactiveColoredBox` leaves (owner + effect + edge each) | 730000 | 620000 | n/a | 1.4x |
-| B8 | Unmount 10,000 plain `Container` leaves | 17000 | 13000 | n/a | — |
-| B8 | **Phase 3**: unmount 10,000 `ReactiveColoredBox` leaves | 9200 | 8300 | n/a | 1.8x |
+| B1 | `ValueListenableBuilder`, 1 of 10,000 (best practice) | 7005 | 5546 | 24% | -- |
+| B1 | `setState` on root, rebuilds all 10,000 (naive) | 42163 | 40732 | 1% | 0.17x |
+| B1 | Phase 2: `Signal<Color>` read in the sprite's build | 7006 | 5279 | 36% | 1.00x |
+| B1 | Phase 3 leaf: `ReactiveColoredBox` bound to the signal | 6359 | 5547 | 8% | 1.10x |
+| B1 | Phase 5 collapsed: `RBox` | 6414 | 4619 | 25% | 1.09x |
+| B2 | `ValueListenableBuilder`, all 10,000/frame (best practice) | 33851 | 33408 | 1% | -- |
+| B2 | Phase 2: signal per sprite, one batch | 35759 | 34534 | 4% | 0.95x |
+| B2 | Phase 3 leaf: 10,000 `ReactiveColoredBox`, one batch | 16109 | 15508 | 3% | 2.10x |
+| B2 | Phase 5 collapsed: 10,000 `RBox`, one batch | 11743 | 11036 | 5% | 2.88x |
+| B2 | **ceiling, different workload**: one `ReactiveCustomPaint`, one write | 176 | 170 | 7% | no ratio¹ |
+| B3 | `CustomPainter` + `Listenable`, 50,000 particles (best practice) | 332 | 313 | 1% | -- |
+| B3 | Phase 3: `ReactiveCustomPaint`, one batch | 340 | 329 | 2% | 0.98x |
+| B4 | `ValueListenableBuilder` leaf, depth 50 (best practice) | 318 | 284 | 1% | -- |
+| B4 | Phase 2: signal-reading leaf | 322 | 300 | 1% | 0.99x |
+| B4 | Phase 3 leaf: `ReactiveText` | 267 | 253 | 2% | 1.19x |
+| B4 | Phase 5 collapsed: `RText` | 273 | 230 | 2% | 1.16x |
+| B5 | `ValueListenableBuilder` leaf, depth 100 (best practice) | 352 | 310 | 1% | -- |
+| B5 | Phase 2: signal-reading leaf | 355 | 310 | 2% | 0.99x |
+| B5 | Phase 3 leaf: `ReactiveText` | 294 | 275 | 3% | 1.20x |
+| B5 | Phase 5 collapsed: `RText` | 297 | 250 | 1% | 1.19x |
+| B6 | `ValueListenableBuilder`, 1 of 1,000 rows (best practice) | 392 | 363 | 6% | -- |
+| B6 | `InheritedWidget`, 1 row notifies all 1,000 (naive) | 4214 | 3992 | 0% | 0.09x |
+| B6 | Phase 2: `Signal<Color>` per row | 387 | 350 | 10% | 1.01x |
+| B6 | Phase 3 leaf: `ReactiveColoredBox` | 375 | 350 | 6% | 1.05x |
+| B6 | Phase 5 collapsed: `RBox` | 383 | 362 | 3% | 1.02x |
+| B7 | Material checkbox grid, tracking **off** | 4198 | 3992 | 7% | -- |
+| B7 | Material checkbox grid, tracking **on** | 4142 | 4000 | 8% | 1.01x² |
+| B8 | Mount 10,000 plain `ColoredBox` leaves | 737172 | 730751 | 1% | -- |
+| B8 | Mount 10,000 `ReactiveColoredBox` leaves (Phase 3) | 749281 | 715866 | 2% | 0.98x |
+| B8 | Mount 10,000 `RBox` nodes (Phase 5) | 423757 | 368600 | 5% | 1.74x |
+| B8 | Unmount 10,000 plain `ColoredBox` leaves | 4815 | 4512 | 7% | -- |
+| B8 | Unmount 10,000 `ReactiveColoredBox` leaves (Phase 3) | 6673 | 5856 | 12% | 0.72x |
+| B8 | Unmount 10,000 `RBox` nodes (Phase 5) | 2883 | 2144 | 6% | 1.67x |
+| B9 move 1 of 10,000 | Phase 3 leaf: `ReactiveOffset` | 12695 | 11451 | 3% | -- |
+| B9 move 1 of 10,000 | Phase 5 collapsed: `ROffset` | 11459 | 10378 | 14% | 1.11x |
+| B9 move 1 of 10,000 | Phase 4 scene, **embedded** | 4815 | 4432 | 5% | 2.64x |
+| B9 move 1 of 10,000 | Phase 4 scene, **headless**³ | 1818 | 1476 | 24% | 6.98x |
+| B9 move all 10,000 | Phase 3 leaf: `ReactiveOffset`, one batch | 42538 | 38496 | 5% | -- |
+| B9 move all 10,000 | Phase 5 collapsed: `ROffset`, one batch | 40677 | 35604 | 5% | 1.05x |
+| B9 move all 10,000 | Phase 4 scene, **embedded** | 7591 | 6690 | 4% | 5.60x |
+| B9 move all 10,000 | Phase 4 scene, **headless**³ | 5471 | 3909 | 18% | 7.78x |
+| B9 particles | Phase 3: `ReactiveCustomPaint`, 50,000 points | 234 | 228 | 2% | -- |
+| B9 particles | Phase 4 scene, **headless**³: one `PictureNode` | 117 | 115 | 0% | 2.00x |
+| B9 mount+dispose | Phase 3: 10,000 `ReactiveOffset` leaves | 812049 | 784277 | 4% | -- |
+| B9 mount+dispose | Phase 5: 10,000 `ROffset` nodes | 532588 | 512580 | 1% | 1.52x |
+| B9 mount+dispose | Phase 4 scene, **headless**³ | 41848 | 36233 | 2% | 19.4x |
 
-Refreshed 2026-09-04: median of 3 runs' medians, min across those 3 runs,
-both to 2 significant figures, `flutter test -j 1` one file at a time, same
-protocol as the rest of this phase.
+¹ The B2 ceiling row does **one** signal write and one repaint for all 10,000
+positions, where every other B2 row does 10,000 writes into 10,000 render
+objects. It is a different workload, so no ratio against any other row is
+reported -- not against the baseline, and not against the Phase 3 or Phase 5
+rows either. What it is good for is scale: one draw call for the same pixels
+costs 176 us where ten thousand render objects cost 11,743-33,851 us, which
+says the per-node cost is the framework's own layout and paint and not the
+update mechanism. That observation is the case for Phase 4, and Phase 4's own
+rows in B9 measure it properly, on the same workload.
 
-¹ The B2 ceiling row does one signal write and one repaint for all 10,000
-positions, not 10,000 writes like every other B2 row, so a ratio against the
-`ValueListenableBuilder` baseline (which does 10,000 writes) compares
-different workloads, not the same work done two ways — that ratio is not
-reported. The number that is a fair mechanism comparison is against the B2
-Phase 3 leaf row directly above it (17,000 µs): 89x, discussed below.
+² B7's two rows are the same tree and the same workload; the only difference
+is `debugTrackSignalReadsInBuild`. Tracking-on reads 1.3% *faster* on the
+median and 0.2% slower on the min -- the sign flips between the two statistics,
+which is what "no effect the harness can resolve" looks like. **No regression
+detectable above the ~7% run-to-run spread at n=3.** This is not proof of zero
+cost; it is proof that three runs cannot distinguish it from zero.
 
-**Read these numbers with the following caveats, which matter more than the
-numbers.**
+³ Headless scene rows are the scene's own frame work only -- `flushSignals`
+plus `composeFrame` onto a real `ui.SceneBuilder` -- with no framework frame
+around them. They are **not** comparable with the classic rows, which include
+a whole `pump()`. The row that is comparable is the embedded one. Both are
+reported because headless is what standalone game mode actually runs.
 
-**B1 is dominated by the `Stack`, not by the update.** Ten thousand
-`Positioned` children are laid out and painted on every `pump()` regardless of
-what changed, and that cost is the entire 7–8 ms. All four B1 variants land
-within about 20% of each other because they are all measuring the same
-`Stack`. The Phase 3 leaf variant is in fact ~12% *slower* on the median than
-the Phase 2 variant, which is the honest result: removing the last remaining
-rebuild out of ten thousand elements is not measurable against this
-denominator, and 10,000 live `Effect`s cost a little in heap. What Phase 3
-changes on B1 is the rebuild count, from 1 to 0, and nothing else. Anyone
-reading B1 as "leaf bindings did not help" is reading it correctly, for this
-scenario.
+### What the table says
 
-**B2 is where the mechanism shows.** When all 10,000 sprites change, the
-baseline runs 10,000 builder closures, allocates 10,000 widgets and diffs
-10,000 children; the leaf variant runs 10,000 effects, each writing one field
-on a render object, all in one batch and one flush. That is 3.1x, and it is a
-real difference in what the frame does, not a difference in the constant.
+**Phase 2 is parity, everywhere.** 0.95x to 1.01x against the best-practice
+baseline on B1, B2, B4, B5 and B6. Both a `ValueListenableBuilder` leaf and a
+signal-reading leaf end in exactly one element rebuild, so they do the same
+work; what Phase 2 removes is the wrapper widget, the builder closure and the
+opt-in, not the rebuild. The earlier claim that Phase 2 was 1.4x faster on
+B4/B5 was a position artefact and does not survive interleaving.
 
-**The B2 ceiling row is the number to remember.** Drawing the same 10,000
-positions with one `ReactiveCustomPaint` over a `Float32List` costs 190 µs
-against 17,000 µs for one render object per sprite — 89x. Almost all of the
-per-sprite cost is the framework's own per-node layout and paint, not the
-update mechanism, and no amount of finer-grained invalidation touches it. That
-is the gap Phase 4 (scene mode) exists to close, and it is now measured rather
-than asserted.
+**Phase 3 wins where there is no large denominator, and wins big when
+everything changes.** 1.19x/1.20x on B4/B5 (a text leaf in a deep tree, with
+zero rebuilds), and 2.10x on B2, where the baseline runs 10,000 builder
+closures and allocates 10,000 widgets while the leaf variant runs 10,000
+effects that each write one render-object field. On B1 and B6, where the frame
+is dominated by laying out and painting 10,000 (or 1,000) `Positioned`
+children whatever changed, it is 1.10x and 1.05x -- real but small. B3 is
+parity, which is a pass: the frame is 100,000 floats and one `drawRawPoints`,
+and the invalidation mechanism is noise beside it.
 
-**B3 is a parity result, and that is the point.** The frame is dominated by
-writing 100,000 floats and one `drawRawPoints`; the invalidation mechanism is
-noise next to it. The table's 350 vs 370 µs (median of 3 runs each) is not a
-real win either direction — an earlier single-run measurement on the same
-date read 355 vs 367 µs, the two sides swapping which one reads faster
-between runs, which is what run-to-run noise at this magnitude looks like.
-Read this row as parity: the fork variant replaces the
-`CustomPainter`-plus-`Listenable` plumbing with one signal write inside a
-batch at no measurable cost, not as a speedup. Batching correctness is
-asserted separately: the painter counts its own paints and the test requires
-exactly one per frame.
+**Phase 3 leaves cost slightly more to mount and tear down than plain ones.**
+0.98x mount and 0.72x unmount against a plain `ColoredBox` -- an owner, an
+effect and a graph edge per leaf are not free. The earlier "1.4x cheaper to
+mount, 1.8x cheaper to unmount" was a shape artefact: the old baseline used
+`Container`, a `StatelessWidget` that adds a component element per node, so it
+was measuring one extra element and not the effect machinery. With the shapes
+matched, leaf bindings cost about 2% on mount and about 39% on unmount.
 
-**B4 is the clean win.** A 50-deep tree with a text leaf: 1.9x faster than the
-best-practice baseline and 1.4x faster than Phase 2's signal-reading leaf,
-with zero rebuilds. There is no large denominator here to hide behind, so the
-number is the mechanism.
+**Phase 5 is parity on steady-state UI-shaped updates and a real win on
+structure.** 0.98x-1.11x on B1, B4, B5, B6 and B9's move rows; 1.37x on B2's
+all-at-once batch (11,743 against 16,109); 1.77x mount, 2.31x unmount, 1.52x
+mount-and-dispose (1.74x mount and 1.67x unmount vs plain ColoredBox). See [`PHASE5_DECISION.md`](PHASE5_DECISION.md).
 
-**B8's two variants are not the same tree.** The plain baseline uses
-`Container`, which is a `StatelessWidget` and therefore adds a component
-element per node; the fork variant is a `ReactiveColoredBox` over a
-`SizedBox`, two render-object elements and no component element, plus an
-`Owner`, an `Effect` and a graph edge. The comparison is therefore "does a
-reactive leaf cost more to set up and tear down than an ordinary
-`Container`?", and the answer is no — it is 1.4x cheaper to mount and 1.8x
-cheaper to unmount. It is *not* an isolated measurement of owner and effect
-lifecycle cost; that would need two variants with identical tree shapes and is
-future work.
+**Scene mode is the largest effect measured here, and it already exists.**
+Embedded -- a like-for-like comparison, whole framework frame on both sides --
+it is 2.64x Phase 3 on moving one of ten thousand and 5.60x on moving all ten
+thousand, and 19.4x on mounting and disposing ten thousand. Removing the
+render object is worth more than removing the widget and the element.
 
-**Still not measured here.** Raster time, steady-state heap, and per-frame
-allocation, for the same reason as Phase 0 and Phase 2: `flutter test` has no
-on-screen GPU raster and these are debug-mode JIT numbers with framework
-asserts on. The claim that the game-loop hot path allocates nothing is made
-structurally (no closures per frame, integer-microsecond accumulator, intrusive
-effect queue) and is not yet backed by an allocation counter. `dev/reactive_demos`
-is macOS-only today (no `ios`/`android`/`linux`/`windows` platform folders), so
-the run that would settle this is a macOS profile-mode run:
-`cd dev/reactive_demos && ../../bin/flutter run -d macos --profile`, using
-DevTools' memory view to check per-frame allocation.
+## History
+
+Earlier revisions of this document published per-phase tables (Phase 0, Phase
+2, Phase 3), and `SCENE_MODE.md` and `PHASE5_DECISION.md` published tables
+derived from them. **Every ratio in those tables was confounded by
+position-in-file** and they are superseded by the single table above. Two
+faults:
+
+- Within a file, variants ran sequentially in one process, so a variant's
+  position in the file was worth up to ~2x on its own. B4's three
+  near-identical variants read 545 / 408 / 291 us in file order.
+- Comparisons *between* files -- the Phase 5 spike lived in its own
+  `b10_collapsed_nodes_test.dart` and was compared against Phase 3 rows
+  measured in `b1`..`b8` -- were comparisons between different processes.
+
+`b10_collapsed_nodes_test.dart` has been deleted; its variants are folded into
+B1, B2, B4, B5, B6, B8 and B9, which is why every Phase 5 ratio on this page
+is now in-process. Some conclusions survived the correction (Phase 3's B2 win,
+scene mode's advantage, the Phase 5 recommendation); several did not (Phase
+2's B4/B5 "1.4x", Phase 3's B8 mount/unmount "win", Phase 5's B4 "0.76x
+slower").

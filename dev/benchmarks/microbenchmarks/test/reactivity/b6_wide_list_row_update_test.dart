@@ -6,26 +6,39 @@
 // docs/fine_grained_reactivity/BENCHMARKS.md. Comparison against
 // InheritedWidget dependency notification.
 //
-// Two baselines are measured:
-//  - best current practice: a ValueNotifier per row with a
-//    ValueListenableBuilder at the leaf, wrapped in a RepaintBoundary (the
-//    strongest legacy setup for a leaf that repaints alone), so only the
-//    changed row rebuilds.
-//  - InheritedWidget: all rows depend on one InheritedWidget at the root;
-//    changing one row's colour still notifies (and rebuilds) all 1,000
-//    dependents, which is what fine-grained tracking is meant to avoid.
+// All five variants run in one process, interleaved and rotated by
+// `runInterleaved`.
 //
-// The fork variant gives each row its own Signal<Color>, read in the row's
-// own build, so one row's change reaches one element instead of all 1,000
-// dependents.
+//  - best practice: a ValueNotifier per row with a ValueListenableBuilder at
+//    the leaf, so only the changed row rebuilds.
+//  - InheritedWidget: all rows depend on one InheritedWidget at the root;
+//    changing one row's colour notifies (and rebuilds) all 1,000 dependents.
+//  - Phase 2: each row reads its own Signal<Color> in its own build.
+//  - Phase 3 leaf: the row is a ReactiveColoredBox bound to the signal.
+//  - Phase 5 collapsed: the row is one RBox in a node tree.
+//
+// Render objects per row -- 2 in every variant, including the InheritedWidget
+// baseline:
+//   classic  Positioned > RepaintBoundary > (Reactive)ColoredBox
+//   collapsed  RPositioned > RRepaintBoundary > RBox
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/reactive_nodes.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'reactivity_bench_common.dart';
 
 const int kRowCount = 1000;
+const int kWarmup = 5;
+const int kTimed = 30;
+
+int _rowBuilds = 0;
+int _probeBuilds = 0;
+int _effectRuns = 0;
+int _componentRuns = 0;
+
+Color _colorFor(int i) => Color.fromARGB(255, (i * 37) & 0xff, (i * 91) & 0xff, 0);
 
 class _ColorsInherited extends InheritedWidget {
   const _ColorsInherited(this.colors, {required super.child});
@@ -44,10 +57,8 @@ class _InheritedRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Container(height: 1, color: _ColorsInherited.of(context).colors[index]);
+      ColoredBox(color: _ColorsInherited.of(context).colors[index]);
 }
-
-int _rowBuilds = 0;
 
 class _SignalRow extends StatelessWidget {
   const _SignalRow(this.color);
@@ -57,136 +68,253 @@ class _SignalRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _rowBuilds++;
-    return Container(height: 1, color: color.value);
+    return ColoredBox(color: color.value);
   }
 }
 
-void main() {
-  testWidgets('B6 ValueListenableBuilder update one of 1000 rows (best practice)', (
-    WidgetTester tester,
-  ) async {
-    final notifiers = List<ValueNotifier<Color>>.generate(
-      kRowCount,
-      (int i) => ValueNotifier<Color>(Colors.blue),
-    );
-    var buildCount = 0;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: mountAllInRows([
-          for (final n in notifiers)
-            RepaintBoundary(
-              child: ValueListenableBuilder<Color>(
-                valueListenable: n,
-                builder: (BuildContext context, Color color, Widget? child) {
-                  buildCount++;
-                  return Container(height: 1, color: color);
-                },
-              ),
+/// Counts its own builds, above the rows.
+class _BuildProbe extends StatelessWidget {
+  const _BuildProbe({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    _probeBuilds++;
+    return child;
+  }
+}
+
+Future<double> _valueListenable(WidgetTester tester) async {
+  final notifiers = List<ValueNotifier<Color>>.generate(
+    kRowCount,
+    (int i) => ValueNotifier<Color>(Colors.blue),
+  );
+  var buildCount = 0;
+  await tester.pumpWidget(
+    MaterialApp(
+      home: mountAllInRows([
+        for (final n in notifiers)
+          RepaintBoundary(
+            child: ValueListenableBuilder<Color>(
+              valueListenable: n,
+              builder: (BuildContext context, Color color, Widget? child) {
+                buildCount++;
+                return ColoredBox(color: color);
+              },
             ),
+          ),
+      ]),
+    ),
+  );
+  expect(find.byType(Positioned), findsNWidgets(kRowCount));
+
+  var i = 0;
+  for (var w = 0; w < kWarmup; w++) {
+    notifiers[i % kRowCount].value = _colorFor(i);
+    i++;
+    await tester.pump();
+  }
+  buildCount = 0;
+  final List<double> values = await timeIterations(
+    warmup: 0,
+    iterations: kTimed,
+    body: () async {
+      notifiers[i % kRowCount].value = _colorFor(i);
+      i++;
+      await tester.pump();
+    },
+  );
+  // Every timed pump rebuilt its leaf, rather than hitting ValueNotifier's
+  // identical-value early return.
+  expect(buildCount, kTimed);
+  await tester.pumpWidget(const SizedBox.shrink());
+  return median(values);
+}
+
+Future<double> _inheritedWidget(WidgetTester tester) async {
+  final colors = List<Color>.filled(kRowCount, Colors.blue);
+  late StateSetter setState;
+  await tester.pumpWidget(
+    MaterialApp(
+      home: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setter) {
+          setState = setter;
+          return _ColorsInherited(
+            colors,
+            child: mountAllInRows([
+              for (var i = 0; i < kRowCount; i++) RepaintBoundary(child: _InheritedRow(i)),
+            ]),
+          );
+        },
+      ),
+    ),
+  );
+  expect(find.byType(Positioned), findsNWidgets(kRowCount));
+
+  var i = 0;
+  final List<double> values = await timeIterations(
+    warmup: kWarmup,
+    iterations: kTimed,
+    body: () async {
+      colors[i % kRowCount] = _colorFor(i);
+      i++;
+      setState(() {});
+      await tester.pump();
+    },
+  );
+  // Liveness: the list really carries the last colour written.
+  expect(colors[(i - 1) % kRowCount], _colorFor(i - 1));
+  await tester.pumpWidget(const SizedBox.shrink());
+  return median(values);
+}
+
+Future<double> _signalInBuild(WidgetTester tester) async {
+  final signals = List<Signal<Color>>.generate(kRowCount, (int i) => Signal<Color>(Colors.blue));
+  await tester.pumpWidget(
+    MaterialApp(
+      home: mountAllInRows([for (final s in signals) RepaintBoundary(child: _SignalRow(s))]),
+    ),
+  );
+  expect(find.byType(Positioned), findsNWidgets(kRowCount));
+
+  var i = 0;
+  for (var w = 0; w < kWarmup; w++) {
+    signals[i % kRowCount].value = _colorFor(i);
+    i++;
+    await tester.pump();
+  }
+  _rowBuilds = 0;
+  final List<double> values = await timeIterations(
+    warmup: 0,
+    iterations: kTimed,
+    body: () async {
+      signals[i % kRowCount].value = _colorFor(i);
+      i++;
+      await tester.pump();
+    },
+  );
+  // One row rebuilt per write, against 1,000 for the InheritedWidget case.
+  expect(_rowBuilds, kTimed);
+  await tester.pumpWidget(const SizedBox.shrink());
+  return median(values);
+}
+
+Future<double> _leafBinding(WidgetTester tester) async {
+  final signals = List<Signal<Color>>.generate(kRowCount, (int i) => Signal<Color>(Colors.blue));
+  await tester.pumpWidget(
+    MaterialApp(
+      home: _BuildProbe(
+        child: mountAllInRows([
+          for (final s in signals) RepaintBoundary(child: ReactiveColoredBox(color: s)),
         ]),
       ),
-    );
-    // Every row must be mounted, not just what a viewport would show.
-    expect(find.byType(Positioned), findsNWidgets(kRowCount));
+    ),
+  );
+  expect(find.byType(Positioned), findsNWidgets(kRowCount));
 
-    // Distinct colour per write (never repeats the notifier's current
-    // value), so ValueNotifier never early-returns and every timed pump
-    // does real work -- guards against a silent no-op frame.
-    Color colorForIteration(int i) => Color.fromARGB(255, (i * 37) & 0xff, (i * 91) & 0xff, 0);
-
-    var i = 0;
-    const warmupIterations = 20;
-    const timedIterations = 200;
-    for (var w = 0; w < warmupIterations; w++) {
-      notifiers[i % kRowCount].value = colorForIteration(i);
+  var i = 0;
+  for (var w = 0; w < kWarmup; w++) {
+    signals[i % kRowCount].value = _colorFor(i);
+    i++;
+    await tester.pump();
+  }
+  _probeBuilds = 0;
+  final List<double> values = await timeIterations(
+    warmup: 0,
+    iterations: kTimed,
+    body: () async {
+      signals[i % kRowCount].value = _colorFor(i);
       i++;
       await tester.pump();
-    }
-    buildCount = 0;
-    final List<double> values = await timeIterations(
-      warmup: 0,
-      iterations: timedIterations,
-      body: () async {
-        notifiers[i % kRowCount].value = colorForIteration(i);
-        i++;
-        await tester.pump();
-      },
+    },
+  );
+  expect(
+    tester
+        .renderObjectList<RenderReactiveColoredBox>(find.byType(ReactiveColoredBox))
+        .elementAt((i - 1) % kRowCount)
+        .color,
+    _colorFor(i - 1),
+  );
+  expect(_probeBuilds, 0);
+  await tester.pumpWidget(const SizedBox.shrink());
+  return median(values);
+}
+
+Future<double> _collapsedNodes(WidgetTester tester) async {
+  final signals = List<Signal<Color>>.generate(kRowCount, (int i) => Signal<Color>(Colors.blue));
+  final boxes = <RBox>[];
+  _componentRuns = 0;
+  final root = RComponent(() {
+    _componentRuns += 1;
+    return RStack(
+      children: <RNode>[
+        for (var i = 0; i < kRowCount; i++)
+          RPositioned(
+            left: 0,
+            top: i.toDouble(),
+            width: 800,
+            height: 1,
+            child: RRepaintBoundary(
+              child: () {
+                final box = RBox(
+                  color: () {
+                    _effectRuns += 1;
+                    return signals[i].value;
+                  },
+                );
+                boxes.add(box);
+                return box;
+              }(),
+            ),
+          ),
+      ],
     );
-    // Sanity: every timed pump must have rebuilt its leaf, not hit
-    // ValueNotifier's identical-value early return.
-    expect(buildCount, timedIterations);
-    printMedian('b6_value_listenable_update_one_of_1000_rows', values);
   });
-
-  testWidgets('B6 InheritedWidget update one row notifies all 1000 dependents', (
-    WidgetTester tester,
-  ) async {
-    // No RepaintBoundary here, unlike the two variants above: this is the
-    // naive InheritedWidget baseline, and every dependent rebuilds anyway,
-    // so isolating repaint wouldn't isolate build cost.
-    final colors = List<Color>.filled(kRowCount, Colors.blue);
-    late StateSetter setState;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: StatefulBuilder(
-          builder: (BuildContext context, StateSetter setter) {
-            setState = setter;
-            return _ColorsInherited(
-              colors,
-              child: mountAllInRows([for (var i = 0; i < kRowCount; i++) _InheritedRow(i)]),
-            );
-          },
-        ),
+  await tester.pumpWidget(
+    MaterialApp(
+      home: SizedBox(
+        width: 800,
+        height: kRowCount.toDouble(),
+        child: NodeHost(node: root),
       ),
-    );
+    ),
+  );
+  expect(boxes, hasLength(kRowCount));
 
-    expect(find.byType(Positioned), findsNWidgets(kRowCount));
-
-    var i = 0;
-    final List<double> values = await timeIterations(
-      warmup: 5,
-      iterations: 50,
-      body: () async {
-        colors[i % kRowCount] = i.isEven ? Colors.red : Colors.blue;
-        i++;
-        setState(() {});
-        await tester.pump();
-      },
-    );
-    printMedian('b6_inheritedwidget_update_one_notifies_all_1000', values);
-  });
-
-  testWidgets('B6 fork Signal update one of 1000 rows', (WidgetTester tester) async {
-    final signals = List<Signal<Color>>.generate(kRowCount, (int i) => Signal<Color>(Colors.blue));
-    await tester.pumpWidget(
-      MaterialApp(
-        home: mountAllInRows([for (final s in signals) RepaintBoundary(child: _SignalRow(s))]),
-      ),
-    );
-    expect(find.byType(Positioned), findsNWidgets(kRowCount));
-
-    Color colorForIteration(int i) => Color.fromARGB(255, (i * 37) & 0xff, (i * 91) & 0xff, 0);
-
-    var i = 0;
-    const warmupIterations = 20;
-    const timedIterations = 200;
-    for (var w = 0; w < warmupIterations; w++) {
-      signals[i % kRowCount].value = colorForIteration(i);
+  var i = 0;
+  for (var w = 0; w < kWarmup; w++) {
+    signals[i % kRowCount].value = _colorFor(i);
+    i++;
+    await tester.pump();
+  }
+  _effectRuns = 0;
+  final List<double> values = await timeIterations(
+    warmup: 0,
+    iterations: kTimed,
+    body: () async {
+      signals[i % kRowCount].value = _colorFor(i);
       i++;
       await tester.pump();
-    }
-    _rowBuilds = 0;
-    final List<double> values = await timeIterations(
-      warmup: 0,
-      iterations: timedIterations,
-      body: () async {
-        signals[i % kRowCount].value = colorForIteration(i);
-        i++;
-        await tester.pump();
-      },
-    );
-    // One row rebuilt per write, against 1,000 for the InheritedWidget case.
-    expect(_rowBuilds, timedIterations);
-    printMedian('b6_fork_signal_update_one_of_1000_rows', values);
+    },
+  );
+  expect(boxes[(i - 1) % kRowCount].renderObject.color, _colorFor(i - 1));
+  expect(_effectRuns, kTimed);
+  expect(_componentRuns, 1);
+
+  await tester.pumpWidget(const SizedBox.shrink());
+  root.dispose();
+  return median(values);
+}
+
+void main() {
+  testWidgets('B6 update one of 1000 rows', (WidgetTester tester) async {
+    await runInterleaved(tester, 'b6', <BenchVariant>[
+      const BenchVariant('vlb_best_practice', _valueListenable),
+      const BenchVariant('inheritedwidget_naive', _inheritedWidget),
+      const BenchVariant('phase2_signal_build', _signalInBuild),
+      const BenchVariant('phase3_leaf', _leafBinding),
+      const BenchVariant('phase5_collapsed', _collapsedNodes),
+    ]);
   });
 }

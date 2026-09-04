@@ -6,136 +6,241 @@
 // docs/fine_grained_reactivity/BENCHMARKS.md. Owner/effect lifecycle
 // overhead, and the disposal path.
 //
-// Baseline: a StatefulBuilder toggles a ListView's children between 10,000
-// leaf widgets and an empty list, timing mount and unmount separately (the
-// untimed setup step between them is excluded from both stopwatches).
+// Six variants -- mount and unmount for each of the three models -- run in
+// one process, interleaved and rotated by `runInterleaved`. Each variant runs
+// the whole mount/unmount cycle and times only its own half, so the two halves
+// of a model are measured under the same rotation as every other row.
 //
-// The fork variant mounts 10,000 ReactiveColoredBox leaves, each with its own
-// Signal and therefore its own element owner, effect and graph edge. This is
-// what leaf bindings cost to set up and tear down, against a plain Container.
+//  - baseline: a plain ColoredBox per node.
+//  - Phase 3 leaf: a ReactiveColoredBox per node, each with its own Signal and
+//    therefore its own owner, effect and graph edge.
+//  - Phase 5 collapsed: an RBox per node. Constructing the nodes is part of
+//    mounting: node construction is what replaces widget allocation plus
+//    element inflation in this model.
+//
+// Render objects per node -- 1 in every variant:
+//   classic  Positioned > (Reactive)ColoredBox
+//   collapsed  RPositioned > RBox
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/reactive_nodes.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'reactivity_bench_common.dart';
 
 const int kNodeCount = 10000;
-const int kIterations = 20;
+const int kWarmupPairs = 1;
+const int kTimedPairs = 2;
+
+Future<double> _plainLeaves(WidgetTester tester, {required bool timeMount}) async {
+  late StateSetter setState;
+  var mounted = false;
+  await tester.pumpWidget(
+    MaterialApp(
+      home: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setter) {
+          setState = setter;
+          return mounted
+              ? mountAllInRows([
+                  for (var i = 0; i < kNodeCount; i++) const ColoredBox(color: Colors.blue),
+                ])
+              : const SizedBox.shrink();
+        },
+      ),
+    ),
+  );
+
+  final times = <double>[];
+  final watch = Stopwatch();
+  for (var i = 0; i < kWarmupPairs + kTimedPairs; i++) {
+    watch
+      ..reset()
+      ..start();
+    mounted = true;
+    setState(() {});
+    await tester.pump();
+    watch.stop();
+    if (i == 0) {
+      // Every node must actually mount, not just what a viewport would show.
+      expect(find.byType(Positioned), findsNWidgets(kNodeCount));
+    }
+    if (i >= kWarmupPairs && timeMount) {
+      times.add(watch.elapsedMicroseconds.toDouble());
+    }
+
+    watch
+      ..reset()
+      ..start();
+    mounted = false;
+    setState(() {});
+    await tester.pump();
+    watch.stop();
+    if (i == 0) {
+      expect(find.byType(Positioned), findsNothing);
+    }
+    if (i >= kWarmupPairs && !timeMount) {
+      times.add(watch.elapsedMicroseconds.toDouble());
+    }
+  }
+  return median(times);
+}
+
+Future<double> _reactiveLeaves(WidgetTester tester, {required bool timeMount}) async {
+  final signals = List<Signal<Color>>.generate(kNodeCount, (int i) => Signal<Color>(Colors.blue));
+  late StateSetter setState;
+  var mounted = false;
+  await tester.pumpWidget(
+    MaterialApp(
+      home: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setter) {
+          setState = setter;
+          return mounted
+              ? mountAllInRows([for (final s in signals) ReactiveColoredBox(color: s)])
+              : const SizedBox.shrink();
+        },
+      ),
+    ),
+  );
+
+  final times = <double>[];
+  final watch = Stopwatch();
+  for (var i = 0; i < kWarmupPairs + kTimedPairs; i++) {
+    watch
+      ..reset()
+      ..start();
+    mounted = true;
+    setState(() {});
+    await tester.pump();
+    watch.stop();
+    if (i == 0) {
+      expect(find.byType(Positioned), findsNWidgets(kNodeCount));
+      // Every leaf really bound its signal.
+      expect(signals.first.subs, isNotNull);
+    }
+    if (i >= kWarmupPairs && timeMount) {
+      times.add(watch.elapsedMicroseconds.toDouble());
+    }
+
+    watch
+      ..reset()
+      ..start();
+    mounted = false;
+    setState(() {});
+    await tester.pump();
+    watch.stop();
+    if (i == 0) {
+      expect(find.byType(Positioned), findsNothing);
+      // Unmounting disposed every effect, so no signal retains a leaf.
+      expect(signals.first.subs, isNull);
+    }
+    if (i >= kWarmupPairs && !timeMount) {
+      times.add(watch.elapsedMicroseconds.toDouble());
+    }
+  }
+  return median(times);
+}
+
+Future<double> _collapsedNodes(WidgetTester tester, {required bool timeMount}) async {
+  final signals = List<Signal<Color>>.generate(kNodeCount, (int i) => Signal<Color>(Colors.blue));
+  late StateSetter setState;
+  RNode? root;
+  await tester.pumpWidget(
+    MaterialApp(
+      home: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setter) {
+          setState = setter;
+          final node = root;
+          return node == null
+              ? const SizedBox.shrink()
+              : SizedBox(
+                  width: 800,
+                  height: kNodeCount.toDouble(),
+                  child: NodeHost(node: node),
+                );
+        },
+      ),
+    ),
+  );
+
+  final times = <double>[];
+  final watch = Stopwatch();
+  for (var i = 0; i < kWarmupPairs + kTimedPairs; i++) {
+    watch
+      ..reset()
+      ..start();
+    root = RStack(
+      children: <RNode>[
+        for (var n = 0; n < kNodeCount; n++)
+          RPositioned(
+            left: 0,
+            top: n.toDouble(),
+            width: 800,
+            height: 1,
+            child: RBox(color: signals[n].call),
+          ),
+      ],
+    );
+    setState(() {});
+    await tester.pump();
+    watch.stop();
+    if (i == 0) {
+      expect(find.byType(NodeHost), findsOneWidget);
+      // Every leaf really bound its signal.
+      expect(signals.first.subs, isNotNull);
+    }
+    if (i >= kWarmupPairs && timeMount) {
+      times.add(watch.elapsedMicroseconds.toDouble());
+    }
+
+    watch
+      ..reset()
+      ..start();
+    final RNode mountedRoot = root;
+    root = null;
+    setState(() {});
+    await tester.pump();
+    mountedRoot.dispose();
+    watch.stop();
+    if (i == 0) {
+      expect(find.byType(NodeHost), findsNothing);
+      // Disposal unlinked every binding, so no signal retains a node.
+      expect(signals.first.subs, isNull);
+    }
+    if (i >= kWarmupPairs && !timeMount) {
+      times.add(watch.elapsedMicroseconds.toDouble());
+    }
+  }
+  return median(times);
+}
 
 void main() {
-  testWidgets('B8 mount and unmount 10000 leaf nodes', (WidgetTester tester) async {
-    late StateSetter setState;
-    var mounted = false;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: StatefulBuilder(
-          builder: (BuildContext context, StateSetter setter) {
-            setState = setter;
-            return mounted
-                ? mountAllInRows([
-                    for (var i = 0; i < kNodeCount; i++) Container(height: 1, color: Colors.blue),
-                  ])
-                : const SizedBox.shrink();
-          },
-        ),
+  testWidgets('B8 mount and unmount 10000 nodes', (WidgetTester tester) async {
+    await runInterleaved(tester, 'b8', <BenchVariant>[
+      BenchVariant(
+        'baseline_mount',
+        (WidgetTester tester) => _plainLeaves(tester, timeMount: true),
       ),
-    );
-
-    final mountTimes = <double>[];
-    final unmountTimes = <double>[];
-    final watch = Stopwatch();
-    for (var i = 0; i < kIterations + 3; i++) {
-      watch
-        ..reset()
-        ..start();
-      mounted = true;
-      setState(() {});
-      await tester.pump();
-      watch.stop();
-      if (i == 0) {
-        // Every node must actually mount, not just what a viewport would show.
-        expect(find.byType(Positioned), findsNWidgets(kNodeCount));
-      }
-      if (i >= 3) {
-        mountTimes.add(watch.elapsedMicroseconds.toDouble());
-      }
-
-      watch
-        ..reset()
-        ..start();
-      mounted = false;
-      setState(() {});
-      await tester.pump();
-      watch.stop();
-      if (i == 0) {
-        expect(find.byType(Positioned), findsNothing);
-      }
-      if (i >= 3) {
-        unmountTimes.add(watch.elapsedMicroseconds.toDouble());
-      }
-    }
-    printMedian('b8_mount_10000_nodes', mountTimes);
-    printMedian('b8_unmount_10000_nodes', unmountTimes);
-  });
-
-  testWidgets('B8 fork mount and unmount 10000 reactive leaf nodes', (WidgetTester tester) async {
-    final signals = List<Signal<Color>>.generate(kNodeCount, (int i) => Signal<Color>(Colors.blue));
-    late StateSetter setState;
-    var mounted = false;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: StatefulBuilder(
-          builder: (BuildContext context, StateSetter setter) {
-            setState = setter;
-            return mounted
-                ? mountAllInRows([
-                    for (final s in signals)
-                      ReactiveColoredBox(color: s, child: const SizedBox(height: 1)),
-                  ])
-                : const SizedBox.shrink();
-          },
-        ),
+      BenchVariant(
+        'baseline_unmount',
+        (WidgetTester tester) => _plainLeaves(tester, timeMount: false),
       ),
-    );
-
-    final mountTimes = <double>[];
-    final unmountTimes = <double>[];
-    final watch = Stopwatch();
-    for (var i = 0; i < kIterations + 3; i++) {
-      watch
-        ..reset()
-        ..start();
-      mounted = true;
-      setState(() {});
-      await tester.pump();
-      watch.stop();
-      if (i == 0) {
-        expect(find.byType(Positioned), findsNWidgets(kNodeCount));
-        // Every leaf really bound its signal.
-        expect(signals.first.subs, isNotNull);
-      }
-      if (i >= 3) {
-        mountTimes.add(watch.elapsedMicroseconds.toDouble());
-      }
-
-      watch
-        ..reset()
-        ..start();
-      mounted = false;
-      setState(() {});
-      await tester.pump();
-      watch.stop();
-      if (i == 0) {
-        expect(find.byType(Positioned), findsNothing);
-        // Unmounting disposed every effect, so no signal retains a leaf.
-        expect(signals.first.subs, isNull);
-      }
-      if (i >= 3) {
-        unmountTimes.add(watch.elapsedMicroseconds.toDouble());
-      }
-    }
-    printMedian('b8_fork_mount_10000_reactive_leaves', mountTimes);
-    printMedian('b8_fork_unmount_10000_reactive_leaves', unmountTimes);
+      BenchVariant(
+        'phase3_leaf_mount',
+        (WidgetTester tester) => _reactiveLeaves(tester, timeMount: true),
+      ),
+      BenchVariant(
+        'phase3_leaf_unmount',
+        (WidgetTester tester) => _reactiveLeaves(tester, timeMount: false),
+      ),
+      BenchVariant(
+        'phase5_collapsed_mount',
+        (WidgetTester tester) => _collapsedNodes(tester, timeMount: true),
+      ),
+      BenchVariant(
+        'phase5_collapsed_unmount',
+        (WidgetTester tester) => _collapsedNodes(tester, timeMount: false),
+      ),
+    ]);
   });
 }
