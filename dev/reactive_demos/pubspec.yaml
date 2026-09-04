@@ -1,0 +1,19 @@
+name: reactive_demos
+description: Demos of the signal-based reactive widgets added to this Flutter fork.
+publish_to: 'none'
+
+environment:
+  sdk: ^3.11.0-0
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

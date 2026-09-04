@@ -54,6 +54,7 @@ workspace:
   - dev/integration_tests/windows_startup_test
   - dev/manual_tests
   - dev/packages_autoroller
+  - dev/reactive_demos
   - dev/snippets
   - dev/tools
   - dev/tools/android_driver_extensions

@@ -123,7 +123,6 @@ linter:
     - flutter_style_todos
     - hash_and_equals
     - implementation_imports
-    - implicit_call_tearoffs
     - implicit_reopen
     - invalid_case_patterns
     - invalid_runtime_check_with_js_interop_types

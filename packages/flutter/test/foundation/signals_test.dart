@@ -579,7 +579,7 @@ void main() {
     var invalidations = 0;
     final node = TrackingNode(() => invalidations += 1);
 
-    for (final Signal<int> own in perCall) {
+    for (final own in perCall) {
       // Reading the per-call signal first moves the tail off the shared one,
       // which is what a plain append would grow the subscriber list on.
       node.track<void>(() {
@@ -588,7 +588,7 @@ void main() {
       }, retainDeps: true);
     }
     expect(_countSubs(shared), 1);
-    for (final Signal<int> own in perCall) {
+    for (final own in perCall) {
       expect(_countSubs(own), 1);
     }
 
@@ -600,7 +600,7 @@ void main() {
     // A full run starts over: the dependencies of the retaining run are gone.
     node.track<void>(() {});
     expect(shared.subs, isNull);
-    for (final Signal<int> own in perCall) {
+    for (final own in perCall) {
       expect(own.subs, isNull);
     }
     node.dispose();
@@ -772,6 +772,57 @@ void main() {
     count.value = -1;
     expect(runs, 2);
     effect.dispose();
+  });
+
+  test('rerun runs an effect again', () {
+    final count = Signal<int>(0);
+    var runs = 0;
+    final effect = Effect(() {
+      count.value;
+      runs += 1;
+    });
+    expect(runs, 1);
+
+    effect.rerun();
+    expect(runs, 2);
+
+    effect.dispose();
+    effect.rerun(); // A disposed subscriber is ignored.
+    expect(runs, 2);
+  });
+
+  test('rerun leaves a queued effect alone, so the queue is not corrupted', () {
+    final a = Signal<int>(0);
+    final b = Signal<int>(0);
+    var aRuns = 0;
+    var bRuns = 0;
+    final ea = Effect(() {
+      a.value;
+      aRuns += 1;
+    });
+    final eb = Effect(() {
+      b.value;
+      bRuns += 1;
+    });
+    expect(<int>[aRuns, bRuns], <int>[1, 1]);
+
+    batch<void>(() {
+      a.value = 1; // queues ea
+      b.value = 1; // queues eb behind it
+      // ea is waiting in the queue. Running it here would re-arm it, and the
+      // write below would then queue it a second time, overwriting its link
+      // to eb and dropping eb from the queue for good.
+      ea.rerun();
+      a.value = 2;
+    });
+    expect(<int>[aRuns, bRuns], <int>[2, 2]);
+
+    // eb is still watching its signal.
+    b.value = 2;
+    expect(bRuns, 3);
+
+    ea.dispose();
+    eb.dispose();
   });
 }
 

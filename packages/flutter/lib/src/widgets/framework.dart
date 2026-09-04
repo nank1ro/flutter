@@ -5475,6 +5475,23 @@ abstract class Element extends DiagnosticableTree implements BuildContext {
     return _reactiveOwner ??= Owner.detached();
   }
 
+  /// The reactive ownership scope tied to this element's lifetime.
+  ///
+  /// [Effect]s, [Computed]s and nested [Owner]s created while this owner is
+  /// active are disposed when the element is unmounted, and *not* when it
+  /// rebuilds.
+  ///
+  /// Exposed for the reactive render-object elements in `reactive_widgets.dart`,
+  /// which create one [Effect] per reactive property here so that the effect
+  /// lives exactly as long as the element and survives every rebuild. The
+  /// framework also exposes this scope through [State.initState], which runs
+  /// once per element, so that an [Effect] created there is created once per
+  /// [State] instance. Anything created during [ComponentElement.build], by
+  /// contrast, belongs to the build's own scope and is disposed and re-created
+  /// on every rebuild.
+  @protected
+  Owner get reactiveOwner => _reactiveElementOwner;
+
   /// The subscriber that signal reads made during [ComponentElement.build]
   /// attach to. Invalidating it marks this element as needing to build.
   ///

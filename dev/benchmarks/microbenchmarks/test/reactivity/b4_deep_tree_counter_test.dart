@@ -11,9 +11,14 @@
 //
 // The fork variant replaces the leaf builder with a widget that reads a
 // Signal<int> in its own build.
+//
+// The fork *leaf* variant (Phase 3) removes the build as well: the leaf is a
+// ReactiveText bound to a Signal<String>, so a write runs one effect and one
+// RenderParagraph.text setter, and nothing in the 50-deep tree rebuilds.
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'reactivity_bench_common.dart';
@@ -104,4 +109,52 @@ void main() {
     expect(_counterBuilds, timedIterations);
     printMedian('b4_fork_signal_leaf_update_depth_50', values);
   });
+
+  testWidgets('B4 fork leaf ReactiveText update at depth 50', (WidgetTester tester) async {
+    final counter = Signal<String>('0');
+    await tester.pumpWidget(
+      MaterialApp(home: _BuildProbe(child: _nest(kDepth, ReactiveText(counter)))),
+    );
+
+    var i = 0;
+    const warmupIterations = 20;
+    const timedIterations = 300;
+    for (var w = 0; w < warmupIterations; w++) {
+      counter.value = '${++i}';
+      await tester.pump();
+    }
+    _probeBuilds = 0;
+    final List<double> values = await timeIterations(
+      warmup: 0,
+      iterations: timedIterations,
+      body: () async {
+        counter.value = '${++i}';
+        await tester.pump();
+      },
+    );
+    // Liveness: the paragraph really shows the last value written.
+    expect(
+      tester.renderObject<RenderParagraph>(find.byType(ReactiveText)).text.toPlainText(),
+      '$i',
+    );
+    // Nothing in the 50-deep tree rebuilt.
+    expect(_probeBuilds, 0);
+    printMedian('b4_fork_leaf_reactive_text_update_depth_50', values);
+  });
 }
+
+/// Counts its own builds, above the 50 nested widgets, so the benchmark can
+/// assert that the update never entered the build pipeline.
+class _BuildProbe extends StatelessWidget {
+  const _BuildProbe({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    _probeBuilds++;
+    return child;
+  }
+}
+
+int _probeBuilds = 0;

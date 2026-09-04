@@ -18,6 +18,11 @@
 // the sprite's own build. There is no builder widget and no BuildContext
 // dependency: the sprite's element subscribes to the signal because it read
 // it, and writing the signal marks that one element dirty.
+//
+// The fork *leaf* variant (Phase 3) removes the rebuild as well: the sprite is
+// a ReactiveColoredBox whose colour is bound straight to the signal, so a
+// write runs one effect, calls one render-object setter, and rebuilds nothing
+// at all.
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -171,4 +176,79 @@ void main() {
     expect(_spriteBuilds, timedIterations);
     printMedian('b1_fork_signal_update_one_of_10000', values);
   });
+
+  testWidgets('B1 fork leaf ReactiveColoredBox update one of 10000', (WidgetTester tester) async {
+    final signals = List<Signal<Color>>.generate(
+      kSpriteCount,
+      (int i) => Signal<Color>(Colors.blue),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: _BuildProbe(
+          child: mountAllInRows([
+            for (final s in signals)
+              RepaintBoundary(
+                child: ReactiveColoredBox(
+                  color: s,
+                  child: const SizedBox(width: 1, height: 1),
+                ),
+              ),
+          ]),
+        ),
+      ),
+    );
+    expect(find.byType(Positioned), findsNWidgets(kSpriteCount));
+
+    Color colorForIteration(int i) => Color.fromARGB(255, (i * 37) & 0xff, (i * 91) & 0xff, 0);
+
+    var i = 0;
+    const warmupIterations = 20;
+    const timedIterations = 200;
+    for (var w = 0; w < warmupIterations; w++) {
+      signals[i % kSpriteCount].value = colorForIteration(i);
+      i++;
+      await tester.pump();
+    }
+    _probeBuilds = 0;
+    final List<double> values = await timeIterations(
+      warmup: 0,
+      iterations: timedIterations,
+      body: () async {
+        signals[i % kSpriteCount].value = colorForIteration(i);
+        i++;
+        await tester.pump();
+      },
+    );
+    // Liveness: the render object really took the last colour written.
+    final int lastIndex = (i - 1) % kSpriteCount;
+    expect(
+      tester
+          .renderObjectList<RenderReactiveColoredBox>(find.byType(ReactiveColoredBox))
+          .elementAt(lastIndex)
+          .color,
+      colorForIteration(i - 1),
+    );
+    // Nothing rebuilt: the update never entered the build pipeline.
+    expect(_probeBuilds, 0);
+    printMedian('b1_fork_leaf_reactive_colored_box_update_one_of_10000', values);
+  });
 }
+
+/// Counts its own builds, so a benchmark can assert that a signal write
+/// rebuilt nothing. It sits above the sprites, and the only elements between
+/// it and them are render-object elements, which cannot be marked dirty on
+/// their own: if this counter stays at zero, nothing on the path from the root
+/// to the leaf rebuilt.
+class _BuildProbe extends StatelessWidget {
+  const _BuildProbe({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    _probeBuilds++;
+    return child;
+  }
+}
+
+int _probeBuilds = 0;

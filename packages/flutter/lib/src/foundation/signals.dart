@@ -225,6 +225,15 @@ abstract base class Subscriber extends ReactiveNode {
   /// object that already exists, and allocates nothing.
   Subscriber? _nextQueued;
 
+  /// Whether this subscriber is waiting in the queue [flushSignals] drains.
+  ///
+  /// Because the queue is intrusive, a node that is already in it must never
+  /// be queued again: the second [_notify] would overwrite [_nextQueued] and
+  /// drop everything queued behind it. Queueing clears [_Flags.watching],
+  /// which is what normally prevents that, so anything that re-arms a node
+  /// outside a flush — [rerun] — has to check this first.
+  bool _queued = false;
+
   /// The owner scope this subscriber was created in.
   ///
   /// Restored on every run, so that [Owner.current] reads the same on a re-run
@@ -296,6 +305,28 @@ abstract base class Subscriber extends ReactiveNode {
         _purgeDeps(this);
       }
     }
+  }
+
+  /// Invalidates this subscriber now, as if a dependency of it had changed.
+  ///
+  /// This is for a caller that changed something the graph cannot see — the
+  /// closure an [Effect] runs, say — and needs the subscriber to run again
+  /// with the new inputs.
+  ///
+  /// A subscriber that is already queued is left alone: [flushSignals] is
+  /// about to run it anyway, and re-arming a node that is still in the queue
+  /// would let a later write queue it twice, which drops every subscriber
+  /// queued behind it. A disposed subscriber is ignored. Calling this from
+  /// inside the subscriber's own run is a mistake, and asserts.
+  void rerun() {
+    assert(
+      (flags & _Flags.recursedCheck) == _Flags.none,
+      'Cannot re-run a $runtimeType from inside its own run.',
+    );
+    if (_disposed || _queued) {
+      return;
+    }
+    onInvalidate();
   }
 
   /// Removes this node from the graph, along with anything it owns.
@@ -691,6 +722,7 @@ void _notify(Subscriber node) {
 
   for (;;) {
     current._nextQueued = head;
+    current._queued = true;
     head = current;
     current.flags &= ~_Flags.watching;
 
@@ -1331,6 +1363,7 @@ void flushSignals() {
       final Subscriber node = _queueHead!;
       _queueHead = node._nextQueued;
       node._nextQueued = null;
+      node._queued = false;
       if (_queueHead == null) {
         _queueTail = null;
       }

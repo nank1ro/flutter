@@ -675,6 +675,205 @@ B1–B4 as runnable applications.
 **What breaks.** Nothing. Reactive props are additive; the plain-`T`
 constructors stay.
 
+#### As implemented
+
+**Files.** `packages/flutter/lib/src/widgets/reactive_widgets.dart` (props,
+bindings, the reactive widgets, `Show`, `For`) and
+`packages/flutter/lib/src/widgets/frame_clock.dart` (`FrameClock`), both
+exported from `widgets.dart`. The only edit to an existing framework file is
+one accessor, `Element.reactiveOwner`, which exposes the element-lifetime
+`Owner` that Phase 1 already put on every element. Tests are
+`test/widgets/reactive_widgets_test.dart` and
+`test/widgets/reactive_frame_clock_test.dart`; the demo app is
+`dev/reactive_demos`.
+
+**Naming.** Every reactive widget is the twin of an existing Flutter widget,
+with a `Reactive` prefix and the original's property names, each typed
+`Prop<T>` instead of `T`: `ReactiveOpacity`, `ReactiveColoredBox`,
+`ReactivePadding`, `ReactiveTransform`, `ReactiveOffset`,
+`ReactiveConstrainedBox`, `ReactiveSizedBox`, `ReactiveDecoratedBox`,
+`ReactiveText`, `ReactiveCustomPaint`. All keep `const` constructors. Where
+two properties of the original feed one render-object setter, they collapse
+into the one property the setter takes: `ReactiveSizedBox` has a `Prop<Size>`
+rather than a width and a height, because `RenderConstrainedBox` takes both at
+once and splitting them would mean two effects that each read both values.
+`ReactiveText`'s `data` and `style` are the exception that proves the rule —
+they stay separate, and are bound together as one `InlineSpan` prop, because
+`RenderParagraph.text` is a span.
+
+**One effect per binding, and the prop lives in a field.** A binding is a
+property-to-setter pair. `PropBinder.bind(prop, apply)` creates an `Effect`
+owned by the element's `reactiveOwner`, whose body is `apply(prop())`. The
+prop closure is a mutable field of the binding rather than something the
+effect captured, so replacing it does not allocate a new effect. Widgets
+declare their bindings in `ReactiveRenderObjectWidget.bindProps`, which is
+called on mount and on every update, and must bind the same properties in the
+same order every time; a debug assert checks it.
+
+**Rebinding is by closure identity.** `update()` compares the new prop with
+the old with `identical` and, when they differ, re-runs the existing effect
+(`Effect.onInvalidate`), which re-reads and re-tracks. A `Signal` passed
+straight to a property is the same object on every rebuild, so the common case
+costs one comparison and nothing else. A closure written at the call site,
+`() => a.value * 2`, is a fresh object each time, so it rebinds — correct, and
+one effect run, only when an ancestor rebuilt.
+
+**A property is read twice when the element mounts.** `createRenderObject`
+seeds the render object with `untracked(prop)`, so it is never laid out with a
+placeholder value; then the binding's first effect run reads it again to
+discover the dependencies. The second write is a no-op because every render
+object setter compares before it invalidates. Seeding must be `untracked`:
+`createRenderObject` runs outside any tracking scope, and Phase 2's
+`debugSignalReadOutsideTracking` would otherwise report the read.
+
+**Two render objects are this file's own.** `RenderReactiveColoredBox`,
+because `ColoredBox`'s render object is private, and `RenderReactiveOffset`,
+which paints its child at an absolute pixel offset without touching layout —
+the sprite primitive. Moving a `ReactiveOffset` is one `markNeedsPaint` on one
+render object; moving a `Positioned` inside a `Stack` writes parent data and
+relayouts the whole stack, which is why the demo and the benchmarks move
+sprites with `ReactiveOffset`.
+
+**`Show` is a `StatelessWidget`, and needs to be nothing more.** Phase 2
+already tracks every build, so a write that flips `when` rebuilds the `Show`
+element and only it. `child` and `fallback` are callbacks so the branch that
+is not mounted is never built. There is no custom element here at all; adding
+one would buy nothing.
+
+**`For` is a custom `RenderObjectElement` over a `RenderStack`.** Only the
+list read is tracked, through `Element.trackSignalReads`; `builder` runs
+outside it, so an item widget's own signals belong to the item's element. A
+key that is already mounted is left completely alone: `builder` is not called,
+`updateChild` is not called, and the element and render object are the same
+objects as before. New keys are inflated, removed keys are deactivated, and
+moved keys get `updateSlotForChild`, which moves the render object.
+
+Two deliberate limitations. The parameter is `keyOf`, not `key`, because
+`Widget.key` has that name. And the children are laid out as a `Stack`,
+because a multi-child element must own a render object that lays its children
+out, and there is no layout-neutral multi-child render object in Flutter: the
+slot bookkeeping of a `MultiChildRenderObjectElement` belongs to its own
+render object, so a `For` cannot hand its children to an ancestor's slots. A
+stack is the right layout for a scene of independently positioned things,
+which is what `For` is for. For a linear list, put the `For` inside the layout
+you want and give the items a fixed size.
+
+**`ReactiveCustomPaint` tracks in the render object, not the element.**
+`RenderReactiveCustomPaint.paint` runs `super.paint` inside a `TrackingNode`
+whose invalidation is `markNeedsPaint`, so a painter may read signals inside
+`CustomPainter.paint` and a write repaints that render object and nothing
+else. The node is created through a detached `Owner` so that no enclosing
+build or effect scope disposes it, and it is disposed with the render object.
+Because the reads happen inside a tracking scope,
+`debugSignalReadOutsideTracking` does not flag them; a painter that reads with
+`peek` still gets the report-free stale read it asked for. The re-arming is
+tied to painting: a render object that is invalidated but then never painted
+again stops observing. In practice `markNeedsPaint` is always followed by a
+paint, so this has not been worth guarding.
+
+Note that a `Float32List` mutated in place is not a change any signal can see.
+The idiom, used by B3 and the particle demo, is a `Signal<int>` generation
+counter beside the buffer, bumped after the mutation and read inside `paint`.
+
+**`FrameClock`.** Built on `Ticker`, so `muted` is the pause. It exposes
+`Signal<Duration> time`, `Signal<int> frame` and `Signal<double> alpha`, runs
+a fixed-timestep accumulator, and calls `simulate(dt)` with `dt` in seconds.
+The whole tick — every simulation step and all three clock writes — happens
+inside one `batch`, so a frame that writes ten thousand signals produces
+exactly one flush, at the frame's existing pre-build flush point. The default
+constructor owns a bare `Ticker` and needs no widget;
+`FrameClock.withVsync(vsync: ...)` takes one from a `TickerProvider`.
+
+The hot path allocates nothing: the tick callback and the batch body are
+method references held in fields rather than closures built per frame, the
+accumulator is integer microseconds, and no list or map is touched. What
+remains is the three signal writes per frame, which reuse their graph edges.
+A `_maxCatchUp` of 250 ms bounds how much real time one frame may simulate, so
+a frame delayed by a breakpoint runs the simulation slow instead of locking
+up. Resuming from `paused` discards the time spent paused rather than
+simulating it.
+
+**What is not reactive, and what is unsupported.**
+
+- Only the properties listed above are props. Everything else on a reactive
+  widget — `alwaysIncludeSemantics`, `transformHitTests`, `textAlign`,
+  `maxLines`, `Directionality`, `MediaQuery.textScalerOf` — is an ordinary
+  field, read in `createRenderObject` and `updateRenderObject`, and changes
+  only when the widget is replaced. That is deliberate: they change with the
+  configuration, not with the frame.
+- There is no reactive multi-child widget. `For` is the multi-child case, and
+  it reconciles rather than binding props.
+- `RenderTransform.transform` copies the matrix it is given, so mutating one
+  matrix in place and expecting the render object to follow does not work.
+  `ReactiveOffset` is the allocation-free path for the translate-only case.
+- A reactive prop cannot read an `InheritedWidget`: an effect has no
+  `BuildContext` and is not part of a build, so `dependOnInheritedWidgetOfExactType`
+  has nothing to attach to. Inherited values reach a reactive widget the
+  ordinary way, through `createRenderObject` and `updateRenderObject`.
+- Hot reload re-runs `createRenderObject`/`updateRenderObject` through the
+  normal reassemble path, but a binding's effect is not re-created, so a
+  reloaded prop closure only takes effect if the widget is replaced. This is
+  the Phase 3 instance of the hot-reload problem section 6 describes.
+
+**Numbers.** Full table and caveats in
+[`BENCHMARKS.md`](BENCHMARKS.md); the short version, against the
+best-practice baseline re-measured in the same session (refreshed 2026-09-04,
+one idle machine, `flutter test -j 1`, one file at a time — see
+`BENCHMARKS.md` for the full protocol):
+
+| Scenario | Phase 3 leaf | vs best practice | rebuilds per write |
+| --- | --- | --- | --- |
+| B1, one of 10,000 sprites | 8500 µs | 0.79x | 0, was 1 |
+| B2, all 10,000 sprites, one batch | 17000 µs | 3.1x | 0, was 10,000 |
+| B2 ceiling, one `ReactiveCustomPaint` | 190 µs | see note¹ | 0 |
+| B3, 50,000 particles | 350 µs | 1.1x | 0 |
+| B4, text leaf at depth 50 | 290 µs | 1.9x | 0, was 1 |
+| B8, mount 10,000 reactive leaves | 730000 µs | 1.4x | n/a |
+
+¹ The ceiling row does one signal write and one repaint for all 10,000
+positions, not 10,000 writes like the B2 leaf row above it, so a ratio
+against the best-practice baseline (10,000 writes) compares different
+workloads and is not reported — same reasoning as `BENCHMARKS.md`. Against
+the B2 Phase 3 leaf row directly above (17,000 µs) it is 89x.
+
+Three of these deserve to be stated plainly rather than left to a table.
+
+*B1 did not improve, and the prediction in section 8 that it would gain an
+order of magnitude was wrong.* Laying out and painting a `Stack` of 10,000
+`Positioned` children costs 7–8 ms per frame whatever changed, so removing the
+last rebuild out of ten thousand elements is unmeasurable against it. Phase 3
+takes B1's rebuild count from one to zero and its wall clock nowhere. B4, which
+has no such denominator, is the scenario where the same mechanism shows 1.9x.
+
+*The ceiling row is not a measurement of the update mechanism, and should not
+be read as one.* It does one signal write and one repaint through a single
+`ReactiveCustomPaint` over a `Float32List`, where every other B2 row does
+10,000 writes into 10,000 render objects. What its 190 µs against 17,000 µs
+shows is the cost of the *nodes* — one draw call versus ten thousand render
+objects laid out and painted — not the cost of invalidation, which is why
+`BENCHMARKS.md` reports it as a note rather than a speedup. It is still the
+case for Phase 4 (scene mode): almost all of the per-sprite cost is the
+framework's own per-node layout and paint, and no amount of finer-grained
+invalidation touches it. Leaf bindings already removed the rebuild, so what is
+left to remove is the node, not the diff.
+
+*B3 is parity, and that is a pass.* Replacing a hand-wired
+`CustomPainter`-plus-`Listenable` with one batched signal write is within a
+few percent either direction of the baseline — parity, not a regression.
+
+**Ergonomics: `implicit_call_tearoffs` fights the callable-signal design.**
+Phase 0 made `Signal` callable so that `ReactiveOpacity(opacity: myOpacity)`
+would work with no boilerplate, and it does — but the repo's
+`analysis_options.yaml` enables `implicit_call_tearoffs` (line 126), which
+reports passing a callable object where a function is expected and asks for an
+explicit `myOpacity.call`. Every prop site in this fork's own tests,
+benchmarks and demo therefore writes `.call`, which is exactly the boilerplate
+the design set out to remove. Two ways out, neither taken here because both
+are policy calls rather than code: remove that one lint from the fork's
+`analysis_options.yaml`, or accept `.call` and let Phase 6's compile step
+remove it. This is the strongest argument yet found for Phase 6 — or, more
+cheaply, for deleting one line.
+
 ### Phase 4 — Scene mode
 
 **Deliverable.** A retained scene graph driven entirely by signals, rendering
@@ -722,6 +921,71 @@ game these are mostly acceptable; scene mode is not a general UI replacement
 and should not be described as one.
 
 **What breaks.** Nothing. `SceneView` is one more widget.
+
+#### As implemented
+
+**Files.** `packages/flutter/lib/src/reactive_scene/scene.dart` (compositors,
+nodes, `ReactiveScene`, `SceneDriver`) and `scene_view.dart` (`SceneView`,
+`RenderSceneView`), exported from `packages/flutter/lib/reactive_scene.dart`
+as its own library rather than from `widgets.dart`: scene mode is opt-in and
+does not belong in every app's import. Tests are
+`packages/flutter/test/reactive_scene/`, the benchmark is
+`dev/benchmarks/microbenchmarks/test/reactivity/b9_scene_mode_test.dart`, and
+the design write-up with the numbers is
+[`SCENE_MODE.md`](SCENE_MODE.md). No existing framework file changed.
+
+**The API differs from the sketch above in three ways.**
+
+*`SceneView` takes a scene, not a root node* — `SceneView(scene: scene)` over
+`ReactiveScene(rootNode)`. The scene is what owns the cull rectangle, the
+dirty flag, hit testing and the orphan list, and it is what a `SceneDriver`
+drives; a bare root node has nowhere to put any of that. A scene may be shown
+by several `SceneView`s at once.
+
+*Props are `T Function()`, not `Prop<T>`.* Phase 3's `Prop` exists to accept
+either a plain value or a reactive one at a widget boundary. A scene node has
+no `const` constructor to preserve and no rebuild to skip, so the plainest
+type that a callable `Signal` satisfies directly is the whole of it:
+`RectNode(x: xSignal, y: () => base.value + bob.value, ...)`.
+
+*There is no `pushOffset` and no dirty set.* Both were in the sketch by
+implication and both were removed after measurement. The plan said the scene
+"walks its dirty set"; the shipped walk is unconditional and O(nodes), reading
+six cached fields per node and allocating nothing but the `ui.Offset` that
+`SceneBuilder.addPicture` demands. Composition changes therefore keep no dirty
+state at all — they only ask for a frame. What *is* retained is the half that
+pays: each node's `ui.Picture`, re-recorded only when a signal the recording
+read changes, plus its `TransformEngineLayer`/`OpacityEngineLayer` handed back
+as `oldLayer` in standalone mode. A per-node offset layer, the obvious way to
+place a node, cost 15,200 µs per frame at ten thousand nodes against 2,500 µs
+for adding the pictures at an accumulated offset (the two measured against each
+other in one session), so translation is folded
+into `addPicture` and only rotation, scale and opacity push a layer.
+
+**Two embeddings, as promised.** Standalone `scene.attachToView(view)` returns
+a `SceneDriver` that owns `onBeginFrame`/`onDrawFrame`/`onPointerDataPacket`
+and `signalFlushScheduler`, saving and restoring whatever held them before; it
+asserts that nothing already drives frames, because standalone mode is for
+applications with no `WidgetsBinding`. Embedded `SceneView` paints into
+`PaintingContext.canvas` and relies on the binding's pre-build signal flush,
+so a write made after that flush composes one frame late.
+
+**What it costs, honestly** (full numbers in `SCENE_MODE.md`): mounting ten
+thousand nodes is roughly 26x cheaper than ten thousand widget + element +
+render-object triples, and moving all ten thousand in one batch 17x cheaper
+than the `ValueListenableBuilder` baseline and 5.3x cheaper than Phase 3's leaf
+bindings, which had already removed every rebuild; moving *one* of ten thousand
+is a smaller but real win too, 4.5x headless and 1.4x embedded, because both
+the classic tree and the scene still re-walk ten thousand somethings rather
+than skipping unchanged nodes.
+
+**Open problems**, none of which the plan anticipated: the walk is O(nodes)
+every frame with nothing retaining an unchanged subtree (`addRetained` would
+mean rebuilding `rendering/layer.dart`); embedded mode has no per-node engine
+retention at all; a node's bounds are unknown until it has recorded once, so a
+node created off-screen records anyway; there is no pointer capture, no
+gesture arena and no semantics; and a scene is invisible to the widget
+inspector, which is section 6's DevTools warning made concrete.
 
 ### Phase 5 — Collapsing Widget and Element
 
