@@ -56,7 +56,9 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: SizedBox.expand(child: CustomPaint(painter: _ParticlePainter(positions, repaintTick))),
+        home: SizedBox.expand(
+          child: CustomPaint(painter: _ParticlePainter(positions, repaintTick)),
+        ),
       ),
     );
 

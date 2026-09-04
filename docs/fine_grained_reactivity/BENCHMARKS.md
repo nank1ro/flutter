@@ -141,3 +141,73 @@ regression back to partial mounting fails loudly.
 Device, Flutter revision, and engine hash for each run go in a footnote under
 the row, not in the row itself; see the machine/Flutter block above this
 table for Phase 0.
+
+### Phase 2: tracked `build()` on every element (2026-09-04)
+
+Same harness, same machine (Apple M1, macOS 26.5.1), same fork binary. The
+fork variants live in the same files as their baselines, one `testWidgets` per
+variant: B1 gives each sprite its own `Signal<Color>` read in the sprite's own
+build (no builder widget, no `BuildContext` dependency), B4 and B5 put a
+signal-reading leaf at the bottom of the deep tree, B6 gives each row its own
+signal. B7 is unchanged by design and is the A1 regression guard.
+
+**These runs are not comparable to the Phase 0 table above**, and the Phase 0
+numbers were not re-used for the comparison. Phase 0 was measured with several
+benchmark files running concurrently under `flutter test`, which inflates and
+destabilises every number in it (re-running the Phase 0 command here reproduces
+that: B6's `ValueListenableBuilder` baseline reads ~3500 µs concurrently and
+~640 µs alone). Every number below is from `flutter test -j 1` on **one file at
+a time**, and each baseline was re-measured in the same session as the fork
+variant it is compared against, on the same build of the framework. Median of
+3 runs' medians, plus the min across those 3 runs, in µs per `pump()`.
+
+| Scenario | Variant | median (µs/op) | min (µs/op) | vs baseline |
+| --- | --- | --- | --- | --- |
+| B1 | `ValueListenableBuilder`, update 1 of 10,000 (best practice) | 6938 | 6538 | — |
+| B1 | `setState` on root, rebuilds all 10,000 (naive) | 51721 | 45295 | — |
+| B1 | **fork**: `Signal<Color>` read in the sprite's own build | 7000 | 6500 | 1.0x best practice, 7.4x faster than naive |
+| B4 | `ValueListenableBuilder` leaf update, depth 50 | 550 | 380 | — |
+| B4 | **fork**: signal-reading leaf, depth 50 | 390 | 310 | 1.4x faster |
+| B5 | Deep static tree (depth 100), `ValueListenableBuilder` leaf | 530 | 370 | — |
+| B5 | **fork**: signal-reading leaf, ancestors verified not rebuilt | 370 | 290 | 1.4x faster |
+| B6 | `ValueListenableBuilder`, update 1 of 1,000 rows (best practice) | 643 | 577 | — |
+| B6 | `InheritedWidget`, update 1 row notifies all 1,000 | 7605 | 6288 | — |
+| B6 | **fork**: `Signal<Color>` per row | 560 | 520 | 1.1x best practice, 13x faster than InheritedWidget |
+| B7 | 10x10 Material checkbox grid, **tracking disabled** | 4612 | 3697 | — |
+| B7 | 10x10 Material checkbox grid, **tracking enabled** | 4642 | 3710 | +0.7% median, +0.4% min |
+
+**No regression detectable above the ~1% noise floor at n=3.** B7 was
+measured as a true A/B on the same working tree: the
+`ComponentElement.performRebuild` tracking call was swapped for a plain
+`build()` for the first three runs and restored for the next three, so the only
+difference between the two rows is the tracking scope. The cost of wrapping
+every Material build in a tracking scope that reads no signal is +0.7% on the
+median and +0.4% on the min, which is inside this harness's run-to-run spread
+(the three medians on each side differ by up to 1%) — this is not proof of
+zero cost, only that three runs can't distinguish it from zero. This A/B can
+be reproduced directly with the framework's debug toggle
+`debugTrackSignalReadsInBuild` (landing in `framework.dart` alongside this
+phase's tracking work) instead of hand-editing `performRebuild`. Reactivity
+stays default-on.
+
+The same A/B on B8 (one run each): mount 10,000 nodes 1,167,107 µs untracked
+against 1,185,740 µs tracked (+1.6%), unmount 19,493 µs against 19,748 µs
+(+1.3%). A single run can't separate real cost from noise here — no causal
+claim should be drawn from it; a 3-run B8 A/B is future work if this number
+matters.
+
+B1 and B6's headline numbers are dominated by laying out and painting a
+10,000-child and 1,000-child `Stack`, not by build cost — that's why the
+fork lands within noise of the best-practice baseline instead of visibly
+beating it on median µs/op. The number that actually demonstrates the
+fork's effect is the builder-count assertion in each test
+(`expect(_spriteBuilds, timedIterations)` / `expect(_rowBuilds,
+timedIterations)`): exactly one element rebuilds per write, against all
+10,000/1,000 for the naive baseline. What the fork removes is the wrapper
+widget, the builder closure and the opt-in, not the rebuild — both a
+`ValueListenableBuilder` leaf and a signal-reading leaf end in exactly one
+element rebuild, so they do the same work. Removing the rebuild itself is
+Phase 3 (leaf prop bindings), and B1/B6 are the rows that should move then.
+B4 and B5 are faster because the baseline's `ValueListenableBuilder` is
+itself a `StatefulWidget` whose element rebuilds a child widget, where the
+fork's leaf is a single `StatelessWidget`.

@@ -9,9 +9,9 @@
 // matters most politically inside the fork: per-element tracking must not
 // slow down ordinary Material builds that read no signal at all.
 //
-// TODO(fork): no signals variant is meaningful here -- this scenario reads
-// no signal by design, so it should be re-run unmodified against the fork
-// as a pure regression check.
+// No signals variant is meaningful here: this scenario reads no signal by
+// design. It is re-run unmodified against the fork as a pure regression
+// check, which is what makes it the test of assumption A1.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

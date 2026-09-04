@@ -5,7 +5,7 @@
 import 'package:flutter/foundation.dart';
 // `Link` is intentionally not exported from `foundation.dart`; the graph
 // internals these tests inspect come from the source file directly.
-import 'package:flutter/src/foundation/signals.dart' show Link;
+import 'package:flutter/src/foundation/signals.dart' show Link, ReactiveNode;
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -570,6 +570,42 @@ void main() {
     expect(doubled.deps, isNull);
   });
 
+  test('a retaining run reads the same signal from several calls through one link', () {
+    // A lazy sliver tracks one logical run as many separate calls, one per
+    // child. All of them share a version, so a signal several of them read is
+    // linked once rather than once per call.
+    final shared = Signal<int>(0);
+    final perCall = <Signal<int>>[Signal<int>(0), Signal<int>(1), Signal<int>(2)];
+    var invalidations = 0;
+    final node = TrackingNode(() => invalidations += 1);
+
+    for (final Signal<int> own in perCall) {
+      // Reading the per-call signal first moves the tail off the shared one,
+      // which is what a plain append would grow the subscriber list on.
+      node.track<void>(() {
+        own.value;
+        shared.value;
+      }, retainDeps: true);
+    }
+    expect(_countSubs(shared), 1);
+    for (final Signal<int> own in perCall) {
+      expect(_countSubs(own), 1);
+    }
+
+    // Still subscribed: the retained link is a live edge, not a leftover.
+    shared.value = 1;
+    flushSignals();
+    expect(invalidations, 1);
+
+    // A full run starts over: the dependencies of the retaining run are gone.
+    node.track<void>(() {});
+    expect(shared.subs, isNull);
+    for (final Signal<int> own in perCall) {
+      expect(own.subs, isNull);
+    }
+    node.dispose();
+  });
+
   test('tracking through a disposed subscriber does not revive it', () {
     final count = Signal<int>(0);
     var invalidations = 0;
@@ -604,7 +640,32 @@ void main() {
     expect(effect.deps, isNull);
   });
 
-  test('the flush scheduler is called once per pending queue', () {
+  test('a disposed computed still reads the current value, uncached', () {
+    final count = Signal<int>(1);
+    var computations = 0;
+    final doubled = Computed<int>((int? _) {
+      computations += 1;
+      return count.value * 2;
+    });
+    expect(doubled.value, 2);
+    expect(computations, 1);
+
+    doubled.dispose();
+    count.value = 5;
+    // Disposed, so nothing invalidated it; the cached 2 would be a lie.
+    expect(doubled.value, 10);
+    expect(computations, 2);
+    // Recomputed on every read now, and still not subscribed to anything.
+    expect(doubled.value, 10);
+    expect(computations, 3);
+    expect(count.subs, isNull);
+    expect(doubled.deps, isNull);
+  });
+
+  test('the flush scheduler is called on every write that queues something', () {
+    // Deliberately once per write, not once per queue: the scheduler is
+    // idempotent, and a latch that remembered "already asked" would stick shut
+    // for good the first time a binding declined to schedule the frame.
     var scheduled = 0;
     signalFlushScheduler = () => scheduled += 1;
 
@@ -613,14 +674,44 @@ void main() {
     count.value = 1;
     count.value = 2;
     count.value = 3;
-    expect(scheduled, 1);
+    expect(scheduled, 3);
 
     flushSignals();
     count.value = 4;
-    expect(scheduled, 2);
+    expect(scheduled, 4);
 
     flushSignals();
+    // A write with nothing subscribed queues nothing, so schedules nothing.
+    final unobserved = Signal<int>(0);
+    unobserved.value = 1;
+    expect(scheduled, 4);
+
     effect.dispose();
+  });
+
+  test('the flush scheduler is not called for writes made during a flush', () {
+    var scheduled = 0;
+    final source = Signal<int>(0);
+    final derived = Signal<int>(0);
+    var scheduledDuringFlush = 0;
+    final writer = Effect(() {
+      derived.value = source.value * 2;
+      scheduledDuringFlush = scheduled;
+    });
+    final reader = Effect(() => derived.value);
+    signalFlushScheduler = () => scheduled += 1;
+
+    source.value = 21;
+    expect(scheduled, 1); // The write itself asked for a drain.
+    flushSignals();
+    // `writer` wrote `derived` while the queue was draining. That write was
+    // picked up by the running drain, and asked for nothing.
+    expect(scheduled, 1);
+    expect(scheduledDuringFlush, 1);
+    expect(derived.value, 42);
+
+    writer.dispose();
+    reader.dispose();
   });
 
   test('a write from inside a flush does not start a nested flush', () {
@@ -682,6 +773,15 @@ void main() {
     expect(runs, 2);
     effect.dispose();
   });
+}
+
+/// The number of edges in [node]'s subscriber list.
+int _countSubs(ReactiveNode node) {
+  var count = 0;
+  for (Link? link = node.subs; link != null; link = link.nextSub) {
+    count += 1;
+  }
+  return count;
 }
 
 /// Runs [body] with [FlutterError.onError] capturing instead of failing the

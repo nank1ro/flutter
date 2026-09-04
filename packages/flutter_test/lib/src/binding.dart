@@ -2427,6 +2427,9 @@ class AutomatedTestWidgetsFlutterBinding extends TestWidgetsFlutterBinding {
   @override
   void drawFrame() {
     assert(inTest);
+    // Same flush point as WidgetsBinding.drawFrame: effects queued by signal
+    // writes run before the build, and outside debugBuildingDirtyElements.
+    flushSignals();
     try {
       debugBuildingDirtyElements = true;
       buildOwner!.buildScope(rootElement!);
@@ -2452,6 +2455,10 @@ class AutomatedTestWidgetsFlutterBinding extends TestWidgetsFlutterBinding {
         }
       }
       buildOwner!.finalizeTree();
+      if (hasPendingSignalEffects) {
+        // Written after this frame's flush; another pump is needed to see it.
+        scheduleFrame();
+      }
     } finally {
       debugBuildingDirtyElements = false;
     }

@@ -398,6 +398,20 @@ test asserting that writing a signal in steady state allocates nothing.
    signal write, and needs no special path in the scheduler. This is what
    makes "legacy compatibility" true rather than aspirational.
 
+**Deferred: items 3 and 4, no measurable benefit for the goal.** Putting
+`InheritedWidget` on the signal graph and reimplementing `setState` as a
+version signal were both dropped from this phase when it was implemented.
+Neither moves the goal: `notifyClients` (6427) already walks only its
+dependents, so moving that set onto the graph changes the bookkeeping and not
+the amount of work, and `setState` already reduces to a `markNeedsBuild` that
+the signal path also ends in, so routing it through a signal adds a node per
+`State` and buys nothing. Both are also the two changes with the widest
+blast radius across the existing test suite, which is a poor trade for a
+rewrite that leaves behaviour identical. The existing `_dependents` map and
+`setState` → `markNeedsBuild` path stay as they are; they remain candidates
+for phase 3, where a reactive prop reading an inherited value has a reason to
+want the finer granularity.
+
 **Verification.** The full `packages/flutter/test/widgets` suite, with
 particular attention to `framework_test.dart`, `inherited_test.dart`, and
 `layout_builder_test.dart`.
@@ -458,6 +472,95 @@ worth reporting loudly, not silently deferring to the next frame.
 
 **What breaks.** Nothing, if A1 holds. The change is invisible to code that
 uses no signals.
+
+#### As implemented
+
+**One node per element, unconditionally.** `Element._trackingNode` is
+allocated on the first build of every `ComponentElement`, not only on the ones
+that read something: the node is what a read attaches to, so it has to exist
+before the build runs. An element that reads nothing keeps a node with an
+empty dependency list, which costs one object and no per-build work.
+`debugTrackSignalReadsInBuild` (framework.dart) turns the tracking off in a
+debug build, so the B7 A/B is reproducible without editing the framework.
+
+**Effects created in `build` re-run per rebuild — a known divergence from
+SolidJS.** In SolidJS a component body runs once, so `createEffect` in it runs
+once per component instance. A Flutter `build` re-runs, and an effect created
+in one belongs to that build's scope: it is disposed and re-created every
+time. The per-instance equivalent is `State.initState`, which runs once per
+element and which the framework now runs inside `Element._reactiveElementOwner`
+— a scope detached from any enclosing build and disposed when the element
+unmounts, after `State.dispose`. Phase 5 resolves the divergence properly, by
+giving a component a body that runs once; until then, `initState` is the
+supported place for an effect that must not be re-created.
+
+**Writing a signal during build is reported, on the same rule as
+`markNeedsBuild`.** `BuildOwner.debugCheckSignalWriteAllowed` is installed by
+`WidgetsBinding` as `debugAssertSignalWriteAllowed`, is handed the signal being
+written, and walks its subscriber list. The rule is the one
+`Element.markNeedsBuild` already applies: dirtying an element during a build is
+fine when that element is at or below `_debugCurrentBuildTarget`, because
+parents build before children and this build will reach it. So the write throws
+a `FlutterError` naming the offending widget only when some element that reads
+the signal is an ancestor or a sibling of the build target — one that has
+already built with the old value. Subscribers that are not elements, such as a
+plain `Effect`, never block a write: they are queued for the next flush. Each
+element's tracking node carries a debug-only `Subscriber.debugOwner` back to
+its element, which is how the walk attributes a subscriber.
+
+A signal the build target itself reads is refused once that target's own build
+is running (`Element.debugDoingBuild`): the read has already happened, and the
+invalidation the write queues is dropped when the build ends. Before then it is
+allowed, which is what makes the mirror idiom legal — `_selected.value =
+widget.selected` in `State.initState`, `State.didUpdateWidget` or
+`State.didChangeDependencies`, all of which run before the build that reads it.
+Writes made during layout and paint are allowed and picked up by the next
+frame, and a build that runs *from* layout — a `LayoutBuilder` builder, a lazy
+sliver's item builder — counts as layout for this purpose.
+
+**Untracked reads during a frame are reported.** Not every signal read is
+tracked, and an untracked read during a frame is silent: the frame is right
+once and stale from then on. `debugSignalReadOutsideTracking`, installed by
+`WidgetsBinding`, reports one such read per frame through
+`FlutterError.reportError` when the scheduler is in `persistentCallbacks`.
+Reads from event handlers, timers and effects are unaffected, as are reads
+through `peek`, which say the staleness is deliberate. `State.didChangeDependencies`
+is untracked on purpose — it is the inherited-widget protocol, not a build, and
+the build that follows it reads the same values reactively — so both call sites
+in `StatefulElement` run it inside `untracked`, which marks the reads as
+deliberate and keeps them out of the report. Everything is inside `assert`, so
+release builds pay nothing.
+
+**Builders that run from layout track too.** A callback invoked by a
+`RenderObjectElement` during layout is outside the tracked scope that
+`ComponentElement.build` gets, so a signal read there would be silently
+untracked. `Element.trackSignalReads` is the seam; two call sites use it:
+
+- `_LayoutBuilderElement._rebuildWithConstraints` tracks the builder. The
+  invalidation path is the element's own `markNeedsBuild` override, which
+  schedules another layout callback.
+- `SliverMultiBoxAdaptorElement._build` tracks `delegate.build(this, index)`,
+  retaining dependencies across calls because the children are built one index
+  at a time; `performRebuild` clears them and starts over.
+
+A retaining run keeps the version it started with, instead of taking a fresh
+one per call: `Subscriber._runVersion` is refreshed only by a full
+(non-retaining) `track`, and reads use it rather than the global cycle counter.
+That is what lets `_link` recognise a second read of the same signal by the
+same node and reuse the existing `Link`. Without it, a signal read by every
+item builder gained one edge per child built, and a scroll grew the subscriber
+list without bound.
+
+Known follow-ups, deliberately not done here:
+
+- The sliver tracks per *adaptor*, not per index: a change to a signal read by
+  one item rebuilds every materialized item. Correct, coarse.
+- Its dependency list only shrinks on `performRebuild`, so a long scroll keeps
+  the edges of children that have since been recycled — one per distinct
+  signal, not one per read.
+- `TwoDimensionalViewport` and any other `RenderObjectElement` that calls a
+  user builder from layout are still untracked. `SliverChildListDelegate`
+  needs nothing: it holds already-built widgets.
 
 ### Phase 3 — Leaf bindings, control flow, and the game loop
 

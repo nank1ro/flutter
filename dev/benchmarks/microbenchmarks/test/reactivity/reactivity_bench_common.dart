@@ -52,7 +52,12 @@ void printMedian(String name, List<double> values) {
   final printer = BenchmarkResultPrinter();
   final String key = name.replaceAll(RegExp(r'[^a-zA-Z0-9]+'), '_').toLowerCase();
   printer.addResult(description: name, value: median(values), unit: 'us_per_op', name: key);
-  printer.addResult(description: '$name (min)', value: minOf(values), unit: 'us_per_op', name: '${key}_min');
+  printer.addResult(
+    description: '$name (min)',
+    value: minOf(values),
+    unit: 'us_per_op',
+    name: '${key}_min',
+  );
   printer.printToStdout();
 }
 
@@ -69,7 +74,13 @@ Widget mountAllInRows(List<Widget> children, {double itemHeight = 1, double item
     child: Stack(
       children: [
         for (var i = 0; i < children.length; i++)
-          Positioned(top: itemHeight * i, left: 0, width: itemWidth, height: itemHeight, child: children[i]),
+          Positioned(
+            top: itemHeight * i,
+            left: 0,
+            width: itemWidth,
+            height: itemHeight,
+            child: children[i],
+          ),
       ],
     ),
   );

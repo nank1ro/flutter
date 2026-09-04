@@ -20,7 +20,9 @@ import 'reactivity_bench_common.dart';
 const int kSpriteCount = 10000;
 
 void main() {
-  testWidgets('B2 ValueListenableBuilder update all 10000 every frame', (WidgetTester tester) async {
+  testWidgets('B2 ValueListenableBuilder update all 10000 every frame', (
+    WidgetTester tester,
+  ) async {
     final notifiers = List<ValueNotifier<Color>>.generate(
       kSpriteCount,
       (int i) => ValueNotifier<Color>(Colors.blue),

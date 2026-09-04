@@ -205,6 +205,20 @@ abstract base class Subscriber extends ReactiveNode {
   /// Creates a subscriber in the given state.
   Subscriber({required super.flags});
 
+  /// The version of the run this node is in, or 0 before its first run.
+  ///
+  /// A full run takes a fresh version from [_cycle]; a retaining run keeps the
+  /// one it already has, so that the several calls that make up one logical
+  /// run agree on it.
+  int _runVersion = 0;
+
+  /// The object this node was created for, for debug messages only.
+  ///
+  /// The framework sets this to the [Element] whose build the node tracks, so
+  /// that a debug check can tell which element a subscriber belongs to. Null
+  /// for a node that belongs to no such object, such as a plain [Effect].
+  Object? debugOwner;
+
   /// The next subscriber in the pending queue.
   ///
   /// The queue is intrusive: queueing a subscriber writes one field on an
@@ -230,37 +244,57 @@ abstract base class Subscriber extends ReactiveNode {
   /// Dependencies that were read by the previous call and not by this one are
   /// removed, so a subscriber only observes what it currently reads.
   ///
+  /// When [retainDeps] is true the previous dependencies are kept and the ones
+  /// read by [body] are appended to them, and the effects and computeds
+  /// created by earlier runs are left alone. This is for a subscriber whose
+  /// tracked work arrives in several separate calls that together make up one
+  /// logical run, such as a lazy sliver building one child at a time during
+  /// layout. Such a subscriber has to clear its dependencies itself, by
+  /// tracking an empty body, when the run starts over. The calls of such a run
+  /// share one version, so that reading the same signal from several of them
+  /// reuses one edge instead of appending one per call.
+  ///
   /// Tracking through a disposed subscriber is a mistake, and asserts. In
   /// release builds [body] still runs, but untracked, so a disposed node is
   /// never brought back to life.
-  T track<T>(T Function() body) {
+  T track<T>(T Function() body, {bool retainDeps = false}) {
     assert(!_disposed, 'Cannot track through a disposed $runtimeType.');
     if (_disposed) {
       return untracked(body);
     }
-    if ((flags & _Flags.hasChildEffect) != _Flags.none) {
-      _disposeChildDepsInReverse(this);
+    if (!retainDeps) {
+      if ((flags & _Flags.hasChildEffect) != _Flags.none) {
+        _disposeChildDepsInReverse(this);
+      }
+      _disposeOwnedComputeds(this);
+      depsTail = null;
     }
-    _disposeOwnedComputeds(this);
-    depsTail = null;
     flags = _Flags.watching | _Flags.recursedCheck;
     final ReactiveNode? prevSub = _activeSub;
     final ReactiveNode? prevScope = _currentScope;
     final Owner? prevOwner = _currentOwner;
+    final int prevVersion = _version;
+    if (!retainDeps || _runVersion == 0) {
+      _cycle += 1;
+      _runVersion = _cycle;
+    }
+    _version = _runVersion;
     _activeSub = this;
     _currentScope = this;
     _currentOwner = _owner;
     try {
-      _cycle += 1;
       _runDepth += 1;
       return body();
     } finally {
       _runDepth -= 1;
       _activeSub = prevSub;
+      _version = prevVersion;
       _currentScope = prevScope;
       _currentOwner = prevOwner;
       flags &= ~_Flags.recursedCheck;
-      _purgeDeps(this);
+      if (!retainDeps) {
+        _purgeDeps(this);
+      }
     }
   }
 
@@ -282,9 +316,18 @@ abstract base class Subscriber extends ReactiveNode {
 // Graph state.
 // ---------------------------------------------------------------------------
 
-/// Incremented on every tracked run, so that edges established by earlier runs
-/// can be told apart from edges established by the current one.
+/// Incremented on every full tracked run, so that edges established by earlier
+/// runs can be told apart from edges established by the current one.
 int _cycle = 0;
+
+/// The version of the run the active subscriber is currently in.
+///
+/// Saved and restored alongside [_activeSub], so that a nested run does not
+/// renumber the run it interrupted. A retaining run keeps the version it
+/// started with across all of its calls, which is what lets [_link] recognise
+/// a second read of the same dependency by the same subscriber and reuse the
+/// edge instead of appending another one. See [Subscriber.track].
+int _version = 0;
 
 /// How deep we are inside effect callbacks. Writes made from inside an effect
 /// propagate as inner writes.
@@ -337,9 +380,40 @@ Subscriber? _queueTail;
 /// `foundation` must not depend on `scheduler`.
 void Function()? signalFlushScheduler;
 
-/// Whether [signalFlushScheduler] has been asked to drain and has not yet done
-/// so, so that a burst of writes calls it once rather than once per write.
-bool _flushScheduled = false;
+/// Debug-only hook called before a [Signal] write is propagated, with the
+/// signal being written.
+///
+/// Invoked from inside an `assert`, so it costs nothing in release builds, and
+/// only when the write actually changes the value. It reports a problem by
+/// throwing, and must otherwise return true.
+///
+/// The framework installs a callback that throws when a signal is written by
+/// the build method of a widget and read by something that build cannot
+/// invalidate, which is the signal-graph analogue of calling `setState` during
+/// build. It walks the signal's [ReactiveNode.subs] to decide, which is why it
+/// is handed the node. Writes made during layout and paint are left alone:
+/// they are queued and picked up by the next frame.
+bool Function(ReactiveNode signal)? debugAssertSignalWriteAllowed;
+
+/// Debug-only hook called when a [Signal] or [Computed] value is read with no
+/// tracking scope active, and not inside [untracked] or [Owner.run].
+///
+/// Invoked from inside an `assert`, so it costs nothing in release builds. It
+/// must return true; it reports by other means.
+///
+/// Such a read is silently not tracked, so whatever depends on it is never
+/// told when the value changes. That is correct in an event handler, and
+/// almost always a bug in a callback that runs as part of a frame — a
+/// [CustomPainter.paint], a `createRenderObject`, a builder invoked from a
+/// [RenderObject] that has no tracking of its own. The framework installs a
+/// callback that reports those, and only those.
+bool Function()? debugSignalReadOutsideTracking;
+
+/// Whether tracking is suppressed on purpose, by [untracked] or [Owner.run].
+///
+/// Only maintained when asserts are enabled; only read by the assert that
+/// calls [debugSignalReadOutsideTracking].
+bool _debugInUntracked = false;
 
 /// Whether [flushSignals] is currently draining the queue.
 ///
@@ -737,8 +811,11 @@ void _flushOrSchedule() {
   final void Function()? scheduler = signalFlushScheduler;
   if (scheduler == null) {
     flushSignals();
-  } else if (!_flushScheduled) {
-    _flushScheduled = true;
+  } else {
+    // Called on every write that leaves something queued, rather than once per
+    // queue. The scheduler is `ensureVisualUpdate`, which is idempotent and
+    // cheap, and a latch here would stick shut for good the first time a
+    // scheduler declined to schedule a frame.
     scheduler();
   }
 }
@@ -787,7 +864,9 @@ final class Signal<T> extends ReactiveNode {
     }
     final ReactiveNode? sub = _activeSub;
     if (sub != null) {
-      _link(this, sub, _cycle);
+      _link(this, sub, _version);
+    } else {
+      assert(_debugInUntracked || (debugSignalReadOutsideTracking?.call() ?? true));
     }
     return _currentValue;
   }
@@ -796,6 +875,7 @@ final class Signal<T> extends ReactiveNode {
     if (_pendingValue == newValue) {
       return;
     }
+    assert(debugAssertSignalWriteAllowed?.call(this) ?? true);
     _pendingValue = newValue;
     flags = _Flags.mutable | _Flags.dirty;
     final Link? subs = this.subs;
@@ -888,7 +968,11 @@ final class Computed<T> extends ReactiveNode {
     final T result = _evaluate();
     final ReactiveNode? sub = _activeSub;
     if (sub != null) {
-      _link(this, sub, _cycle);
+      if (!_disposed) {
+        _link(this, sub, _version);
+      }
+    } else {
+      assert(_debugInUntracked || (debugSignalReadOutsideTracking?.call() ?? true));
     }
     return result;
   }
@@ -902,6 +986,14 @@ final class Computed<T> extends ReactiveNode {
   T call() => value;
 
   T _evaluate() {
+    if (_disposed) {
+      // A disposed computed has no dependencies left and is never invalidated
+      // again, so its cached value can be arbitrarily stale. A read still has
+      // to answer with the current value, so recompute on the spot: untracked,
+      // unlinked and uncached. Correct, but no longer incremental, which is
+      // the price of reading a computed whose scope is gone.
+      return untracked(() => _compute(_currentValue));
+    }
     final int flags = this.flags;
     var needsUpdate = (flags & _Flags.dirty) != _Flags.none;
     if (!needsUpdate && (flags & _Flags.pending) != _Flags.none) {
@@ -931,6 +1023,10 @@ final class Computed<T> extends ReactiveNode {
   /// that reads it, so that a computed reading a long-lived signal can be
   /// released. Called automatically when the scope that created it is
   /// disposed, or re-runs.
+  ///
+  /// Reading [value] afterwards still answers with the current value, by
+  /// recomputing on the spot; it just no longer caches or subscribes. See
+  /// [_evaluate].
   void dispose() {
     _disposed = true;
     flags = _Flags.none;
@@ -961,18 +1057,21 @@ final class Computed<T> extends ReactiveNode {
     final ReactiveNode? prevSub = _activeSub;
     final ReactiveNode? prevScope = _currentScope;
     final Owner? prevOwner = _currentOwner;
+    final int prevVersion = _version;
+    _cycle += 1;
+    _version = _cycle;
     _activeSub = this;
     _currentScope = this;
     _currentOwner = _owner;
     var completed = false;
     try {
-      _cycle += 1;
       final T? previous = _currentValue;
       _currentValue = _compute(previous);
       completed = true;
       return previous != _currentValue;
     } finally {
       _activeSub = prevSub;
+      _version = prevVersion;
       _currentScope = prevScope;
       _currentOwner = prevOwner;
       flags &= ~_Flags.recursedCheck;
@@ -1097,6 +1196,14 @@ final class Owner extends ReactiveNode {
     }
   }
 
+  /// Creates an owner with no parent scope, whatever scope is active.
+  ///
+  /// Its lifetime is the caller's to manage: nothing else disposes it. This is
+  /// for an owner tied to something outside the graph, such as an [Element],
+  /// which would otherwise be disposed by the first enclosing scope that
+  /// happens to be running when it is created.
+  Owner.detached() : super(flags: _Flags.mutable);
+
   /// The innermost owner scope, if any.
   ///
   /// This is the owner whose [run] is on the stack, or the owner an effect or
@@ -1118,12 +1225,22 @@ final class Owner extends ReactiveNode {
     _currentOwner = this;
     _currentScope = this;
     _activeSub = null;
+    var debugPrevInUntracked = false;
+    assert(() {
+      debugPrevInUntracked = _debugInUntracked;
+      _debugInUntracked = true;
+      return true;
+    }());
     try {
       return body();
     } finally {
       _activeSub = prevSub;
       _currentScope = prevScope;
       _currentOwner = prevOwner;
+      assert(() {
+        _debugInUntracked = debugPrevInUntracked;
+        return true;
+      }());
     }
   }
 
@@ -1168,12 +1285,29 @@ R batch<R>(R Function() body) {
 R untracked<R>(R Function() body) {
   final ReactiveNode? prevSub = _activeSub;
   _activeSub = null;
+  var debugPrevInUntracked = false;
+  assert(() {
+    debugPrevInUntracked = _debugInUntracked;
+    _debugInUntracked = true;
+    return true;
+  }());
   try {
     return body();
   } finally {
     _activeSub = prevSub;
+    assert(() {
+      _debugInUntracked = debugPrevInUntracked;
+      return true;
+    }());
   }
 }
+
+/// Whether any subscriber is waiting to be invalidated by [flushSignals].
+///
+/// The framework checks this at the end of a frame: a write made after the
+/// frame's flush, during layout or paint, has to be picked up by the next
+/// frame, and that frame has to be asked for.
+bool get hasPendingSignalEffects => _queueHead != null;
 
 /// Runs every queued subscriber whose dependencies actually changed.
 ///
@@ -1192,7 +1326,6 @@ void flushSignals() {
     return;
   }
   _flushing = true;
-  _flushScheduled = false;
   try {
     while (_queueHead != null) {
       final Subscriber node = _queueHead!;
