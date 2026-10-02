@@ -10,9 +10,13 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
+  microbenchmarks:
+    path: ../benchmarks/microbenchmarks
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
 
 flutter:

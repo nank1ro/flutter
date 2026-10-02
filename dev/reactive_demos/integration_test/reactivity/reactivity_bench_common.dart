@@ -51,6 +51,27 @@ double median(List<double> values) {
   return (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
+/// Pumps one frame synchronously, without waiting for the next real vsync.
+///
+/// On a device, [WidgetTester.pump] awaits the engine's next frame callback,
+/// which quantizes every timed iteration to the refresh rate (~16.6 ms at
+/// 60 Hz): the numbers would measure the display, not the work. Combined with
+/// `framePolicy = benchmarkLive` in the profile entry point this reproduces
+/// the manual, vsync-free pumping that `flutter test` does on the host.
+Future<void> benchPump(WidgetTester tester, [Duration duration = Duration.zero]) async {
+  final WidgetsBinding binding = tester.binding;
+  binding.scheduleFrame();
+  binding.handleBeginFrame(duration);
+  binding.handleDrawFrame();
+  await tester.idle();
+}
+
+/// The synchronous-pump counterpart of [WidgetTester.pumpWidget].
+Future<void> benchPumpWidget(WidgetTester tester, Widget widget) async {
+  tester.binding.attachRootWidget(tester.binding.wrapWithDefaultView(widget));
+  await benchPump(tester);
+}
+
 double minOf(List<double> values) => values.reduce((double a, double b) => a < b ? a : b);
 
 double maxOf(List<double> values) => values.reduce((double a, double b) => a > b ? a : b);
