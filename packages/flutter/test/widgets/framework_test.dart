@@ -997,7 +997,7 @@ void main() {
         const SwapKeyWidget(childKey: ValueKey<int>(0)),
         Container(key: const ValueKey<int>(1)),
         ColoredBox(
-          color: _green,
+          color: const .fixed(_green),
           child: SizedBox(key: key),
         ),
       ],
@@ -1119,7 +1119,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 100,
+            height: const .fixed(100),
             child: CustomScrollView(
               controller: scrollController,
               slivers: <Widget>[
@@ -1356,7 +1356,7 @@ void main() {
         children: <Widget>[
           Container(),
           Container(key: GlobalKey()),
-          ColoredBox(color: _green, child: Container()),
+          ColoredBox(color: const .fixed(_green), child: Container()),
           Container(key: GlobalKey()),
           Container(),
         ],

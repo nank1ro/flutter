@@ -28,7 +28,7 @@ void main() {
                   top: 456.0,
                   child: CompositedTransformTarget(
                     link: linkToUse ?? link,
-                    child: const SizedBox(height: 10.0, width: 10.0),
+                    child: const SizedBox(height: .fixed(10.0), width: .fixed(10.0)),
                   ),
                 ),
                 Positioned(
@@ -38,7 +38,11 @@ void main() {
                     link: linkToUse ?? link,
                     targetAnchor: Alignment.center,
                     followerAnchor: Alignment.center,
-                    child: SizedBox(key: key, height: 20.0, width: 20.0),
+                    child: SizedBox(
+                      key: key,
+                      height: const .fixed(20.0),
+                      width: const .fixed(20.0),
+                    ),
                   ),
                 ),
               ],
@@ -68,7 +72,7 @@ void main() {
         child: Stack(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: paddingLeft),
+              padding: .fixed(EdgeInsets.only(left: paddingLeft)),
               child: CompositedTransformTarget(
                 link: link,
                 child: RepaintBoundary(
@@ -77,7 +81,7 @@ void main() {
               ),
             ),
             Positioned.fill(
-              child: RepaintBoundary(child: ColoredBox(color: siblingColor)),
+              child: RepaintBoundary(child: ColoredBox(color: .fixed(siblingColor))),
             ),
           ],
         ),
@@ -102,7 +106,7 @@ void main() {
               top: 456.0,
               child: CompositedTransformTarget(
                 link: link,
-                child: const SizedBox(height: 10.0, width: 10.0),
+                child: const SizedBox(height: .fixed(10.0), width: .fixed(10.0)),
               ),
             ),
             Positioned(
@@ -112,7 +116,7 @@ void main() {
                 link: link,
                 targetAnchor: targetAlignment,
                 followerAnchor: followerAlignment,
-                child: SizedBox(key: key, height: 20.0, width: 20.0),
+                child: SizedBox(key: key, height: const .fixed(20.0), width: const .fixed(20.0)),
               ),
             ),
           ],
@@ -158,10 +162,10 @@ void main() {
               top: 123.0,
               left: 456.0,
               child: Transform.rotate(
-                angle: 1.0, // radians
+                angle: const .fixed(1.0), // radians
                 child: CompositedTransformTarget(
                   link: link,
-                  child: SizedBox(key: key1, width: 80.0, height: 10.0),
+                  child: SizedBox(key: key1, width: const .fixed(80.0), height: const .fixed(10.0)),
                 ),
               ),
             ),
@@ -169,12 +173,12 @@ void main() {
               top: 787.0,
               left: 343.0,
               child: Transform.rotate(
-                angle: -0.3, // radians
+                angle: const .fixed(-0.3), // radians
                 child: CompositedTransformFollower(
                   link: link,
                   targetAnchor: targetAlignment,
                   followerAnchor: followerAlignment,
-                  child: SizedBox(key: key2, width: 40.0, height: 20.0),
+                  child: SizedBox(key: key2, width: const .fixed(40.0), height: const .fixed(20.0)),
                 ),
               ),
             ),
@@ -230,10 +234,10 @@ void main() {
               top: 123.0,
               left: 456.0,
               child: Transform.rotate(
-                angle: 1.0, // radians
+                angle: const .fixed(1.0), // radians
                 child: CompositedTransformTarget(
                   link: link,
-                  child: SizedBox(key: key1, width: 80.0, height: 10.0),
+                  child: SizedBox(key: key1, width: const .fixed(80.0), height: const .fixed(10.0)),
                 ),
               ),
             ),
@@ -241,20 +245,24 @@ void main() {
               top: 787.0,
               left: 343.0,
               child: Transform.rotate(
-                angle: -0.3, // radians
+                angle: const .fixed(-0.3), // radians
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const .fixed(EdgeInsets.all(20.0)),
                   child: CompositedTransformFollower(
                     link: LayerLink(),
                     child: Transform(
-                      transform: Matrix4.skew(0.9, 1.1),
+                      transform: .fixed(Matrix4.skew(0.9, 1.1)),
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const .fixed(EdgeInsets.all(20.0)),
                         child: CompositedTransformFollower(
                           link: link,
                           targetAnchor: targetAlignment,
                           followerAnchor: followerAlignment,
-                          child: SizedBox(key: key2, width: 40.0, height: 20.0),
+                          child: SizedBox(
+                            key: key2,
+                            width: const .fixed(40.0),
+                            height: const .fixed(20.0),
+                          ),
                         ),
                       ),
                     ),
@@ -320,7 +328,7 @@ void main() {
               top: 456.0,
               child: CompositedTransformTarget(
                 link: link,
-                child: SizedBox(key: key1, height: 10.0, width: 10.0),
+                child: SizedBox(key: key1, height: const .fixed(10.0), width: const .fixed(10.0)),
               ),
             ),
             CompositedTransformFollower(
@@ -331,7 +339,7 @@ void main() {
                 onTap: () {
                   tapped = true;
                 },
-                child: SizedBox(key: key3, height: 2.0, width: 2.0),
+                child: SizedBox(key: key3, height: const .fixed(2.0), width: const .fixed(2.0)),
               ),
             ),
           ],
@@ -375,7 +383,10 @@ void main() {
     await tester.pumpWidget(
       CompositedTransformFollower(
         link: link,
-        child: CompositedTransformTarget(link: link, child: const SizedBox(height: 20, width: 20)),
+        child: CompositedTransformTarget(
+          link: link,
+          child: const SizedBox(height: .fixed(20), width: .fixed(20)),
+        ),
       ),
     );
 

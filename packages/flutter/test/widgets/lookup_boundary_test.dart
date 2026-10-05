@@ -874,7 +874,7 @@ void main() {
 
       await tester.pumpWidget(
         Padding(
-          padding: EdgeInsets.zero,
+          padding: const .fixed(EdgeInsets.zero),
           key: paddingKey,
           child: LookupBoundary(
             child: Builder(
@@ -902,13 +902,13 @@ void main() {
 
       await tester.pumpWidget(
         Padding(
-          padding: EdgeInsets.zero,
+          padding: const .fixed(EdgeInsets.zero),
           key: outerPaddingKey,
           child: LookupBoundary(
             child: Padding(
-              padding: EdgeInsets.zero,
+              padding: const .fixed(EdgeInsets.zero),
               child: Padding(
-                padding: EdgeInsets.zero,
+                padding: const .fixed(EdgeInsets.zero),
                 key: innerPaddingKey,
                 child: Builder(
                   builder: (BuildContext context) {
@@ -956,7 +956,7 @@ void main() {
 
       final Widget widgetTree = LookupBoundary(
         child: Padding(
-          padding: EdgeInsets.zero,
+          padding: const .fixed(EdgeInsets.zero),
           key: innerPaddingKey,
           child: DidChangeDependencySpy(
             key: globalKey,
@@ -1273,7 +1273,7 @@ void main() {
       bool? isHidden;
       await tester.pumpWidget(
         Padding(
-          padding: EdgeInsets.zero,
+          padding: const .fixed(EdgeInsets.zero),
           child: LookupBoundary(
             child: Builder(
               builder: (BuildContext context) {
@@ -1293,10 +1293,10 @@ void main() {
       bool? isHidden;
       await tester.pumpWidget(
         Padding(
-          padding: EdgeInsets.zero,
+          padding: const .fixed(EdgeInsets.zero),
           child: LookupBoundary(
             child: Padding(
-              padding: EdgeInsets.zero,
+              padding: const .fixed(EdgeInsets.zero),
               child: Builder(
                 builder: (BuildContext context) {
                   isHidden = LookupBoundary.debugIsHidingAncestorRenderObjectOfType<RenderPadding>(
@@ -1316,7 +1316,7 @@ void main() {
       bool? isHidden;
       await tester.pumpWidget(
         Padding(
-          padding: EdgeInsets.zero,
+          padding: const .fixed(EdgeInsets.zero),
           child: Builder(
             builder: (BuildContext context) {
               isHidden = LookupBoundary.debugIsHidingAncestorRenderObjectOfType<RenderPadding>(

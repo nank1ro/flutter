@@ -44,7 +44,7 @@ class InvalidDidUpdateWidgetLifecycleWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(color: widget.color);
+    return ColoredBox(color: .fixed(widget.color));
   }
 }
 

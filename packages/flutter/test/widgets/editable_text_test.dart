@@ -150,7 +150,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -228,7 +228,7 @@ void main() {
             home: Align(
               alignment: Alignment.topLeft,
               child: SizedBox(
-                width: 400,
+                width: const .fixed(400),
                 child: EditableText(
                   maxLines: 10,
                   controller: controller,
@@ -430,9 +430,9 @@ void main() {
           controller: scrollController,
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 1000.0),
+              const SizedBox(height: .fixed(1000.0)),
               SizedBox(
-                height: 20.0,
+                height: const .fixed(20.0),
                 child: EditableText(
                   controller: controller,
                   backgroundCursorColor: Colors.grey,
@@ -479,7 +479,7 @@ void main() {
                 }),
               ),
               SizedBox(
-                height: 20,
+                height: const .fixed(20),
                 child: EditableText(
                   controller: controller,
                   backgroundCursorColor: Colors.grey,
@@ -2038,8 +2038,8 @@ void main() {
                     settings: const RouteSettings(name: '/TestMaterialRoute'),
                     builder: (BuildContext innerContext) {
                       return SizedBox(
-                        width: 600,
-                        height: 600,
+                        width: const .fixed(600),
+                        height: const .fixed(600),
                         child: Container(color: Colors.blue),
                       );
                     },
@@ -2093,8 +2093,8 @@ void main() {
       MaterialApp(
         home: Center(
           child: SizedBox(
-            width: 500,
-            height: 300,
+            width: const .fixed(500),
+            height: const .fixed(300),
             child: ListView(
               controller: scrollController,
               children: [
@@ -2403,7 +2403,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: ListView(
             children: <Widget>[
-              const SizedBox(height: 6000),
+              const SizedBox(height: .fixed(6000)),
               EditableText(
                 key: key,
                 backgroundCursorColor: Colors.grey,
@@ -6008,7 +6008,7 @@ void main() {
                 cursorColor: Colors.blue,
                 backgroundCursorColor: Colors.grey,
               ),
-              const SizedBox(height: 200.0),
+              const SizedBox(height: .fixed(200.0)),
               EditableText(
                 key: ValueKey<String>(controller2.text),
                 controller: controller2,
@@ -6019,7 +6019,7 @@ void main() {
                 minLines: 10,
                 maxLines: 20,
               ),
-              const SizedBox(height: 100.0),
+              const SizedBox(height: .fixed(100.0)),
             ],
           ),
         ),
@@ -6543,7 +6543,7 @@ void main() {
       // to the zero matrix.
       await tester.pumpWidget(
         FittedBox(
-          child: SizedBox.fromSize(size: Size.zero, child: builder()),
+          child: SizedBox.fromSize(size: const .fixed(Size.zero), child: builder()),
         ),
       );
       await tester.showKeyboard(find.byType(EditableText));
@@ -6743,7 +6743,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 100,
+            width: const .fixed(100),
             child: EditableText(
               showSelectionHandles: true,
               controller: controller,
@@ -6950,7 +6950,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 100,
+            width: const .fixed(100),
             child: EditableText(
               controller: controller,
               showSelectionHandles: true,
@@ -7024,7 +7024,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 400,
+            width: const .fixed(400),
             child: EditableText(
               maxLines: 10,
               controller: controller,
@@ -7758,7 +7758,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 readOnly: true,
                 controller: controller,
@@ -7927,7 +7927,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8044,7 +8044,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8167,7 +8167,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8287,7 +8287,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8417,7 +8417,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8505,7 +8505,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8569,7 +8569,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8698,7 +8698,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8839,7 +8839,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8914,7 +8914,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -8998,7 +8998,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -9100,7 +9100,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 minLines: lines,
                 maxLines: lines,
@@ -9182,7 +9182,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 minLines: 1,
                 controller: controller,
@@ -9251,7 +9251,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 100,
+              width: const .fixed(100),
               child: EditableText(
                 showSelectionHandles: true,
                 controller: controller,
@@ -9458,7 +9458,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 100,
+            width: const .fixed(100),
             child: EditableText(
               showSelectionHandles: true,
               controller: controller,
@@ -9531,7 +9531,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 100,
+            width: const .fixed(100),
             child: EditableText(
               maxLines: 2,
               showSelectionHandles: true,
@@ -9566,7 +9566,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 100,
+            width: const .fixed(100),
             child: EditableText(
               showSelectionHandles: true,
               maxLines: 2,
@@ -9631,7 +9631,7 @@ void main() {
                       return Align(
                         alignment: Alignment.topLeft,
                         child: SizedBox.square(
-                          dimension: 200.0,
+                          dimension: const .fixed(200.0),
                           child: EditableText(
                             maxLines: null,
                             controller: controller,
@@ -9707,7 +9707,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 200,
+            dimension: const .fixed(200),
             child: SingleChildScrollView(
               controller: outerController,
               child: EditableText(
@@ -9751,7 +9751,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox.square(
-              dimension: 200,
+              dimension: const .fixed(200),
               child: EditableText(
                 maxLines: null,
                 controller: controller,
@@ -9866,7 +9866,7 @@ void main() {
       MaterialApp(
         home: SkipPainting(
           child: Transform(
-            transform: Matrix4.zero(),
+            transform: .fixed(Matrix4.zero()),
             child: EditableText(
               controller: controller,
               focusNode: focusNode,
@@ -10195,7 +10195,7 @@ void main() {
       MaterialApp(
         home: Align(
           alignment: Alignment.topLeft,
-          child: SizedBox(width: 100, child: et),
+          child: SizedBox(width: const .fixed(100), child: et),
         ),
       ),
     );
@@ -10357,7 +10357,7 @@ void main() {
       MaterialApp(
         home: Align(
           alignment: Alignment.topLeft,
-          child: SizedBox(width: 100, child: et),
+          child: SizedBox(width: const .fixed(100), child: et),
         ),
       ),
     );
@@ -10400,7 +10400,7 @@ void main() {
       MaterialApp(
         home: Align(
           alignment: Alignment.topLeft,
-          child: SizedBox(width: 100, child: et),
+          child: SizedBox(width: const .fixed(100), child: et),
         ),
       ),
     );
@@ -12098,7 +12098,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 400,
+            width: const .fixed(400),
             child: Shortcuts(
               shortcuts: testShortcuts,
               child: EditableText(
@@ -12161,7 +12161,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -12307,7 +12307,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -12463,7 +12463,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -12558,7 +12558,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -12743,7 +12743,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -12829,7 +12829,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 400,
+            width: const .fixed(400),
             child: Actions(
               actions: <Type, Action<Intent>>{ExtendSelectionByCharacterIntent: overrideAction},
               child: EditableText(
@@ -12874,7 +12874,7 @@ void main() {
       MaterialApp(
         home: Column(
           children: <Widget>[
-            SizedBox(key: key, width: 200, height: 200),
+            SizedBox(key: key, width: const .fixed(200), height: const .fixed(200)),
             Actions(
               actions: <Type, Action<Intent>>{EditableTextTapOutsideIntent: overrideAction},
               child: EditableText(
@@ -12912,7 +12912,7 @@ void main() {
       MaterialApp(
         home: Column(
           children: <Widget>[
-            SizedBox(key: key, width: 200, height: 200),
+            SizedBox(key: key, width: const .fixed(200), height: const .fixed(200)),
             Actions(
               actions: <Type, Action<Intent>>{EditableTextTapUpOutsideIntent: overrideAction},
               child: EditableText(
@@ -12947,7 +12947,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 400,
+            width: const .fixed(400),
             child: Actions(
               actions: <Type, Action<Intent>>{
                 ExtendSelectionByCharacterIntent: CallbackAction<ExtendSelectionByCharacterIntent>(
@@ -13112,7 +13112,7 @@ void main() {
       MaterialApp(
         home: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 500),
+            constraints: const .fixed(BoxConstraints(maxWidth: 500)),
             child: EditableText(
               key: key,
               autofocus: true,
@@ -13459,7 +13459,7 @@ void main() {
           home: Scaffold(
             body: Center(
               child: SizedBox(
-                height: 32,
+                height: const .fixed(32),
                 child: EditableText(
                   key: key,
                   focusNode: focusNode,
@@ -13562,7 +13562,7 @@ void main() {
       MaterialApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 600.0,
+            dimension: const .fixed(600.0),
             child: EditableText(
               controller: controller,
               scrollController: scrollController,
@@ -14945,7 +14945,7 @@ void main() {
             home: Align(
               alignment: Alignment.topLeft,
               child: SizedBox(
-                width: 400,
+                width: const .fixed(400),
                 child: EditableText(
                   maxLines: 10,
                   controller: controller,
@@ -15020,7 +15020,7 @@ void main() {
             home: Align(
               alignment: Alignment.topLeft,
               child: SizedBox(
-                width: 400,
+                width: const .fixed(400),
                 child: EditableText(
                   maxLines: 10,
                   controller: controller,
@@ -15089,7 +15089,7 @@ void main() {
             home: Align(
               alignment: Alignment.topLeft,
               child: SizedBox(
-                width: 400,
+                width: const .fixed(400),
                 child: EditableText(
                   maxLines: 10,
                   controller: controller,
@@ -15169,7 +15169,7 @@ void main() {
               home: Align(
                 alignment: Alignment.topLeft,
                 child: SizedBox(
-                  width: 400,
+                  width: const .fixed(400),
                   child: EditableText(
                     maxLines: 10,
                     controller: controller,
@@ -15270,7 +15270,7 @@ void main() {
               home: Align(
                 alignment: Alignment.topLeft,
                 child: SizedBox(
-                  width: 400,
+                  width: const .fixed(400),
                   child: EditableText(
                     maxLines: 10,
                     controller: controller,
@@ -15348,7 +15348,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 key: key,
                 maxLines: 10,
@@ -15397,7 +15397,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 maxLines: 10,
                 controller: controller,
@@ -15411,7 +15411,7 @@ void main() {
                 textAlign: TextAlign.right,
                 selectionControls: materialTextSelectionHandleControls,
                 contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
-                  return SizedBox(key: key, width: 10.0, height: 10.0);
+                  return SizedBox(key: key, width: const .fixed(10.0), height: const .fixed(10.0));
                 },
               ),
             ),
@@ -15448,7 +15448,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter localSetState) {
                   setState = localSetState;
@@ -15466,7 +15466,11 @@ void main() {
                     selectionControls: materialTextSelectionHandleControls,
                     contextMenuBuilder:
                         (BuildContext context, EditableTextState editableTextState) {
-                          return SizedBox(key: key, width: 10.0, height: 10.0);
+                          return SizedBox(
+                            key: key,
+                            width: const .fixed(10.0),
+                            height: const .fixed(10.0),
+                          );
                         },
                   );
                 },
@@ -15557,7 +15561,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter localSetState) {
                   setState = localSetState;
@@ -15634,7 +15638,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter localSetState) {
                   setState = localSetState;
@@ -15699,7 +15703,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter localSetState) {
                   setState = localSetState;
@@ -15785,7 +15789,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter localSetState) {
                   setState = localSetState;
@@ -16825,7 +16829,7 @@ void main() {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Transform.scale(
-                scale: scale,
+                scale: const .fixed(scale),
                 child: EditableText(
                   controller: controller,
                   maxLines: null,
@@ -16996,7 +17000,7 @@ void main() {
           builder: (BuildContext context, StateSetter stateSetter) {
             setState = stateSetter;
             return Transform.translate(
-              offset: offset,
+              offset: .fixed(offset),
               // The EditableText is configured in a way that the it doesn't
               // explicitly request repaint on focus change.
               child: TickerMode(
@@ -17085,7 +17089,7 @@ void main() {
                 cursorColor: Colors.blue,
                 backgroundCursorColor: Colors.grey,
               ),
-              const SizedBox(height: 200.0),
+              const SizedBox(height: .fixed(200.0)),
               EditableText(
                 key: ValueKey<String>(controller2.text),
                 controller: controller2,
@@ -17096,7 +17100,7 @@ void main() {
                 minLines: 10,
                 maxLines: 20,
               ),
-              const SizedBox(height: 100.0),
+              const SizedBox(height: .fixed(100.0)),
             ],
           ),
         ),
@@ -17232,9 +17236,9 @@ void main() {
                   cursorColor: Colors.blue,
                   backgroundCursorColor: Colors.grey,
                 ),
-                const SizedBox(height: 200.0),
+                const SizedBox(height: .fixed(200.0)),
                 Focus(focusNode: focusNode2, child: const SizedBox.shrink()),
-                const SizedBox(height: 100.0),
+                const SizedBox(height: .fixed(100.0)),
               ],
             ),
           ),
@@ -17938,9 +17942,11 @@ void main() {
           slivers: const <Widget>[
             SliverMainAxisGroup(
               slivers: <Widget>[
-                SliverToBoxAdapter(child: SizedBox(height: 600)),
-                SliverToBoxAdapter(child: SizedBox(height: 44, child: TestTextField())),
-                SliverToBoxAdapter(child: SizedBox(height: 500)),
+                SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: .fixed(44), child: TestTextField()),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: .fixed(500))),
               ],
             ),
           ],
@@ -18016,7 +18022,7 @@ void main() {
         MaterialApp(
           home: Center(
             child: Transform.scale(
-              scale: 0.5,
+              scale: const .fixed(0.5),
               child: EditableText(
                 key: key,
                 cursorColor: cursorColor,
@@ -18056,7 +18062,7 @@ void main() {
         MaterialApp(
           home: Center(
             child: Transform.scale(
-              scale: 0.5,
+              scale: const .fixed(0.5),
               child: EditableText(
                 key: key,
                 cursorColor: cursorColor,
@@ -18103,7 +18109,7 @@ void main() {
         MaterialApp(
           home: Center(
             child: Transform.scale(
-              scale: 0.5,
+              scale: const .fixed(0.5),
               child: EditableText(
                 key: key,
                 cursorColor: cursorColor,
@@ -18148,7 +18154,7 @@ void main() {
       MaterialApp(
         home: Center(
           child: Transform.scale(
-            scale: 0.5,
+            scale: const .fixed(0.5),
             child: EditableText(
               key: key,
               cursorColor: cursorColor,
@@ -19030,7 +19036,7 @@ class _CustomTextSelectionToolbar extends StatelessWidget {
       anchorAbove: anchorAbove,
       anchorBelow: anchorBelow,
       toolbarBuilder: (BuildContext context, Widget child) {
-        return ColoredBox(color: Colors.pink, child: child);
+        return ColoredBox(color: const .fixed(Colors.pink), child: child);
       },
       children: <Widget>[
         TextSelectionToolbarTextButton(
@@ -19107,7 +19113,7 @@ class _TransformedEditableTextState extends State<TransformedEditableText> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Transform.translate(
-              offset: _isTransformed ? widget.offset : Offset.zero,
+              offset: .fixed(_isTransformed ? widget.offset : Offset.zero),
               child: EditableText(
                 controller: _controller,
                 focusNode: _focusNode,

@@ -21,7 +21,7 @@ void main() {
     final opacityTween = Tween<double>(begin: 0, end: 1);
     await tester.pumpWidget(
       ColoredBox(
-        color: red,
+        color: const .fixed(red),
         child: FadeTransition(opacity: controller.drive(opacityTween), child: const TestWidget()),
       ),
     );
@@ -57,7 +57,7 @@ void main() {
     final opacityTween = Tween<double>(begin: 0, end: 0.99); // Layer is dropped at 1
     await tester.pumpWidget(
       ColoredBox(
-        color: red,
+        color: const .fixed(red),
         child: FadeTransition(opacity: controller.drive(opacityTween), child: const TestWidget()),
       ),
     );
@@ -94,7 +94,7 @@ void main() {
 
       await tester.pumpWidget(
         ColoredBox(
-          color: red,
+          color: const .fixed(red),
           child: FadeTransition(opacity: controller.drive(opacityTween), child: const TestWidget()),
         ),
       );

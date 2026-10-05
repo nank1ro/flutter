@@ -193,7 +193,7 @@ void main() {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           alignment: Alignment.topRight,
-          child: SizedBox(key: target, width: 100.0, height: 200.0),
+          child: SizedBox(key: target, width: const .fixed(100.0), height: const .fixed(200.0)),
         ),
       ),
     );
@@ -207,7 +207,7 @@ void main() {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           alignment: AlignmentDirectional.bottomStart,
-          child: SizedBox(key: target, width: 100.0, height: 200.0),
+          child: SizedBox(key: target, width: const .fixed(100.0), height: const .fixed(200.0)),
         ),
       ),
     );
@@ -305,7 +305,7 @@ void main() {
             duration: const Duration(milliseconds: 200),
             transform: Matrix4.diagonal3Values(0.5, 0.5, 1),
             transformAlignment: Alignment.topLeft,
-            child: SizedBox(key: target, width: 100.0, height: 200.0),
+            child: SizedBox(key: target, width: const .fixed(100.0), height: const .fixed(200.0)),
           ),
         ),
       ),
@@ -322,7 +322,7 @@ void main() {
             duration: const Duration(milliseconds: 200),
             transform: Matrix4.diagonal3Values(0.5, 0.5, 1),
             transformAlignment: Alignment.bottomRight,
-            child: SizedBox(key: target, width: 100.0, height: 200.0),
+            child: SizedBox(key: target, width: const .fixed(100.0), height: const .fixed(200.0)),
           ),
         ),
       ),

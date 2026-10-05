@@ -176,8 +176,11 @@ void main() {
                 return const Opacity(
                   opacity: .fixed(0.5),
                   child: Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: ColoredBox(color: Color(0xFF0000FF), child: SizedBox(height: 50)),
+                    padding: .fixed(EdgeInsets.all(5.0)),
+                    child: ColoredBox(
+                      color: .fixed(Color(0xFF0000FF)),
+                      child: SizedBox(height: .fixed(50)),
+                    ),
                   ),
                 );
               }),
@@ -224,8 +227,8 @@ void main() {
                 child: Opacity(
                   opacity: .fixed(.5),
                   child: ColoredBox(
-                    color: Color(0xFFFF0000),
-                    child: SizedBox(height: 100, width: 100),
+                    color: .fixed(Color(0xFFFF0000)),
+                    child: SizedBox(height: .fixed(100), width: .fixed(100)),
                   ),
                 ),
               ),

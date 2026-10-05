@@ -72,16 +72,18 @@ class TestCheckbox extends StatelessWidget {
         mixed: tristate && value == null,
         enabled: _enabled,
         child: SizedBox(
-          width: _tapTargetSize,
-          height: _tapTargetSize,
+          width: const .fixed(_tapTargetSize),
+          height: const .fixed(_tapTargetSize),
           child: Center(
             child: SizedBox(
-              width: _boxSize,
-              height: _boxSize,
+              width: const .fixed(_boxSize),
+              height: const .fixed(_boxSize),
               child: DecoratedBox(
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                  color: value ?? false ? const Color(0xFF000000) : const Color(0xFFFFFFFF),
+                decoration: .fixed(
+                  BoxDecoration(
+                    border: Border.all(),
+                    color: value ?? false ? const Color(0xFF000000) : const Color(0xFFFFFFFF),
+                  ),
                 ),
               ),
             ),

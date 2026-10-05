@@ -38,7 +38,7 @@ void main() {
                     builder: (BuildContext context, StateSetter setter) {
                       setState = setter;
                       return Transform(
-                        transform: transform,
+                        transform: .fixed(transform),
                         // RenderTransform uses size in its applyPaintTransform
                         // implementation if alignment is set.
                         alignment: Alignment.topLeft,
@@ -55,7 +55,7 @@ void main() {
                                 theaterSize = layoutInfo.overlaySize;
                                 return const SizedBox();
                               },
-                          child: const SizedBox(width: 40, height: 50),
+                          child: const SizedBox(width: .fixed(40), height: .fixed(50)),
                         ),
                       );
                     },
@@ -116,7 +116,7 @@ void main() {
                               regularChildSize = layoutInfo.childSize;
                               return const SizedBox();
                             },
-                        child: SizedBox.fromSize(size: childSize),
+                        child: SizedBox.fromSize(size: .fixed(childSize)),
                       );
                     },
                   ),
@@ -147,7 +147,7 @@ void main() {
         ..dispose(),
     );
 
-    Widget builder(BuildContext _, OverlayChildLayoutInfo _) => ColoredBox(color: color);
+    Widget builder(BuildContext _, OverlayChildLayoutInfo _) => ColoredBox(color: .fixed(color));
 
     await tester.pumpWidget(
       Directionality(
@@ -207,7 +207,7 @@ void main() {
                       child: SizedBox(key: key),
                     );
                   },
-                  child: const SizedBox(width: 10.0, height: 20.0),
+                  child: const SizedBox(width: .fixed(10.0), height: .fixed(20.0)),
                 );
               },
             ),
@@ -251,11 +251,11 @@ void main() {
                     builder: (BuildContext context, StateSetter setter) {
                       setState = setter;
                       return Transform(
-                        transform: transform,
+                        transform: .fixed(transform),
                         child: OverlayPortal.overlayChildLayoutBuilder(
                           controller: controller1,
                           overlayChildBuilder: buildOverlayChild,
-                          child: const SizedBox(width: 40, height: 50),
+                          child: const SizedBox(width: .fixed(40), height: .fixed(50)),
                         ),
                       );
                     },

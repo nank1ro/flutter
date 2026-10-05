@@ -878,7 +878,7 @@ abstract class _TestAnimatedWidgetState extends RebuildCountingState<TestAnimate
       onTap: () {
         onChanged(!toggle);
       },
-      child: const SizedBox(width: 48.0, height: 48.0),
+      child: const SizedBox(width: .fixed(48.0), height: .fixed(48.0)),
     );
   }
 
@@ -1079,7 +1079,7 @@ class _TestTweenAnimationBuilderWidgetState extends _TestAnimatedWidgetState {
       onEnd: widget.callback,
       child: child,
       builder: (BuildContext context, double? size, Widget? child) {
-        return SizedBox(width: size, height: size, child: child);
+        return SizedBox(width: .fixed(size), height: .fixed(size), child: child);
       },
     );
   }

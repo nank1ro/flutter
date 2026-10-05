@@ -40,7 +40,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onMove: (_) => moveCount++,
               onAccept: accepted.add,
@@ -109,7 +109,7 @@ void main() {
             const Draggable<int>(data: 1, feedback: Text('Dragging'), child: Text('Source')),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target 1'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target 1'));
               },
               onLeave: (int? data) {
                 if (data != null) {
@@ -119,7 +119,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target 2'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target 2'));
               },
               onLeave: (int? data) {
                 if (data != null) {
@@ -179,7 +179,7 @@ void main() {
             const Draggable<int>(data: 1, feedback: Text('Dragging'), child: Text('Source')),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target 1'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target 1'));
               },
               onLeave: (Object? data) {
                 if (data is int) {
@@ -189,7 +189,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target 2'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target 2'));
               },
               onLeave: (Object? data) {
                 if (data is int) {
@@ -252,7 +252,7 @@ void main() {
             const Draggable<int>(data: 1, feedback: Text('Dragging'), child: Text('Source')),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target 1'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target 1'));
               },
               onMove: (DragTargetDetails<int> details) {
                 targetMoveCount['Target 1'] = targetMoveCount['Target 1']! + details.data;
@@ -260,7 +260,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target 2'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target 2'));
               },
               onMove: (DragTargetDetails<int> details) {
                 targetMoveCount['Target 2'] = targetMoveCount['Target 2']! + details.data;
@@ -318,7 +318,7 @@ void main() {
             const Draggable<int>(data: 1, feedback: Text('Dragging'), child: Text('Source')),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target 1'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target 1'));
               },
               onMove: (DragTargetDetails<dynamic> details) {
                 if (details.data is int) {
@@ -329,7 +329,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target 2'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target 2'));
               },
               onMove: (DragTargetDetails<dynamic> details) {
                 if (details.data is int) {
@@ -392,7 +392,7 @@ void main() {
             const Draggable<int>(feedback: Text('Dragging'), child: Text('Source')),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onMove: (DragTargetDetails<dynamic> details) {
                 onMoveCalled = true;
@@ -533,7 +533,7 @@ void main() {
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
                 // Ensure the drag target is big enough with the default text font size provided by WidgetsApp.
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: (int? data) {
                 events.add('drop');
@@ -1211,7 +1211,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
               onAcceptWithDetails: acceptedDetails.add,
@@ -1287,7 +1287,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onWillAccept: (int? data) => false,
               onAccept: accepted.add,
@@ -1365,7 +1365,7 @@ void main() {
               ),
               DragTarget<int>(
                 builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                  return const SizedBox(height: 100.0, child: Text('Target'));
+                  return const SizedBox(height: .fixed(100.0), child: Text('Target'));
                 },
                 onWillAcceptWithDetails: (DragTargetDetails<int> details) => false,
                 onAccept: accepted.add,
@@ -1444,7 +1444,7 @@ void main() {
               ),
               DragTarget<int>(
                 builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                  return const SizedBox(height: 100.0, child: Text('Target'));
+                  return const SizedBox(height: .fixed(100.0), child: Text('Target'));
                 },
                 onWillAccept: (int? data) => false,
                 onAccept: accepted.add,
@@ -1503,7 +1503,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onWillAccept: (int? data) => false,
               onAccept: accepted.add,
@@ -1583,7 +1583,7 @@ void main() {
               ),
               DragTarget<int>(
                 builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                  return const SizedBox(height: 100.0, child: Text('Target'));
+                  return const SizedBox(height: .fixed(100.0), child: Text('Target'));
                 },
                 onWillAcceptWithDetails: (DragTargetDetails<int> data) => false,
                 onAccept: accepted.add,
@@ -1653,7 +1653,7 @@ void main() {
               DragTarget<int>(
                 builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
                   return SizedBox(
-                    height: 100.0,
+                    height: const .fixed(100.0),
                     child: rejects.isNotEmpty ? const Text('Rejected') : const Text('Target'),
                   );
                 },
@@ -1712,7 +1712,7 @@ void main() {
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
                 return SizedBox(
-                  height: 100.0,
+                  height: const .fixed(100.0),
                   child: rejects.isNotEmpty ? const Text('Rejected') : const Text('Target'),
                 );
               },
@@ -1796,7 +1796,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onWillAccept: (int? data) => false,
               onAccept: accepted.add,
@@ -1868,7 +1868,7 @@ void main() {
               ),
               DragTarget<int>(
                 builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                  return const SizedBox(height: 100.0, child: Text('Target'));
+                  return const SizedBox(height: .fixed(100.0), child: Text('Target'));
                 },
                 onWillAcceptWithDetails: (DragTargetDetails<int> data) => false,
                 onAccept: accepted.add,
@@ -1942,7 +1942,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
               onAcceptWithDetails: acceptedDetails.add,
@@ -2089,7 +2089,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
               onAcceptWithDetails: acceptedDetails.add,
@@ -2163,7 +2163,7 @@ void main() {
                 DragTarget<int>(
                   builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
                     return const IgnorePointer(
-                      child: SizedBox(height: 100.0, child: Text('Target1')),
+                      child: SizedBox(height: .fixed(100.0), child: Text('Target1')),
                     );
                   },
                   onAccept: acceptedInts.add,
@@ -2172,7 +2172,7 @@ void main() {
                 DragTarget<double>(
                   builder: (BuildContext context, List<double?> data, List<dynamic> rejects) {
                     return const IgnorePointer(
-                      child: SizedBox(height: 100.0, child: Text('Target2')),
+                      child: SizedBox(height: .fixed(100.0), child: Text('Target2')),
                     );
                   },
                   onAccept: acceptedDoubles.add,
@@ -2291,7 +2291,7 @@ void main() {
                   builder:
                       (BuildContext context, List<DragTargetData?> data, List<dynamic> rejects) {
                         return const IgnorePointer(
-                          child: SizedBox(height: 100.0, child: Text('Target1')),
+                          child: SizedBox(height: .fixed(100.0), child: Text('Target1')),
                         );
                       },
                   onAccept: acceptedDragTargetDatas.add,
@@ -2305,7 +2305,7 @@ void main() {
                         List<dynamic> rejects,
                       ) {
                         return const IgnorePointer(
-                          child: SizedBox(height: 100.0, child: Text('Target2')),
+                          child: SizedBox(height: .fixed(100.0), child: Text('Target2')),
                         );
                       },
                   onAccept: acceptedExtendedDragTargetDatas.add,
@@ -2357,7 +2357,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
               onAcceptWithDetails: acceptedDetails.add,
@@ -2481,7 +2481,7 @@ void main() {
             const Draggable<int>(feedback: Text('Dragging'), child: Text('Source')),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: (int data) {
                 onAcceptCalled = true;
@@ -2693,7 +2693,7 @@ void main() {
             const Draggable<int>(data: 1, feedback: Text('Dragging'), child: Text('Source')),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
               onAcceptWithDetails: acceptedDetails.add,
@@ -2725,7 +2725,7 @@ void main() {
           children: <Widget>[
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
               onAcceptWithDetails: acceptedDetails.add,
@@ -2806,7 +2806,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
               onAcceptWithDetails: acceptedDetails.add,
@@ -2894,7 +2894,7 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
               onAcceptWithDetails: acceptedDetails.add,
@@ -3112,7 +3112,7 @@ void main() {
         home: Column(
           children: <Widget>[
             SizedBox(
-              height: 200.0,
+              height: const .fixed(200.0),
               child: Navigator(
                 key: childNavigatorKey,
                 onGenerateRoute: (RouteSettings settings) {
@@ -3133,7 +3133,10 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 300.0, child: Center(child: Text('Target 1')));
+                return const SizedBox(
+                  height: .fixed(300.0),
+                  child: Center(child: Text('Target 1')),
+                );
               },
             ),
           ],
@@ -3174,7 +3177,7 @@ void main() {
         home: Column(
           children: <Widget>[
             SizedBox(
-              height: 200.0,
+              height: const .fixed(200.0),
               child: Navigator(
                 key: childNavigatorKey,
                 onGenerateRoute: (RouteSettings settings) {
@@ -3195,7 +3198,10 @@ void main() {
             ),
             DragTarget<int>(
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 300.0, child: Center(child: Text('Target 1')));
+                return const SizedBox(
+                  height: .fixed(300.0),
+                  child: Center(child: Text('Target 1')),
+                );
               },
             ),
           ],
@@ -3261,7 +3267,7 @@ void main() {
             const Draggable<int>(data: 1, feedback: Text('Dragging'), child: Text('Source')),
             DragTarget<Object>(
               builder: (BuildContext context, List<Object?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
               onAccept: accepted.add,
             ),
@@ -3297,7 +3303,7 @@ void main() {
               const Draggable<Object>(data: 1, feedback: Text('Dragging'), child: Text('Source')),
               DragTarget<int>(
                 builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                  return const SizedBox(height: 100.0, child: Text('Target'));
+                  return const SizedBox(height: .fixed(100.0), child: Text('Target'));
                 },
                 onAccept: accepted.add,
               ),
@@ -3335,7 +3341,7 @@ void main() {
               const Draggable<Object>(feedback: Text('Dragging'), child: Text('Source')),
               DragTarget<int>(
                 builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                  return const SizedBox(height: 100.0, child: Text('Target'));
+                  return const SizedBox(height: .fixed(100.0), child: Text('Target'));
                 },
                 onAccept: accepted.add,
                 onWillAccept: (int? data) {
@@ -3384,7 +3390,7 @@ void main() {
             // Use a wide enough container, so that the ListView is scrollable with WidgetsApp.
             // Since WidgetsApp uses a smaller default font size, the content might not scroll otherwise.
             // The width value is chosen so that the content is scrollable while keeping all items visible.
-            const SizedBox(width: 680.0),
+            const SizedBox(width: .fixed(680.0)),
             const Draggable<int>(
               data: 1,
               feedback: Text('H'),
@@ -3576,7 +3582,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.scale(
-        scale: 0.5,
+        scale: const .fixed(0.5),
         child: const TestWidgetsApp(
           home: Align(
             alignment: Alignment.topLeft,
@@ -3607,7 +3613,7 @@ void main() {
     final Key feedbackKey = UniqueKey();
     await tester.pumpWidget(
       Transform.scale(
-        scale: 0.5,
+        scale: const .fixed(0.5),
         child: TestWidgetsApp(
           home: Align(
             alignment: Alignment.topLeft,
@@ -3637,7 +3643,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.rotate(
-        angle: 1, // ~57 degrees
+        angle: const .fixed(1), // ~57 degrees
         child: const TestWidgetsApp(
           home: Align(
             alignment: Alignment.topLeft,
@@ -3719,8 +3725,8 @@ void main() {
         home: Column(
           children: <Widget>[
             Draggable<int>(
-              feedback: SizedBox(height: 50.0, child: Text('Draggable')),
-              child: SizedBox(height: 50.0, child: Text('Target')),
+              feedback: SizedBox(height: .fixed(50.0), child: Text('Draggable')),
+              child: SizedBox(height: .fixed(50.0), child: Text('Target')),
             ),
           ],
         ),
@@ -3740,9 +3746,9 @@ void main() {
               ignoringFeedbackPointer: false,
               feedback: MouseRegion(
                 cursor: SystemMouseCursors.grabbing,
-                child: SizedBox(height: 50.0, child: Text('Draggable')),
+                child: SizedBox(height: .fixed(50.0), child: Text('Draggable')),
               ),
-              child: SizedBox(height: 50.0, child: Text('Target')),
+              child: SizedBox(height: .fixed(50.0), child: Text('Target')),
             ),
           ],
         ),
@@ -3773,9 +3779,9 @@ void main() {
               ignoringFeedbackPointer: false,
               feedback: GestureDetector(
                 onTap: () => onTap = true,
-                child: const SizedBox(height: 50.0, child: Text('Draggable')),
+                child: const SizedBox(height: .fixed(50.0), child: Text('Draggable')),
               ),
-              child: const SizedBox(height: 50.0, child: Text('Target')),
+              child: const SizedBox(height: .fixed(50.0), child: Text('Target')),
             ),
           ],
         ),
@@ -3804,9 +3810,9 @@ void main() {
               ignoringFeedbackPointer: false,
               feedback: GestureDetector(
                 onTap: () => onTap = true,
-                child: const SizedBox(height: 50.0, child: Text('Draggable')),
+                child: const SizedBox(height: .fixed(50.0), child: Text('Draggable')),
               ),
-              child: const SizedBox(height: 50.0, child: Text('Target')),
+              child: const SizedBox(height: .fixed(50.0), child: Text('Target')),
             ),
           ],
         ),
@@ -3835,7 +3841,7 @@ void main() {
             DragTarget<int>(
               hitTestBehavior: hitTestBehavior,
               builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                return const SizedBox(height: 100.0, child: Text('Target'));
+                return const SizedBox(height: .fixed(100.0), child: Text('Target'));
               },
             ),
           ],
@@ -3914,7 +3920,7 @@ void main() {
     expect(
       () => DragTarget<int>(
         builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-          return const SizedBox(height: 100.0, child: Text('Target'));
+          return const SizedBox(height: .fixed(100.0), child: Text('Target'));
         },
         onWillAccept: (int? data) => true,
         onWillAcceptWithDetails: (DragTargetDetails<int> details) => false,
@@ -4010,7 +4016,7 @@ Future<void> _testChildAnchorFeedbackPosition({
                 ),
                 DragTarget<int>(
                   builder: (BuildContext context, List<int?> data, List<dynamic> rejects) {
-                    return const SizedBox(height: 100.0, child: Text('Target'));
+                    return const SizedBox(height: .fixed(100.0), child: Text('Target'));
                   },
                   onAccept: accepted.add,
                   onAcceptWithDetails: acceptedDetails.add,

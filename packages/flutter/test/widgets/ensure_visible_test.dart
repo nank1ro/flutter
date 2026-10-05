@@ -17,21 +17,21 @@ Widget buildSingleChildScrollView(Axis scrollDirection, {bool reverse = false}) 
     textDirection: TextDirection.ltr,
     child: Center(
       child: SizedBox(
-        width: 600.0,
-        height: 400.0,
+        width: const .fixed(600.0),
+        height: const .fixed(400.0),
         child: SingleChildScrollView(
           scrollDirection: scrollDirection,
           reverse: reverse,
           child: ListBody(
             mainAxis: scrollDirection,
             children: const <Widget>[
-              SizedBox(key: ValueKey<int>(0), width: 200.0, height: 200.0),
-              SizedBox(key: ValueKey<int>(1), width: 200.0, height: 200.0),
-              SizedBox(key: ValueKey<int>(2), width: 200.0, height: 200.0),
-              SizedBox(key: ValueKey<int>(3), width: 200.0, height: 200.0),
-              SizedBox(key: ValueKey<int>(4), width: 200.0, height: 200.0),
-              SizedBox(key: ValueKey<int>(5), width: 200.0, height: 200.0),
-              SizedBox(key: ValueKey<int>(6), width: 200.0, height: 200.0),
+              SizedBox(key: ValueKey<int>(0), width: .fixed(200.0), height: .fixed(200.0)),
+              SizedBox(key: ValueKey<int>(1), width: .fixed(200.0), height: .fixed(200.0)),
+              SizedBox(key: ValueKey<int>(2), width: .fixed(200.0), height: .fixed(200.0)),
+              SizedBox(key: ValueKey<int>(3), width: .fixed(200.0), height: .fixed(200.0)),
+              SizedBox(key: ValueKey<int>(4), width: .fixed(200.0), height: .fixed(200.0)),
+              SizedBox(key: ValueKey<int>(5), width: .fixed(200.0), height: .fixed(200.0)),
+              SizedBox(key: ValueKey<int>(6), width: .fixed(200.0), height: .fixed(200.0)),
             ],
           ),
         ),
@@ -45,21 +45,21 @@ Widget buildListView(Axis scrollDirection, {bool reverse = false, bool shrinkWra
     textDirection: TextDirection.ltr,
     child: Center(
       child: SizedBox(
-        width: 600.0,
-        height: 400.0,
+        width: const .fixed(600.0),
+        height: const .fixed(400.0),
         child: ListView(
           scrollDirection: scrollDirection,
           reverse: reverse,
           addSemanticIndexes: false,
           shrinkWrap: shrinkWrap,
           children: const <Widget>[
-            SizedBox(key: ValueKey<int>(0), width: 200.0, height: 200.0),
-            SizedBox(key: ValueKey<int>(1), width: 200.0, height: 200.0),
-            SizedBox(key: ValueKey<int>(2), width: 200.0, height: 200.0),
-            SizedBox(key: ValueKey<int>(3), width: 200.0, height: 200.0),
-            SizedBox(key: ValueKey<int>(4), width: 200.0, height: 200.0),
-            SizedBox(key: ValueKey<int>(5), width: 200.0, height: 200.0),
-            SizedBox(key: ValueKey<int>(6), width: 200.0, height: 200.0),
+            SizedBox(key: ValueKey<int>(0), width: .fixed(200.0), height: .fixed(200.0)),
+            SizedBox(key: ValueKey<int>(1), width: .fixed(200.0), height: .fixed(200.0)),
+            SizedBox(key: ValueKey<int>(2), width: .fixed(200.0), height: .fixed(200.0)),
+            SizedBox(key: ValueKey<int>(3), width: .fixed(200.0), height: .fixed(200.0)),
+            SizedBox(key: ValueKey<int>(4), width: .fixed(200.0), height: .fixed(200.0)),
+            SizedBox(key: ValueKey<int>(5), width: .fixed(200.0), height: .fixed(200.0)),
+            SizedBox(key: ValueKey<int>(6), width: .fixed(200.0), height: .fixed(200.0)),
           ],
         ),
       ),
@@ -274,19 +274,19 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 600.0,
-            height: 400.0,
+            width: const .fixed(600.0),
+            height: const .fixed(400.0),
             child: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  const SizedBox(height: 200.0),
-                  const SizedBox(height: 200.0),
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
+                  const SizedBox(height: .fixed(200.0)),
+                  const SizedBox(height: .fixed(200.0)),
                   SizedBox(
-                    height: 200.0,
+                    height: const .fixed(200.0),
                     child: Center(
                       child: Transform(
-                        transform: Matrix4.rotationZ(math.pi),
+                        transform: .fixed(Matrix4.rotationZ(math.pi)),
                         child: Container(
                           key: const ValueKey<int>(0),
                           width: 100.0,
@@ -296,9 +296,9 @@ void main() {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 200.0),
-                  const SizedBox(height: 200.0),
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
+                  const SizedBox(height: .fixed(200.0)),
+                  const SizedBox(height: .fixed(200.0)),
                 ],
               ),
             ),
@@ -326,7 +326,11 @@ void main() {
         (int y) => Row(
           children: List<SizedBox>.generate(
             7,
-            (int x) => SizedBox(key: ValueKey<String>('$x, $y'), width: 200.0, height: 200.0),
+            (int x) => SizedBox(
+              key: ValueKey<String>('$x, $y'),
+              width: const .fixed(200.0),
+              height: const .fixed(200.0),
+            ),
           ),
         ),
       );
@@ -336,8 +340,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 600.0,
-              height: 400.0,
+              width: const .fixed(600.0),
+              height: const .fixed(400.0),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: SingleChildScrollView(child: Column(children: rows)),
@@ -634,7 +638,7 @@ void main() {
       Widget buildSliver(int i) {
         return SliverToBoxAdapter(
           key: ValueKey<int>(i),
-          child: const SizedBox(width: 200.0, height: 200.0),
+          child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
         );
       }
 
@@ -643,8 +647,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 600.0,
-              height: 400.0,
+              width: const .fixed(600.0),
+              height: const .fixed(400.0),
               child: Scrollable(
                 viewportBuilder: (BuildContext context, ViewportOffset offset) {
                   return Viewport(
@@ -690,18 +694,18 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 600.0,
-              height: 400.0,
+              width: const .fixed(600.0),
+              height: const .fixed(400.0),
               child: ListView(
                 children: <Widget>[
-                  const SizedBox(height: 200.0),
-                  const SizedBox(height: 200.0),
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
+                  const SizedBox(height: .fixed(200.0)),
+                  const SizedBox(height: .fixed(200.0)),
                   SizedBox(
-                    height: 200.0,
+                    height: const .fixed(200.0),
                     child: Center(
                       child: Transform(
-                        transform: Matrix4.rotationZ(math.pi),
+                        transform: .fixed(Matrix4.rotationZ(math.pi)),
                         child: Container(
                           key: const ValueKey<int>(0),
                           width: 100.0,
@@ -711,9 +715,9 @@ void main() {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 200.0),
-                  const SizedBox(height: 200.0),
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
+                  const SizedBox(height: .fixed(200.0)),
+                  const SizedBox(height: .fixed(200.0)),
                 ],
               ),
             ),
@@ -976,8 +980,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 600.0,
-              height: 400.0,
+              width: const .fixed(600.0),
+              height: const .fixed(400.0),
               child: Scrollable(
                 viewportBuilder: (BuildContext context, ViewportOffset offset) {
                   return Viewport(
@@ -985,44 +989,96 @@ void main() {
                     center: const ValueKey<String>('center'),
                     slivers: const <Widget>[
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(-6), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(-6),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(-5), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(-5),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(-4), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(-4),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(-3), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(-3),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(-2), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(-2),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(-1), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(-1),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
                         key: ValueKey<String>('center'),
-                        child: SizedBox(key: ValueKey<int>(0), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(0),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(1), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(1),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(2), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(2),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(3), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(3),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(4), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(4),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(5), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(5),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                       SliverToBoxAdapter(
-                        child: SizedBox(key: ValueKey<int>(6), width: 200.0, height: 200.0),
+                        child: SizedBox(
+                          key: ValueKey<int>(6),
+                          width: .fixed(200.0),
+                          height: .fixed(200.0),
+                        ),
                       ),
                     ],
                   );

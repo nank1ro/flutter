@@ -47,7 +47,7 @@ Future<void> verifyPoppedHeroCurve({
             },
             curve: curve,
             reverseCurve: reverseCurve?.flipped,
-            child: SizedBox(key: container1, height: 100, width: 100),
+            child: SizedBox(key: container1, height: const .fixed(100), width: const .fixed(100)),
           ),
         ),
       ),
@@ -68,7 +68,7 @@ Future<void> verifyPoppedHeroCurve({
               },
               curve: curve,
               reverseCurve: reverseCurve?.flipped,
-              child: SizedBox(key: container2, height: 200, width: 200),
+              child: SizedBox(key: container2, height: const .fixed(200), width: const .fixed(200)),
             ),
           ),
         );
@@ -148,15 +148,15 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
     child: ListView(
       key: homeRouteKey,
       children: <Widget>[
-        const SizedBox(height: 100.0, width: 100.0),
+        const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
         Card(
           child: Hero(
             tag: 'a',
             transitionOnUserGestures: transitionFromUserGestures,
-            child: SizedBox(height: 100.0, width: 100.0, key: firstKey),
+            child: SizedBox(height: const .fixed(100.0), width: const .fixed(100.0), key: firstKey),
           ),
         ),
-        const SizedBox(height: 100.0, width: 100.0),
+        const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
         TextButton(
           child: const Text('two'),
           onPressed: () {
@@ -188,15 +188,19 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
             Navigator.pop(context);
           },
         ),
-        const SizedBox(height: 150.0, width: 150.0),
+        const SizedBox(height: .fixed(150.0), width: .fixed(150.0)),
         Card(
           child: Hero(
             tag: 'a',
             transitionOnUserGestures: transitionFromUserGestures,
-            child: SizedBox(height: 150.0, width: 150.0, key: secondKey),
+            child: SizedBox(
+              height: const .fixed(150.0),
+              width: const .fixed(150.0),
+              key: secondKey,
+            ),
           ),
         ),
-        const SizedBox(height: 150.0, width: 150.0),
+        const SizedBox(height: .fixed(150.0), width: .fixed(150.0)),
         TextButton(
           child: const Text('three'),
           onPressed: () {
@@ -220,18 +224,22 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
             Navigator.pop(context);
           },
         ),
-        const SizedBox(height: 150.0, width: 150.0),
+        const SizedBox(height: .fixed(150.0), width: .fixed(150.0)),
         Card(
           child: Padding(
-            padding: const EdgeInsets.only(left: 50.0),
+            padding: const .fixed(EdgeInsets.only(left: 50.0)),
             child: Hero(
               tag: 'a',
               transitionOnUserGestures: transitionFromUserGestures,
-              child: SizedBox(height: 150.0, width: 150.0, key: secondKey),
+              child: SizedBox(
+                height: const .fixed(150.0),
+                width: const .fixed(150.0),
+                key: secondKey,
+              ),
             ),
           ),
         ),
-        const SizedBox(height: 150.0, width: 150.0),
+        const SizedBox(height: .fixed(150.0), width: .fixed(150.0)),
         TextButton(
           child: const Text('three'),
           onPressed: () {
@@ -250,7 +258,7 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
       child: Hero(
         tag: 'a',
         transitionOnUserGestures: transitionFromUserGestures,
-        child: SizedBox(height: 150.0, width: 150.0, key: simpleKey),
+        child: SizedBox(height: const .fixed(150.0), width: const .fixed(150.0), key: simpleKey),
       ),
     ),
   ),
@@ -264,14 +272,18 @@ class ThreeRoute extends MaterialPageRoute<void> {
             key: routeThreeKey,
             child: ListView(
               children: <Widget>[
-                const SizedBox(height: 200.0, width: 200.0),
+                const SizedBox(height: .fixed(200.0), width: .fixed(200.0)),
                 Card(
                   child: Hero(
                     tag: 'a',
-                    child: SizedBox(height: 200.0, width: 200.0, key: thirdKey),
+                    child: SizedBox(
+                      height: const .fixed(200.0),
+                      width: const .fixed(200.0),
+                      key: thirdKey,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 200.0, width: 200.0),
+                const SizedBox(height: .fixed(200.0), width: .fixed(200.0)),
               ],
             ),
           );
@@ -621,7 +633,7 @@ Future<void> main() async {
         name: '1',
         child: Hero(
           tag: 'hero',
-          child: SizedBox(key: key1, width: 20, height: 20),
+          child: SizedBox(key: key1, width: const .fixed(20), height: const .fixed(20)),
         ),
       ),
     ];
@@ -645,7 +657,7 @@ Future<void> main() async {
         name: '2',
         child: Hero(
           tag: 'hero',
-          child: SizedBox(key: key2, width: 20, height: 20),
+          child: SizedBox(key: key2, width: const .fixed(20), height: const .fixed(20)),
         ),
       ),
     ];
@@ -789,16 +801,20 @@ Future<void> main() async {
             '/': (BuildContext context) => Material(
               child: ListView(
                 children: <Widget>[
-                  const SizedBox(height: 100.0, width: 100.0),
+                  const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                   Card(
                     child: Hero(
                       tag: 'a',
                       transitionOnUserGestures: transitionFromUserGestures,
                       curve: curve,
-                      child: SizedBox(height: 100.0, width: 100.0, key: firstKey),
+                      child: SizedBox(
+                        height: const .fixed(100.0),
+                        width: const .fixed(100.0),
+                        key: firstKey,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 100.0, width: 100.0),
+                  const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                   TextButton(
                     child: const Text('two'),
                     onPressed: () {
@@ -818,13 +834,17 @@ Future<void> main() async {
                       Navigator.pop(context);
                     },
                   ),
-                  const SizedBox(height: 150.0, width: 150.0),
+                  const SizedBox(height: .fixed(150.0), width: .fixed(150.0)),
                   Card(
                     child: Hero(
                       tag: 'a',
                       transitionOnUserGestures: transitionFromUserGestures,
                       curve: curve,
-                      child: SizedBox(height: 150.0, width: 150.0, key: secondKey),
+                      child: SizedBox(
+                        height: const .fixed(150.0),
+                        width: const .fixed(150.0),
+                        key: secondKey,
+                      ),
                     ),
                   ),
                 ],
@@ -889,7 +909,11 @@ Future<void> main() async {
               onTap: () {
                 log.add('foo');
               },
-              child: const SizedBox(width: 100.0, height: 100.0, child: Text('foo')),
+              child: const SizedBox(
+                width: .fixed(100.0),
+                height: .fixed(100.0),
+                child: Text('foo'),
+              ),
             ),
           ),
         ),
@@ -903,7 +927,11 @@ Future<void> main() async {
                   onTap: () {
                     log.add('bar');
                   },
-                  child: const SizedBox(width: 100.0, height: 150.0, child: Text('bar')),
+                  child: const SizedBox(
+                    width: .fixed(100.0),
+                    height: .fixed(150.0),
+                    child: Text('bar'),
+                  ),
                 ),
               ),
             );
@@ -1250,9 +1278,13 @@ Future<void> main() async {
                     child: routeIncludesHero
                         ? const Hero(
                             tag: 'H',
-                            child: SizedBox(key: routeHeroKey, height: 200.0, width: 200.0),
+                            child: SizedBox(
+                              key: routeHeroKey,
+                              height: .fixed(200.0),
+                              width: .fixed(200.0),
+                            ),
                           )
-                        : const SizedBox(height: 200.0, width: 200.0),
+                        : const SizedBox(height: .fixed(200.0), width: .fixed(200.0)),
                   );
                 },
               ),
@@ -1281,7 +1313,11 @@ Future<void> main() async {
                   const Card(
                     child: Hero(
                       tag: 'H',
-                      child: SizedBox(key: homeHeroKey, height: 100.0, width: 100.0),
+                      child: SizedBox(
+                        key: homeHeroKey,
+                        height: .fixed(100.0),
+                        width: .fixed(100.0),
+                      ),
                     ),
                   ),
                   TextButton(
@@ -1357,13 +1393,13 @@ Future<void> main() async {
         return Material(
           child: ListView(
             children: <Widget>[
-              const SizedBox(height: 100.0),
+              const SizedBox(height: .fixed(100.0)),
               // This container will appear at Y=100
               Container(
                 key: routeContainerKey,
                 child: const Hero(
                   tag: 'H',
-                  child: SizedBox(key: routeHeroKey, height: 200.0, width: 200.0),
+                  child: SizedBox(key: routeHeroKey, height: .fixed(200.0), width: .fixed(200.0)),
                 ),
               ),
               TextButton(
@@ -1372,7 +1408,7 @@ Future<void> main() async {
                   Navigator.pop(context);
                 },
               ),
-              const SizedBox(height: 600.0),
+              const SizedBox(height: .fixed(600.0)),
             ],
           ),
         );
@@ -1396,11 +1432,11 @@ Future<void> main() async {
               // Navigator.push() needs context
               return ListView(
                 children: <Widget>[
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
                   // This container will appear at Y=200
                   const Hero(
                     tag: 'H',
-                    child: SizedBox(key: homeHeroKey, height: 100.0, width: 100.0),
+                    child: SizedBox(key: homeHeroKey, height: .fixed(100.0), width: .fixed(100.0)),
                   ),
                   TextButton(
                     child: const Text('PUSH'),
@@ -1408,7 +1444,7 @@ Future<void> main() async {
                       Navigator.push(context, route);
                     },
                   ),
-                  const SizedBox(height: 600.0),
+                  const SizedBox(height: .fixed(600.0)),
                 ],
               );
             },
@@ -1462,16 +1498,16 @@ Future<void> main() async {
           child: ListView(
             cacheExtent: 0.0,
             children: <Widget>[
-              const SizedBox(height: 100.0),
+              const SizedBox(height: .fixed(100.0)),
               // This container will appear at Y=100
               Container(
                 key: routeContainerKey,
                 child: const Hero(
                   tag: 'H',
-                  child: SizedBox(key: routeHeroKey, height: 200.0, width: 200.0),
+                  child: SizedBox(key: routeHeroKey, height: .fixed(200.0), width: .fixed(200.0)),
                 ),
               ),
-              const SizedBox(height: 800.0),
+              const SizedBox(height: .fixed(800.0)),
             ],
           ),
         );
@@ -1488,11 +1524,11 @@ Future<void> main() async {
               // Navigator.push() needs context
               return ListView(
                 children: <Widget>[
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
                   // This container will appear at Y=200
                   const Hero(
                     tag: 'H',
-                    child: SizedBox(key: homeHeroKey, height: 100.0, width: 100.0),
+                    child: SizedBox(key: homeHeroKey, height: .fixed(100.0), width: .fixed(100.0)),
                   ),
                   TextButton(
                     child: const Text('PUSH'),
@@ -1555,9 +1591,9 @@ Future<void> main() async {
               // This container will appear at Y=0
               Hero(
                 tag: 'BC',
-                child: SizedBox(key: heroBCKey, height: 150.0, child: Text('Hero')),
+                child: SizedBox(key: heroBCKey, height: .fixed(150.0), child: Text('Hero')),
               ),
-              SizedBox(height: 800.0),
+              SizedBox(height: .fixed(800.0)),
             ],
           ),
         );
@@ -1570,11 +1606,11 @@ Future<void> main() async {
         return Material(
           child: ListView(
             children: <Widget>[
-              const SizedBox(height: 100.0),
+              const SizedBox(height: .fixed(100.0)),
               // This container will appear at Y=100
               const Hero(
                 tag: 'AB',
-                child: SizedBox(key: heroABKey, height: 200.0, child: Text('Hero')),
+                child: SizedBox(key: heroABKey, height: .fixed(200.0), child: Text('Hero')),
               ),
               TextButton(
                 child: const Text('PUSH C'),
@@ -1584,9 +1620,9 @@ Future<void> main() async {
               ),
               const Hero(
                 tag: 'BC',
-                child: SizedBox(height: 150.0, child: Text('Hero')),
+                child: SizedBox(height: .fixed(150.0), child: Text('Hero')),
               ),
-              const SizedBox(height: 800.0),
+              const SizedBox(height: .fixed(800.0)),
             ],
           ),
         );
@@ -1603,11 +1639,15 @@ Future<void> main() async {
               // Navigator.push() needs context
               return ListView(
                 children: <Widget>[
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
                   // This container will appear at Y=200
                   const Hero(
                     tag: 'AB',
-                    child: SizedBox(height: 100.0, width: 100.0, child: Text('Hero')),
+                    child: SizedBox(
+                      height: .fixed(100.0),
+                      width: .fixed(100.0),
+                      child: Text('Hero'),
+                    ),
                   ),
                   TextButton(
                     child: const Text('PUSH B'),
@@ -1681,7 +1721,10 @@ Future<void> main() async {
               const Card(
                 child: Hero(
                   tag: 'H',
-                  child: SizedBox(height: 200.0, child: MyStatefulWidget(value: '456')),
+                  child: SizedBox(
+                    height: .fixed(200.0),
+                    child: MyStatefulWidget(value: '456'),
+                  ),
                 ),
               ),
               TextButton(
@@ -1708,7 +1751,10 @@ Future<void> main() async {
                   const Card(
                     child: Hero(
                       tag: 'H',
-                      child: SizedBox(height: 100.0, child: MyStatefulWidget(value: '456')),
+                      child: SizedBox(
+                        height: .fixed(100.0),
+                        child: MyStatefulWidget(value: '456'),
+                      ),
                     ),
                   ),
                   TextButton(
@@ -1768,7 +1814,11 @@ Future<void> main() async {
             Hero(
               tag: 'a',
               createRectTween: createRectTween,
-              child: SizedBox(height: 100.0, width: 100.0, key: firstKey),
+              child: SizedBox(
+                height: const .fixed(100.0),
+                width: const .fixed(100.0),
+                key: firstKey,
+              ),
             ),
             TextButton(
               child: const Text('two'),
@@ -1783,7 +1833,7 @@ Future<void> main() async {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 200.0,
+              height: const .fixed(200.0),
               child: TextButton(
                 child: const Text('pop'),
                 onPressed: () {
@@ -1794,7 +1844,11 @@ Future<void> main() async {
             Hero(
               tag: 'a',
               createRectTween: createRectTween,
-              child: SizedBox(height: 200.0, width: 100.0, key: secondKey),
+              child: SizedBox(
+                height: const .fixed(200.0),
+                width: const .fixed(100.0),
+                key: secondKey,
+              ),
             ),
           ],
         ),
@@ -1894,7 +1948,11 @@ Future<void> main() async {
             Hero(
               tag: 'a',
               createRectTween: createRectTween,
-              child: SizedBox(height: 100.0, width: 100.0, key: firstKey),
+              child: SizedBox(
+                height: const .fixed(100.0),
+                width: const .fixed(100.0),
+                key: firstKey,
+              ),
             ),
             TextButton(
               child: const Text('two'),
@@ -1909,7 +1967,7 @@ Future<void> main() async {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 200.0,
+              height: const .fixed(200.0),
               child: TextButton(
                 child: const Text('pop'),
                 onPressed: () {
@@ -1920,7 +1978,11 @@ Future<void> main() async {
             Hero(
               tag: 'a',
               createRectTween: createRectTween,
-              child: SizedBox(height: 200.0, width: 100.0, key: secondKey),
+              child: SizedBox(
+                height: const .fixed(200.0),
+                width: const .fixed(100.0),
+                key: secondKey,
+              ),
             ),
           ],
         ),
@@ -1933,7 +1995,7 @@ Future<void> main() async {
     final observer = TransitionDurationObserver();
     await tester.pumpWidget(
       Padding(
-        padding: const EdgeInsets.only(left: leftPadding),
+        padding: const .fixed(EdgeInsets.only(left: leftPadding)),
         child: MaterialApp(
           routes: createRectTweenHeroRoutes,
           navigatorObservers: <NavigatorObserver>[observer],
@@ -3155,7 +3217,7 @@ Future<void> main() async {
               transitionOnUserGestures: true,
               child: _SimpleStatefulWidget(key: key1),
             ),
-            const SizedBox(width: 10, height: 10, child: Text('1')),
+            const SizedBox(width: .fixed(10), height: .fixed(10), child: Text('1')),
           ],
         ),
       ),
@@ -3218,11 +3280,11 @@ Future<void> main() async {
                 tag: 'hero',
                 transitionOnUserGestures: true,
                 child: SizedBox(
-                  width: 100,
+                  width: const .fixed(100),
                   child: Image(image: imageProvider, key: imageKey1),
                 ),
               ),
-              const SizedBox(width: 10, height: 10, child: Text('1')),
+              const SizedBox(width: .fixed(10), height: .fixed(10), child: Text('1')),
             ],
           ),
         ),
@@ -3418,7 +3480,7 @@ Future<void> main() async {
               createRectTween: (Rect? begin, Rect? end) {
                 return RectTween(begin: begin, end: end);
               },
-              child: SizedBox(key: container1, height: 100, width: 100),
+              child: SizedBox(key: container1, height: const .fixed(100), width: const .fixed(100)),
             ),
           ),
         ),
@@ -3437,7 +3499,11 @@ Future<void> main() async {
                 createRectTween: (Rect? begin, Rect? end) {
                   return RectTween(begin: begin, end: end);
                 },
-                child: SizedBox(key: container2, height: 200, width: 200),
+                child: SizedBox(
+                  key: container2,
+                  height: const .fixed(200),
+                  width: const .fixed(200),
+                ),
               ),
             ),
           );
@@ -3510,7 +3576,11 @@ Future<void> main() async {
                 child: Card(
                   child: Hero(
                     tag: 'a',
-                    child: SizedBox(height: 100.0, width: 100.0, key: firstKey),
+                    child: SizedBox(
+                      height: const .fixed(100.0),
+                      width: const .fixed(100.0),
+                      key: firstKey,
+                    ),
                   ),
                 ),
               ),
@@ -3527,7 +3597,11 @@ Future<void> main() async {
                                 return Card(
                                   child: Hero(
                                     tag: 'a',
-                                    child: SizedBox(height: 150.0, width: 150.0, key: secondKey),
+                                    child: SizedBox(
+                                      height: const .fixed(150.0),
+                                      width: const .fixed(150.0),
+                                      key: secondKey,
+                                    ),
                                   ),
                                 );
                               },
@@ -3580,7 +3654,11 @@ Future<void> main() async {
                 child: Card(
                   child: Hero(
                     tag: 'a',
-                    child: SizedBox(height: 100.0, width: 100.0, key: firstKey),
+                    child: SizedBox(
+                      height: const .fixed(100.0),
+                      width: const .fixed(100.0),
+                      key: firstKey,
+                    ),
                   ),
                 ),
               ),
@@ -3597,7 +3675,11 @@ Future<void> main() async {
                                 return Card(
                                   child: Hero(
                                     tag: 'a',
-                                    child: SizedBox(height: 150.0, width: 150.0, key: secondKey),
+                                    child: SizedBox(
+                                      height: const .fixed(150.0),
+                                      width: const .fixed(150.0),
+                                      key: secondKey,
+                                    ),
                                   ),
                                 );
                               },

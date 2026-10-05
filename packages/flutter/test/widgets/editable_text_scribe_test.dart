@@ -264,7 +264,11 @@ class _VisibleHandleControls extends TextSelectionControls with TextSelectionHan
     double textLineHeight, [
     VoidCallback? onTap,
   ]) {
-    return SizedBox(width: 20, height: 20, child: CustomPaint(painter: _HandlePainter()));
+    return SizedBox(
+      width: const .fixed(20),
+      height: const .fixed(20),
+      child: CustomPaint(painter: _HandlePainter()),
+    );
   }
 
   @override

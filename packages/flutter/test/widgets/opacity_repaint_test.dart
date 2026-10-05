@@ -15,7 +15,7 @@ void main() {
     RenderTestObject.paintCount = 0;
     await tester.pumpWidget(
       const ColoredBox(
-        color: red,
+        color: .fixed(red),
         child: Opacity(opacity: .fixed(0.0), child: TestWidget()),
       ),
     );
@@ -24,7 +24,7 @@ void main() {
 
     await tester.pumpWidget(
       const ColoredBox(
-        color: red,
+        color: .fixed(red),
         child: Opacity(opacity: .fixed(0.1), child: TestWidget()),
       ),
     );
@@ -33,7 +33,7 @@ void main() {
 
     await tester.pumpWidget(
       const ColoredBox(
-        color: red,
+        color: .fixed(red),
         child: Opacity(opacity: .fixed(1), child: TestWidget()),
       ),
     );
@@ -48,7 +48,7 @@ void main() {
 
     await tester.pumpWidget(
       const ColoredBox(
-        color: red,
+        color: .fixed(red),
         child: Opacity(opacity: .fixed(0.5), child: TestWidget()),
       ),
     );
@@ -57,7 +57,7 @@ void main() {
 
     await tester.pumpWidget(
       const ColoredBox(
-        color: red,
+        color: .fixed(red),
         child: Opacity(opacity: .fixed(0.0), child: TestWidget()),
       ),
     );

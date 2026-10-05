@@ -61,7 +61,7 @@ void main() {
         TestWidgetsApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 40.0,
+              dimension: const .fixed(40.0),
               child: Semantics(label: 'small button', onTap: () {}),
             ),
           ),
@@ -99,7 +99,10 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: Center(
-            child: SizedBox.square(dimension: 48.0, child: Semantics(onTap: () {})),
+            child: SizedBox.square(
+              dimension: const .fixed(48.0),
+              child: Semantics(onTap: () {}),
+            ),
           ),
         ),
       );
@@ -134,10 +137,10 @@ void main() {
       await tester.pumpWidget(
         const TestWidgetsApp(
           home: ColoredBox(
-            color: Color(0xFFFFFFFF),
+            color: .fixed(Color(0xFFFFFFFF)),
             child: Center(
               child: SizedBox.square(
-                dimension: 100,
+                dimension: .fixed(100),
                 child: Center(
                   child: Text(
                     'low contrast',
@@ -183,7 +186,7 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 48.0,
+            dimension: const .fixed(48.0),
             child: Semantics(label: 'valid button', onTap: () {}),
           ),
         ),
@@ -224,7 +227,7 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 48.0,
+            dimension: const .fixed(48.0),
             child: Semantics(label: 'button', onTap: () {}),
           ),
         ),
@@ -387,7 +390,7 @@ Future<void> _pumpTestWidget(WidgetTester tester) async {
     TestWidgetsApp(
       home: Center(
         child: SizedBox.square(
-          dimension: 48.0,
+          dimension: const .fixed(48.0),
           child: Semantics(label: 'button', onTap: () {}),
         ),
       ),

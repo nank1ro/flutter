@@ -1769,7 +1769,11 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: UnconstrainedBox(
-          child: Overlay.wrap(child: const Center(child: SizedBox(width: 123, height: 456))),
+          child: Overlay.wrap(
+            child: const Center(
+              child: SizedBox(width: .fixed(123), height: .fixed(456)),
+            ),
+          ),
         ),
       ),
     );
@@ -1784,7 +1788,7 @@ void main() {
       opaque: true,
       canSizeOverlay: true,
       builder: (BuildContext context) {
-        return const SizedBox(width: 123, height: 456);
+        return const SizedBox(width: .fixed(123), height: .fixed(456));
       },
     );
     addTearDown(
@@ -1806,7 +1810,11 @@ void main() {
 
     final nonSizingEntry = OverlayEntry(
       builder: (BuildContext context) {
-        return const SizedBox(width: 600, height: 600, child: Center(child: Text('Hello')));
+        return const SizedBox(
+          width: .fixed(600),
+          height: .fixed(600),
+          child: Center(child: Text('Hello')),
+        );
       },
     );
     addTearDown(nonSizingEntry.dispose);
@@ -1819,7 +1827,11 @@ void main() {
     final sizingEntry = OverlayEntry(
       canSizeOverlay: true,
       builder: (BuildContext context) {
-        return const SizedBox(width: 222, height: 111, child: Center(child: Text('World')));
+        return const SizedBox(
+          width: .fixed(222),
+          height: .fixed(111),
+          child: Center(child: Text('World')),
+        );
       },
     );
     addTearDown(sizingEntry.dispose);
@@ -1872,7 +1884,10 @@ void main() {
     final entry = OverlayEntry(
       canSizeOverlay: true,
       builder: (BuildContext context) {
-        return const Positioned(top: 100, child: SizedBox(width: 600, height: 600));
+        return const Positioned(
+          top: 100,
+          child: SizedBox(width: .fixed(600), height: .fixed(600)),
+        );
       },
     );
     addTearDown(
@@ -1904,7 +1919,7 @@ void main() {
 
     final entry = OverlayEntry(
       builder: (BuildContext context) {
-        return const SizedBox(width: 600, height: 600);
+        return const SizedBox(width: .fixed(600), height: .fixed(600));
       },
     );
     addTearDown(
@@ -1935,10 +1950,10 @@ void main() {
           textDirection: TextDirection.ltr,
           child: UnconstrainedBox(
             child: ConstrainedBox(
-              constraints: BoxConstraints.loose(const Size(800, 600)),
+              constraints: .fixed(BoxConstraints.loose(const Size(800, 600))),
               child: Overlay.wrap(
                 alwaysSizeToContent: true,
-                child: const SizedBox(width: 123, height: 456),
+                child: const SizedBox(width: .fixed(123), height: .fixed(456)),
               ),
             ),
           ),
@@ -1961,7 +1976,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: UnconstrainedBox(
           child: ConstrainedBox(
-            constraints: BoxConstraints.loose(const Size(800, 600)),
+            constraints: .fixed(BoxConstraints.loose(const Size(800, 600))),
             child: const Overlay(alwaysSizeToContent: true),
           ),
         ),

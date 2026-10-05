@@ -15,7 +15,7 @@ void main() {
     (WidgetTester tester) async {
       await tester.pumpWidget(
         DecoratedBox(
-          decoration: const BoxDecoration(),
+          decoration: const .fixed(BoxDecoration()),
           child: SliverList.list(children: const <Widget>[]),
         ),
       );

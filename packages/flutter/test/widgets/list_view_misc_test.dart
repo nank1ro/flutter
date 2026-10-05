@@ -16,7 +16,7 @@ void main() {
           key: blockKey,
           children: const <Widget>[
             SizedBox(
-              height: 200.0, // less than 600, the height of the test area
+              height: .fixed(200.0), // less than 600, the height of the test area
               child: Text('Hello'),
             ),
           ],
@@ -44,7 +44,7 @@ void main() {
           key: blockKey,
           children: const <Widget>[
             SizedBox(
-              height: 2000.0, // more than 600, the height of the test area
+              height: .fixed(2000.0), // more than 600, the height of the test area
               child: Text('Hello'),
             ),
           ],
@@ -183,16 +183,25 @@ void main() {
               // The overall height of the ListView's contents is 500
               child: ListView(
                 children: const <Widget>[
-                  SizedBox(height: 150.0, child: Center(child: Text('top'))),
-                  SizedBox(height: 200.0, child: Center(child: Text('middle'))),
-                  SizedBox(height: 150.0, child: Center(child: Text('bottom'))),
+                  SizedBox(
+                    height: .fixed(150.0),
+                    child: Center(child: Text('top')),
+                  ),
+                  SizedBox(
+                    height: .fixed(200.0),
+                    child: Center(child: Text('middle')),
+                  ),
+                  SizedBox(
+                    height: .fixed(150.0),
+                    child: Center(child: Text('bottom')),
+                  ),
                 ],
               ),
             ),
             // If this widget's height is > 100 the ListView can scroll.
             SizeTransition(
               sizeFactor: controller.view,
-              child: const SizedBox(height: 300.0, child: Text('keyboard')),
+              child: const SizedBox(height: .fixed(300.0), child: Text('keyboard')),
             ),
           ],
         ),

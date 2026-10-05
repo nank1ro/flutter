@@ -1206,7 +1206,7 @@ void main() {
         image: imageProvider,
         frameBuilder:
             (BuildContext context, Widget child, int? frame, bool wasSynchronouslyLoaded) {
-              return Padding(padding: const EdgeInsets.all(1), child: child);
+              return Padding(padding: const .fixed(EdgeInsets.all(1)), child: child);
             },
       ),
     );
@@ -2171,7 +2171,7 @@ void main() {
         excludeFromSemantics: true,
         frameBuilder:
             (BuildContext context, Widget child, int? frame, bool wasSynchronouslyLoaded) {
-              return Padding(padding: const EdgeInsets.all(1), child: child);
+              return Padding(padding: const .fixed(EdgeInsets.all(1)), child: child);
             },
         loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
           return Center(child: child);
@@ -2335,7 +2335,7 @@ void main() {
             final provider = _TestImageProvider();
             imageProviders.add(provider);
             return SizedBox.square(
-              dimension: 250,
+              dimension: const .fixed(250),
               child: Image(image: provider, semanticLabel: index.toString()),
             );
           },
@@ -2634,7 +2634,7 @@ void main() {
       RepaintBoundary(
         key: key,
         child: Transform.rotate(
-          angle: math.pi / 180,
+          angle: const .fixed(math.pi / 180),
           child: Image.memory(Uint8List.fromList(kBlueRectPng), isAntiAlias: isAntiAlias),
         ),
       ),
@@ -2738,7 +2738,11 @@ void main() {
 
       await tester.pumpWidget(
         Center(
-          child: SizedBox(height: 50, width: 50, child: Image(image: imageProvider)),
+          child: SizedBox(
+            height: const .fixed(50),
+            width: const .fixed(50),
+            child: Image(image: imageProvider),
+          ),
         ),
       );
 
@@ -2854,7 +2858,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 50,
+            dimension: const .fixed(50),
             child: Image(
               image: imageProvider,
               excludeFromSemantics: true,
@@ -2863,7 +2867,7 @@ void main() {
               },
               frameBuilder:
                   (BuildContext context, Widget child, int? frame, bool wasSynchronouslyLoaded) {
-                    return Padding(padding: const EdgeInsets.all(1), child: child);
+                    return Padding(padding: const .fixed(EdgeInsets.all(1)), child: child);
                   },
             ),
           ),
@@ -3029,7 +3033,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Image(
           image: provider,
-          errorBuilder: (_, _, _) => const SizedBox(width: 10, height: 10),
+          errorBuilder: (_, _, _) => const SizedBox(width: .fixed(10), height: .fixed(10)),
         ),
       );
     }
@@ -3087,7 +3091,9 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Image(
           image: provider,
-          errorBuilder: hasErrorBuilder ? (_, _, _) => const SizedBox(width: 10, height: 10) : null,
+          errorBuilder: hasErrorBuilder
+              ? (_, _, _) => const SizedBox(width: .fixed(10), height: .fixed(10))
+              : null,
         ),
       );
     }

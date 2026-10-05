@@ -58,7 +58,7 @@ void main() {
     (WidgetTester tester) async {
       await tester.pumpWidget(
         const ColoredBox(
-          color: Color(0xFFABCDEF),
+          color: .fixed(Color(0xFFABCDEF)),
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
@@ -113,7 +113,7 @@ void main() {
       );
       await tester.pumpWidget(
         ColoredBox(
-          color: const Color(0xFFFFFFFF),
+          color: const .fixed(Color(0xFFFFFFFF)),
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: MediaQuery(

@@ -118,7 +118,7 @@ void tests({required bool impliedMode}) {
           addSemanticIndexes: false,
           cacheExtent: 0.0,
           children: generateList(
-            const SizedBox(height: 12.3, child: Placeholder()), // about 50 widgets visible
+            const SizedBox(height: .fixed(12.3), child: Placeholder()), // about 50 widgets visible
             impliedMode: impliedMode,
           ),
         ),
@@ -228,7 +228,7 @@ void main() {
           children: const <Widget>[
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(0), child: Placeholder()),
@@ -237,8 +237,12 @@ void main() {
                 ),
               ),
             ),
-            AutomaticKeepAlive(child: SizedBox(key: GlobalObjectKey<_LeafState>(2), height: 400.0)),
-            AutomaticKeepAlive(child: SizedBox(key: GlobalObjectKey<_LeafState>(3), height: 400.0)),
+            AutomaticKeepAlive(
+              child: SizedBox(key: GlobalObjectKey<_LeafState>(2), height: .fixed(400.0)),
+            ),
+            AutomaticKeepAlive(
+              child: SizedBox(key: GlobalObjectKey<_LeafState>(3), height: .fixed(400.0)),
+            ),
           ],
         ),
       ),
@@ -304,7 +308,7 @@ void main() {
           children: const <Widget>[
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(0), child: Placeholder()),
@@ -315,7 +319,7 @@ void main() {
             ),
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(2), child: Placeholder()),
@@ -326,7 +330,7 @@ void main() {
             ),
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(4), child: Placeholder()),
@@ -367,7 +371,7 @@ void main() {
           children: const <Widget>[
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(1), child: Placeholder()),
@@ -377,7 +381,7 @@ void main() {
             ),
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(2), child: Placeholder()),
@@ -388,7 +392,7 @@ void main() {
             ),
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(4), child: Placeholder()),
@@ -439,7 +443,7 @@ void main() {
           children: const <Widget>[
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(1), child: Placeholder()),
@@ -448,10 +452,12 @@ void main() {
                 ),
               ),
             ),
-            AutomaticKeepAlive(child: SizedBox(height: 400.0, child: Stack())),
+            AutomaticKeepAlive(
+              child: SizedBox(height: .fixed(400.0), child: Stack()),
+            ),
             AutomaticKeepAlive(
               child: SizedBox(
-                height: 400.0,
+                height: .fixed(400.0),
                 child: Stack(
                   children: <Widget>[
                     Leaf(key: GlobalObjectKey<_LeafState>(3), child: Placeholder()),
@@ -489,7 +495,7 @@ void main() {
             if (index == 0) {
               return const _AlwaysKeepAlive(key: GlobalObjectKey<_AlwaysKeepAliveState>(0));
             }
-            return SizedBox(height: 44.0, child: Text('FooBar $index'));
+            return SizedBox(height: const .fixed(44.0), child: Text('FooBar $index'));
           },
         ),
       ),
@@ -525,7 +531,7 @@ void main() {
               if (index.isEven) {
                 return _AlwaysKeepAlive(key: GlobalObjectKey<_AlwaysKeepAliveState>(index));
               }
-              return SizedBox(height: 44.0, child: Text('FooBar $index'));
+              return SizedBox(height: const .fixed(44.0), child: Text('FooBar $index'));
             },
           ),
         ),
@@ -611,7 +617,7 @@ class _AlwaysKeepAliveState extends State<_AlwaysKeepAlive>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return const SizedBox(height: 48.0, child: Text('keep me alive'));
+    return const SizedBox(height: .fixed(48.0), child: Text('keep me alive'));
   }
 }
 

@@ -56,7 +56,7 @@ void main() {
                       onNotification: onDraggableScrollableNotification,
                       child: ColoredBox(
                         key: containerKey,
-                        color: const Color(0xFFABCDEF),
+                        color: const .fixed(Color(0xFFABCDEF)),
                         child: ListView.builder(
                           controller: ignoreController ? null : scrollController,
                           itemExtent: itemExtent,
@@ -105,8 +105,11 @@ void main() {
                     controller: scrollController,
                     itemCount: 100,
                     itemBuilder: (_, int index) => SizedBox(
-                      height: 100,
-                      child: ColoredBox(color: getTestColor(index), child: Text('Item $index')),
+                      height: const .fixed(100),
+                      child: ColoredBox(
+                        color: .fixed(getTestColor(index)),
+                        child: Text('Item $index'),
+                      ),
                     ),
                   ),
                 );
@@ -204,26 +207,24 @@ void main() {
       expect(find.text('Item 36'), findsNothing);
     }, variant: TargetPlatformVariant.all());
 
-    testWidgets(
-      'Can be dragged down when list is shorter than full height',
-      (WidgetTester tester) async {
-        await tester.pumpWidget(boilerplateWidget(null, itemCount: 30, initialChildSize: .25));
+    testWidgets('Can be dragged down when list is shorter than full height', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(boilerplateWidget(null, itemCount: 30, initialChildSize: .25));
 
-        expect(find.text('Item 1').hitTestable(), findsOneWidget);
-        expect(find.text('Item 29').hitTestable(), findsNothing);
+      expect(find.text('Item 1').hitTestable(), findsOneWidget);
+      expect(find.text('Item 29').hitTestable(), findsNothing);
 
-        await tester.drag(find.text('Item 1'), const Offset(0, -325));
-        await tester.pumpAndSettle();
-        expect(find.text('Item 1').hitTestable(), findsOneWidget);
-        expect(find.text('Item 29').hitTestable(), findsOneWidget);
+      await tester.drag(find.text('Item 1'), const Offset(0, -325));
+      await tester.pumpAndSettle();
+      expect(find.text('Item 1').hitTestable(), findsOneWidget);
+      expect(find.text('Item 29').hitTestable(), findsOneWidget);
 
-        await tester.drag(find.text('Item 1'), const Offset(0, 325));
-        await tester.pumpAndSettle();
-        expect(find.text('Item 1').hitTestable(), findsOneWidget);
-        expect(find.text('Item 29').hitTestable(), findsNothing);
-      },
-      variant: TargetPlatformVariant.all(),
-    );
+      await tester.drag(find.text('Item 1'), const Offset(0, 325));
+      await tester.pumpAndSettle();
+      expect(find.text('Item 1').hitTestable(), findsOneWidget);
+      expect(find.text('Item 29').hitTestable(), findsNothing);
+    }, variant: TargetPlatformVariant.all());
 
     testWidgets(
       'Can be dragged up and cover its container and scroll in single motion, and then dragged back down',
@@ -416,8 +417,11 @@ void main() {
                     controller: scrollController,
                     itemCount: 100,
                     itemBuilder: (_, int index) => SizedBox(
-                      height: 100,
-                      child: ColoredBox(color: getTestColor(index), child: Text('Item $index')),
+                      height: const .fixed(100),
+                      child: ColoredBox(
+                        color: .fixed(getTestColor(index)),
+                        child: Text('Item $index'),
+                      ),
                     ),
                   );
                 },
@@ -773,23 +777,21 @@ void main() {
     );
   }, variant: TargetPlatformVariant.all());
 
-  testWidgets(
-    "Changing parameters with an un-listened controller doesn't throw",
-    (WidgetTester tester) async {
-      await tester.pumpWidget(
-        boilerplateWidget(
-          null,
-          snap: true,
-          // Will prevent the sheet's child from listening to the controller.
-          ignoreController: true,
-        ),
-      );
-      await tester.pumpAndSettle();
-      await tester.pumpWidget(boilerplateWidget(null, snap: true));
-      await tester.pumpAndSettle();
-    },
-    variant: TargetPlatformVariant.all(),
-  );
+  testWidgets("Changing parameters with an un-listened controller doesn't throw", (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      boilerplateWidget(
+        null,
+        snap: true,
+        // Will prevent the sheet's child from listening to the controller.
+        ignoreController: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.pumpWidget(boilerplateWidget(null, snap: true));
+    await tester.pumpAndSettle();
+  }, variant: TargetPlatformVariant.all());
 
   testWidgets(
     'Transitioning between scrollable children sharing a scroll controller will not throw',
@@ -1909,7 +1911,7 @@ void main() {
 
       final children = List<Widget>.generate(12, (int index) {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
+          padding: const .fixed(EdgeInsets.only(bottom: 10)),
           child: Container(color: const Color(0xFF00FF00), height: 100, child: Text('Item $index')),
         );
       });
@@ -1931,7 +1933,7 @@ void main() {
                       return false;
                     },
                     child: ColoredBox(
-                      color: const Color(0xFFABCDEF),
+                      color: const .fixed(Color(0xFFABCDEF)),
                       child: CustomScrollView(
                         physics: const BouncingScrollPhysics(),
                         controller: scrollController,

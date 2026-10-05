@@ -208,7 +208,7 @@ void main() {
           curve: Curves.easeOut,
           reverseCurve: Curves.easeIn,
           bodyBuilder: (BuildContext context, Animation<double> animation) =>
-              const SizedBox(height: 50.0, child: Placeholder()),
+              const SizedBox(height: .fixed(50.0), child: Placeholder()),
           headerBuilder: (BuildContext context, Animation<double> animation) => GestureDetector(
             onTap: controller.isExpanded ? controller.collapse : controller.expand,
             child: const Text('Header'),
@@ -369,7 +369,7 @@ void main() {
             reverseCurve: Curves.easeIn,
           ),
           bodyBuilder: (BuildContext context, Animation<double> animation) =>
-              const SizedBox(height: 50.0, child: Placeholder()),
+              const SizedBox(height: .fixed(50.0), child: Placeholder()),
           headerBuilder: (BuildContext context, Animation<double> animation) => GestureDetector(
             onTap: controller.isExpanded ? controller.collapse : controller.expand,
             child: const Text('Header'),
@@ -423,7 +423,7 @@ void main() {
             curve: Curves.linear,
           ),
           bodyBuilder: (BuildContext context, Animation<double> animation) =>
-              const SizedBox(height: 50.0, child: Placeholder()),
+              const SizedBox(height: .fixed(50.0), child: Placeholder()),
           headerBuilder: (BuildContext context, Animation<double> animation) => GestureDetector(
             onTap: controller.isExpanded ? controller.collapse : controller.expand,
             child: const Text('Header'),

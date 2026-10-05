@@ -23,7 +23,7 @@ class _ManyRelayoutBoundaries extends StatelessWidget {
     final Widget result = levels <= 1
         ? child
         : _ManyRelayoutBoundaries(levels: levels - 1, child: child);
-    return SizedBox.square(dimension: 50, child: result);
+    return SizedBox.square(dimension: const .fixed(50), child: result);
   }
 }
 
@@ -311,7 +311,7 @@ void main() {
                           overlayChildBuilder: (BuildContext context) {
                             return Semantics(
                               label: msg,
-                              child: const SizedBox(width: 100, height: 100),
+                              child: const SizedBox(width: .fixed(100), height: .fixed(100)),
                             );
                           },
                           child: const Text('overlay child'),
@@ -647,7 +647,7 @@ void main() {
                 return OverlayPortal(
                   controller: controller1,
                   overlayChildBuilder: (BuildContext context) => const SizedBox(),
-                  child: SizedBox.fromSize(size: size),
+                  child: SizedBox.fromSize(size: const .fixed(size)),
                 );
               },
             ),
@@ -998,7 +998,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox.square(
-          dimension: 50,
+          dimension: const .fixed(50),
           child: OverlayPortal(
             controller: controller1,
             overlayChildBuilder: (BuildContext context) => const SizedBox(),
@@ -1121,9 +1121,9 @@ void main() {
                           controller: controller,
                           overlayChildBuilder: (BuildContext context) => const Align(
                             alignment: Alignment.topLeft,
-                            child: SizedBox(key: overlayKey, width: 10, height: 10),
+                            child: SizedBox(key: overlayKey, width: .fixed(10), height: .fixed(10)),
                           ),
-                          child: const SizedBox(width: 10, height: 10),
+                          child: const SizedBox(width: .fixed(10), height: .fixed(10)),
                         ),
                       ],
                     ),
@@ -1323,7 +1323,7 @@ void main() {
                     setState = stateSetter;
                     return Center(
                       child: SizedBox.fromSize(
-                        size: size,
+                        size: .fixed(size),
                         child: LayoutBuilder(
                           builder: (BuildContext context, BoxConstraints constraints) {
                             // This layout callback adds/removes an OverlayPortal during layout.
@@ -1379,7 +1379,7 @@ void main() {
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: SizedBox.square(
-                dimension: dimension,
+                dimension: .fixed(dimension),
                 child: Overlay(
                   key: overlayKey,
                   initialEntries: <OverlayEntry>[
@@ -1565,7 +1565,7 @@ void main() {
     final controller1 = OverlayPortalController();
     final overlayPortal = UniqueKey();
     final Widget overlayBody = SizedBox.square(
-      dimension: 100.0,
+      dimension: const .fixed(100.0),
       child: OverlayPortal(
         controller: controller1,
         overlayChildBuilder: (BuildContext context) => Placeholder(key: overlayPortal),
@@ -1622,7 +1622,7 @@ void main() {
     final newRoot = GlobalKey<OverlayState>();
     final overlayPortal = UniqueKey();
     final Widget overlayBody = SizedBox.square(
-      dimension: 100.0,
+      dimension: const .fixed(100.0),
       child: OverlayPortal(
         controller: controller1,
         overlayLocation: OverlayChildLocation.rootOverlay,
@@ -1695,7 +1695,7 @@ void main() {
     final outer = GlobalKey<OverlayState>();
     final inner = GlobalKey<OverlayState>();
     final Widget overlayBody = SizedBox.square(
-      dimension: 100.0,
+      dimension: const .fixed(100.0),
       child: OverlayPortal(
         controller: controller1,
         overlayLocation: OverlayChildLocation.rootOverlay,
@@ -3066,7 +3066,7 @@ void main() {
                   child: ListView(
                     children: <Widget>[
                       // Clips OverlayPortal, making it only half visible.
-                      SizedBox(height: TestSemantics.fullScreen.height - 5),
+                      SizedBox(height: .fixed(TestSemantics.fullScreen.height - 5)),
                       Semantics(
                         container: true,
                         explicitChildNodes: true,
@@ -3080,7 +3080,9 @@ void main() {
                               height: 10,
                               child: ListView(
                                 children: const <Widget>[
-                                  SizedBox(height: 3), // Clips B so it's only 7 pixels tall.
+                                  SizedBox(
+                                    height: .fixed(3),
+                                  ), // Clips B so it's only 7 pixels tall.
                                   Text('B'),
                                 ],
                               ),
@@ -3132,7 +3134,7 @@ void main() {
                   child: ListView(
                     children: <Widget>[
                       // Clips OverlayPortal, making it completely invisible.
-                      SizedBox(height: TestSemantics.fullScreen.height),
+                      SizedBox(height: .fixed(TestSemantics.fullScreen.height)),
                       Semantics(
                         container: true,
                         explicitChildNodes: true,
@@ -3196,7 +3198,7 @@ void main() {
                     addSemanticIndexes: false,
                     children: <Widget>[
                       // Clips OverlayPortal, making it completely invisible.
-                      SizedBox(height: TestSemantics.fullScreen.height),
+                      SizedBox(height: .fixed(TestSemantics.fullScreen.height)),
                       KeepAlive(
                         keepAlive: true,
                         child: Semantics(
@@ -3269,9 +3271,9 @@ void main() {
                     builder: (BuildContext context, StateSetter setter) {
                       setState = setter;
                       return Transform(
-                        transform: Matrix4.translationValues(0.0, 0.0, zOffset),
+                        transform: .fixed(Matrix4.translationValues(0.0, 0.0, zOffset)),
                         child: Padding(
-                          padding: padding,
+                          padding: .fixed(padding),
                           child: OverlayPortal(
                             controller: controller1,
                             overlayChildBuilder: (BuildContext context) {

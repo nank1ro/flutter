@@ -37,9 +37,9 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(decoration: kBoxDecorationA),
-          DecoratedBox(decoration: kBoxDecorationB),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationB)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -50,8 +50,8 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(decoration: kBoxDecorationA),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -62,9 +62,9 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(decoration: kBoxDecorationA),
-          DecoratedBox(key: Key('b'), decoration: kBoxDecorationB),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+          DecoratedBox(key: Key('b'), decoration: .fixed(kBoxDecorationB)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -75,9 +75,9 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(key: Key('b'), decoration: kBoxDecorationB),
-          DecoratedBox(decoration: kBoxDecorationC),
-          DecoratedBox(key: Key('a'), decoration: kBoxDecorationA),
+          DecoratedBox(key: Key('b'), decoration: .fixed(kBoxDecorationB)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
+          DecoratedBox(key: Key('a'), decoration: .fixed(kBoxDecorationA)),
         ],
       ),
     );
@@ -88,9 +88,9 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(key: Key('a'), decoration: kBoxDecorationA),
-          DecoratedBox(decoration: kBoxDecorationC),
-          DecoratedBox(key: Key('b'), decoration: kBoxDecorationB),
+          DecoratedBox(key: Key('a'), decoration: .fixed(kBoxDecorationA)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
+          DecoratedBox(key: Key('b'), decoration: .fixed(kBoxDecorationB)),
         ],
       ),
     );
@@ -100,7 +100,7 @@ void main() {
     await tester.pumpWidget(
       const Stack(
         textDirection: TextDirection.ltr,
-        children: <Widget>[DecoratedBox(decoration: kBoxDecorationC)],
+        children: <Widget>[DecoratedBox(decoration: .fixed(kBoxDecorationC))],
       ),
     );
 
@@ -116,9 +116,9 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(decoration: kBoxDecorationA),
-          DecoratedBox(decoration: kBoxDecorationB),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationB)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -129,9 +129,9 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(decoration: kBoxDecorationA),
-          DummyWidget(child: DecoratedBox(decoration: kBoxDecorationB)),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+          DummyWidget(child: DecoratedBox(decoration: .fixed(kBoxDecorationB))),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -142,11 +142,11 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(decoration: kBoxDecorationA),
+          DecoratedBox(decoration: .fixed(kBoxDecorationA)),
           DummyWidget(
-            child: DummyWidget(child: DecoratedBox(decoration: kBoxDecorationB)),
+            child: DummyWidget(child: DecoratedBox(decoration: .fixed(kBoxDecorationB))),
           ),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -158,10 +158,10 @@ void main() {
         textDirection: TextDirection.ltr,
         children: <Widget>[
           DummyWidget(
-            child: DummyWidget(child: DecoratedBox(decoration: kBoxDecorationB)),
+            child: DummyWidget(child: DecoratedBox(decoration: .fixed(kBoxDecorationB))),
           ),
-          DummyWidget(child: DecoratedBox(decoration: kBoxDecorationA)),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DummyWidget(child: DecoratedBox(decoration: .fixed(kBoxDecorationA))),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -172,9 +172,9 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DummyWidget(child: DecoratedBox(decoration: kBoxDecorationB)),
-          DummyWidget(child: DecoratedBox(decoration: kBoxDecorationA)),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DummyWidget(child: DecoratedBox(decoration: .fixed(kBoxDecorationB))),
+          DummyWidget(child: DecoratedBox(decoration: .fixed(kBoxDecorationA))),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -187,11 +187,11 @@ void main() {
         children: <Widget>[
           DummyWidget(
             key: Key('b'),
-            child: DecoratedBox(decoration: kBoxDecorationB),
+            child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
           ),
           DummyWidget(
             key: Key('a'),
-            child: DecoratedBox(decoration: kBoxDecorationA),
+            child: DecoratedBox(decoration: .fixed(kBoxDecorationA)),
           ),
         ],
       ),
@@ -205,11 +205,11 @@ void main() {
         children: <Widget>[
           DummyWidget(
             key: Key('a'),
-            child: DecoratedBox(decoration: kBoxDecorationA),
+            child: DecoratedBox(decoration: .fixed(kBoxDecorationA)),
           ),
           DummyWidget(
             key: Key('b'),
-            child: DecoratedBox(decoration: kBoxDecorationB),
+            child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
           ),
         ],
       ),
@@ -227,8 +227,8 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(decoration: kBoxDecorationA),
-          DecoratedBox(decoration: kBoxDecorationB),
+          DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+          DecoratedBox(decoration: .fixed(kBoxDecorationB)),
         ],
       ),
     );
@@ -240,10 +240,10 @@ void main() {
         textDirection: TextDirection.ltr,
         children: <Widget>[
           FlipWidget(
-            left: DecoratedBox(decoration: kBoxDecorationA),
-            right: DecoratedBox(decoration: kBoxDecorationB),
+            left: DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+            right: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
           ),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -260,8 +260,8 @@ void main() {
         textDirection: TextDirection.ltr,
         children: <Widget>[
           FlipWidget(
-            left: DecoratedBox(decoration: kBoxDecorationA),
-            right: DecoratedBox(decoration: kBoxDecorationB),
+            left: DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+            right: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
           ),
         ],
       ),
@@ -280,8 +280,8 @@ void main() {
         children: <Widget>[
           FlipWidget(
             key: Key('flip'),
-            left: DecoratedBox(decoration: kBoxDecorationA),
-            right: DecoratedBox(decoration: kBoxDecorationB),
+            left: DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+            right: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
           ),
         ],
       ),
@@ -291,11 +291,11 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(key: Key('c'), decoration: kBoxDecorationC),
+          DecoratedBox(key: Key('c'), decoration: .fixed(kBoxDecorationC)),
           FlipWidget(
             key: Key('flip'),
-            left: DecoratedBox(decoration: kBoxDecorationA),
-            right: DecoratedBox(decoration: kBoxDecorationB),
+            left: DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+            right: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
           ),
         ],
       ),
@@ -314,10 +314,10 @@ void main() {
         children: <Widget>[
           FlipWidget(
             key: Key('flip'),
-            left: DecoratedBox(decoration: kBoxDecorationA),
-            right: DecoratedBox(decoration: kBoxDecorationB),
+            left: DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+            right: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
           ),
-          DecoratedBox(key: Key('c'), decoration: kBoxDecorationC),
+          DecoratedBox(key: Key('c'), decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );

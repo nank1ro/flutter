@@ -137,7 +137,7 @@ void main() {
 
     await tester.pumpWidget(
       Padding(
-        padding: paddingOffset,
+        padding: const .fixed(paddingOffset),
         child: GestureDetector(
           onPanStart: (DragStartDetails details) {},
           onPanUpdate: (DragUpdateDetails details) {
@@ -190,7 +190,7 @@ void main() {
                   child: Container(width: 100.0, height: 100.0, color: const Color(0xFF00FF00)),
                 ),
                 SizedBox.square(
-                  dimension: 100.0,
+                  dimension: const .fixed(100.0),
                   child: GestureDetector(
                     onTap: ButtonVariant.button == kPrimaryButton
                         ? () {
@@ -827,7 +827,7 @@ void main() {
                   },
                 ),
               },
-              child: const SizedBox(width: 20, height: 20),
+              child: const SizedBox(width: .fixed(20), height: .fixed(20)),
             ),
           ),
         ),
@@ -880,7 +880,7 @@ void main() {
                       },
                     ),
               },
-              child: const SizedBox(width: 20, height: 20),
+              child: const SizedBox(width: .fixed(20), height: .fixed(20)),
             ),
           ),
         ),
@@ -932,7 +932,7 @@ void main() {
                       },
                     ),
               },
-              child: const SizedBox(width: 20, height: 20),
+              child: const SizedBox(width: .fixed(20), height: .fixed(20)),
             ),
           ),
         ),
@@ -987,7 +987,7 @@ void main() {
                       },
                     ),
               },
-              child: const SizedBox(width: 20, height: 20),
+              child: const SizedBox(width: .fixed(20), height: .fixed(20)),
             ),
           ),
         ),
@@ -1041,7 +1041,7 @@ void main() {
                   },
                 ),
               },
-              child: const SizedBox(width: 20, height: 20),
+              child: const SizedBox(width: .fixed(20), height: .fixed(20)),
             ),
           ),
         ),

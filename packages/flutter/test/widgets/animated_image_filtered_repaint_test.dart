@@ -15,7 +15,7 @@ void main() {
     RenderTestObject.paintCount = 0;
     await tester.pumpWidget(
       ColoredBox(
-        color: red,
+        color: const .fixed(red),
         child: ImageFiltered(
           imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: const TestWidget(),
@@ -27,7 +27,7 @@ void main() {
 
     await tester.pumpWidget(
       ColoredBox(
-        color: red,
+        color: const .fixed(red),
         child: ImageFiltered(
           imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
           child: const TestWidget(),

@@ -11,12 +11,12 @@ Widget buildCard(BuildContext context, int index) {
   // We still want to populate the list with items beyond the list
   // provided.
   if (index >= items.length) {
-    return const SizedBox(height: 100);
+    return const SizedBox(height: .fixed(100));
   }
 
   return SizedBox(
     key: ValueKey<String>(items[index]),
-    height: 100.0,
+    height: const .fixed(100.0),
     child: DefaultTextStyle(
       style: TextStyle(fontSize: 2.0 + items.length.toDouble()),
       child: Text(items[index], textDirection: TextDirection.ltr),

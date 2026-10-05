@@ -121,14 +121,16 @@ class TestChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: _debugChipColor,
-        borderRadius: BorderRadius.all(Radius.circular(16.0)),
+      decoration: const .fixed(
+        BoxDecoration(
+          color: _debugChipColor,
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+        ),
       ),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 32.0),
+        constraints: const .fixed(BoxConstraints(minHeight: 32.0)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+          padding: const .fixed(EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0)),
           child: label,
         ),
       ),

@@ -25,7 +25,7 @@ void main() {
             log.add('middle');
           },
           child: DecoratedBox(
-            decoration: const BoxDecoration(),
+            decoration: const .fixed(BoxDecoration()),
             child: Listener(
               onPointerDown: (_) {
                 log.add('bottom');
@@ -48,7 +48,7 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox.square(
-          dimension: 300.0,
+          dimension: const .fixed(300.0),
           child: Listener(
             onPointerHover: (_) {
               log.add('bottom');
@@ -143,7 +143,7 @@ void main() {
         Align(
           alignment: Alignment.topLeft,
           child: Transform(
-            transform: Matrix4.identity()..scale(scaleFactor),
+            transform: .fixed(Matrix4.identity()..scale(scaleFactor)),
             child: Listener(
               onPointerDown: (PointerDownEvent event) {
                 events.add(event);
@@ -213,7 +213,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: Transform(
-            transform: Matrix4.identity()..scale(scaleFactor),
+            transform: .fixed(Matrix4.identity()..scale(scaleFactor)),
             child: Listener(
               onPointerDown: (PointerDownEvent event) {
                 events.add(event);
@@ -284,8 +284,9 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: Transform(
-            transform: Matrix4.identity()
-              ..rotateZ(math.pi / 2), // 90 degrees clockwise around Container origin
+            transform: .fixed(
+              Matrix4.identity()..rotateZ(math.pi / 2),
+            ), // 90 degrees clockwise around Container origin
             child: Listener(
               onPointerDown: (PointerDownEvent event) {
                 events.add(event);

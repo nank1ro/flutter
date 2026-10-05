@@ -119,8 +119,8 @@ void main() {
       Flow(
         delegate: DuplicatePainterOpacityFlowDelegate(1.0),
         children: const <Widget>[
-          SizedBox(width: 100.0, height: 100.0),
-          SizedBox(width: 100.0, height: 100.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -144,7 +144,7 @@ void main() {
     await tester.pumpWidget(
       Flow(
         delegate: OpacityFlowDelegate(opacity),
-        children: const <Widget>[SizedBox(width: 100.0, height: 100.0)],
+        children: const <Widget>[SizedBox(width: .fixed(100.0), height: .fixed(100.0))],
       ),
     );
     ContainerLayer? layer = RendererBinding.instance.renderView.debugLayer;
@@ -162,7 +162,7 @@ void main() {
     await tester.pumpWidget(
       Flow(
         delegate: OpacityFlowDelegate(opacity),
-        children: const <Widget>[SizedBox(width: 100.0, height: 100.0)],
+        children: const <Widget>[SizedBox(width: .fixed(100.0), height: .fixed(100.0))],
       ),
     );
 
@@ -175,7 +175,7 @@ void main() {
         Flow(
           delegate: OpacityFlowDelegate(opacity),
           clipBehavior: clip,
-          children: const <Widget>[SizedBox(width: 100.0, height: 100.0)],
+          children: const <Widget>[SizedBox(width: .fixed(100.0), height: .fixed(100.0))],
         ),
       );
       expect(renderObject.clipBehavior, clip);
@@ -187,7 +187,7 @@ void main() {
     await tester.pumpWidget(
       Flow.unwrapped(
         delegate: OpacityFlowDelegate(opacity),
-        children: const <Widget>[SizedBox(width: 100.0, height: 100.0)],
+        children: const <Widget>[SizedBox(width: .fixed(100.0), height: .fixed(100.0))],
       ),
     );
 
@@ -200,7 +200,7 @@ void main() {
         Flow.unwrapped(
           delegate: OpacityFlowDelegate(opacity),
           clipBehavior: clip,
-          children: const <Widget>[SizedBox(width: 100.0, height: 100.0)],
+          children: const <Widget>[SizedBox(width: .fixed(100.0), height: .fixed(100.0))],
         ),
       );
       expect(renderObject.clipBehavior, clip);

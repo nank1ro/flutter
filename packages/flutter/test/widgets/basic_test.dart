@@ -177,8 +177,8 @@ void main() {
               },
               child: SizedBox(
                 key: key1,
-                width: 100.0,
-                height: 100.0,
+                width: const .fixed(100.0),
+                height: const .fixed(100.0),
                 child: Container(color: const Color(0xFF0000FF)),
               ),
             ),
@@ -204,8 +204,8 @@ void main() {
               },
               child: SizedBox(
                 key: key1,
-                width: 100.0,
-                height: 100.0,
+                width: const .fixed(100.0),
+                height: const .fixed(100.0),
                 child: Container(color: const Color(0xFF0000FF)),
               ),
             ),
@@ -231,8 +231,8 @@ void main() {
               },
               child: SizedBox(
                 key: key1,
-                width: 100.0,
-                height: 100.0,
+                width: const .fixed(100.0),
+                height: const .fixed(100.0),
                 child: Container(color: const Color(0xFF0000FF)),
               ),
             ),
@@ -266,7 +266,10 @@ void main() {
                           offset = const Offset(0.8, 0.8);
                         });
                       },
-                      child: SizedBox.square(dimension: 100.0, child: Text('foo', key: textKey)),
+                      child: SizedBox.square(
+                        dimension: const .fixed(100.0),
+                        child: Text('foo', key: textKey),
+                      ),
                     ),
                   ),
                 ),
@@ -588,7 +591,7 @@ void main() {
         Semantics(
           key: key1,
           inputType: SemanticsInputType.phone,
-          child: const SizedBox(width: 10, height: 10),
+          child: const SizedBox(width: .fixed(10), height: .fixed(10)),
         ),
       );
       final SemanticsNode node1 = tester.getSemantics(find.byKey(key1));
@@ -1001,12 +1004,14 @@ void main() {
         await tester.pumpWidget(
           Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 200, maxWidth: 200),
+              constraints: const .fixed(BoxConstraints(maxHeight: 200, maxWidth: 200)),
               child: clip == null
-                  ? const UnconstrainedBox(child: SizedBox(width: 400, height: 400))
+                  ? const UnconstrainedBox(
+                      child: SizedBox(width: .fixed(400), height: .fixed(400)),
+                    )
                   : UnconstrainedBox(
                       clipBehavior: clip,
-                      child: const SizedBox(width: 400, height: 400),
+                      child: const SizedBox(width: .fixed(400), height: .fixed(400)),
                     ),
             ),
           ),
@@ -1110,7 +1115,7 @@ void main() {
         const Flex(
           direction: Axis.horizontal,
           textDirection: TextDirection.ltr,
-          children: <Widget>[SizedBox.shrink(child: ColoredBox(color: colorToPaint))],
+          children: <Widget>[SizedBox.shrink(child: ColoredBox(color: .fixed(colorToPaint)))],
         ),
       );
       expect(find.byType(ColoredBox), findsOneWidget);
@@ -1133,7 +1138,7 @@ void main() {
           textDirection: TextDirection.ltr,
           children: <Widget>[
             SizedBox.shrink(
-              child: ColoredBox(color: colorToPaint, child: child),
+              child: ColoredBox(color: .fixed(colorToPaint), child: child),
             ),
           ],
         ),
@@ -1151,7 +1156,7 @@ void main() {
     });
 
     testWidgets('ColoredBox - size, no child', (WidgetTester tester) async {
-      await tester.pumpWidget(const ColoredBox(color: colorToPaint));
+      await tester.pumpWidget(const ColoredBox(color: .fixed(colorToPaint)));
       expect(find.byType(ColoredBox), findsOneWidget);
       final RenderObject renderColoredBox = tester.renderObject(find.byType(ColoredBox));
 
@@ -1166,7 +1171,7 @@ void main() {
     testWidgets('ColoredBox - size, child', (WidgetTester tester) async {
       const key = ValueKey<int>(0);
       const Widget child = SizedBox.expand(key: key);
-      await tester.pumpWidget(const ColoredBox(color: colorToPaint, child: child));
+      await tester.pumpWidget(const ColoredBox(color: .fixed(colorToPaint), child: child));
       expect(find.byType(ColoredBox), findsOneWidget);
       final RenderObject renderColoredBox = tester.renderObject(find.byType(ColoredBox));
       final RenderObject renderSizedBox = tester.renderObject(find.byKey(key));
@@ -1180,7 +1185,7 @@ void main() {
     });
 
     testWidgets('ColoredBox - debugFillProperties', (WidgetTester tester) async {
-      const box = ColoredBox(color: colorToPaint);
+      const box = ColoredBox(color: .fixed(colorToPaint));
       final properties = DiagnosticPropertiesBuilder();
       box.debugFillProperties(properties);
 
@@ -1188,7 +1193,7 @@ void main() {
     });
 
     testWidgets('ColoredBox - default isAntiAlias', (WidgetTester tester) async {
-      await tester.pumpWidget(const ColoredBox(color: colorToPaint));
+      await tester.pumpWidget(const ColoredBox(color: .fixed(colorToPaint)));
       expect(find.byType(ColoredBox), findsOneWidget);
       final RenderObject renderColoredBox = tester.renderObject(find.byType(ColoredBox));
 
@@ -1197,7 +1202,7 @@ void main() {
     });
 
     testWidgets('ColoredBox - passing isAntiAlias = false', (WidgetTester tester) async {
-      await tester.pumpWidget(const ColoredBox(color: colorToPaint, isAntiAlias: false));
+      await tester.pumpWidget(const ColoredBox(color: .fixed(colorToPaint), isAntiAlias: false));
       expect(find.byType(ColoredBox), findsOneWidget);
       final RenderObject renderColoredBox = tester.renderObject(find.byType(ColoredBox));
 
@@ -1218,26 +1223,26 @@ void main() {
             textDirection: TextDirection.ltr,
             child: RepaintBoundary(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   spacing: 8,
                   children: <Widget>[
                     // Intentionally 4% larger than the original size to test anti-aliasing
                     Transform.scale(
-                      scale: 1.04,
+                      scale: const .fixed(1.04),
                       child: const ColoredBox(
-                        color: Color(0xFFFF9800),
+                        color: .fixed(Color(0xFFFF9800)),
                         child: Padding(
-                          padding: EdgeInsets.all(2),
+                          padding: .fixed(EdgeInsets.all(2)),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               ColoredBox(
-                                color: Color(0xFFFFFFFF),
+                                color: .fixed(Color(0xFFFFFFFF)),
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: .fixed(EdgeInsets.all(4.0)),
                                   child: Text(
                                     'Short',
                                     style: TextStyle(fontSize: 16, color: Color(0xFF000000)),
@@ -1245,9 +1250,9 @@ void main() {
                                 ),
                               ),
                               ColoredBox(
-                                color: Color(0xFFFFFFFF),
+                                color: .fixed(Color(0xFFFFFFFF)),
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: .fixed(EdgeInsets.all(4.0)),
                                   child: Text(
                                     'Just text ',
                                     style: TextStyle(fontSize: 14, color: Color(0xFF000000)),
@@ -1255,9 +1260,9 @@ void main() {
                                 ),
                               ),
                               ColoredBox(
-                                color: Color(0xFFFFFFFF),
+                                color: .fixed(Color(0xFFFFFFFF)),
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: .fixed(EdgeInsets.all(4.0)),
                                   child: Text(
                                     ' Tall text ',
                                     style: TextStyle(fontSize: 18, color: Color(0xFF000000)),
@@ -1265,9 +1270,9 @@ void main() {
                                 ),
                               ),
                               ColoredBox(
-                                color: Color(0xFFFFFFFF),
+                                color: .fixed(Color(0xFFFFFFFF)),
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: .fixed(EdgeInsets.all(4.0)),
                                   child: Text(
                                     'Medium',
                                     style: TextStyle(fontSize: 32, color: Color(0xFF000000)),
@@ -1280,21 +1285,21 @@ void main() {
                       ),
                     ),
                     Transform.scale(
-                      scale: 1.04,
+                      scale: const .fixed(1.04),
                       child: const ColoredBox(
-                        color: Color(0xFFFF9800),
+                        color: .fixed(Color(0xFFFF9800)),
                         isAntiAlias: false,
                         child: Padding(
-                          padding: EdgeInsets.all(2),
+                          padding: .fixed(EdgeInsets.all(2)),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               ColoredBox(
-                                color: Color(0xFFFFFFFF),
+                                color: .fixed(Color(0xFFFFFFFF)),
                                 isAntiAlias: false,
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: .fixed(EdgeInsets.all(4.0)),
                                   child: Text(
                                     'Short',
                                     style: TextStyle(fontSize: 16, color: Color(0xFF000000)),
@@ -1302,10 +1307,10 @@ void main() {
                                 ),
                               ),
                               ColoredBox(
-                                color: Color(0xFFFFFFFF),
+                                color: .fixed(Color(0xFFFFFFFF)),
                                 isAntiAlias: false,
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: .fixed(EdgeInsets.all(4.0)),
                                   child: Text(
                                     'Just text ',
                                     style: TextStyle(fontSize: 14, color: Color(0xFF000000)),
@@ -1313,10 +1318,10 @@ void main() {
                                 ),
                               ),
                               ColoredBox(
-                                color: Color(0xFFFFFFFF),
+                                color: .fixed(Color(0xFFFFFFFF)),
                                 isAntiAlias: false,
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: .fixed(EdgeInsets.all(4.0)),
                                   child: Text(
                                     ' Tall text ',
                                     style: TextStyle(fontSize: 18, color: Color(0xFF000000)),
@@ -1324,10 +1329,10 @@ void main() {
                                 ),
                               ),
                               ColoredBox(
-                                color: Color(0xFFFFFFFF),
+                                color: .fixed(Color(0xFFFFFFFF)),
                                 isAntiAlias: false,
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: .fixed(EdgeInsets.all(4.0)),
                                   child: Text(
                                     'Medium',
                                     style: TextStyle(fontSize: 32, color: Color(0xFF000000)),
@@ -1343,26 +1348,26 @@ void main() {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         SizedBox.square(
-                          dimension: 80,
+                          dimension: const .fixed(80),
                           child: Center(
                             child: SizedBox.square(
-                              dimension: 50,
+                              dimension: const .fixed(50),
                               child: Transform.rotate(
-                                angle: math.pi / 5,
-                                child: const ColoredBox(color: Color(0xFF2196F3)),
+                                angle: const .fixed(math.pi / 5),
+                                child: const ColoredBox(color: .fixed(Color(0xFF2196F3))),
                               ),
                             ),
                           ),
                         ),
                         SizedBox.square(
-                          dimension: 80,
+                          dimension: const .fixed(80),
                           child: Center(
                             child: SizedBox.square(
-                              dimension: 50,
+                              dimension: const .fixed(50),
                               child: Transform.rotate(
-                                angle: math.pi / 5,
+                                angle: const .fixed(math.pi / 5),
                                 child: const ColoredBox(
-                                  color: Color(0xFFFFC107),
+                                  color: .fixed(Color(0xFFFFC107)),
                                   isAntiAlias: false,
                                 ),
                               ),
@@ -1370,16 +1375,16 @@ void main() {
                           ),
                         ),
                         SizedBox.square(
-                          dimension: 80,
+                          dimension: const .fixed(80),
                           child: Center(
                             child: SizedBox.square(
-                              dimension: 50,
+                              dimension: const .fixed(50),
                               child: Transform.rotate(
-                                angle: math.pi / 5,
+                                angle: const .fixed(math.pi / 5),
                                 child: Transform.scale(
-                                  scale: 1.2,
+                                  scale: const .fixed(1.2),
                                   child: const ColoredBox(
-                                    color: Color(0xFF009688),
+                                    color: .fixed(Color(0xFF009688)),
                                     isAntiAlias: false,
                                   ),
                                 ),
@@ -1421,7 +1426,7 @@ void main() {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox.square(
-          dimension: 100.0,
+          dimension: const .fixed(100.0),
           child: Listener(
             onPointerDown: (_) {
               logs.add('down1');
@@ -1560,7 +1565,7 @@ void main() {
                   label: '3',
                   onTap: () {},
                   container: true,
-                  child: const SizedBox(width: 10, height: 10),
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
                 ),
               ),
             ),
@@ -1658,7 +1663,7 @@ void main() {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox.square(
-          dimension: 100.0,
+          dimension: const .fixed(100.0),
           child: Listener(
             onPointerDown: (_) {
               logs.add('down1');
@@ -1865,7 +1870,7 @@ void main() {
       const Directionality(
         textDirection: TextDirection.ltr,
         child: Center(
-          child: Padding(padding: EdgeInsets.all(5), child: Placeholder()),
+          child: Padding(padding: .fixed(EdgeInsets.all(5)), child: Placeholder()),
         ),
       ),
     );

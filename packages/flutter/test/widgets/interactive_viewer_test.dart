@@ -31,7 +31,7 @@ void main() {
         Center(
           child: InteractiveViewer(
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -76,7 +76,7 @@ void main() {
           child: InteractiveViewer(
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -124,7 +124,7 @@ void main() {
             constrained: false,
             scaleEnabled: false,
             transformationController: transformationController,
-            child: const SizedBox(width: 2000.0, height: 2000.0),
+            child: const SizedBox(width: .fixed(2000.0), height: .fixed(2000.0)),
           ),
         ),
       );
@@ -219,7 +219,7 @@ void main() {
           child: InteractiveViewer(
             boundaryMargin: const EdgeInsets.all(double.infinity),
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -268,7 +268,7 @@ void main() {
           child: InteractiveViewer(
             boundaryMargin: const EdgeInsets.all(double.infinity),
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -301,7 +301,7 @@ void main() {
             panAxis: PanAxis.aligned,
             boundaryMargin: const EdgeInsets.all(double.infinity),
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -334,7 +334,7 @@ void main() {
               panAxis: PanAxis.aligned,
               boundaryMargin: const EdgeInsets.all(double.infinity),
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -368,7 +368,7 @@ void main() {
               panAxis: PanAxis.horizontal,
               boundaryMargin: const EdgeInsets.all(double.infinity),
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -402,7 +402,7 @@ void main() {
               panAxis: PanAxis.horizontal,
               boundaryMargin: const EdgeInsets.all(double.infinity),
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -436,7 +436,7 @@ void main() {
               panAxis: PanAxis.horizontal,
               boundaryMargin: const EdgeInsets.all(double.infinity),
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -470,7 +470,7 @@ void main() {
               panAxis: PanAxis.vertical,
               boundaryMargin: const EdgeInsets.all(double.infinity),
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -504,7 +504,7 @@ void main() {
               panAxis: PanAxis.vertical,
               boundaryMargin: const EdgeInsets.all(double.infinity),
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -538,7 +538,7 @@ void main() {
               panAxis: PanAxis.vertical,
               boundaryMargin: const EdgeInsets.all(double.infinity),
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -570,7 +570,7 @@ void main() {
           child: InteractiveViewer(
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -628,7 +628,7 @@ void main() {
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             minScale: minScale,
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -711,7 +711,7 @@ void main() {
               boundaryMargin: const EdgeInsets.all(boundaryMargin),
               minScale: minScale,
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -794,7 +794,7 @@ void main() {
         Center(
           child: InteractiveViewer(
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -812,7 +812,7 @@ void main() {
           child: InteractiveViewer(
             transformationController: transformationController,
             scaleEnabled: false,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -845,7 +845,7 @@ void main() {
             onInteractionEnd: (ScaleEndDetails details) {
               currentVelocity = details.velocity;
             },
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -881,7 +881,7 @@ void main() {
             maxScale: 100000,
             minScale: 0.01,
             transformationController: transformationController,
-            child: const SizedBox(width: 1000.0, height: 1000.0),
+            child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
           ),
         ),
       );
@@ -924,7 +924,7 @@ void main() {
             onInteractionEnd: (ScaleEndDetails details) {
               currentVelocity = details.velocity;
             },
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -958,7 +958,7 @@ void main() {
         var calledStart = false;
         var calledUpdate = false;
         var calledEnd = false;
-        const sizedBox = SizedBox(width: 200.0, height: 200.0);
+        const sizedBox = SizedBox(width: .fixed(200.0), height: .fixed(200.0));
         await tester.pumpWidget(
           Center(
             child: InteractiveViewer(
@@ -1030,7 +1030,7 @@ void main() {
         var calledStart = false;
         var calledUpdate = false;
         var calledEnd = false;
-        const sizedBox = SizedBox(width: 200.0, height: 200.0);
+        const sizedBox = SizedBox(width: .fixed(200.0), height: .fixed(200.0));
         await tester.pumpWidget(
           Center(
             child: InteractiveViewer(
@@ -1137,7 +1137,7 @@ void main() {
           child: InteractiveViewer(
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1181,7 +1181,7 @@ void main() {
             minScale: 1.0,
             maxScale: 1.0,
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1221,7 +1221,7 @@ void main() {
                 scale = details.scale;
               },
               transformationController: transformationController,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         ),
@@ -1284,7 +1284,7 @@ void main() {
             clipBehavior: Clip.none,
             minScale: 1.0,
             maxScale: 1.0,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1298,7 +1298,7 @@ void main() {
             constrained: false,
             minScale: 1.0,
             maxScale: 1.0,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1315,7 +1315,7 @@ void main() {
         Center(
           child: SizedBox(
             key: const Key('outer box'),
-            height: 50.0,
+            height: const .fixed(50.0),
             child: InteractiveViewer.builder(
               transformationController: transformationController,
               scaleEnabled: false,
@@ -1387,7 +1387,11 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        Center(child: InteractiveViewer(child: const SizedBox(width: 200.0, height: 200.0))),
+        Center(
+          child: InteractiveViewer(
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
+          ),
+        ),
       );
 
       expect(find.byType(LayoutBuilder), findsNothing);
@@ -1396,7 +1400,7 @@ void main() {
         Center(
           child: InteractiveViewer.builder(
             builder: (BuildContext context, Quad viewport) {
-              return const SizedBox(width: 200.0, height: 200.0);
+              return const SizedBox(width: .fixed(200.0), height: .fixed(200.0));
             },
           ),
         ),
@@ -1414,7 +1418,7 @@ void main() {
               boundaryMargin: const EdgeInsets.all(double.infinity),
               transformationController: transformationController,
               scaleFactor: scaleFactor,
-              child: const SizedBox(width: 200.0, height: 200.0),
+              child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
             ),
           ),
         );
@@ -1495,11 +1499,11 @@ void main() {
       addTearDown(transformationController1.dispose);
       await tester.pumpWidget(
         SizedBox.square(
-          dimension: 200.0,
+          dimension: const .fixed(200.0),
           child: InteractiveViewer(
             constrained: false,
             transformationController: transformationController1,
-            child: const SizedBox(width: 2000.0, height: 2000.0),
+            child: const SizedBox(width: .fixed(2000.0), height: .fixed(2000.0)),
           ),
         ),
       );
@@ -1516,12 +1520,12 @@ void main() {
       addTearDown(transformationController2.dispose);
       await tester.pumpWidget(
         SizedBox.square(
-          dimension: 200.0,
+          dimension: const .fixed(200.0),
           child: InteractiveViewer(
             constrained: false,
             interactionEndFrictionCoefficient: 0.01,
             transformationController: transformationController2,
-            child: const SizedBox(width: 2000.0, height: 2000.0),
+            child: const SizedBox(width: .fixed(2000.0), height: .fixed(2000.0)),
           ),
         ),
       );
@@ -1544,7 +1548,7 @@ void main() {
           child: InteractiveViewer(
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1583,7 +1587,7 @@ void main() {
           child: InteractiveViewer(
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             transformationController: transformationController,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1616,7 +1620,7 @@ void main() {
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             transformationController: transformationController,
             trackpadScrollCausesScale: true,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1653,7 +1657,7 @@ void main() {
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             transformationController: transformationController,
             trackpadScrollCausesScale: true,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1705,7 +1709,7 @@ void main() {
             boundaryMargin: const EdgeInsets.all(boundaryMargin),
             transformationController: transformationController,
             trackpadScrollCausesScale: true,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -1740,7 +1744,7 @@ void main() {
       await tester.pumpWidget(
         InteractiveViewer(
           transformationController: transformationController,
-          child: const SizedBox(width: 2000.0, height: 2000.0),
+          child: const SizedBox(width: .fixed(2000.0), height: .fixed(2000.0)),
         ),
       );
 

@@ -774,17 +774,23 @@ void _defineTests() {
 
     final paint = CustomPaint(painter: painter);
 
-    await tester.pumpWidget(SizedBox(height: 20.0, width: 20.0, child: paint));
+    await tester.pumpWidget(
+      SizedBox(height: const .fixed(20.0), width: const .fixed(20.0), child: paint),
+    );
     expect(_PainterWithSemantics.shouldRebuildSemanticsCallCount, 0);
     expect(_PainterWithSemantics.buildSemanticsCallCount, 1);
     expect(_PainterWithSemantics.semanticsBuilderCallCount, 4);
 
-    await tester.pumpWidget(SizedBox(height: 20.0, width: 20.0, child: paint));
+    await tester.pumpWidget(
+      SizedBox(height: const .fixed(20.0), width: const .fixed(20.0), child: paint),
+    );
     expect(_PainterWithSemantics.shouldRebuildSemanticsCallCount, 0);
     expect(_PainterWithSemantics.buildSemanticsCallCount, 1);
     expect(_PainterWithSemantics.semanticsBuilderCallCount, 4);
 
-    await tester.pumpWidget(SizedBox(height: 40.0, width: 40.0, child: paint));
+    await tester.pumpWidget(
+      SizedBox(height: const .fixed(40.0), width: const .fixed(40.0), child: paint),
+    );
     expect(_PainterWithSemantics.shouldRebuildSemanticsCallCount, 0);
     expect(_PainterWithSemantics.buildSemanticsCallCount, 2);
     expect(_PainterWithSemantics.semanticsBuilderCallCount, 4);

@@ -20,14 +20,14 @@ void main() {
               detector1TapCount += 1;
             },
             behavior: HitTestBehavior.opaque,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
           GestureDetector(
             onTap: () {
               detector2TapCount += 1;
             },
             behavior: HitTestBehavior.opaque,
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ],
       ),

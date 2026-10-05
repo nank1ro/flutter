@@ -29,7 +29,7 @@ void main() {
         tapped = true;
       },
       child: const SizedBox.square(
-        dimension: 10.0,
+        dimension: .fixed(10.0),
         child: Text('target', textDirection: TextDirection.ltr),
       ),
     );
@@ -46,7 +46,7 @@ void main() {
         hovered = true;
       },
       child: const SizedBox.square(
-        dimension: 10.0,
+        dimension: .fixed(10.0),
         child: Text('target', textDirection: TextDirection.ltr),
       ),
     );

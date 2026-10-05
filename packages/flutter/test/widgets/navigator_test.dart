@@ -36,7 +36,7 @@ class FirstWidget extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, '/second');
       },
-      child: const ColoredBox(color: Color(0xFFFFFF00), child: Text('X')),
+      child: const ColoredBox(color: .fixed(Color(0xFFFFFF00)), child: Text('X')),
     );
   }
 }
@@ -52,7 +52,7 @@ class SecondWidgetState extends State<SecondWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pop(context),
-      child: const ColoredBox(color: Color(0xFFFF00FF), child: Text('Y')),
+      child: const ColoredBox(color: .fixed(Color(0xFFFF00FF)), child: Text('Y')),
     );
   }
 }
@@ -446,9 +446,9 @@ void main() {
         home: Material(
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 300.0, child: Text('Root page')),
+              const SizedBox(height: .fixed(300.0), child: Text('Root page')),
               SizedBox(
-                height: 300.0,
+                height: const .fixed(300.0),
                 child: Navigator(
                   onGenerateRoute: (RouteSettings settings) {
                     if (settings.name == '/') {
@@ -6138,7 +6138,7 @@ void main() {
         debugLabel: '[$index]',
         focusNode: nodes[index],
         onFocusChange: (bool isFocused) => focus[index] = isFocused,
-        child: const SizedBox(width: 100, height: 100),
+        child: const SizedBox(width: .fixed(100), height: .fixed(100)),
       );
     }
 
@@ -6266,84 +6266,82 @@ void main() {
     clear();
   });
 
-  testWidgets(
-    'Navigator focus restoration reports error to FlutterError',
-    (WidgetTester tester) async {
-      final errorDetails = <FlutterErrorDetails>[];
-      final FlutterExceptionHandler? oldHandler = FlutterError.onError;
-      FlutterError.onError = (FlutterErrorDetails details) {
-        errorDetails.add(details);
-      };
+  testWidgets('Navigator focus restoration reports error to FlutterError', (
+    WidgetTester tester,
+  ) async {
+    final errorDetails = <FlutterErrorDetails>[];
+    final FlutterExceptionHandler? oldHandler = FlutterError.onError;
+    FlutterError.onError = (FlutterErrorDetails details) {
+      errorDetails.add(details);
+    };
 
-      try {
-        // Mock accessibility channel to throw error.
-        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<dynamic>(SystemChannels.accessibility, (
-              dynamic message,
-            ) async {
-              final map = message as Map<dynamic, dynamic>;
-              if (map['type'] == 'focus') {
-                throw Exception('Focus restoration failed');
-              }
-              return null;
-            });
+    try {
+      // Mock accessibility channel to throw error.
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockDecodedMessageHandler<dynamic>(SystemChannels.accessibility, (
+            dynamic message,
+          ) async {
+            final map = message as Map<dynamic, dynamic>;
+            if (map['type'] == 'focus') {
+              throw Exception('Focus restoration failed');
+            }
+            return null;
+          });
 
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (BuildContext context) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        NoAnimationPageRoute(
-                          pageBuilder: (BuildContext context) => Scaffold(
-                            appBar: AppBar(title: const Text('Second Route')),
-                            body: ElevatedButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('Pop'),
-                            ),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Builder(
+              builder: (BuildContext context) {
+                return ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      NoAnimationPageRoute(
+                        pageBuilder: (BuildContext context) => Scaffold(
+                          appBar: AppBar(title: const Text('Second Route')),
+                          body: ElevatedButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('Pop'),
                           ),
                         ),
-                      );
-                    },
-                    child: const Text('Push'),
-                  );
-                },
-              ),
+                      ),
+                    );
+                  },
+                  child: const Text('Push'),
+                );
+              },
             ),
           ),
-        );
+        ),
+      );
 
-        // Record the last focus in route entry.
-        ServicesBinding.instance.accessibilityFocus.value = 123;
-        await tester.pump();
+      // Record the last focus in route entry.
+      ServicesBinding.instance.accessibilityFocus.value = 123;
+      await tester.pump();
 
-        // Push second route.
-        await tester.tap(find.text('Push'));
-        await tester.pumpAndSettle();
+      // Push second route.
+      await tester.tap(find.text('Push'));
+      await tester.pumpAndSettle();
 
-        // Now we are on the second route.
-        // Pop it.
-        await tester.tap(find.text('Pop'));
-        await tester.pumpAndSettle();
+      // Now we are on the second route.
+      // Pop it.
+      await tester.tap(find.text('Pop'));
+      await tester.pumpAndSettle();
 
-        expect(errorDetails.length, 1);
-        expect(errorDetails[0].exception.toString(), contains('Focus restoration failed'));
-        expect(errorDetails[0].library, 'widgets library');
-        expect(
-          errorDetails[0].context.toString(),
-          contains('while restoring focus in the navigator'),
-        );
-      } finally {
-        FlutterError.onError = oldHandler;
-        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<dynamic>(SystemChannels.accessibility, null);
-      }
-    },
-    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
-  );
+      expect(errorDetails.length, 1);
+      expect(errorDetails[0].exception.toString(), contains('Focus restoration failed'));
+      expect(errorDetails[0].library, 'widgets library');
+      expect(
+        errorDetails[0].context.toString(),
+        contains('while restoring focus in the navigator'),
+      );
+    } finally {
+      FlutterError.onError = oldHandler;
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockDecodedMessageHandler<dynamic>(SystemChannels.accessibility, null);
+    }
+  }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
   testWidgets('Navigator.pop throws FlutterError when popped with mismatched type', (
     WidgetTester tester,

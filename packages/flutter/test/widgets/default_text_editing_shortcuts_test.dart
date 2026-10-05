@@ -27,8 +27,8 @@ void main() {
         alignment: Alignment.topLeft,
         child: SizedBox(
           // Softwrap at exactly 20 characters.
-          width: 201,
-          height: 200,
+          width: const .fixed(201),
+          height: const .fixed(200),
           child: ActionSpy(
             focusNode: spyFocusNode,
             child: EditableText(

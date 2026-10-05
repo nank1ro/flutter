@@ -13,7 +13,7 @@ void main() {
         child: IntrinsicWidth(
           stepWidth: stepWidth,
           stepHeight: stepHeight,
-          child: const SizedBox(width: 100.0, height: 50.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(50.0)),
         ),
       );
     }

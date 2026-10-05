@@ -713,12 +713,12 @@ void main() {
                 StretchingOverscrollIndicator(
                   axisDirection: AxisDirection.down,
                   child: SizedBox(
-                    height: 300,
+                    height: const .fixed(300),
                     child: ListView.builder(
                       itemCount: 20,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const .fixed(EdgeInsets.all(10.0)),
                           child: Text('Index $index'),
                         );
                       },
@@ -766,12 +766,12 @@ void main() {
                 StretchingOverscrollIndicator(
                   axisDirection: AxisDirection.down,
                   child: SizedBox(
-                    height: 300,
+                    height: const .fixed(300),
                     child: ListView.builder(
                       itemCount: 20,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const .fixed(EdgeInsets.all(10.0)),
                           child: Text('Index $index'),
                         );
                       },
@@ -827,12 +827,12 @@ void main() {
                   axisDirection: AxisDirection.down,
                   clipBehavior: clipBehavior,
                   child: SizedBox(
-                    height: 300,
+                    height: const .fixed(300),
                     child: ListView.builder(
                       itemCount: 20,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const .fixed(EdgeInsets.all(10.0)),
                           child: Text('Index $index'),
                         );
                       },
@@ -886,12 +886,12 @@ void main() {
               child: StretchingOverscrollIndicator(
                 axisDirection: AxisDirection.down,
                 child: SizedBox(
-                  height: 300,
+                  height: const .fixed(300),
                   child: ListView.builder(
                     itemCount: 20,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const .fixed(EdgeInsets.all(10.0)),
                         child: Text('Index $index'),
                       );
                     },
@@ -942,12 +942,12 @@ void main() {
               child: StretchingOverscrollIndicator(
                 axisDirection: AxisDirection.down,
                 child: SizedBox(
-                  height: 300,
+                  height: const .fixed(300),
                   child: ListView.builder(
                     itemCount: 20,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const .fixed(EdgeInsets.all(10.0)),
                         child: Text('Index $index'),
                       );
                     },

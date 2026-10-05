@@ -13,8 +13,8 @@ int? currentPage;
 Widget buildPage(int page) {
   return SizedBox(
     key: globalKeys[page],
-    width: pageSize.width,
-    height: pageSize.height,
+    width: .fixed(pageSize.width),
+    height: .fixed(pageSize.height),
     child: Text(page.toString()),
   );
 }
@@ -37,7 +37,7 @@ Widget buildFrame({
   return Directionality(
     textDirection: textDirection,
     child: Center(
-      child: SizedBox(width: pageSize.width, height: pageSize.height, child: child),
+      child: SizedBox(width: .fixed(pageSize.width), height: .fixed(pageSize.height), child: child),
     ),
   );
 }

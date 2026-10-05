@@ -105,7 +105,7 @@ void main() {
           addRepaintBoundaries: false,
           addSemanticIndexes: false,
           children: generateList(
-            const SizedBox(height: 12.3, child: Placeholder()),
+            const SizedBox(height: .fixed(12.3), child: Placeholder()),
           ), // about 50 widgets visible
         ),
       ),

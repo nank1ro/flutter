@@ -14,10 +14,10 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox(
-          width: 200.0,
+          width: const .fixed(200.0),
           child: FittedBox(
             key: outside,
-            child: SizedBox(key: inside, width: 100.0, height: 50.0),
+            child: SizedBox(key: inside, width: const .fixed(100.0), height: const .fixed(50.0)),
           ),
         ),
       ),
@@ -45,10 +45,10 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: const .fixed(200.0),
           child: FittedBox(
             key: outside,
-            child: SizedBox(key: inside, width: 100.0, height: 50.0),
+            child: SizedBox(key: inside, width: const .fixed(100.0), height: const .fixed(50.0)),
           ),
         ),
       ),
@@ -75,11 +75,11 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: const .fixed(200.0),
           child: FittedBox(
             key: outside,
             fit: BoxFit.cover,
-            child: SizedBox(key: inside, width: 100.0, height: 50.0),
+            child: SizedBox(key: inside, width: const .fixed(100.0), height: const .fixed(50.0)),
           ),
         ),
       ),
@@ -124,12 +124,12 @@ void main() {
           textDirection: TextDirection.rtl,
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: FittedBox(
                 key: outside,
                 fit: BoxFit.scaleDown,
                 alignment: AlignmentDirectional.bottomEnd,
-                child: SizedBox(key: inside, width: 10.0, height: 10.0),
+                child: SizedBox(key: inside, width: const .fixed(10.0), height: const .fixed(10.0)),
               ),
             ),
           ),
@@ -161,12 +161,12 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: FittedBox(
                 key: outside,
                 fit: BoxFit.scaleDown,
                 alignment: AlignmentDirectional.bottomEnd,
-                child: SizedBox(key: inside, width: 10.0, height: 10.0),
+                child: SizedBox(key: inside, width: const .fixed(10.0), height: const .fixed(10.0)),
               ),
             ),
           ),
@@ -198,12 +198,12 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: FittedBox(
                 key: outside,
                 fit: BoxFit.scaleDown,
                 alignment: AlignmentDirectional.center,
-                child: SizedBox(key: inside, width: 10.0, height: 10.0),
+                child: SizedBox(key: inside, width: const .fixed(10.0), height: const .fixed(10.0)),
               ),
             ),
           ),
@@ -235,12 +235,12 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: FittedBox(
                 key: outside,
                 fit: BoxFit.scaleDown,
                 alignment: AlignmentDirectional.center,
-                child: SizedBox(key: inside, width: 30.0, height: 10.0),
+                child: SizedBox(key: inside, width: const .fixed(30.0), height: const .fixed(10.0)),
               ),
             ),
           ),
@@ -272,12 +272,12 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: FittedBox(
                 key: outside,
                 fit: BoxFit.fill,
                 alignment: AlignmentDirectional.center,
-                child: SizedBox(key: inside, width: 30.0, height: 10.0),
+                child: SizedBox(key: inside, width: const .fixed(30.0), height: const .fixed(10.0)),
               ),
             ),
           ),
@@ -306,10 +306,13 @@ void main() {
     await tester.pumpWidget(
       const Center(
         child: SizedBox(
-          width: 100.0,
-          height: 10.0,
+          width: .fixed(100.0),
+          height: .fixed(10.0),
           child: FittedBox(
-            child: SizedBox.square(dimension: 50.0, child: RepaintBoundary(child: Placeholder())),
+            child: SizedBox.square(
+              dimension: .fixed(50.0),
+              child: RepaintBoundary(child: Placeholder()),
+            ),
           ),
         ),
       ),
@@ -321,14 +324,14 @@ void main() {
     await tester.pumpWidget(
       const Center(
         child: SizedBox(
-          width: 100.0,
-          height: 10.0,
+          width: .fixed(100.0),
+          height: .fixed(10.0),
           child: FittedBox(
             fit: BoxFit.cover,
             clipBehavior: Clip.hardEdge,
             child: SizedBox(
-              width: 10.0,
-              height: 50.0,
+              width: .fixed(10.0),
+              height: .fixed(50.0),
               child: RepaintBoundary(child: Placeholder()),
             ),
           ),
@@ -342,14 +345,14 @@ void main() {
     await tester.pumpWidget(
       const Center(
         child: SizedBox(
-          width: 10.0,
-          height: 100.0,
+          width: .fixed(10.0),
+          height: .fixed(100.0),
           child: FittedBox(
             fit: BoxFit.cover,
             clipBehavior: Clip.hardEdge,
             child: SizedBox(
-              width: 50.0,
-              height: 10.0,
+              width: .fixed(50.0),
+              height: .fixed(10.0),
               child: RepaintBoundary(child: Placeholder()),
             ),
           ),
@@ -368,14 +371,14 @@ void main() {
             await tester.pumpWidget(
               Center(
                 child: SizedBox(
-                  width: a,
-                  height: b,
+                  width: .fixed(a),
+                  height: .fixed(b),
                   child: FittedBox(
                     fit: BoxFit.none,
                     clipBehavior: Clip.hardEdge,
                     child: SizedBox(
-                      width: c,
-                      height: d,
+                      width: .fixed(c),
+                      height: .fixed(d),
                       child: const RepaintBoundary(child: Placeholder()),
                     ),
                   ),
@@ -399,11 +402,11 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox.square(
-          dimension: 100.0,
+          dimension: const .fixed(100.0),
           child: FittedBox(
             alignment: FractionalOffset.center,
             child: SizedBox.square(
-              dimension: 1000.0,
+              dimension: const .fixed(1000.0),
               child: Listener(
                 onPointerDown: (PointerDownEvent event) {
                   pointerDown = true;
@@ -440,11 +443,11 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox(
-          width: 200.0,
+          width: const .fixed(200.0),
           child: FittedBox(
             key: outside,
             fit: BoxFit.scaleDown,
-            child: SizedBox(key: inside, width: 100.0, height: 50.0),
+            child: SizedBox(key: inside, width: const .fixed(100.0), height: const .fixed(50.0)),
           ),
         ),
       ),
@@ -465,11 +468,11 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox(
-          width: 200.0,
+          width: const .fixed(200.0),
           child: FittedBox(
             key: outside,
             fit: BoxFit.scaleDown,
-            child: SizedBox(key: inside, width: 400.0, height: 200.0),
+            child: SizedBox(key: inside, width: const .fixed(400.0), height: const .fixed(200.0)),
           ),
         ),
       ),
@@ -491,19 +494,22 @@ void main() {
 
     final Widget scaleDownWidget = Center(
       child: SizedBox(
-        width: 200.0,
+        width: const .fixed(200.0),
         child: FittedBox(
           key: outside,
           fit: BoxFit.scaleDown,
-          child: const SizedBox(width: 100.0, height: 50.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(50.0)),
         ),
       ),
     );
 
     final Widget coverWidget = Center(
       child: SizedBox(
-        width: 200.0,
-        child: FittedBox(key: outside, child: const SizedBox(width: 100.0, height: 50.0)),
+        width: const .fixed(200.0),
+        child: FittedBox(
+          key: outside,
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(50.0)),
+        ),
       ),
     );
 
@@ -523,7 +529,9 @@ void main() {
 
   testWidgets('FittedBox without child does not throw', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const Center(child: SizedBox(width: 200.0, height: 200.0, child: FittedBox())),
+      const Center(
+        child: SizedBox(width: .fixed(200.0), height: .fixed(200.0), child: FittedBox()),
+      ),
     );
 
     expect(find.byType(FittedBox), findsOneWidget);
@@ -538,7 +546,7 @@ void main() {
     await tester.pumpWidget(
       const Center(
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: .fixed(200.0),
           child: FittedBox(fit: BoxFit.scaleDown, child: SizedBox.shrink()),
         ),
       ),
@@ -546,10 +554,10 @@ void main() {
     expect(tester.takeException(), isNull);
 
     await tester.pumpWidget(
-      Center(
+      const Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 200.0, maxHeight: 200.0),
-          child: const FittedBox(child: SizedBox.shrink()),
+          constraints: .fixed(BoxConstraints(maxWidth: 200.0, maxHeight: 200.0)),
+          child: FittedBox(child: SizedBox.shrink()),
         ),
       ),
     );

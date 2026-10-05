@@ -162,7 +162,7 @@ void main() {
         child: ListView(
           itemExtent: 200.0,
           children: List<Widget>.generate(20, (int i) {
-            return ColoredBox(color: const Color(0xFF00FF00), child: Text('$i'));
+            return ColoredBox(color: const .fixed(Color(0xFF00FF00)), child: Text('$i'));
           }),
         ),
       ),
@@ -376,7 +376,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
-          height: 400,
+          height: const .fixed(400),
           child: ListView(
             itemExtent: 100.0,
             shrinkWrap: true,
@@ -411,7 +411,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
-          height: 400,
+          height: const .fixed(400),
           child: ListView(
             itemExtent: 100.0,
             shrinkWrap: true,
@@ -527,7 +527,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
+            height: const .fixed(200.0),
             child: ListView(
               cacheExtent: 500.0,
               children: <Widget>[
@@ -565,7 +565,7 @@ void main() {
                 onTap: () {
                   tapped = true;
                 },
-                child: SizedBox(height: 100.0, child: Text('Item $index')),
+                child: SizedBox(height: const .fixed(100.0), child: Text('Item $index')),
               );
             },
           ),
@@ -658,7 +658,7 @@ void main() {
               onTap: () {
                 tapped = true;
               },
-              child: SizedBox(height: 100.0, child: Text('Item $index')),
+              child: SizedBox(height: const .fixed(100.0), child: Text('Item $index')),
             );
           },
         ),
@@ -726,7 +726,7 @@ void main() {
               onTap: () {
                 tapped = true;
               },
-              child: SizedBox(width: 100.0, child: Text('Item $index')),
+              child: SizedBox(width: const .fixed(100.0), child: Text('Item $index')),
             );
           },
         ),
@@ -766,8 +766,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            child: ListView(cacheExtent: 500.0, children: const <Widget>[SizedBox(height: 100.0)]),
+            height: const .fixed(200.0),
+            child: ListView(
+              cacheExtent: 500.0,
+              children: const <Widget>[SizedBox(height: .fixed(100.0))],
+            ),
           ),
         ),
       ),
@@ -786,14 +789,14 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
+            height: const .fixed(200.0),
             child: ListView(
               itemExtent: 100.0,
               cacheExtent: 500.0,
               children: const <Widget>[
-                SizedBox(height: 100.0),
-                SizedBox(height: 100.0),
-                SizedBox(height: 100.0),
+                SizedBox(height: .fixed(100.0)),
+                SizedBox(height: .fixed(100.0)),
+                SizedBox(height: .fixed(100.0)),
               ],
             ),
           ),
@@ -810,11 +813,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
+            height: const .fixed(200.0),
             child: ListView(
               itemExtent: 100.0,
               cacheExtent: 500.0,
-              children: const <Widget>[SizedBox(height: 100.0)],
+              children: const <Widget>[SizedBox(height: .fixed(100.0))],
             ),
           ),
         ),
@@ -831,11 +834,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
+            height: const .fixed(200.0),
             child: ListView(
               scrollDirection: Axis.horizontal,
               itemExtent: 100.0,
-              children: const <Widget>[SizedBox(height: 100.0)],
+              children: const <Widget>[SizedBox(height: .fixed(100.0))],
             ),
           ),
         ),
@@ -864,13 +867,13 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 100.0,
+            height: const .fixed(200.0),
+            width: const .fixed(100.0),
             child: ListView(
               controller: controller,
               scrollDirection: scrollDirection,
               itemExtent: 50.0,
-              children: const <Widget>[SizedBox(height: 50.0, width: 50.0)],
+              children: const <Widget>[SizedBox(height: .fixed(50.0), width: .fixed(50.0))],
             ),
           ),
         ),
@@ -985,7 +988,7 @@ void main() {
             return numbers[index];
           },
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(height: numbers[index], child: Text('Item $index'));
+            return SizedBox(height: .fixed(numbers[index]), child: Text('Item $index'));
           },
         ),
       ),

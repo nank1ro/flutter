@@ -22,7 +22,11 @@ void main() {
             itemExtent: 100.0,
             itemBuilder: (BuildContext context, int index) {
               callbackTracker.add(index);
-              return SizedBox(key: ValueKey<int>(index), height: 100.0, child: Text('$index'));
+              return SizedBox(
+                key: ValueKey<int>(index),
+                height: const .fixed(100.0),
+                child: Text('$index'),
+              );
             },
           ),
           right: const Text('Not Today'),
@@ -74,8 +78,8 @@ void main() {
       callbackTracker.add(index);
       return SizedBox(
         key: ValueKey<int>(index),
-        width: 500.0, // this should be ignored
-        height: 400.0, // should be overridden by itemExtent
+        width: const .fixed(500.0), // this should be ignored
+        height: const .fixed(400.0), // should be overridden by itemExtent
         child: Text('$index', textDirection: TextDirection.ltr),
       );
     }
@@ -159,8 +163,8 @@ void main() {
       callbackTracker.add(index);
       return SizedBox(
         key: ValueKey<int>(index),
-        width: 400.0, // this should be overridden by itemExtent
-        height: 500.0, // this should be ignored
+        width: const .fixed(400.0), // this should be overridden by itemExtent
+        height: const .fixed(500.0), // this should be ignored
         child: Text('$index'),
       );
     }
@@ -301,7 +305,7 @@ void main() {
       textDirection: TextDirection.ltr,
       child: ListView.builder(
         itemBuilder: itemBuilder,
-        prototypeItem: const SizedBox(width: 800, height: 300),
+        prototypeItem: const SizedBox(width: .fixed(800), height: .fixed(300)),
         itemCount: 30,
       ),
     );
@@ -337,10 +341,10 @@ void main() {
         child: ListView.separated(
           itemCount: itemCount,
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(height: 100.0, child: Text('i$index'));
+            return SizedBox(height: const .fixed(100.0), child: Text('i$index'));
           },
           separatorBuilder: (BuildContext context, int index) {
-            return SizedBox(height: 10.0, child: Text('s$index'));
+            return SizedBox(height: const .fixed(10.0), child: Text('s$index'));
           },
         ),
       );
@@ -376,10 +380,10 @@ void main() {
         child: ListView.separated(
           itemCount: itemCount,
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(height: 100.0, child: Text('i$index'));
+            return SizedBox(height: const .fixed(100.0), child: Text('i$index'));
           },
           separatorBuilder: (BuildContext context, int index) {
-            return SizedBox(height: 10.0, child: Text('s$index'));
+            return SizedBox(height: const .fixed(10.0), child: Text('s$index'));
           },
         ),
       );

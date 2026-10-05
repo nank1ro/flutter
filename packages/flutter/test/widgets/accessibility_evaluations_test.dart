@@ -29,7 +29,7 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 48.0,
+            dimension: const .fixed(48.0),
             child: Semantics(label: 'button', onTap: () {}),
           ),
         ),
@@ -45,7 +45,7 @@ void main() {
         TestWidgetsApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 40.0,
+              dimension: const .fixed(40.0),
               child: Semantics(label: 'button', onTap: () {}),
             ),
           ),
@@ -65,7 +65,7 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 40.0,
+            dimension: const .fixed(40.0),
             child: Semantics(label: 'button', onTap: () {}, hidden: true),
           ),
         ),
@@ -93,7 +93,7 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 48.0,
+            dimension: const .fixed(48.0),
             child: Semantics(label: 'button', onTap: () {}),
           ),
         ),
@@ -107,7 +107,11 @@ void main() {
       final SemanticsHandle handle = tester.ensureSemantics();
       await tester.pumpWidget(
         TestWidgetsApp(
-          home: SizedBox(width: 48.0, height: 48.0, child: Semantics(onTap: () {})),
+          home: SizedBox(
+            width: const .fixed(48.0),
+            height: const .fixed(48.0),
+            child: Semantics(onTap: () {}),
+          ),
         ),
       );
       final EvaluationResult result = await evaluation.evaluate(tester.binding);
@@ -140,9 +144,9 @@ void main() {
       await tester.pumpWidget(
         const TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 100.0,
+            dimension: .fixed(100.0),
             child: ColoredBox(
-              color: Color(0xFFFFFFFF),
+              color: .fixed(Color(0xFFFFFFFF)),
               child: Center(
                 child: Text('test', style: TextStyle(color: Color(0xFF000000), fontSize: 14)),
               ),
@@ -162,9 +166,9 @@ void main() {
       await tester.pumpWidget(
         const TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 100,
+            dimension: .fixed(100),
             child: ColoredBox(
-              color: Color(0xFFFFFFFF),
+              color: .fixed(Color(0xFFFFFFFF)),
               child: Center(
                 child: Text('test', style: TextStyle(color: Color(0xFFEEEEEE), fontSize: 14)),
               ),
@@ -201,7 +205,7 @@ void main() {
           home: Semantics(
             container: true,
             label: 'test',
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -217,7 +221,7 @@ void main() {
           home: Semantics(
             container: true,
             tooltip: 'test',
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -233,7 +237,7 @@ void main() {
             container: true,
             onTap: () {},
             value: 'test',
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -250,7 +254,7 @@ void main() {
             container: true,
             onTap: () {},
             hint: 'test',
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -266,7 +270,7 @@ void main() {
           home: Semantics(
             container: true,
             onTap: () {},
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -286,7 +290,7 @@ void main() {
           home: Semantics(
             container: true,
             button: true,
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -306,7 +310,7 @@ void main() {
           home: Semantics(
             container: true,
             focusable: true,
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -327,7 +331,7 @@ void main() {
             container: true,
             hidden: true,
             button: true,
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -342,7 +346,10 @@ void main() {
       // it should not produce a violation because it is not "important".
       await tester.pumpWidget(
         TestWidgetsApp(
-          home: Semantics(container: true, child: const SizedBox(width: 10.0, height: 10.0)),
+          home: Semantics(
+            container: true,
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
+          ),
         ),
       );
       final EvaluationResult result = await evaluation.evaluate(tester.binding);
@@ -362,7 +369,7 @@ void main() {
                 Semantics(
                   label: 'Child 1',
                   onTap: () {},
-                  child: const SizedBox(width: 10, height: 10),
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
                 ),
               ],
             ),
@@ -384,7 +391,7 @@ void main() {
                 Semantics(
                   label: 'Child 1',
                   onTap: () {},
-                  child: const SizedBox(width: 10, height: 10),
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
                 ),
               ],
             ),
@@ -404,7 +411,7 @@ void main() {
             child: Semantics(
               container: true,
               onTap: () {},
-              child: const SizedBox(width: 10, height: 10),
+              child: const SizedBox(width: .fixed(10), height: .fixed(10)),
             ),
           ),
         ),
@@ -436,16 +443,16 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: ColoredBox(
-              color: const Color(0xFFFFFFFF),
+              color: const .fixed(Color(0xFFFFFFFF)),
               child: Center(
                 child: Semantics(
                   button: true,
                   container: true,
                   child: const SizedBox.square(
-                    dimension: 50,
-                    child: ColoredBox(color: Color(0xFF000000)),
+                    dimension: .fixed(50),
+                    child: ColoredBox(color: .fixed(Color(0xFF000000))),
                   ),
                 ),
               ),
@@ -465,16 +472,16 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: ColoredBox(
-              color: const Color(0xFFFFFFFF),
+              color: const .fixed(Color(0xFFFFFFFF)),
               child: Center(
                 child: Semantics(
                   button: true,
                   container: true,
                   child: const SizedBox.square(
-                    dimension: 50,
-                    child: ColoredBox(color: Color(0xFFEEEEEE)),
+                    dimension: .fixed(50),
+                    child: ColoredBox(color: .fixed(Color(0xFFEEEEEE))),
                   ),
                 ),
               ),
@@ -498,14 +505,14 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: ColoredBox(
-              color: const Color(0xFFFFFFFF),
+              color: const .fixed(Color(0xFFFFFFFF)),
               child: Center(
                 child: Semantics(
                   button: true,
                   container: true,
-                  child: const SizedBox.square(dimension: 50),
+                  child: const SizedBox.square(dimension: .fixed(50)),
                 ),
               ),
             ),
@@ -524,16 +531,16 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: ColoredBox(
-              color: const Color(0xFFFFFFFF),
+              color: const .fixed(Color(0xFFFFFFFF)),
               child: Center(
                 child: Semantics(
                   slider: true,
                   container: true,
                   child: const SizedBox.square(
-                    dimension: 50,
-                    child: ColoredBox(color: Color(0xFFEEEEEE)),
+                    dimension: .fixed(50),
+                    child: ColoredBox(color: .fixed(Color(0xFFEEEEEE))),
                   ),
                 ),
               ),
@@ -557,16 +564,16 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: ColoredBox(
-              color: const Color(0xFFFFFFFF),
+              color: const .fixed(Color(0xFFFFFFFF)),
               child: Center(
                 child: Semantics(
                   textField: true,
                   container: true,
                   child: const SizedBox.square(
-                    dimension: 50,
-                    child: ColoredBox(color: Color(0xFF000000)),
+                    dimension: .fixed(50),
+                    child: ColoredBox(color: .fixed(Color(0xFF000000))),
                   ),
                 ),
               ),
@@ -586,16 +593,16 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: ColoredBox(
-              color: const Color(0xFFFFFFFF),
+              color: const .fixed(Color(0xFFFFFFFF)),
               child: Center(
                 child: Semantics(
                   onTap: () {},
                   container: true,
                   child: const SizedBox.square(
-                    dimension: 50,
-                    child: ColoredBox(color: Color(0xFFEEEEEE)),
+                    dimension: .fixed(50),
+                    child: ColoredBox(color: .fixed(Color(0xFFEEEEEE))),
                   ),
                 ),
               ),
@@ -650,7 +657,7 @@ void main() {
         TestWidgetsApp(
           home: SizedBox(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const .fixed(EdgeInsets.all(8.0)),
               child: Center(
                 child: Title(
                   title: 'Nested Title',
@@ -694,7 +701,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: SizedBox(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: .fixed(EdgeInsets.all(8.0)),
               child: Center(child: Text('No title here')),
             ),
           ),

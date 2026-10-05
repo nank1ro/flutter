@@ -9,7 +9,10 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('provides a value to the layer tree', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const AnnotatedRegion<int>(value: 1, child: SizedBox(width: 100.0, height: 100.0)),
+      const AnnotatedRegion<int>(
+        value: 1,
+        child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+      ),
     );
     final List<Layer> layers = tester.layers;
     final AnnotatedRegionLayer<int> layer = layers.whereType<AnnotatedRegionLayer<int>>().first;
@@ -21,8 +24,11 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.translate(
-        offset: const Offset(25.0, 25.0),
-        child: const AnnotatedRegion<int>(value: 1, child: SizedBox(width: 100.0, height: 100.0)),
+        offset: const .fixed(Offset(25.0, 25.0)),
+        child: const AnnotatedRegion<int>(
+          value: 1,
+          child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+        ),
       ),
     );
     int? result = RendererBinding.instance.renderView.debugLayer!.find<int>(

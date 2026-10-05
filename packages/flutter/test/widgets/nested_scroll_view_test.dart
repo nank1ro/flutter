@@ -65,20 +65,20 @@ Widget buildTest({
             children: <Widget>[
               ListView(
                 children: const <Widget>[
-                  SizedBox(height: 300.0, child: Text('aaa1')),
-                  SizedBox(height: 200.0, child: Text('aaa2')),
-                  SizedBox(height: 100.0, child: Text('aaa3')),
-                  SizedBox(height: 50.0, child: Text('aaa4')),
+                  SizedBox(height: .fixed(300.0), child: Text('aaa1')),
+                  SizedBox(height: .fixed(200.0), child: Text('aaa2')),
+                  SizedBox(height: .fixed(100.0), child: Text('aaa3')),
+                  SizedBox(height: .fixed(50.0), child: Text('aaa4')),
                 ],
               ),
               ListView(
                 dragStartBehavior: DragStartBehavior.down,
-                children: const <Widget>[SizedBox(height: 100.0, child: Text('bbb1'))],
+                children: const <Widget>[SizedBox(height: .fixed(100.0), child: Text('bbb1'))],
               ),
               const Center(child: Text('ccc1')),
               ListView(
                 dragStartBehavior: DragStartBehavior.down,
-                children: const <Widget>[SizedBox(height: 10000.0, child: Text('ddd1'))],
+                children: const <Widget>[SizedBox(height: .fixed(10000.0), child: Text('ddd1'))],
               ),
             ],
           ),
@@ -114,7 +114,10 @@ void main() {
                 padding: const EdgeInsets.all(8),
                 itemCount: 30,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 50, child: Center(child: Text('Item $index')));
+                  return SizedBox(
+                    height: const .fixed(50),
+                    child: Center(child: Text('Item $index')),
+                  );
                 },
               ),
             ),
@@ -1211,7 +1214,10 @@ void main() {
                 },
                 body: const SingleChildScrollView(
                   dragStartBehavior: DragStartBehavior.down,
-                  child: SizedBox(height: 1000.0, child: Placeholder(key: key2)),
+                  child: SizedBox(
+                    height: .fixed(1000.0),
+                    child: Placeholder(key: key2),
+                  ),
                 ),
               ),
             ),
@@ -2386,7 +2392,10 @@ void main() {
             body: ListView.builder(
               itemCount: 50,
               itemBuilder: (BuildContext context, int index) {
-                return Padding(padding: const EdgeInsets.all(8.0), child: Text('Item $index'));
+                return Padding(
+                  padding: const .fixed(EdgeInsets.all(8.0)),
+                  child: Text('Item $index'),
+                );
               },
             ),
           ),
@@ -2394,74 +2403,66 @@ void main() {
       );
     }
 
-    testWidgets(
-      'overscroll, hold for 0 velocity, and release',
-      (WidgetTester tester) async {
-        // Dragging into an overscroll and holding so that when released, the
-        // ballistic scroll activity has a 0 velocity.
-        final controller = ScrollController();
-        addTearDown(controller.dispose);
-        await tester.pumpWidget(buildBallisticTest(controller));
-        // Last item of the inner scroll view.
-        expect(find.text('Item 49'), findsNothing);
+    testWidgets('overscroll, hold for 0 velocity, and release', (WidgetTester tester) async {
+      // Dragging into an overscroll and holding so that when released, the
+      // ballistic scroll activity has a 0 velocity.
+      final controller = ScrollController();
+      addTearDown(controller.dispose);
+      await tester.pumpWidget(buildBallisticTest(controller));
+      // Last item of the inner scroll view.
+      expect(find.text('Item 49'), findsNothing);
 
-        // Scroll to bottom
-        await tester.fling(find.text('Item 3'), const Offset(0.0, -50.0), 10000.0);
-        await tester.pumpAndSettle();
+      // Scroll to bottom
+      await tester.fling(find.text('Item 3'), const Offset(0.0, -50.0), 10000.0);
+      await tester.pumpAndSettle();
 
-        // End of list
-        expect(find.text('Item 49'), findsOneWidget);
-        expect(tester.getCenter(find.text('Item 49')).dy, equals(585.0));
+      // End of list
+      expect(find.text('Item 49'), findsOneWidget);
+      expect(tester.getCenter(find.text('Item 49')).dy, equals(585.0));
 
-        // Overscroll, dragging like this will release with 0 velocity.
-        await tester.drag(find.text('Item 49'), const Offset(0.0, -50.0));
-        await tester.pump();
-        // If handled correctly, the last item should still be visible and
-        // progressing back down to the bottom edge, instead of jumping further
-        // up the list and out of view.
-        expect(find.text('Item 49'), findsOneWidget);
-        await tester.pumpAndSettle();
-        expect(tester.getCenter(find.text('Item 49')).dy, equals(585.0));
-      },
-      variant: const TargetPlatformVariant(<TargetPlatform>{TargetPlatform.iOS}),
-    );
+      // Overscroll, dragging like this will release with 0 velocity.
+      await tester.drag(find.text('Item 49'), const Offset(0.0, -50.0));
+      await tester.pump();
+      // If handled correctly, the last item should still be visible and
+      // progressing back down to the bottom edge, instead of jumping further
+      // up the list and out of view.
+      expect(find.text('Item 49'), findsOneWidget);
+      await tester.pumpAndSettle();
+      expect(tester.getCenter(find.text('Item 49')).dy, equals(585.0));
+    }, variant: const TargetPlatformVariant(<TargetPlatform>{TargetPlatform.iOS}));
 
-    testWidgets(
-      'overscroll, release, and tap',
-      (WidgetTester tester) async {
-        // Tapping while an inner ballistic scroll activity is in progress will
-        // trigger a secondary ballistic scroll activity with a 0 velocity.
-        final controller = ScrollController();
-        addTearDown(controller.dispose);
-        await tester.pumpWidget(buildBallisticTest(controller));
-        // Last item of the inner scroll view.
-        expect(find.text('Item 49'), findsNothing);
+    testWidgets('overscroll, release, and tap', (WidgetTester tester) async {
+      // Tapping while an inner ballistic scroll activity is in progress will
+      // trigger a secondary ballistic scroll activity with a 0 velocity.
+      final controller = ScrollController();
+      addTearDown(controller.dispose);
+      await tester.pumpWidget(buildBallisticTest(controller));
+      // Last item of the inner scroll view.
+      expect(find.text('Item 49'), findsNothing);
 
-        // Scroll to bottom
-        await tester.fling(find.text('Item 3'), const Offset(0.0, -50.0), 10000.0);
-        await tester.pumpAndSettle();
+      // Scroll to bottom
+      await tester.fling(find.text('Item 3'), const Offset(0.0, -50.0), 10000.0);
+      await tester.pumpAndSettle();
 
-        // End of list
-        expect(find.text('Item 49'), findsOneWidget);
-        expect(tester.getCenter(find.text('Item 49')).dy, equals(585.0));
+      // End of list
+      expect(find.text('Item 49'), findsOneWidget);
+      expect(tester.getCenter(find.text('Item 49')).dy, equals(585.0));
 
-        // Fling again to trigger first ballistic activity.
-        await tester.fling(find.text('Item 48'), const Offset(0.0, -50.0), 10000.0);
-        await tester.pump();
+      // Fling again to trigger first ballistic activity.
+      await tester.fling(find.text('Item 48'), const Offset(0.0, -50.0), 10000.0);
+      await tester.pump();
 
-        // Tap after releasing the overscroll to trigger secondary inner ballistic
-        // scroll activity with 0 velocity.
-        await tester.tap(find.text('Item 49'));
-        await tester.pumpAndSettle();
+      // Tap after releasing the overscroll to trigger secondary inner ballistic
+      // scroll activity with 0 velocity.
+      await tester.tap(find.text('Item 49'));
+      await tester.pumpAndSettle();
 
-        // If handled correctly, the ballistic scroll activity should finish
-        // closing out the overscrolled area, with the last item visible at the
-        // bottom.
-        expect(find.text('Item 49'), findsOneWidget);
-        expect(tester.getCenter(find.text('Item 49')).dy, equals(585.0));
-      },
-      variant: const TargetPlatformVariant(<TargetPlatform>{TargetPlatform.iOS}),
-    );
+      // If handled correctly, the ballistic scroll activity should finish
+      // closing out the overscrolled area, with the last item visible at the
+      // bottom.
+      expect(find.text('Item 49'), findsOneWidget);
+      expect(tester.getCenter(find.text('Item 49')).dy, equals(585.0));
+    }, variant: const TargetPlatformVariant(<TargetPlatform>{TargetPlatform.iOS}));
   });
 
   // Regression test for https://github.com/flutter/flutter/issues/63978
@@ -2973,7 +2974,9 @@ void main() {
   ) async {
     // Regression test for https://github.com/flutter/flutter/issues/126454.
     Widget buildApp({required bool nested}) {
-      final Widget innerScrollable = ListView(children: const <Widget>[SizedBox(height: 1000)]);
+      final Widget innerScrollable = ListView(
+        children: const <Widget>[SizedBox(height: .fixed(1000))],
+      );
       return MaterialApp(
         home: Scaffold(
           body: NestedScrollView(
@@ -3546,7 +3549,10 @@ class _TestLayoutExtentIsNegative extends StatelessWidget {
                   pinned: true,
                   forceElevated: innerBoxIsScrolled,
                   backgroundColor: Colors.blue[300],
-                  title: const SizedBox(height: 50, child: Center(child: Text('Sticky Header'))),
+                  title: const SizedBox(
+                    height: .fixed(50),
+                    child: Center(child: Text('Sticky Header')),
+                  ),
                 ),
               ),
             ];

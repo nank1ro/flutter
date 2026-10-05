@@ -27,7 +27,13 @@ class SizeChangerState extends State<SizeChanger> {
   Widget build(BuildContext context) {
     return Row(
       textDirection: TextDirection.ltr,
-      children: <Widget>[SizedBox(height: _flag ? 50.0 : 100.0, width: 100.0, child: widget.child)],
+      children: <Widget>[
+        SizedBox(
+          height: .fixed(_flag ? 50.0 : 100.0),
+          width: const .fixed(100.0),
+          child: widget.child,
+        ),
+      ],
     );
   }
 }

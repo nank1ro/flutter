@@ -26,7 +26,7 @@ void main() {
         child: AnimatedAlign(
           duration: const Duration(milliseconds: 200),
           alignment: Alignment.topRight,
-          child: SizedBox(key: target, width: 100.0, height: 200.0),
+          child: SizedBox(key: target, width: const .fixed(100.0), height: const .fixed(200.0)),
         ),
       ),
     );
@@ -40,7 +40,7 @@ void main() {
         child: AnimatedAlign(
           duration: const Duration(milliseconds: 200),
           alignment: AlignmentDirectional.bottomStart,
-          child: SizedBox(key: target, width: 100.0, height: 200.0),
+          child: SizedBox(key: target, width: const .fixed(100.0), height: const .fixed(200.0)),
         ),
       ),
     );
@@ -71,7 +71,7 @@ void main() {
               curve: Curves.ease,
               widthFactor: 0.5,
               duration: Duration(milliseconds: 200),
-              child: SizedBox(height: 100.0, width: 100.0),
+              child: SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
             ),
           ],
         ),
@@ -92,7 +92,7 @@ void main() {
               curve: Curves.ease,
               heightFactor: 0.5,
               duration: Duration(milliseconds: 200),
-              child: SizedBox(height: 100.0, width: 100.0),
+              child: SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
             ),
           ],
         ),
@@ -113,7 +113,7 @@ void main() {
               alignment: Alignment.center,
               curve: Curves.ease,
               duration: Duration(milliseconds: 200),
-              child: SizedBox(height: 100.0, width: 100.0),
+              child: SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
             ),
           ],
         ),
@@ -136,7 +136,7 @@ void main() {
                 alignment: Alignment.center,
                 curve: Curves.ease,
                 duration: Duration(milliseconds: 200),
-                child: SizedBox(height: 100.0, width: 100.0),
+                child: SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               ),
             ],
           ),

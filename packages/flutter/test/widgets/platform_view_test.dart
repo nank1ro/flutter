@@ -27,8 +27,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -61,8 +61,8 @@ void main() {
         await tester.pumpWidget(
           const Center(
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -112,8 +112,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(
               viewType: 'webview',
               layoutDirection: TextDirection.ltr,
@@ -170,8 +170,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -182,8 +182,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: .fixed(100.0),
+            height: .fixed(50.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -229,8 +229,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -239,8 +239,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'maps', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -265,14 +265,18 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
       );
 
-      await tester.pumpWidget(const Center(child: SizedBox(width: 200.0, height: 100.0)));
+      await tester.pumpWidget(
+        const Center(
+          child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
+        ),
+      );
 
       expect(viewsController.views, isEmpty);
     });
@@ -285,8 +289,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr, key: key),
           ),
         ),
@@ -295,8 +299,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr, key: key),
           ),
         ),
@@ -323,8 +327,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -369,8 +373,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: AndroidView(
                     viewType: 'webview',
                     hitTestBehavior: PlatformViewHitTestBehavior.transparent,
@@ -412,8 +416,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: AndroidView(
                     viewType: 'webview',
                     hitTestBehavior: PlatformViewHitTestBehavior.translucent,
@@ -464,8 +468,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
                 ),
               ),
@@ -505,8 +509,8 @@ void main() {
           child: Container(
             margin: const EdgeInsets.all(10.0),
             child: const SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -540,8 +544,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'maps', layoutDirection: TextDirection.rtl),
           ),
         ),
@@ -562,8 +566,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'maps', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -590,7 +594,11 @@ void main() {
         const Directionality(
           textDirection: TextDirection.rtl,
           child: Center(
-            child: SizedBox(width: 200.0, height: 100.0, child: AndroidView(viewType: 'maps')),
+            child: SizedBox(
+              width: .fixed(200.0),
+              height: .fixed(100.0),
+              child: AndroidView(viewType: 'maps'),
+            ),
           ),
         ),
       );
@@ -611,7 +619,11 @@ void main() {
         const Directionality(
           textDirection: TextDirection.ltr,
           child: Center(
-            child: SizedBox(width: 200.0, height: 100.0, child: AndroidView(viewType: 'maps')),
+            child: SizedBox(
+              width: .fixed(200.0),
+              height: .fixed(100.0),
+              child: AndroidView(viewType: 'maps'),
+            ),
           ),
         ),
       );
@@ -644,8 +656,8 @@ void main() {
                 verticalDragAcceptedByParent = true;
               },
               child: const SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: .fixed(200.0),
+                height: .fixed(100.0),
                 child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
               ),
             ),
@@ -674,8 +686,8 @@ void main() {
               verticalDragAcceptedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: AndroidView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -732,8 +744,8 @@ void main() {
               longPressAccessedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: AndroidView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -783,8 +795,8 @@ void main() {
               tapAccessedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: AndroidView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -839,8 +851,8 @@ void main() {
             },
             onLongPress: () {},
             child: const SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -876,8 +888,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -890,8 +902,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -931,8 +943,8 @@ void main() {
           child: GestureDetector(
             onVerticalDragStart: (DragStartDetails d) {},
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: AndroidView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -1047,8 +1059,8 @@ void main() {
           child: const Align(
             alignment: Alignment.bottomRight,
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -1094,8 +1106,8 @@ void main() {
           child: Column(
             children: <Widget>[
               const SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: .fixed(200.0),
+                height: .fixed(100.0),
                 child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
               ),
               Focus(
@@ -1145,8 +1157,8 @@ void main() {
           child: Column(
             children: <Widget>[
               const SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: .fixed(200.0),
+                height: .fixed(100.0),
                 child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
               ),
               Focus(
@@ -1196,8 +1208,8 @@ void main() {
           child: Column(
             children: <Widget>[
               const SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: .fixed(200.0),
+                height: .fixed(100.0),
                 child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
               ),
               Focus(
@@ -1235,8 +1247,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -1257,8 +1269,8 @@ void main() {
         await tester.pumpWidget(
           Center(
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: AndroidView(
                 viewType: 'webview',
                 layoutDirection: TextDirection.ltr,
@@ -1280,8 +1292,8 @@ void main() {
       Widget buildView(double width, double height, Clip clipBehavior) {
         return Center(
           child: SizedBox(
-            width: width,
-            height: height,
+            width: .fixed(width),
+            height: .fixed(height),
             child: AndroidView(
               viewType: 'webview',
               layoutDirection: TextDirection.ltr,
@@ -1319,7 +1331,7 @@ void main() {
 
       await tester.pumpWidget(
         const Padding(
-          padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
+          padding: .fixed(EdgeInsets.fromLTRB(10, 20, 0, 0)),
           child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
         ),
       );
@@ -1341,8 +1353,8 @@ void main() {
       try {
         await tester.pumpWidget(
           const SizedBox(
-            width: 200.0,
-            height: 200.0,
+            width: .fixed(200.0),
+            height: .fixed(200.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         );
@@ -1399,8 +1411,8 @@ void main() {
       try {
         await tester.pumpWidget(
           const SizedBox(
-            width: 200.0,
-            height: 200.0,
+            width: .fixed(200.0),
+            height: .fixed(200.0),
             child: AndroidView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         );
@@ -1552,8 +1564,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -1586,8 +1598,8 @@ void main() {
         await tester.pumpWidget(
           const Center(
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -1616,8 +1628,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -1626,8 +1638,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'maps', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -1645,14 +1657,18 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
       );
 
-      await tester.pumpWidget(const Center(child: SizedBox(width: 200.0, height: 100.0)));
+      await tester.pumpWidget(
+        const Center(
+          child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
+        ),
+      );
 
       expect(viewsController.views, isEmpty);
     });
@@ -1664,14 +1680,18 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
       );
 
-      await tester.pumpWidget(const Center(child: SizedBox(width: 200.0, height: 100.0)));
+      await tester.pumpWidget(
+        const Center(
+          child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
+        ),
+      );
 
       viewsController.creationDelay!.complete();
 
@@ -1686,8 +1706,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr, key: key),
           ),
         ),
@@ -1696,8 +1716,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr, key: key),
           ),
         ),
@@ -1717,8 +1737,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(
               viewType: 'webview',
               layoutDirection: TextDirection.ltr,
@@ -1756,8 +1776,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -1794,8 +1814,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: UiKitView(
                     viewType: 'webview',
                     hitTestBehavior: PlatformViewHitTestBehavior.transparent,
@@ -1839,8 +1859,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: UiKitView(
                     viewType: 'webview',
                     hitTestBehavior: PlatformViewHitTestBehavior.translucent,
@@ -1884,8 +1904,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
                 ),
               ),
@@ -1921,8 +1941,8 @@ void main() {
                 verticalDragAcceptedByParent = true;
               },
               child: const SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: .fixed(200.0),
+                height: .fixed(100.0),
                 child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
               ),
             ),
@@ -1956,8 +1976,8 @@ void main() {
               gestureAcceptedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: UiKitView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -2000,8 +2020,8 @@ void main() {
               gestureAcceptedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: UiKitView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -2042,8 +2062,8 @@ void main() {
               verticalDragAcceptedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: UiKitView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -2089,8 +2109,8 @@ void main() {
             },
             onLongPress: () {},
             child: const SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -2118,8 +2138,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -2136,8 +2156,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -2159,8 +2179,8 @@ void main() {
           child: GestureDetector(
             onVerticalDragStart: (DragStartDetails d) {},
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: UiKitView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -2233,21 +2253,21 @@ void main() {
 
         await tester.pumpWidget(
           SizedBox(
-            width: 300,
-            height: 600,
+            width: const .fixed(300),
+            height: const .fixed(600),
             child: Stack(
               alignment: Alignment.topLeft,
               children: <Widget>[
                 Transform.translate(
-                  offset: const Offset(0, 100),
+                  offset: const .fixed(Offset(0, 100)),
                   child: const SizedBox(
-                    width: 300,
-                    height: 500,
+                    width: .fixed(300),
+                    height: .fixed(500),
                     child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
                   ),
                 ),
                 Transform.translate(
-                  offset: const Offset(0, 500),
+                  offset: const .fixed(Offset(0, 500)),
                   child: Container(
                     color: const Color.fromARGB(255, 255, 255, 255),
                     width: 300,
@@ -2318,8 +2338,8 @@ void main() {
           child: Column(
             children: <Widget>[
               const SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: .fixed(200.0),
+                height: .fixed(100.0),
                 child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
               ),
               Focus(
@@ -2403,8 +2423,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -2413,7 +2433,11 @@ void main() {
       // ignore: invalid_assignment
       final FocusNode node = (tester.state(find.byType(UiKitView)) as dynamic).focusNode;
       expect(() => ChangeNotifier.debugAssertNotDisposed(node), isNot(throwsAssertionError));
-      await tester.pumpWidget(const Center(child: SizedBox(width: 200.0, height: 100.0)));
+      await tester.pumpWidget(
+        const Center(
+          child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
+        ),
+      );
       expect(() => ChangeNotifier.debugAssertNotDisposed(node), throwsAssertionError);
     });
 
@@ -2430,8 +2454,8 @@ void main() {
           child: const Align(
             alignment: Alignment.bottomRight,
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -2469,8 +2493,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -2490,8 +2514,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -2500,8 +2524,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AppKitView(viewType: 'maps', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -2519,14 +2543,18 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
       );
 
-      await tester.pumpWidget(const Center(child: SizedBox(width: 200.0, height: 100.0)));
+      await tester.pumpWidget(
+        const Center(
+          child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
+        ),
+      );
 
       expect(viewsController.views, isEmpty);
     });
@@ -2538,14 +2566,18 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
       );
 
-      await tester.pumpWidget(const Center(child: SizedBox(width: 200.0, height: 100.0)));
+      await tester.pumpWidget(
+        const Center(
+          child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
+        ),
+      );
 
       viewsController.creationDelay!.complete();
 
@@ -2560,8 +2592,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr, key: key),
           ),
         ),
@@ -2570,8 +2602,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr, key: key),
           ),
         ),
@@ -2591,8 +2623,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AppKitView(
               viewType: 'webview',
               layoutDirection: TextDirection.ltr,
@@ -2632,8 +2664,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -2670,8 +2702,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: AppKitView(
                     viewType: 'webview',
                     hitTestBehavior: PlatformViewHitTestBehavior.transparent,
@@ -2715,8 +2747,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: AppKitView(
                     viewType: 'webview',
                     hitTestBehavior: PlatformViewHitTestBehavior.translucent,
@@ -2760,8 +2792,8 @@ void main() {
               ),
               const Positioned(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  width: .fixed(200.0),
+                  height: .fixed(100.0),
                   child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
                 ),
               ),
@@ -2797,8 +2829,8 @@ void main() {
                 verticalDragAcceptedByParent = true;
               },
               child: const SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: .fixed(200.0),
+                height: .fixed(100.0),
                 child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
               ),
             ),
@@ -2832,8 +2864,8 @@ void main() {
               gestureAcceptedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: UiKitView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -2876,8 +2908,8 @@ void main() {
               gestureAcceptedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: UiKitView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -2918,8 +2950,8 @@ void main() {
               verticalDragAcceptedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: UiKitView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -2965,8 +2997,8 @@ void main() {
             },
             onLongPress: () {},
             child: const SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -2994,8 +3026,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -3012,8 +3044,8 @@ void main() {
         const Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -3035,8 +3067,8 @@ void main() {
           child: GestureDetector(
             onVerticalDragStart: (DragStartDetails d) {},
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: UiKitView(
                 viewType: 'webview',
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -3109,21 +3141,21 @@ void main() {
 
         await tester.pumpWidget(
           SizedBox(
-            width: 300,
-            height: 600,
+            width: const .fixed(300),
+            height: const .fixed(600),
             child: Stack(
               alignment: Alignment.topLeft,
               children: <Widget>[
                 Transform.translate(
-                  offset: const Offset(0, 100),
+                  offset: const .fixed(Offset(0, 100)),
                   child: const SizedBox(
-                    width: 300,
-                    height: 500,
+                    width: .fixed(300),
+                    height: .fixed(500),
                     child: UiKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
                   ),
                 ),
                 Transform.translate(
-                  offset: const Offset(0, 500),
+                  offset: const .fixed(Offset(0, 500)),
                   child: Container(
                     color: const Color.fromARGB(255, 255, 255, 255),
                     width: 300,
@@ -3194,8 +3226,8 @@ void main() {
           child: Column(
             children: <Widget>[
               const SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: .fixed(200.0),
+                height: .fixed(100.0),
                 child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
               ),
               Focus(
@@ -3279,8 +3311,8 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: .fixed(200.0),
+            height: .fixed(100.0),
             child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
           ),
         ),
@@ -3289,7 +3321,11 @@ void main() {
       // ignore: invalid_assignment
       final FocusNode node = (tester.state(find.byType(AppKitView)) as dynamic).focusNode;
       expect(() => ChangeNotifier.debugAssertNotDisposed(node), isNot(throwsAssertionError));
-      await tester.pumpWidget(const Center(child: SizedBox(width: 200.0, height: 100.0)));
+      await tester.pumpWidget(
+        const Center(
+          child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
+        ),
+      );
       expect(() => ChangeNotifier.debugAssertNotDisposed(node), throwsAssertionError);
     });
 
@@ -3306,8 +3342,8 @@ void main() {
           child: const Align(
             alignment: Alignment.bottomRight,
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: AppKitView(viewType: 'webview', layoutDirection: TextDirection.ltr),
             ),
           ),
@@ -3367,8 +3403,8 @@ void main() {
                 verticalDragAcceptedByParent = true;
               },
               child: SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: const .fixed(200.0),
+                height: const .fixed(100.0),
                 child: PlatformViewSurface(
                   controller: controller,
                   gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
@@ -3400,8 +3436,8 @@ void main() {
               verticalDragAcceptedByParent = true;
             },
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: PlatformViewSurface(
                 controller: controller,
                 hitTestBehavior: PlatformViewHitTestBehavior.opaque,
@@ -3441,8 +3477,8 @@ void main() {
             },
             onLongPress: () {},
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: PlatformViewSurface(
                 controller: controller,
                 hitTestBehavior: PlatformViewHitTestBehavior.opaque,
@@ -3465,8 +3501,8 @@ void main() {
         Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: PlatformViewSurface(
               controller: controller,
               hitTestBehavior: PlatformViewHitTestBehavior.opaque,
@@ -3483,8 +3519,8 @@ void main() {
         Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: PlatformViewSurface(
               controller: controller,
               hitTestBehavior: PlatformViewHitTestBehavior.opaque,
@@ -3506,8 +3542,8 @@ void main() {
           child: GestureDetector(
             onVerticalDragStart: (DragStartDetails d) {},
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: PlatformViewSurface(
                 controller: controller,
                 hitTestBehavior: PlatformViewHitTestBehavior.opaque,
@@ -3653,7 +3689,7 @@ void main() {
 
       final Widget widget = Center(
         child: SizedBox(
-          height: 0,
+          height: const .fixed(0),
           child: PlatformViewLink(
             viewType: 'webview',
             onCreatePlatformView: (PlatformViewCreationParams params) {
@@ -3789,7 +3825,11 @@ void main() {
         Container(
           constraints: const BoxConstraints.expand(),
           alignment: Alignment.center,
-          child: SizedBox(width: 100, height: 50, child: platformViewLink),
+          child: SizedBox(
+            width: const .fixed(100),
+            height: const .fixed(50),
+            child: platformViewLink,
+          ),
         ),
       );
 
@@ -3922,7 +3962,7 @@ void main() {
             itemCount: 200,
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
-                height: 100,
+                height: const .fixed(100),
                 child: PlatformViewLink(
                   viewType: 'webview',
                   onCreatePlatformView: (PlatformViewCreationParams params) {
@@ -3980,11 +4020,23 @@ void main() {
       }
 
       await tester.pumpWidget(
-        Center(child: SizedBox(width: 200.0, height: 100.0, child: createPlatformViewLink())),
+        Center(
+          child: SizedBox(
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
+            child: createPlatformViewLink(),
+          ),
+        ),
       );
 
       await tester.pumpWidget(
-        Center(child: SizedBox(width: 200.0, height: 100.0, child: createPlatformViewLink())),
+        Center(
+          child: SizedBox(
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
+            child: createPlatformViewLink(),
+          ),
+        ),
       );
 
       expect(ids, unorderedEquals(<int>[currentViewId + 1]));
@@ -4021,12 +4073,22 @@ void main() {
 
       await tester.pumpWidget(
         Center(
-          child: SizedBox(width: 200.0, height: 100.0, child: createPlatformViewLink('webview')),
+          child: SizedBox(
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
+            child: createPlatformViewLink('webview'),
+          ),
         ),
       );
 
       await tester.pumpWidget(
-        Center(child: SizedBox(width: 200.0, height: 100.0, child: createPlatformViewLink('maps'))),
+        Center(
+          child: SizedBox(
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
+            child: createPlatformViewLink('maps'),
+          ),
+        ),
       );
 
       expect(ids, unorderedEquals(<int>[currentViewId + 1, currentViewId + 2]));
@@ -4079,7 +4141,11 @@ void main() {
         Center(
           child: Column(
             children: <Widget>[
-              SizedBox(width: 300, height: 300, child: platformViewLink),
+              SizedBox(
+                width: const .fixed(300),
+                height: const .fixed(300),
+                child: platformViewLink,
+              ),
               Focus(
                 debugLabel: 'container',
                 child: Container(key: containerKey),
@@ -4139,7 +4205,9 @@ void main() {
           );
         },
       );
-      await tester.pumpWidget(SizedBox(width: 300, height: 300, child: platformViewLink));
+      await tester.pumpWidget(
+        SizedBox(width: const .fixed(300), height: const .fixed(300), child: platformViewLink),
+      );
 
       final Focus platformViewFocusWidget = tester.widget(
         find.descendant(of: find.byType(PlatformViewLink), matching: find.byType(Focus)),
@@ -4194,7 +4262,9 @@ void main() {
             );
           },
         );
-        await tester.pumpWidget(SizedBox(width: 300, height: 300, child: platformViewLink));
+        await tester.pumpWidget(
+          SizedBox(width: const .fixed(300), height: const .fixed(300), child: platformViewLink),
+        );
 
         final Focus platformViewFocusWidget = tester.widget(
           find.descendant(of: find.byType(PlatformViewLink), matching: find.byType(Focus)),
@@ -4256,7 +4326,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 600.0,
+            dimension: const .fixed(600.0),
             child: MouseRegion(
               onEnter: (_) {
                 logs.add('enter1');
@@ -4269,7 +4339,7 @@ void main() {
                 children: <Widget>[
                   Center(
                     child: SizedBox.square(
-                      dimension: 400,
+                      dimension: const .fixed(400),
                       child: MouseRegion(
                         onEnter: (_) {
                           logs.add('enter2');
@@ -4281,7 +4351,13 @@ void main() {
                       ),
                     ),
                   ),
-                  Center(child: SizedBox(width: 200, height: 200, child: target)),
+                  Center(
+                    child: SizedBox(
+                      width: const .fixed(200),
+                      height: const .fixed(200),
+                      child: target,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -4393,7 +4469,13 @@ void main() {
     }, returnsNormally);
 
     await tester.pumpWidget(
-      Center(child: SizedBox(width: 100, height: 100, child: htmlElementView)),
+      Center(
+        child: SizedBox(
+          width: const .fixed(100),
+          height: const .fixed(100),
+          child: htmlElementView,
+        ),
+      ),
     );
     await tester.pumpAndSettle();
 

@@ -38,11 +38,11 @@ void main() {
       ),
       margin: const EdgeInsets.all(5.0),
       child: const SizedBox(
-        width: 25.0,
-        height: 33.0,
+        width: .fixed(25.0),
+        height: .fixed(33.0),
         child: DecoratedBox(
           // uses decoration, not color:
-          decoration: BoxDecoration(color: kYellow),
+          decoration: .fixed(BoxDecoration(color: kYellow)),
         ),
       ),
     );
@@ -639,12 +639,12 @@ void main() {
           textDirection: TextDirection.rtl,
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: RepaintBoundary(
                 child: Container(
                   clipBehavior: Clip.hardEdge,
                   decoration: decoration,
-                  child: const ColoredBox(color: kCustomYellowHalfOpacity),
+                  child: const ColoredBox(color: .fixed(kCustomYellowHalfOpacity)),
                 ),
               ),
             ),
@@ -774,12 +774,12 @@ void main() {
         color: kCustomRed,
         boxShadow: <BoxShadow>[BoxShadow(color: kCustomBlue, spreadRadius: 10, blurRadius: 20.0)],
       ),
-      child: const SizedBox(width: 50, height: 50),
+      child: const SizedBox(width: .fixed(50), height: .fixed(50)),
     );
 
     await tester.pumpWidget(
       RepaintBoundary(
-        child: Padding(padding: const EdgeInsets.all(30.0), child: container),
+        child: Padding(padding: const .fixed(EdgeInsets.all(30.0)), child: container),
       ),
     );
 
@@ -808,7 +808,7 @@ void main() {
       const Directionality(
         textDirection: TextDirection.ltr,
         child: Center(
-          child: SizedBox.shrink(child: DecoratedBox(decoration: BoxDecoration())),
+          child: SizedBox.shrink(child: DecoratedBox(decoration: .fixed(BoxDecoration()))),
         ),
       ),
     );

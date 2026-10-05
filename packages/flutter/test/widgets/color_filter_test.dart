@@ -48,14 +48,14 @@ void main() {
           colorFilter: sepia,
           child: TestWidgetsApp(
             home: ColoredBox(
-              color: debugWhite,
+              color: .fixed(debugWhite),
               child: Column(
                 children: <Widget>[
                   ColoredBox(
-                    color: debugLightBlue,
+                    color: .fixed(debugLightBlue),
                     child: SizedBox(
-                      height: 56,
-                      width: double.infinity,
+                      height: .fixed(56),
+                      width: .fixed(double.infinity),
                       child: Center(child: Text('Sepia ColorFilter Test')),
                     ),
                   ),
@@ -63,12 +63,14 @@ void main() {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: .fixed(EdgeInsets.all(16.0)),
                       child: SizedBox(
-                        width: 56,
-                        height: 56,
+                        width: .fixed(56),
+                        height: .fixed(56),
                         child: DecoratedBox(
-                          decoration: BoxDecoration(color: debugLightBlue, shape: BoxShape.circle),
+                          decoration: .fixed(
+                            BoxDecoration(color: debugLightBlue, shape: BoxShape.circle),
+                          ),
                           child: Center(child: Text('+')),
                         ),
                       ),
@@ -89,7 +91,7 @@ void main() {
       RepaintBoundary(
         child: ColorFiltered(
           colorFilter: ColorFilter.saturation(0),
-          child: const ColoredBox(color: debugWhite, child: FlutterLogo()),
+          child: const ColoredBox(color: .fixed(debugWhite), child: FlutterLogo()),
         ),
       ),
     );

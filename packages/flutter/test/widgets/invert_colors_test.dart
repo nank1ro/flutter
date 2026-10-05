@@ -16,7 +16,7 @@ void main() {
     await tester.pumpWidget(
       const RepaintBoundary(
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: .fixed(200.0),
           child: InvertColorTestWidget(color: Color.fromRGBO(255, 0, 0, 1.0)),
         ),
       ),
@@ -29,7 +29,7 @@ void main() {
     await tester.pumpWidget(
       const RepaintBoundary(
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: .fixed(200.0),
           child: InvertColorTestWidget(
             color: Color.fromRGBO(255, 0, 0, 1.0),
             filter: ColorFilter.mode(Color.fromRGBO(0, 255, 0, 0.5), BlendMode.plus),

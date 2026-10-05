@@ -28,7 +28,7 @@ void main() {
     final rootWidget = RootWidget(
       child: View(
         view: FakeFlutterView(tester.view),
-        child: const ColoredBox(color: Color(0xfffff3e0)),
+        child: const ColoredBox(color: .fixed(Color(0xfffff3e0))),
       ),
     );
     tester.binding.attachToBuildOwner(rootWidget);

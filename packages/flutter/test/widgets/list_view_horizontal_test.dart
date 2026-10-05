@@ -12,7 +12,7 @@ Widget buildFrame({bool reverse = false, required TextDirection textDirection}) 
     textDirection: textDirection,
     child: Center(
       child: SizedBox(
-        height: 50.0,
+        height: const .fixed(50.0),
         child: ListView(
           itemExtent: 290.0,
           scrollDirection: Axis.horizontal,

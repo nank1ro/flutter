@@ -163,17 +163,17 @@ void main() {
               Semantics(
                 label: 'node 1',
                 selected: true,
-                child: const SizedBox(width: 10.0, height: 10.0),
+                child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
               ),
               Semantics(
                 label: 'node 2',
                 selected: true,
-                child: const SizedBox(width: 10.0, height: 10.0),
+                child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
               ),
               Semantics(
                 label: 'node 3',
                 selected: true,
-                child: const SizedBox(width: 10.0, height: 10.0),
+                child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
               ),
             ],
           ),
