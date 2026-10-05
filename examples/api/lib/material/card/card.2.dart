@@ -40,8 +40,8 @@ class _SampleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300,
-      height: 100,
+      width: .fixed(300),
+      height: .fixed(100),
       child: Center(child: Text(cardName)),
     );
   }

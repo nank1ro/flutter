@@ -127,7 +127,7 @@ class CategoryView extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 24.0),
+              const SizedBox(height: .fixed(24.0)),
             ],
           );
         }).toList(),
@@ -336,7 +336,7 @@ class _BackdropDemoState extends State<BackdropDemo> with SingleTickerProviderSt
 
     return ColoredBox(
       key: _backdropKey,
-      color: theme.primaryColor,
+      color: .fixed(theme.primaryColor),
       child: Stack(
         children: <Widget>[
           ListTileTheme(
@@ -344,7 +344,7 @@ class _BackdropDemoState extends State<BackdropDemo> with SingleTickerProviderSt
             textColor: theme.primaryTextTheme.titleLarge!.color!.withOpacity(0.6),
             selectedColor: theme.primaryTextTheme.titleLarge!.color,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: backdropItems,

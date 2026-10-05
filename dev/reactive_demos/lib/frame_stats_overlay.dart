@@ -65,12 +65,14 @@ class _FrameStatsOverlayState extends State<FrameStatsOverlay> {
       right: 8,
       child: IgnorePointer(
         child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.6),
-            borderRadius: BorderRadius.circular(6),
+          decoration: .fixed(
+            BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.6),
+              borderRadius: BorderRadius.circular(6),
+            ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 8, vertical: 4)),
             child: ReactiveText(
               _stats,
               style: () => const TextStyle(color: Colors.white, fontSize: 12),

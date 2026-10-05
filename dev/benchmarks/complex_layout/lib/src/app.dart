@@ -66,7 +66,7 @@ class TileScrollLayout extends StatelessWidget {
         itemCount: 200,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const .fixed(EdgeInsets.all(5.0)),
             child: Material(
               elevation: (index % 5 + 1).toDouble(),
               color: Colors.white,
@@ -204,7 +204,7 @@ class MenuItemWithIcon extends StatelessWidget {
     return Row(
       children: <Widget>[
         Icon(icon),
-        Padding(padding: const EdgeInsets.only(left: 8.0, right: 8.0), child: Text(title)),
+        Padding(padding: const .fixed(EdgeInsets.only(left: 8.0, right: 8.0)), child: Text(title)),
         Text(subtitle, style: Theme.of(context).textTheme.bodySmall),
       ],
     );
@@ -224,7 +224,7 @@ class FancyImageItem extends StatelessWidget {
         const ItemDescription(),
         const ItemImageBox(),
         const InfoBar(),
-        const Padding(padding: EdgeInsets.symmetric(horizontal: 8.0), child: Divider()),
+        const Padding(padding: .fixed(EdgeInsets.symmetric(horizontal: 8.0)), child: Divider()),
         const IconBar(),
         const FatDivider(),
       ],
@@ -243,7 +243,7 @@ class FancyGalleryItem extends StatelessWidget {
         const UserHeader('Ali Connors'),
         ItemGalleryBox(index),
         const InfoBar(),
-        const Padding(padding: EdgeInsets.symmetric(horizontal: 8.0), child: Divider()),
+        const Padding(padding: .fixed(EdgeInsets.symmetric(horizontal: 8.0)), child: Divider()),
         const IconBar(),
         const FatDivider(),
       ],
@@ -257,7 +257,7 @@ class InfoBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const .fixed(EdgeInsets.all(8.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -275,7 +275,7 @@ class IconBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.only(left: 16.0, right: 16.0),
+      padding: .fixed(EdgeInsets.only(left: 16.0, right: 16.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -323,7 +323,7 @@ class MiniIconWithText extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(right: 8.0),
+          padding: const .fixed(EdgeInsets.only(right: 8.0)),
           child: Container(
             width: 16.0,
             height: 16.0,
@@ -357,12 +357,12 @@ class UserHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const .fixed(EdgeInsets.all(8.0)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const Padding(
-            padding: EdgeInsets.only(right: 8.0),
+            padding: .fixed(EdgeInsets.only(right: 8.0)),
             child: Image(
               image: AssetImage('packages/flutter_gallery_assets/people/square/ali.png'),
               width: 32.0,
@@ -415,7 +415,7 @@ class ItemDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: .fixed(EdgeInsets.all(8.0)),
       child: Text(
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       ),
@@ -429,7 +429,7 @@ class ItemImageBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const .fixed(EdgeInsets.all(8.0)),
       child: Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -437,7 +437,7 @@ class ItemImageBox extends StatelessWidget {
             Stack(
               children: <Widget>[
                 const SizedBox(
-                  height: 230.0,
+                  height: .fixed(230.0),
                   child: Image(
                     image: AssetImage(
                       'packages/flutter_gallery_assets/places/india_chettinad_silk_maker.png',
@@ -490,7 +490,7 @@ class ItemImageBox extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const .fixed(EdgeInsets.all(8.0)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
@@ -517,7 +517,7 @@ class ItemGalleryBox extends StatelessWidget {
     final tabNames = <String>['A', 'B', 'C', 'D'];
 
     return SizedBox(
-      height: 200.0,
+      height: const .fixed(200.0),
       child: DefaultTabController(
         length: tabNames.length,
         child: Column(
@@ -528,13 +528,13 @@ class ItemGalleryBox extends StatelessWidget {
                   return Container(
                     key: PageStorageKey<String>(tabName),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const .fixed(EdgeInsets.all(8.0)),
                       child: Card(
                         child: Column(
                           children: <Widget>[
                             Expanded(
                               child: ColoredBox(
-                                color: Theme.of(context).primaryColor,
+                                color: .fixed(Theme.of(context).primaryColor),
                                 child: Center(
                                   child: Text(
                                     tabName,
@@ -561,7 +561,7 @@ class ItemGalleryBox extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
+                                    padding: const .fixed(EdgeInsets.only(left: 8.0)),
                                     child: Text('This is item $tabName'),
                                   ),
                                 ),
@@ -615,7 +615,7 @@ class BottomBarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const .fixed(EdgeInsets.all(8.0)),
       child: Column(
         children: <Widget>[
           IconButton(

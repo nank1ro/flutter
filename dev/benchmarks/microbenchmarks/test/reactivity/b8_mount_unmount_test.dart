@@ -12,7 +12,7 @@
 // of a model are measured under the same rotation as every other row.
 //
 //  - baseline: a plain ColoredBox per node.
-//  - Phase 3 leaf: a ReactiveColoredBox per node, each with its own Signal and
+//  - Phase 3 leaf: a ColoredBox per node, each with its own Signal and
 //    therefore its own owner, effect and graph edge.
 //  - Phase 5 collapsed: an RBox per node. Constructing the nodes is part of
 //    mounting: node construction is what replaces widget allocation plus
@@ -42,7 +42,7 @@ Future<double> _plainLeaves(WidgetTester tester, {required bool timeMount}) asyn
           setState = setter;
           return mounted
               ? mountAllInRows([
-                  for (var i = 0; i < kNodeCount; i++) const ColoredBox(color: Colors.blue),
+                  for (var i = 0; i < kNodeCount; i++) const ColoredBox(color: .fixed(Colors.blue)),
                 ])
               : const SizedBox.shrink();
         },
@@ -95,7 +95,7 @@ Future<double> _reactiveLeaves(WidgetTester tester, {required bool timeMount}) a
         builder: (BuildContext context, StateSetter setter) {
           setState = setter;
           return mounted
-              ? mountAllInRows([for (final s in signals) ReactiveColoredBox(color: s)])
+              ? mountAllInRows([for (final s in signals) ColoredBox(color: s)])
               : const SizedBox.shrink();
         },
       ),
@@ -153,8 +153,8 @@ Future<double> _collapsedNodes(WidgetTester tester, {required bool timeMount}) a
           return node == null
               ? const SizedBox.shrink()
               : SizedBox(
-                  width: 800,
-                  height: kNodeCount.toDouble(),
+                  width: const .fixed(800),
+                  height: .fixed(kNodeCount.toDouble()),
                   child: NodeHost(node: node),
                 );
         },

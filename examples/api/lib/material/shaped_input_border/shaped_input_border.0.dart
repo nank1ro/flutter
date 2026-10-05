@@ -29,7 +29,7 @@ class ShapedInputBorderExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const .all(16.0),
+        padding: const .fixed(.all(16.0)),
         child: Column(
           mainAxisAlignment: .center,
           children: <Widget>[
@@ -66,7 +66,7 @@ class ShapedInputBorderExample extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: .fixed(24)),
             // Stadium border
             TextField(
               decoration: InputDecoration(
@@ -81,7 +81,7 @@ class ShapedInputBorderExample extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: .fixed(24)),
             // Beveled border
             const TextField(
               decoration: InputDecoration(
@@ -94,7 +94,7 @@ class ShapedInputBorderExample extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: .fixed(24)),
             // Filled with custom shape
             TextField(
               decoration: InputDecoration(

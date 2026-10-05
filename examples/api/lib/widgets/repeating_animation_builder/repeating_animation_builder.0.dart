@@ -61,7 +61,7 @@ class _RepeatingAnimationBuilderExampleState
             children: <Widget>[
               Center(
                 child: Transform.rotate(
-                  angle: value * 0.5 * math.pi,
+                  angle: .fixed(value * 0.5 * math.pi),
                   child: child,
                 ),
               ),
@@ -77,7 +77,7 @@ class _RepeatingAnimationBuilderExampleState
   /// Builds the layered visual of the flower and the gem.
   Widget _buildFlowerGem(ColorScheme colors) {
     return SizedBox.square(
-      dimension: 250,
+      dimension: .fixed(250),
       child: Stack(
         alignment: .center,
         children: <Widget>[
@@ -100,7 +100,7 @@ class _RepeatingAnimationBuilderExampleState
             curve: Curves.easeInOutSine,
             builder: (BuildContext context, double value, Widget? child) {
               return Transform.scale(
-                scale: value,
+                scale: .fixed(value),
                 child: Container(
                   decoration: BoxDecoration(
                     boxShadow: <BoxShadow>[
@@ -147,7 +147,7 @@ class _RepeatingAnimationBuilderExampleState
         mainAxisSize: .min,
         children: <Widget>[
           _buildPlayPauseButton(colors, animationValue),
-          const SizedBox(height: 24),
+          const SizedBox(height: .fixed(24)),
           _buildReverseToggle(colors),
         ],
       ),
@@ -158,7 +158,7 @@ class _RepeatingAnimationBuilderExampleState
   Widget _buildPlayPauseButton(ColorScheme colors, double animationValue) {
     const double buttonSize = 88.0;
     return SizedBox.square(
-      dimension: buttonSize,
+      dimension: .fixed(buttonSize),
       // InkWell provides the ripple effect on tap.
       child: InkWell(
         borderRadius: .circular(buttonSize / 2),
@@ -214,12 +214,12 @@ class _RepeatingAnimationBuilderExampleState
               color: colors.onSurface,
               size: 20,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: .fixed(8)),
             Text(
               _isReversing ? 'Back & Forth' : 'Forward Only',
               style: TextStyle(color: colors.onSurface, fontWeight: .w500),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: .fixed(8)),
             Switch(
               value: _isReversing,
               onChanged: (bool value) {

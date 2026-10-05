@@ -48,7 +48,7 @@ class HeroExample extends StatelessWidget {
               'This red icon will use a default rect tween during the hero flight.',
             ),
           ),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: .fixed(10.0)),
           ListTile(
             leading: Hero(
               tag: 'hero-custom-tween',
@@ -64,7 +64,7 @@ class HeroExample extends StatelessWidget {
               'This blue icon will use a custom rect tween during the hero flight.',
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: .fixed(10)),
           ElevatedButton(
             onPressed: () => _gotoDetailsPage(context),
             child: const Text('Tap to trigger hero flight'),

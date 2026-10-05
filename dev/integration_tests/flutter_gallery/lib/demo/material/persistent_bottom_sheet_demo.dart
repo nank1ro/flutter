@@ -39,7 +39,7 @@ class _PersistentBottomSheetDemoState extends State<PersistentBottomSheetDemo> {
               border: Border(top: BorderSide(color: themeData.disabledColor)),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: const .fixed(EdgeInsets.all(32.0)),
               child: Text(
                 'This is a Material persistent bottom sheet. Drag downwards to dismiss it.',
                 textAlign: TextAlign.center,

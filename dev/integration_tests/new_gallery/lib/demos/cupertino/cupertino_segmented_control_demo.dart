@@ -53,9 +53,9 @@ class _CupertinoSegmentedControlDemoState extends State<CupertinoSegmentedContro
         child: SafeArea(
           child: ListView(
             children: <Widget>[
-              const SizedBox(height: 16),
+              const SizedBox(height: .fixed(16)),
               SizedBox(
-                width: segmentedControlMaxWidth,
+                width: const .fixed(segmentedControlMaxWidth),
                 child: CupertinoSegmentedControl<int>(
                   children: children,
                   onValueChanged: onValueChanged,
@@ -63,9 +63,9 @@ class _CupertinoSegmentedControlDemoState extends State<CupertinoSegmentedContro
                 ),
               ),
               SizedBox(
-                width: segmentedControlMaxWidth,
+                width: const .fixed(segmentedControlMaxWidth),
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const .fixed(EdgeInsets.all(16)),
                   child: CupertinoSlidingSegmentedControl<int>(
                     children: children,
                     onValueChanged: onValueChanged,

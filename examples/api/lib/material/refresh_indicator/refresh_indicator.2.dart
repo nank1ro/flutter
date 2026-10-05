@@ -89,7 +89,7 @@ class _RefreshIndicatorExampleState extends State<RefreshIndicatorExample> {
           // Shows an overlay with a CircularProgressIndicator when refreshing.
           if (_isRefreshing)
             ColoredBox(
-              color: Colors.black45,
+              color: .fixed(Colors.black45),
               child: Align(
                 child: CircularProgressIndicator(
                   color: Colors.purple[500],

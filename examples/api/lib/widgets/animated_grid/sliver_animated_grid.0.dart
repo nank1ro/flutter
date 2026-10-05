@@ -218,7 +218,7 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .only(left: 2.0, right: 2.0, top: 2.0),
+      padding: const .fixed(.only(left: 2.0, right: 2.0, top: 2.0)),
       child: ScaleTransition(
         scale: CurvedAnimation(
           parent: animation,
@@ -227,7 +227,7 @@ class CardItem extends StatelessWidget {
         child: GestureDetector(
           onTap: onTap,
           child: SizedBox(
-            height: 80.0,
+            height: .fixed(80.0),
             child: Card(
               color: selected
                   ? Colors.black12

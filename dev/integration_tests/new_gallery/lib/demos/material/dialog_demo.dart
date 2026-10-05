@@ -244,7 +244,10 @@ class _DialogDemoItem extends StatelessWidget {
         children: <Widget>[
           Icon(icon, size: 36, color: color),
           Flexible(
-            child: Padding(padding: const EdgeInsetsDirectional.only(start: 16), child: Text(text)),
+            child: Padding(
+              padding: const .fixed(EdgeInsetsDirectional.only(start: 16)),
+              child: Text(text),
+            ),
           ),
         ],
       ),

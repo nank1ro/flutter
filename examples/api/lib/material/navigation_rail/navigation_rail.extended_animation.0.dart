@@ -76,7 +76,7 @@ class _MyNavigationRailState extends State<MyNavigationRail> {
               mainAxisAlignment: .center,
               children: <Widget>[
                 const Text('Tap on FloatingActionButton to expand'),
-                const SizedBox(height: 20),
+                const SizedBox(height: .fixed(20)),
                 Text('selectedIndex: $_selectedIndex'),
               ],
             ),
@@ -113,7 +113,7 @@ class MyNavigationRailFab extends StatelessWidget {
                   alignment: .centerStart,
                   widthFactor: animation.value,
                   child: Padding(
-                    padding: const .directional(start: 8),
+                    padding: const .fixed(.directional(start: 8)),
                     child: FloatingActionButton.extended(
                       icon: const Icon(Icons.add),
                       label: const Text('CREATE'),

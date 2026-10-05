@@ -50,7 +50,7 @@ class EditableChipFieldExampleState extends State<EditableChipFieldExample> {
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const .symmetric(horizontal: 16),
+            padding: const .fixed(.symmetric(horizontal: 16)),
             child: ChipsInput<String>(
               values: _toppings,
               decoration: const InputDecoration(

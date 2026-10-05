@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 20.0)),
             child: Slider(
               max: 1024.0,
               value: seed.toDouble(),
@@ -122,7 +122,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const .fixed(EdgeInsets.only(bottom: 10.0)),
             child: Text('Random seed for fuzzers: $seed'),
           ),
         ],
@@ -537,14 +537,14 @@ class _FuzzerState extends State<Fuzzer> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.black,
+      color: const .fixed(Colors.black),
       child: Column(
         children: <Widget>[
           Expanded(
             child: SingleChildScrollView(
               child: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const .fixed(EdgeInsets.all(10.0)),
                   child: RichText(text: _textSpan),
                 ),
               ),
@@ -613,16 +613,15 @@ class _UnderlinesState extends State<Underlines> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return ColoredBox(
-      color: Colors.black,
+      color: const .fixed(Colors.black),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.1,
-                  vertical: size.height * 0.1,
+                padding: .fixed(
+                  EdgeInsets.symmetric(horizontal: size.width * 0.1, vertical: size.height * 0.1),
                 ),
                 child: ListBody(
                   children: <Widget>[
@@ -713,7 +712,7 @@ class _FallbackState extends State<Fallback> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return ColoredBox(
-      color: Colors.black,
+      color: const .fixed(Colors.black),
       child: Column(
         children: <Widget>[
           Expanded(
@@ -721,9 +720,8 @@ class _FallbackState extends State<Fallback> {
               scrollDirection: Axis.horizontal,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.1,
-                    vertical: size.height * 0.1,
+                  padding: .fixed(
+                    EdgeInsets.symmetric(horizontal: size.width * 0.1, vertical: size.height * 0.1),
                   ),
                   child: IntrinsicWidth(
                     child: ListBody(
@@ -742,11 +740,14 @@ class _FallbackState extends State<Fallback> {
           ),
           Material(
             child: Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+              padding: const .fixed(EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
-                  const Padding(padding: EdgeInsets.only(bottom: 10.0), child: Text('Font size')),
+                  const Padding(
+                    padding: .fixed(EdgeInsets.only(bottom: 10.0)),
+                    child: Text('Font size'),
+                  ),
                   Expanded(
                     child: Slider(
                       min: 2.0,
@@ -781,7 +782,7 @@ class _BidiState extends State<Bidi> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.black,
+      color: const .fixed(Colors.black),
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20.0),
         children: <Widget>[
@@ -881,7 +882,7 @@ class _BidiState extends State<Bidi> {
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
           ),
-          const SizedBox(height: 40.0),
+          const SizedBox(height: .fixed(40.0)),
           RichText(
             text: TextSpan(
               children: <TextSpan>[
@@ -970,7 +971,7 @@ class _BidiState extends State<Bidi> {
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
           ),
-          const SizedBox(height: 40.0),
+          const SizedBox(height: .fixed(40.0)),
           const Text(
             'The pairs of lines above should match exactly.',
             textAlign: TextAlign.center,
@@ -1026,7 +1027,7 @@ class _ZalgoState extends State<Zalgo> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.black,
+      color: const .fixed(Colors.black),
       child: Column(
         children: <Widget>[
           Expanded(
@@ -1154,13 +1155,13 @@ class _PaintingState extends State<Painting> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return ColoredBox(
-      color: Colors.black,
+      color: const .fixed(Colors.black),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: size.height * 0.1),
+              padding: .fixed(EdgeInsets.only(top: size.height * 0.1)),
               child: Stack(
                 alignment: Alignment.center,
                 children: <Widget>[

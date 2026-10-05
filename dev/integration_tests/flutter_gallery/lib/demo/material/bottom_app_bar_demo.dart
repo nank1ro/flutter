@@ -428,7 +428,7 @@ class _DiamondFab extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         child: SizedBox.square(
-          dimension: 56.0,
+          dimension: const .fixed(56.0),
           child: IconTheme.merge(
             data: IconThemeData(color: Theme.of(context).colorScheme.secondary),
             child: child!,

@@ -35,13 +35,13 @@ class DialogExample extends StatelessWidget {
             context: context,
             builder: (BuildContext context) => Dialog(
               child: Padding(
-                padding: const .all(8.0),
+                padding: const .fixed(.all(8.0)),
                 child: Column(
                   mainAxisSize: .min,
                   mainAxisAlignment: .center,
                   children: <Widget>[
                     const Text('This is a typical dialog.'),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: .fixed(15)),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -55,7 +55,7 @@ class DialogExample extends StatelessWidget {
           ),
           child: const Text('Show Dialog'),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: .fixed(10)),
         TextButton(
           onPressed: () => showDialog<String>(
             context: context,
@@ -65,7 +65,7 @@ class DialogExample extends StatelessWidget {
                 mainAxisAlignment: .center,
                 children: <Widget>[
                   const Text('This is a fullscreen dialog.'),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: .fixed(15)),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);

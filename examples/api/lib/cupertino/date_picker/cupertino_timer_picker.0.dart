@@ -107,14 +107,16 @@ class _TimerPickerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(color: CupertinoColors.inactiveGray, width: 0.0),
-          bottom: BorderSide(color: CupertinoColors.inactiveGray, width: 0.0),
+      decoration: .fixed(
+        const BoxDecoration(
+          border: Border(
+            top: BorderSide(color: CupertinoColors.inactiveGray, width: 0.0),
+            bottom: BorderSide(color: CupertinoColors.inactiveGray, width: 0.0),
+          ),
         ),
       ),
       child: Padding(
-        padding: const .symmetric(horizontal: 16.0),
+        padding: const .fixed(.symmetric(horizontal: 16.0)),
         child: Row(mainAxisAlignment: .spaceBetween, children: children),
       ),
     );

@@ -24,7 +24,7 @@ class SelectableRegionExampleApp extends StatelessWidget {
               mainAxisAlignment: .center,
               children: <Widget>[
                 Text('Select this icon', style: TextStyle(fontSize: 30)),
-                SizedBox(height: 10),
+                SizedBox(height: .fixed(10)),
                 MySelectableAdapter(child: Icon(Icons.key, size: 30)),
               ],
             ),

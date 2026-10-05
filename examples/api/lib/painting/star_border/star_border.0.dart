@@ -66,9 +66,12 @@ class _StarBorderExampleState extends State<StarBorderExample> {
       ),
       child: ListView(
         children: <Widget>[
-          ColoredBox(color: Colors.grey.shade200, child: Options(_model)),
+          ColoredBox(
+            color: .fixed(Colors.grey.shade200),
+            child: Options(_model),
+          ),
           Padding(
-            padding: const .all(18.0),
+            padding: const .fixed(.all(18.0)),
             child: Row(
               mainAxisAlignment: .spaceEvenly,
               children: <Widget>[
@@ -185,7 +188,7 @@ class _OptionsState extends State<Options> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .fromLTRB(5.0, 0.0, 5.0, 10.0),
+      padding: const .fixed(.fromLTRB(5.0, 0.0, 5.0, 10.0)),
       child: Column(
         mainAxisSize: .min,
         children: <Widget>[
@@ -255,7 +258,7 @@ class _OptionsState extends State<Options> {
                       message:
                           'Round the number of points to the nearest integer.',
                       child: Padding(
-                        padding: const .all(8.0),
+                        padding: const .fixed(.all(8.0)),
                         child: OutlinedButton(
                           child: const Text('Nearest'),
                           onPressed: () {
@@ -413,7 +416,7 @@ class ControlSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .all(4.0),
+      padding: const .fixed(.all(4.0)),
       child: Row(
         mainAxisSize: .min,
         children: <Widget>[

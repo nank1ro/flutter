@@ -164,7 +164,7 @@ class _PickerDemoState extends State<PickerDemo> with RestorationMixin {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(_labelText),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: .fixed(16)),
                   ElevatedButton(
                     onPressed: () => switch (widget.type) {
                       PickerDemoType.date => _restorableDatePickerRouteFuture,

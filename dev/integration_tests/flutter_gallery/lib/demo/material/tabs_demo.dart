@@ -104,7 +104,7 @@ class _CardDataItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const .fixed(EdgeInsets.all(16.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -113,7 +113,7 @@ class _CardDataItem extends StatelessWidget {
               child: CircleAvatar(child: Text(page!.id)),
             ),
             SizedBox.square(
-              dimension: 144.0,
+              dimension: const .fixed(144.0),
               child: Image.asset(
                 data!.imageAsset!,
                 package: data!.imageAssetPackage,
@@ -179,7 +179,7 @@ class TabsDemo extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index) {
                               final _CardData data = _allPages[page]![index];
                               return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                padding: const .fixed(EdgeInsets.symmetric(vertical: 8.0)),
                                 child: _CardDataItem(page: page, data: data),
                               );
                             },

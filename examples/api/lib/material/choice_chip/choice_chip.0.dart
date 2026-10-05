@@ -42,7 +42,7 @@ class _ActionChoiceExampleState extends State<ActionChoiceExample> {
           mainAxisAlignment: .center,
           children: <Widget>[
             Text('Choose an item', style: textTheme.labelLarge),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: .fixed(10.0)),
             Wrap(
               spacing: 5.0,
               children: List<Widget>.generate(3, (int index) {

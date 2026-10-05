@@ -77,14 +77,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             padding: const EdgeInsets.symmetric(vertical: 32),
             child: Column(
               children: <Widget>[
-                const SizedBox(height: 24),
+                const SizedBox(height: .fixed(24)),
                 ExcludeSemantics(
                   child: SizedBox(
-                    height: 80,
+                    height: const .fixed(80),
                     child: Image.asset('logo.png', package: 'rally_assets'),
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: .fixed(24)),
                 // Rotate the tab bar, so the animation is vertical for desktops.
                 RotatedBox(
                   quarterTurns: verticalRotation,
@@ -291,9 +291,9 @@ class _RallyTabState extends State<_RallyTab> with SingleTickerProviderStateMixi
     if (widget.isVertical) {
       return Column(
         children: <Widget>[
-          const SizedBox(height: 18),
+          const SizedBox(height: .fixed(18)),
           FadeTransition(opacity: _iconFadeAnimation, child: widget.icon),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           FadeTransition(
             opacity: _titleFadeAnimation,
             child: SizeTransition(
@@ -302,7 +302,7 @@ class _RallyTabState extends State<_RallyTab> with SingleTickerProviderStateMixi
               child: Center(child: ExcludeSemantics(child: widget.titleText)),
             ),
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: .fixed(18)),
         ],
       );
     }
@@ -316,12 +316,12 @@ class _RallyTabState extends State<_RallyTab> with SingleTickerProviderStateMixi
     final double unitWidth = width / (tabCount + expandedTitleWidthMultiplier);
 
     return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 56),
+      constraints: const .fixed(BoxConstraints(minHeight: 56)),
       child: Row(
         children: <Widget>[
           FadeTransition(
             opacity: _iconFadeAnimation,
-            child: SizedBox(width: unitWidth, child: widget.icon),
+            child: SizedBox(width: .fixed(unitWidth), child: widget.icon),
           ),
           FadeTransition(
             opacity: _titleFadeAnimation,
@@ -330,7 +330,7 @@ class _RallyTabState extends State<_RallyTab> with SingleTickerProviderStateMixi
               alignment: Alignment.topLeft,
               sizeFactor: _titleSizeAnimation,
               child: SizedBox(
-                width: unitWidth * expandedTitleWidthMultiplier,
+                width: .fixed(unitWidth * expandedTitleWidthMultiplier),
                 child: Center(child: ExcludeSemantics(child: widget.titleText)),
               ),
             ),

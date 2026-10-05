@@ -31,13 +31,13 @@ class _TestState extends State<Test> {
     }
     return const Row(
       children: <Widget>[
-        SizedBox(width: 10000.0),
-        SizedBox(width: 10000.0),
-        SizedBox(width: 10000.0),
-        SizedBox(width: 10000.0),
-        SizedBox(width: 10000.0),
-        SizedBox(width: 10000.0),
-        SizedBox(width: 10000.0),
+        SizedBox(width: .fixed(10000.0)),
+        SizedBox(width: .fixed(10000.0)),
+        SizedBox(width: .fixed(10000.0)),
+        SizedBox(width: .fixed(10000.0)),
+        SizedBox(width: .fixed(10000.0)),
+        SizedBox(width: .fixed(10000.0)),
+        SizedBox(width: .fixed(10000.0)),
       ],
     );
   }

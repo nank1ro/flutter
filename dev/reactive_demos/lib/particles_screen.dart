@@ -115,10 +115,10 @@ class _ParticlesScreenState extends State<ParticlesScreen> with SingleTickerProv
         children: [
           Center(
             child: SizedBox(
-              width: _fieldSize.width,
-              height: _fieldSize.height,
+              width: .fixed(_fieldSize.width),
+              height: .fixed(_fieldSize.height),
               child: ColoredBox(
-                color: Colors.black,
+                color: const .fixed(Colors.black),
                 child: ReactiveCustomPaint(
                   size: _fieldSize,
                   painter: _ParticlePainter(points: _field.points, generation: _field.generation),

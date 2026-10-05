@@ -76,14 +76,14 @@ class VerificationCodeGenerator extends StatelessWidget {
         mainAxisAlignment: .center,
         children: <Widget>[
           Text('Press Ctrl-C to Copy'),
-          SizedBox(height: 10),
+          SizedBox(height: .fixed(10)),
           Row(
             mainAxisAlignment: .center,
             children: <Widget>[
               CopyableText(text: '111'),
-              SizedBox(width: 5),
+              SizedBox(width: .fixed(5)),
               CopyableText(text: '222'),
-              SizedBox(width: 5),
+              SizedBox(width: .fixed(5)),
               CopyableText(text: '333'),
             ],
           ),

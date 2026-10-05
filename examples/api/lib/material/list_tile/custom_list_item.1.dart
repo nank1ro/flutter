@@ -43,7 +43,7 @@ class _ArticleDescription extends StatelessWidget {
           overflow: .ellipsis,
           style: const TextStyle(fontWeight: .bold),
         ),
-        const Padding(padding: .only(bottom: 2.0)),
+        const Padding(padding: .fixed(.only(bottom: 2.0))),
         Expanded(
           child: Text(
             subtitle,
@@ -86,16 +86,16 @@ class CustomListItemTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .symmetric(vertical: 10.0),
+      padding: const .fixed(.symmetric(vertical: 10.0)),
       child: SizedBox(
-        height: 100,
+        height: .fixed(100),
         child: Row(
           crossAxisAlignment: .start,
           children: <Widget>[
             AspectRatio(aspectRatio: 1.0, child: thumbnail),
             Expanded(
               child: Padding(
-                padding: const .fromLTRB(20.0, 0.0, 2.0, 0.0),
+                padding: const .fixed(.fromLTRB(20.0, 0.0, 2.0, 0.0)),
                 child: _ArticleDescription(
                   title: title,
                   subtitle: subtitle,

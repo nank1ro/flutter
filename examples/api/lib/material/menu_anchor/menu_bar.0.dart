@@ -130,7 +130,7 @@ class _MyMenuBarState extends State<MyMenuBar> {
               mainAxisAlignment: .center,
               children: <Widget>[
                 Padding(
-                  padding: const .all(12.0),
+                  padding: const .fixed(.all(12.0)),
                   child: Text(
                     showingMessage ? widget.message : '',
                     style: Theme.of(context).textTheme.headlineSmall,

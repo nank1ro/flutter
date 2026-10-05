@@ -20,7 +20,7 @@ void main() {
     Matcher transformMatcher(Matrix4 matrix) {
       return everyElement(
         isA<Transform>().having(
-          (Transform widget) => widget.transform,
+          (Transform widget) => widget.transform.value,
           'transform',
           matrix,
         ),

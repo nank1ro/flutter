@@ -33,8 +33,10 @@ class HeaderForm extends StatelessWidget {
     final bool isSmallDesktop = isDisplaySmallDesktop(context);
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop && !isSmallDesktop ? appPaddingLarge : appPaddingSmall,
+      padding: .fixed(
+        EdgeInsets.symmetric(
+          horizontal: isDesktop && !isSmallDesktop ? appPaddingLarge : appPaddingSmall,
+        ),
       ),
       child: isDesktop
           ? LayoutBuilder(
@@ -54,7 +56,7 @@ class HeaderForm extends StatelessWidget {
                         _HeaderTextField(field: field)
                       else
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(end: 16),
+                          padding: const .fixed(EdgeInsetsDirectional.only(end: 16)),
                           child: _HeaderTextField(field: field),
                         ),
                   ],
@@ -66,7 +68,7 @@ class HeaderForm extends StatelessWidget {
               children: <Widget>[
                 for (final HeaderFormField field in fields)
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
+                    padding: const .fixed(EdgeInsets.only(bottom: 8)),
                     child: _HeaderTextField(field: field),
                   ),
               ],

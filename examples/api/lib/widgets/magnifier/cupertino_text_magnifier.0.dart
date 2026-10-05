@@ -39,7 +39,7 @@ class _CupertinoTextMagnifierExampleAppState
         middle: Text('CupertinoTextMagnifier Sample'),
       ),
       child: Padding(
-        padding: const .symmetric(horizontal: 48.0),
+        padding: const .fixed(.symmetric(horizontal: 48.0)),
         child: Center(
           child: CupertinoTextField(
             magnifierConfiguration: TextMagnifierConfiguration(

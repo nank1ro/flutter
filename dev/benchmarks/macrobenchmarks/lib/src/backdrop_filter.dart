@@ -84,11 +84,11 @@ class _BackdropFilterPageState extends State<BackdropFilterPage> with TickerProv
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: .fixed(20)),
               RepaintBoundary(child: addBlur(grid(txt, 17, 5), _blurGroup)),
-              const SizedBox(height: 20),
+              const SizedBox(height: .fixed(20)),
               ColoredBox(
-                color: Colors.white,
+                color: const .fixed(Colors.white),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -99,7 +99,7 @@ class _BackdropFilterPageState extends State<BackdropFilterPage> with TickerProv
                         _blurTexts = v ?? false;
                       }),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: .fixed(10)),
                     const Text('Backdrop grid:'),
                     Checkbox(
                       value: _blurGroup,

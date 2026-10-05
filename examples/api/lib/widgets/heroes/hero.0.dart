@@ -32,7 +32,7 @@ class HeroExample extends StatelessWidget {
       body: Column(
         crossAxisAlignment: .start,
         children: <Widget>[
-          const SizedBox(height: 20.0),
+          const SizedBox(height: .fixed(20.0)),
           ListTile(
             leading: const Hero(
               tag: 'hero-rectangle',

@@ -81,13 +81,13 @@ class _AppLifecycleDisplayState extends State<AppLifecycleDisplay> {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 300,
+        width: .fixed(300),
         child: SingleChildScrollView(
           controller: _scrollController,
           child: Column(
             children: <Widget>[
               Text('Current State: ${_state ?? 'Not initialized yet'}'),
-              const SizedBox(height: 30),
+              const SizedBox(height: .fixed(30)),
               Text('State History:\n  ${_states.join('\n  ')}'),
             ],
           ),

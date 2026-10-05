@@ -55,7 +55,10 @@ class _AnimatedBlurBackdropFilterState extends State<AnimatedBlurBackdropFilter>
               children: <Widget>[
                 for (int i = 0; i < 30; i++)
                   Center(
-                    child: Transform.scale(scale: 1.01, child: const ModeratelyComplexWidget()),
+                    child: Transform.scale(
+                      scale: const .fixed(1.01),
+                      child: const ModeratelyComplexWidget(),
+                    ),
                   ),
               ],
             ),
@@ -78,7 +81,7 @@ class ModeratelyComplexWidget extends StatelessWidget {
       child: ListTile(
         leading: Icon(Icons.abc, size: 24),
         title: DecoratedBox(
-          decoration: BoxDecoration(color: Colors.red),
+          decoration: .fixed(BoxDecoration(color: Colors.red)),
           child: Text('Hello World'),
         ),
         trailing: FlutterLogo(),

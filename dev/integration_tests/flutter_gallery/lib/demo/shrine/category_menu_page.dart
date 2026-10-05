@@ -26,18 +26,18 @@ class CategoryMenuPage extends StatelessWidget {
         child: model.selectedCategory == category
             ? Column(
                 children: <Widget>[
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: .fixed(16.0)),
                   Text(
                     categoryString,
                     style: theme.textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 14.0),
+                  const SizedBox(height: .fixed(14.0)),
                   Container(width: 70.0, height: 2.0, color: kShrinePink400),
                 ],
               )
             : Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding: const .fixed(EdgeInsets.symmetric(vertical: 16.0)),
                 child: Text(
                   categoryString,
                   style: theme.textTheme.bodyLarge!.copyWith(color: kShrineBrown900.withAlpha(153)),

@@ -38,13 +38,13 @@ class OverflowBarExample extends StatelessWidget {
           borderRadius: .all(Radius.circular(4)),
         ),
         child: Padding(
-          padding: const .all(8),
+          padding: const .fixed(.all(8)),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: .min,
               crossAxisAlignment: .stretch,
               children: <Widget>[
-                const SizedBox(height: 128, child: Placeholder()),
+                const SizedBox(height: .fixed(128), child: Placeholder()),
                 Align(
                   alignment: .centerEnd,
                   child: OverflowBar(

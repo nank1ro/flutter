@@ -25,25 +25,25 @@ class FilledButtonApp extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  const SizedBox(height: 30),
+                  const SizedBox(height: .fixed(30)),
                   const Text('Filled'),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: .fixed(15)),
                   FilledButton(onPressed: () {}, child: const Text('Enabled')),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: .fixed(30)),
                   const FilledButton(onPressed: null, child: Text('Disabled')),
                 ],
               ),
-              const SizedBox(width: 30),
+              const SizedBox(width: .fixed(30)),
               Column(
                 children: <Widget>[
-                  const SizedBox(height: 30),
+                  const SizedBox(height: .fixed(30)),
                   const Text('Filled tonal'),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: .fixed(15)),
                   FilledButton.tonal(
                     onPressed: () {},
                     child: const Text('Enabled'),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: .fixed(30)),
                   const FilledButton.tonal(
                     onPressed: null,
                     child: Text('Disabled'),

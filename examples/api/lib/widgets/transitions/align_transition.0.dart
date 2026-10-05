@@ -48,11 +48,11 @@ class _AlignTransitionExampleState extends State<AlignTransitionExample>
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.white,
+      color: .fixed(Colors.white),
       child: AlignTransition(
         alignment: _animation,
         child: const Padding(
-          padding: .all(8.0),
+          padding: .fixed(.all(8.0)),
           child: FlutterLogo(size: 150.0),
         ),
       ),

@@ -91,7 +91,7 @@ class _DateTimePicker extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(width: 12.0),
+        const SizedBox(width: .fixed(12.0)),
         Expanded(
           flex: 3,
           child: _InputDropdown(
@@ -180,7 +180,7 @@ class _DateAndTimePickerDemoState extends State<DateAndTimePickerDemo> {
                   });
                 },
               ),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: .fixed(8.0)),
               InputDecorator(
                 decoration: const InputDecoration(
                   labelText: 'Activity',

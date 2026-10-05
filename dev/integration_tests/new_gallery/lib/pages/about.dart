@@ -54,7 +54,7 @@ class _AboutDialog extends StatelessWidget {
                 style: textTheme.headlineMedium!.apply(color: colorScheme.onPrimary),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: .fixed(24)),
             SelectableText.rich(
               TextSpan(
                 children: <InlineSpan>[
@@ -74,7 +74,7 @@ class _AboutDialog extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: .fixed(18)),
             SelectableText(legalese, style: bodyTextStyle),
           ],
         ),

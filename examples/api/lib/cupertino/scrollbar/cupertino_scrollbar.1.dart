@@ -49,7 +49,7 @@ class _ScrollbarExampleState extends State<ScrollbarExample> {
           itemBuilder: (BuildContext context, int index) {
             return Center(
               child: Padding(
-                padding: const .all(8.0),
+                padding: const .fixed(.all(8.0)),
                 child: Text('Item $index'),
               ),
             );

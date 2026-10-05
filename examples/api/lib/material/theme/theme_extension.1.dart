@@ -100,9 +100,9 @@ class Home extends StatelessWidget {
           mainAxisAlignment: .center,
           children: <Widget>[
             Container(width: 100, height: 100, color: myColors.brandColor),
-            const SizedBox(width: 10),
+            const SizedBox(width: .fixed(10)),
             Container(width: 100, height: 100, color: myColors.danger),
-            const SizedBox(width: 50),
+            const SizedBox(width: .fixed(50)),
             IconButton(
               icon: Icon(isLightTheme ? Icons.nightlight : Icons.wb_sunny),
               onPressed: toggleTheme,

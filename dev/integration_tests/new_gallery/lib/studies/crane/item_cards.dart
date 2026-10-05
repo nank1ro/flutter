@@ -23,7 +23,7 @@ class DestinationCard extends StatelessWidget {
 
     final Widget card = isDesktop
         ? Padding(
-            padding: const EdgeInsets.only(bottom: 40),
+            padding: const .fixed(EdgeInsets.only(bottom: 40)),
             child: Semantics(
               container: true,
               child: Column(
@@ -34,7 +34,7 @@ class DestinationCard extends StatelessWidget {
                     child: _DestinationImage(destination: destination),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 10),
+                    padding: const .fixed(EdgeInsets.only(top: 20, bottom: 10)),
                     child: SelectableText(destination.destination, style: textTheme.titleMedium),
                   ),
                   SelectableText(
@@ -54,7 +54,7 @@ class DestinationCard extends StatelessWidget {
                 leading: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
                   child: SizedBox.square(
-                    dimension: mobileThumbnailSize,
+                    dimension: const .fixed(mobileThumbnailSize),
                     child: _DestinationImage(destination: destination),
                   ),
                 ),

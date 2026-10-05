@@ -49,8 +49,8 @@ class _AnimatedPositionedExampleState extends State<AnimatedPositionedExample> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
-      height: 350,
+      width: .fixed(200),
+      height: .fixed(350),
       child: Stack(
         children: <Widget>[
           AnimatedPositioned(
@@ -66,7 +66,7 @@ class _AnimatedPositionedExampleState extends State<AnimatedPositionedExample> {
                 });
               },
               child: const ColoredBox(
-                color: Colors.blue,
+                color: .fixed(Colors.blue),
                 child: Center(child: Text('Tap me')),
               ),
             ),

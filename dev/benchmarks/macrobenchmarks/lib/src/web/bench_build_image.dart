@@ -310,7 +310,7 @@ class _RotatingWidgetState extends State<_RotatingWidget> with SingleTickerProvi
       animation: controller,
       builder: (BuildContext context, Widget? child) {
         return Transform(
-          transform: Matrix4.identity()..rotateZ(2 * math.pi * controller.value),
+          transform: .fixed(Matrix4.identity()..rotateZ(2 * math.pi * controller.value)),
           child: widget.child,
         );
       },

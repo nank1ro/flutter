@@ -85,8 +85,8 @@ class _SpritesScreenState extends State<SpritesScreen> with SingleTickerProvider
     return ReactiveOffset(
       offset: sprite.position,
       child: DecoratedBox(
-        decoration: BoxDecoration(color: sprite.color, shape: BoxShape.circle),
-        child: const SizedBox(width: _dotSize, height: _dotSize),
+        decoration: .fixed(BoxDecoration(color: sprite.color, shape: BoxShape.circle)),
+        child: const SizedBox(width: .fixed(_dotSize), height: .fixed(_dotSize)),
       ),
     );
   }
@@ -99,10 +99,10 @@ class _SpritesScreenState extends State<SpritesScreen> with SingleTickerProvider
         children: [
           Center(
             child: SizedBox(
-              width: _arenaSize.width,
-              height: _arenaSize.height,
+              width: .fixed(_arenaSize.width),
+              height: .fixed(_arenaSize.height),
               child: ColoredBox(
-                color: Colors.black12,
+                color: const .fixed(Colors.black12),
                 child: For<_Sprite>(
                   each: () => _sprites,
                   keyOf: (_Sprite sprite) => sprite.id,

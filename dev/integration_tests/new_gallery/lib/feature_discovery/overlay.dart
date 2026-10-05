@@ -198,7 +198,7 @@ class Content extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _buildTitle(textTheme),
-            const SizedBox(height: 12.0),
+            const SizedBox(height: .fixed(12.0)),
             _buildDescription(textTheme),
           ],
         ),

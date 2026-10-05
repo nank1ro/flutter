@@ -104,7 +104,7 @@ class _TransformationsDemoState extends State<TransformationsDemo> with TickerPr
         title: Text(GalleryLocalizations.of(context)!.demo2dTransformationsTitle),
       ),
       body: ColoredBox(
-        color: backgroundColor,
+        color: const .fixed(backgroundColor),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             // Draw the scene as big as is available, but allow the user to

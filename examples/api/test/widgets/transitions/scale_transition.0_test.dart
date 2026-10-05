@@ -38,18 +38,18 @@ void main() {
     );
 
     Transform transform = tester.widget(transformFinder);
-    expect(transform.transform[0], 0);
+    expect(transform.transform.value[0], 0);
 
     await tester.pump(const Duration(seconds: 2));
     await tester.pump();
 
     transform = tester.widget(transformFinder);
-    expect(transform.transform[0], 1.0);
+    expect(transform.transform.value[0], 1.0);
 
     await tester.pump(const Duration(seconds: 2));
     await tester.pump();
 
     transform = tester.widget(transformFinder);
-    expect(transform.transform[0], 0);
+    expect(transform.transform.value[0], 0);
   });
 }

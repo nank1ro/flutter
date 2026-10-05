@@ -41,7 +41,7 @@ class MainWidgetState extends State<MainWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             BackButton(),
-            SizedBox(height: 20),
+            SizedBox(height: .fixed(20)),
             Text('Check the back button above'),
           ],
         ),

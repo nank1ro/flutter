@@ -24,7 +24,9 @@ class _BuildOwnerExampleState extends State<BuildOwnerExample> {
   @override
   void initState() {
     super.initState();
-    size = measureWidget(const SizedBox(width: 640, height: 480));
+    size = measureWidget(
+      const SizedBox(width: .fixed(640), height: .fixed(480)),
+    );
   }
 
   @override

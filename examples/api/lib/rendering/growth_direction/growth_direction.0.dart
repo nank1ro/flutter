@@ -54,7 +54,7 @@ class _MyWidgetState extends State<MyWidget> {
     'Y',
     'Z',
   ];
-  final Widget _spacer = const SizedBox.square(dimension: 10);
+  final Widget _spacer = const SizedBox.square(dimension: .fixed(10));
   final UniqueKey _center = UniqueKey();
   AxisDirection _axisDirection = .down;
 
@@ -114,7 +114,7 @@ class _MyWidgetState extends State<MyWidget> {
           fillColor: WidgetStateProperty.all<Color>(Colors.white),
         ),
         child: Padding(
-          padding: const .all(8.0),
+          padding: const .fixed(.all(8.0)),
           child: RadioGroup<AxisDirection>(
             groupValue: _axisDirection,
             onChanged: _onAxisDirectionChanged,
@@ -162,7 +162,7 @@ class _MyWidgetState extends State<MyWidget> {
                 child: Center(child: Text(_alphabet[index - 1])),
               );
             }
-            return Padding(padding: const .all(8.0), child: child);
+            return Padding(padding: const .fixed(.all(8.0)), child: child);
           },
         );
       },
@@ -176,7 +176,10 @@ class _MyWidgetState extends State<MyWidget> {
         title: const Text('GrowthDirections'),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
-          child: Padding(padding: const .all(8.0), child: _getRadioRow()),
+          child: Padding(
+            padding: const .fixed(.all(8.0)),
+            child: _getRadioRow(),
+          ),
         ),
       ),
       body: CustomScrollView(
@@ -199,7 +202,7 @@ class _MyWidgetState extends State<MyWidget> {
             // will progress in either direction from this point.
             key: _center,
             child: const Padding(
-              padding: .all(8.0),
+              padding: .fixed(.all(8.0)),
               child: Center(
                 child: Text('0', style: TextStyle(fontWeight: .bold)),
               ),

@@ -269,8 +269,8 @@ final class _SplitPaneState extends State<SplitPane> {
     for (int i = 0; i < widget.children.length; i++) {
       children.addAll([
         SizedBox(
-          width: isHorizontal ? sizes[i] : width,
-          height: isHorizontal ? height : sizes[i],
+          width: .fixed(isHorizontal ? sizes[i] : width),
+          height: .fixed(isHorizontal ? height : sizes[i]),
           child: widget.children[i],
         ),
         if (i < widget.children.length - 1)
@@ -339,7 +339,7 @@ final class DefaultSplitter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
-      angle: isHorizontal ? degToRad(90.0) : degToRad(0.0),
+      angle: .fixed(isHorizontal ? degToRad(90.0) : degToRad(0.0)),
       child: Align(
         widthFactor: 0.5,
         heightFactor: 0.5,

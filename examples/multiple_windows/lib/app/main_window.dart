@@ -145,12 +145,21 @@ class _WindowsTable extends StatelessWidget {
           showBottomBorder: true,
           columns: const [
             DataColumn(
-              label: SizedBox(width: 20, child: Text('ID', style: TextStyle(fontSize: 16))),
+              label: SizedBox(
+                width: .fixed(20),
+                child: Text('ID', style: TextStyle(fontSize: 16)),
+              ),
             ),
             DataColumn(
-              label: SizedBox(width: 120, child: Text('Type', style: TextStyle(fontSize: 16))),
+              label: SizedBox(
+                width: .fixed(120),
+                child: Text('Type', style: TextStyle(fontSize: 16)),
+              ),
             ),
-            DataColumn(label: SizedBox(width: 20, child: Text('')), numeric: true),
+            DataColumn(
+              label: SizedBox(width: .fixed(20), child: Text('')),
+              numeric: true,
+            ),
           ],
           rows: _buildRows(windowRegistry, context),
         );
@@ -169,11 +178,11 @@ class _WindowCreatorCard extends StatelessWidget {
     return Card.outlined(
       margin: const EdgeInsets.symmetric(horizontal: 25),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 0, 25, 5),
+        padding: const .fixed(EdgeInsets.fromLTRB(25, 0, 25, 5)),
         child: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: .fixed(EdgeInsets.only(top: 10, bottom: 10)),
               child: Text(
                 'New Window',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
@@ -215,9 +224,9 @@ class _WindowCreatorCard extends StatelessWidget {
                       },
                       child: const Text('Regular'),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: .fixed(8)),
                     TooltipButton(parentController: windowController),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: .fixed(8)),
                     OutlinedButton(
                       onPressed: () {
                         late final WindowEntry entry;
@@ -249,7 +258,7 @@ class _WindowCreatorCard extends StatelessWidget {
                       },
                       child: const Text('Modeless Dialog'),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: .fixed(8)),
                     OutlinedButton(
                       onPressed: () {
                         late final WindowEntry entry;
@@ -283,9 +292,9 @@ class _WindowCreatorCard extends StatelessWidget {
                       },
                       child: const Text('Modal Dialog'),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: .fixed(8)),
                     PopupButton(parentController: windowController),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: .fixed(8)),
                     Container(
                       alignment: Alignment.bottomRight,
                       child: TextButton(
@@ -295,7 +304,7 @@ class _WindowCreatorCard extends StatelessWidget {
                         },
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: .fixed(8)),
                   ],
                 ),
               ),

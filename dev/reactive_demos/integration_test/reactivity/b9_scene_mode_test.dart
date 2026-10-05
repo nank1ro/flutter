@@ -199,7 +199,7 @@ Future<double> _leafMoveOne(WidgetTester tester) async {
           for (final s in offsets)
             ReactiveOffset(
               offset: s,
-              child: const ColoredBox(color: Color(0xFF2196F3)),
+              child: const ColoredBox(color: .fixed(Color(0xFF2196F3))),
             ),
         ]),
       ),
@@ -276,8 +276,8 @@ Future<double> _collapsedMoveOne(WidgetTester tester) async {
     tester,
     MaterialApp(
       home: SizedBox(
-        width: 800,
-        height: kNodeCount.toDouble(),
+        width: const .fixed(800),
+        height: .fixed(kNodeCount.toDouble()),
         child: NodeHost(node: root),
       ),
     ),
@@ -385,7 +385,7 @@ Future<double> _leafMoveAll(WidgetTester tester) async {
                 _effectRuns += 1;
                 return s.value;
               },
-              child: const ColoredBox(color: Color(0xFF2196F3)),
+              child: const ColoredBox(color: .fixed(Color(0xFF2196F3))),
             ),
         ]),
       ),
@@ -449,8 +449,8 @@ Future<double> _collapsedMoveAll(WidgetTester tester) async {
     tester,
     MaterialApp(
       home: SizedBox(
-        width: 800,
-        height: kNodeCount.toDouble(),
+        width: const .fixed(800),
+        height: .fixed(kNodeCount.toDouble()),
         child: NodeHost(node: root),
       ),
     ),
@@ -626,7 +626,7 @@ Future<double> _leafLifecycle(WidgetTester tester) async {
                   for (final s in signals)
                     ReactiveOffset(
                       offset: s,
-                      child: const ColoredBox(color: Color(0xFF2196F3)),
+                      child: const ColoredBox(color: .fixed(Color(0xFF2196F3))),
                     ),
                 ])
               : const SizedBox.shrink();
@@ -673,8 +673,8 @@ Future<double> _collapsedLifecycle(WidgetTester tester) async {
           return node == null
               ? const SizedBox.shrink()
               : SizedBox(
-                  width: 800,
-                  height: kNodeCount.toDouble(),
+                  width: const .fixed(800),
+                  height: .fixed(kNodeCount.toDouble()),
                   child: NodeHost(node: node),
                 );
         },

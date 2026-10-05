@@ -17,7 +17,7 @@ class VideoCard extends StatelessWidget {
 
   Widget _buildInlineVideo() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+      padding: const .fixed(EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0)),
       child: Center(
         child: AspectRatio(
           aspectRatio: 3 / 2,

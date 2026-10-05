@@ -59,9 +59,9 @@ class _NavigationBarSearchField extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: .symmetric(horizontal: padding, vertical: padding),
+      padding: .fixed(.symmetric(horizontal: padding, vertical: padding)),
       child: SizedBox(
-        height: searchFieldHeight,
+        height: .fixed(searchFieldHeight),
         child: CupertinoSearchTextField(),
       ),
     );

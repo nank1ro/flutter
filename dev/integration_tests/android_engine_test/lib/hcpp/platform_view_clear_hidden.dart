@@ -36,7 +36,7 @@ class PlatformViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.square(
-        dimension: 200,
+        dimension: const .fixed(200),
         child: PlatformViewLink(
           viewType: 'changing_color_button_platform_view',
           surfaceFactory: (BuildContext context, PlatformViewController controller) {
@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const .fixed(EdgeInsets.all(16.0)),
               child: ElevatedButton(
                 key: const ValueKey<String>('ToggleRightView'),
                 onPressed: _toggleRightView,

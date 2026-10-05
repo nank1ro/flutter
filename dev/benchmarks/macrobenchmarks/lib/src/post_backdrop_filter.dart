@@ -36,18 +36,18 @@ class _PostBackdropFilterPageState extends State<PostBackdropFilterPage>
       if (_includeBackdropFilter) {
         return Column(
           children: <Widget>[
-            const SizedBox(height: 20),
+            const SizedBox(height: .fixed(20)),
             ClipRect(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                 child: const Text('BackdropFilter'),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: .fixed(20)),
           ],
         );
       } else {
-        return const SizedBox(height: 20);
+        return const SizedBox(height: .fixed(20));
       }
     }
 
@@ -79,7 +79,7 @@ class _PostBackdropFilterPageState extends State<PostBackdropFilterPage>
               getConditionalBackdrop(),
               RepaintBoundary(
                 child: ColoredBox(
-                  color: Colors.white,
+                  color: const .fixed(Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

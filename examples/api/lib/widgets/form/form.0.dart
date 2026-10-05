@@ -49,7 +49,7 @@ class _FormExampleState extends State<FormExample> {
             },
           ),
           Padding(
-            padding: const .symmetric(vertical: 16.0),
+            padding: const .fixed(.symmetric(vertical: 16.0)),
             child: ElevatedButton(
               onPressed: () {
                 // Validate will return true if the form is valid, or false if

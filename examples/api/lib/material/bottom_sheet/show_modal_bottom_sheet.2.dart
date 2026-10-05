@@ -77,7 +77,7 @@ class _ModalBottomSheetExampleState extends State<ModalBottomSheetExample> {
                 })
                 .toList(),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: .fixed(10)),
           ElevatedButton(
             child: const Text('showModalBottomSheet'),
             onPressed: () {

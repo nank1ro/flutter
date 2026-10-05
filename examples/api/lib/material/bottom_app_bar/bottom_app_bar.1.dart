@@ -67,7 +67,7 @@ class _BottomAppBarDemoState extends State<BottomAppBarDemo> {
                 onChanged: _onShowNotchChanged,
               ),
               const Padding(
-                padding: .all(16),
+                padding: .fixed(.all(16)),
                 child: Text('Floating action button position'),
               ),
               const RadioListTile<FloatingActionButtonLocation>(

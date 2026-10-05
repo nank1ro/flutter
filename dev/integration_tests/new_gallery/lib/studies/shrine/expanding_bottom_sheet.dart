@@ -374,8 +374,8 @@ class ExpandingBottomSheetState extends State<ExpandingBottomSheet> {
             child: const Icon(Icons.shopping_cart),
           ),
           SizedBox(
-            width: _width,
-            height: min(numProducts, _maxThumbnailCount) * _paddedThumbnailHeight(context),
+            width: .fixed(_width),
+            height: .fixed(min(numProducts, _maxThumbnailCount) * _paddedThumbnailHeight(context)),
             child: const ProductThumbnailRow(),
           ),
           const ExtraProductsNumber(),
@@ -447,8 +447,8 @@ class ExpandingBottomSheetState extends State<ExpandingBottomSheet> {
         : const AlwaysStoppedAnimation<double>(0);
 
     final Widget child = SizedBox(
-      width: _widthAnimation.value,
-      height: _heightAnimation.value,
+      width: .fixed(_widthAnimation.value),
+      height: .fixed(_heightAnimation.value),
       child: Material(
         animationDuration: Duration.zero,
         shape: BeveledRectangleBorder(
@@ -476,7 +476,7 @@ class ExpandingBottomSheetState extends State<ExpandingBottomSheet> {
         : child;
 
     return Padding(
-      padding: EdgeInsets.only(top: _gapAnimation.value),
+      padding: .fixed(EdgeInsets.only(top: _gapAnimation.value)),
       child: childWithInteraction,
     );
   }

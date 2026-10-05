@@ -184,7 +184,7 @@ class _OptionsState extends State<Options> {
     );
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 10.0),
+      padding: const .fixed(EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 10.0)),
       child: Builder(
         builder: (BuildContext context) {
           return DefaultTextStyle(
@@ -192,7 +192,7 @@ class _OptionsState extends State<Options> {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const .fixed(EdgeInsets.all(8.0)),
                   child: Row(
                     children: <Widget>[
                       const Text('Text Scale'),
@@ -218,7 +218,7 @@ class _OptionsState extends State<Options> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const .fixed(EdgeInsets.all(8.0)),
                   child: Row(
                     children: <Widget>[
                       const Text('X Density'),
@@ -247,7 +247,7 @@ class _OptionsState extends State<Options> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const .fixed(EdgeInsets.all(8.0)),
                   child: Row(
                     children: <Widget>[
                       const Text('Y Density'),
@@ -355,7 +355,7 @@ class _ControlTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const .fixed(EdgeInsets.all(8.0)),
         child: Column(
           children: <Widget>[
             Align(
@@ -409,7 +409,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _ControlTile(
         label: _model.rtl ? 'حقل النص' : 'List Tile',
         child: SizedBox(
-          width: 400,
+          width: const .fixed(400),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -463,7 +463,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _ControlTile(
         label: _model.rtl ? 'حقل النص' : 'Text Field',
         child: SizedBox(
-          width: 300,
+          width: const .fixed(300),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

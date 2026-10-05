@@ -114,8 +114,8 @@ class _RawMenuAnchorAnimationExampleState
                         sizeFactor: animationController.view,
                         fixedCrossAxisSizeFactor: 1.0,
                         child: SizedBox(
-                          height: 200,
-                          width: 150,
+                          height: .fixed(200),
+                          width: .fixed(150),
                           child: Text(
                             'ANIMATION STATUS:\n${_animationStatus.name}',
                             textAlign: .center,

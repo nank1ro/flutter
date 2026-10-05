@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text('Selectable Region Status: $_selectableRegionStatus'),
               ],
             ),
-            const SizedBox(height: 15.0),
+            const SizedBox(height: .fixed(15.0)),
             SelectionArea(
               child: MySelectableText(
                 selectionNotifier: _selectionNotifier,

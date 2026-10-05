@@ -44,7 +44,7 @@ class _ReorderableExampleState extends State<ReorderableExample> {
         for (int index = 0; index < _items.length; index++)
           ColoredBox(
             key: Key('$index'),
-            color: _items[index].isOdd ? oddItemColor : evenItemColor,
+            color: .fixed(_items[index].isOdd ? oddItemColor : evenItemColor),
             child: Row(
               children: <Widget>[
                 Container(

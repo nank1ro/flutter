@@ -16,7 +16,7 @@ class GridViewExampleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Padding(
-        padding: const .all(20.0),
+        padding: const .fixed(.all(20.0)),
         child: Card(
           elevation: 8.0,
           child: GridView.builder(

@@ -437,7 +437,7 @@ class _FocusDemoState extends State<FocusDemo> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const .fixed(EdgeInsets.all(8.0)),
                                 child: ElevatedButton(
                                   onPressed: canUndo
                                       ? () {
@@ -448,7 +448,7 @@ class _FocusDemoState extends State<FocusDemo> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const .fixed(EdgeInsets.all(8.0)),
                                 child: ElevatedButton(
                                   onPressed: canRedo
                                       ? () {

@@ -176,7 +176,7 @@ class _DesktopNavState extends State<_DesktopNav> with SingleTickerProviderState
                     child: SingleChildScrollView(
                       clipBehavior: Clip.antiAlias,
                       child: ConstrainedBox(
-                        constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                        constraints: .fixed(BoxConstraints(minHeight: constraints.maxHeight)),
                         child: IntrinsicHeight(
                           child: ValueListenableBuilder<bool>(
                             valueListenable: _isExtended,
@@ -215,11 +215,11 @@ class _DesktopNavState extends State<_DesktopNav> with SingleTickerProviderState
             },
           ),
           const VerticalDivider(thickness: 1, width: 1),
-          Expanded(
+          const Expanded(
             child: Center(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1340),
-                child: const _SharedAxisTransitionSwitcher(
+                constraints: .fixed(BoxConstraints(maxWidth: 1340)),
+                child: _SharedAxisTransitionSwitcher(
                   defaultChild: _MailNavigator(child: MailboxBody()),
                 ),
               ),
@@ -250,10 +250,10 @@ class _NavigationRailHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 56,
+                height: const .fixed(56),
                 child: Row(
                   children: <Widget>[
-                    const SizedBox(width: 6),
+                    const SizedBox(width: .fixed(6)),
                     InkWell(
                       key: const ValueKey<String>('ReplyLogo'),
                       borderRadius: const BorderRadius.all(Radius.circular(16)),
@@ -263,7 +263,7 @@ class _NavigationRailHeader extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Transform.rotate(
-                            angle: animation.value * math.pi,
+                            angle: .fixed(animation.value * math.pi),
                             child: const Icon(
                               Icons.arrow_left,
                               color: ReplyColors.white50,
@@ -271,7 +271,7 @@ class _NavigationRailHeader extends StatelessWidget {
                             ),
                           ),
                           const _ReplyLogo(),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: .fixed(10)),
                           Align(
                             alignment: AlignmentDirectional.centerStart,
                             widthFactor: animation.value,
@@ -283,7 +283,7 @@ class _NavigationRailHeader extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(width: 18 * animation.value),
+                          SizedBox(width: .fixed(18 * animation.value)),
                         ],
                       ),
                     ),
@@ -292,9 +292,9 @@ class _NavigationRailHeader extends StatelessWidget {
                         opacity: .fixed(animation.value),
                         child: const Row(
                           children: <Widget>[
-                            SizedBox(width: 18),
+                            SizedBox(width: .fixed(18)),
                             ProfileAvatar(avatar: 'reply/avatars/avatar_2.jpg', radius: 16),
-                            SizedBox(width: 12),
+                            SizedBox(width: .fixed(12)),
                             Icon(Icons.settings, color: ReplyColors.white50),
                           ],
                         ),
@@ -302,12 +302,12 @@ class _NavigationRailHeader extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: .fixed(20)),
               Padding(
-                padding: const EdgeInsetsDirectional.only(start: 8),
+                padding: const .fixed(EdgeInsetsDirectional.only(start: 8)),
                 child: _ReplyFab(extended: extended.value),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: .fixed(8)),
             ],
           ),
         );
@@ -341,8 +341,8 @@ class _NavigationRailFolderSection extends StatelessWidget {
               widthFactor: animation.value,
               alignment: AlignmentDirectional.centerStart,
               child: SizedBox(
-                height: 485,
-                width: 256,
+                height: const .fixed(485),
+                width: const .fixed(256),
                 child: ListView(
                   padding: const EdgeInsets.all(12),
                   physics: const NeverScrollableScrollPhysics(),
@@ -353,9 +353,9 @@ class _NavigationRailFolderSection extends StatelessWidget {
                       indent: 14,
                       endIndent: 16,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: .fixed(16)),
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 16),
+                      padding: const .fixed(EdgeInsetsDirectional.only(start: 16)),
                       child: Text(
                         'FOLDERS',
                         style: textTheme.bodySmall!.copyWith(
@@ -363,7 +363,7 @@ class _NavigationRailFolderSection extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: .fixed(8)),
                     for (final String folder in folders.keys)
                       InkWell(
                         borderRadius: const BorderRadius.all(Radius.circular(36)),
@@ -372,19 +372,19 @@ class _NavigationRailFolderSection extends StatelessWidget {
                           children: <Widget>[
                             Row(
                               children: <Widget>[
-                                const SizedBox(width: 12),
+                                const SizedBox(width: .fixed(12)),
                                 ImageIcon(
                                   AssetImage(folders[folder]!, package: _assetsPackage),
                                   color: navigationRailTheme.unselectedLabelTextStyle!.color,
                                 ),
-                                const SizedBox(width: 24),
+                                const SizedBox(width: .fixed(24)),
                                 Text(
                                   folder,
                                   style: textTheme.bodyLarge!.copyWith(
                                     color: navigationRailTheme.unselectedLabelTextStyle!.color,
                                   ),
                                 ),
-                                const SizedBox(height: 72),
+                                const SizedBox(height: .fixed(72)),
                               ],
                             ),
                           ],
@@ -615,7 +615,10 @@ class _MobileNavState extends State<_MobileNav> with TickerProviderStateMixin {
         ),
         floatingActionButton: _bottomDrawerVisible
             ? null
-            : const Padding(padding: EdgeInsetsDirectional.only(bottom: 8), child: _ReplyFab()),
+            : const Padding(
+                padding: .fixed(EdgeInsetsDirectional.only(bottom: 8)),
+                child: _ReplyFab(),
+              ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
@@ -659,7 +662,7 @@ class _AnimatedBottomAppBar extends StatelessWidget {
           sizeFactor: bottomAppBarCurve,
           alignment: Alignment.topLeft,
           child: Padding(
-            padding: const EdgeInsetsDirectional.only(top: 2),
+            padding: const .fixed(EdgeInsetsDirectional.only(top: 2)),
             child: BottomAppBar(
               shape: const WaterfallNotchedRectangle(),
               notchMargin: 6,
@@ -675,18 +678,18 @@ class _AnimatedBottomAppBar extends StatelessWidget {
                       onTap: toggleBottomDrawerVisibility,
                       child: Row(
                         children: <Widget>[
-                          const SizedBox(width: 16),
+                          const SizedBox(width: .fixed(16)),
                           RotationTransition(
                             turns: Tween<double>(begin: 0.0, end: 1.0).animate(dropArrowCurve),
                             child: const Icon(Icons.arrow_drop_up, color: ReplyColors.white50),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: .fixed(8)),
                           const _ReplyLogo(),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: .fixed(10)),
                           _FadeThroughTransitionSwitcher(
                             fillColor: Colors.transparent,
                             child: onMailView
-                                ? const SizedBox(width: 48)
+                                ? const SizedBox(width: .fixed(48))
                                 : FadeTransition(
                                     opacity: fadeOut,
                                     child: Text(
@@ -704,7 +707,7 @@ class _AnimatedBottomAppBar extends StatelessWidget {
                     ),
                     Expanded(
                       child: ColoredBox(
-                        color: Colors.transparent,
+                        color: const .fixed(Colors.transparent),
                         child: _BottomAppBarActionItems(drawerVisible: bottomDrawerVisible),
                       ),
                     ),
@@ -1049,7 +1052,7 @@ class _ReplyFabState extends State<_ReplyFab> with SingleTickerProviderStateMixi
                       label: Row(
                         children: <Widget>[
                           fabSwitcher,
-                          SizedBox(width: 16 * animation.value),
+                          SizedBox(width: .fixed(16 * animation.value)),
                           Align(
                             alignment: AlignmentDirectional.centerStart,
                             widthFactor: animation.value,
@@ -1085,7 +1088,7 @@ class _ReplyFabState extends State<_ReplyFab> with SingleTickerProviderStateMixi
                   customBorder: circleFabBorder,
                   onTap: openContainer,
                   child: SizedBox.square(
-                    dimension: _mobileFabDimension,
+                    dimension: const .fixed(_mobileFabDimension),
                     child: Center(child: fabSwitcher),
                   ),
                 ),

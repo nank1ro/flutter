@@ -92,8 +92,8 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
       title: const Center(child: Text('Window Settings')),
       children: [
         SizedBox(
-          width: size.width * 0.7,
-          height: size.height * 0.8,
+          width: .fixed(size.width * 0.7),
+          height: .fixed(size.height * 0.8),
           child: Column(
             children: [
               Expanded(
@@ -130,7 +130,7 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
                   enabled: !_regularSizedToContent,
                 ),
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: .fixed(20)),
               Expanded(
                 child: TextFormField(
                   controller: _regularHeightController,
@@ -140,16 +140,16 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: .fixed(8)),
           Row(
             children: [
-              const SizedBox(width: 100, child: Text('Sized to content')),
+              const SizedBox(width: .fixed(100), child: Text('Sized to content')),
               Switch(
                 value: _regularSizedToContent,
                 onChanged: (bool value) => setState(() => _regularSizedToContent = value),
               ),
-              const SizedBox(width: 24),
-              const SizedBox(width: 70, child: Text('Resizable')),
+              const SizedBox(width: .fixed(24)),
+              const SizedBox(width: .fixed(70), child: Text('Resizable')),
               Switch(
                 value: _regularResizable,
                 onChanged: (bool value) => setState(() => _regularResizable = value),
@@ -176,7 +176,7 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
                   enabled: !_dialogSizedToContent,
                 ),
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: .fixed(20)),
               Expanded(
                 child: TextFormField(
                   controller: _dialogHeightController,
@@ -186,16 +186,16 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: .fixed(8)),
           Row(
             children: [
-              const SizedBox(width: 100, child: Text('Sized to content')),
+              const SizedBox(width: .fixed(100), child: Text('Sized to content')),
               Switch(
                 value: _dialogSizedToContent,
                 onChanged: (bool value) => setState(() => _dialogSizedToContent = value),
               ),
-              const SizedBox(width: 24),
-              const SizedBox(width: 70, child: Text('Resizable')),
+              const SizedBox(width: .fixed(24)),
+              const SizedBox(width: .fixed(70), child: Text('Resizable')),
               Switch(
                 value: _dialogResizable,
                 onChanged: (bool value) => setState(() => _dialogResizable = value),
@@ -230,7 +230,7 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
               }
             },
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           const Text('Child Anchor', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
           DropdownButton<WindowPositionerAnchor>(
             isExpanded: true,
@@ -246,7 +246,7 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
               }
             },
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           const Text('Offset', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
           Row(
             children: [
@@ -256,7 +256,7 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
                   decoration: const InputDecoration(labelText: 'X'),
                 ),
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: .fixed(20)),
               Expanded(
                 child: TextFormField(
                   controller: _offsetDyController,
@@ -265,17 +265,17 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           const Text(
             'Constraint Adjustment',
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: .fixed(8)),
           const Text('Flip', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
           Row(
             children: [
               const SizedBox(
-                width: 30,
+                width: .fixed(30),
                 child: Text('X', style: TextStyle(fontWeight: FontWeight.w500)),
               ),
               Switch(
@@ -286,9 +286,9 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
                   });
                 },
               ),
-              const SizedBox(width: 24),
+              const SizedBox(width: .fixed(24)),
               const SizedBox(
-                width: 30,
+                width: .fixed(30),
                 child: Text('Y', style: TextStyle(fontWeight: FontWeight.w500)),
               ),
               Switch(
@@ -301,12 +301,12 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: .fixed(8)),
           const Text('Slide', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
           Row(
             children: [
               const SizedBox(
-                width: 30,
+                width: .fixed(30),
                 child: Text('X', style: TextStyle(fontWeight: FontWeight.w500)),
               ),
               Switch(
@@ -317,9 +317,9 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
                   });
                 },
               ),
-              const SizedBox(width: 24),
+              const SizedBox(width: .fixed(24)),
               const SizedBox(
-                width: 30,
+                width: .fixed(30),
                 child: Text('Y', style: TextStyle(fontWeight: FontWeight.w500)),
               ),
               Switch(
@@ -332,12 +332,12 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: .fixed(8)),
           const Text('Resize', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
           Row(
             children: [
               const SizedBox(
-                width: 30,
+                width: .fixed(30),
                 child: Text('X', style: TextStyle(fontWeight: FontWeight.w500)),
               ),
               Switch(
@@ -348,9 +348,9 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
                   });
                 },
               ),
-              const SizedBox(width: 24),
+              const SizedBox(width: .fixed(24)),
               const SizedBox(
-                width: 30,
+                width: .fixed(30),
                 child: Text('Y', style: TextStyle(fontWeight: FontWeight.w500)),
               ),
               Switch(
@@ -375,7 +375,7 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           TextButton(onPressed: widget.onClose, child: const Text('Cancel')),
-          const SizedBox(width: 12),
+          const SizedBox(width: .fixed(12)),
           FilledButton(
             onPressed: () {
               widget.settings.regularSize = Size(
@@ -420,10 +420,10 @@ class _WindowSettingsEditorState extends State<_WindowSettingsEditor> {
 
   Widget _buildDivider() {
     return const Padding(
-      padding: EdgeInsets.all(4),
+      padding: .fixed(EdgeInsets.all(4)),
       child: ColoredBox(
-        color: Color(0xFF000000),
-        child: SizedBox(height: 4, width: double.infinity),
+        color: .fixed(Color(0xFF000000)),
+        child: SizedBox(height: .fixed(4), width: .fixed(double.infinity)),
       ),
     );
   }

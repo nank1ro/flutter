@@ -73,19 +73,19 @@ class _CupertinoAlertDemoState extends State<CupertinoAlertDemo> {
                         child: const Text('Alert'),
                         onPressed: () => _onAlertPress(context),
                       ),
-                      const Padding(padding: EdgeInsets.all(8.0)),
+                      const Padding(padding: .fixed(EdgeInsets.all(8.0))),
                       CupertinoButton.filled(
                         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
                         child: const Text('Alert with Title'),
                         onPressed: () => _onAlertWithTitlePress(context),
                       ),
-                      const Padding(padding: EdgeInsets.all(8.0)),
+                      const Padding(padding: .fixed(EdgeInsets.all(8.0))),
                       CupertinoButton.filled(
                         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
                         child: const Text('Alert with Buttons'),
                         onPressed: () => _onAlertWithButtonsPress(context),
                       ),
-                      const Padding(padding: EdgeInsets.all(8.0)),
+                      const Padding(padding: .fixed(EdgeInsets.all(8.0))),
                       CupertinoButton.filled(
                         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
                         child: const Text('Alert Buttons Only'),
@@ -93,7 +93,7 @@ class _CupertinoAlertDemoState extends State<CupertinoAlertDemo> {
                           showDemoDialog(context: context, child: const CupertinoDessertDialog());
                         },
                       ),
-                      const Padding(padding: EdgeInsets.all(8.0)),
+                      const Padding(padding: .fixed(EdgeInsets.all(8.0))),
                       CupertinoButton.filled(
                         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
                         child: const Text('Action Sheet'),

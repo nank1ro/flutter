@@ -14,7 +14,7 @@
 //  - naive: setState on the root, rebuilding all 10,000 children.
 //  - Phase 2: each sprite reads its own Signal<Color> in its own build. No
 //    builder widget and no BuildContext dependency.
-//  - Phase 3 leaf: the sprite is a ReactiveColoredBox whose colour is bound
+//  - Phase 3 leaf: the sprite is a ColoredBox whose colour is bound
 //    straight to the signal, so a write runs one effect, calls one
 //    render-object setter, and rebuilds nothing.
 //  - Phase 5 collapsed: the same sprite as one RBox in a node tree, where
@@ -57,7 +57,7 @@ class _SignalSprite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _spriteBuilds++;
-    return ColoredBox(color: color.value);
+    return ColoredBox(color: .fixed(color.value));
   }
 }
 
@@ -93,7 +93,7 @@ Future<double> _valueListenable(WidgetTester tester) async {
               valueListenable: n,
               builder: (BuildContext context, Color color, Widget? child) {
                 buildCount++;
-                return ColoredBox(color: color);
+                return ColoredBox(color: .fixed(color));
               },
             ),
           ),
@@ -135,7 +135,7 @@ Future<double> _setStateRoot(WidgetTester tester) async {
         builder: (BuildContext context, StateSetter setter) {
           setState = setter;
           return mountAllInRows([
-            for (final c in colors) RepaintBoundary(child: ColoredBox(color: c)),
+            for (final c in colors) RepaintBoundary(child: ColoredBox(color: .fixed(c))),
           ]);
         },
       ),
@@ -197,7 +197,7 @@ Future<double> _leafBinding(WidgetTester tester) async {
     MaterialApp(
       home: _BuildProbe(
         child: mountAllInRows([
-          for (final s in signals) RepaintBoundary(child: ReactiveColoredBox(color: s)),
+          for (final s in signals) RepaintBoundary(child: ColoredBox(color: s)),
         ]),
       ),
     ),
@@ -223,10 +223,12 @@ Future<double> _leafBinding(WidgetTester tester) async {
   // Liveness: the render object really took the last colour written.
   expect(
     tester
-        .renderObjectList<RenderReactiveColoredBox>(find.byType(ReactiveColoredBox))
-        .elementAt((i - 1) % kSpriteCount)
-        .color,
-    _colorFor(i - 1),
+        .renderObjectList<RenderObject>(
+          // Only the sprites: the app shell has ColoredBoxes of its own.
+          find.descendant(of: find.byType(_BuildProbe), matching: find.byType(ColoredBox)),
+        )
+        .elementAt((i - 1) % kSpriteCount),
+    paints..rect(color: _colorFor(i - 1)),
   );
   // Nothing rebuilt: the update never entered the build pipeline.
   expect(_probeBuilds, 0);
@@ -267,8 +269,8 @@ Future<double> _collapsedNodes(WidgetTester tester) async {
   await tester.pumpWidget(
     MaterialApp(
       home: SizedBox(
-        width: 800,
-        height: kSpriteCount.toDouble(),
+        width: const .fixed(800),
+        height: .fixed(kSpriteCount.toDouble()),
         child: NodeHost(node: root),
       ),
     ),

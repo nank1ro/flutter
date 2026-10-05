@@ -81,7 +81,7 @@ class _InfiniteScrollCardsState extends State<_InfiniteScrollCards> {
       itemExtent: 100.0,
       itemBuilder: (BuildContext context, int index) {
         return SizedBox(
-          height: 100.0,
+          height: const .fixed(100.0),
           child: Card(
             elevation: 16.0,
             child: Text('${lipsum[index % lipsum.length]} $index', textAlign: TextAlign.center),

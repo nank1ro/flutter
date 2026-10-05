@@ -43,7 +43,7 @@ class _DrawArcsPageState extends State<DrawArcsPage> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(numRows.toDouble(), 0, numRows * 2, numRows.toDouble()),
+      padding: .fixed(EdgeInsets.fromLTRB(numRows.toDouble(), 0, numRows * 2, numRows.toDouble())),
       child: CustomPaint(painter: ArcsPainter(tick, widget.paintStyle), child: Container()),
     );
   }

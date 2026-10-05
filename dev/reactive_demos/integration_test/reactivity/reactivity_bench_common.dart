@@ -177,8 +177,8 @@ Future<void> runInterleaved(
 /// classic variants match the collapsed model's render-object count exactly.
 Widget mountAllInRows(List<Widget> children, {double itemHeight = 1, double itemWidth = 800}) {
   return SizedBox(
-    width: itemWidth,
-    height: itemHeight * children.length,
+    width: .fixed(itemWidth),
+    height: .fixed(itemHeight * children.length),
     child: Stack(
       children: [
         for (var i = 0; i < children.length; i++)

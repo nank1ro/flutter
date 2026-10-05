@@ -56,9 +56,9 @@ class _ValueListenableBuilderExampleState
               // expensive to build and does not depend on the value from
               // the notifier.
               child: const Padding(
-                padding: .all(10.0),
+                padding: .fixed(.all(10.0)),
                 child: SizedBox.square(
-                  dimension: 40,
+                  dimension: .fixed(40),
                   child: FlutterLogo(size: 40),
                 ),
               ),

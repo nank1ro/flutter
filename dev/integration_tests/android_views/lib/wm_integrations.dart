@@ -40,7 +40,7 @@ class WindowManagerBodyState extends State<WindowManagerBody> {
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: 300,
+            height: const .fixed(300),
             child: AndroidView(
               viewType: 'simple_view',
               onPlatformViewCreated: onPlatformViewCreated,
@@ -82,7 +82,7 @@ class WindowManagerBodyState extends State<WindowManagerBody> {
     assert(_lastTestStatus != _LastTestStatus.pending);
     final String? message = _lastTestStatus == _LastTestStatus.success ? 'Success' : lastError;
     return ColoredBox(
-      color: _lastTestStatus == _LastTestStatus.success ? Colors.green : Colors.red,
+      color: .fixed(_lastTestStatus == _LastTestStatus.success ? Colors.green : Colors.red),
       child: Text(
         message!,
         key: const ValueKey<String>('Status'),

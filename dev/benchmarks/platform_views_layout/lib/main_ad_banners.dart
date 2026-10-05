@@ -48,11 +48,18 @@ class PlatformViewAppState extends State<PlatformViewApp> {
           itemBuilder: (BuildContext context, int index) {
             return index.isEven
                 // Use 320x50 Admob standard banner size.
-                ? SizedBox(width: 320, height: 50, child: _getBannerWidget())
+                ? SizedBox(
+                    width: const .fixed(320),
+                    height: const .fixed(50),
+                    child: _getBannerWidget(),
+                  )
                 // Adjust the height to control number of platform views on screen.
                 // TODO(hellohuanlin): Having more than 5 banners on screen causes an unknown crash.
                 // See: https://github.com/flutter/flutter/issues/144339
-                : const SizedBox(height: 150, child: ColoredBox(color: Colors.yellow));
+                : const SizedBox(
+                    height: .fixed(150),
+                    child: ColoredBox(color: .fixed(Colors.yellow)),
+                  );
           },
         ),
       ),

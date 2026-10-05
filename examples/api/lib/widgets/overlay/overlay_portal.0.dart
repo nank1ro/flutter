@@ -45,7 +45,7 @@ class ClickableTooltipWidgetState extends State<ClickableTooltipWidget> {
               right: 50,
               bottom: 50,
               child: ColoredBox(
-                color: Colors.amberAccent,
+                color: .fixed(Colors.amberAccent),
                 child: Text('tooltip'),
               ),
             );

@@ -56,7 +56,7 @@ class WidgetPreviewErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return SizedBox(
-      height: size.height,
+      height: .fixed(size.height),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -397,7 +397,7 @@ class WidgetPreviewWidgetState extends State<WidgetPreviewWidget> {
               // Trigger a rebuild on the next frame to re-insert previewWidget.
               softRestartListenable.value = false;
             }, debugLabel: 'Soft Restart');
-            return SizedBox.fromSize(size: lastChildSize);
+            return SizedBox.fromSize(size: .fixed(lastChildSize));
           }
           return previewWidget;
         } on Object catch (error, stackTrace) {
@@ -445,8 +445,8 @@ class WidgetPreviewWidgetState extends State<WidgetPreviewWidget> {
       child: _WidgetPreviewWrapper(
         previewerConstraints: maxSizeConstraints,
         child: SizedBox(
-          width: size?.width == double.infinity ? null : size?.width,
-          height: size?.height == double.infinity ? null : size?.height,
+          width: .fixed(size?.width == double.infinity ? null : size?.width),
+          height: .fixed(size?.height == double.infinity ? null : size?.height),
           child: preview,
         ),
       ),
@@ -484,7 +484,7 @@ class WidgetPreviewWidgetState extends State<WidgetPreviewWidget> {
       children: [
         if (hasName)
           Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: .fixed(const EdgeInsets.only(bottom: 8.0)),
             child: Text(
               widget.preview.name!,
               style: fixBlurryText(
@@ -529,10 +529,10 @@ class WidgetPreviewWidgetState extends State<WidgetPreviewWidget> {
     );
 
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: .fixed(const EdgeInsets.all(16.0)),
       child: Card.outlined(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: .fixed(const EdgeInsets.symmetric(vertical: 16.0)),
           child: preview,
         ),
       ),
@@ -566,9 +566,9 @@ class _WidgetPreviewControlRow extends StatelessWidget {
       // TODO(bkonyi): improve layout of controls.
       children: [
         ZoomControls(transformationController: transformationController),
-        const SizedBox(width: 30),
+        const SizedBox(width: .fixed(30)),
         BrightnessToggleButton(brightnessListenable: brightnessListenable),
-        const SizedBox(width: 10),
+        const SizedBox(width: .fixed(10)),
         SoftRestartButton(softRestartListenable: softRestartListenable),
       ],
     );

@@ -27,7 +27,7 @@ class CategoryMenuPage extends StatelessWidget {
 
   Widget _buttonText(String caption, TextStyle style) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const .fixed(EdgeInsets.symmetric(vertical: 16)),
       child: Text(caption, style: style, textAlign: TextAlign.center),
     );
   }
@@ -103,9 +103,9 @@ class CategoryMenuPage extends StatelessWidget {
               width: desktopCategoryMenuPageWidth(context: context),
               child: Column(
                 children: <Widget>[
-                  const SizedBox(height: 64),
+                  const SizedBox(height: .fixed(64)),
                   Image.asset('packages/shrine_images/diamond.png', excludeFromSemantics: true),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: .fixed(16)),
                   Semantics(
                     container: true,
                     child: Text('SHRINE', style: Theme.of(context).textTheme.headlineSmall),
@@ -135,7 +135,7 @@ class CategoryMenuPage extends StatelessWidget {
                     tooltip: GalleryLocalizations.of(context)!.shrineTooltipSearch,
                     onPressed: () {},
                   ),
-                  const SizedBox(height: 72),
+                  const SizedBox(height: .fixed(72)),
                 ],
               ),
             ),

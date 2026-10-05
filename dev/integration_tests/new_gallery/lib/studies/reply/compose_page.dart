@@ -31,7 +31,7 @@ class ComposePage extends StatelessWidget {
       body: SafeArea(
         bottom: false,
         child: SizedBox(
-          height: double.infinity,
+          height: const .fixed(double.infinity),
           child: Material(
             color: Theme.of(context).cardColor,
             child: SingleChildScrollView(
@@ -46,7 +46,7 @@ class ComposePage extends StatelessWidget {
                   _RecipientsRow(recipients: recipient, avatar: recipientAvatar),
                   const _SectionDivider(),
                   Padding(
-                    padding: const EdgeInsets.all(12),
+                    padding: const .fixed(EdgeInsets.all(12)),
                     child: TextField(
                       minLines: 6,
                       maxLines: 20,
@@ -94,7 +94,7 @@ class _SubjectRowState extends State<_SubjectRow> {
     final ColorScheme colorScheme = theme.colorScheme;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 8),
+      padding: const .fixed(EdgeInsets.only(top: 8)),
       child: Row(
         children: <Widget>[
           IconButton(
@@ -172,7 +172,7 @@ class __SenderAddressRowState extends State<_SenderAddressRow> {
         ),
       ],
       child: Padding(
-        padding: const EdgeInsets.only(left: 12, top: 16, right: 10, bottom: 10),
+        padding: const .fixed(EdgeInsets.only(left: 12, top: 16, right: 10, bottom: 10)),
         child: Row(
           children: <Widget>[
             Expanded(child: Text(senderEmail, style: textTheme.bodyMedium)),
@@ -193,7 +193,7 @@ class _RecipientsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+      padding: const .fixed(EdgeInsets.symmetric(vertical: 4, horizontal: 12)),
       child: Row(
         children: <Widget>[
           Expanded(

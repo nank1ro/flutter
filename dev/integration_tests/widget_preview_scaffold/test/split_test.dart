@@ -18,8 +18,8 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: SizedBox(
-                width: 1000,
-                height: 600,
+                width: .fixed(1000),
+                height: .fixed(600),
                 child: SplitPane(
                   axis: Axis.horizontal,
                   initialFractions: const [0.7, 0.3],
@@ -68,8 +68,8 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: SizedBox(
-                width: 1000,
-                height: 600,
+                width: .fixed(1000),
+                height: .fixed(600),
                 child: SplitPane(
                   axis: Axis.horizontal,
                   initialFractions: const [0.7, 0.3],

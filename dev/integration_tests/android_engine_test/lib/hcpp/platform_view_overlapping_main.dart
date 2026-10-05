@@ -50,40 +50,52 @@ class _MainAppState extends State<MainApp> {
             top: 100,
             textDirection: TextDirection.ltr,
             child: const SizedBox.square(
-              dimension: 200,
+              dimension: .fixed(200),
               child: _HybridCompositionAndroidPlatformView(viewType: 'box_platform_view'),
             ),
           ),
           Positioned.directional(
             top: 200,
             textDirection: TextDirection.ltr,
-            child: const SizedBox(width: 800, height: 200, child: ColoredBox(color: Colors.yellow)),
+            child: const SizedBox(
+              width: .fixed(800),
+              height: .fixed(200),
+              child: ColoredBox(color: .fixed(Colors.yellow)),
+            ),
           ),
           Positioned.directional(
             top: 300,
             textDirection: TextDirection.ltr,
             child: const SizedBox.square(
-              dimension: 200,
+              dimension: .fixed(200),
               child: _HybridCompositionAndroidPlatformView(viewType: 'box_platform_view'),
             ),
           ),
           Positioned.directional(
             top: 400,
             textDirection: TextDirection.ltr,
-            child: const SizedBox(width: 800, height: 200, child: ColoredBox(color: Colors.red)),
+            child: const SizedBox(
+              width: .fixed(800),
+              height: .fixed(200),
+              child: ColoredBox(color: .fixed(Colors.red)),
+            ),
           ),
           Positioned.directional(
             top: 500,
             textDirection: TextDirection.ltr,
             child: const SizedBox.square(
-              dimension: 200,
+              dimension: .fixed(200),
               child: _HybridCompositionAndroidPlatformView(viewType: 'box_platform_view'),
             ),
           ),
           Positioned.directional(
             top: 600,
             textDirection: TextDirection.ltr,
-            child: const SizedBox(width: 800, height: 200, child: ColoredBox(color: Colors.orange)),
+            child: const SizedBox(
+              width: .fixed(800),
+              height: .fixed(200),
+              child: ColoredBox(color: .fixed(Colors.orange)),
+            ),
           ),
         ],
       ),

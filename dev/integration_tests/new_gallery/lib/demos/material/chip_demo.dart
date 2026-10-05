@@ -94,7 +94,7 @@ class _ChoiceChipDemoState extends State<_ChoiceChipDemo> with RestorationMixin 
                   });
                 },
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: .fixed(8)),
               ChoiceChip(
                 label: Text(localizations.chipMedium),
                 selected: _indexSelected.value == 1,
@@ -104,7 +104,7 @@ class _ChoiceChipDemoState extends State<_ChoiceChipDemo> with RestorationMixin 
                   });
                 },
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: .fixed(8)),
               ChoiceChip(
                 label: Text(localizations.chipLarge),
                 selected: _indexSelected.value == 2,
@@ -116,17 +116,17 @@ class _ChoiceChipDemoState extends State<_ChoiceChipDemo> with RestorationMixin 
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           // Disabled chips
           Wrap(
             children: <Widget>[
               ChoiceChip(label: Text(localizations.chipSmall), selected: _indexSelected.value == 0),
-              const SizedBox(width: 8),
+              const SizedBox(width: .fixed(8)),
               ChoiceChip(
                 label: Text(localizations.chipMedium),
                 selected: _indexSelected.value == 1,
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: .fixed(8)),
               ChoiceChip(label: Text(localizations.chipLarge), selected: _indexSelected.value == 2),
             ],
           ),
@@ -208,7 +208,7 @@ class _FilterChipDemoState extends State<_FilterChipDemo> with RestorationMixin 
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           // Disabled chips
           Wrap(
             spacing: 8.0,
@@ -254,7 +254,7 @@ class _InputChipDemo extends StatelessWidget {
             deleteIconColor: Colors.black54,
             label: Text(GalleryLocalizations.of(context)!.chipBiking),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           // Disabled chip
           InputChip(
             avatar: const Icon(Icons.directions_bike, size: 20, color: Colors.black54),

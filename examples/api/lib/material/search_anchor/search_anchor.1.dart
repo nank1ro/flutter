@@ -50,15 +50,15 @@ class _PinnedSearchBarAppState extends State<PinnedSearchBarApp> {
               // so we can see the scrolling effect.
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const .all(20),
+                  padding: const .fixed(.all(20)),
                   child: SizedBox(
-                    height: 100.0,
+                    height: .fixed(100.0),
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 10,
                       itemBuilder: (BuildContext context, int index) {
                         return SizedBox(
-                          width: 100.0,
+                          width: .fixed(100.0),
                           child: Card(
                             child: Center(child: Text('Card $index')),
                           ),
@@ -70,7 +70,7 @@ class _PinnedSearchBarAppState extends State<PinnedSearchBarApp> {
               ),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const .symmetric(horizontal: 20),
+                  padding: const .fixed(.symmetric(horizontal: 20)),
                   child: Container(
                     height: 1000,
                     color: Colors.deepPurple.withValues(alpha: 0.5),

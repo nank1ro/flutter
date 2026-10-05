@@ -35,7 +35,7 @@ class _TapRegionExampleState extends State<TapRegionExample> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: const Color(0xFFFFFFFF),
+      color: .fixed(const Color(0xFFFFFFFF)),
       child: Center(
         child: Column(
           mainAxisAlignment: .center,
@@ -56,7 +56,7 @@ class _TapRegionExampleState extends State<TapRegionExample> {
                 child: const Center(child: Text('Tap Region')),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: .fixed(24)),
             Text(_status),
           ],
         ),

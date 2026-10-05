@@ -54,8 +54,8 @@ class ProductCard extends StatelessWidget {
             children: <Widget>[
               AspectRatio(aspectRatio: imageAspectRatio, child: imageWidget),
               SizedBox(
-                height: kTextBoxHeight * containerScalingFactor,
-                width: 121.0,
+                height: .fixed(kTextBoxHeight * containerScalingFactor),
+                width: const .fixed(121.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
@@ -66,7 +66,7 @@ class ProductCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
-                    const SizedBox(height: 4.0),
+                    const SizedBox(height: .fixed(4.0)),
                     Text(
                       product == null ? '' : formatter.format(product!.price),
                       style: theme.textTheme.bodySmall,
@@ -76,7 +76,10 @@ class ProductCard extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(padding: EdgeInsets.all(16.0), child: Icon(Icons.add_shopping_cart)),
+          const Padding(
+            padding: .fixed(EdgeInsets.all(16.0)),
+            child: Icon(Icons.add_shopping_cart),
+          ),
         ],
       ),
     );

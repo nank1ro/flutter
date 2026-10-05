@@ -59,10 +59,10 @@ class _CategoryItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(6.0),
+              padding: const .fixed(EdgeInsets.all(6.0)),
               child: Icon(category!.icon, size: 60.0, color: isDark ? Colors.white : _kFlutterBlue),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: .fixed(10.0)),
             Container(
               height: 48.0,
               alignment: Alignment.center,
@@ -125,8 +125,8 @@ class _CategoriesPage extends StatelessWidget {
                       final GalleryDemoCategory category = categoriesList[index];
 
                       return SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
+                        width: .fixed(columnWidth),
+                        height: .fixed(rowHeight),
                         child: _CategoryItem(
                           category: category,
                           onTap: () {
@@ -206,7 +206,7 @@ class _DemoItem extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 44.0),
+            const SizedBox(width: .fixed(44.0)),
           ],
         ),
       ),

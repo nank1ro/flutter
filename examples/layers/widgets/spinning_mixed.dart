@@ -35,7 +35,7 @@ void attachWidgetTreeToRenderTree(RenderProxyBox container) {
     child: Directionality(
       textDirection: TextDirection.ltr,
       child: SizedBox(
-        height: 300.0,
+        height: const .fixed(300.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

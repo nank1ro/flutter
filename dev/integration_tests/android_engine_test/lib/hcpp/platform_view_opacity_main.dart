@@ -58,7 +58,7 @@ class _OpacityWrappedMainAppState extends State<_OpacityWrappedMainApp> {
       home: Opacity(
         opacity: .fixed(opacity),
         child: ColoredBox(
-          color: Colors.white,
+          color: const .fixed(Colors.white),
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
@@ -66,12 +66,12 @@ class _OpacityWrappedMainAppState extends State<_OpacityWrappedMainApp> {
                 key: const ValueKey<String>('ToggleOpacity'),
                 onPressed: _toggleOpacity,
                 child: const SizedBox.square(
-                  dimension: 300,
-                  child: ColoredBox(color: Colors.green),
+                  dimension: .fixed(300),
+                  child: ColoredBox(color: .fixed(Colors.green)),
                 ),
               ),
               const SizedBox.square(
-                dimension: 200,
+                dimension: .fixed(200),
                 child: _HybridCompositionAndroidPlatformView(
                   viewType: 'changing_color_button_platform_view',
                 ),

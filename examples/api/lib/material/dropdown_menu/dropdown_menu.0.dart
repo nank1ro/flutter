@@ -87,7 +87,7 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const .symmetric(vertical: 20),
+                padding: const .fixed(.symmetric(vertical: 20)),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -110,7 +110,7 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
                         },
                         dropdownMenuEntries: ColorLabel.entries,
                       ),
-                      const SizedBox(width: 24),
+                      const SizedBox(width: .fixed(24)),
                       DropdownMenu<IconLabel>(
                         controller: iconController,
                         enableFilter: true,
@@ -143,7 +143,7 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
                         'You selected a ${selectedColor?.label} ${selectedIcon?.label}',
                       ),
                       Padding(
-                        padding: const .symmetric(horizontal: 5),
+                        padding: const .fixed(.symmetric(horizontal: 5)),
                         child: Icon(
                           selectedIcon?.icon,
                           color: selectedColor?.color,

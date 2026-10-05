@@ -204,7 +204,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> with RestorationMi
 
   @override
   Widget build(BuildContext context) {
-    const sizedBoxSpace = SizedBox(height: 24);
+    const sizedBoxSpace = SizedBox(height: .fixed(24));
     final GalleryLocalizations localizations = GalleryLocalizations.of(context)!;
 
     return Form(

@@ -27,13 +27,13 @@ void main() {
       );
     }
 
-    expect(coloredBox().color, const Color(0xff65558f));
+    expect(coloredBox().color.value, const Color(0xff65558f));
     await tester.tap(find.byType(example.SettingsButton));
     await tester.pumpAndSettle();
     expect(find.text('Settings'), findsOneWidget);
     await tester.tap(find.byType(IconButton).at(6));
     await tester.pumpAndSettle();
 
-    expect(coloredBox().color, const Color(0xFF685F12));
+    expect(coloredBox().color.value, const Color(0xFF685F12));
   });
 }

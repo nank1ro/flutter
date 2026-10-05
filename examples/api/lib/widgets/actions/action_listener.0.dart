@@ -51,7 +51,7 @@ class _ActionListenerExampleState extends State<ActionListenerExample> {
       mainAxisAlignment: .center,
       children: <Widget>[
         Padding(
-          padding: const .all(8.0),
+          padding: const .fixed(.all(8.0)),
           child: OutlinedButton(
             onPressed: _toggleState,
             child: Text(_on ? 'Disable' : 'Enable'),
@@ -59,7 +59,7 @@ class _ActionListenerExampleState extends State<ActionListenerExample> {
         ),
         if (_on)
           Padding(
-            padding: const .all(8.0),
+            padding: const .fixed(.all(8.0)),
             child: ActionListener(
               listener: (Action<Intent> action) {
                 if (action.intentType == MyIntent) {

@@ -76,7 +76,7 @@ class _FortnightlyHomeMobile extends StatelessWidget {
           children: <Widget>[
             const HashtagBar(),
             for (final Widget item in buildArticlePreviewItems(context))
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: item),
+              Padding(padding: const .fixed(EdgeInsets.symmetric(horizontal: 16)), child: item),
           ],
         ),
       ),
@@ -90,16 +90,16 @@ class _FortnightlyHomeDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const menuWidth = 200.0;
-    const spacer = SizedBox(width: 20);
+    const spacer = SizedBox(width: .fixed(20));
     final double headerHeight = 40 * reducedTextScale(context);
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const .fixed(EdgeInsets.all(16)),
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: headerHeight,
+              height: .fixed(headerHeight),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -135,7 +135,7 @@ class _FortnightlyHomeDesktop extends StatelessWidget {
             Flexible(
               child: Row(
                 children: <Widget>[
-                  const SizedBox(width: menuWidth, child: NavigationMenu()),
+                  const SizedBox(width: .fixed(menuWidth), child: NavigationMenu()),
                   spacer,
                   Flexible(flex: 2, child: ListView(children: buildArticlePreviewItems(context))),
                   spacer,
@@ -144,7 +144,7 @@ class _FortnightlyHomeDesktop extends StatelessWidget {
                     child: ListView(
                       children: <Widget>[
                         ...buildStockItems(context),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: .fixed(32)),
                         ...buildVideoPreviewItems(context),
                       ],
                     ),

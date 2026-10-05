@@ -117,7 +117,7 @@ class _BackdropTitle extends AnimatedWidget {
         children: <Widget>[
           // branded icon
           SizedBox(
-            width: 72.0,
+            width: const .fixed(72.0),
             child: IconButton(
               padding: const EdgeInsets.only(right: 8.0),
               onPressed: onPress,

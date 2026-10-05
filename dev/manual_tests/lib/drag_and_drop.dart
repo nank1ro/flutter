@@ -120,7 +120,7 @@ class ExampleDragSource extends StatelessWidget {
     DragAnchorStrategy dragAnchorStrategy;
     if (!under) {
       feedback = Transform(
-        transform: Matrix4.identity()..translate(-size / 2.0, -(size / 2.0 + kFingerSize)),
+        transform: .fixed(Matrix4.identity()..translate(-size / 2.0, -(size / 2.0 + kFingerSize))),
         child: feedback,
       );
       feedbackOffset = const Offset(0.0, -kFingerSize);
@@ -201,7 +201,7 @@ class MovableBall extends StatelessWidget {
       ),
     );
     const Widget dashedBall = SizedBox.square(
-      dimension: kBallSize,
+      dimension: .fixed(kBallSize),
       child: CustomPaint(painter: DashOutlineCirclePainter()),
     );
     if (position == ballPosition) {

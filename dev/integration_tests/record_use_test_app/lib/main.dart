@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             children: <Widget>[
               Text('English: hello -> Pirate: $hello', style: const TextStyle(fontSize: 20)),
               Text('English: friend -> Pirate: $friend', style: const TextStyle(fontSize: 20)),
-              const SizedBox(height: 20),
+              const SizedBox(height: FixedSignal(20)),
               Text('Loaded translations count: $count',
                   style: const TextStyle(fontWeight: FontWeight.bold)),
             ],

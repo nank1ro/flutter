@@ -154,7 +154,7 @@ class _ListItem extends StatelessWidget {
       child: Row(
         children: <Widget>[
           SizedBox(
-            width: 38.0,
+            width: const .fixed(38.0),
             child: called!
                 ? Align(
                     alignment: Alignment.topCenter,
@@ -207,7 +207,7 @@ class _ListItem extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 9.0),
+                    padding: const .fixed(EdgeInsets.only(left: 9.0)),
                     child: Icon(
                       CupertinoIcons.info,
                       color: CupertinoTheme.of(context).primaryColor,

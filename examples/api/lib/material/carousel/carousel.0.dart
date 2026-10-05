@@ -21,7 +21,7 @@ class CarouselExampleApp extends StatelessWidget {
           title: const Text('Flutter TV'),
           actions: const <Widget>[
             Padding(
-              padding: .directional(end: 16.0),
+              padding: .fixed(.directional(end: 16.0)),
               child: CircleAvatar(child: Icon(Icons.account_circle)),
             ),
           ],
@@ -55,7 +55,7 @@ class _CarouselExampleState extends State<CarouselExample> {
     return ListView(
       children: <Widget>[
         ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: height / 2),
+          constraints: .fixed(BoxConstraints(maxHeight: height / 2)),
           child: CarouselView.weighted(
             controller: controller,
             itemSnapping: true,
@@ -65,34 +65,37 @@ class _CarouselExampleState extends State<CarouselExample> {
             }).toList(),
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: .fixed(20)),
         const Padding(
-          padding: .directional(top: 8.0, start: 8.0),
+          padding: .fixed(.directional(top: 8.0, start: 8.0)),
           child: Text('Multi-browse layout'),
         ),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxHeight: 50),
+          constraints: .fixed(const BoxConstraints(maxHeight: 50)),
           child: CarouselView.weighted(
             flexWeights: const <int>[1, 2, 3, 2, 1],
             consumeMaxWeight: false,
             children: List<Widget>.generate(20, (int index) {
               return ColoredBox(
-                color: Colors.primaries[index % Colors.primaries.length]
-                    .withValues(alpha: 0.8),
+                color: .fixed(
+                  Colors.primaries[index % Colors.primaries.length].withValues(
+                    alpha: 0.8,
+                  ),
+                ),
                 child: const SizedBox.expand(),
               );
             }),
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: .fixed(20)),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxHeight: 200),
+          constraints: .fixed(const BoxConstraints(maxHeight: 200)),
           child: CarouselView.weighted(
             flexWeights: const <int>[3, 3, 3, 2, 1],
             consumeMaxWeight: false,
             children: CardInfo.values.map((CardInfo info) {
               return ColoredBox(
-                color: info.backgroundColor,
+                color: .fixed(info.backgroundColor),
                 child: Center(
                   child: Column(
                     mainAxisAlignment: .center,
@@ -111,13 +114,13 @@ class _CarouselExampleState extends State<CarouselExample> {
             }).toList(),
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: .fixed(20)),
         const Padding(
-          padding: .directional(top: 8.0, start: 8.0),
+          padding: .fixed(.directional(top: 8.0, start: 8.0)),
           child: Text('Uncontained layout'),
         ),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxHeight: 200),
+          constraints: .fixed(const BoxConstraints(maxHeight: 200)),
           child: CarouselView(
             itemExtent: 330,
             shrinkExtent: 200,
@@ -155,7 +158,7 @@ class HeroLayoutCard extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const .all(18.0),
+          padding: const .fixed(.all(18.0)),
           child: Column(
             crossAxisAlignment: .start,
             mainAxisSize: .min,
@@ -168,7 +171,7 @@ class HeroLayoutCard extends StatelessWidget {
                   context,
                 ).textTheme.headlineLarge?.copyWith(color: Colors.white),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: .fixed(10)),
               Text(
                 imageInfo.subtitle,
                 overflow: .clip,
@@ -198,8 +201,10 @@ class UncontainedLayoutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.primaries[index % Colors.primaries.length].withValues(
-        alpha: 0.5,
+      color: .fixed(
+        Colors.primaries[index % Colors.primaries.length].withValues(
+          alpha: 0.5,
+        ),
       ),
       child: Center(
         child: Text(

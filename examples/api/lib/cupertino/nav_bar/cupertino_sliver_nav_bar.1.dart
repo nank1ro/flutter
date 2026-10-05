@@ -35,7 +35,7 @@ class SliverNavBarExample extends StatelessWidget {
           ),
           SliverFillRemaining(
             child: Padding(
-              padding: const .symmetric(horizontal: 10.0),
+              padding: const .fixed(.symmetric(horizontal: 10.0)),
               child: Column(
                 mainAxisAlignment: .spaceEvenly,
                 children: <Widget>[
@@ -136,11 +136,11 @@ class _NextPageState extends State<NextPage> {
           SliverFillRemaining(
             child: searchIsActive
                 ? ColoredBox(
-                    color: CupertinoColors.extraLightBackgroundGray,
+                    color: .fixed(CupertinoColors.extraLightBackgroundGray),
                     child: Center(child: Text(text, textAlign: .center)),
                   )
                 : const Padding(
-                    padding: .symmetric(horizontal: 16.0),
+                    padding: .fixed(.symmetric(horizontal: 16.0)),
                     child: Column(
                       mainAxisAlignment: .spaceEvenly,
                       children: <Widget>[

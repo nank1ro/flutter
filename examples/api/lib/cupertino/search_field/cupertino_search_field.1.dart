@@ -42,7 +42,7 @@ class _SearchTextFieldExampleState extends State<SearchTextFieldExample> {
           children: <Widget>[
             Text(text),
             Padding(
-              padding: const .all(16.0),
+              padding: const .fixed(.all(16.0)),
               child: SearchTextField(
                 fieldValue: (String value) {
                   setState(() {

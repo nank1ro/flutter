@@ -224,7 +224,7 @@ class _CupertinoAlertDemoState extends State<CupertinoAlertDemo> with Restoratio
               Expanded(child: Center(child: showAlertButton)),
               if (lastSelectedValue.value != null)
                 Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const .fixed(EdgeInsets.all(16)),
                   child: Text(
                     localizations.dialogSelectedOption(lastSelectedValue.value!),
                     style: CupertinoTheme.of(context).textTheme.textStyle,

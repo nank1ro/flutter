@@ -50,7 +50,7 @@ class _TextButtonDemo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextButton(onPressed: () {}, child: Text(localizations.buttonText)),
-            const SizedBox(width: 12),
+            const SizedBox(width: .fixed(12)),
             TextButton.icon(
               icon: const Icon(Icons.add, size: 18),
               label: Text(localizations.buttonText),
@@ -58,13 +58,13 @@ class _TextButtonDemo extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
         // Disabled buttons
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextButton(onPressed: null, child: Text(localizations.buttonText)),
-            const SizedBox(width: 12),
+            const SizedBox(width: .fixed(12)),
             TextButton.icon(
               icon: const Icon(Icons.add, size: 18),
               label: Text(localizations.buttonText),
@@ -92,7 +92,7 @@ class _ElevatedButtonDemo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(onPressed: () {}, child: Text(localizations.buttonText)),
-            const SizedBox(width: 12),
+            const SizedBox(width: .fixed(12)),
             ElevatedButton.icon(
               icon: const Icon(Icons.add, size: 18),
               label: Text(localizations.buttonText),
@@ -100,13 +100,13 @@ class _ElevatedButtonDemo extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
         // Disabled buttons
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(onPressed: null, child: Text(localizations.buttonText)),
-            const SizedBox(width: 12),
+            const SizedBox(width: .fixed(12)),
             ElevatedButton.icon(
               icon: const Icon(Icons.add, size: 18),
               label: Text(localizations.buttonText),
@@ -134,7 +134,7 @@ class _OutlinedButtonDemo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             OutlinedButton(onPressed: () {}, child: Text(localizations.buttonText)),
-            const SizedBox(width: 12),
+            const SizedBox(width: .fixed(12)),
             OutlinedButton.icon(
               icon: const Icon(Icons.add, size: 18),
               label: Text(localizations.buttonText),
@@ -142,13 +142,13 @@ class _OutlinedButtonDemo extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
         // Disabled buttons
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             OutlinedButton(onPressed: null, child: Text(localizations.buttonText)),
-            const SizedBox(width: 12),
+            const SizedBox(width: .fixed(12)),
             OutlinedButton.icon(
               icon: const Icon(Icons.add, size: 18),
               label: Text(localizations.buttonText),
@@ -214,7 +214,7 @@ class _ToggleButtonsDemoState extends State<_ToggleButtonsDemo> with Restoration
               Icon(Icons.format_underline),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           // Disabled toggle buttons
           ToggleButtons(
             isSelected: isSelected.map((RestorableBool element) => element.value).toList(),
@@ -247,7 +247,7 @@ class _FloatingActionButtonDemo extends StatelessWidget {
             tooltip: localizations.buttonTextCreate,
             child: const Icon(Icons.add),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: .fixed(12)),
           FloatingActionButton.extended(
             icon: const Icon(Icons.add),
             label: Text(localizations.buttonTextCreate),

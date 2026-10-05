@@ -93,17 +93,21 @@ class _MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
       ..rotateZ(angle * math.pi);
 
     final Widget transformedView = Transform.flip(
-      flipX: flippedX,
+      flipX: .fixed(flippedX),
       child: Transform(
-        transform: transformMatrix,
+        transform: .fixed(transformMatrix),
         alignment: Alignment.center,
         child: const Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            SizedBox(width: 300, height: 500, child: ColoredBox(color: Colors.green)),
             SizedBox(
-              width: 200,
-              height: 400,
+              width: .fixed(300),
+              height: .fixed(500),
+              child: ColoredBox(color: .fixed(Colors.green)),
+            ),
+            SizedBox(
+              width: .fixed(200),
+              height: .fixed(400),
               child: _HybridCompositionAndroidPlatformView(
                 viewType: 'blue_orange_gradient_platform_view',
               ),

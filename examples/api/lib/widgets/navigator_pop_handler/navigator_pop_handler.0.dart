@@ -55,7 +55,7 @@ class _HomePage extends StatelessWidget {
           children: <Widget>[
             const Text('Home Page'),
             const Text('A system back gesture here will exit the app.'),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: .fixed(20.0)),
             ListTile(
               title: const Text('Nested Navigator route'),
               subtitle: const Text(

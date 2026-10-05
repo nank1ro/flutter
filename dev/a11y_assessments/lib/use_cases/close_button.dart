@@ -44,7 +44,7 @@ class MainWidgetState extends State<MainWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CloseButton(),
-            SizedBox(height: 20),
+            SizedBox(height: .fixed(20)),
             Text('Check the close button above'),
           ],
         ),

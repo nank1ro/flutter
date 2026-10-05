@@ -48,7 +48,7 @@ class _ToggleButtonsExampleState extends State<ToggleButtonsExample> {
         mainAxisAlignment: .center,
         children: <Widget>[
           const Text('ToggleButtons'),
-          const SizedBox(height: 10),
+          const SizedBox(height: .fixed(10)),
           // This ToggleButtons allows multiple or no selection.
           ToggleButtons(
             // ToggleButtons uses a List<bool> to track its selection state.
@@ -67,9 +67,9 @@ class _ToggleButtonsExampleState extends State<ToggleButtonsExample> {
                 .map(((ShirtSize, String) shirt) => Text(shirt.$2))
                 .toList(),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: .fixed(20)),
           const Text('SegmentedButton'),
-          const SizedBox(height: 10),
+          const SizedBox(height: .fixed(10)),
           SegmentedButton<ShirtSize>(
             // ToggleButtons above allows multiple or no selection.
             // Set `multiSelectionEnabled` and `emptySelectionAllowed` to true

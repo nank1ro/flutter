@@ -126,7 +126,7 @@ class _SnackBarExampleState extends State<SnackBarExample> {
             ],
           ),
           // Avoid hiding content behind the floating action button
-          const SizedBox(height: 100),
+          const SizedBox(height: .fixed(100)),
         ],
       ),
     );

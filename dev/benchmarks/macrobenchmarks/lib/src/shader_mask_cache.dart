@@ -41,11 +41,11 @@ class _ShaderMaskCachePageState extends State<ShaderMaskCachePage> with TickerPr
       body: ListView(
         controller: _controller,
         children: <Widget>[
-          const SizedBox(height: 100),
+          const SizedBox(height: .fixed(100)),
           buildShaderMask(0),
-          const SizedBox(height: 10),
+          const SizedBox(height: .fixed(10)),
           buildShaderMask(1),
-          const SizedBox(height: 1000),
+          const SizedBox(height: .fixed(1000)),
         ],
       ),
     );

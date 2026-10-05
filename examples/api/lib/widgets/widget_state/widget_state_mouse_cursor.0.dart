@@ -63,7 +63,7 @@ class _WidgetStateMouseCursorExampleState
           onTap: () {},
           mouseCursor: const ListTileCursor(),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: .fixed(10)),
         Row(
           mainAxisAlignment: .center,
           children: <Widget>[

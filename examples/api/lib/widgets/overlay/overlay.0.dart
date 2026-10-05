@@ -76,8 +76,8 @@ class _OverlayExampleState extends State<OverlayExample> {
                   const Text('Tap here for'),
                   Builder(builder: builder),
                   SizedBox(
-                    width: MediaQuery.widthOf(context) / 3,
-                    height: 80.0,
+                    width: .fixed(MediaQuery.widthOf(context) / 3),
+                    height: .fixed(80.0),
                     child: Center(
                       child: Container(
                         decoration: BoxDecoration(
@@ -130,7 +130,7 @@ class _OverlayExampleState extends State<OverlayExample> {
       ),
       body: Center(
         child: Padding(
-          padding: const .all(8.0),
+          padding: const .fixed(.all(8.0)),
           child: Column(
             spacing: 10.0,
             mainAxisAlignment: .center,

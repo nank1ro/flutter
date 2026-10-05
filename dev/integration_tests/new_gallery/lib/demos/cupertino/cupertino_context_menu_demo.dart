@@ -24,7 +24,7 @@ class CupertinoContextMenuDemo extends StatelessWidget {
         children: <Widget>[
           Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: CupertinoContextMenu(
                 actions: <Widget>[
                   CupertinoContextMenuAction(
@@ -44,9 +44,9 @@ class CupertinoContextMenuDemo extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: .fixed(20)),
           Padding(
-            padding: const EdgeInsets.all(30),
+            padding: const .fixed(EdgeInsets.all(30)),
             child: Text(
               galleryLocalizations.demoCupertinoContextMenuActionText,
               textAlign: TextAlign.center,

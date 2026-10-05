@@ -158,7 +158,10 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
           return SimpleDialog(
             title: Text(GalleryLocalizations.of(context)!.demoInvalidURL),
             children: <Widget>[
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text(url)),
+              Padding(
+                padding: const .fixed(EdgeInsets.symmetric(horizontal: 16)),
+                child: Text(url),
+              ),
             ],
           );
         },
@@ -200,7 +203,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
       systemOverlayStyle: options.resolvedSystemUiOverlayStyle(),
       backgroundColor: Colors.transparent,
       leading: Padding(
-        padding: EdgeInsetsDirectional.only(start: appBarPadding),
+        padding: .fixed(EdgeInsetsDirectional.only(start: appBarPadding)),
         child: IconButton(
           key: const ValueKey<String>('Back'),
           icon: const BackButtonIcon(),
@@ -252,7 +255,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
             color: currentDemoState == _DemoState.fullscreen ? selectedIconColor : iconColor,
             onPressed: () => _handleTap(_DemoState.fullscreen),
           ),
-        SizedBox(width: appBarPadding),
+        SizedBox(width: .fixed(appBarPadding)),
       ],
     );
 
@@ -324,13 +327,13 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           if (!isFullScreen) Expanded(child: section),
-          SizedBox(width: !isFullScreen ? 48.0 : 0),
+          SizedBox(width: .fixed(!isFullScreen ? 48.0 : 0)),
           Expanded(child: demoContent),
         ],
       );
 
       body = SafeArea(
-        child: Padding(padding: const EdgeInsets.only(top: 56), child: sectionAndDemo),
+        child: Padding(padding: const .fixed(EdgeInsets.only(top: 56)), child: sectionAndDemo),
       );
     } else {
       section = AnimatedSize(
@@ -369,7 +372,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
             section,
             demoContent,
             // Fake the safe area to ensure the animation looks correct.
-            SizedBox(height: bottomSafeArea),
+            SizedBox(height: .fixed(bottomSafeArea)),
           ],
         ),
       );
@@ -412,12 +415,12 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
             contents = Stack(children: <Widget>[codeBackground, contents]);
           }
 
-          return ColoredBox(color: colorScheme.background, child: contents);
+          return ColoredBox(color: .fixed(colorScheme.background), child: contents);
         },
       );
     } else {
       page = ColoredBox(
-        color: colorScheme.background,
+        color: .fixed(colorScheme.background),
         child: ApplyTextOptions(
           child: Scaffold(appBar: appBar, body: body, resizeToAvoidBottomInset: false),
         ),
@@ -466,7 +469,7 @@ class _DemoSectionOptions extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsetsDirectional.only(start: 24, top: 12, end: 24),
+              padding: const .fixed(EdgeInsetsDirectional.only(start: 24, top: 12, end: 24)),
               child: Text(
                 GalleryLocalizations.of(context)!.demoOptionsTooltip,
                 style: textTheme.headlineMedium!.apply(
@@ -491,7 +494,7 @@ class _DemoSectionOptions extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: .fixed(12)),
           ],
         ),
       ),
@@ -564,7 +567,7 @@ class _DemoSectionInfo extends StatelessWidget {
                   fontSizeDelta: isDisplayDesktop(context) ? desktopDisplay1FontDelta : 0,
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: .fixed(12)),
               SelectableText(
                 description,
                 style: textTheme.bodyMedium!.apply(color: colorScheme.onSurface),
@@ -621,7 +624,7 @@ class _DemoSectionCode extends StatelessWidget {
     return Theme(
       data: GalleryThemeData.darkThemeData,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 16),
+        padding: const .fixed(EdgeInsets.only(bottom: 16)),
         child: Container(
           color: isDesktop ? null : GalleryThemeData.darkThemeData.canvasColor,
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -669,9 +672,9 @@ class CodeDisplayPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: isDesktop
-              ? const EdgeInsets.only(bottom: 8)
-              : const EdgeInsets.symmetric(vertical: 8),
+          padding: .fixed(
+            isDesktop ? const EdgeInsets.only(bottom: 8) : const EdgeInsets.symmetric(vertical: 8),
+          ),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white.withOpacity(0.15),

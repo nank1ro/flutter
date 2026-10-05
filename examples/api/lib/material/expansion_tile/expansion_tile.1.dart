@@ -43,7 +43,7 @@ class _ExpansionTileControllerAppState
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: .fixed(8)),
             ElevatedButton(
               child: const Text('Expand/Collapse the Tile Above'),
               onPressed: () {
@@ -54,7 +54,7 @@ class _ExpansionTileControllerAppState
                 }
               },
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: .fixed(48)),
             // A controller has not been provided to the ExpansionTile because
             // the automatically created one can be retrieved via the tile's BuildContext.
             ExpansionTile(

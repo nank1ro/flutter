@@ -85,7 +85,7 @@ class _ScaffoldFloatingActionButtonAnimatorExampleState
                 );
               }).toList(),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: .fixed(10)),
             SegmentedButton<FabLocation>(
               selected: _selectedFabLocation,
               onSelectionChanged: (Set<FabLocation> styles) {
@@ -111,7 +111,7 @@ class _ScaffoldFloatingActionButtonAnimatorExampleState
                 );
               }).toList(),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: .fixed(10)),
             FilledButton.icon(
               onPressed: () {
                 setState(() {

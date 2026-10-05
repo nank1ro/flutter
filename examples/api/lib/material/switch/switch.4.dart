@@ -60,7 +60,7 @@ class _SwitchAppState extends State<SwitchApp> {
                   ? const Text('Remove customization')
                   : const Text('Add customization'),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: .fixed(20)),
             const SwitchWithLabel(label: 'enabled', enabled: true),
             const SwitchWithLabel(label: 'disabled', enabled: false),
           ],

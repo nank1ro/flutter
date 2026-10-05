@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-const SizedBox rowDivider = SizedBox(width: 20);
-const SizedBox colDivider = SizedBox(height: 10);
+const SizedBox rowDivider = SizedBox(width: .fixed(20));
+const SizedBox colDivider = SizedBox(height: .fixed(10));
 const double smallSpacing = 10.0;
 const double cardWidth = 115;
 const double widthConstraint = 450;
@@ -266,7 +266,7 @@ class ButtonsWithoutIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      padding: const .fixed(EdgeInsets.symmetric(horizontal: 5.0)),
       child: IntrinsicWidth(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -296,7 +296,7 @@ class ButtonsWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const .fixed(EdgeInsets.symmetric(horizontal: 10.0)),
       child: IntrinsicWidth(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -385,7 +385,7 @@ class Cards extends StatelessWidget {
         alignment: WrapAlignment.spaceEvenly,
         children: <Widget>[
           SizedBox(
-            width: cardWidth,
+            width: const .fixed(cardWidth),
             child: Card(
               child: Container(
                 padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
@@ -395,7 +395,7 @@ class Cards extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: .fixed(20)),
                     const Align(alignment: Alignment.bottomLeft, child: Text('Elevated')),
                   ],
                 ),
@@ -403,7 +403,7 @@ class Cards extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: cardWidth,
+            width: const .fixed(cardWidth),
             child: Card(
               color: Theme.of(context).colorScheme.surfaceContainerHighest,
               elevation: 0,
@@ -415,7 +415,7 @@ class Cards extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: .fixed(20)),
                     const Align(alignment: Alignment.bottomLeft, child: Text('Filled')),
                   ],
                 ),
@@ -423,7 +423,7 @@ class Cards extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: cardWidth,
+            width: const .fixed(cardWidth),
             child: Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
@@ -438,7 +438,7 @@ class Cards extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: .fixed(20)),
                     const Align(alignment: Alignment.bottomLeft, child: Text('Outlined')),
                   ],
                 ),
@@ -480,7 +480,7 @@ class _TextFieldsState extends State<TextFields> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(smallSpacing),
+            padding: const .fixed(EdgeInsets.all(smallSpacing)),
             child: TextField(
               controller: _controllerFilled,
               decoration: InputDecoration(
@@ -494,13 +494,13 @@ class _TextFieldsState extends State<TextFields> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(smallSpacing),
+            padding: const .fixed(EdgeInsets.all(smallSpacing)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Flexible(
                   child: SizedBox(
-                    width: 200,
+                    width: const .fixed(200),
                     child: TextField(
                       maxLength: 10,
                       maxLengthEnforcement: MaxLengthEnforcement.none,
@@ -517,10 +517,10 @@ class _TextFieldsState extends State<TextFields> {
                     ),
                   ),
                 ),
-                const SizedBox(width: smallSpacing),
+                const SizedBox(width: .fixed(smallSpacing)),
                 Flexible(
                   child: SizedBox(
-                    width: 200,
+                    width: const .fixed(200),
                     child: TextField(
                       controller: _controllerFilled,
                       enabled: false,
@@ -539,7 +539,7 @@ class _TextFieldsState extends State<TextFields> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(smallSpacing),
+            padding: const .fixed(EdgeInsets.all(smallSpacing)),
             child: TextField(
               controller: _controllerOutlined,
               decoration: InputDecoration(
@@ -553,13 +553,13 @@ class _TextFieldsState extends State<TextFields> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(smallSpacing),
+            padding: const .fixed(EdgeInsets.all(smallSpacing)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Flexible(
                   child: SizedBox(
-                    width: 200,
+                    width: const .fixed(200),
                     child: TextField(
                       controller: _controllerOutlined,
                       decoration: InputDecoration(
@@ -575,10 +575,10 @@ class _TextFieldsState extends State<TextFields> {
                     ),
                   ),
                 ),
-                const SizedBox(width: smallSpacing),
+                const SizedBox(width: .fixed(smallSpacing)),
                 Flexible(
                   child: SizedBox(
-                    width: 200,
+                    width: const .fixed(200),
                     child: TextField(
                       controller: _controllerOutlined,
                       enabled: false,
@@ -632,7 +632,7 @@ class _DialogsState extends State<Dialogs> {
       context: context,
       builder: (BuildContext context) => Dialog.fullscreen(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const .fixed(EdgeInsets.all(20.0)),
           child: Scaffold(
             appBar: AppBar(
               title: const Text('Full-screen dialog'),
@@ -1481,7 +1481,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
     buttonList = List<Widget>.generate(
       buttonList.length,
       (int index) => Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
+        padding: const .fixed(EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0)),
         child: Column(children: <Widget>[buttonList[index], labelList[index]]),
       ),
     );
@@ -1503,9 +1503,9 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
                 constraints: const BoxConstraints(maxWidth: 640),
                 builder: (BuildContext context) {
                   return SizedBox(
-                    height: 150,
+                    height: const .fixed(150),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      padding: const .fixed(EdgeInsets.symmetric(horizontal: 32.0)),
                       child: ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -1541,9 +1541,9 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
                 constraints: const BoxConstraints(maxWidth: 640),
                 builder: (BuildContext context) {
                   return SizedBox(
-                    height: 150,
+                    height: const .fixed(150),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      padding: const .fixed(EdgeInsets.symmetric(horizontal: 32.0)),
                       child: ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -1572,7 +1572,7 @@ class BottomAppBars extends StatelessWidget {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: 80,
+            height: const .fixed(80),
             child: Scaffold(
               floatingActionButton: FloatingActionButton(
                 onPressed: () {},
@@ -1685,7 +1685,7 @@ class NavigationDrawers extends StatelessWidget {
       tooltipMessage: 'Use NavigationDrawer. For modal navigation drawers, see Scaffold.endDrawer',
       child: Column(
         children: <Widget>[
-          const SizedBox(height: 520, child: NavigationDrawerSection()),
+          const SizedBox(height: .fixed(520), child: NavigationDrawerSection()),
           colDivider,
           colDivider,
           TextButton(
@@ -1724,7 +1724,7 @@ class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
       selectedIndex: navDrawerIndex,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+          padding: const .fixed(EdgeInsets.fromLTRB(28, 16, 16, 10)),
           child: Text('Mail', style: Theme.of(context).textTheme.titleSmall),
         ),
         ...destinations.map((ExampleDestination destination) {
@@ -1736,7 +1736,7 @@ class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
         }),
         const Divider(indent: 28, endIndent: 28),
         Padding(
-          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+          padding: const .fixed(EdgeInsets.fromLTRB(28, 16, 16, 10)),
           child: Text('Labels', style: Theme.of(context).textTheme.titleSmall),
         ),
         ...labelDestinations.map((ExampleDestination destination) {
@@ -1780,7 +1780,9 @@ class NavigationRails extends StatelessWidget {
     return const ComponentDecoration(
       label: 'Navigation rail',
       tooltipMessage: 'Use NavigationRail',
-      child: IntrinsicWidth(child: SizedBox(height: 420, child: NavigationRailSection())),
+      child: IntrinsicWidth(
+        child: SizedBox(height: .fixed(420), child: NavigationRailSection()),
+      ),
     );
   }
 }
@@ -1843,7 +1845,7 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
       label: 'Tabs',
       tooltipMessage: 'Use TabBar',
       child: SizedBox(
-        height: 80,
+        height: const .fixed(80),
         child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
@@ -1902,7 +1904,7 @@ class TopAppBars extends StatelessWidget {
           ),
           colDivider,
           SizedBox(
-            height: 100,
+            height: const .fixed(100),
             child: CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar.medium(
@@ -1916,7 +1918,7 @@ class TopAppBars extends StatelessWidget {
           ),
           colDivider,
           SizedBox(
-            height: 130,
+            height: const .fixed(130),
             child: CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar.large(
@@ -2065,7 +2067,7 @@ class _SlidersState extends State<Sliders> {
               });
             },
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: .fixed(20)),
           Slider(
             max: 100,
             divisions: 5,
@@ -2106,7 +2108,7 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
   Widget build(BuildContext context) {
     return RepaintBoundary(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: smallSpacing),
+        padding: const .fixed(EdgeInsets.symmetric(vertical: smallSpacing)),
         child: Column(
           children: <Widget>[
             Row(
@@ -2116,14 +2118,14 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
                 Tooltip(
                   message: widget.tooltipMessage,
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.0),
+                    padding: .fixed(EdgeInsets.symmetric(horizontal: 5.0)),
                     child: Icon(Icons.info_outline, size: 16),
                   ),
                 ),
               ],
             ),
             ConstrainedBox(
-              constraints: const BoxConstraints.tightFor(width: widthConstraint),
+              constraints: const .fixed(BoxConstraints.tightFor(width: widthConstraint)),
               // Tapping within the a component card should request focus
               // for that component's children.
               child: Focus(
@@ -2141,7 +2143,7 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
                       borderRadius: const BorderRadius.all(Radius.circular(12)),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0),
+                      padding: const .fixed(EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0)),
                       child: Center(child: widget.child),
                     ),
                   ),
@@ -2170,7 +2172,7 @@ class ComponentGroupDecoration extends StatelessWidget {
         elevation: 0,
         color: Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.3),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: const .fixed(EdgeInsets.symmetric(vertical: 20.0)),
           child: Center(
             child: Column(
               children: <Widget>[

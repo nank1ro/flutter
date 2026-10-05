@@ -246,10 +246,12 @@ class _SettingsIcon extends AnimatedWidget {
         enabled: true,
         label: _settingsSemanticLabel(isSettingsOpenNotifier.value, context),
         child: SizedBox(
-          width: _settingsButtonWidth,
-          height: isDesktop
-              ? _settingsButtonHeightDesktop
-              : _settingsButtonHeightMobile + safeAreaTopPadding,
+          width: const .fixed(_settingsButtonWidth),
+          height: .fixed(
+            isDesktop
+                ? _settingsButtonHeightDesktop
+                : _settingsButtonHeightMobile + safeAreaTopPadding,
+          ),
           child: Material(
             borderRadius: const BorderRadiusDirectional.only(bottomStart: Radius.circular(10)),
             color: isSettingsOpenNotifier.value & !animationController.isAnimating
@@ -266,7 +268,7 @@ class _SettingsIcon extends AnimatedWidget {
                 );
               },
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(start: 3, end: 18),
+                padding: const .fixed(EdgeInsetsDirectional.only(start: 3, end: 18)),
                 child: settings_icon.SettingsIcon(animationController.value),
               ),
             ),

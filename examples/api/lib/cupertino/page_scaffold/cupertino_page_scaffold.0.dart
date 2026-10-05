@@ -43,7 +43,7 @@ class _PageScaffoldExampleState extends State<PageScaffoldExample> {
           mainAxisAlignment: .center,
           children: <Widget>[
             Center(child: Text('You have pressed the button $_count times.')),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: .fixed(20.0)),
             Center(
               child: CupertinoButton.filled(
                 onPressed: () => setState(() => _count++),

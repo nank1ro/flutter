@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 /// Flutter code sample for [ColorScheme.fromImageProvider] with content-based dynamic color.
 
-const Widget divider = SizedBox(height: 10);
+const Widget divider = SizedBox(height: .fixed(10));
 const double narrowScreenWidthThreshold = 400;
 
 void main() => runApp(const DynamicColorExample());
@@ -83,7 +83,7 @@ class _DynamicColorExampleState extends State<DynamicColorExample> {
 
     Widget schemeLabel(String brightness, ColorScheme colorScheme) {
       return Padding(
-        padding: const .symmetric(vertical: 15),
+        padding: const .fixed(.symmetric(vertical: 15)),
         child: Text(
           brightness,
           style: TextStyle(
@@ -96,7 +96,7 @@ class _DynamicColorExampleState extends State<DynamicColorExample> {
 
     Widget schemeView(ThemeData theme) {
       return Padding(
-        padding: const .symmetric(horizontal: 15),
+        padding: const .fixed(.symmetric(horizontal: 15)),
         child: ColorSchemeView(colorScheme: theme.colorScheme),
       );
     }
@@ -130,7 +130,7 @@ class _DynamicColorExampleState extends State<DynamicColorExample> {
             child: isLoading
                 ? const CircularProgressIndicator()
                 : ColoredBox(
-                    color: colorScheme.secondaryContainer,
+                    color: .fixed(colorScheme.secondaryContainer),
                     child: Column(
                       children: <Widget>[
                         divider,
@@ -142,7 +142,7 @@ class _DynamicColorExampleState extends State<DynamicColorExample> {
                         divider,
                         Expanded(
                           child: ColoredBox(
-                            color: colorScheme.surface,
+                            color: .fixed(colorScheme.surface),
                             child: LayoutBuilder(
                               builder:
                                   (
@@ -173,7 +173,7 @@ class _DynamicColorExampleState extends State<DynamicColorExample> {
                                     } else {
                                       return SingleChildScrollView(
                                         child: Padding(
-                                          padding: const .only(top: 5),
+                                          padding: const .fixed(.only(top: 5)),
                                           child: Column(
                                             children: <Widget>[
                                               Row(
@@ -252,7 +252,7 @@ class _DynamicColorExampleState extends State<DynamicColorExample> {
     final double windowHeight = MediaQuery.heightOf(context);
     final double windowWidth = MediaQuery.widthOf(context);
     return Padding(
-      padding: const .all(8.0),
+      padding: const .fixed(.all(8.0)),
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           if (constraints.maxWidth > 800) {
@@ -297,9 +297,11 @@ class _DynamicColorExampleState extends State<DynamicColorExample> {
                       ? colorScheme.primaryContainer
                       : colorScheme.surface,
                   child: Padding(
-                    padding: const .all(5.0),
+                    padding: const .fixed(.all(5.0)),
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: windowWidth * .25),
+                      constraints: .fixed(
+                        BoxConstraints(maxWidth: windowWidth * .25),
+                      ),
                       child: ClipRRect(
                         borderRadius: .circular(8.0),
                         child: Image(image: image),
@@ -510,9 +512,9 @@ class ColorChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color labelColor = onColor ?? contrastColor(color);
     return ColoredBox(
-      color: color,
+      color: .fixed(color),
       child: Padding(
-        padding: const .all(16),
+        padding: const .fixed(.all(16)),
         child: Row(
           children: <Expanded>[
             Expanded(

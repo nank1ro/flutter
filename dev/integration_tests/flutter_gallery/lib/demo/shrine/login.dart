@@ -44,15 +44,15 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 80.0),
+            const SizedBox(height: .fixed(80.0)),
             Column(
               children: <Widget>[
                 Image.asset('packages/shrine_images/diamond.png'),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: .fixed(16.0)),
                 Text('SHRINE', style: Theme.of(context).textTheme.headlineSmall),
               ],
             ),
-            const SizedBox(height: 120.0),
+            const SizedBox(height: .fixed(120.0)),
             PrimaryColorOverride(
               color: kShrineBrown900,
               child: Container(
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 12.0),
+            const SizedBox(height: .fixed(12.0)),
             PrimaryColorOverride(
               color: kShrineBrown900,
               child: Container(
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 12.0),
+            const SizedBox(height: .fixed(12.0)),
             OverflowBar(
               spacing: 8,
               alignment: MainAxisAlignment.end,

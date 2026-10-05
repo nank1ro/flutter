@@ -18,11 +18,14 @@ class TextStyleItem extends StatelessWidget {
       color: theme.textTheme.bodySmall!.color,
     );
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+      padding: const .fixed(EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(width: 72.0, child: Text(name, style: nameStyle)),
+          SizedBox(
+            width: const .fixed(72.0),
+            child: Text(name, style: nameStyle),
+          ),
           Expanded(child: Text(text, style: style.copyWith(height: 1.0))),
         ],
       ),

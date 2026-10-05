@@ -31,16 +31,16 @@ class _UnfocusExampleState extends State<UnfocusExample> {
   Widget build(BuildContext context) {
     return Material(
       child: ColoredBox(
-        color: Colors.white,
+        color: .fixed(Colors.white),
         child: Column(
           mainAxisAlignment: .center,
           children: <Widget>[
             Wrap(
               children: List<Widget>.generate(4, (int index) {
                 return const SizedBox(
-                  width: 200,
+                  width: .fixed(200),
                   child: Padding(
-                    padding: .all(8.0),
+                    padding: .fixed(.all(8.0)),
                     child: TextField(
                       decoration: InputDecoration(border: OutlineInputBorder()),
                     ),

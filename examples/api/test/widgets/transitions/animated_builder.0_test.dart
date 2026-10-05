@@ -27,7 +27,7 @@ void main() {
       find.byWidgetPredicate(
         (Widget widget) =>
             widget is Transform &&
-            widget.transform == Transform.rotate(angle: 0.0).transform,
+            widget.transform == Transform.rotate(angle: .fixed(0.0)).transform,
       ),
       findsOneWidget,
     );
@@ -39,7 +39,8 @@ void main() {
       find.byWidgetPredicate(
         (Widget widget) =>
             widget is Transform &&
-            widget.transform == Transform.rotate(angle: math.pi).transform,
+            widget.transform ==
+                Transform.rotate(angle: .fixed(math.pi)).transform,
       ),
       findsOneWidget,
     );

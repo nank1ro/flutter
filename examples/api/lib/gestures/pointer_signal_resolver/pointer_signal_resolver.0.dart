@@ -53,9 +53,11 @@ class _ColorChangerState extends State<ColorChanger> {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(
-        border: const .fromBorderSide(BorderSide()),
-        color: color.toColor(),
+      decoration: .fixed(
+        BoxDecoration(
+          border: const .fromBorderSide(BorderSide()),
+          color: color.toColor(),
+        ),
       ),
       child: Listener(
         onPointerSignal: (PointerSignalEvent event) {

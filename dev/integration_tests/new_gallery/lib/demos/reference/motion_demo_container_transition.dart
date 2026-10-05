@@ -70,7 +70,7 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
                     localizations!.demoContainerTransformModalBottomSheetTitle,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: .fixed(12)),
                   ToggleButtons(
                     borderRadius: BorderRadius.circular(2),
                     selectedBorderColor: Theme.of(context).colorScheme.primary,
@@ -90,7 +90,7 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
                     children: <Widget>[
                       Text(localizations.demoContainerTransformTypeFade),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const .fixed(EdgeInsets.symmetric(horizontal: 10)),
                         child: Text(localizations.demoContainerTransformTypeFadeThrough),
                       ),
                     ],
@@ -146,14 +146,14 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
                     return _DetailsCard(openContainer: openContainer);
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 _OpenContainerWrapper(
                   transitionType: _transitionType,
                   closedBuilder: (BuildContext context, void Function() openContainer) {
                     return _DetailsListTile(openContainer: openContainer);
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -167,7 +167,7 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
                         },
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: .fixed(8)),
                     Expanded(
                       child: _OpenContainerWrapper(
                         transitionType: _transitionType,
@@ -181,7 +181,7 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -195,7 +195,7 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
                         },
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: .fixed(8)),
                     Expanded(
                       child: _OpenContainerWrapper(
                         transitionType: _transitionType,
@@ -207,7 +207,7 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
                         },
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: .fixed(8)),
                     Expanded(
                       child: _OpenContainerWrapper(
                         transitionType: _transitionType,
@@ -221,7 +221,7 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 ...List<OpenContainer<bool>>.generate(10, (int index) {
                   return OpenContainer<bool>(
                     transitionType: _transitionType,
@@ -257,8 +257,8 @@ class _OpenContainerTransformDemoState extends State<OpenContainerTransformDemo>
               closedColor: colorScheme.secondary,
               closedBuilder: (BuildContext context, void Function() openContainer) {
                 return SizedBox(
-                  height: _fabDimension,
-                  width: _fabDimension,
+                  height: const .fixed(_fabDimension),
+                  width: const .fixed(_fabDimension),
                   child: Center(child: Icon(Icons.add, color: colorScheme.onSecondary)),
                 );
               },
@@ -304,7 +304,7 @@ class _DetailsCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: ColoredBox(
-              color: Colors.black38,
+              color: const .fixed(Colors.black38),
               child: Center(
                 child: Image.asset(
                   'placeholders/placeholder_image.png',
@@ -319,7 +319,7 @@ class _DetailsCard extends StatelessWidget {
             subtitle: Text(localizations.demoMotionPlaceholderSubtitle),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+            padding: const .fixed(EdgeInsets.only(left: 16, right: 16, bottom: 16)),
             child: Text(
               'Lorem ipsum dolor sit amet, consectetur '
               'adipiscing elit, sed do eiusmod tempor.',
@@ -363,7 +363,7 @@ class _SmallDetailsCard extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const .fixed(EdgeInsets.all(10)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -372,7 +372,7 @@ class _SmallDetailsCard extends StatelessWidget {
                     GalleryLocalizations.of(context)!.demoMotionPlaceholderTitle,
                     style: textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: .fixed(4)),
                   Text(subtitle, style: textTheme.bodySmall),
                 ],
               ),
@@ -413,7 +413,7 @@ class _DetailsListTile extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const .fixed(EdgeInsets.all(20)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -421,7 +421,7 @@ class _DetailsListTile extends StatelessWidget {
                     GalleryLocalizations.of(context)!.demoMotionPlaceholderTitle,
                     style: textTheme.titleMedium,
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: .fixed(8)),
                   Text(
                     'Lorem ipsum dolor sit amet, consectetur '
                     'adipiscing elit,',
@@ -447,7 +447,7 @@ class _InkWellOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
+      height: .fixed(height),
       child: InkWell(onTap: openContainer, child: child),
     );
   }
@@ -469,7 +469,7 @@ class _DetailsPage extends StatelessWidget {
             color: Colors.black38,
             height: 250,
             child: Padding(
-              padding: const EdgeInsets.all(70),
+              padding: const .fixed(EdgeInsets.all(70)),
               child: Image.asset(
                 'placeholders/placeholder_image.png',
                 package: 'flutter_gallery_assets',
@@ -477,7 +477,7 @@ class _DetailsPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const .fixed(EdgeInsets.all(20)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -485,7 +485,7 @@ class _DetailsPage extends StatelessWidget {
                   localizations.demoMotionPlaceholderTitle,
                   style: textTheme.headlineSmall!.copyWith(color: Colors.black54, fontSize: 30),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: .fixed(10)),
                 Text(
                   _loremIpsumParagraph,
                   style: textTheme.bodyMedium!.copyWith(

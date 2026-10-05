@@ -63,15 +63,15 @@ class _SegmentedControlExampleState extends State<SegmentedControlExample> {
           },
           children: const <Sky, Widget>{
             Sky.midnight: Padding(
-              padding: .symmetric(horizontal: 20),
+              padding: .fixed(.symmetric(horizontal: 20)),
               child: Text('Midnight'),
             ),
             Sky.viridian: Padding(
-              padding: .symmetric(horizontal: 20),
+              padding: .fixed(.symmetric(horizontal: 20)),
               child: Text('Viridian'),
             ),
             Sky.cerulean: Padding(
-              padding: .symmetric(horizontal: 20),
+              padding: .fixed(.symmetric(horizontal: 20)),
               child: Text('Cerulean'),
             ),
           },
@@ -85,7 +85,7 @@ class _SegmentedControlExampleState extends State<SegmentedControlExample> {
               'Selected Segment: ${_selectedSegment.name}',
               style: const TextStyle(color: CupertinoColors.white),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: .fixed(20)),
             Row(
               mainAxisSize: .min,
               children: <Widget>[

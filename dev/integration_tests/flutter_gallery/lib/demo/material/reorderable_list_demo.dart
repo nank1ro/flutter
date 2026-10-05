@@ -86,8 +86,10 @@ class _ListDemoState extends State<ReorderableListDemo> {
     setState(() {
       _bottomSheet = scaffoldKey.currentState!.showBottomSheet((BuildContext bottomSheetContext) {
         return DecoratedBox(
-          decoration: const BoxDecoration(
-            border: Border(top: BorderSide(color: Colors.black26)),
+          decoration: const .fixed(
+            BoxDecoration(
+              border: Border(top: BorderSide(color: Colors.black26)),
+            ),
           ),
           child: ListView(
             shrinkWrap: true,
@@ -160,8 +162,8 @@ class _ListDemoState extends State<ReorderableListDemo> {
       case _ReorderableListType.verticalAvatar:
         listTile = SizedBox(
           key: Key(item.value),
-          height: 100.0,
-          width: 100.0,
+          height: const .fixed(100.0),
+          width: const .fixed(100.0),
           child: CircleAvatar(backgroundColor: Colors.green, child: Text(item.value)),
         );
       case null:
@@ -213,7 +215,7 @@ class _ListDemoState extends State<ReorderableListDemo> {
           primary: true,
           header: _itemType != _ReorderableListType.threeLine
               ? Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const .fixed(EdgeInsets.all(8.0)),
                   child: Text(
                     'Header of the list',
                     style: Theme.of(context).textTheme.headlineSmall,

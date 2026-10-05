@@ -69,7 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: <Widget>[
               for (final String bullet in bullets)
-                Padding(padding: const .only(left: 20.0), child: Text(bullet)),
+                Padding(
+                  padding: const .fixed(.only(left: 20.0)),
+                  child: Text(bullet),
+                ),
             ],
           ),
         ),
@@ -361,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     for (final MapEntry<LocalSpanRange, TextSpan> entry
                         in widgetSpanSourceMap.entries)
                       Padding(
-                        padding: const .only(left: 20.0),
+                        padding: const .fixed(.only(left: 20.0)),
                         child: Text.rich(widgetSpanSourceMap[entry.key]!),
                       ),
                   ],

@@ -46,7 +46,7 @@ class _PopupMenuExampleState extends State<PopupMenuExample> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const .only(top: 50),
+          padding: const .fixed(.only(top: 50)),
           child: Align(
             alignment: .topCenter,
             child: Column(
@@ -82,7 +82,7 @@ class _PopupMenuExampleState extends State<PopupMenuExample> {
                       })
                       .toList(),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: .fixed(10)),
                 PopupMenuButton<Menu>(
                   popUpAnimationStyle: _animationStyle,
                   icon: const Icon(Icons.more_vert),

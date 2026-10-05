@@ -30,13 +30,13 @@ class CarouselBuilderExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxHeight: 200),
+        constraints: .fixed(const BoxConstraints(maxHeight: 200)),
         child: CarouselView.builder(
           itemExtent: 350,
           itemCount: 1000,
           itemBuilder: (BuildContext context, int index) {
             return ColoredBox(
-              color: Colors.primaries[index % Colors.primaries.length],
+              color: .fixed(Colors.primaries[index % Colors.primaries.length]),
               child: Center(
                 child: Text(
                   'Item $index',

@@ -146,7 +146,10 @@ class MergeThreadTestPage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           const Expanded(
-            child: SizedBox(width: 300, child: UiKitView(viewType: 'platform_view')),
+            child: SizedBox(
+              width: .fixed(300),
+              child: UiKitView(viewType: 'platform_view'),
+            ),
           ),
           ElevatedButton(key: button, child: const Text('button'), onPressed: () {}),
         ],
@@ -179,7 +182,11 @@ class _FocusTestPageState extends State<FocusTestPage> {
       appBar: AppBar(title: const Text('Platform View Focus Tests')),
       body: Column(
         children: <Widget>[
-          const SizedBox(width: 300, height: 50, child: UiKitView(viewType: 'platform_text_field')),
+          const SizedBox(
+            width: .fixed(300),
+            height: .fixed(50),
+            child: UiKitView(viewType: 'platform_text_field'),
+          ),
           TextField(controller: _controller),
         ],
       ),
@@ -210,7 +217,7 @@ class _ZOrderTestPageState extends State<ZOrderTestPage> {
             Visibility(
               visible: _showBackground,
               child: const SizedBox.square(
-                dimension: 500.0,
+                dimension: .fixed(500.0),
                 child: UiKitView(
                   viewType: 'platform_view',
                   creationParamsCodec: StandardMessageCodec(),
@@ -223,7 +230,7 @@ class _ZOrderTestPageState extends State<ZOrderTestPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return const SizedBox.square(
-                      dimension: 250.0,
+                      dimension: .fixed(250.0),
                       child: UiKitView(
                         viewType: 'platform_button',
                         creationParamsCodec: StandardMessageCodec(),
@@ -284,7 +291,7 @@ class _WebViewBehindContextMenuTestPageState extends State<WebViewBehindContextM
       ),
       body: const Center(
         child: SizedBox.square(
-          dimension: 500.0,
+          dimension: .fixed(500.0),
           child: UiKitView(
             viewType: 'platform_web_view',
             creationParamsCodec: StandardMessageCodec(),
@@ -330,7 +337,7 @@ class _DrawingWebViewBehindContextMenuTestPageState
       ),
       body: const Center(
         child: SizedBox.square(
-          dimension: 500.0,
+          dimension: .fixed(500.0),
           child: UiKitView(
             viewType: 'platform_drawing_web_view',
             creationParamsCodec: StandardMessageCodec(),
@@ -361,7 +368,7 @@ class _AdMobBannerInScrollableListTestPageState extends State<AdMobBannerInScrol
         itemBuilder: (BuildContext context, int index) {
           if (index.isEven) {
             return const SizedBox(
-              height: 300,
+              height: .fixed(300),
               child: UiKitView(
                 viewType: 'platform_fake_admob_banner',
                 creationParamsCodec: StandardMessageCodec(),

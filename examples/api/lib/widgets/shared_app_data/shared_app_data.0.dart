@@ -42,9 +42,9 @@ class _SharedAppDataExampleState extends State<SharedAppDataExample> {
           mainAxisSize: .min,
           children: <Widget>[
             const ShowSharedValue(appDataKey: 'foo'),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             const ShowSharedValue(appDataKey: 'bar'),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             ElevatedButton(
               child: const Text('change foo'),
               onPressed: () {
@@ -58,7 +58,7 @@ class _SharedAppDataExampleState extends State<SharedAppDataExample> {
                 ); // No need to call setState().
               },
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             ElevatedButton(
               child: const Text('change bar'),
               onPressed: () {

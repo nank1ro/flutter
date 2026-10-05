@@ -60,7 +60,7 @@ class _Menu extends StatelessWidget {
       ),
       height: 44.0,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0)),
         child: SafeArea(
           top: false,
           bottom: false,
@@ -275,7 +275,7 @@ class _CupertinoPickerDemoState extends State<CupertinoPickerDemo> {
         style: CupertinoTheme.of(context).textTheme.textStyle,
         child: ListView(
           children: <Widget>[
-            const Padding(padding: EdgeInsets.only(top: 32.0)),
+            const Padding(padding: .fixed(EdgeInsets.only(top: 32.0))),
             _buildColorPicker(context),
             _buildCountdownTimerPicker(context),
             _buildDatePicker(context),

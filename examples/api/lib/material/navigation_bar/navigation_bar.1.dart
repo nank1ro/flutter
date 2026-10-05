@@ -54,7 +54,7 @@ class _NavigationExampleState extends State<NavigationExample> {
           mainAxisAlignment: .center,
           children: <Widget>[
             Text('Label behavior: ${labelBehavior.name}'),
-            const SizedBox(height: 10),
+            const SizedBox(height: .fixed(10)),
             OverflowBar(
               spacing: 10.0,
               overflowAlignment: .center,

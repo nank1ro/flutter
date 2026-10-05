@@ -129,7 +129,7 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const SizedBox(height: 2),
+          const SizedBox(height: .fixed(2)),
           OverflowBar(
             spacing: 8,
             children: <Widget>[
@@ -146,7 +146,7 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: .fixed(16)),
           OverflowBar(
             spacing: 8,
             children: <Widget>[
@@ -178,7 +178,7 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const SizedBox(height: 2),
+          const SizedBox(height: .fixed(2)),
           OverflowBar(
             spacing: 8,
             children: <Widget>[
@@ -226,7 +226,7 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const SizedBox(height: 2),
+          const SizedBox(height: .fixed(2)),
           OverflowBar(
             spacing: 8,
             children: <Widget>[
@@ -244,7 +244,7 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: .fixed(16)),
           OverflowBar(
             spacing: 8,
             children: <Widget>[
@@ -275,7 +275,7 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
 
   Widget buildDropdownButton() {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: const .fixed(EdgeInsets.all(24.0)),
       child: Column(
         children: <Widget>[
           ListTile(
@@ -294,7 +294,7 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
               }).toList(),
             ),
           ),
-          const SizedBox(height: 24.0),
+          const SizedBox(height: .fixed(24.0)),
           ListTile(
             title: const Text('Dropdown with a hint:'),
             trailing: DropdownButton<String>(
@@ -312,7 +312,7 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
               }).toList(),
             ),
           ),
-          const SizedBox(height: 24.0),
+          const SizedBox(height: .fixed(24.0)),
           ListTile(
             title: const Text('Scrollable dropdown:'),
             trailing: DropdownButton<String>(
@@ -372,7 +372,13 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
                     onPressed: null,
                   ),
                 ]
-                .map<Widget>((Widget button) => SizedBox(width: 64.0, height: 64.0, child: button))
+                .map<Widget>(
+                  (Widget button) => SizedBox(
+                    width: const .fixed(64.0),
+                    height: const .fixed(64.0),
+                    child: button,
+                  ),
+                )
                 .toList(),
       ),
     );

@@ -236,7 +236,7 @@ class _SlidersState extends State<_Sliders> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      padding: const .fixed(EdgeInsets.symmetric(horizontal: 40.0)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
@@ -246,8 +246,8 @@ class _SlidersState extends State<_Sliders> {
               Semantics(
                 label: 'Editable numerical value',
                 child: SizedBox(
-                  width: 64,
-                  height: 48,
+                  width: const .fixed(64),
+                  height: const .fixed(48),
                   child: TextField(
                     textAlign: TextAlign.center,
                     onSubmitted: (String value) {
@@ -352,7 +352,7 @@ class _RangeSlidersState extends State<_RangeSliders> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      padding: const .fixed(EdgeInsets.symmetric(horizontal: 40.0)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[

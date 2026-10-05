@@ -300,8 +300,8 @@ class ExpandingBottomSheetState extends State<ExpandingBottomSheet> with TickerP
       button: true,
       value: 'Shopping cart, $totalCartQuantity items',
       child: SizedBox(
-        width: _widthAnimation.value,
-        height: _heightAnimation.value,
+        width: .fixed(_widthAnimation.value),
+        height: .fixed(_heightAnimation.value),
         child: Material(
           animationDuration: Duration.zero,
           shape: BeveledRectangleBorder(

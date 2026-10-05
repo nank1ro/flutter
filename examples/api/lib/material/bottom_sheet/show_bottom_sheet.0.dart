@@ -76,7 +76,7 @@ class _BottomSheetExampleState extends State<BottomSheetExample> {
                 })
                 .toList(),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: .fixed(10)),
           ElevatedButton(
             child: const Text('showBottomSheet'),
             onPressed: () {

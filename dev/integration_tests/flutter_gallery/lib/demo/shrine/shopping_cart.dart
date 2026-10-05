@@ -51,7 +51,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                     Row(
                       children: <Widget>[
                         SizedBox(
-                          width: _leftColumnWidth,
+                          width: const .fixed(_leftColumnWidth),
                           child: IconButton(
                             icon: const Icon(Icons.keyboard_arrow_down),
                             onPressed: () => ExpandingBottomSheet.of(context)!.close(),
@@ -63,14 +63,14 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(width: 16.0),
+                        const SizedBox(width: .fixed(16.0)),
                         Text('${model.totalCartQuantity} ITEMS'),
                       ],
                     ),
-                    const SizedBox(height: 16.0),
+                    const SizedBox(height: .fixed(16.0)),
                     Column(children: _createShoppingCartRows(model)),
                     ShoppingCartSummary(model: model),
-                    const SizedBox(height: 100.0),
+                    const SizedBox(height: .fixed(100.0)),
                   ],
                 ),
                 Positioned(
@@ -85,7 +85,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                       ),
                     ),
                     child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12.0),
+                      padding: .fixed(EdgeInsets.symmetric(vertical: 12.0)),
                       child: Text('CLEAR CART'),
                     ),
                     onPressed: () {
@@ -121,10 +121,10 @@ class ShoppingCartSummary extends StatelessWidget {
 
     return Row(
       children: <Widget>[
-        const SizedBox(width: _leftColumnWidth),
+        const SizedBox(width: .fixed(_leftColumnWidth)),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(right: 16.0),
+            padding: const .fixed(EdgeInsets.only(right: 16.0)),
             child: Column(
               children: <Widget>[
                 Row(
@@ -133,21 +133,21 @@ class ShoppingCartSummary extends StatelessWidget {
                     Text(formatter.format(model!.totalCost), style: largeAmountStyle),
                   ],
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: .fixed(16.0)),
                 Row(
                   children: <Widget>[
                     const Expanded(child: Text('Subtotal:')),
                     Text(formatter.format(model!.subtotalCost), style: smallAmountStyle),
                   ],
                 ),
-                const SizedBox(height: 4.0),
+                const SizedBox(height: .fixed(4.0)),
                 Row(
                   children: <Widget>[
                     const Expanded(child: Text('Shipping:')),
                     Text(formatter.format(model!.shippingCost), style: smallAmountStyle),
                   ],
                 ),
-                const SizedBox(height: 4.0),
+                const SizedBox(height: .fixed(4.0)),
                 Row(
                   children: <Widget>[
                     const Expanded(child: Text('Tax:')),
@@ -179,18 +179,18 @@ class ShoppingCartRow extends StatelessWidget {
     final ThemeData localTheme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: const .fixed(EdgeInsets.only(bottom: 16.0)),
       child: Row(
         key: ValueKey<int>(product.id),
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            width: _leftColumnWidth,
+            width: const .fixed(_leftColumnWidth),
             child: IconButton(icon: const Icon(Icons.remove_circle_outline), onPressed: onPressed),
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(right: 16.0),
+              padding: const .fixed(EdgeInsets.only(right: 16.0)),
               child: Column(
                 children: <Widget>[
                   Row(
@@ -203,7 +203,7 @@ class ShoppingCartRow extends StatelessWidget {
                         width: 75.0,
                         height: 75.0,
                       ),
-                      const SizedBox(width: 16.0),
+                      const SizedBox(width: .fixed(16.0)),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -225,7 +225,7 @@ class ShoppingCartRow extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: .fixed(16.0)),
                   const Divider(color: kShrineBrown900, height: 10.0),
                 ],
               ),

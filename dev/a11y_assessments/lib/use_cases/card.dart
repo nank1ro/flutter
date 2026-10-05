@@ -43,7 +43,7 @@ class MainWidgetState extends State<MainWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Card(
-              child: Padding(padding: EdgeInsets.all(16), child: Text('Card')),
+              child: Padding(padding: .fixed(EdgeInsets.all(16)), child: Text('Card')),
             ),
           ],
         ),

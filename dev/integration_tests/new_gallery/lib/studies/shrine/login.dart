@@ -35,18 +35,18 @@ class LoginPage extends StatelessWidget {
                 body: SafeArea(
                   child: Center(
                     child: SizedBox(
-                      width: desktopLoginScreenMainAreaWidth(context: context),
+                      width: .fixed(desktopLoginScreenMainAreaWidth(context: context)),
                       child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           _ShrineLogo(),
-                          SizedBox(height: 40),
+                          SizedBox(height: .fixed(40)),
                           _UsernameTextField(),
-                          SizedBox(height: 16),
+                          SizedBox(height: .fixed(16)),
                           _PasswordTextField(),
-                          SizedBox(height: 24),
+                          SizedBox(height: .fixed(24)),
                           _CancelAndNextButtons(),
-                          SizedBox(height: 62),
+                          SizedBox(height: .fixed(62)),
                         ],
                       ),
                     ),
@@ -61,11 +61,11 @@ class LoginPage extends StatelessWidget {
                   physics: const ClampingScrollPhysics(),
                   padding: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
                   children: const <Widget>[
-                    SizedBox(height: 80),
+                    SizedBox(height: .fixed(80)),
                     _ShrineLogo(),
-                    SizedBox(height: 120),
+                    SizedBox(height: .fixed(120)),
                     _UsernameTextField(),
-                    SizedBox(height: 12),
+                    SizedBox(height: .fixed(12)),
                     _PasswordTextField(),
                     _CancelAndNextButtons(),
                   ],
@@ -86,9 +86,9 @@ class _ShrineLogo extends StatelessWidget {
         children: <Widget>[
           const FadeInImagePlaceholder(
             image: AssetImage('packages/shrine_images/diamond.png'),
-            placeholder: SizedBox(width: 34, height: 34),
+            placeholder: SizedBox(width: .fixed(34), height: .fixed(34)),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: .fixed(16)),
           Text('SHRINE', style: Theme.of(context).textTheme.headlineSmall),
         ],
       ),
@@ -148,7 +148,7 @@ class _CancelAndNextButtons extends StatelessWidget {
         : EdgeInsets.zero;
 
     return Padding(
-      padding: isDesktop ? EdgeInsets.zero : const EdgeInsets.all(8),
+      padding: .fixed(isDesktop ? EdgeInsets.zero : const EdgeInsets.all(8)),
       child: OverflowBar(
         spacing: isDesktop ? 0 : 8,
         alignment: MainAxisAlignment.end,
@@ -167,7 +167,7 @@ class _CancelAndNextButtons extends StatelessWidget {
               Navigator.of(context, rootNavigator: true).pop();
             },
             child: Padding(
-              padding: buttonTextPadding,
+              padding: .fixed(buttonTextPadding),
               child: Text(
                 GalleryLocalizations.of(context)!.shrineCancelButtonCaption,
                 style: TextStyle(color: colorScheme.onSurface),
@@ -185,7 +185,7 @@ class _CancelAndNextButtons extends StatelessWidget {
               Navigator.of(context).restorablePushNamed(ShrineApp.homeRoute);
             },
             child: Padding(
-              padding: buttonTextPadding,
+              padding: .fixed(buttonTextPadding),
               child: Text(
                 GalleryLocalizations.of(context)!.shrineNextButtonCaption,
                 style: TextStyle(letterSpacing: letterSpacingOrNone(largeLetterSpacing)),

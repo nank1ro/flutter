@@ -139,7 +139,7 @@ final Widget trailingButtons = Row(
   mainAxisSize: MainAxisSize.min,
   children: <Widget>[
     CupertinoDemoDocumentationButton(CupertinoNavigationDemo.routeName),
-    const Padding(padding: EdgeInsets.only(left: 8.0)),
+    const Padding(padding: .fixed(EdgeInsets.only(left: 8.0))),
     const ExitButton(),
   ],
 );
@@ -218,12 +218,12 @@ class Tab1RowItem extends StatelessWidget {
         );
       },
       child: ColoredBox(
-        color: CupertinoDynamicColor.resolve(CupertinoColors.systemBackground, context),
+        color: .fixed(CupertinoDynamicColor.resolve(CupertinoColors.systemBackground, context)),
         child: SafeArea(
           top: false,
           bottom: false,
           child: Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 8.0, bottom: 8.0, right: 8.0),
+            padding: const .fixed(EdgeInsets.only(left: 16.0, top: 8.0, bottom: 8.0, right: 8.0)),
             child: Row(
               children: <Widget>[
                 Container(
@@ -233,12 +233,12 @@ class Tab1RowItem extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    padding: const .fixed(EdgeInsets.symmetric(horizontal: 12.0)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(colorName!),
-                        const Padding(padding: EdgeInsets.only(top: 8.0)),
+                        const Padding(padding: .fixed(EdgeInsets.only(top: 8.0))),
                         Text(
                           'Buy this cool color',
                           style: TextStyle(
@@ -319,9 +319,9 @@ class Tab1ItemPageState extends State<Tab1ItemPage> {
         bottom: false,
         child: ListView(
           children: <Widget>[
-            const Padding(padding: EdgeInsets.only(top: 16.0)),
+            const Padding(padding: .fixed(EdgeInsets.only(top: 16.0))),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0)),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -332,7 +332,7 @@ class Tab1ItemPageState extends State<Tab1ItemPage> {
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.only(left: 18.0)),
+                  const Padding(padding: .fixed(EdgeInsets.only(left: 18.0))),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,7 +342,7 @@ class Tab1ItemPageState extends State<Tab1ItemPage> {
                           widget.colorName!,
                           style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
-                        const Padding(padding: EdgeInsets.only(top: 6.0)),
+                        const Padding(padding: .fixed(EdgeInsets.only(top: 6.0))),
                         Text(
                           'Item number ${widget.index}',
                           style: TextStyle(
@@ -354,7 +354,7 @@ class Tab1ItemPageState extends State<Tab1ItemPage> {
                             fontWeight: FontWeight.w100,
                           ),
                         ),
-                        const Padding(padding: EdgeInsets.only(top: 20.0)),
+                        const Padding(padding: .fixed(EdgeInsets.only(top: 20.0))),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -388,7 +388,7 @@ class Tab1ItemPageState extends State<Tab1ItemPage> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 16.0, top: 28.0, bottom: 8.0),
+              padding: .fixed(EdgeInsets.only(left: 16.0, top: 28.0, bottom: 8.0)),
               child: Text(
                 'USERS ALSO LIKED',
                 style: TextStyle(
@@ -400,14 +400,14 @@ class Tab1ItemPageState extends State<Tab1ItemPage> {
               ),
             ),
             SizedBox(
-              height: 200.0,
+              height: const .fixed(200.0),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 10,
                 itemExtent: 160.0,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
+                    padding: const .fixed(EdgeInsets.only(left: 16.0)),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
@@ -464,7 +464,7 @@ class Tab2Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const .fixed(EdgeInsets.all(16.0)),
       child: SafeArea(
         top: false,
         bottom: false,
@@ -478,7 +478,7 @@ class Tab2Header extends StatelessWidget {
                   color: CupertinoDynamicColor.resolve(CupertinoColors.systemFill, context),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
+                  padding: const .fixed(EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -518,7 +518,7 @@ class Tab2Header extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
+                  padding: const .fixed(EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -530,7 +530,7 @@ class Tab2Header extends StatelessWidget {
                           letterSpacing: -0.46,
                         ),
                       ),
-                      const Padding(padding: EdgeInsets.only(top: 16.0)),
+                      const Padding(padding: .fixed(EdgeInsets.only(top: 16.0))),
                       const Text(
                         'REVIEWERS',
                         style: TextStyle(
@@ -540,7 +540,7 @@ class Tab2Header extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const Padding(padding: EdgeInsets.only(top: 8.0)),
+                      const Padding(padding: .fixed(EdgeInsets.only(top: 8.0))),
                       Row(
                         children: <Widget>[
                           Container(
@@ -556,7 +556,7 @@ class Tab2Header extends StatelessWidget {
                               shape: BoxShape.circle,
                             ),
                           ),
-                          const Padding(padding: EdgeInsets.only(left: 8.0)),
+                          const Padding(padding: .fixed(EdgeInsets.only(left: 8.0))),
                           Container(
                             width: 44.0,
                             height: 44.0,
@@ -570,7 +570,7 @@ class Tab2Header extends StatelessWidget {
                               shape: BoxShape.circle,
                             ),
                           ),
-                          const Padding(padding: EdgeInsets.only(left: 2.0)),
+                          const Padding(padding: .fixed(EdgeInsets.only(left: 2.0))),
                           const Icon(
                             CupertinoIcons.check_mark_circled,
                             color: Color(0xFF646464),
@@ -733,7 +733,7 @@ class CupertinoDemoTab3 extends StatelessWidget {
       backgroundColor: CupertinoColors.systemBackground,
       child: ListView(
         children: <Widget>[
-          const Padding(padding: EdgeInsets.only(top: 32.0)),
+          const Padding(padding: .fixed(EdgeInsets.only(top: 32.0))),
           GestureDetector(
             onTap: () {
               Navigator.of(context, rootNavigator: true).push(
@@ -753,7 +753,7 @@ class CupertinoDemoTab3 extends StatelessWidget {
               ),
               height: 44.0,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
                 child: SafeArea(
                   top: false,
                   bottom: false,
@@ -795,7 +795,7 @@ class Tab3Dialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Icon(CupertinoIcons.profile_circled, size: 160.0, color: Color(0xFF646464)),
-            const Padding(padding: EdgeInsets.only(top: 18.0)),
+            const Padding(padding: .fixed(EdgeInsets.only(top: 18.0))),
             CupertinoButton.filled(
               child: const Text('Sign in'),
               onPressed: () {

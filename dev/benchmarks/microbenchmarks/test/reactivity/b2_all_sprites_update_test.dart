@@ -40,6 +40,29 @@ const int kTimed = 6;
 int _spriteBuilds = 0;
 int _probeBuilds = 0;
 int _effectRuns = 0;
+
+/// A [ReadonlySignal] that counts its tracked reads, so the leaf variant can
+/// assert that every sprite's binding ran once per frame. It does the same
+/// work as the counting closure the variant used before ColoredBox took a
+/// [ReadonlySignal]: one call and one increment per read.
+final class _CountingRead implements ReadonlySignal<Color> {
+  _CountingRead(this._source);
+
+  final Signal<Color> _source;
+
+  @override
+  Color get value {
+    _effectRuns += 1;
+    return _source.value;
+  }
+
+  @override
+  Color get peek => _source.peek;
+
+  @override
+  Color call() => value;
+}
+
 int _componentRuns = 0;
 
 Color _colorForFrame(int frame) => frame.isEven ? Colors.red : Colors.blue;
@@ -53,7 +76,7 @@ class _SignalSprite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _spriteBuilds++;
-    return ColoredBox(color: color.value);
+    return ColoredBox(color: .fixed(color.value));
   }
 }
 
@@ -86,7 +109,7 @@ Future<double> _valueListenable(WidgetTester tester) async {
             valueListenable: n,
             builder: (BuildContext context, Color color, Widget? child) {
               buildCount++;
-              return ColoredBox(color: color);
+              return ColoredBox(color: .fixed(color));
             },
           ),
       ]),
@@ -162,23 +185,18 @@ Future<double> _leafBinding(WidgetTester tester) async {
   await tester.pumpWidget(
     MaterialApp(
       home: _BuildProbe(
-        child: mountAllInRows([
-          for (final s in signals)
-            ReactiveColoredBox(
-              color: () {
-                _effectRuns += 1;
-                return s.value;
-              },
-            ),
-        ]),
+        child: mountAllInRows([for (final s in signals) ColoredBox(color: _CountingRead(s))]),
       ),
     ),
   );
   expect(find.byType(Positioned), findsNWidgets(kSpriteCount));
   // Render objects are never rebuilt in this variant, so their identity is
   // stable for the whole run: capture the list once, in sprite order.
-  final List<RenderReactiveColoredBox> renderObjects = tester
-      .renderObjectList<RenderReactiveColoredBox>(find.byType(ReactiveColoredBox))
+  final List<RenderObject> renderObjects = tester
+      .renderObjectList<RenderObject>(
+        // Only the sprites: the app shell has ColoredBoxes of its own.
+        find.descendant(of: find.byType(_BuildProbe), matching: find.byType(ColoredBox)),
+      )
       .toList();
 
   var frame = 0;
@@ -212,9 +230,9 @@ Future<double> _leafBinding(WidgetTester tester) async {
   expect(_effectRuns, kSpriteCount * kTimed);
   final Color last = _colorForFrame(frame - 1);
   for (var idx = 0; idx < kSpriteCount; idx += kSpriteCount ~/ 100) {
-    expect(renderObjects[idx].color, last);
+    expect(renderObjects[idx], paints..rect(color: last));
   }
-  expect(renderObjects.last.color, last);
+  expect(renderObjects.last, paints..rect(color: last));
   expect(_probeBuilds, 0);
   await tester.pumpWidget(const SizedBox.shrink());
   return median(values);
@@ -251,8 +269,8 @@ Future<double> _collapsedNodes(WidgetTester tester) async {
   await tester.pumpWidget(
     MaterialApp(
       home: SizedBox(
-        width: 800,
-        height: kSpriteCount.toDouble(),
+        width: const .fixed(800),
+        height: .fixed(kSpriteCount.toDouble()),
         child: NodeHost(node: root),
       ),
     ),

@@ -30,14 +30,14 @@ class TwoProductCardColumn extends StatelessWidget {
           physics: const ClampingScrollPhysics(),
           children: <Widget>[
             Padding(
-              padding: const EdgeInsetsDirectional.only(start: 28.0),
+              padding: const .fixed(EdgeInsetsDirectional.only(start: 28.0)),
               child: top != null
                   ? ProductCard(imageAspectRatio: imageAspectRatio, product: top)
-                  : SizedBox(height: heightOfCards > 0 ? heightOfCards : spacerHeight),
+                  : SizedBox(height: .fixed(heightOfCards > 0 ? heightOfCards : spacerHeight)),
             ),
-            const SizedBox(height: spacerHeight),
+            const SizedBox(height: .fixed(spacerHeight)),
             Padding(
-              padding: const EdgeInsetsDirectional.only(end: 28.0),
+              padding: const .fixed(EdgeInsetsDirectional.only(end: 28.0)),
               child: ProductCard(imageAspectRatio: imageAspectRatio, product: bottom),
             ),
           ],
@@ -58,7 +58,7 @@ class OneProductCardColumn extends StatelessWidget {
       physics: const ClampingScrollPhysics(),
       reverse: true,
       children: <Widget>[
-        const SizedBox(height: 40.0),
+        const SizedBox(height: .fixed(40.0)),
         ProductCard(product: product),
       ],
     );

@@ -17,10 +17,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Widget buildDivider() {
     return const Padding(
-      padding: EdgeInsets.all(4),
+      padding: .fixed(EdgeInsets.all(4)),
       child: ColoredBox(
-        color: Color(0xFF000000),
-        child: SizedBox(height: 4, width: double.infinity),
+        color: .fixed(Color(0xFF000000)),
+        child: SizedBox(height: .fixed(4), width: .fixed(double.infinity)),
       ),
     );
   }
@@ -39,12 +39,12 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const .symmetric(horizontal: 16.0),
+            padding: const .fixed(.symmetric(horizontal: 16.0)),
             child: Center(
               child: Column(
                 crossAxisAlignment: .start,
                 children: <Widget>[
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: .fixed(16.0)),
                   Align(
                     child: Text(
                       'Demonstration of automation tools support in Semantics for Text and RichText',
@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
                       textAlign: .center,
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: .fixed(16.0)),
                   const Text(
                     'The identifier property in Semantics widget is used for UI testing with tools that work by querying the native accessibility, like UIAutomator, XCUITest, or Appium. It can be matched with CommonFinders.bySemanticsIdentifier.',
                   ),
@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                   buildDivider(),
                   Text('Multi-tenant Example:', style: bodyStyle),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: .fixed(16)),
                   Column(
                     spacing: 16.0,
                     children: <Widget>[

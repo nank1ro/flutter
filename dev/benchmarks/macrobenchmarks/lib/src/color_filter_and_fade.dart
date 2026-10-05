@@ -30,15 +30,15 @@ class _ColorFilterAndFadePageState extends State<ColorFilterAndFadePage>
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         shadowWidget,
-        const SizedBox(width: 12),
+        const SizedBox(width: .fixed(12)),
         shadowWidget,
-        const SizedBox(width: 12),
+        const SizedBox(width: .fixed(12)),
         shadowWidget,
-        const SizedBox(width: 12),
+        const SizedBox(width: .fixed(12)),
         shadowWidget,
-        const SizedBox(width: 12),
+        const SizedBox(width: .fixed(12)),
         shadowWidget,
-        const SizedBox(width: 12),
+        const SizedBox(width: .fixed(12)),
       ],
     );
 
@@ -46,13 +46,13 @@ class _ColorFilterAndFadePageState extends State<ColorFilterAndFadePage>
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         row,
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
         row,
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
         row,
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
         row,
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
       ],
     );
 
@@ -134,8 +134,8 @@ class _ShadowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-      height: height,
+      width: .fixed(width),
+      height: .fixed(height),
       child: CustomPaint(
         painter: _ShadowPainter(useColorFilter: useColorFilter, shadow: shadow),
         size: Size(width, height),

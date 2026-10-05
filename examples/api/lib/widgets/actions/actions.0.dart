@@ -159,7 +159,7 @@ class _ActionsExampleState extends State<ActionsExample> {
                     listenable: _model.data,
                     builder: (BuildContext context, Widget? child) {
                       return Padding(
-                        padding: const .all(8.0),
+                        padding: const .fixed(.all(8.0)),
                         child: Text(
                           'Value: ${_model.data.value}',
                           style: Theme.of(context).textTheme.headlineMedium,

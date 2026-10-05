@@ -45,7 +45,7 @@ class _DesktopExampleState extends State<DesktopExample> {
         return Row(
           children: <Widget>[
             SizedBox(
-              width: constraints.maxWidth / 2,
+              width: .fixed(constraints.maxWidth / 2),
               // When running this sample on desktop, two scrollbars will be
               // visible here. One is the default scrollbar and the other is the
               // Scrollbar widget with custom thickness.
@@ -58,9 +58,9 @@ class _DesktopExampleState extends State<DesktopExample> {
                   itemCount: 100,
                   itemBuilder: (BuildContext context, int index) {
                     return SizedBox(
-                      height: 50,
+                      height: .fixed(50),
                       child: Padding(
-                        padding: const .all(8.0),
+                        padding: const .fixed(.all(8.0)),
                         child: Text('Scrollable 1 : Index $index'),
                       ),
                     );
@@ -69,7 +69,7 @@ class _DesktopExampleState extends State<DesktopExample> {
               ),
             ),
             SizedBox(
-              width: constraints.maxWidth / 2,
+              width: .fixed(constraints.maxWidth / 2),
               // When running this sample on desktop, one scrollbar will be
               // visible here. The default scrollbar is hidden by setting the
               // ScrollConfiguration's scrollbars to false. The Scrollbar widget
@@ -86,9 +86,9 @@ class _DesktopExampleState extends State<DesktopExample> {
                     itemCount: 100,
                     itemBuilder: (BuildContext context, int index) {
                       return SizedBox(
-                        height: 50,
+                        height: .fixed(50),
                         child: Padding(
-                          padding: const .all(8.0),
+                          padding: const .fixed(.all(8.0)),
                           child: Text('Scrollable 2 : Index $index'),
                         ),
                       );

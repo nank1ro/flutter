@@ -54,12 +54,12 @@ class _AnimatedSizeExampleState extends State<AnimatedSizeExample> {
         });
       },
       child: ColoredBox(
-        color: Colors.amberAccent,
+        color: .fixed(Colors.amberAccent),
         child: AnimatedSize(
           duration: widget.duration,
           curve: widget.curve,
           child: SizedBox.square(
-            dimension: _isSelected ? 250.0 : 100.0,
+            dimension: .fixed(_isSelected ? 250.0 : 100.0),
             child: const Center(child: FlutterLogo(size: 75.0)),
           ),
         ),

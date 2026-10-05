@@ -36,7 +36,7 @@ class LinkedLabelCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding,
+      padding: .fixed(padding),
       child: Row(
         children: <Widget>[
           Expanded(

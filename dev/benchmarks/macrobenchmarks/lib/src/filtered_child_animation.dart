@@ -110,7 +110,7 @@ class _FilteredChildAnimationPageState extends State<FilteredChildAnimationPage>
             Opacity(opacity: .fixed((_controller.value * 2.0 - 1.0).abs()), child: child);
       case FilterType.rotateTransform:
         builder = (BuildContext context, Widget? child) => Transform(
-          transform: Matrix4.rotationZ(_controller.value * 2.0 * pi),
+          transform: .fixed(Matrix4.rotationZ(_controller.value * 2.0 * pi)),
           alignment: Alignment.center,
           filterQuality: FilterQuality.low,
           child: child,

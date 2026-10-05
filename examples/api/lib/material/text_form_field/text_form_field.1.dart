@@ -44,9 +44,11 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
               child: Wrap(
                 children: List<Widget>.generate(5, (int index) {
                   return Padding(
-                    padding: const .all(8.0),
+                    padding: const .fixed(.all(8.0)),
                     child: ConstrainedBox(
-                      constraints: BoxConstraints.tight(const Size(200, 50)),
+                      constraints: .fixed(
+                        BoxConstraints.tight(const Size(200, 50)),
+                      ),
                       child: TextFormField(
                         onSaved: (String? value) {
                           debugPrint(

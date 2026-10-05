@@ -56,7 +56,7 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const .all(20.0),
+        padding: const .fixed(.all(20.0)),
         child: Column(
           spacing: 16.0,
           mainAxisAlignment: .center,

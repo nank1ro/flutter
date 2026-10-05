@@ -66,16 +66,16 @@ class _SharedYAxisTransitionDemoState extends State<SharedYAxisTransitionDemo>
       ),
       body: Column(
         children: <Widget>[
-          const SizedBox(height: 5),
+          const SizedBox(height: .fixed(5)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(left: 15),
+                padding: const .fixed(EdgeInsets.only(left: 15)),
                 child: Text(localizations.demoSharedYAxisAlbumCount),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 7),
+                padding: const .fixed(EdgeInsets.only(right: 7)),
                 child: InkWell(
                   customBorder: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -108,7 +108,7 @@ class _SharedYAxisTransitionDemoState extends State<SharedYAxisTransitionDemo>
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: .fixed(10)),
           Expanded(
             child: PageTransitionSwitcher(
               reverse: _isAlphabetical,
@@ -154,7 +154,7 @@ class _AlbumTile extends StatelessWidget {
               color: Colors.grey,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(6),
+              padding: const .fixed(EdgeInsets.all(6)),
               child: Image.asset(
                 'placeholders/placeholder_image.png',
                 package: 'flutter_gallery_assets',

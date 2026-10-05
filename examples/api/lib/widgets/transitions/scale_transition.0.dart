@@ -50,7 +50,7 @@ class _ScaleTransitionExampleState extends State<ScaleTransitionExample>
         child: ScaleTransition(
           scale: _animation,
           child: const Padding(
-            padding: .all(8.0),
+            padding: .fixed(.all(8.0)),
             child: FlutterLogo(size: 150.0),
           ),
         ),

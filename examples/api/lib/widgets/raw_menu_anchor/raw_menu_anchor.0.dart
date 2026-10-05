@@ -48,7 +48,7 @@ class _RawMenuAnchorExampleState extends State<RawMenuAnchorExample> {
         mainAxisSize: .min,
         children: <Widget>[
           Text('Favorite Animal:', style: theme.textTheme.titleMedium),
-          const SizedBox(width: 8),
+          const SizedBox(width: .fixed(8)),
           CustomMenu(
             controller: controller,
             focusNode: focusNode,

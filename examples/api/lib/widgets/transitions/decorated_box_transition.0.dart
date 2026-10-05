@@ -66,7 +66,7 @@ class _DecoratedBoxTransitionExampleState
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.white,
+      color: .fixed(Colors.white),
       child: Center(
         child: DecoratedBoxTransition(
           decoration: decorationTween.animate(_controller),

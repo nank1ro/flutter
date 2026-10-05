@@ -48,7 +48,7 @@ class _SliverAppBarExampleState extends State<SliverAppBarExample> {
           ),
           const SliverToBoxAdapter(
             child: SizedBox(
-              height: 20,
+              height: .fixed(20),
               child: Center(
                 child: Text('Scroll to see the SliverAppBar in effect.'),
               ),
@@ -70,7 +70,7 @@ class _SliverAppBarExampleState extends State<SliverAppBarExample> {
       ),
       bottomNavigationBar: BottomAppBar(
         child: Padding(
-          padding: const .all(8),
+          padding: const .fixed(.all(8)),
           child: OverflowBar(
             overflowAlignment: .center,
             children: <Widget>[

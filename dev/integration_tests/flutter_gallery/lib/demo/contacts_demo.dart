@@ -55,7 +55,7 @@ class _ContactItem extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     return MergeSemantics(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: const .fixed(EdgeInsets.symmetric(vertical: 16.0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -70,7 +70,7 @@ class _ContactItem extends StatelessWidget {
             ),
             if (icon != null)
               SizedBox(
-                width: 72.0,
+                width: const .fixed(72.0),
                 child: IconButton(
                   icon: Icon(icon),
                   color: themeData.primaryColor,
@@ -169,11 +169,13 @@ class ContactsDemoState extends State<ContactsDemo> {
                     // This gradient ensures that the toolbar icons are distinct
                     // against the background image.
                     const DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment(0, .35),
-                          colors: <Color>[Color(0xC0000000), Color(0x00000000)],
+                      decoration: .fixed(
+                        BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment(0, .35),
+                            colors: <Color>[Color(0xC0000000), Color(0x00000000)],
+                          ),
                         ),
                       ),
                     ),

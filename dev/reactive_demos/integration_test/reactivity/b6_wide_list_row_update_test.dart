@@ -14,7 +14,7 @@
 //  - InheritedWidget: all rows depend on one InheritedWidget at the root;
 //    changing one row's colour notifies (and rebuilds) all 1,000 dependents.
 //  - Phase 2: each row reads its own Signal<Color> in its own build.
-//  - Phase 3 leaf: the row is a ReactiveColoredBox bound to the signal.
+//  - Phase 3 leaf: the row is a ColoredBox bound to the signal.
 //  - Phase 5 collapsed: the row is one RBox in a node tree.
 //
 // Render objects per row -- 2 in every variant, including the InheritedWidget
@@ -56,7 +56,7 @@ class _InheritedRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      ColoredBox(color: _ColorsInherited.of(context).colors[index]);
+      ColoredBox(color: .fixed(_ColorsInherited.of(context).colors[index]));
 }
 
 class _SignalRow extends StatelessWidget {
@@ -67,7 +67,7 @@ class _SignalRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _rowBuilds++;
-    return ColoredBox(color: color.value);
+    return ColoredBox(color: .fixed(color.value));
   }
 }
 
@@ -100,7 +100,7 @@ Future<double> _valueListenable(WidgetTester tester) async {
               valueListenable: n,
               builder: (BuildContext context, Color color, Widget? child) {
                 buildCount++;
-                return ColoredBox(color: color);
+                return ColoredBox(color: .fixed(color));
               },
             ),
           ),
@@ -218,7 +218,7 @@ Future<double> _leafBinding(WidgetTester tester) async {
     MaterialApp(
       home: _BuildProbe(
         child: mountAllInRows([
-          for (final s in signals) RepaintBoundary(child: ReactiveColoredBox(color: s)),
+          for (final s in signals) RepaintBoundary(child: ColoredBox(color: s)),
         ]),
       ),
     ),
@@ -246,10 +246,12 @@ Future<double> _leafBinding(WidgetTester tester) async {
   );
   expect(
     tester
-        .renderObjectList<RenderReactiveColoredBox>(find.byType(ReactiveColoredBox))
-        .elementAt((i - 1) % kRowCount)
-        .color,
-    _colorFor(i - 1),
+        .renderObjectList<RenderObject>(
+          // Only the sprites: the app shell has ColoredBoxes of its own.
+          find.descendant(of: find.byType(_BuildProbe), matching: find.byType(ColoredBox)),
+        )
+        .elementAt((i - 1) % kRowCount),
+    paints..rect(color: _colorFor(i - 1)),
   );
   expect(_probeBuilds, 0);
   await benchPumpWidget(tester, const SizedBox.shrink());
@@ -290,8 +292,8 @@ Future<double> _collapsedNodes(WidgetTester tester) async {
     tester,
     MaterialApp(
       home: SizedBox(
-        width: 800,
-        height: kRowCount.toDouble(),
+        width: const .fixed(800),
+        height: .fixed(kRowCount.toDouble()),
         child: NodeHost(node: root),
       ),
     ),

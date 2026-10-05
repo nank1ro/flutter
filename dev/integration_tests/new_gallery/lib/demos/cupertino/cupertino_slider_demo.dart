@@ -43,7 +43,7 @@ class _CupertinoSliderDemoState extends State<CupertinoSliderDemo> with Restorat
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const SizedBox(height: 32),
+                  const SizedBox(height: .fixed(32)),
                   CupertinoSlider(
                     value: _value.value,
                     max: 100.0,
@@ -66,7 +66,7 @@ class _CupertinoSliderDemoState extends State<CupertinoSliderDemo> with Restorat
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const SizedBox(height: 32),
+                  const SizedBox(height: .fixed(32)),
                   CupertinoSlider(
                     value: _discreteValue.value,
                     max: 100.0,

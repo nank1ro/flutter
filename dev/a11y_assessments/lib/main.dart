@@ -100,7 +100,7 @@ class HomePageState extends State<HomePage> {
 
   Widget _buildUseCaseItem(int index, UseCase useCase) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const .fixed(EdgeInsets.all(10)),
       child: Builder(
         builder: (BuildContext context) {
           return TextButton(

@@ -42,7 +42,7 @@ int _componentRuns = 0;
 Widget _nest(int depth, Widget leaf) {
   var widget = leaf;
   for (var i = 0; i < depth; i++) {
-    widget = Padding(padding: EdgeInsets.zero, child: widget);
+    widget = Padding(padding: const .fixed(EdgeInsets.zero), child: widget);
   }
   return widget;
 }

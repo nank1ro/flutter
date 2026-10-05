@@ -69,15 +69,20 @@ class _ScrollNotificationDemoState extends State<ScrollNotificationDemo> {
           itemCount: 50,
           itemBuilder: (_, int index) {
             return Padding(
-              padding: const .symmetric(vertical: 8.0, horizontal: 20.0),
+              padding: const .fixed(
+                .symmetric(vertical: 8.0, horizontal: 20.0),
+              ),
               child: Text('Item $index'),
             );
           },
           separatorBuilder: (_, _) => const Padding(
-            padding: EdgeInsets.all(4),
+            padding: .fixed(EdgeInsets.all(4)),
             child: ColoredBox(
-              color: Color(0xFF000000),
-              child: SizedBox(height: 4, width: double.infinity),
+              color: .fixed(Color(0xFF000000)),
+              child: SizedBox(
+                height: .fixed(4),
+                width: .fixed(double.infinity),
+              ),
             ),
           ),
         ),
@@ -108,7 +113,8 @@ class _ScrollNotificationDemoState extends State<ScrollNotificationDemo> {
               children: <Widget>[
                 if (!_useController)
                   Text('Last notification: ${_lastNotification.runtimeType}'),
-                if (!_useController) const SizedBox.square(dimension: 10),
+                if (!_useController)
+                  const SizedBox.square(dimension: .fixed(10)),
                 RadioGroup<bool>(
                   groupValue: _useController,
                   onChanged: _handleRadioChange,

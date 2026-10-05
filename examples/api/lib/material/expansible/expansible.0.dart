@@ -37,7 +37,7 @@ class _ExpansibleWidgetExampleState extends State<ExpansibleWidgetExample> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .all(16.0),
+      padding: const .fixed(.all(16.0)),
       child: Expansible(
         controller: _controller,
         headerBuilder: (context, animation) => ListTile(

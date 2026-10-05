@@ -36,7 +36,7 @@ class _TapRegionGroupExampleState extends State<TapRegionGroupExample> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: const Color(0xFFFFFFFF),
+      color: .fixed(const Color(0xFFFFFFFF)),
       child: Center(
         child: Column(
           mainAxisAlignment: .center,
@@ -61,7 +61,7 @@ class _TapRegionGroupExampleState extends State<TapRegionGroupExample> {
                     child: const Center(child: Text('Box 1')),
                   ),
                 ),
-                const SizedBox(width: 32),
+                const SizedBox(width: .fixed(32)),
                 TapRegion(
                   groupId: 'panel-group',
                   onTapInside: (PointerDownEvent event) {
@@ -81,7 +81,7 @@ class _TapRegionGroupExampleState extends State<TapRegionGroupExample> {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: .fixed(24)),
             Text('Box 1: $_box1Status'),
             Text('Box 2: $_box2Status'),
           ],

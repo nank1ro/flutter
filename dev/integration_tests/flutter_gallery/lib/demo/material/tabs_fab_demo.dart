@@ -77,7 +77,7 @@ class _TabsFabDemoState extends State<TabsFabDemo> with SingleTickerProviderStat
           border: Border(top: BorderSide(color: Theme.of(context).dividerColor)),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: const .fixed(EdgeInsets.all(32.0)),
           child: Text(_explanatoryText, style: Theme.of(context).textTheme.titleMedium),
         ),
       );

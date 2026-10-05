@@ -24,7 +24,7 @@ class SegmentedButtonApp extends StatelessWidget {
               Spacer(),
               Text('Single choice'),
               SingleChoice(),
-              SizedBox(height: 20),
+              SizedBox(height: .fixed(20)),
               Text('Multiple choice'),
               MultipleChoice(),
               Spacer(),

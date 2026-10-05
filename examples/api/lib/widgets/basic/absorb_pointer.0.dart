@@ -31,13 +31,13 @@ class AbsorbPointerExample extends StatelessWidget {
       alignment: .center,
       children: <Widget>[
         SizedBox(
-          width: 200.0,
-          height: 100.0,
+          width: .fixed(200.0),
+          height: .fixed(100.0),
           child: ElevatedButton(onPressed: () {}, child: null),
         ),
         SizedBox(
-          width: 100.0,
-          height: 200.0,
+          width: .fixed(100.0),
+          height: .fixed(200.0),
           child: AbsorbPointer(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(

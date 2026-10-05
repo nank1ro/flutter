@@ -59,7 +59,7 @@ class _SelectableRegionToolbarBuilderExampleAppState
         appBar: AppBar(title: const Text('Context menu anywhere')),
         body: Center(
           child: SizedBox(
-            width: 200.0,
+            width: .fixed(200.0),
             child: SelectionArea(
               contextMenuBuilder:
                   (
@@ -81,7 +81,10 @@ class _SelectableRegionToolbarBuilderExampleAppState
                     );
                   },
               child: ListView(
-                children: const <Widget>[SizedBox(height: 20.0), Text(text)],
+                children: const <Widget>[
+                  SizedBox(height: .fixed(20.0)),
+                  Text(text),
+                ],
               ),
             ),
           ),

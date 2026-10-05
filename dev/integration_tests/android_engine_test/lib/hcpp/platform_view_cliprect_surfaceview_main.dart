@@ -65,10 +65,13 @@ class _ClipRectHomePageState extends State<ClipRectHomePage> {
       alignment: Alignment.center,
       children: <Widget>[
         // Background
-        SizedBox.square(dimension: 500, child: ColoredBox(color: Colors.green)),
+        SizedBox.square(
+          dimension: .fixed(500),
+          child: ColoredBox(color: .fixed(Colors.green)),
+        ),
         // Platform View
         SizedBox.square(
-          dimension: 400,
+          dimension: .fixed(400),
           child: _HybridCompositionAndroidPlatformView(
             viewType: 'blue_orange_gradient_surface_view_platform_view',
           ),
@@ -86,7 +89,7 @@ class _ClipRectHomePageState extends State<ClipRectHomePage> {
         children: <Widget>[
           // Button to toggle the clip state
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const .fixed(EdgeInsets.all(8.0)),
             child: ElevatedButton(
               key: const ValueKey<String>('toggle_cliprect_button'),
               onPressed: _toggleClip,

@@ -75,7 +75,7 @@ class _PinnedHeaderSliverExampleState extends State<PinnedHeaderSliverExample> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const .symmetric(horizontal: 4),
+          padding: const .fixed(.symmetric(horizontal: 4)),
           child: CustomScrollView(
             controller: scrollController,
             slivers: <Widget>[

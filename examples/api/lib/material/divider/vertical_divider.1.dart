@@ -30,7 +30,7 @@ class DividerExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Padding(
-        padding: .all(16.0),
+        padding: .fixed(.all(16.0)),
         child: Row(
           children: <Widget>[
             Expanded(child: Card(child: SizedBox.expand())),

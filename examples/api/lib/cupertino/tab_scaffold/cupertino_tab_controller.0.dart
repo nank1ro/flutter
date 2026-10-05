@@ -58,7 +58,7 @@ class _TabControllerExampleState extends State<TabControllerExample> {
             mainAxisAlignment: .center,
             children: <Widget>[
               Text('Content of tab $index'),
-              const SizedBox(height: 10),
+              const SizedBox(height: .fixed(10)),
               CupertinoButton(
                 onPressed: () => controller.index = 0,
                 child: const Text('Go to first tab'),

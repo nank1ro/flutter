@@ -44,7 +44,7 @@ class NestedViewEventBodyState extends State<NestedViewEventBody> {
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: 300,
+            height: const FixedSignal(300),
             child: Stack(
               alignment: Alignment.topCenter,
               children: <Widget>[
@@ -131,7 +131,7 @@ class NestedViewEventBodyState extends State<NestedViewEventBody> {
     assert(_lastTestStatus != _LastTestStatus.pending);
     final String message = _lastTestStatus == _LastTestStatus.success ? 'Success' : lastError!;
     return ColoredBox(
-      color: _lastTestStatus == _LastTestStatus.success ? Colors.green : Colors.red,
+      color: FixedSignal(_lastTestStatus == _LastTestStatus.success ? Colors.green : Colors.red),
       child: Text(
         message,
         key: const ValueKey<String>('Status'),

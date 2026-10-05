@@ -23,15 +23,15 @@ class CupertinoButtonDemo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CupertinoButton(onPressed: () {}, child: Text(localizations.cupertinoButton)),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             CupertinoButton.filled(
               onPressed: () {},
               child: Text(localizations.cupertinoButtonWithBackground),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: .fixed(30)),
             // Disabled buttons
             CupertinoButton(onPressed: null, child: Text(localizations.cupertinoButton)),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             CupertinoButton.filled(
               onPressed: null,
               child: Text(localizations.cupertinoButtonWithBackground),

@@ -54,10 +54,10 @@ class ExampleWidget extends StatelessWidget {
 
   Widget buildDivider() {
     return const Padding(
-      padding: EdgeInsets.all(4),
+      padding: .fixed(EdgeInsets.all(4)),
       child: ColoredBox(
-        color: Color(0xFF000000),
-        child: SizedBox(height: 4, width: double.infinity),
+        color: .fixed(Color(0xFF000000)),
+        child: SizedBox(height: .fixed(4), width: .fixed(double.infinity)),
       ),
     );
   }

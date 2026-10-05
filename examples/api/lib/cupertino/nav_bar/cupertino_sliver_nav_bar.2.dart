@@ -39,7 +39,7 @@ class SliverNavBarExample extends StatelessWidget {
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(100),
               child: ColoredBox(
-                color: Color(0xff191970),
+                color: .fixed(Color(0xff191970)),
                 child: Text('Bottom Widget'),
               ),
             ),

@@ -53,7 +53,7 @@ class _EditableTextToolbarBuilderExampleAppState
         body: Center(
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 20.0),
+              const SizedBox(height: .fixed(20.0)),
               TextField(
                 controller: _controller,
                 contextMenuBuilder:
@@ -76,7 +76,7 @@ class _EditableTextToolbarBuilderExampleAppState
                             padding: const .all(10.0),
                             pressedOpacity: 0.7,
                             child: SizedBox(
-                              width: 200.0,
+                              width: .fixed(200.0),
                               child: Text(
                                 CupertinoTextSelectionToolbarButton.getButtonLabel(
                                   context,

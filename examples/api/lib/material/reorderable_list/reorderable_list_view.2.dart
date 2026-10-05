@@ -45,7 +45,7 @@ class _ReorderableExampleState extends State<ReorderableExample> {
           key: Key('$index'),
           color: _items[index].isOdd ? oddItemColor : evenItemColor,
           child: SizedBox(
-            height: 80,
+            height: .fixed(80),
             child: Center(child: Text('Card ${_items[index]}')),
           ),
         ),
@@ -63,7 +63,7 @@ class _ReorderableExampleState extends State<ReorderableExample> {
           final double elevation = lerpDouble(1, 6, animValue)!;
           final double scale = lerpDouble(1, 1.02, animValue)!;
           return Transform.scale(
-            scale: scale,
+            scale: .fixed(scale),
             // Create a Card based on the color and the content of the dragged one
             // and set its elevation to the animated value.
             child: Card(

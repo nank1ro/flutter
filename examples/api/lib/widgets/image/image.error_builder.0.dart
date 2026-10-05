@@ -25,10 +25,12 @@ class ErrorBuilderExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: .all(),
-        borderRadius: .circular(20),
+      decoration: .fixed(
+        BoxDecoration(
+          color: Colors.white,
+          border: .all(),
+          borderRadius: .circular(20),
+        ),
       ),
       child: Image.network(
         'https://example.does.not.exist/image.jpg',

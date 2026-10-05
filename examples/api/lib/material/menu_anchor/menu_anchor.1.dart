@@ -137,7 +137,7 @@ class _MyContextMenuState extends State<MyContextMenu> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .all(50),
+      padding: const .fixed(.all(50)),
       child: GestureDetector(
         onTapDown: _handleTapDown,
         onSecondaryTapDown: _handleSecondaryTapDown,
@@ -190,13 +190,13 @@ class _MyContextMenuState extends State<MyContextMenu> {
               mainAxisAlignment: .center,
               children: <Widget>[
                 const Padding(
-                  padding: .all(8.0),
+                  padding: .fixed(.all(8.0)),
                   child: Text(
                     'Right-click anywhere on the background to show the menu.',
                   ),
                 ),
                 Padding(
-                  padding: const .all(12.0),
+                  padding: const .fixed(.all(12.0)),
                   child: Text(
                     showingMessage ? widget.message : '',
                     style: Theme.of(context).textTheme.headlineSmall,

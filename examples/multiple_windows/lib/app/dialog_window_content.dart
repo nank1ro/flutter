@@ -30,7 +30,7 @@ class DialogWindowContent extends StatelessWidget {
               children: [
                 AppBar(title: const Text('Dialog')),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const .fixed(EdgeInsets.all(16.0)),
                   child: Column(
                     mainAxisSize: .min,
                     children: [
@@ -57,7 +57,7 @@ class DialogWindowContent extends StatelessWidget {
                         },
                         child: const Text('Create Modal Dialog'),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: .fixed(20)),
                       ListenableBuilder(
                         listenable: dialogWindowController,
                         builder: (BuildContext context, Widget? _) {
@@ -72,7 +72,7 @@ class DialogWindowContent extends StatelessWidget {
                           );
                         },
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: .fixed(20)),
                       ElevatedButton(
                         onPressed: () {
                           dialogWindowController.destroy();

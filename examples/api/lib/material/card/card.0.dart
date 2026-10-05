@@ -46,14 +46,14 @@ class CardExample extends StatelessWidget {
                     /* ... */
                   },
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: .fixed(8)),
                 TextButton(
                   child: const Text('LISTEN'),
                   onPressed: () {
                     /* ... */
                   },
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: .fixed(8)),
               ],
             ),
           ],

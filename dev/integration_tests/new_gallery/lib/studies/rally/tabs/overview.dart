@@ -34,7 +34,7 @@ class _OverviewViewState extends State<OverviewView> {
       return SingleChildScrollView(
         restorationId: 'overview_scroll_view',
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24),
+          padding: const .fixed(EdgeInsets.symmetric(vertical: 24)),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -45,11 +45,11 @@ class _OverviewViewState extends State<OverviewView> {
                   child: const _OverviewGrid(spacing: 24),
                 ),
               ),
-              const SizedBox(width: 24),
+              const SizedBox(width: .fixed(24)),
               Flexible(
                 flex: 3,
                 child: SizedBox(
-                  width: 400,
+                  width: const .fixed(400),
                   child: Semantics(
                     sortKey: const OrdinalSortKey(2, name: sortKeyName),
                     child: FocusTraversalGroup(child: _AlertsView(alerts: alerts)),
@@ -64,11 +64,11 @@ class _OverviewViewState extends State<OverviewView> {
       return SingleChildScrollView(
         restorationId: 'overview_scroll_view',
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
+          padding: const .fixed(EdgeInsets.symmetric(vertical: 12)),
           child: Column(
             children: <Widget>[
               _AlertsView(alerts: alerts.sublist(0, 1)),
-              const SizedBox(height: 12),
+              const SizedBox(height: .fixed(12)),
               const _OverviewGrid(spacing: 12),
             ],
           ),
@@ -109,7 +109,7 @@ class _OverviewGrid extends StatelessWidget {
           runSpacing: spacing,
           children: <Widget>[
             SizedBox(
-              width: boxWidth,
+              width: .fixed(boxWidth),
               child: _FinancialView(
                 title: localizations.rallyAccounts,
                 total: sumAccountDataPrimaryAmount(accountDataList),
@@ -118,9 +118,9 @@ class _OverviewGrid extends StatelessWidget {
                 order: 1,
               ),
             ),
-            if (hasMultipleColumns) SizedBox(width: spacing),
+            if (hasMultipleColumns) SizedBox(width: .fixed(spacing)),
             SizedBox(
-              width: boxWidth,
+              width: .fixed(boxWidth),
               child: _FinancialView(
                 title: localizations.rallyBills,
                 total: sumBillDataPrimaryAmount(billDataList),
@@ -202,7 +202,7 @@ class _Alert extends StatelessWidget {
           children: <Widget>[
             Expanded(child: SelectableText(alert.message!)),
             SizedBox(
-              width: 100,
+              width: const .fixed(100),
               child: Align(
                 alignment: Alignment.topRight,
                 child: IconButton(
@@ -239,7 +239,7 @@ class _FinancialView extends StatelessWidget {
     return FocusTraversalOrder(
       order: NumericFocusOrder(order!),
       child: ColoredBox(
-        color: RallyColors.cardBackground,
+        color: const .fixed(RallyColors.cardBackground),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -248,11 +248,11 @@ class _FinancialView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+                    padding: const .fixed(EdgeInsets.only(top: 16, left: 16, right: 16)),
                     child: SelectableText(title!),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    padding: const .fixed(EdgeInsets.only(left: 16, right: 16)),
                     child: SelectableText(
                       usdWithSignFormat(context).format(total),
                       style: theme.textTheme.bodyLarge!.copyWith(

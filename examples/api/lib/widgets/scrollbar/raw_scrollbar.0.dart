@@ -45,7 +45,7 @@ class _RawScrollbarExampleState extends State<RawScrollbarExample> {
         return Row(
           children: <Widget>[
             SizedBox(
-              width: constraints.maxWidth / 2,
+              width: .fixed(constraints.maxWidth / 2),
               // When using the PrimaryScrollController and a Scrollbar
               // together, only one ScrollPosition can be attached to the
               // PrimaryScrollController at a time. Providing a
@@ -59,7 +59,7 @@ class _RawScrollbarExampleState extends State<RawScrollbarExample> {
                   itemCount: 100,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: const .all(8.0),
+                      padding: const .fixed(.all(8.0)),
                       child: Text('Scrollable 1 : Index $index'),
                     );
                   },
@@ -67,7 +67,7 @@ class _RawScrollbarExampleState extends State<RawScrollbarExample> {
               ),
             ),
             SizedBox(
-              width: constraints.maxWidth / 2,
+              width: .fixed(constraints.maxWidth / 2),
               // This vertical scroll view has primary set to true, so it is
               // using the PrimaryScrollController. On mobile platforms, the
               // PrimaryScrollController automatically attaches to vertical
@@ -85,7 +85,7 @@ class _RawScrollbarExampleState extends State<RawScrollbarExample> {
                           ? Colors.amberAccent
                           : Colors.blueAccent,
                       child: Padding(
-                        padding: const .all(8.0),
+                        padding: const .fixed(.all(8.0)),
                         child: Text('Scrollable 2 : Index $index'),
                       ),
                     );

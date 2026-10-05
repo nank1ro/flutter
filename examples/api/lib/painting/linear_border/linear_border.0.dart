@@ -45,7 +45,7 @@ class SampleCard extends StatelessWidget {
 
     return Card(
       child: Padding(
-        padding: const .all(16),
+        padding: const .fixed(.all(16)),
         child: Column(
           crossAxisAlignment: .start,
           mainAxisSize: .min,
@@ -57,14 +57,14 @@ class SampleCard extends StatelessWidget {
                 color: colorScheme.secondary,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             Row(
               children: List<Widget>.generate(children.length * 2 - 1, (
                 int index,
               ) {
                 return index.isEven
                     ? children[index ~/ 2]
-                    : const SizedBox(width: 16);
+                    : const SizedBox(width: .fixed(16));
               }),
             ),
           ],
@@ -105,7 +105,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const .all(16),
+          padding: const .fixed(.all(16)),
           child: Column(
             mainAxisSize: .min,
             children: <Widget>[
@@ -147,7 +147,7 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: .fixed(32)),
               // Demonstrates creating LinearBorders with a single edge
               // by using the convenience constructors like LinearBorder.start().
               // The edges are drawn with a BorderSide with width:0, which
@@ -191,7 +191,7 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: .fixed(32)),
               // Demonstrates creating LinearBorders with a single edge
               // that's smaller than the button's bounding box. The size
               // parameter specifies a percentage of the available space
@@ -227,7 +227,7 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: .fixed(32)),
               // Demonstrates creating LinearBorders with more than one edge.
               // In these cases the default constructor is used and each edge
               // is defined with one LinearBorderEdge object.
@@ -270,7 +270,7 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: .fixed(32)),
               // Demonstrates that changing properties of LinearBorders
               // causes them to animate to their new configuration.
               SampleCard(

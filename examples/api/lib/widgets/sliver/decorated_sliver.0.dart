@@ -73,7 +73,7 @@ class SliverDecorationExample extends StatelessWidget {
               SliverList.list(
                 children: <Widget>[
                   SizedBox(
-                    height: 500.0,
+                    height: .fixed(500.0),
                     child: Container(
                       alignment: .topCenter,
                       padding: const .only(top: 56.0),

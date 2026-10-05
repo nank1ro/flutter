@@ -73,12 +73,12 @@ class TravelDestinationItem extends StatelessWidget {
       top: false,
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const .fixed(EdgeInsets.all(8.0)),
         child: Column(
           children: <Widget>[
             const SectionTitle(title: 'Normal'),
             SizedBox(
-              height: height,
+              height: const .fixed(height),
               child: Card(
                 // This ensures that the Card's children are clipped correctly.
                 clipBehavior: Clip.antiAlias,
@@ -107,12 +107,12 @@ class TappableTravelDestinationItem extends StatelessWidget {
       top: false,
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const .fixed(EdgeInsets.all(8.0)),
         child: Column(
           children: <Widget>[
             const SectionTitle(title: 'Tappable'),
             SizedBox(
-              height: height,
+              height: const .fixed(height),
               child: Card(
                 // This ensures that the Card's children (including the ink splash) are clipped correctly.
                 clipBehavior: Clip.antiAlias,
@@ -159,12 +159,12 @@ class _SelectableTravelDestinationItemState extends State<SelectableTravelDestin
       top: false,
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const .fixed(EdgeInsets.all(8.0)),
         child: Column(
           children: <Widget>[
             const SectionTitle(title: 'Selectable (long press)'),
             SizedBox(
-              height: height,
+              height: const .fixed(height),
               child: Card(
                 // This ensures that the Card's children (including the ink splash) are clipped correctly.
                 clipBehavior: Clip.antiAlias,
@@ -193,7 +193,7 @@ class _SelectableTravelDestinationItemState extends State<SelectableTravelDestin
                       Align(
                         alignment: Alignment.topRight,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const .fixed(EdgeInsets.all(8.0)),
                           child: Icon(
                             Icons.check_circle,
                             color: _isSelected ? colorScheme.primary : Colors.transparent,
@@ -220,7 +220,7 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 12.0),
+      padding: const .fixed(EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 12.0)),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(title!, style: Theme.of(context).textTheme.titleMedium),
@@ -248,7 +248,7 @@ class TravelDestinationContent extends StatelessWidget {
       children: <Widget>[
         // Photo and title.
         SizedBox(
-          height: 184.0,
+          height: const .fixed(184.0),
           child: Stack(
             children: <Widget>[
               Positioned.fill(
@@ -277,7 +277,7 @@ class TravelDestinationContent extends StatelessWidget {
         ),
         // Description and share/explore buttons.
         Padding(
-          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+          padding: const .fixed(EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0)),
           child: DefaultTextStyle(
             softWrap: false,
             overflow: TextOverflow.ellipsis,
@@ -287,7 +287,7 @@ class TravelDestinationContent extends StatelessWidget {
               children: <Widget>[
                 // three line description
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
+                  padding: const .fixed(EdgeInsets.only(bottom: 8.0)),
                   child: Text(
                     destination.description,
                     style: descriptionStyle.copyWith(color: Colors.black54),
@@ -302,7 +302,7 @@ class TravelDestinationContent extends StatelessWidget {
         if (destination.type == CardDemoType.standard)
           // share, explore buttons
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 8, top: 8),
+            padding: const .fixed(EdgeInsetsDirectional.only(start: 8, top: 8)),
             child: OverflowBar(
               alignment: MainAxisAlignment.start,
               spacing: 8,
@@ -374,7 +374,7 @@ class _CardsDemoState extends State<CardsDemo> {
           children: <Widget>[
             for (final TravelDestination destination in destinations)
               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
+                padding: const .fixed(EdgeInsets.only(bottom: 8.0)),
                 child: switch (destination.type) {
                   CardDemoType.standard => TravelDestinationItem(
                     destination: destination,

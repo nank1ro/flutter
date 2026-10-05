@@ -56,7 +56,7 @@ class _DraggableScrollableSheetExampleState
           initialChildSize: _sheetPosition,
           builder: (BuildContext context, ScrollController scrollController) {
             return ColoredBox(
-              color: colorScheme.primary,
+              color: .fixed(colorScheme.primary),
               child: Column(
                 children: <Widget>[
                   if (_isOnDesktopAndWeb)

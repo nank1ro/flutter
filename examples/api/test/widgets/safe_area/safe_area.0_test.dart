@@ -94,7 +94,11 @@ void main() {
     // Set the app's size to to match the default DartPad demo screen.
     await tester.pumpWidget(
       const Center(
-        child: SizedBox(width: 500.0, height: 480.0, child: example.Insets()),
+        child: SizedBox(
+          width: .fixed(500.0),
+          height: .fixed(480.0),
+          child: example.Insets(),
+        ),
       ),
     );
 

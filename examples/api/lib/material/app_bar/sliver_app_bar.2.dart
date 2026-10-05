@@ -34,9 +34,9 @@ class AppBarMediumApp extends StatelessWidget {
             SliverToBoxAdapter(
               child: Card(
                 child: SizedBox(
-                  height: 1200,
+                  height: .fixed(1200),
                   child: Padding(
-                    padding: const .fromLTRB(8, 100, 8, 100),
+                    padding: const .fixed(.fromLTRB(8, 100, 8, 100)),
                     child: Text(
                       'Here be scrolling content...',
                       style: Theme.of(context).textTheme.headlineSmall,

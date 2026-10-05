@@ -105,9 +105,9 @@ Widget _buildProductCard({
             SizedBox(
               child: Column(
                 children: <Widget>[
-                  const SizedBox(height: 23),
+                  const SizedBox(height: .fixed(23)),
                   SizedBox(
-                    width: imageWidth,
+                    width: .fixed(imageWidth),
                     child: Text(
                       product.name(context),
                       style: theme.textTheme.labelLarge,
@@ -115,14 +115,14 @@ Widget _buildProductCard({
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: .fixed(4)),
                   Text(formatter.format(product.price), style: theme.textTheme.bodySmall),
                 ],
               ),
             ),
           ],
         ),
-        const Padding(padding: EdgeInsets.all(16), child: Icon(Icons.add_shopping_cart)),
+        const Padding(padding: .fixed(EdgeInsets.all(16)), child: Icon(Icons.add_shopping_cart)),
       ],
     ),
   );

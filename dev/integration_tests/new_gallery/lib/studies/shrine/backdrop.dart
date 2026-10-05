@@ -83,7 +83,7 @@ class _BackdropTitle extends AnimatedWidget {
         ? slantedMenuIcon
         : Transform(
             alignment: Alignment.center,
-            transform: Matrix4.rotationY(pi),
+            transform: .fixed(Matrix4.rotationY(pi)),
             child: slantedMenuIcon,
           );
 
@@ -101,7 +101,7 @@ class _BackdropTitle extends AnimatedWidget {
         children: <Widget>[
           // branded icon
           SizedBox(
-            width: 72,
+            width: const .fixed(72),
             child: Semantics(
               container: true,
               child: IconButton(
@@ -346,8 +346,8 @@ class DesktopBackdrop extends StatelessWidget {
       children: <Widget>[
         backLayer,
         Padding(
-          padding: EdgeInsetsDirectional.only(
-            start: desktopCategoryMenuPageWidth(context: context),
+          padding: .fixed(
+            EdgeInsetsDirectional.only(start: desktopCategoryMenuPageWidth(context: context)),
           ),
           child: Material(elevation: 16, color: Colors.white, child: frontLayer),
         ),

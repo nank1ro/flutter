@@ -14,7 +14,7 @@ void main() {
         home: Scaffold(
           appBar: AppBar(title: const Text('RenderFlex OverFlow')),
           body: const SizedBox(
-            width: 400.0,
+            width: .fixed(400.0),
             child: Row(
               children: <Widget>[
                 Icon(Icons.message),

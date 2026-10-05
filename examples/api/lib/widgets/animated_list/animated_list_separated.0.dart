@@ -143,7 +143,7 @@ class _AnimatedListSeparatedSampleState
           ],
         ),
         body: Padding(
-          padding: const .all(16.0),
+          padding: const .fixed(.all(16.0)),
           child: AnimatedList.separated(
             key: _listKey,
             initialItemCount: _list.length,
@@ -234,14 +234,14 @@ class CardItem extends StatelessWidget {
       textStyle = textStyle.copyWith(color: Colors.lightGreenAccent[400]);
     }
     return Padding(
-      padding: const .all(2.0),
+      padding: const .fixed(.all(2.0)),
       child: SizeTransition(
         sizeFactor: animation,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: onTap,
           child: SizedBox(
-            height: 80.0,
+            height: .fixed(80.0),
             child: Card(
               color: Colors.primaries[item % Colors.primaries.length],
               child: Center(child: Text('Item $item', style: textStyle)),
@@ -271,11 +271,11 @@ class ItemSeparator extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextStyle textStyle = Theme.of(context).textTheme.headlineSmall!;
     return Padding(
-      padding: const .all(2.0),
+      padding: const .fixed(.all(2.0)),
       child: SizeTransition(
         sizeFactor: animation,
         child: SizedBox(
-          height: 40.0,
+          height: .fixed(40.0),
           child: Card(
             color: item == null
                 ? Colors.grey

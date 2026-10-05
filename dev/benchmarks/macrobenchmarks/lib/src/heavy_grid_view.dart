@@ -25,6 +25,10 @@ class HeavyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: 200, height: 200, child: Text('$index: ${_weight.length}'));
+    return SizedBox(
+      width: const .fixed(200),
+      height: const .fixed(200),
+      child: Text('$index: ${_weight.length}'),
+    );
   }
 }

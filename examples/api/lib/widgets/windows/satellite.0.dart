@@ -97,7 +97,7 @@ class _MyAppState extends State<MyApp> {
                   'This is a satellite window',
                   style: TextStyle(color: Colors.white),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: .fixed(8)),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {

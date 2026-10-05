@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
     }
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.all(_extraPadding),
+        padding: .fixed(EdgeInsets.all(_extraPadding)),
         child: Directionality(
           textDirection: _textDirection,
           child: Theme(
@@ -242,7 +242,7 @@ class _ControlsState extends State<_Controls> {
               child: const MenuAcceleratorLabel('Open Menu'),
             ),
             ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
+              constraints: const .fixed(BoxConstraints(maxWidth: 400)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
@@ -698,7 +698,7 @@ List<Widget> createTestMenus({
             debugPrint('Activated text input item with ${textEditingController?.text} as a value.');
           },
           child: SizedBox(
-            width: 200,
+            width: const .fixed(200),
             child: TextField(
               controller: textEditingController,
               onSubmitted: (String value) {

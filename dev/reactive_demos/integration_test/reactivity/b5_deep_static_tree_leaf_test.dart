@@ -47,7 +47,7 @@ class _CountingAncestor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     buildCounts[index]++;
-    return Padding(padding: EdgeInsets.zero, child: child);
+    return Padding(padding: const .fixed(EdgeInsets.zero), child: child);
   }
 }
 

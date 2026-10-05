@@ -109,9 +109,12 @@ class _ClipperHomePageState extends State<ClipperHomePage> {
         alignment: Alignment.center,
         children: <Widget>[
           // Background
-          SizedBox.square(dimension: 500, child: ColoredBox(color: Colors.green)),
           SizedBox.square(
-            dimension: 400,
+            dimension: .fixed(500),
+            child: ColoredBox(color: .fixed(Colors.green)),
+          ),
+          SizedBox.square(
+            dimension: .fixed(400),
             child: _HybridCompositionAndroidPlatformView(
               viewType: 'changing_color_button_platform_view',
             ),
@@ -125,7 +128,7 @@ class _ClipperHomePageState extends State<ClipperHomePage> {
         children: <Widget>[
           // Row of buttons to toggle each clipper
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const .fixed(EdgeInsets.all(8.0)),
             child: Wrap(
               spacing: 8.0,
               runSpacing: 4.0,

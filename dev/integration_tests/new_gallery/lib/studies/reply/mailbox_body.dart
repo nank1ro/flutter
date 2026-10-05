@@ -62,7 +62,7 @@ class MailboxBody extends StatelessWidget {
                         ),
                         primary: false,
                         separatorBuilder: (BuildContext context, int index) =>
-                            const SizedBox(height: 4),
+                            const SizedBox(height: .fixed(4)),
                         itemBuilder: (BuildContext context, int index) {
                           final Email email = emails[index];
                           return MailPreviewCard(
@@ -85,7 +85,7 @@ class MailboxBody extends StatelessWidget {
               ),
               if (isDesktop) ...<Widget>[
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 14),
+                  padding: const .fixed(EdgeInsetsDirectional.only(top: 14)),
                   child: Row(
                     children: <Widget>[
                       IconButton(
@@ -95,7 +95,7 @@ class MailboxBody extends StatelessWidget {
                           Provider.of<EmailStore>(context, listen: false).onSearchPage = true;
                         },
                       ),
-                      SizedBox(width: isTablet ? 30 : 60),
+                      SizedBox(width: .fixed(isTablet ? 30 : 60)),
                     ],
                   ),
                 ),

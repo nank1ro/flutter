@@ -30,7 +30,7 @@ class DialogDemoItem extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Icon(icon, size: 36.0, color: color),
-          Padding(padding: const EdgeInsets.only(left: 16.0), child: Text(text!)),
+          Padding(padding: const .fixed(EdgeInsets.only(left: 16.0)), child: Text(text!)),
         ],
       ),
     );

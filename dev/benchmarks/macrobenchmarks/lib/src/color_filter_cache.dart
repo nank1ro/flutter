@@ -39,7 +39,7 @@ class _ColorFilterCachePageState extends State<ColorFilterCachePage> with Ticker
       body: ListView(
         controller: _controller,
         children: <Widget>[
-          const SizedBox(height: 150),
+          const SizedBox(height: .fixed(150)),
           ColorFiltered(
             colorFilter: ColorFilter.mode(Colors.green[300]!, BlendMode.luminosity),
             child: Container(
@@ -64,7 +64,7 @@ class _ColorFilterCachePageState extends State<ColorFilterCachePage> with Ticker
               ),
             ),
           ),
-          const SizedBox(height: 1000),
+          const SizedBox(height: .fixed(1000)),
         ],
       ),
     );

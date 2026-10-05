@@ -83,7 +83,7 @@ class _NavigationDrawerExampleState extends State<NavigationDrawerExample> {
         selectedIndex: screenIndex,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+            padding: const .fixed(EdgeInsets.fromLTRB(28, 16, 16, 10)),
             child: Text('Header', style: Theme.of(context).textTheme.titleSmall),
           ),
           ...destinations.map((ExampleDestination destination) {
@@ -93,7 +93,7 @@ class _NavigationDrawerExampleState extends State<NavigationDrawerExample> {
               selectedIcon: destination.selectedIcon,
             );
           }),
-          const Padding(padding: EdgeInsets.fromLTRB(28, 16, 28, 10), child: Divider()),
+          const Padding(padding: .fixed(EdgeInsets.fromLTRB(28, 16, 28, 10)), child: Divider()),
         ],
       ),
     );

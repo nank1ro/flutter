@@ -70,14 +70,14 @@ class _DecoratedSliverClipExampleState
               ),
             ],
           ),
-          const SizedBox(height: 20.0),
+          const SizedBox(height: .fixed(20.0)),
           Stack(
             children: <Widget>[
               Padding(
-                padding: const .all(24.0),
+                padding: const .fixed(.all(24.0)),
                 child: SizedBox(
-                  width: 400,
-                  height: _height,
+                  width: .fixed(400),
+                  height: .fixed(_height),
                   child: ResizableCustomScrollView(isClipped: _isClipped),
                 ),
               ),
@@ -86,8 +86,8 @@ class _DecoratedSliverClipExampleState
                 left: 0,
                 right: 0,
                 child: SizedBox(
-                  height: MediaQuery.heightOf(context) - _height,
-                  width: double.infinity,
+                  height: .fixed(MediaQuery.heightOf(context) - _height),
+                  width: .fixed(double.infinity),
                 ),
               ),
             ],
@@ -126,7 +126,7 @@ class ResizableCustomScrollView extends StatelessWidget {
           sliver: SliverList.builder(
             itemCount: 5,
             itemBuilder: (_, int index) => Padding(
-              padding: const .all(8.0),
+              padding: const .fixed(.all(8.0)),
               child: Row(
                 children: <Widget>[
                   const Icon(Icons.add_box, color: Color(0xFFA8A8A8)),
