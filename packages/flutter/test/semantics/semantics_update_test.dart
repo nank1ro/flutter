@@ -284,9 +284,9 @@ void main() {
             children: <Widget>[
               Semantics(
                 traversalChildIdentifier: identifier,
-                child: const SizedBox.square(dimension: 10),
+                child: const SizedBox.square(dimension: .fixed(10)),
               ),
-              const SizedBox.square(dimension: 10),
+              const SizedBox.square(dimension: .fixed(10)),
             ],
           ),
         ),

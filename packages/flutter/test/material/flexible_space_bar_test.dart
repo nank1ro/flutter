@@ -100,7 +100,7 @@ void main() {
 
     // The current (200) is half way between the min (100) and max (300) and the
     // lerp values used to calculate the scale are 1 and 1.5, so we check for 1.25.
-    expect(transform.transform.getMaxScaleOnAxis(), 1.25);
+    expect(transform.transform.value.getMaxScaleOnAxis(), 1.25);
 
     // The space bar rect always starts fully expanded.
     expect(clipRect.size.height, maxExtent);
@@ -172,7 +172,7 @@ void main() {
 
     // The current (200) is half way between the min (100) and max (300) and the
     // lerp values used to calculate the scale are 1 and 1.5, so we check for 1.25.
-    expect(transform.transform.getMaxScaleOnAxis(), 1.25);
+    expect(transform.transform.value.getMaxScaleOnAxis(), 1.25);
 
     // The space bar rect always starts fully expanded.
     expect(clipRect.size.height, maxExtent);
@@ -246,7 +246,7 @@ void main() {
               SliverList.builder(
                 itemCount: 50,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 200, child: Center(child: Text('Item $index')));
+                  return SizedBox(height: const .fixed(200), child: Center(child: Text('Item $index')));
                 },
               ),
             ],
@@ -512,7 +512,7 @@ void main() {
               SliverList.builder(
                 itemCount: 50,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 200, child: Center(child: Text('Item $index')));
+                  return SizedBox(height: const .fixed(200), child: Center(child: Text('Item $index')));
                 },
               ),
             ],
@@ -893,7 +893,7 @@ void main() {
                 SliverList.builder(
                   itemCount: 3,
                   itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: 200.0, child: Center(child: Text('Item $index')));
+                    return SizedBox(height: const .fixed(200.0), child: Center(child: Text('Item $index')));
                   },
                 ),
               ],
@@ -963,7 +963,7 @@ void main() {
                 SliverList.builder(
                   itemCount: 3,
                   itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: 200.0, child: Center(child: Text('Item $index')));
+                    return SizedBox(height: const .fixed(200.0), child: Center(child: Text('Item $index')));
                   },
                 ),
               ],
@@ -1024,7 +1024,7 @@ void main() {
               SliverList.builder(
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 200.0, child: Center(child: Text('Item $index')));
+                  return SizedBox(height: const .fixed(200.0), child: Center(child: Text('Item $index')));
                 },
               ),
             ],
@@ -1079,7 +1079,7 @@ void main() {
               SliverList.builder(
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 200.0, child: Center(child: Text('Item $index')));
+                  return SizedBox(height: const .fixed(200.0), child: Center(child: Text('Item $index')));
                 },
               ),
             ],
@@ -1137,7 +1137,7 @@ void main() {
               SliverList.builder(
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 200.0, child: Center(child: Text('Item $index')));
+                  return SizedBox(height: const .fixed(200.0), child: Center(child: Text('Item $index')));
                 },
               ),
             ],
@@ -1197,7 +1197,7 @@ void main() {
               SliverList.builder(
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 200.0, child: Center(child: Text('Item $index')));
+                  return SizedBox(height: const .fixed(200.0), child: Center(child: Text('Item $index')));
                 },
               ),
             ],
@@ -1706,7 +1706,7 @@ class _SubCategoryScreenViewState extends State<SubCategoryScreenView>
               background: AspectRatio(aspectRatio: 1.7, child: RebuildTracker()),
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 12)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(12))),
           SliverGrid.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
             itemCount: 300,
@@ -1717,7 +1717,7 @@ class _SubCategoryScreenViewState extends State<SubCategoryScreenView>
               );
             },
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 12)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(12))),
         ],
       ),
     );

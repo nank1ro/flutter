@@ -341,7 +341,9 @@ void main() {
       return Directionality(
         textDirection: TextDirection.ltr,
         child: DecoratedBox(
-          decoration: BoxDecoration(shape: boxShape, border: border, borderRadius: borderRadius),
+          decoration: .fixed(
+            BoxDecoration(shape: boxShape, border: border, borderRadius: borderRadius),
+          ),
         ),
       );
     }

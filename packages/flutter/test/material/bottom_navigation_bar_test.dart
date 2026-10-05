@@ -132,7 +132,8 @@ void main() {
           .firstWidget<Transform>(
             find.ancestor(of: find.text('Alarm'), matching: find.byType(Transform)),
           )
-          .transform,
+          .transform
+          .value,
       equals(Matrix4.diagonal3(Vector3.all(unselectedFontSize / selectedFontSize))),
     );
     expect(selectedIcon.color, equals(primaryColor));
@@ -201,7 +202,8 @@ void main() {
           .firstWidget<Transform>(
             find.ancestor(of: find.text('Alarm'), matching: find.byType(Transform)),
           )
-          .transform,
+          .transform
+          .value,
       equals(Matrix4.diagonal3(Vector3.all(unselectedFontSize / selectedFontSize))),
     );
     expect(selectedIcon.color, equals(primaryColor));
@@ -258,7 +260,8 @@ void main() {
           .firstWidget<Transform>(
             find.ancestor(of: find.text('Alarm'), matching: find.byType(Transform)),
           )
-          .transform,
+          .transform
+          .value,
       equals(
         Matrix4.diagonal3(Vector3.all(unselectedTextStyle.fontSize! / selectedTextStyle.fontSize!)),
       ),
@@ -300,7 +303,8 @@ void main() {
           .firstWidget<Transform>(
             find.ancestor(of: find.text('Alarm'), matching: find.byType(Transform)),
           )
-          .transform,
+          .transform
+          .value,
       equals(
         Matrix4.diagonal3(Vector3.all(unselectedTextStyle.fontSize! / selectedTextStyle.fontSize!)),
       ),
@@ -591,7 +595,8 @@ void main() {
           .firstWidget<Transform>(
             find.ancestor(of: find.text('Alarm'), matching: find.byType(Transform)),
           )
-          .transform,
+          .transform
+          .value,
       equals(Matrix4.diagonal3(Vector3.all(unselectedFontSize / selectedFontSize))),
     );
     expect(
@@ -1328,7 +1333,10 @@ void main() {
                 icon: Builder(
                   builder: (BuildContext context) {
                     builderIconSize = IconTheme.of(context).size!;
-                    return SizedBox(width: builderIconSize, height: builderIconSize);
+                    return SizedBox(
+                      width: .fixed(builderIconSize),
+                      height: .fixed(builderIconSize),
+                    );
                   },
                 ),
               ),
@@ -2594,11 +2602,11 @@ void main() {
               bottomNavigationBar: BottomNavigationBar(
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon0, width: 200, height: 10),
+                    icon: SizedBox(key: icon0, width: const .fixed(200), height: const .fixed(10)),
                     label: 'Title0',
                   ),
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon1, width: 200, height: 10),
+                    icon: SizedBox(key: icon1, width: const .fixed(200), height: const .fixed(10)),
                     label: 'Title1',
                   ),
                 ],
@@ -2648,11 +2656,19 @@ void main() {
               bottomNavigationBar: BottomNavigationBar(
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon0, width: 200, height: iconHeight),
+                    icon: SizedBox(
+                      key: icon0,
+                      width: const .fixed(200),
+                      height: const .fixed(iconHeight),
+                    ),
                     label: 'Title0',
                   ),
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon1, width: 200, height: iconHeight),
+                    icon: SizedBox(
+                      key: icon1,
+                      width: const .fixed(200),
+                      height: const .fixed(iconHeight),
+                    ),
                     label: 'Title1',
                   ),
                 ],
@@ -2733,11 +2749,11 @@ void main() {
                 landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon0, width: 200, height: 10),
+                    icon: SizedBox(key: icon0, width: const .fixed(200), height: const .fixed(10)),
                     label: 'Title0',
                   ),
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon1, width: 200, height: 10),
+                    icon: SizedBox(key: icon1, width: const .fixed(200), height: const .fixed(10)),
                     label: 'Title1',
                   ),
                 ],
@@ -2788,11 +2804,19 @@ void main() {
                 landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon0, width: iconWidth, height: iconHeight),
+                    icon: SizedBox(
+                      key: icon0,
+                      width: const .fixed(iconWidth),
+                      height: const .fixed(iconHeight),
+                    ),
                     label: 'Title0',
                   ),
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon1, width: iconWidth, height: iconHeight),
+                    icon: SizedBox(
+                      key: icon1,
+                      width: const .fixed(iconWidth),
+                      height: const .fixed(iconHeight),
+                    ),
                     label: 'Title1',
                   ),
                 ],
@@ -2877,11 +2901,11 @@ void main() {
                 landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon0, width: 100, height: 20),
+                    icon: SizedBox(key: icon0, width: const .fixed(100), height: const .fixed(20)),
                     label: 'Title0',
                   ),
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon1, width: 100, height: 20),
+                    icon: SizedBox(key: icon1, width: const .fixed(100), height: const .fixed(20)),
                     label: 'Title1',
                   ),
                 ],
@@ -2928,11 +2952,19 @@ void main() {
                 landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon0, width: iconWidth, height: iconHeight),
+                    icon: SizedBox(
+                      key: icon0,
+                      width: const .fixed(iconWidth),
+                      height: const .fixed(iconHeight),
+                    ),
                     label: 'Title0',
                   ),
                   BottomNavigationBarItem(
-                    icon: SizedBox(key: icon1, width: iconWidth, height: iconHeight),
+                    icon: SizedBox(
+                      key: icon1,
+                      width: const .fixed(iconWidth),
+                      height: const .fixed(iconHeight),
+                    ),
                     label: 'Title1',
                   ),
                 ],
@@ -3183,5 +3215,6 @@ EdgeInsets _itemPadding(WidgetTester tester, IconData icon) {
             .first,
       )
       .padding
+      .value
       .resolve(TextDirection.ltr);
 }

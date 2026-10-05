@@ -306,7 +306,7 @@ void main() {
             alignment: Alignment.topRight,
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.all(50.0),
+                padding: const .fixed(EdgeInsets.all(50.0)),
                 child: Container(
                   width: 1e5,
                   height: 500,

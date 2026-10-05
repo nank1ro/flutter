@@ -1077,7 +1077,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.fromSize(
-            size: rect.size,
+            size: .fixed(rect.size),
             child: RepaintBoundary(
               key: painterKey,
               child: CustomPaint(painter: GradientPainter(shader, rect)),

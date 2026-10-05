@@ -118,7 +118,7 @@ void main() {
           home: Scaffold(
             body: Center(
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: .fixed(100.0),
                 child: TextField(decoration: InputDecoration(hintText: 'Placeholder')),
               ),
             ),
@@ -689,7 +689,7 @@ void main() {
                     key: suffix,
                     identifier: 'myId',
                     container: true,
-                    child: const SizedBox(width: 50, height: 50, child: Text('suffix')),
+                    child: const SizedBox(width: .fixed(50), height: .fixed(50), child: Text('suffix')),
                   ),
                 ),
               ),
@@ -1061,11 +1061,11 @@ void main() {
         child: RepaintBoundary(
           key: const ValueKey<int>(1),
           child: SizedBox.square(
-            dimension: 200,
+            dimension: const .fixed(200),
             child: Center(
               child: SizedBox(
                 // Make sure the input field is not high enough for the WidgetSpan.
-                height: 50,
+                height: const .fixed(50),
                 child: TextField(controller: controller, clipBehavior: Clip.none),
               ),
             ),
@@ -1207,7 +1207,7 @@ void main() {
           home: const Scaffold(
             body: Center(
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: .fixed(100.0),
                 child: Opacity(
                   opacity: .fixed(0.5),
                   child: TextField(decoration: InputDecoration(hintText: 'Placeholder')),
@@ -2126,8 +2126,8 @@ void main() {
           matching: find.byType(SizedBox),
         ),
       );
-      expect(sizedBox.width, 0.0);
-      expect(sizedBox.height, 0.0);
+      expect(sizedBox.width?.value, 0.0);
+      expect(sizedBox.height?.value, 0.0);
     },
     variant: const TargetPlatformVariant(<TargetPlatform>{
       TargetPlatform.android,
@@ -2651,7 +2651,7 @@ void main() {
                     controller: controller,
                   ),
                 ),
-                const SizedBox(height: 200.0, child: Center(child: Text('Page 2'))),
+                const SizedBox(height: .fixed(200.0), child: Center(child: Text('Page 2'))),
               ],
             ),
           ),
@@ -4487,7 +4487,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding: const .fixed(EdgeInsets.all(30.0)),
               child: TextField(controller: controller),
             ),
           ),
@@ -4509,7 +4509,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.all(150.0),
+              padding: const .fixed(EdgeInsets.all(150.0)),
               child: TextField(controller: controller),
             ),
           ),
@@ -4540,14 +4540,14 @@ void main() {
           home: Scaffold(
             body: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                padding: const .fixed(EdgeInsets.symmetric(horizontal: 48.0)),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     IntrinsicHeight(
                       child: TextField(controller: controller, expands: true, maxLines: null),
                     ),
-                    const SizedBox(height: 325.0),
+                    const SizedBox(height: .fixed(325.0)),
                   ],
                 ),
               ),
@@ -4605,7 +4605,7 @@ void main() {
           theme: ThemeData(useMaterial3: false),
           home: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding: const .fixed(EdgeInsets.all(30.0)),
               child: TextField(controller: controller, minLines: 6, maxLines: 6),
             ),
           ),
@@ -5131,7 +5131,7 @@ void main() {
       return boilerplate(
         theme: ThemeData(useMaterial3: false),
         child: SizedBox(
-          height: height,
+          height: const .fixed(height),
           child: TextField(
             key: textFieldKey,
             maxLines: null,
@@ -5211,7 +5211,7 @@ void main() {
       containedTextFieldBuilder(
         counter: Container(height: counterHeight),
         labelText: 'I am labelText',
-        prefix: const SizedBox(width: 10, height: 60),
+        prefix: const SizedBox(width: .fixed(10), height: .fixed(60)),
       ),
     );
     expect(findEditableText(), equals(inputBox));
@@ -5964,7 +5964,7 @@ void main() {
     await tester.pumpWidget(
       overlay(
         child: const SizedBox(
-          width: 300.0,
+          width: .fixed(300.0),
           child: TextField(textAlign: TextAlign.center, decoration: null),
         ),
       ),
@@ -5996,7 +5996,7 @@ void main() {
     await tester.pumpWidget(
       overlay(
         child: const SizedBox(
-          width: 300.0,
+          width: .fixed(300.0),
           child: Center(child: TextField(textAlign: TextAlign.center, decoration: null)),
         ),
       ),
@@ -6315,7 +6315,7 @@ void main() {
       Theme(
         data: ThemeData(useMaterial3: false),
         child: overlay(
-          child: SizedBox(width: 100.0, child: TextField(controller: controller)),
+          child: SizedBox(width: const .fixed(100.0), child: TextField(controller: controller)),
         ),
       ),
     );
@@ -6384,7 +6384,7 @@ void main() {
 
     await tester.pumpWidget(
       overlay(
-        child: SizedBox(width: 100.0, child: TextField(controller: controller)),
+        child: SizedBox(width: const .fixed(100.0), child: TextField(controller: controller)),
       ),
     );
 
@@ -9719,18 +9719,18 @@ void main() {
                 children: <Widget>[
                   SizedBox(
                     // visible when scrollOffset is 0.0
-                    height: 100.0,
-                    width: 100.0,
+                    height: const .fixed(100.0),
+                    width: const .fixed(100.0),
                     child: TextField(key: textField1, scrollPadding: const EdgeInsets.all(200.0)),
                   ),
                   const SizedBox(
-                    height: 600.0, // Same size as the frame. Initially
-                    width: 800.0, // textField2 is not visible
+                    height: .fixed(600.0), // Same size as the frame. Initially
+                    width: .fixed(800.0), // textField2 is not visible
                   ),
                   SizedBox(
                     // visible when scrollOffset is 200.0
-                    height: 100.0,
-                    width: 100.0,
+                    height: const .fixed(100.0),
+                    width: const .fixed(100.0),
                     child: TextField(key: textField2, scrollPadding: const EdgeInsets.all(200.0)),
                   ),
                 ],
@@ -9796,18 +9796,18 @@ void main() {
               children: <Widget>[
                 SizedBox(
                   // visible when scrollOffset is 0.0
-                  height: 100.0,
-                  width: 100.0,
+                  height: const .fixed(100.0),
+                  width: const .fixed(100.0),
                   child: TextField(key: textField1, scrollPadding: const EdgeInsets.all(200.0)),
                 ),
                 const SizedBox(
-                  height: 450.0, // 50.0 smaller than the overall frame so that both
-                  width: 650.0, // textfields are always partially visible.
+                  height: .fixed(450.0), // 50.0 smaller than the overall frame so that both
+                  width: .fixed(650.0), // textfields are always partially visible.
                 ),
                 SizedBox(
                   // visible when scrollOffset = 50.0
-                  height: 100.0,
-                  width: 100.0,
+                  height: const .fixed(100.0),
+                  width: const .fixed(100.0),
                   child: TextField(key: textField2, scrollPadding: const EdgeInsets.all(200.0)),
                 ),
               ],
@@ -14411,7 +14411,7 @@ void main() {
         child: Theme(
           data: ThemeData(useMaterial3: false),
           child: const SizedBox(
-            width: 300.0,
+            width: .fixed(300.0),
             child: TextField(textAlign: TextAlign.center, decoration: null),
           ),
         ),
@@ -14450,7 +14450,7 @@ void main() {
         child: Theme(
           data: ThemeData(useMaterial3: false),
           child: const SizedBox(
-            width: 300.0,
+            width: .fixed(300.0),
             child: TextField(textAlign: TextAlign.center, decoration: null),
           ),
         ),
@@ -15101,7 +15101,7 @@ void main() {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(
-                  width: 100.0,
+                  width: const .fixed(100.0),
                   child: TextField(controller: controller1, focusNode: focusNode1),
                 ),
                 Row(
@@ -15109,21 +15109,21 @@ void main() {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     SizedBox(
-                      width: 100.0,
+                      width: const .fixed(100.0),
                       child: TextField(controller: controller2, focusNode: focusNode2),
                     ),
                     SizedBox(
-                      width: 100.0,
+                      width: const .fixed(100.0),
                       child: TextField(controller: controller3, focusNode: focusNode3),
                     ),
                     SizedBox(
-                      width: 100.0,
+                      width: const .fixed(100.0),
                       child: TextField(controller: controller4, focusNode: focusNode4),
                     ),
                   ],
                 ),
                 SizedBox(
-                  width: 100.0,
+                  width: const .fixed(100.0),
                   child: TextField(controller: controller5, focusNode: focusNode5),
                 ),
               ],
@@ -15170,9 +15170,9 @@ void main() {
           child: Material(
             child: ListView(
               children: const <Widget>[
-                Padding(padding: EdgeInsets.symmetric(vertical: 200)),
+                Padding(padding: .fixed(EdgeInsets.symmetric(vertical: 200))),
                 TextField(),
-                Padding(padding: EdgeInsets.symmetric(vertical: 800)),
+                Padding(padding: .fixed(EdgeInsets.symmetric(vertical: 800))),
               ],
             ),
           ),
@@ -15250,7 +15250,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: ColoredBox(
-            color: Colors.grey,
+            color: const .fixed(Colors.grey),
             child: Center(
               child: Container(
                 color: Colors.red,
@@ -15571,7 +15571,7 @@ void main() {
           builder: (BuildContext context, StateSetter setter) {
             setState = setter;
             return SizedBox(
-              width: isWide ? wideWidth : narrowWidth,
+              width: .fixed(isWide ? wideWidth : narrowWidth),
               child: TextField(
                 key: textFieldKey,
                 controller: controller,
@@ -17034,7 +17034,7 @@ void main() {
             child: Column(
               children: <Widget>[
                 TextField(key: key1, focusNode: focusNode1),
-                const SizedBox(height: 100.0),
+                const SizedBox(height: .fixed(100.0)),
                 TextField(key: key2, focusNode: focusNode2),
               ],
             ),
@@ -17269,7 +17269,7 @@ void main() {
           MaterialApp(
             home: Material(
               child: Padding(
-                padding: EdgeInsets.zero,
+                padding: const .fixed(EdgeInsets.zero),
                 child: TextField(key: key, controller: controller, contextMenuBuilder: null),
               ),
             ),
@@ -17957,7 +17957,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const .fixed(EdgeInsets.all(20)),
                 child: TextField(
                   magnifierConfiguration: TextMagnifierConfiguration(
                     magnifierBuilder:
@@ -18009,7 +18009,7 @@ void main() {
           home: Scaffold(
             body: Center(
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Opacity(
                   opacity: const .fixed(0.5),
                   child: TextField(
@@ -18043,7 +18043,7 @@ void main() {
           home: Scaffold(
             body: Center(
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Opacity(
                   opacity: const .fixed(0.5),
                   child: TextField(
@@ -18081,7 +18081,7 @@ void main() {
             home: Scaffold(
               body: Center(
                 child: SizedBox.square(
-                  dimension: 100.0,
+                  dimension: const .fixed(100.0),
                   child: Opacity(
                     opacity: const .fixed(0.5),
                     child: TextField(
@@ -18137,7 +18137,7 @@ void main() {
           home: Scaffold(
             body: Center(
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Opacity(
                   opacity: const .fixed(0.5),
                   child: TextField(
@@ -19194,7 +19194,7 @@ void main() {
                 children: <Widget>[
                   Container(color: Colors.red),
                   ColoredBox(
-                    color: Colors.green,
+                    color: const .fixed(Colors.green),
                     child: TextField(controller: controller),
                   ),
                   Container(color: Colors.red),

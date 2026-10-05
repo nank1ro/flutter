@@ -33,7 +33,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -86,7 +86,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -176,7 +176,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -279,7 +279,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -320,7 +320,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -369,7 +369,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -1810,7 +1810,7 @@ void main() {
                   ).showSnackBar(const SnackBar(content: Text(helloSnackBar)));
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -1924,7 +1924,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -1971,7 +1971,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -2020,7 +2020,11 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Container(),
-              bottomNavigationBar: SizedBox(key: boxKey, width: 800, height: 60),
+              bottomNavigationBar: SizedBox(
+                key: boxKey,
+                width: const .fixed(800),
+                height: const .fixed(60),
+              ),
             ),
           ),
         );
@@ -2316,7 +2320,11 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Container(),
-              bottomNavigationBar: SizedBox(key: boxKey, width: 800, height: 60),
+              bottomNavigationBar: SizedBox(
+                key: boxKey,
+                width: const .fixed(800),
+                height: const .fixed(60),
+              ),
               floatingActionButton: FloatingActionButton(onPressed: () {}),
             ),
           ),
@@ -2352,7 +2360,11 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Container(),
-              bottomNavigationBar: SizedBox(key: boxKey, width: 800, height: 60),
+              bottomNavigationBar: SizedBox(
+                key: boxKey,
+                width: const .fixed(800),
+                height: const .fixed(60),
+              ),
               floatingActionButton: FloatingActionButton(onPressed: () {}),
             ),
           ),
@@ -2384,7 +2396,11 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Container(),
-              bottomNavigationBar: SizedBox(key: boxKey, width: 800, height: 200),
+              bottomNavigationBar: SizedBox(
+                key: boxKey,
+                width: const .fixed(800),
+                height: const .fixed(200),
+              ),
               floatingActionButton: FloatingActionButton(onPressed: () {}),
               floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
             ),
@@ -2474,7 +2490,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             theme: ThemeData(useMaterial3: false),
-            home: const Scaffold(persistentFooterButtons: <Widget>[SizedBox(height: 1000)]),
+            home: const Scaffold(persistentFooterButtons: <Widget>[SizedBox(height: .fixed(1000))]),
           ),
         );
 
@@ -2492,7 +2508,7 @@ void main() {
         // Regression test for https://github.com/flutter/flutter/issues/84263
         await tester.pumpWidget(
           const MaterialApp(
-            home: Scaffold(persistentFooterButtons: <Widget>[SizedBox(height: 1000)]),
+            home: Scaffold(persistentFooterButtons: <Widget>[SizedBox(height: .fixed(1000))]),
           ),
         );
 
@@ -2517,7 +2533,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             theme: ThemeData(useMaterial3: false),
-            home: const Scaffold(bottomNavigationBar: SizedBox(height: 1000)),
+            home: const Scaffold(bottomNavigationBar: SizedBox(height: .fixed(1000))),
           ),
         );
 
@@ -2533,7 +2549,9 @@ void main() {
       (WidgetTester tester) async {
         // Regression test for https://github.com/flutter/flutter/issues/84263
         await tester.pumpWidget(
-          const MaterialApp(home: Scaffold(bottomNavigationBar: SizedBox(height: 1000))),
+          const MaterialApp(
+            home: Scaffold(bottomNavigationBar: SizedBox(height: .fixed(1000))),
+          ),
         );
 
         final FlutterExceptionHandler? handler = FlutterError.onError;
@@ -2872,7 +2890,11 @@ void main() {
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         theme: ThemeData(useMaterial3: false),
         home: const Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -2903,7 +2925,11 @@ void main() {
       const MaterialApp(
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -2949,7 +2975,7 @@ void main() {
                       ).showSnackBar(const SnackBar(content: Text(snackBarText)));
                     },
                     behavior: HitTestBehavior.opaque,
-                    child: const SizedBox(height: 100.0, width: 100.0),
+                    child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                   ),
                   GestureDetector(
                     key: materialBannerTapTarget,
@@ -2968,7 +2994,7 @@ void main() {
                       );
                     },
                     behavior: HitTestBehavior.opaque,
-                    child: const SizedBox(height: 100.0, width: 100.0),
+                    child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                   ),
                 ],
               );
@@ -3092,7 +3118,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -3311,7 +3337,11 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: const Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3343,7 +3373,11 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: const Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3376,7 +3410,11 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: const Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3408,7 +3446,11 @@ void main() {
       const MaterialApp(
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3441,7 +3483,11 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: const Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3472,7 +3518,11 @@ void main() {
       const MaterialApp(
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3504,7 +3554,11 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: const Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3535,7 +3589,11 @@ void main() {
       const MaterialApp(
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3567,7 +3625,11 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: const Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3600,7 +3662,11 @@ void main() {
       const MaterialApp(
         debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
         home: Scaffold(
-          bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+          bottomSheet: SizedBox(
+            width: .fixed(200),
+            height: .fixed(50),
+            child: ColoredBox(color: .fixed(Colors.pink)),
+          ),
         ),
       ),
     );
@@ -3634,7 +3700,11 @@ void main() {
           theme: ThemeData(useMaterial3: false),
           debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
           home: const Scaffold(
-            bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+            bottomSheet: SizedBox(
+              width: .fixed(200),
+              height: .fixed(50),
+              child: ColoredBox(color: .fixed(Colors.pink)),
+            ),
           ),
         ),
       );
@@ -3671,7 +3741,11 @@ void main() {
         const MaterialApp(
           debugShowCheckedModeBanner: false, // https://github.com/flutter/flutter/issues/143616
           home: Scaffold(
-            bottomSheet: SizedBox(width: 200, height: 50, child: ColoredBox(color: Colors.pink)),
+            bottomSheet: SizedBox(
+              width: .fixed(200),
+              height: .fixed(50),
+              child: ColoredBox(color: .fixed(Colors.pink)),
+            ),
           ),
         ),
       );

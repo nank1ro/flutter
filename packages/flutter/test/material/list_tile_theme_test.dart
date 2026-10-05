@@ -995,10 +995,18 @@ void main() {
           child: Center(
             child: ListTile(
               titleAlignment: ListTileTitleAlignment.top,
-              leading: SizedBox(key: leadingKey, width: 24.0, height: 24.0),
+              leading: SizedBox(
+                key: leadingKey,
+                width: const .fixed(24.0),
+                height: const .fixed(24.0),
+              ),
               title: const Text(titleText),
               subtitle: const Text(subtitleText),
-              trailing: SizedBox(key: trailingKey, width: 24.0, height: 24.0),
+              trailing: SizedBox(
+                key: trailingKey,
+                width: const .fixed(24.0),
+                height: const .fixed(24.0),
+              ),
             ),
           ),
         ),
@@ -1118,13 +1126,13 @@ void main() {
             children: const <Widget>[
               ListTile(
                 leading: CircleAvatar(),
-                trailing: SizedBox(height: 24.0, width: 24.0, child: Placeholder()),
+                trailing: SizedBox(height: .fixed(24.0), width: .fixed(24.0), child: Placeholder()),
                 title: Text('A'),
                 subtitle: Text('A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM'),
               ),
               ListTile(
                 leading: CircleAvatar(),
-                trailing: SizedBox(height: 24.0, width: 24.0, child: Placeholder()),
+                trailing: SizedBox(height: .fixed(24.0), width: .fixed(24.0), child: Placeholder()),
                 title: Text('A'),
                 subtitle: Text('A'),
               ),
@@ -1214,13 +1222,21 @@ void main() {
               children: const <Widget>[
                 ListTile(
                   leading: CircleAvatar(),
-                  trailing: SizedBox(height: 24.0, width: 24.0, child: Placeholder()),
+                  trailing: SizedBox(
+                    height: .fixed(24.0),
+                    width: .fixed(24.0),
+                    child: Placeholder(),
+                  ),
                   title: Text('A'),
                   subtitle: Text('A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM'),
                 ),
                 ListTile(
                   leading: CircleAvatar(),
-                  trailing: SizedBox(height: 24.0, width: 24.0, child: Placeholder()),
+                  trailing: SizedBox(
+                    height: .fixed(24.0),
+                    width: .fixed(24.0),
+                    child: Placeholder(),
+                  ),
                   title: Text('A'),
                   subtitle: Text('A'),
                 ),
@@ -1267,13 +1283,21 @@ void main() {
               children: const <Widget>[
                 ListTile(
                   leading: CircleAvatar(),
-                  trailing: SizedBox(height: 24.0, width: 24.0, child: Placeholder()),
+                  trailing: SizedBox(
+                    height: .fixed(24.0),
+                    width: .fixed(24.0),
+                    child: Placeholder(),
+                  ),
                   title: Text('A'),
                   subtitle: Text('A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM'),
                 ),
                 ListTile(
                   leading: CircleAvatar(),
-                  trailing: SizedBox(height: 24.0, width: 24.0, child: Placeholder()),
+                  trailing: SizedBox(
+                    height: .fixed(24.0),
+                    width: .fixed(24.0),
+                    child: Placeholder(),
+                  ),
                   title: Text('A'),
                   subtitle: Text('A'),
                 ),

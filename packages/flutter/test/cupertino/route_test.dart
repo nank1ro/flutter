@@ -1782,7 +1782,7 @@ void main() {
           return CupertinoPageScaffold(
             key: pageScaffoldKey,
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const .fixed(EdgeInsets.all(16)),
               child: GestureDetector(
                 onTap: () {
                   pageTapCount += 1;
@@ -1868,7 +1868,11 @@ void main() {
                 child: Hero(
                   tag: 'tag',
                   transitionOnUserGestures: true,
-                  child: SizedBox(key: container, height: 150.0, width: 150.0),
+                  child: SizedBox(
+                    key: container,
+                    height: const .fixed(150.0),
+                    width: const .fixed(150.0),
+                  ),
                 ),
               ),
             );
@@ -1877,11 +1881,15 @@ void main() {
             return CupertinoPageScaffold(
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(100.0, 0.0, 0.0, 0.0),
+                  padding: const .fixed(EdgeInsets.fromLTRB(100.0, 0.0, 0.0, 0.0)),
                   child: Hero(
                     tag: 'tag',
                     transitionOnUserGestures: true,
-                    child: SizedBox(key: container, height: 150.0, width: 150.0),
+                    child: SizedBox(
+                      key: container,
+                      height: const .fixed(150.0),
+                      width: const .fixed(150.0),
+                    ),
                   ),
                 ),
               ),

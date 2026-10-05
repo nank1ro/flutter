@@ -47,7 +47,7 @@ void main() {
         CupertinoApp(
           home: SizedBox.square(
             key: fakeTextFieldKey,
-            dimension: 10,
+            dimension: const .fixed(10),
             child: CupertinoTheme(
               data: const CupertinoThemeData(primaryColor: CupertinoColors.activeGreen),
               child: Builder(
@@ -109,7 +109,7 @@ void main() {
             // which has effect on the color of the background behind the child.
             // So enforce a consistent background color that fills the background.
             home: ColoredBox(
-              color: const Color.fromARGB(255, 0, 255, 179),
+              color: const .fixed(Color.fromARGB(255, 0, 255, 179)),
               child: Center(
                 child: Container(
                   key: fakeTextFieldKey,

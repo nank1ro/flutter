@@ -72,7 +72,7 @@ void main() {
           body: Center(
             child: CarouselView(
               itemExtent: 100,
-              children: <Widget>[SizedBox(width: 100, height: 100)],
+              children: <Widget>[SizedBox(width: .fixed(100), height: .fixed(100))],
             ),
           ),
         ),
@@ -95,7 +95,7 @@ void main() {
       find.descendant(of: find.byType(CarouselView), matching: find.byType(InkWell)),
     );
 
-    expect(paddingWidget.padding, carouselViewTheme.padding);
+    expect(paddingWidget.padding.value, carouselViewTheme.padding);
     expect(material.color, carouselViewTheme.backgroundColor);
     expect(material.elevation, carouselViewTheme.elevation);
     expect(material.shape, carouselViewTheme.shape);
@@ -128,7 +128,7 @@ void main() {
               overlayColor: overlayColor,
               itemExtent: 100,
               itemClipBehavior: itemClipBehavior,
-              children: <Widget>[SizedBox(width: 100, height: 100)],
+              children: <Widget>[SizedBox(width: .fixed(100), height: .fixed(100))],
             ),
           ),
         ),
@@ -151,7 +151,7 @@ void main() {
       find.descendant(of: find.byType(CarouselView), matching: find.byType(InkWell)),
     );
 
-    expect(paddingWidget.padding, padding);
+    expect(paddingWidget.padding.value, padding);
     expect(material.color, backgroundColor);
     expect(material.elevation, elevation);
     expect(material.shape, shape);
@@ -203,7 +203,7 @@ void main() {
               ),
               child: CarouselView(
                 itemExtent: 100,
-                children: <Widget>[SizedBox(width: 100, height: 100)],
+                children: <Widget>[SizedBox(width: .fixed(100), height: .fixed(100))],
               ),
             ),
           ),
@@ -226,7 +226,7 @@ void main() {
       find.descendant(of: find.byType(CarouselView), matching: find.byType(InkWell)),
     );
 
-    expect(paddingWidget.padding, localPadding);
+    expect(paddingWidget.padding.value, localPadding);
     expect(material.color, localBackgroundColor);
     expect(material.elevation, localElevation);
     expect(material.shape, localShape);

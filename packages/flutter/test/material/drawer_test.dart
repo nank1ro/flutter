@@ -189,11 +189,11 @@ void main() {
       scaffoldKey.currentState!.openDrawer();
       await tester.pump();
       var scrim = getScrim() as ColoredBox;
-      expect(scrim.color, isSameColorAs(color.withValues(alpha: 0)));
+      expect(scrim.color.value, isSameColorAs(color.withValues(alpha: 0)));
 
       await tester.pumpAndSettle();
       scrim = getScrim() as ColoredBox;
-      expect(scrim.color, isSameColorAs(color));
+      expect(scrim.color.value, isSameColorAs(color));
 
       await tester.tap(find.byType(Drawer));
       await tester.pumpAndSettle();

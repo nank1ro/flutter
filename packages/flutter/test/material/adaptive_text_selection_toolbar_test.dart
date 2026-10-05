@@ -107,7 +107,7 @@ void main() {
           home: Scaffold(
             body: Center(
               child: SizedBox(
-                width: 400,
+                width: const .fixed(400),
                 child: EditableText(
                   controller: controller,
                   backgroundCursorColor: const Color(0xff00ffff),

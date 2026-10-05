@@ -35,16 +35,24 @@ class RelayoutBoundariesCrashState extends State<RelayoutBoundariesCrash> {
     return Center(
       child: SizedBox(
         // when _mode is true, constraints are tight, otherwise constraints are loose
-        width: !_mode ? 100.0 : null,
-        height: !_mode ? 100.0 : null,
+        width: .fixed(!_mode ? 100.0 : null),
+        height: .fixed(!_mode ? 100.0 : null),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             // Make the outer SizedBoxes relayout without making the Placeholders relayout.
             final dimension = !_mode ? 10.0 : 20.0;
             return Column(
               children: <Widget>[
-                SizedBox(width: dimension, height: dimension, child: const Placeholder()),
-                SizedBox(width: dimension, height: dimension, child: const Placeholder()),
+                SizedBox(
+                  width: .fixed(dimension),
+                  height: .fixed(dimension),
+                  child: const Placeholder(),
+                ),
+                SizedBox(
+                  width: .fixed(dimension),
+                  height: .fixed(dimension),
+                  child: const Placeholder(),
+                ),
               ],
             );
           },

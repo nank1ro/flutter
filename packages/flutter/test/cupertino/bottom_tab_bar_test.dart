@@ -618,7 +618,7 @@ Future<void> main() async {
     );
 
     final DecoratedBox decoratedBox = tester.widget(find.byType(DecoratedBox));
-    final boxDecoration = decoratedBox.decoration as BoxDecoration;
+    final boxDecoration = decoratedBox.decoration.value as BoxDecoration;
     expect(boxDecoration.border, isNotNull);
 
     await pumpWidgetWithBoilerplate(
@@ -643,7 +643,7 @@ Future<void> main() async {
     );
 
     final DecoratedBox decoratedBoxHiddenBorder = tester.widget(find.byType(DecoratedBox));
-    final boxDecorationHiddenBorder = decoratedBoxHiddenBorder.decoration as BoxDecoration;
+    final boxDecorationHiddenBorder = decoratedBoxHiddenBorder.decoration.value as BoxDecoration;
     expect(boxDecorationHiddenBorder.border, isNull);
   });
 

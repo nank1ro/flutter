@@ -771,7 +771,7 @@ void main() {
               DropdownMenuEntry<int>(
                 value: 0,
                 label: 'Flutter',
-                labelWidget: SizedBox(width: entryLabelWidth),
+                labelWidget: SizedBox(width: .fixed(entryLabelWidth)),
               ),
             ],
           ),
@@ -801,12 +801,12 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           body: DropdownMenu<int>(
-            label: SizedBox(width: labelWidth),
+            label: SizedBox(width: .fixed(labelWidth)),
             dropdownMenuEntries: <DropdownMenuEntry<int>>[
               DropdownMenuEntry<int>(
                 value: 0,
                 label: 'Flutter',
-                labelWidget: SizedBox(width: entryLabelWidth),
+                labelWidget: SizedBox(width: .fixed(entryLabelWidth)),
               ),
             ],
           ),
@@ -835,7 +835,7 @@ void main() {
       return MaterialApp(
         home: Scaffold(
           body: SizedBox.square(
-            dimension: parentWidth,
+            dimension: const .fixed(parentWidth),
             child: DropdownMenu<ShortMenu>(
               expandedInsets: expandedInsets,
               dropdownMenuEntries: shortMenuItems,
@@ -902,7 +902,7 @@ void main() {
       return MaterialApp(
         home: Scaffold(
           body: SizedBox.square(
-            dimension: parentWidth,
+            dimension: const .fixed(parentWidth),
             child: DropdownMenu<ShortMenu>(
               expandedInsets: expandedInsets,
               dropdownMenuEntries: shortMenuItems,
@@ -1143,7 +1143,7 @@ void main() {
       buildTest(
         themeData,
         menuChildren,
-        leadingIcon: const SizedBox(width: 75.0, child: Icon(Icons.search)),
+        leadingIcon: const SizedBox(width: .fixed(75.0), child: Icon(Icons.search)),
         label: const Text('label'),
       ),
     );
@@ -1236,7 +1236,7 @@ void main() {
           body: Directionality(
             textDirection: TextDirection.rtl,
             child: DropdownMenu<TestMenu>(
-              leadingIcon: const SizedBox(width: 75.0, child: Icon(Icons.search)),
+              leadingIcon: const SizedBox(width: .fixed(75.0), child: Icon(Icons.search)),
               label: const Text('label'),
               dropdownMenuEntries: menuChildren,
             ),
@@ -3523,7 +3523,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: 300,
+            width: const .fixed(300),
             child: DropdownMenu<int>(
               dropdownMenuEntries: <DropdownMenuEntry<int>>[
                 DropdownMenuEntry<int>(
@@ -3772,7 +3772,7 @@ void main() {
                   ),
                 ],
               ),
-              const SizedBox(height: 1000.0),
+              const SizedBox(height: .fixed(1000.0)),
             ],
           ),
         ),
@@ -3944,8 +3944,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: 200,
-              height: 300,
+              width: const .fixed(200),
+              height: const .fixed(300),
               child: DropdownMenu<TestMenu>(
                 expandedInsets: EdgeInsets.zero,
                 initialSelection: TestMenu.mainMenu3,
@@ -3993,8 +3993,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: 200,
-              height: 300,
+              width: const .fixed(200),
+              height: const .fixed(300),
               child: DropdownMenu<TestMenu>(
                 initialSelection: TestMenu.mainMenu3,
                 dropdownMenuEntries: menuChildrenWithIcons,
@@ -4357,7 +4357,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: double.infinity,
+              width: .fixed(double.infinity),
               child: DropdownMenu<int>(
                 expandedInsets: EdgeInsets.symmetric(horizontal: 20),
                 dropdownMenuEntries: <DropdownMenuEntry<int>>[
@@ -4991,7 +4991,7 @@ void main() {
             body: DropdownMenu<TestMenu>(
               dropdownMenuEntries: menuChildren,
               decorationBuilder: (BuildContext context, MenuController controller) {
-                return const InputDecoration(label: SizedBox(width: 200));
+                return const InputDecoration(label: SizedBox(width: .fixed(200)));
               },
             ),
           ),

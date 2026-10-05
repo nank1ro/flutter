@@ -965,7 +965,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         theme: theme,
-        home: const SingleChildScrollView(child: SizedBox(height: 2000.0)),
+        home: const SingleChildScrollView(child: SizedBox(height: .fixed(2000.0))),
       ),
     );
 
@@ -1342,7 +1342,7 @@ void main() {
           theme: ThemeData(useMaterial3: false),
           scrollBehavior: const MaterialScrollBehavior(),
           home: ListView(
-            children: const <Widget>[SizedBox(height: 1000.0, width: 1000.0, child: Text('Test'))],
+            children: const <Widget>[SizedBox(height: .fixed(1000.0), width: .fixed(1000.0), child: Text('Test'))],
           ),
         ),
       );
@@ -1360,7 +1360,7 @@ void main() {
         MaterialApp(
           scrollBehavior: const MaterialScrollBehavior(),
           home: ListView(
-            children: const <Widget>[SizedBox(height: 1000.0, width: 1000.0, child: Text('Test'))],
+            children: const <Widget>[SizedBox(height: .fixed(1000.0), width: .fixed(1000.0), child: Text('Test'))],
           ),
         ),
       );
@@ -1377,7 +1377,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: ListView(
-            children: const <Widget>[SizedBox(height: 1000.0, width: 1000.0, child: Text('Test'))],
+            children: const <Widget>[SizedBox(height: .fixed(1000.0), width: .fixed(1000.0), child: Text('Test'))],
           ),
         ),
       );
@@ -1396,7 +1396,7 @@ void main() {
           // The current default is M3 and stretch overscroll, setting via the theme should override.
           theme: ThemeData().copyWith(useMaterial3: false),
           home: ListView(
-            children: const <Widget>[SizedBox(height: 1000.0, width: 1000.0, child: Text('Test'))],
+            children: const <Widget>[SizedBox(height: .fixed(1000.0), width: .fixed(1000.0), child: Text('Test'))],
           ),
         ),
       );
@@ -1415,13 +1415,13 @@ void main() {
           home: Column(
             children: <Widget>[
               SizedBox(
-                height: 300,
+                height: const .fixed(300),
                 child: ListView.builder(
                   itemCount: 20,
                   clipBehavior: clipBehavior,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const .fixed(EdgeInsets.all(10.0)),
                       child: Text('Index $index'),
                     );
                   },
@@ -1702,7 +1702,7 @@ void main() {
   // Regression test for https://github.com/flutter/flutter/issues/137875.
   testWidgets('MaterialApp works in an unconstrained environment', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const UnconstrainedBox(child: MaterialApp(home: SizedBox(width: 123, height: 456))),
+      const UnconstrainedBox(child: MaterialApp(home: SizedBox(width: .fixed(123), height: .fixed(456)))),
     );
 
     expect(tester.getSize(find.byType(MaterialApp)), const Size(123, 456));

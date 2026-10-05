@@ -25,7 +25,7 @@ void main() {
             title: const Text('Footer'),
             backgroundColor: Colors.black38,
           ),
-          child: DecoratedBox(decoration: BoxDecoration(color: Colors.green[500])),
+          child: DecoratedBox(decoration: .fixed(BoxDecoration(color: Colors.green[500]))),
         ),
       ),
     );

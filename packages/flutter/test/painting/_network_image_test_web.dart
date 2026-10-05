@@ -495,7 +495,7 @@ void runTests() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: RawWebImage(image: image, fit: BoxFit.contain),
           ),
         ),
@@ -522,7 +522,7 @@ void runTests() {
         RepaintBoundary(
           child: Center(
             child: SizedBox.square(
-              dimension: 300.0,
+              dimension: const .fixed(300.0),
               child: RawWebImage(image: image, fit: BoxFit.cover, alignment: Alignment.bottomRight),
             ),
           ),
@@ -557,8 +557,8 @@ void runTests() {
         RepaintBoundary(
           child: Center(
             child: SizedBox(
-              width: 100,
-              height: 50,
+              width: const .fixed(100),
+              height: const .fixed(50),
               child: RawWebImage(image: image, fit: BoxFit.none, alignment: Alignment.topLeft),
             ),
           ),
@@ -592,7 +592,7 @@ void runTests() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: RawWebImage(image: image, fit: BoxFit.contain, alignment: Alignment.topLeft),
           ),
         ),
@@ -606,7 +606,7 @@ void runTests() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: RawWebImage(image: image, fit: BoxFit.contain, alignment: Alignment.bottomRight),
           ),
         ),

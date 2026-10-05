@@ -85,7 +85,7 @@ void main() {
                   alignment: Alignment.center,
                   child: DropdownButtonHideUnderline(
                     child: SizedBox(
-                      width: 200.0,
+                      width: const .fixed(200.0),
                       child: DropdownButton<String>(
                         key: dropdownKey,
                         onChanged: (String? value) {},

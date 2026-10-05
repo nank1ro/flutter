@@ -1796,7 +1796,7 @@ void main() {
     final Padding padding = tester.widget<Padding>(
       find.descendant(of: findViewContent(), matching: find.byType(Padding)).first,
     );
-    expect(padding.padding, const EdgeInsets.all(16.0));
+    expect(padding.padding.value, const EdgeInsets.all(16.0));
   });
 
   testWidgets('SearchAnchor ignores viewPadding property if full screen', (
@@ -1830,7 +1830,7 @@ void main() {
     final Padding padding = tester.widget<Padding>(
       find.descendant(of: findViewContent(), matching: find.byType(Padding)).first,
     );
-    expect(padding.padding, EdgeInsets.zero);
+    expect(padding.padding.value, EdgeInsets.zero);
   });
 
   testWidgets('SearchAnchor respects shrinkWrap property', (WidgetTester tester) async {
@@ -1987,7 +1987,7 @@ void main() {
     final Padding padding = tester.widget<Padding>(
       find.descendant(of: findSearchBar, matching: find.byType(Padding)).first,
     );
-    expect(padding.padding, const EdgeInsets.symmetric(horizontal: 16.0));
+    expect(padding.padding.value, const EdgeInsets.symmetric(horizontal: 16.0));
   });
 
   testWidgets('SearchAnchor respects builder property - LTR', (WidgetTester tester) async {
@@ -2626,7 +2626,7 @@ void main() {
       MaterialApp(
         builder: (BuildContext context, Widget? child) {
           return Scaffold(
-            body: Padding(padding: const EdgeInsets.all(rootSpacing), child: child),
+            body: Padding(padding: const .fixed(EdgeInsets.all(rootSpacing)), child: child),
           );
         },
         home: Material(
@@ -2670,7 +2670,7 @@ void main() {
       MaterialApp(
         builder: (BuildContext context, Widget? child) {
           return Scaffold(
-            body: Padding(padding: const EdgeInsets.all(rootSpacing), child: child),
+            body: Padding(padding: const .fixed(EdgeInsets.all(rootSpacing)), child: child),
           );
         },
         home: Material(

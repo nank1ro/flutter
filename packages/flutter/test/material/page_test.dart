@@ -1024,7 +1024,7 @@ void main() {
               key: pageScaffoldKey,
               appBar: AppBar(title: const Text('Page')),
               body: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const .fixed(EdgeInsets.all(16)),
                 child: GestureDetector(
                   onTap: () {
                     pageTapCount += 1;
@@ -1109,7 +1109,7 @@ void main() {
               key: pageScaffoldKey,
               appBar: AppBar(title: const Text('Page')),
               body: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const .fixed(EdgeInsets.all(16)),
                 child: GestureDetector(
                   onTap: () {
                     pageTapCount += 1;

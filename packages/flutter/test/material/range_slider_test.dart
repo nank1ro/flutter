@@ -551,7 +551,7 @@ void main() {
               return Material(
                 child: Center(
                   child: SizedBox(
-                    width: boundingBoxSize,
+                    width: const .fixed(boundingBoxSize),
                     child: SliderTheme(
                       data: SliderTheme.of(context).copyWith(minThumbSeparation: boundingBoxSize),
                       child: RangeSlider(
@@ -594,7 +594,7 @@ void main() {
               return Material(
                 child: Center(
                   child: SizedBox(
-                    width: boundingBoxSize,
+                    width: const .fixed(boundingBoxSize),
                     child: SliderTheme(
                       data: SliderTheme.of(context).copyWith(minThumbSeparation: boundingBoxSize),
                       child: RangeSlider(
@@ -2274,8 +2274,8 @@ void main() {
             child: Material(
               child: Center(
                 child: SizedBox(
-                  height: 10.0,
-                  width: 0.0,
+                  height: const .fixed(10.0),
+                  width: const .fixed(0.0),
                   child: RangeSlider(values: const RangeValues(0.25, 0.5), onChanged: null),
                 ),
               ),
@@ -2338,8 +2338,8 @@ void main() {
             child: Material(
               child: Center(
                 child: SizedBox(
-                  height: 10.0,
-                  width: 0.0,
+                  height: const .fixed(10.0),
+                  width: const .fixed(0.0),
                   child: RangeSlider(values: const RangeValues(0.25, 0.5), onChanged: null),
                 ),
               ),
@@ -3053,7 +3053,7 @@ void main() {
           child: Material(
             child: ListView(
               children: <Widget>[
-                const SizedBox(height: 600, child: Placeholder()),
+                const SizedBox(height: .fixed(600), child: Placeholder()),
                 RangeSlider(
                   values: const RangeValues(40, 80),
                   max: 100,
@@ -3556,7 +3556,7 @@ void main() {
         theme: theme,
         home: Material(
           child: SizedBox(
-            width: 300,
+            width: const .fixed(300),
             child: RangeSlider(
               values: const RangeValues(0, 100),
               max: 100,

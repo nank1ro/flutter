@@ -101,13 +101,13 @@ void main() {
           return data.copyWith(textScaler: TextScaler.linear(contextScaleFactor));
         },
         child: SizedBox(
-          height: rowHeight,
+          height: const .fixed(rowHeight),
           child: Center(
             child: UnconstrainedBox(
               child: ConstrainedBox(
-                constraints: const BoxConstraints.tightFor(width: buttonWidth),
+                constraints: const .fixed(BoxConstraints.tightFor(width: buttonWidth)),
                 child: DecoratedBox(
-                  decoration: BoxDecoration(border: Border.all()),
+                  decoration: .fixed(BoxDecoration(border: Border.all())),
                   child: CupertinoActionSheetAction(onPressed: () {}, child: const Text('Button')),
                 ),
               ),
@@ -2041,7 +2041,7 @@ void main() {
 
       ShapeBorder findBorder(Finder decoratedBoxFinder) {
         final box = tester.widget(decoratedBoxFinder) as DecoratedBox;
-        final decoration = box.decoration as ShapeDecoration;
+        final decoration = box.decoration.value as ShapeDecoration;
 
         return decoration.shape;
       }
@@ -2385,7 +2385,7 @@ void main() {
 
     expect(decoratedBoxFinder, findsOneWidget);
 
-    final decoration = tester.widget<DecoratedBox>(decoratedBoxFinder).decoration as BoxDecoration;
+    final decoration = tester.widget<DecoratedBox>(decoratedBoxFinder).decoration.value as BoxDecoration;
 
     expect(decoration.color, defaultLightFocusColor);
 
@@ -2442,7 +2442,7 @@ void main() {
 
     expect(decoratedBoxFinder, findsOneWidget);
 
-    final decoration = tester.widget<DecoratedBox>(decoratedBoxFinder).decoration as BoxDecoration;
+    final decoration = tester.widget<DecoratedBox>(decoratedBoxFinder).decoration.value as BoxDecoration;
 
     expect(decoration.color, defaultDarkFocusColor);
 
@@ -2502,7 +2502,7 @@ void main() {
 
     expect(decoratedBoxFinder, findsOneWidget);
 
-    final decoration = tester.widget<DecoratedBox>(decoratedBoxFinder).decoration as BoxDecoration;
+    final decoration = tester.widget<DecoratedBox>(decoratedBoxFinder).decoration.value as BoxDecoration;
 
     expect(decoration.color, defaultDarkFocusColor);
 
@@ -2633,7 +2633,7 @@ class LegacyAction extends StatelessWidget {
       onTap: onPressed,
       behavior: HitTestBehavior.opaque,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 57),
+        constraints: const .fixed(BoxConstraints(minHeight: 57)),
         child: Container(
           alignment: AlignmentDirectional.center,
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0),

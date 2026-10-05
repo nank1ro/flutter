@@ -148,7 +148,7 @@ void main() {
               Padding(
                 // The padding makes sure the menu has enough space around it to
                 // get properly aligned when displayed (`_kMenuScreenPadding`).
-                padding: const EdgeInsets.all(8.0),
+                padding: const .fixed(EdgeInsets.all(8.0)),
                 child: PopupMenuButton<void>(
                   key: popupButtonKey,
                   itemBuilder: (BuildContext context) {
@@ -493,7 +493,7 @@ void main() {
                 Padding(
                   // The padding makes sure the menu has enough space around it to
                   // get properly aligned when displayed (`_kMenuScreenPadding`).
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const .fixed(EdgeInsets.all(8.0)),
                   child: PopupMenuButton<void>(
                     key: popupButtonKey,
                     itemBuilder: (BuildContext context) {

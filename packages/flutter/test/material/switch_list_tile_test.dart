@@ -722,8 +722,8 @@ void main() {
           child: StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return SizedBox(
-                width: 500,
-                height: 100,
+                width: const .fixed(500),
+                height: const .fixed(100),
                 child: Material(
                   color: Colors.white,
                   child: SwitchListTile(

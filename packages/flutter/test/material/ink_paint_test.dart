@@ -60,8 +60,8 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 200.0,
-              height: 60.0,
+              width: const .fixed(200.0),
+              height: const .fixed(60.0),
               child: InkWell(borderRadius: borderRadius, splashColor: splashColor, onTap: () {}),
             ),
           ),
@@ -99,8 +99,8 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 200.0,
-              height: 60.0,
+              width: const .fixed(200.0),
+              height: const .fixed(60.0),
               child: InkWell(
                 key: inkWellKey,
                 borderRadius: borderRadius,
@@ -166,7 +166,7 @@ void main() {
         child: Material(
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: InkWell(
                 borderRadius: borderRadius,
                 highlightColor: highlightColor,
@@ -432,7 +432,7 @@ void main() {
             child: Material(
               child: Center(
                 child: SizedBox.square(
-                  dimension: 100.0,
+                  dimension: const .fixed(100.0),
                   child: InkWell(
                     borderRadius: borderRadius,
                     highlightColor: highlightColor,
@@ -523,7 +523,7 @@ void main() {
         child: Material(
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: InkWell(onTap: () {}, radius: 100.0, splashFactory: InkRipple.splashFactory),
             ),
           ),
@@ -556,7 +556,7 @@ void main() {
         child: Material(
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: InkWell(
                 splashColor: splashColor,
                 highlightColor: highlightColor,
@@ -612,7 +612,7 @@ void main() {
       Center(
         child: RepaintBoundary(
           child: SizedBox.square(
-            dimension: 200,
+            dimension: const .fixed(200),
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: Overlay(
@@ -621,7 +621,7 @@ void main() {
                     builder: (BuildContext context) {
                       return Center(
                         child: SizedBox.square(
-                          dimension: 100,
+                          dimension: const .fixed(100),
                           // The material partially overlaps the overlayChild.
                           // This is to verify that the `overlayChild`'s ink
                           // features aren't clipped by it.
@@ -636,7 +636,7 @@ void main() {
                                   child: InkWell(
                                     splashColor: Colors.red,
                                     onTap: () {},
-                                    child: const SizedBox.square(dimension: 100),
+                                    child: const SizedBox.square(dimension: .fixed(100)),
                                   ),
                                 );
                               },
@@ -676,8 +676,8 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 100.0,
-              height: 200.0,
+              width: const .fixed(100.0),
+              height: const .fixed(200.0),
               child: InkResponse(
                 splashColor: splashColor,
                 containedInkWell: true,
@@ -725,8 +725,8 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 100.0,
-              height: 200.0,
+              width: const .fixed(100.0),
+              height: const .fixed(200.0),
               child: InkResponse(
                 key: inkWResponseKey,
                 splashColor: splashColor,

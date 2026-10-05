@@ -143,7 +143,7 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         home: const Material(
           child: SizedBox(
-            height: 24.0,
+            height: .fixed(24.0),
             child: Row(children: <Widget>[Text('Hey.'), VerticalDivider()]),
           ),
         ),

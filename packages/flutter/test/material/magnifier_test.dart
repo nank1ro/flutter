@@ -129,7 +129,7 @@ void main() {
 
         await tester.pumpWidget(
           ColoredBox(
-            color: const Color.fromARGB(255, 0, 255, 179),
+            color: const .fixed(Color.fromARGB(255, 0, 255, 179)),
             child: MaterialApp(
               home: Center(
                 child: Container(

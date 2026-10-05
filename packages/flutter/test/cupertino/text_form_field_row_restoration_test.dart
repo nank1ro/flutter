@@ -229,7 +229,7 @@ class RestorableTestWidgetState extends State<RestorableTestWidget> with Restora
   Widget build(BuildContext context) {
     return Align(
       child: SizedBox(
-        width: 50,
+        width: const .fixed(50),
         child: CupertinoTextFormFieldRow(
           restorationId: 'text',
           maxLines: 3,

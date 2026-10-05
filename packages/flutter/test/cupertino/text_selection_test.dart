@@ -175,7 +175,7 @@ void main() {
                   height: 800,
                   width: 800,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 250),
+                    padding: const .fixed(EdgeInsets.symmetric(horizontal: 250)),
                     child: FittedBox(
                       child: cupertinoTextSelectionControls.buildHandle(
                         context,
@@ -209,7 +209,7 @@ void main() {
                   height: 800,
                   width: 800,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 250),
+                    padding: const .fixed(EdgeInsets.symmetric(horizontal: 250)),
                     child: FittedBox(
                       child: cupertinoTextSelectionControls.buildHandle(
                         context,

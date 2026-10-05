@@ -411,7 +411,9 @@ void main() {
                     showDialog<void>(
                       context: context,
                       builder: (BuildContext context) {
-                        return const Scaffold(body: SizedBox(width: 200.0, height: 200.0));
+                        return const Scaffold(
+                          body: SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
+                        );
                       },
                     );
                   },

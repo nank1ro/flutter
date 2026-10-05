@@ -18,6 +18,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(decoration.borderRadius, const BorderRadius.all(Radius.circular(9)));
@@ -43,6 +44,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(decoration.color, const Color.fromARGB(1, 1, 1, 1));
@@ -68,6 +70,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(decoration.borderRadius, BorderRadius.zero);
@@ -228,7 +231,7 @@ void main() {
       const CupertinoApp(
         home: Center(
           child: CupertinoSearchTextField(
-            prefixIcon: SizedBox(key: prefixIcon, width: 50, height: 50),
+            prefixIcon: SizedBox(key: prefixIcon, width: .fixed(50), height: .fixed(50)),
           ),
         ),
       ),
@@ -786,7 +789,7 @@ void main() {
                   largeTitle: Text('Large title'),
                   searchField: CupertinoSearchTextField(),
                 ),
-                SliverToBoxAdapter(child: SizedBox(height: 1000)),
+                SliverToBoxAdapter(child: SizedBox(height: .fixed(1000))),
               ],
             ),
           ),

@@ -774,7 +774,8 @@ void main() {
     );
 
     final NavigationToolbar navToolBar = tester.widget(find.byType(NavigationToolbar));
-    final BoxConstraints leadingConstraints = (navToolBar.leading! as ConstrainedBox).constraints;
+    final BoxConstraints leadingConstraints =
+        (navToolBar.leading! as ConstrainedBox).constraints.value;
     expect(leadingConstraints.maxWidth, kLeadingWidth);
     expect(leadingConstraints.minWidth, kLeadingWidth);
   });
@@ -791,7 +792,8 @@ void main() {
     );
 
     final NavigationToolbar navToolBar = tester.widget(find.byType(NavigationToolbar));
-    final BoxConstraints leadingConstraints = (navToolBar.leading! as ConstrainedBox).constraints;
+    final BoxConstraints leadingConstraints =
+        (navToolBar.leading! as ConstrainedBox).constraints.value;
     expect(leadingConstraints.maxWidth, 40);
     expect(leadingConstraints.minWidth, 40);
   });
@@ -838,7 +840,8 @@ void main() {
     );
 
     final NavigationToolbar navToolBar = tester.widget(find.byType(NavigationToolbar));
-    final BoxConstraints leadingConstraints = (navToolBar.leading! as ConstrainedBox).constraints;
+    final BoxConstraints leadingConstraints =
+        (navToolBar.leading! as ConstrainedBox).constraints.value;
     expect(leadingConstraints.maxWidth, kLeadingWidth);
     expect(leadingConstraints.minWidth, kLeadingWidth);
   });
@@ -857,7 +860,8 @@ void main() {
     );
 
     final NavigationToolbar navToolBar = tester.widget(find.byType(NavigationToolbar));
-    final BoxConstraints leadingConstraints = (navToolBar.leading! as ConstrainedBox).constraints;
+    final BoxConstraints leadingConstraints =
+        (navToolBar.leading! as ConstrainedBox).constraints.value;
     expect(leadingConstraints.maxWidth, 40);
     expect(leadingConstraints.minWidth, 40);
   });
@@ -1286,7 +1290,8 @@ void main() {
     expect(navToolbar.centerMiddle, centerTitle);
     expect(navToolbar.middleSpacing, titleSpacing);
 
-    final BoxConstraints leadingConstraints = (navToolbar.leading! as ConstrainedBox).constraints;
+    final BoxConstraints leadingConstraints =
+        (navToolbar.leading! as ConstrainedBox).constraints.value;
     expect(leadingConstraints.maxWidth, leadingWidth);
     expect(leadingConstraints.minWidth, leadingWidth);
 
@@ -1305,7 +1310,7 @@ void main() {
     final Padding actionsPaddingWidget = tester.widget<Padding>(
       find.descendant(of: find.byType(NavigationToolbar), matching: find.byType(Padding).last),
     );
-    expect(actionsPaddingWidget.padding, actionsPadding);
+    expect(actionsPaddingWidget.padding.value, actionsPadding);
 
     final Size appBarSize = tester.getSize(find.byType(AppBar));
     expect(appBarSize.height, toolbarHeight);
@@ -1403,7 +1408,8 @@ void main() {
     expect(navToolbar.centerMiddle, centerTitle);
     expect(navToolbar.middleSpacing, titleSpacing);
 
-    final BoxConstraints leadingConstraints = (navToolbar.leading! as ConstrainedBox).constraints;
+    final BoxConstraints leadingConstraints =
+        (navToolbar.leading! as ConstrainedBox).constraints.value;
     expect(leadingConstraints.maxWidth, leadingWidth);
     expect(leadingConstraints.minWidth, leadingWidth);
 
@@ -1422,7 +1428,7 @@ void main() {
     final Padding actionsPaddingWidget = tester.widget<Padding>(
       find.descendant(of: find.byType(NavigationToolbar), matching: find.byType(Padding).last),
     );
-    expect(actionsPaddingWidget.padding, actionsPadding);
+    expect(actionsPaddingWidget.padding.value, actionsPadding);
 
     final Size appBarSize = tester.getSize(find.byType(AppBar));
     expect(appBarSize.height, toolbarHeight);

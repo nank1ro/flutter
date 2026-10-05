@@ -720,7 +720,7 @@ void main() {
     final Finder coloredBoxFinder = find.byType(ColoredBox).last;
     expect(coloredBoxFinder, findsOneWidget);
     final ColoredBox coloredBox = tester.widget<ColoredBox>(coloredBoxFinder);
-    expect(coloredBox.color, Colors.black);
+    expect(coloredBox.color.value, Colors.black);
 
     await tester.pumpAndSettle();
   }, variant: TargetPlatformVariant.all());

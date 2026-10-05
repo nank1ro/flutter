@@ -47,7 +47,7 @@ void main() {
         title: 'Demo',
         home: Scaffold(
           body: SelectionArea(
-            child: Padding(padding: EdgeInsets.all(100.0), child: Text('Hello World')),
+            child: Padding(padding: .fixed(EdgeInsets.all(100.0)), child: Text('Hello World')),
           ),
         ),
       ),
@@ -77,7 +77,7 @@ void main() {
           home: Scaffold(
             body: SelectionArea(
               child: SizedBox(
-                height: 100,
+                height: const .fixed(100),
                 child: FittedBox(
                   fit: BoxFit.fill,
                   child: Text('test', key: textKey),
@@ -366,7 +366,7 @@ void main() {
           theme: ThemeData(useMaterial3: false),
           home: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.only(top: 64),
+              padding: const .fixed(EdgeInsets.only(top: 64)),
               child: Column(
                 children: <Widget>[
                   const Text('How are you?'),
@@ -425,7 +425,7 @@ void main() {
           theme: ThemeData(useMaterial3: false),
           home: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.only(top: 64),
+              padding: const .fixed(EdgeInsets.only(top: 64)),
               child: Center(
                 child: SelectionArea(
                   focusNode: focusNode,
@@ -496,7 +496,7 @@ void main() {
           theme: ThemeData(useMaterial3: false),
           home: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.only(top: 64),
+              padding: const .fixed(EdgeInsets.only(top: 64)),
               child: Center(
                 child: SelectionArea(
                   focusNode: focusNode,
@@ -567,7 +567,7 @@ void main() {
           theme: ThemeData(useMaterial3: false),
           home: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.only(top: 64),
+              padding: const .fixed(EdgeInsets.only(top: 64)),
               child: Center(
                 child: SelectionArea(
                   focusNode: focusNode,

@@ -253,7 +253,7 @@ void main() {
       ),
     );
 
-    actions = <Widget>[const SizedBox(width: 100.0), const SizedBox(width: 100.0)];
+    actions = <Widget>[const SizedBox(width: .fixed(100.0)), const SizedBox(width: .fixed(100.0))];
     await tester.pumpWidget(buildApp());
 
     expect(tester.getTopLeft(title).dx, 72.0);
@@ -323,7 +323,7 @@ void main() {
     await tester.pumpWidget(buildApp());
     leading = null;
     titleWidth = 620.0;
-    actions = <Widget>[const SizedBox(width: 48.0), const SizedBox(width: 48.0)];
+    actions = <Widget>[const SizedBox(width: .fixed(48.0)), const SizedBox(width: .fixed(48.0))];
     await tester.pumpWidget(buildApp());
     expect(tester.getTopLeft(title).dx, 800 - 620 - 48 - 48 - 16);
     expect(tester.getSize(title).width, equals(620.0));
@@ -375,7 +375,7 @@ void main() {
     await tester.pumpWidget(buildApp());
     leading = null;
     titleWidth = 620.0;
-    actions = <Widget>[const SizedBox(width: 48.0), const SizedBox(width: 48.0)];
+    actions = <Widget>[const SizedBox(width: .fixed(48.0)), const SizedBox(width: .fixed(48.0))];
     await tester.pumpWidget(buildApp());
     expect(tester.getTopRight(title).dx, 620 + 48 + 48 + 16);
     expect(tester.getSize(title).width, equals(620.0));
@@ -385,7 +385,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: SizedBox(
-          height: kToolbarHeight,
+          height: const .fixed(kToolbarHeight),
           child: AppBar(
             leading: const Text('L'),
             title: const Text('No Scaffold'),
@@ -428,11 +428,11 @@ void main() {
         home: Scaffold(
           appBar: AppBar(
             key: appBarKey,
-            leading: SizedBox(key: leadingKey, height: 50.0),
-            title: SizedBox(key: titleKey, height: 40.0),
+            leading: SizedBox(key: leadingKey, height: const .fixed(50.0)),
+            title: SizedBox(key: titleKey, height: const .fixed(40.0)),
             actions: <Widget>[
-              SizedBox(key: action0Key, height: 20.0),
-              SizedBox(key: action1Key, height: 30.0),
+              SizedBox(key: action0Key, height: const .fixed(20.0)),
+              SizedBox(key: action1Key, height: const .fixed(30.0)),
             ],
           ),
         ),
@@ -611,7 +611,7 @@ void main() {
         theme: themeData,
         home: Scaffold(
           appBar: AppBar(
-            leading: const SizedBox(height: 36, width: 36),
+            leading: const SizedBox(height: .fixed(36), width: .fixed(36)),
             title: const Text('X'),
           ), // Doesn't really matter. Triggers a hamburger regardless.
         ),
@@ -729,8 +729,8 @@ void main() {
             itemCount: 4,
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
-                height: 600.0,
-                width: 800.0,
+                height: const .fixed(600.0),
+                width: const .fixed(800.0),
                 child: ListView.builder(
                   itemCount: 100,
                   itemBuilder: (BuildContext context, int index) =>
@@ -1086,11 +1086,13 @@ void main() {
               ),
             ],
             flexibleSpace: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: const Alignment(-0.04, 1.0),
-                  colors: <Color>[Colors.blue.shade500, Colors.blue.shade800],
+              decoration: .fixed(
+                BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: const Alignment(-0.04, 1.0),
+                    colors: <Color>[Colors.blue.shade500, Colors.blue.shade800],
+                  ),
                 ),
               ),
             ),
@@ -1151,11 +1153,13 @@ void main() {
               Placeholder(fallbackWidth: 10.0),
             ],
             flexibleSpace: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: const Alignment(-0.04, 1.0),
-                  colors: <Color>[Colors.blue.shade500, Colors.blue.shade800],
+              decoration: .fixed(
+                BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: const Alignment(-0.04, 1.0),
+                    colors: <Color>[Colors.blue.shade500, Colors.blue.shade800],
+                  ),
                 ),
               ),
             ),
@@ -1181,11 +1185,13 @@ void main() {
               Placeholder(fallbackWidth: 10.0),
             ],
             flexibleSpace: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: const Alignment(-0.04, 1.0),
-                  colors: <Color>[Colors.blue.shade500, Colors.blue.shade800],
+              decoration: .fixed(
+                BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: const Alignment(-0.04, 1.0),
+                    colors: <Color>[Colors.blue.shade500, Colors.blue.shade800],
+                  ),
                 ),
               ),
             ),
@@ -3046,7 +3052,7 @@ void main() {
               key: titleKey,
               constraints: BoxConstraints.loose(const Size(1000.0, 1000.0)),
             ),
-            actions: const <Widget>[SizedBox(width: 48.0)],
+            actions: const <Widget>[SizedBox(width: .fixed(48.0))],
           ),
         ),
       );
@@ -3425,7 +3431,7 @@ void main() {
         home: Scaffold(
           appBar: AppBar(
             key: appBarKey,
-            actions: <Widget>[SizedBox.square(key: actionKey, dimension: 40.0)],
+            actions: <Widget>[SizedBox.square(key: actionKey, dimension: const .fixed(40.0))],
             actionsPadding: actionsPadding,
           ),
         ),
@@ -3539,7 +3545,7 @@ void main() {
           theme: themeData,
           home: Scaffold(
             appBar: AppBar(
-              leading: const SizedBox(height: 36, width: 36),
+              leading: const SizedBox(height: .fixed(36), width: .fixed(36)),
               title: const Text('X'),
             ), // Doesn't really matter. Triggers a hamburger regardless.
           ),
@@ -3629,11 +3635,13 @@ void main() {
                 ),
               ],
               flexibleSpace: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: const Alignment(-0.04, 1.0),
-                    colors: <Color>[Colors.blue.shade500, Colors.blue.shade800],
+                decoration: .fixed(
+                  BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: const Alignment(-0.04, 1.0),
+                      colors: <Color>[Colors.blue.shade500, Colors.blue.shade800],
+                    ),
                   ),
                 ),
               ),

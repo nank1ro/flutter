@@ -50,7 +50,7 @@ ShapeBorder _findBorder(GlobalKey groupKey, WidgetTester tester) {
   );
 
   final box = tester.widget(groupDecoratedBoxFinder) as DecoratedBox;
-  final decoration = box.decoration as ShapeDecoration;
+  final decoration = box.decoration.value as ShapeDecoration;
 
   return decoration.shape;
 }
@@ -80,11 +80,11 @@ void main() {
                   children: <Widget>[
                     Focus(
                       focusNode: group1Child1FocusNode,
-                      child: const SizedBox(height: 100, width: 100),
+                      child: const SizedBox(height: .fixed(100), width: .fixed(100)),
                     ),
                     Focus(
                       focusNode: group1Child2FocusNode,
-                      child: const SizedBox(height: 100, width: 100),
+                      child: const SizedBox(height: .fixed(100), width: .fixed(100)),
                     ),
                   ],
                 ),
@@ -93,7 +93,7 @@ void main() {
                 key: group2Key,
                 child: Focus(
                   focusNode: group2Child1FocusNode,
-                  child: const SizedBox(height: 100, width: 100),
+                  child: const SizedBox(height: .fixed(100), width: .fixed(100)),
                 ),
               ),
             ],
@@ -156,11 +156,11 @@ void main() {
                   children: <Widget>[
                     Focus(
                       focusNode: group1Child1FocusNode,
-                      child: const SizedBox(height: 100, width: 100),
+                      child: const SizedBox(height: .fixed(100), width: .fixed(100)),
                     ),
                     Focus(
                       focusNode: group1Child2FocusNode,
-                      child: const SizedBox(height: 100, width: 100),
+                      child: const SizedBox(height: .fixed(100), width: .fixed(100)),
                     ),
                   ],
                 ),
@@ -169,7 +169,7 @@ void main() {
                 key: group2Key,
                 child: Focus(
                   focusNode: group2Child1FocusNode,
-                  child: const SizedBox(height: 100, width: 100),
+                  child: const SizedBox(height: .fixed(100), width: .fixed(100)),
                 ),
               ),
             ],
@@ -211,7 +211,10 @@ void main() {
         home: Center(
           child: CupertinoFocusHalo.withRect(
             key: haloKey,
-            child: Focus(focusNode: focusNode, child: const SizedBox(width: 100, height: 50)),
+            child: Focus(
+              focusNode: focusNode,
+              child: const SizedBox(width: .fixed(100), height: .fixed(50)),
+            ),
           ),
         ),
       ),
@@ -238,7 +241,10 @@ void main() {
           child: CupertinoFocusHalo.withRRect(
             key: haloKey,
             borderRadius: borderRadius,
-            child: Focus(focusNode: focusNode, child: const SizedBox(width: 100, height: 50)),
+            child: Focus(
+              focusNode: focusNode,
+              child: const SizedBox(width: .fixed(100), height: .fixed(50)),
+            ),
           ),
         ),
       ),
@@ -273,7 +279,10 @@ void main() {
           child: CupertinoFocusHalo.withRoundedSuperellipse(
             key: haloKey,
             borderRadius: borderRadius,
-            child: Focus(focusNode: focusNode, child: const SizedBox(width: 100, height: 50)),
+            child: Focus(
+              focusNode: focusNode,
+              child: const SizedBox(width: .fixed(100), height: .fixed(50)),
+            ),
           ),
         ),
       ),

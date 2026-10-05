@@ -1291,7 +1291,11 @@ Future<void> _testFilledButtonColor(
   await tester.pumpWidget(
     MaterialApp(
       theme: ThemeData(colorScheme: scheme),
-      home: FilledButton(key: key, onPressed: () {}, child: const SizedBox.square(dimension: 200)),
+      home: FilledButton(
+        key: key,
+        onPressed: () {},
+        child: const SizedBox.square(dimension: .fixed(200)),
+      ),
     ),
   );
 

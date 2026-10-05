@@ -340,7 +340,7 @@ void main() {
             child: ExpansionTile(
               key: expansionTileKey,
               title: TestText('title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),

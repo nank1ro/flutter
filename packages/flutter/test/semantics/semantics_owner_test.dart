@@ -277,8 +277,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 100,
-              height: 100,
+              width: const .fixed(100),
+              height: const .fixed(100),
               child: MergeSemantics(
                 child: Semantics(
                   customSemanticsActions: <CustomSemanticsAction, VoidCallback>{

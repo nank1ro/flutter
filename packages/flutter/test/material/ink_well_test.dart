@@ -158,7 +158,7 @@ void main() {
             onLongPressUp: () {
               wasCalled = true;
             },
-            child: const SizedBox(width: 100, height: 100),
+            child: const SizedBox(width: .fixed(100), height: .fixed(100)),
           ),
         ),
       ),
@@ -194,7 +194,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 hoverColor: const Color(0xff00ff00),
                 splashColor: const Color(0xffff0000),
@@ -233,7 +233,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 overlayColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
                   if (states.contains(WidgetState.hovered)) {
@@ -280,7 +280,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 focusNode: focusNode,
                 hoverColor: const Color(0xff00ff00),
@@ -323,7 +323,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 focusNode: focusNode,
                 overlayColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
@@ -374,7 +374,7 @@ void main() {
           child: Container(
             alignment: Alignment.topLeft,
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 splashFactory: NoSplash.splashFactory,
                 overlayColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
@@ -423,7 +423,7 @@ void main() {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 splashFactory: NoSplash.splashFactory,
                 focusNode: focusNode,
@@ -512,7 +512,7 @@ void main() {
               child: Focus(
                 focusNode: focusNode,
                 child: SizedBox.square(
-                  dimension: 100,
+                  dimension: const .fixed(100),
                   child: InkWell(
                     hoverColor: const Color(0xff00ff00),
                     splashColor: splashColor,
@@ -560,7 +560,7 @@ void main() {
               child: Focus(
                 focusNode: focusNode,
                 child: SizedBox.square(
-                  dimension: 100,
+                  dimension: const .fixed(100),
                   child: InkWell(
                     overlayColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
                       if (states.contains(WidgetState.hovered)) {
@@ -606,7 +606,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkResponse(
                 focusNode: focusNode,
                 radius: 20,
@@ -636,7 +636,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 focusNode: focusNode,
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -673,7 +673,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: MouseRegion(
                 child: InkWell(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -718,7 +718,7 @@ void main() {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: MouseRegion(
                 child: InkWell(
                   focusNode: focusNode,
@@ -769,7 +769,7 @@ void main() {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: MouseRegion(
                 child: InkWell(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -824,7 +824,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkResponse(
                 focusNode: focusNode,
                 radius: radius,
@@ -863,7 +863,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkResponse(
                 focusNode: focusNode,
                 highlightShape: shape,
@@ -904,7 +904,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 focusNode: focusNode,
                 borderRadius: borderRadius,
@@ -956,7 +956,7 @@ void main() {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: MouseRegion(
                 child: InkWell(
                   focusNode: focusNode,
@@ -1023,7 +1023,7 @@ void main() {
             child: Align(
               alignment: Alignment.topLeft,
               child: SizedBox.square(
-                dimension: 100,
+                dimension: const .fixed(100),
                 child: MouseRegion(
                   child: InkWell(
                     focusNode: focusNode,
@@ -1114,7 +1114,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 focusNode: focusNode,
                 hoverColor: const Color(0xff00ff00),
@@ -1342,11 +1342,11 @@ void main() {
                 dragStartBehavior: DragStartBehavior.down,
                 children: <Widget>[
                   SizedBox(
-                    height: 500.0,
+                    height: const .fixed(500.0),
                     child: InkWell(onTap: () {}, child: const Placeholder()),
                   ),
-                  const SizedBox(height: 500.0),
-                  const SizedBox(height: 500.0),
+                  const SizedBox(height: .fixed(500.0)),
+                  const SizedBox(height: .fixed(500.0)),
                 ],
               ),
             ),
@@ -1512,7 +1512,7 @@ void main() {
         child: Directionality(
           textDirection: TextDirection.ltr,
           child: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: InkWell(
               autofocus: true,
               onTap: () {},
@@ -1540,7 +1540,7 @@ void main() {
         child: Directionality(
           textDirection: TextDirection.ltr,
           child: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: InkWell(
               focusNode: focusNode,
               onHover: (bool value) {
@@ -1567,7 +1567,7 @@ void main() {
       return InkWell(
         key: key,
         onTap: () {},
-        child: Padding(padding: const EdgeInsets.all(50), child: child),
+        child: Padding(padding: const .fixed(EdgeInsets.all(50)), child: child),
       );
     }
 
@@ -1581,7 +1581,10 @@ void main() {
               child: paddedInkWell(
                 child: paddedInkWell(
                   key: middleKey,
-                  child: paddedInkWell(key: innerKey, child: const SizedBox(width: 50, height: 50)),
+                  child: paddedInkWell(
+                    key: innerKey,
+                    child: const SizedBox(width: .fixed(50), height: .fixed(50)),
+                  ),
                 ),
               ),
             ),
@@ -1638,7 +1641,7 @@ void main() {
       return InkWell(
         key: key,
         onTap: () {},
-        child: Padding(padding: const EdgeInsets.all(50), child: child),
+        child: Padding(padding: const .fixed(EdgeInsets.all(50)), child: child),
       );
     }
 
@@ -1651,8 +1654,8 @@ void main() {
             child: Align(
               alignment: Alignment.topLeft,
               child: SizedBox(
-                width: 200,
-                height: 100,
+                width: const .fixed(200),
+                height: const .fixed(100),
                 child: Row(
                   children: <Widget>[
                     paddedInkWell(
@@ -1688,8 +1691,8 @@ void main() {
             child: Align(
               alignment: Alignment.topLeft,
               child: SizedBox(
-                width: 200,
-                height: 100,
+                width: const .fixed(200),
+                height: const .fixed(100),
                 child: Row(
                   children: <Widget>[
                     paddedInkWell(key: innerKey),
@@ -1736,7 +1739,7 @@ void main() {
       return InkWell(
         key: key,
         onTap: () {},
-        child: Padding(padding: const EdgeInsets.all(50), child: child),
+        child: Padding(padding: const .fixed(EdgeInsets.all(50)), child: child),
       );
     }
 
@@ -1750,7 +1753,10 @@ void main() {
               child: paddedInkWell(
                 child: paddedInkWell(
                   key: middleKey,
-                  child: paddedInkWell(key: innerKey, child: const SizedBox(width: 50, height: 50)),
+                  child: paddedInkWell(
+                    key: innerKey,
+                    child: const SizedBox(width: .fixed(50), height: .fixed(50)),
+                  ),
                 ),
               ),
             ),
@@ -1796,22 +1802,22 @@ void main() {
             textDirection: TextDirection.ltr,
             child: Center(
               child: SizedBox.square(
-                dimension: 100,
+                dimension: const .fixed(100),
                 child: InkWell(
                   key: parentKey,
                   onTap: () {},
                   child: Center(
                     child: SizedBox(
-                      width: 100,
-                      height: 50,
+                      width: const .fixed(100),
+                      height: const .fixed(50),
                       child: Row(
                         children: <Widget>[
                           SizedBox.square(
-                            dimension: 50,
+                            dimension: const .fixed(50),
                             child: InkWell(key: leftKey, onTap: () {}),
                           ),
                           SizedBox.square(
-                            dimension: 50,
+                            dimension: const .fixed(50),
                             child: InkWell(key: rightKey, onTap: () {}),
                           ),
                         ],
@@ -1895,29 +1901,37 @@ void main() {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: SizedBox(
-                  width: leftWidth + rightWidth,
-                  height: 100,
+                  width: .fixed(leftWidth + rightWidth),
+                  height: const .fixed(100),
                   child: Row(
                     children: <Widget>[
                       SizedBox(
-                        width: leftWidth,
-                        height: 100,
+                        width: .fixed(leftWidth),
+                        height: const .fixed(100),
                         child: InkWell(
                           key: leftKey,
                           onTap: () {},
                           child: Center(
-                            child: SizedBox(width: leftWidth, height: 50, child: leftChild),
+                            child: SizedBox(
+                              width: .fixed(leftWidth),
+                              height: const .fixed(50),
+                              child: leftChild,
+                            ),
                           ),
                         ),
                       ),
                       SizedBox(
-                        width: rightWidth,
-                        height: 100,
+                        width: .fixed(rightWidth),
+                        height: const .fixed(100),
                         child: InkWell(
                           key: rightKey,
                           onTap: () {},
                           child: Center(
-                            child: SizedBox(width: leftWidth, height: 50, child: rightChild),
+                            child: SizedBox(
+                              width: .fixed(leftWidth),
+                              height: const .fixed(50),
+                              child: rightChild,
+                            ),
                           ),
                         ),
                       ),
@@ -1992,12 +2006,12 @@ void main() {
                 onHorizontalDragStart: (_) {},
                 child: Center(
                   child: SizedBox.square(
-                    dimension: 100,
+                    dimension: const .fixed(100),
                     child: InkWell(
                       onTap: () {},
                       child: Center(
                         child: SizedBox.square(
-                          dimension: 50,
+                          dimension: const .fixed(50),
                           child: InkWell(key: innerKey, onTap: () {}),
                         ),
                       ),
@@ -2046,7 +2060,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 onTap: enabled ? () {} : null,
                 onHover: (bool value) {
@@ -2107,7 +2121,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 onTap: enabled ? () {} : null,
                 onHover: (bool value) {},
@@ -2386,7 +2400,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100,
+              dimension: const .fixed(100),
               child: InkWell(
                 overlayColor: WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
                   if (states.contains(WidgetState.hovered)) {

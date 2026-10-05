@@ -231,7 +231,7 @@ Widget buildDropdownWithHint({
     selectedItemBuilder: enableSelectedItemBuilder
         ? (BuildContext context) {
             return menuItems.map<Widget>((String item) {
-              return ColoredBox(color: const Color(0xff00ff00), child: Text(item));
+              return ColoredBox(color: const .fixed(Color(0xff00ff00)), child: Text(item));
             }).toList();
           }
         : null,
@@ -689,7 +689,7 @@ void main() {
           body: Column(
             children: <Widget>[
               ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 500, maxHeight: 200),
+                constraints: const .fixed(BoxConstraints(maxWidth: 500, maxHeight: 200)),
                 child: Navigator(
                   onGenerateRoute: (RouteSettings s) {
                     return MaterialPageRoute<void>(
@@ -1822,7 +1822,7 @@ void main() {
           selectedItemBuilder: (BuildContext context) => [
             for (final item in items)
               SizedBox.square(
-                dimension: double.parse(item),
+                dimension: .fixed(double.parse(item)),
                 child: Center(child: Text(item)),
               ),
           ],
@@ -1850,13 +1850,13 @@ void main() {
         buildFrame(
           initialValue: null,
           // [hint] widget is smaller than largest selected item widget
-          hint: const SizedBox(height: 50, width: 50, child: Text('hint')),
+          hint: const SizedBox(height: .fixed(50), width: .fixed(50), child: Text('hint')),
           items: items,
           itemHeight: null,
           selectedItemBuilder: (BuildContext context) => [
             for (final item in items)
               SizedBox.square(
-                dimension: double.parse(item),
+                dimension: .fixed(double.parse(item)),
                 child: Center(child: Text(item)),
               ),
           ],
@@ -1888,13 +1888,13 @@ void main() {
           // to the largest item regardless of which one is selected.
           initialValue: selectedItem,
           // [hint] widget is larger than largest selected item widget
-          hint: const SizedBox(height: 125, width: 125, child: Text('hint')),
+          hint: const SizedBox(height: .fixed(125), width: .fixed(125), child: Text('hint')),
           items: items,
           itemHeight: null,
           selectedItemBuilder: (BuildContext context) => [
             for (final item in items)
               SizedBox.square(
-                dimension: double.parse(item),
+                dimension: .fixed(double.parse(item)),
                 child: Center(child: Text(item)),
               ),
           ],
@@ -1922,13 +1922,13 @@ void main() {
         buildFrame(
           initialValue: null,
           // [hint] widget is smaller than largest selected item widget
-          hint: const SizedBox(height: 50, width: 50, child: Text('hint')),
+          hint: const SizedBox(height: .fixed(50), width: .fixed(50), child: Text('hint')),
           items: items,
           itemHeight: null,
           selectedItemBuilder: (BuildContext context) => [
             for (final item in items)
               SizedBox.square(
-                dimension: double.parse(item),
+                dimension: .fixed(double.parse(item)),
                 child: Center(child: Text(item)),
               ),
           ],
@@ -1955,13 +1955,13 @@ void main() {
         buildFrame(
           initialValue: null,
           // [hint] widget is larger than largest selected item widget
-          hint: const SizedBox(height: 125, width: 125, child: Text('hint')),
+          hint: const SizedBox(height: .fixed(125), width: .fixed(125), child: Text('hint')),
           items: items,
           itemHeight: null,
           selectedItemBuilder: (BuildContext context) => [
             for (final item in items)
               SizedBox.square(
-                dimension: double.parse(item),
+                dimension: .fixed(double.parse(item)),
                 child: Center(child: Text(item)),
               ),
           ],
@@ -1988,13 +1988,13 @@ void main() {
         buildFrame(
           initialValue: null,
           // [hint] widget is smaller than largest selected item widget
-          disabledHint: const SizedBox(height: 50, width: 50, child: Text('hint')),
+          disabledHint: const SizedBox(height: .fixed(50), width: .fixed(50), child: Text('hint')),
           items: items,
           itemHeight: null,
           selectedItemBuilder: (BuildContext context) => [
             for (final item in items)
               SizedBox.square(
-                dimension: double.parse(item),
+                dimension: .fixed(double.parse(item)),
                 child: Center(child: Text(item)),
               ),
           ],
@@ -2021,13 +2021,13 @@ void main() {
         buildFrame(
           initialValue: null,
           // [hint] widget is larger than largest selected item widget
-          disabledHint: const SizedBox(height: 125, width: 125, child: Text('hint')),
+          disabledHint: const SizedBox(height: .fixed(125), width: .fixed(125), child: Text('hint')),
           items: items,
           itemHeight: null,
           selectedItemBuilder: (BuildContext context) => [
             for (final item in items)
               SizedBox.square(
-                dimension: double.parse(item),
+                dimension: .fixed(double.parse(item)),
                 child: Center(child: Text(item)),
               ),
           ],
@@ -2057,7 +2057,7 @@ void main() {
         selectedItemBuilder: (BuildContext context) => [
           for (final item in items)
             SizedBox.square(
-              dimension: double.parse(item),
+              dimension: .fixed(double.parse(item)),
               child: Center(child: Text(item)),
             ),
         ],
@@ -2193,7 +2193,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          bottomNavigationBar: const SizedBox(height: 200),
+          bottomNavigationBar: const SizedBox(height: .fixed(200)),
           body: Navigator(
             onGenerateRoute: (RouteSettings settings) {
               return MaterialPageRoute<void>(
@@ -2252,10 +2252,10 @@ void main() {
     await tester.pumpWidget(
       buildFrame(buttonKey: buttonKey, underline: customUnderline, onChanged: onChanged),
     );
-    expect(tester.widgetList<DecoratedBox>(decoratedBox).last.decoration, decoration);
+    expect(tester.widgetList<DecoratedBox>(decoratedBox).last.decoration.value, decoration);
 
     await tester.pumpWidget(buildFrame(buttonKey: buttonKey, onChanged: onChanged));
-    expect(tester.widgetList<DecoratedBox>(decoratedBox).last.decoration, defaultDecoration);
+    expect(tester.widgetList<DecoratedBox>(decoratedBox).last.decoration.value, defaultDecoration);
   });
 
   testWidgets('DropdownButton selectedItemBuilder builds custom buttons', (

@@ -373,8 +373,8 @@ void main() {
               children: <InlineSpan>[
                 WidgetSpan(
                   child: SizedBox(
-                    width: 120,
-                    height: 50,
+                    width: .fixed(120),
+                    height: .fixed(50),
                     child: Card(child: Center(child: Text('Hello World!'))),
                   ),
                 ),
@@ -528,7 +528,7 @@ void main() {
         home: Scaffold(
           body: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: .fixed(100.0),
               child: Opacity(opacity: .fixed(0.5), child: SelectableText('selectable text')),
             ),
           ),
@@ -1337,7 +1337,7 @@ void main() {
       () async {
         await tester.pumpWidget(
           overlay(
-            child: SizedBox(width: 300.0, child: SelectableText('abcd', minLines: 4, maxLines: 3)),
+            child: SizedBox(width: const .fixed(300.0), child: SelectableText('abcd', minLines: 4, maxLines: 3)),
           ),
         );
       },
@@ -1371,7 +1371,7 @@ void main() {
     await tester.pumpWidget(
       overlay(
         child: const SizedBox(
-          width: 300.0,
+          width: .fixed(300.0),
           child: SelectableText('abcd', textAlign: TextAlign.center),
         ),
       ),
@@ -1390,7 +1390,7 @@ void main() {
     await tester.pumpWidget(
       overlay(
         child: const SizedBox(
-          width: 300.0,
+          width: .fixed(300.0),
           child: Center(child: SelectableText('abcd', textAlign: TextAlign.center)),
         ),
       ),
@@ -3484,7 +3484,7 @@ void main() {
               controller: pageController,
               children: const <Widget>[
                 Center(child: SelectableText(testValue)),
-                SizedBox(height: 200.0, child: Center(child: Text('Page 2'))),
+                SizedBox(height: .fixed(200.0), child: Center(child: Text('Page 2'))),
               ],
             ),
           ),
@@ -3789,7 +3789,7 @@ void main() {
           home: Material(
             child: Center(
               child: SizedBox(
-                width: 300.0,
+                width: const .fixed(300.0),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SelectableText(
@@ -3863,7 +3863,7 @@ void main() {
           home: Material(
             child: Center(
               child: SizedBox(
-                width: 300.0,
+                width: const .fixed(300.0),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SelectableText(
@@ -4586,7 +4586,7 @@ void main() {
     await tester.pumpWidget(
       overlay(
         child: const SizedBox(
-          width: 300.0,
+          width: .fixed(300.0),
           child: SelectableText('abcd', textAlign: TextAlign.center),
         ),
       ),
@@ -4619,7 +4619,7 @@ void main() {
     await tester.pumpWidget(
       overlay(
         child: const SizedBox(
-          width: 300.0,
+          width: .fixed(300.0),
           child: SelectableText('abcd    ', textAlign: TextAlign.center),
         ),
       ),
@@ -5425,9 +5425,9 @@ void main() {
               },
               body: const TabBarView(
                 children: <Widget>[
-                  Padding(padding: EdgeInsets.only(top: 100.0), child: Text('Regular Text')),
+                  Padding(padding: .fixed(EdgeInsets.only(top: 100.0)), child: Text('Regular Text')),
                   Padding(
-                    padding: EdgeInsets.only(top: 100.0),
+                    padding: .fixed(EdgeInsets.only(top: 100.0)),
                     child: SelectableText('Selectable Text'),
                   ),
                 ],

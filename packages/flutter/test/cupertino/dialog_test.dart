@@ -954,7 +954,7 @@ void main() {
             child: ConstrainedBox(
               // Constrain the dialog to a tiny size and ensure it respects
               // these exact constraints.
-              constraints: BoxConstraints.tight(const Size(200.0, 100.0)),
+              constraints: .fixed(BoxConstraints.tight(const Size(200.0, 100.0))),
               child: CupertinoAlertDialog(
                 title: const Text('The Title'),
                 content: const Text('The message'),
@@ -1501,31 +1501,31 @@ void main() {
     // Enter animation.
     await tester.pump();
     Transform transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.3, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.3, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.205, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.205, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.100, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.100, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.043, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.043, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.017, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.017, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.006, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.006, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.002, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.002, epsilon: 0.001));
 
     await tester.tap(find.text('Delete'));
 
@@ -2083,8 +2083,8 @@ void main() {
       Element decoratedBoxElement,
     ) {
       final decoratedBox = decoratedBoxElement.widget as DecoratedBox;
-      return (decoratedBox.decoration is BoxDecoration?) &&
-          (decoratedBox.decoration as BoxDecoration?)?.color ==
+      return (decoratedBox.decoration.value is BoxDecoration?) &&
+          (decoratedBox.decoration.value as BoxDecoration?)?.color ==
               CupertinoDynamicColor.resolve(CupertinoColors.separator, decoratedBoxElement) &&
           tester.getSize(find.byWidget(decoratedBox)) == expectedSize;
     });
@@ -2361,7 +2361,7 @@ class LegacyAction extends StatelessWidget {
       onTap: onPressed,
       behavior: HitTestBehavior.opaque,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 45),
+        constraints: const .fixed(BoxConstraints(minHeight: 45)),
         child: Container(
           alignment: AlignmentDirectional.center,
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0),

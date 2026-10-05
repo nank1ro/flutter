@@ -641,7 +641,7 @@ void main() {
               return Material(
                 child: Center(
                   child: SizedBox(
-                    width: 144.0 + 2 * 16.0, // _kPreferredTotalWidth
+                    width: const .fixed(144.0 + 2 * 16.0), // _kPreferredTotalWidth
                     child: Slider(
                       key: sliderKey,
                       max: 100.0,
@@ -3656,7 +3656,7 @@ void main() {
           child: Material(
             child: Center(
               child: SizedBox.square(
-                dimension: 10.0,
+                dimension: const .fixed(10.0),
                 child: Slider(
                   value: sliderValue,
                   label: 'label',
@@ -3695,7 +3695,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Material(
             child: Center(
-              child: SizedBox.square(dimension: 10.0, child: Slider(value: 0.5, onChanged: null)),
+              child: SizedBox.square(dimension: .fixed(10.0), child: Slider(value: 0.5, onChanged: null)),
             ),
           ),
         ),
@@ -5644,7 +5644,7 @@ void main() {
         theme: theme,
         home: Material(
           child: SizedBox(
-            width: 300,
+            width: const .fixed(300),
             child: Slider(value: value, max: 100, divisions: 100, onChanged: (double value) {}),
           ),
         ),

@@ -32,7 +32,7 @@ Widget buildMaterial({
 }) {
   return Center(
     child: SizedBox.square(
-      dimension: 100.0,
+      dimension: const .fixed(100.0),
       child: Material(
         color: color,
         shadowColor: shadowColor,
@@ -135,7 +135,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Column(
           children: <Widget>[
-            SizedBox(width: 150.0, height: 150.0, child: CustomPaint(painter: PaintRecorder(log))),
+            SizedBox(
+              width: const .fixed(150.0),
+              height: const .fixed(150.0),
+              child: CustomPaint(painter: PaintRecorder(log)),
+            ),
             Expanded(
               child: Material(
                 child: Column(
@@ -148,7 +152,7 @@ void main() {
                       ),
                     ),
                     SizedBox.square(
-                      dimension: 100.0,
+                      dimension: const .fixed(100.0),
                       child: CustomPaint(painter: PaintRecorder(log)),
                     ),
                   ],
@@ -175,7 +179,7 @@ void main() {
     Widget buildWithShadow(Color? shadowColor) {
       return Center(
         child: SizedBox.square(
-          dimension: 100.0,
+          dimension: const .fixed(100.0),
           child: Material(shadowColor: shadowColor, elevation: 10, shape: const CircleBorder()),
         ),
       );
@@ -265,7 +269,7 @@ void main() {
               ),
               const Material(
                 type: MaterialType.transparency,
-                child: SizedBox(width: 400.0, height: 500.0),
+                child: SizedBox(width: .fixed(400.0), height: .fixed(500.0)),
               ),
             ],
           ),
@@ -535,7 +539,7 @@ void main() {
         Material(
           key: materialKey,
           type: MaterialType.transparency,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -552,7 +556,7 @@ void main() {
           key: materialKey,
           type: MaterialType.transparency,
           clipBehavior: Clip.antiAlias,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -569,7 +573,7 @@ void main() {
           type: MaterialType.transparency,
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           clipBehavior: Clip.antiAlias,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -587,7 +591,7 @@ void main() {
           type: MaterialType.transparency,
           shape: const StadiumBorder(),
           clipBehavior: Clip.antiAlias,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -604,7 +608,7 @@ void main() {
           type: MaterialType.transparency,
           shape: shape,
           clipBehavior: Clip.antiAlias,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         );
       }
 
@@ -655,7 +659,10 @@ void main() {
     testWidgets('canvas', (WidgetTester tester) async {
       final GlobalKey materialKey = GlobalKey();
       await tester.pumpWidget(
-        Material(key: materialKey, child: const SizedBox(width: 100.0, height: 100.0)),
+        Material(
+          key: materialKey,
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+        ),
       );
 
       expect(
@@ -675,7 +682,7 @@ void main() {
           key: materialKey,
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
           elevation: 1.0,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -696,7 +703,7 @@ void main() {
           key: materialKey,
           shape: const StadiumBorder(),
           elevation: 1.0,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -712,7 +719,7 @@ void main() {
         Material(
           key: materialKey,
           type: MaterialType.card,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -734,7 +741,7 @@ void main() {
           type: MaterialType.card,
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
           elevation: 5.0,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -756,7 +763,7 @@ void main() {
           type: MaterialType.card,
           shape: const StadiumBorder(),
           elevation: 5.0,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -773,7 +780,7 @@ void main() {
           key: materialKey,
           type: MaterialType.circle,
           color: const Color(0xFF0000FF),
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -790,7 +797,7 @@ void main() {
           key: materialKey,
           type: MaterialType.button,
           color: const Color(0xFF0000FF),
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -813,7 +820,7 @@ void main() {
           color: const Color(0xFF0000FF),
           borderRadius: const BorderRadius.all(Radius.circular(6.0)),
           elevation: 4.0,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -836,7 +843,7 @@ void main() {
           color: const Color(0xFF0000FF),
           shape: const StadiumBorder(),
           elevation: 4.0,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -856,7 +863,7 @@ void main() {
           type: MaterialType.button,
           color: const Color(0xFF0000FF),
           shape: const CircleBorder(side: BorderSide(width: 2.0, color: Color(0xFF0000FF))),
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -871,7 +878,7 @@ void main() {
           key: materialKey,
           type: MaterialType.transparency,
           shape: const CircleBorder(side: BorderSide(width: 2.0, color: Color(0xFF0000FF))),
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -886,7 +893,7 @@ void main() {
           key: materialKey,
           type: MaterialType.transparency,
           shape: const CircleBorder(),
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       );
 
@@ -907,8 +914,8 @@ void main() {
               key: painterKey,
               child: Card(
                 child: SizedBox(
-                  width: 200,
-                  height: 300,
+                  width: const .fixed(200),
+                  height: const .fixed(300),
                   child: Material(
                     clipBehavior: Clip.hardEdge,
                     shape: const RoundedRectangleBorder(
@@ -942,8 +949,8 @@ void main() {
               key: painterKey,
               child: Card(
                 child: SizedBox(
-                  width: 200,
-                  height: 300,
+                  width: const .fixed(200),
+                  height: const .fixed(300),
                   child: Material(
                     clipBehavior: Clip.hardEdge,
                     shape: const RoundedRectangleBorder(
@@ -978,8 +985,8 @@ void main() {
               key: painterKey,
               child: Card(
                 child: SizedBox(
-                  width: 200,
-                  height: 300,
+                  width: const .fixed(200),
+                  height: const .fixed(300),
                   child: Material(
                     clipBehavior: Clip.hardEdge,
                     shape: const RoundedRectangleBorder(
@@ -1014,8 +1021,8 @@ void main() {
               key: painterKey,
               child: Card(
                 child: SizedBox(
-                  width: 200,
-                  height: 300,
+                  width: const .fixed(200),
+                  height: const .fixed(300),
                   child: Material(
                     clipBehavior: Clip.hardEdge,
                     shape: const RoundedRectangleBorder(
@@ -1045,7 +1052,9 @@ void main() {
     await tester.pumpWidget(
       Material(
         key: materialKey,
-        child: Offstage(child: SizedBox(key: sizedBoxKey, width: 20, height: 20)),
+        child: Offstage(
+          child: SizedBox(key: sizedBoxKey, width: const .fixed(20), height: const .fixed(20)),
+        ),
       ),
     );
     final MaterialInkController controller = Material.of(sizedBoxKey.currentContext!);
@@ -1070,7 +1079,10 @@ void main() {
     await tester.pumpWidget(
       Material(
         key: materialKey,
-        child: Offstage(offstage: false, child: SizedBox(key: sizedBoxKey, width: 20, height: 20)),
+        child: Offstage(
+          offstage: false,
+          child: SizedBox(key: sizedBoxKey, width: const .fixed(20), height: const .fixed(20)),
+        ),
       ),
     );
     // Gets a paint because the global keys have reused the elements and it is
@@ -1091,7 +1103,11 @@ void main() {
   });
 
   testWidgets('$InkFeature dispatches memory events', (WidgetTester tester) async {
-    await tester.pumpWidget(const Material(child: SizedBox(width: 20, height: 20)));
+    await tester.pumpWidget(
+      const Material(
+        child: SizedBox(width: .fixed(20), height: .fixed(20)),
+      ),
+    );
 
     final Element element = tester.element(find.byType(SizedBox));
     final MaterialInkController controller = Material.of(element);

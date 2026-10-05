@@ -40,12 +40,12 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: CupertinoPicker(
               itemExtent: 50.0,
               onSelectedItemChanged: (_) {},
               children: List<Widget>.generate(3, (int index) {
-                return SizedBox(height: 50.0, width: 300.0, child: Text(index.toString()));
+                return SizedBox(height: const .fixed(50.0), width: const .fixed(300.0), child: Text(index.toString()));
               }),
             ),
           ),
@@ -75,12 +75,12 @@ void main() {
     await tester.pumpWidget(
       CupertinoApp(
         home: SizedBox.square(
-          dimension: 300.0,
+          dimension: const .fixed(300.0),
           child: CupertinoPicker(
             itemExtent: 50.0,
             onSelectedItemChanged: (_) {},
             children: List<Widget>.generate(13, (int index) {
-              return SizedBox(height: 50.0, width: 300.0, child: Text(index.toString()));
+              return SizedBox(height: const .fixed(50.0), width: const .fixed(300.0), child: Text(index.toString()));
             }),
           ),
         ),
@@ -125,7 +125,7 @@ void main() {
     await tester.pumpWidget(
       CupertinoApp(
         home: SizedBox.square(
-          dimension: 300.0,
+          dimension: const .fixed(300.0),
           child: CupertinoPicker(
             scrollController: controller,
             itemExtent: 50.0,
@@ -215,13 +215,13 @@ void main() {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox.square(
-              dimension: 300.0,
+              dimension: const .fixed(300.0),
               child: CupertinoPicker(
                 scrollController: controller,
                 itemExtent: 50.0,
                 onSelectedItemChanged: (_) {},
                 children: List<Widget>.generate(3, (int index) {
-                  return SizedBox(height: 50.0, width: 300.0, child: Text(index.toString()));
+                  return SizedBox(height: const .fixed(50.0), width: const .fixed(300.0), child: Text(index.toString()));
                 }),
               ),
             ),
@@ -249,7 +249,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: CupertinoPicker(
               backgroundColor: const CupertinoDynamicColor.withBrightness(
                 color: Color(
@@ -278,7 +278,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: CupertinoPicker(
               backgroundColor: const CupertinoDynamicColor.withBrightness(
                 color: Color(0xFF123456),
@@ -307,7 +307,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: CupertinoPicker(
               itemExtent: 15.0,
               onSelectedItemChanged: (int i) {},
@@ -331,7 +331,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: CupertinoPicker(
               itemExtent: 15.0,
               onSelectedItemChanged: (int i) {},
@@ -370,7 +370,7 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: 400.0, height: 100.0, child: Text(index.toString())),
+                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
                 );
               }),
             ),
@@ -438,7 +438,7 @@ void main() {
             },
             children: List<Widget>.generate(100, (int index) {
               return Center(
-                child: SizedBox(width: 400.0, height: 100.0, child: Text(index.toString())),
+                child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
               );
             }),
           ),
@@ -496,7 +496,7 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: 400.0, height: 100.0, child: Text(index.toString())),
+                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
                 );
               }),
             ),
@@ -542,7 +542,7 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: 400.0, height: 100.0, child: Text(index.toString())),
+                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
                 );
               }),
             ),
@@ -586,7 +586,7 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: 400.0, height: 100.0, child: Text(index.toString())),
+                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
                 );
               }),
             ),
@@ -655,7 +655,7 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: 400.0, height: 100.0, child: Text(index.toString())),
+                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
                 );
               }),
             ),
@@ -711,12 +711,12 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: CupertinoPicker(
               itemExtent: 50.0,
               onSelectedItemChanged: (_) {},
               children: List<Widget>.generate(3, (int index) {
-                return SizedBox(height: 50.0, width: 300.0, child: Text(index.toString()));
+                return SizedBox(height: const .fixed(50.0), width: const .fixed(300.0), child: Text(index.toString()));
               }),
             ),
           ),
@@ -789,7 +789,7 @@ void main() {
               itemExtent: 50.0,
               onSelectedItemChanged: (_) {},
               children: List<Widget>.generate(3, (int index) {
-                return SizedBox(width: 300.0, child: Text(index.toString()));
+                return SizedBox(width: const .fixed(300.0), child: Text(index.toString()));
               }),
             ),
           ),
@@ -819,7 +819,7 @@ void main() {
           alignment: Alignment.topLeft,
           child: Center(
             child: SizedBox(
-              height: 120,
+              height: const .fixed(120),
               child: CupertinoPicker(
                 itemExtent: 55,
                 diameterRatio: 0.9,
@@ -832,7 +832,7 @@ void main() {
                           tappedChildren.add(index);
                         },
                         child: SizedBox.square(
-                          dimension: 55,
+                          dimension: const .fixed(55),
                           child: CustomPaint(
                             painter: TestCallbackPainter(
                               onPaint: () {

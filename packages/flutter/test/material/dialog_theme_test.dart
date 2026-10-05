@@ -232,7 +232,7 @@ void main() {
         .ancestor(of: find.byIcon(Icons.cancel), matching: find.byType(Padding))
         .first;
     final Padding padding = tester.widget<Padding>(findPadding);
-    expect(padding.padding, themeActionsPadding);
+    expect(padding.padding.value, themeActionsPadding);
   });
 
   testWidgets('Local DialogThemeData overrides global dialogTheme', (WidgetTester tester) async {
@@ -339,7 +339,7 @@ void main() {
         .ancestor(of: find.byIcon(Icons.cancel), matching: find.byType(Padding))
         .first;
     final Padding padding = tester.widget<Padding>(findPadding);
-    expect(padding.padding, themeActionsPadding);
+    expect(padding.padding.value, themeActionsPadding);
   });
 
   testWidgets('Dialog background color', (WidgetTester tester) async {

@@ -321,8 +321,8 @@ void main() {
           child: StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return SizedBox(
-                width: 200,
-                height: 100,
+                width: const .fixed(200),
+                height: const .fixed(100),
                 child: Row(
                   children: <Widget>[
                     CupertinoRadio<int>(

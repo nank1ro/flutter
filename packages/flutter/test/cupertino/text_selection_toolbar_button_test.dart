@@ -42,7 +42,7 @@ void main() {
     DecoratedBox decoratedBox = tester.widget(
       find.descendant(of: find.byType(CupertinoButton), matching: find.byType(DecoratedBox)),
     );
-    var decoration = decoratedBox.decoration as ShapeDecoration;
+    var decoration = decoratedBox.decoration.value as ShapeDecoration;
     expect(decoration.color, CupertinoColors.transparent);
 
     // Make a "down" gesture on the button.
@@ -57,7 +57,7 @@ void main() {
         matching: find.byType(DecoratedBox),
       ),
     );
-    decoration = decoratedBox.decoration as ShapeDecoration;
+    decoration = decoratedBox.decoration.value as ShapeDecoration;
     expect(decoration.color!.value, const Color(0x10000000).value);
 
     // Release the down gesture.
@@ -71,7 +71,7 @@ void main() {
         matching: find.byType(DecoratedBox),
       ),
     );
-    decoration = decoratedBox.decoration as ShapeDecoration;
+    decoration = decoratedBox.decoration.value as ShapeDecoration;
     expect(decoration.color, CupertinoColors.transparent);
   });
 

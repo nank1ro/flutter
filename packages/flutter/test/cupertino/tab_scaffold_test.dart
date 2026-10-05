@@ -358,6 +358,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(tabDecoration.color, isSameColorAs(const Color(0xF0F9F9F9))); // Inherited from theme.
@@ -390,6 +391,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(tabDecoration.color, isSameColorAs(const Color(0xF01D1D1D)));
@@ -1392,6 +1394,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(tabDecoration.color!.value, backgroundColor.color.value);
@@ -1419,6 +1422,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(tabDecoration.color!.value, backgroundColor.darkColor.value);
@@ -1455,7 +1459,10 @@ class _TabScaffoldWidgetInspectorService extends TestWidgetInspectorService {
             tabBuilder: (BuildContext context, int index) {
               return Builder(
                 builder: (BuildContext context) {
-                  return ColoredBox(key: leafKey, color: CupertinoTheme.of(context).primaryColor);
+                  return ColoredBox(
+                    key: leafKey,
+                    color: .fixed(CupertinoTheme.of(context).primaryColor),
+                  );
                 },
               );
             },

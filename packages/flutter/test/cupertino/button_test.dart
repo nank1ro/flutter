@@ -388,7 +388,10 @@ void main() {
     );
 
     var decoration =
-        tester.widget<DecoratedBox>(find.widgetWithText(DecoratedBox, 'Skeuomorph me')).decoration
+        tester
+                .widget<DecoratedBox>(find.widgetWithText(DecoratedBox, 'Skeuomorph me'))
+                .decoration
+                .value
             as ShapeDecoration;
 
     expect(decoration.color, const Color(0x000000FF));
@@ -405,7 +408,10 @@ void main() {
     );
 
     decoration =
-        tester.widget<DecoratedBox>(find.widgetWithText(DecoratedBox, 'Skeuomorph me')).decoration
+        tester
+                .widget<DecoratedBox>(find.widgetWithText(DecoratedBox, 'Skeuomorph me'))
+                .decoration
+                .value
             as ShapeDecoration;
 
     expect(decoration.color, const Color(0x0000FF00));
@@ -437,7 +443,10 @@ void main() {
     );
 
     var decoration =
-        tester.widget<DecoratedBox>(find.widgetWithText(DecoratedBox, 'Skeuomorph me')).decoration
+        tester
+                .widget<DecoratedBox>(find.widgetWithText(DecoratedBox, 'Skeuomorph me'))
+                .decoration
+                .value
             as ShapeDecoration;
 
     expect(decoration.color!.value, 0xFF654321);
@@ -457,7 +466,10 @@ void main() {
     );
 
     decoration =
-        tester.widget<DecoratedBox>(find.widgetWithText(DecoratedBox, 'Skeuomorph me')).decoration
+        tester
+                .widget<DecoratedBox>(find.widgetWithText(DecoratedBox, 'Skeuomorph me'))
+                .decoration
+                .value
             as ShapeDecoration;
 
     // Disabled color.
@@ -505,6 +517,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as ShapeDecoration;
     expect(decoration.color, isSameColorAs(CupertinoColors.activeBlue.withOpacity(0.12)));
 
@@ -531,6 +544,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as ShapeDecoration;
     expect(decoration.color, isSameColorAs(CupertinoColors.activeBlue));
 
@@ -574,6 +588,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as ShapeDecoration;
     expect(decoration.color, isSameColorAs(CupertinoColors.activeBlue.darkColor.withOpacity(0.26)));
 
@@ -601,6 +616,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as ShapeDecoration;
     expect(decoration.color, isSameColorAs(CupertinoColors.systemBlue.darkColor));
 
@@ -628,6 +644,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as ShapeDecoration;
     expect(decoration.color, isSameColorAs(CupertinoColors.systemRed));
   });
@@ -1164,6 +1181,6 @@ class _ButtonMouseCursor extends WidgetStateMouseCursor {
 }
 
 BorderSide _findBorder(WidgetTester tester, Finder finder) {
-  final decoration = tester.widget<DecoratedBox>(finder).decoration as ShapeDecoration;
+  final decoration = tester.widget<DecoratedBox>(finder).decoration.value as ShapeDecoration;
   return (decoration.shape as RoundedSuperellipseBorder).side;
 }

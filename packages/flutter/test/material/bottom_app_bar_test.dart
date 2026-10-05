@@ -73,7 +73,7 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           floatingActionButton: FloatingActionButton(onPressed: null),
-          bottomNavigationBar: ShapeListener(BottomAppBar(child: SizedBox(height: 100.0))),
+          bottomNavigationBar: ShapeListener(BottomAppBar(child: SizedBox(height: .fixed(100.0)))),
         ),
       ),
     );
@@ -94,7 +94,7 @@ void main() {
     Future<void> pump(FloatingActionButtonLocation location) async {
       await tester.pumpWidget(
         SizedBox.square(
-          dimension: 200,
+          dimension: const .fixed(200),
           child: RepaintBoundary(
             key: key,
             child: MaterialApp(
@@ -111,7 +111,7 @@ void main() {
                   ),
                   notchMargin: 10.0,
                   color: Colors.green,
-                  child: SizedBox(height: 100.0),
+                  child: SizedBox(height: .fixed(100.0)),
                 ),
               ),
             ),
@@ -132,7 +132,7 @@ void main() {
     Future<void> pump(FloatingActionButtonLocation location) async {
       await tester.pumpWidget(
         SizedBox.square(
-          dimension: 200,
+          dimension: const .fixed(200),
           child: RepaintBoundary(
             key: key,
             child: MaterialApp(
@@ -149,7 +149,7 @@ void main() {
                   ),
                   notchMargin: 10.0,
                   color: Colors.green,
-                  child: SizedBox(height: 100.0),
+                  child: SizedBox(height: .fixed(100.0)),
                 ),
               ),
             ),
@@ -177,7 +177,10 @@ void main() {
                 alignment: Alignment.bottomCenter,
                 child: BottomAppBar(
                   padding: customPadding,
-                  child: ColoredBox(color: Colors.green, child: SizedBox(width: 300, height: 60)),
+                  child: ColoredBox(
+                    color: .fixed(Colors.green),
+                    child: SizedBox(width: .fixed(300), height: .fixed(60)),
+                  ),
                 ),
               ),
             );
@@ -380,7 +383,7 @@ void main() {
             BottomAppBar(
               shape: RectangularNotch(),
               notchMargin: 0.0,
-              child: SizedBox(height: 100.0),
+              child: SizedBox(height: .fixed(100.0)),
             ),
           ),
           floatingActionButton: FloatingActionButton(onPressed: null, child: Icon(Icons.add)),
@@ -426,7 +429,7 @@ void main() {
             BottomAppBar(
               shape: RectangularNotch(),
               notchMargin: 6.0,
-              child: SizedBox(height: 100.0),
+              child: SizedBox(height: .fixed(100.0)),
             ),
           ),
           floatingActionButton: FloatingActionButton(onPressed: null, child: Icon(Icons.add)),
@@ -512,7 +515,7 @@ void main() {
           bottomNavigationBar: BottomAppBar(
             shape: RectangularNotch(),
             notchMargin: 0.0,
-            child: SizedBox(height: 100.0),
+            child: SizedBox(height: .fixed(100.0)),
           ),
         ),
       ),
@@ -528,7 +531,7 @@ void main() {
             shape: RectangularNotch(),
             notchMargin: 0.0,
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: SizedBox(height: 100.0),
+            child: SizedBox(height: .fixed(100.0)),
           ),
         ),
       ),
@@ -629,7 +632,7 @@ void main() {
                 BottomAppBar(
                   shape: RectangularNotch(),
                   notchMargin: 6.0,
-                  child: SizedBox(height: 100.0),
+                  child: SizedBox(height: .fixed(100.0)),
                 ),
               ),
               floatingActionButton: FloatingActionButton(onPressed: null, child: Icon(Icons.add)),

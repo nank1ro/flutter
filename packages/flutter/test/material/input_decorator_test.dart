@@ -2931,7 +2931,11 @@ void main() {
     ) async {
       // Define a label larger than the available decorator, the label will fill
       // all the available space (decorator width minus padding and affixes).
-      const Widget largeLabel = SizedBox(key: customLabelKey, width: 1000, height: 16);
+      const Widget largeLabel = SizedBox(
+        key: customLabelKey,
+        width: .fixed(1000),
+        height: .fixed(16),
+      );
       await tester.pumpWidget(
         buildInputDecorator(
           isEmpty: true,
@@ -3175,7 +3179,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: buildInputDecorator(
               isEmpty: true,
               decoration: InputDecoration(labelText: longStringA),
@@ -3192,7 +3196,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: buildInputDecorator(
               isFocused: true,
               isEmpty: true,
@@ -6207,7 +6211,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 0.0,
+            dimension: const .fixed(0.0),
             child: buildInputDecorator(
               decoration: const InputDecoration(
                 contentPadding: EdgeInsetsDirectional.all(99),
@@ -8555,7 +8559,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: UnconstrainedBox(
             child: ConstrainedBox(
-              constraints: BoxConstraints.tight(Size.zero),
+              constraints: .fixed(BoxConstraints.tight(Size.zero)),
               child: const InputDecorator(
                 decoration: InputDecoration(labelText: 'XP', border: OutlineInputBorder()),
               ),
@@ -8820,7 +8824,7 @@ void main() {
         home: MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: 300,
+              width: const .fixed(300),
               child: TextField(
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(
@@ -8884,12 +8888,15 @@ void main() {
                   child: Center(
                     child: Row(
                       children: <Widget>[
-                        SizedBox(width: 35.0, child: TextField(key: keyUnconstrained)),
                         SizedBox(
-                          width: 35.0,
+                          width: const .fixed(35.0),
+                          child: TextField(key: keyUnconstrained),
+                        ),
+                        SizedBox(
+                          width: const .fixed(35.0),
                           // 48 is the height that this TextField would take when
                           // laid out with no constraints.
-                          height: 48.0,
+                          height: const .fixed(48.0),
                           child: TextField(key: keyConstrained),
                         ),
                       ],
@@ -8923,7 +8930,11 @@ void main() {
       MaterialApp(
         home: Material(
           child: Center(
-            child: SizedBox(width: 200, height: 28, child: TextField(controller: controller)),
+            child: SizedBox(
+              width: const .fixed(200),
+              height: const .fixed(28),
+              child: TextField(controller: controller),
+            ),
           ),
         ),
       ),
@@ -8954,9 +8965,12 @@ void main() {
                 child: Center(
                   child: Row(
                     children: <Widget>[
-                      SizedBox(width: 35.0, child: TextField(key: key)),
                       SizedBox(
-                        width: 35.0,
+                        width: const .fixed(35.0),
+                        child: TextField(key: key),
+                      ),
+                      SizedBox(
+                        width: const .fixed(35.0),
                         child: IntrinsicHeight(child: TextField(key: intrinsicHeightKey)),
                       ),
                     ],
@@ -9013,7 +9027,7 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 100.0,
+              width: const .fixed(100.0),
               child: IntrinsicHeight(
                 child: Column(
                   children: <Widget>[
@@ -9044,7 +9058,7 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 100.0,
+              width: const .fixed(100.0),
               child: IntrinsicHeight(
                 child: Column(
                   children: <Widget>[
@@ -9075,7 +9089,7 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 100.0,
+              width: const .fixed(100.0),
               child: IntrinsicHeight(
                 child: Column(
                   children: <Widget>[
@@ -9106,7 +9120,7 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 100.0,
+              width: const .fixed(100.0),
               child: IntrinsicHeight(
                 child: Column(
                   children: <Widget>[
@@ -9137,7 +9151,7 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 100.0,
+              width: const .fixed(100.0),
               child: IntrinsicHeight(
                 child: Column(
                   children: <Widget>[
@@ -9167,7 +9181,7 @@ void main() {
       return MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: width,
+            width: .fixed(width),
             child: const IntrinsicHeight(
               child: InputDecorator(
                 decoration: InputDecoration(
@@ -9330,7 +9344,7 @@ void main() {
           decoration: decorationWithHint,
           useIntrinsicWidth: true,
           isEmpty: true,
-          child: const SizedBox(width: smallContentWidth),
+          child: const SizedBox(width: .fixed(smallContentWidth)),
         ),
       );
 
@@ -9342,7 +9356,7 @@ void main() {
           decoration: decorationWithHint,
           useIntrinsicWidth: true,
           isEmpty: true,
-          child: const SizedBox(width: largeContentWidth),
+          child: const SizedBox(width: .fixed(largeContentWidth)),
         ),
       );
 
@@ -9365,7 +9379,7 @@ void main() {
           buildInputDecorator(
             decoration: decorationWithHint,
             useIntrinsicWidth: true,
-            child: const SizedBox(width: contentWidth),
+            child: const SizedBox(width: .fixed(contentWidth)),
           ),
         );
 
@@ -9385,7 +9399,7 @@ void main() {
         buildInputDecorator(
           decoration: decorationWithHint,
           useIntrinsicWidth: true,
-          child: const SizedBox(width: contentWidth),
+          child: const SizedBox(width: .fixed(contentWidth)),
         ),
       );
 
@@ -9399,7 +9413,7 @@ void main() {
         const double labelWidth = 30;
         const decorationWithLabel = InputDecoration(
           contentPadding: EdgeInsets.zero,
-          label: SizedBox(width: labelWidth),
+          label: SizedBox(width: .fixed(labelWidth)),
         );
 
         await tester.pumpWidget(
@@ -9422,7 +9436,7 @@ void main() {
       const double labelWidth = 30;
       const decorationWithLabel = InputDecoration(
         contentPadding: EdgeInsets.zero,
-        label: SizedBox(width: labelWidth),
+        label: SizedBox(width: .fixed(labelWidth)),
         maintainLabelSize: true,
       );
 
@@ -9445,14 +9459,14 @@ void main() {
         const double labelWidth = 30;
         const decorationWithLabel = InputDecoration(
           contentPadding: EdgeInsets.zero,
-          label: SizedBox(width: labelWidth),
+          label: SizedBox(width: .fixed(labelWidth)),
         );
 
         await tester.pumpWidget(
           buildInputDecorator(
             decoration: decorationWithLabel,
             useIntrinsicWidth: true,
-            child: const SizedBox(width: contentWidth),
+            child: const SizedBox(width: .fixed(contentWidth)),
           ),
         );
 
@@ -9468,7 +9482,7 @@ void main() {
         const double labelWidth = 30;
         const decorationWithLabel = InputDecoration(
           contentPadding: EdgeInsets.zero,
-          label: SizedBox(width: labelWidth),
+          label: SizedBox(width: .fixed(labelWidth)),
           maintainLabelSize: true,
         );
 
@@ -9476,7 +9490,7 @@ void main() {
           buildInputDecorator(
             decoration: decorationWithLabel,
             useIntrinsicWidth: true,
-            child: const SizedBox(width: contentWidth),
+            child: const SizedBox(width: .fixed(contentWidth)),
           ),
         );
 
@@ -12285,8 +12299,8 @@ void main() {
           // isEmpty: false (default)
           // isFocused: false (default)
           decoration: const InputDecoration(
-            prefix: Padding(key: pKey, padding: EdgeInsets.all(4.0), child: Text('p')),
-            suffix: Padding(key: sKey, padding: EdgeInsets.all(4.0), child: Text('s')),
+            prefix: Padding(key: pKey, padding: .fixed(EdgeInsets.all(4.0)), child: Text('p')),
+            suffix: Padding(key: sKey, padding: .fixed(EdgeInsets.all(4.0)), child: Text('s')),
             filled: true,
           ),
         ),
@@ -12330,7 +12344,7 @@ void main() {
           // isEmpty: false (default)
           // isFocused: false (default)
           decoration: const InputDecoration(
-            prefix: SizedBox(key: pKey, height: 100, width: 10),
+            prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
             filled: true,
           ),
           // Set the fontSize so that everything works out to whole numbers.
@@ -12368,7 +12382,7 @@ void main() {
           // isFocused: false (default)
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
-            prefix: SizedBox(key: pKey, height: 100, width: 10),
+            prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
             filled: true,
           ),
           // Set the fontSize so that everything works out to whole numbers.
@@ -12506,8 +12520,8 @@ void main() {
         buildInputDecoratorM2(
           decoration: const InputDecoration(
             prefixIcon: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: SizedBox(width: 8.0, height: 8.0, key: prefixKey),
+              padding: .fixed(EdgeInsets.all(16.0)),
+              child: SizedBox(width: .fixed(8.0), height: .fixed(8.0), key: prefixKey),
             ),
             filled: true,
           ),
@@ -12704,7 +12718,7 @@ void main() {
       await tester.pumpWidget(
         buildInputDecoratorM2(
           decoration: const InputDecoration(
-            prefixIcon: SizedBox(width: 100.0, height: 100.0, key: prefixKey),
+            prefixIcon: SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: prefixKey),
             filled: true,
           ),
         ),
@@ -12850,7 +12864,7 @@ void main() {
             Center(
               child: SizedBox(
                 key: containerKey,
-                height: totalHeight,
+                height: const .fixed(totalHeight),
                 child: buildInputDecoratorM2(
                   // isEmpty: false (default)
                   // isFocused: false (default)
@@ -12861,7 +12875,7 @@ void main() {
                   ),
                   textAlignVertical: TextAlignVertical.center,
                   visualDensity: visualDensity,
-                  child: const SizedBox(key: key, height: childHeight),
+                  child: const SizedBox(key: key, height: .fixed(childHeight)),
                 ),
               ),
             ),
@@ -12950,7 +12964,7 @@ void main() {
               // isEmpty: false (default)
               // isFocused: false (default)
               decoration: const InputDecoration(
-                prefix: SizedBox(key: pKey, height: 100, width: 10),
+                prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
                 filled: true,
               ),
               textAlignVertical: TextAlignVertical.top, // default when no border
@@ -12972,7 +12986,7 @@ void main() {
               // isEmpty: false (default)
               // isFocused: false (default)
               decoration: const InputDecoration(
-                prefix: SizedBox(key: pKey, height: 100, width: 10),
+                prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
                 filled: true,
               ),
               textAlignVertical: TextAlignVertical.center,
@@ -12994,7 +13008,7 @@ void main() {
               // isEmpty: false (default)
               // isFocused: false (default)
               decoration: const InputDecoration(
-                prefix: SizedBox(key: pKey, height: 100, width: 10),
+                prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
                 filled: true,
               ),
               textAlignVertical: TextAlignVertical.bottom,
@@ -13020,7 +13034,7 @@ void main() {
               expands: true,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                prefix: SizedBox(key: pKey, height: 100, width: 10),
+                prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
                 filled: true,
               ),
               textAlignVertical: TextAlignVertical.center, // default when border
@@ -13046,7 +13060,7 @@ void main() {
               expands: true,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                prefix: SizedBox(key: pKey, height: 100, width: 10),
+                prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
                 filled: true,
               ),
               textAlignVertical: TextAlignVertical.top,
@@ -13074,7 +13088,7 @@ void main() {
               expands: true,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                prefix: SizedBox(key: pKey, height: 100, width: 10),
+                prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
                 filled: true,
               ),
               textAlignVertical: TextAlignVertical.bottom,
@@ -13100,7 +13114,7 @@ void main() {
               expands: true,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                prefix: SizedBox(key: pKey, height: 100, width: 10),
+                prefix: SizedBox(key: pKey, height: .fixed(100), width: .fixed(10)),
                 filled: true,
               ),
               textAlignVertical: const TextAlignVertical(y: 0.1),
@@ -15289,7 +15303,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: buildInputDecoratorM2(
               // isFocused: false (default)
               isEmpty: true,
@@ -15309,7 +15323,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: buildInputDecoratorM2(
               isFocused: true,
               isEmpty: true,
@@ -15567,7 +15581,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 0.0,
+            dimension: const .fixed(0.0),
             child: buildInputDecoratorM2(decoration: decoration),
           ),
         ),
@@ -15645,7 +15659,7 @@ void main() {
         home: Scaffold(
           body: Center(
             child: SizedBox(
-              width: 300, // Constrain width to force potential overlap
+              width: const .fixed(300), // Constrain width to force potential overlap
               child: TextFormField(
                 maxLength: 200,
                 decoration: const InputDecoration(
@@ -15701,7 +15715,7 @@ void main() {
             body: Directionality(
               textDirection: direction,
               child: SizedBox(
-                width: inputWidth,
+                width: const .fixed(inputWidth),
                 child: InputDecorator(
                   decoration: InputDecoration(
                     filled: true,

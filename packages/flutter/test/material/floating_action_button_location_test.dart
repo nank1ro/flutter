@@ -287,7 +287,7 @@ void main() {
     await tester.pumpWidget(
       _buildFrame(
         location: FloatingActionButtonLocation.endDocked,
-        bab: const SizedBox(height: 100.0),
+        bab: const SizedBox(height: .fixed(100.0)),
         viewInsets: EdgeInsets.zero,
       ),
     );
@@ -299,7 +299,7 @@ void main() {
     await tester.pumpWidget(
       _buildFrame(
         location: FloatingActionButtonLocation.centerDocked,
-        bab: const SizedBox(height: 100.0),
+        bab: const SizedBox(height: .fixed(100.0)),
         viewInsets: EdgeInsets.zero,
       ),
     );
@@ -309,7 +309,7 @@ void main() {
     await tester.pumpWidget(
       _buildFrame(
         location: FloatingActionButtonLocation.endDocked,
-        bab: const SizedBox(height: 100.0),
+        bab: const SizedBox(height: .fixed(100.0)),
         viewInsets: EdgeInsets.zero,
       ),
     );
@@ -328,7 +328,7 @@ void main() {
     await tester.pumpWidget(
       _buildFrame(
         location: FloatingActionButtonLocation.endDocked,
-        bab: const SizedBox(height: 16.0),
+        bab: const SizedBox(height: .fixed(16.0)),
         viewInsets: EdgeInsets.zero,
       ),
     );
@@ -339,7 +339,7 @@ void main() {
     await tester.pumpWidget(
       _buildFrame(
         location: FloatingActionButtonLocation.endContained,
-        bab: const SizedBox(height: 100.0),
+        bab: const SizedBox(height: .fixed(100.0)),
         viewInsets: EdgeInsets.zero,
       ),
     );
@@ -847,7 +847,10 @@ void main() {
           child: Scaffold(
             resizeToAvoidBottomInset: resizeToAvoidBottomInset,
             bottomSheet: bottomSheet
-                ? const SizedBox(height: 100, child: Center(child: Text('BottomSheet')))
+                ? const SizedBox(
+                    height: .fixed(100),
+                    child: Center(child: Text('BottomSheet')),
+                  )
                 : null,
             appBar: appBar ? AppBar(title: const Text('Demo')) : null,
             bottomNavigationBar: bottomNavigationBar

@@ -80,7 +80,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -158,7 +158,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -220,7 +220,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -295,7 +295,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -388,7 +388,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -446,7 +446,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -528,7 +528,7 @@ void main() {
                       ).showSnackBar(const SnackBar(content: Text(snackBarText)));
                     },
                     behavior: HitTestBehavior.opaque,
-                    child: const SizedBox(height: 100.0, width: 100.0),
+                    child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                   ),
                   GestureDetector(
                     key: materialBannerTapTarget,
@@ -547,7 +547,7 @@ void main() {
                       );
                     },
                     behavior: HitTestBehavior.opaque,
-                    child: const SizedBox(height: 100.0, width: 100.0),
+                    child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                   ),
                 ],
               );
@@ -609,7 +609,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -677,7 +677,7 @@ void main() {
                       );
                     },
                     behavior: HitTestBehavior.opaque,
-                    child: const SizedBox(height: 100.0, width: 100.0),
+                    child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                   );
                 },
               ),
@@ -744,7 +744,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -769,9 +769,13 @@ void main() {
         home: Directionality(
           textDirection: textDirection,
           child: MaterialBanner(
-            content: const SizedBox(width: 100, height: 100),
+            content: const SizedBox(width: .fixed(100), height: .fixed(100)),
             actions: List<Widget>.generate(actionCount, (int index) {
-              return SizedBox(width: 64, height: 48, key: ValueKey<int>(index));
+              return SizedBox(
+                width: const .fixed(64),
+                height: const .fixed(48),
+                key: ValueKey<int>(index),
+              );
             }),
           ),
         ),
@@ -819,12 +823,12 @@ void main() {
                   onTap: () {
                     ScaffoldMessenger.of(context).showMaterialBanner(
                       MaterialBanner(
-                        content: const SizedBox(width: 100, height: 100),
+                        content: const SizedBox(width: .fixed(100), height: .fixed(100)),
                         actions: List<Widget>.generate(actionCount, (int index) {
                           if (index == 0) {
                             return SizedBox(
-                              width: 64,
-                              height: 48,
+                              width: const .fixed(64),
+                              height: const .fixed(48),
                               key: ValueKey<int>(index),
                               child: GestureDetector(
                                 key: const ValueKey<String>('dismiss-target'),
@@ -834,7 +838,11 @@ void main() {
                             );
                           }
 
-                          return SizedBox(width: 64, height: 48, key: ValueKey<int>(index));
+                          return SizedBox(
+                            width: const .fixed(64),
+                            height: const .fixed(48),
+                            key: ValueKey<int>(index),
+                          );
                         }),
                       ),
                     );
@@ -898,9 +906,13 @@ void main() {
         home: Directionality(
           textDirection: textDirection,
           child: MaterialBanner(
-            content: const SizedBox(width: 100, height: 100),
+            content: const SizedBox(width: .fixed(100), height: .fixed(100)),
             actions: List<Widget>.generate(actionCount, (int index) {
-              return SizedBox(width: 200, height: 10, key: ValueKey<int>(index));
+              return SizedBox(
+                width: const .fixed(200),
+                height: const .fixed(10),
+                key: ValueKey<int>(index),
+              );
             }),
           ),
         ),
@@ -939,12 +951,12 @@ void main() {
                   onTap: () {
                     ScaffoldMessenger.of(context).showMaterialBanner(
                       MaterialBanner(
-                        content: const SizedBox(width: 100, height: 100),
+                        content: const SizedBox(width: .fixed(100), height: .fixed(100)),
                         actions: List<Widget>.generate(actionCount, (int index) {
                           if (index == 0) {
                             return SizedBox(
-                              width: 200,
-                              height: 10,
+                              width: const .fixed(200),
+                              height: const .fixed(10),
                               key: ValueKey<int>(index),
                               child: GestureDetector(
                                 key: const ValueKey<String>('dismiss-target'),
@@ -954,7 +966,11 @@ void main() {
                             );
                           }
 
-                          return SizedBox(width: 200, height: 10, key: ValueKey<int>(index));
+                          return SizedBox(
+                            width: const .fixed(200),
+                            height: const .fixed(10),
+                            key: ValueKey<int>(index),
+                          );
                         }),
                       ),
                     );
@@ -1000,9 +1016,13 @@ void main() {
           textDirection: textDirection,
           child: MaterialBanner(
             overflowAlignment: overflowAlignment,
-            content: const SizedBox(width: 100, height: 100),
+            content: const SizedBox(width: .fixed(100), height: .fixed(100)),
             actions: List<Widget>.generate(actionCount, (int index) {
-              return SizedBox(width: 200, height: 10, key: ValueKey<int>(index));
+              return SizedBox(
+                width: const .fixed(200),
+                height: const .fixed(10),
+                key: ValueKey<int>(index),
+              );
             }),
           ),
         ),
@@ -1042,12 +1062,12 @@ void main() {
                     ScaffoldMessenger.of(context).showMaterialBanner(
                       MaterialBanner(
                         overflowAlignment: overflowAlignment,
-                        content: const SizedBox(width: 100, height: 100),
+                        content: const SizedBox(width: .fixed(100), height: .fixed(100)),
                         actions: List<Widget>.generate(actionCount, (int index) {
                           if (index == 0) {
                             return SizedBox(
-                              width: 200,
-                              height: 10,
+                              width: const .fixed(200),
+                              height: const .fixed(10),
                               key: ValueKey<int>(index),
                               child: GestureDetector(
                                 key: const ValueKey<String>('dismiss-target'),
@@ -1057,7 +1077,11 @@ void main() {
                             );
                           }
 
-                          return SizedBox(width: 200, height: 10, key: ValueKey<int>(index));
+                          return SizedBox(
+                            width: const .fixed(200),
+                            height: const .fixed(10),
+                            key: ValueKey<int>(index),
+                          );
                         }),
                       ),
                     );
@@ -1194,7 +1218,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),

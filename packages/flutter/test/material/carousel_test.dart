@@ -1249,7 +1249,7 @@ void main() {
             home: Scaffold(
               body: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxHeight: 200),
+                  constraints: const .fixed(BoxConstraints(maxHeight: 200)),
                   child: CarouselView(
                     itemExtent: 330,
                     onTap: (int idx) => setState(() {}),
@@ -1425,7 +1425,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: 100,
+            width: const .fixed(100),
             child: CarouselView(
               itemExtent: 0,
               children: <Widget>[Container(color: Colors.red, width: 100, height: 100)],
@@ -1454,14 +1454,16 @@ void main() {
               slivers: <Widget>[
                 SliverToBoxAdapter(
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 50),
+                    constraints: const .fixed(BoxConstraints(maxHeight: 50)),
                     child: CarouselView.weighted(
                       flexWeights: const <int>[1, 2],
                       consumeMaxWeight: false,
                       children: List<Widget>.generate(20, (int index) {
                         return ColoredBox(
-                          color: Colors.primaries[index % Colors.primaries.length].withValues(
-                            alpha: 0.8,
+                          color: .fixed(
+                            Colors.primaries[index % Colors.primaries.length].withValues(
+                              alpha: 0.8,
+                            ),
                           ),
                           child: const SizedBox.expand(),
                         );
@@ -1485,7 +1487,7 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: 0,
+            width: .fixed(0),
             child: CarouselView(itemExtent: 40.0, children: <Widget>[FlutterLogo()]),
           ),
         ),
@@ -1602,7 +1604,7 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: 0,
+            width: .fixed(0),
             child: CarouselView.weighted(
               flexWeights: <int>[1, 2],
               children: <Widget>[FlutterLogo(), FlutterLogo()],
@@ -2914,8 +2916,8 @@ void main() {
             itemExtent: 600.0,
             itemSnapping: true,
             children: [
-              SizedBox(key: ValueKey(0), width: 600, height: 600),
-              SizedBox(key: ValueKey(1), width: 600, height: 600),
+              SizedBox(key: ValueKey(0), width: .fixed(600), height: .fixed(600)),
+              SizedBox(key: ValueKey(1), width: .fixed(600), height: .fixed(600)),
             ],
           ),
         ),

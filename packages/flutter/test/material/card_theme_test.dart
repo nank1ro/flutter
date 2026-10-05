@@ -105,7 +105,7 @@ void main() {
     expect(material.shadowColor, theme.colorScheme.shadow);
     expect(material.surfaceTintColor, Colors.transparent); // Default primary color
     expect(material.elevation, 1.0);
-    expect(padding.padding, const EdgeInsets.all(4.0));
+    expect(padding.padding.value, const EdgeInsets.all(4.0));
     expect(
       material.shape,
       const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12.0))),
@@ -130,7 +130,7 @@ void main() {
     expect(material.shadowColor, cardTheme.shadowColor);
     expect(material.surfaceTintColor, cardTheme.surfaceTintColor);
     expect(material.elevation, cardTheme.elevation);
-    expect(padding.padding, cardTheme.margin);
+    expect(padding.padding.value, cardTheme.margin);
     expect(material.shape, cardTheme.shape);
   });
 
@@ -167,7 +167,7 @@ void main() {
     expect(material.color, color);
     expect(material.shadowColor, shadowColor);
     expect(material.elevation, elevation);
-    expect(padding.padding, margin);
+    expect(padding.padding.value, margin);
     expect(material.shape, shape);
   });
 
@@ -220,7 +220,7 @@ void main() {
           body: RepaintBoundary(
             key: painterKey,
             child: Center(
-              child: Card(child: SizedBox.fromSize(size: const Size(200, 300))),
+              child: Card(child: SizedBox.fromSize(size: const .fixed(Size(200, 300)))),
             ),
           ),
         ),
@@ -271,7 +271,7 @@ void main() {
             elevation: elevation,
             margin: margin,
             shape: shape,
-            child: SizedBox(width: 200, height: 200),
+            child: SizedBox(width: .fixed(200), height: .fixed(200)),
           ),
         ),
       ),
@@ -285,7 +285,7 @@ void main() {
     expect(material.shadowColor, shadowColor);
     expect(material.elevation, elevation);
     expect(material.shape, shape);
-    expect(cardMargin.padding, margin);
+    expect(cardMargin.padding.value, margin);
   });
 
   testWidgets('Local CardTheme can override global CardTheme', (WidgetTester tester) async {
@@ -330,7 +330,9 @@ void main() {
               margin: localMargin,
               shape: localShape,
             ),
-            child: Card(child: SizedBox(width: 200, height: 200)),
+            child: Card(
+              child: SizedBox(width: .fixed(200), height: .fixed(200)),
+            ),
           ),
         ),
       ),
@@ -344,7 +346,7 @@ void main() {
     expect(material.shadowColor, localShadowColor);
     expect(material.elevation, localElevation);
     expect(material.shape, localShape);
-    expect(cardMargin.padding, localMargin);
+    expect(cardMargin.padding.value, localMargin);
   });
 
   group('Material 2', () {
@@ -384,7 +386,7 @@ void main() {
       expect(material.shadowColor, Colors.black);
       expect(material.surfaceTintColor, null);
       expect(material.elevation, 1.0);
-      expect(padding.padding, const EdgeInsets.all(4.0));
+      expect(padding.padding.value, const EdgeInsets.all(4.0));
       expect(
         material.shape,
         const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
@@ -407,7 +409,7 @@ void main() {
             body: RepaintBoundary(
               key: painterKey,
               child: Center(
-                child: Card(child: SizedBox.fromSize(size: const Size(200, 300))),
+                child: Card(child: SizedBox.fromSize(size: const .fixed(Size(200, 300)))),
               ),
             ),
           ),

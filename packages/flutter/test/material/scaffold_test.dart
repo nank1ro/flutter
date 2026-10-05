@@ -468,7 +468,7 @@ void main() {
             return AnimatedBuilder(
               animation: animation,
               builder: (BuildContext context, Widget? child) {
-                return ColoredBox(key: scrimKey, color: Colors.black.withOpacity(animation.value));
+                return ColoredBox(key: scrimKey, color: .fixed(Colors.black.withOpacity(animation.value)));
               },
             );
           },
@@ -485,7 +485,7 @@ void main() {
     Finder findScrim() => find.byKey(scrimKey);
     Finder findModalBarrier() =>
         find.descendant(of: find.byType(Scaffold), matching: find.byType(ModalBarrier));
-    double getOpacity() => tester.firstWidget<ColoredBox>(findScrim()).color.opacity;
+    double getOpacity() => tester.firstWidget<ColoredBox>(findScrim()).color.value.opacity;
 
     for (double i = 0, extent = i / 10; i <= 10; i++, extent = i / 10) {
       draggableController.jumpTo(extent);
@@ -612,7 +612,7 @@ void main() {
               controller: scrollOffset,
               children: List<Widget>.generate(
                 10,
-                (int index) => SizedBox(height: 100.0, child: Text('D$index')),
+                (int index) => SizedBox(height: const .fixed(100.0), child: Text('D$index')),
               ),
             ),
           ),
@@ -629,7 +629,7 @@ void main() {
                 sliver: SliverList.builder(
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: 100.0, child: Text('B$index'));
+                    return SizedBox(height: const .fixed(100.0), child: Text('B$index'));
                   },
                 ),
               ),
@@ -669,7 +669,7 @@ void main() {
               SliverList.builder(
                 itemCount: 20,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 100.0, child: Text('$index'));
+                  return SizedBox(height: const .fixed(100.0), child: Text('$index'));
                 },
               ),
             ],
@@ -696,7 +696,7 @@ void main() {
                   SliverList.builder(
                     itemCount: 20,
                     itemBuilder: (BuildContext context, int index) {
-                      return SizedBox(height: 100.0, child: Text('$index'));
+                      return SizedBox(height: const .fixed(100.0), child: Text('$index'));
                     },
                   ),
                 ],
@@ -1284,7 +1284,7 @@ void main() {
                   return Container(key: bodyKey);
                 },
               ),
-              bottomNavigationBar: const BottomAppBar(child: SizedBox(height: 48.0)),
+              bottomNavigationBar: const BottomAppBar(child: SizedBox(height: .fixed(48.0))),
             ),
           ),
         );
@@ -1518,26 +1518,26 @@ void main() {
               ),
               floatingActionButton: SizedBox(
                 key: floatingActionButton,
-                width: 77.0,
-                height: 77.0,
+                width: const .fixed(77.0),
+                height: const .fixed(77.0),
                 child: SafeArea(child: Placeholder(key: insideFloatingActionButton)),
               ),
               persistentFooterButtons: <Widget>[
                 SizedBox(
                   key: persistentFooterButton,
-                  width: 100.0,
-                  height: 90.0,
+                  width: const .fixed(100.0),
+                  height: const .fixed(90.0),
                   child: SafeArea(child: Placeholder(key: insidePersistentFooterButton)),
                 ),
               ],
               drawer: SizedBox(
                 key: drawer,
-                width: 204.0,
+                width: const .fixed(204.0),
                 child: SafeArea(child: Placeholder(key: insideDrawer)),
               ),
               bottomNavigationBar: SizedBox(
                 key: bottomNavigationBar,
-                height: 85.0,
+                height: const .fixed(85.0),
                 child: SafeArea(child: Placeholder(key: insideBottomNavigationBar)),
               ),
             ),
@@ -1626,21 +1626,21 @@ void main() {
               ),
               floatingActionButton: SizedBox(
                 key: floatingActionButton,
-                width: 77.0,
-                height: 77.0,
+                width: const .fixed(77.0),
+                height: const .fixed(77.0),
                 child: SafeArea(child: Placeholder(key: insideFloatingActionButton)),
               ),
               persistentFooterButtons: <Widget>[
                 SizedBox(
                   key: persistentFooterButton,
-                  width: 100.0,
-                  height: 90.0,
+                  width: const .fixed(100.0),
+                  height: const .fixed(90.0),
                   child: SafeArea(child: Placeholder(key: insidePersistentFooterButton)),
                 ),
               ],
               drawer: SizedBox(
                 key: drawer,
-                width: 204.0,
+                width: const .fixed(204.0),
                 child: SafeArea(child: Placeholder(key: insideDrawer)),
               ),
             ),
@@ -1689,7 +1689,7 @@ void main() {
             body: Container(),
             bottomNavigationBar: ConstrainedBox(
               key: key,
-              constraints: const BoxConstraints.expand(height: 80.0),
+              constraints: const .fixed(BoxConstraints.expand(height: 80.0)),
               child: const _GeometryListener(),
             ),
           ),
@@ -1706,11 +1706,11 @@ void main() {
 
     testWidgets('no bottomNavigationBar', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 80.0),
-              child: const _GeometryListener(),
+              constraints: .fixed(BoxConstraints.expand(height: 80.0)),
+              child: _GeometryListener(),
             ),
           ),
         ),
@@ -1805,11 +1805,11 @@ void main() {
 
     testWidgets('no floatingActionButton', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 80.0),
-              child: const _GeometryListener(),
+              constraints: .fixed(BoxConstraints.expand(height: 80.0)),
+              child: _GeometryListener(),
             ),
           ),
         ),
@@ -1824,11 +1824,11 @@ void main() {
     testWidgets('floatingActionButton entrance/exit animation', (WidgetTester tester) async {
       final GlobalKey key = GlobalKey();
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 80.0),
-              child: const _GeometryListener(),
+              constraints: .fixed(BoxConstraints.expand(height: 80.0)),
+              child: _GeometryListener(),
             ),
           ),
         ),
@@ -1886,11 +1886,11 @@ void main() {
       final GlobalKey key = GlobalKey();
       var numNotificationsAtLastFrame = 0;
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 80.0),
-              child: const _GeometryListener(),
+              constraints: .fixed(BoxConstraints.expand(height: 80.0)),
+              child: _GeometryListener(),
             ),
           ),
         ),
@@ -2416,7 +2416,7 @@ void main() {
               border: Border(top: BorderSide(color: themeData.disabledColor)),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: const .fixed(EdgeInsets.all(32.0)),
               child: Text(
                 'This is a Material persistent bottom sheet. Drag downwards to dismiss it.',
                 textAlign: TextAlign.center,
@@ -2694,7 +2694,7 @@ void main() {
                     scaffoldMessenger = ScaffoldMessenger.maybeOf(context);
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -2728,7 +2728,7 @@ void main() {
                   ScaffoldMessenger.of(context);
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -3409,7 +3409,7 @@ void main() {
                     return SizedBox.expand(
                       child: ColoredBox(
                         key: sheetKey,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: .fixed(Theme.of(context).colorScheme.primary),
                         child: FilledButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -3475,7 +3475,7 @@ void main() {
                     return SizedBox.expand(
                       child: ColoredBox(
                         key: sheetKey,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: .fixed(Theme.of(context).colorScheme.primary),
                         child: FilledButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -3770,7 +3770,7 @@ void main() {
                 child: Scaffold(
                   extendBody: true,
                   body: SizedBox.expand(key: bodyKey),
-                  bottomNavigationBar: const SizedBox(height: 100),
+                  bottomNavigationBar: const SizedBox(height: .fixed(100)),
                 ),
               );
             },
@@ -3937,7 +3937,7 @@ class _ScaffoldWithPrimaryScrollViewState extends State<_ScaffoldWithPrimaryScro
       child: PrimaryScrollController(
         controller: controller,
         child: const Scaffold(
-          body: SingleChildScrollView(primary: true, child: SizedBox(height: 2000)),
+          body: SingleChildScrollView(primary: true, child: SizedBox(height: .fixed(2000))),
         ),
       ),
     );

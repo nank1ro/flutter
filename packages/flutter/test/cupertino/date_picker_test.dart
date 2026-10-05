@@ -172,7 +172,7 @@ void main() {
       await tester.pumpWidget(
         CupertinoApp(
           home: SizedBox.square(
-            dimension: 400.0,
+            dimension: const .fixed(400.0),
             child: CupertinoTimerPicker(
               onTimerDurationChanged: (_) {},
               initialTimerDuration: const Duration(hours: 12, minutes: 30, seconds: 59),
@@ -188,8 +188,8 @@ void main() {
       await tester.pumpWidget(
         CupertinoApp(
           home: SizedBox(
-            height: 400.0,
-            width: 800.0,
+            height: const .fixed(400.0),
+            width: const .fixed(800.0),
             child: CupertinoTimerPicker(
               onTimerDurationChanged: (_) {},
               initialTimerDuration: const Duration(hours: 12, minutes: 30, seconds: 59),
@@ -211,7 +211,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoTimerPicker(
                 initialTimerDuration: const Duration(hours: 1, minutes: 30, seconds: 15),
                 changeReportingBehavior: ChangeReportingBehavior.onScrollEnd,
@@ -297,7 +297,7 @@ void main() {
     await tester.pumpWidget(
       CupertinoApp(
         home: SizedBox.square(
-          dimension: 400.0,
+          dimension: const .fixed(400.0),
           child: CupertinoTimerPicker(
             minuteInterval: 10,
             secondInterval: 12,
@@ -369,7 +369,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 onDateTimeChanged: (DateTime d) => newDateTime = d,
                 initialDateTime: DateTime(2018, 10, 10, 10, 3),
@@ -415,7 +415,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 onDateTimeChanged: (DateTime dateTime) => selectedDateTime = dateTime,
                 initialDateTime: DateTime(2018, 1, 1, 10, 30),
@@ -441,7 +441,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 onDateTimeChanged: (DateTime dateTime) => selectedDateTime = dateTime,
                 // Change the initial date, but it shouldn't affect the present state.
@@ -471,7 +471,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 onDateTimeChanged: (_) {},
@@ -492,7 +492,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 onDateTimeChanged: (_) {},
                 initialDateTime: DateTime(2018, 9, 15, 3, 14),
@@ -513,7 +513,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.monthYear,
                 onDateTimeChanged: (_) {},
@@ -549,8 +549,8 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox(
-              height: 400.0,
-              width: 800.0,
+              height: const .fixed(400.0),
+              width: const .fixed(800.0),
               child: CupertinoDatePicker(
                 onDateTimeChanged: (_) {},
                 initialDateTime: DateTime(2018, 1, 1, 10, 30),
@@ -572,7 +572,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 onDateTimeChanged: (_) {},
@@ -591,8 +591,8 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox(
-              height: 400.0,
-              width: 800.0,
+              height: const .fixed(400.0),
+              width: const .fixed(800.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 onDateTimeChanged: (_) {},
@@ -615,7 +615,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.time,
                 onDateTimeChanged: (_) {},
@@ -634,8 +634,8 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox(
-              height: 400.0,
-              width: 800.0,
+              height: const .fixed(400.0),
+              width: const .fixed(800.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.time,
                 onDateTimeChanged: (_) {},
@@ -658,7 +658,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.monthYear,
                 onDateTimeChanged: (_) {},
@@ -677,8 +677,8 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox(
-              height: 400.0,
-              width: 800.0,
+              height: const .fixed(400.0),
+              width: const .fixed(800.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.monthYear,
                 onDateTimeChanged: (_) {},
@@ -718,7 +718,13 @@ void main() {
       await tester.pumpWidget(
         CupertinoApp(
           home: CupertinoPageScaffold(
-            child: Center(child: SizedBox(height: 200.0, width: 300.0, child: dateWidget)),
+            child: Center(
+              child: SizedBox(
+                height: const .fixed(200.0),
+                width: const .fixed(300.0),
+                child: dateWidget,
+              ),
+            ),
           ),
         ),
       );
@@ -734,7 +740,13 @@ void main() {
       await tester.pumpWidget(
         CupertinoApp(
           home: CupertinoPageScaffold(
-            child: Center(child: SizedBox(height: 200.0, width: 3000.0, child: dateWidget)),
+            child: Center(
+              child: SizedBox(
+                height: const .fixed(200.0),
+                width: const .fixed(3000.0),
+                child: dateWidget,
+              ),
+            ),
           ),
         ),
       );
@@ -755,7 +767,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 maximumDate: maximum,
@@ -793,7 +805,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 minimumDate: minimum,
@@ -832,7 +844,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 minimumDate: minimum,
@@ -864,7 +876,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 minimumDate: minimum,
@@ -896,7 +908,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 onDateTimeChanged: (DateTime newDate) {
@@ -936,7 +948,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 minimumDate: minimum,
@@ -1003,7 +1015,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 minimumDate: minimum,
                 maximumDate: maximum,
@@ -1080,7 +1092,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.time,
                 minimumDate: minimum,
@@ -1158,7 +1170,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.monthYear,
                 minimumDate: minimum,
@@ -1218,7 +1230,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 onDateTimeChanged: (DateTime newDate) {
@@ -1272,7 +1284,7 @@ void main() {
           CupertinoApp(
             home: Center(
               child: SizedBox.square(
-                dimension: 400.0,
+                dimension: const .fixed(400.0),
                 child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.date,
                   minimumDate: minDate,
@@ -1310,7 +1322,7 @@ void main() {
           CupertinoApp(
             home: Center(
               child: SizedBox.square(
-                dimension: 400.0,
+                dimension: const .fixed(400.0),
                 child: CupertinoDatePicker(
                   minimumDate: minDate,
                   onDateTimeChanged: (DateTime newDate) {},
@@ -1332,7 +1344,7 @@ void main() {
           CupertinoApp(
             home: Center(
               child: SizedBox.square(
-                dimension: 400.0,
+                dimension: const .fixed(400.0),
                 child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.time,
                   onDateTimeChanged: (DateTime newDate) {
@@ -1359,7 +1371,7 @@ void main() {
           CupertinoApp(
             home: Center(
               child: SizedBox.square(
-                dimension: 400.0,
+                dimension: const .fixed(400.0),
                 child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.time,
                   onDateTimeChanged: (DateTime newDate) {
@@ -1386,7 +1398,7 @@ void main() {
           CupertinoApp(
             home: Center(
               child: SizedBox.square(
-                dimension: 400.0,
+                dimension: const .fixed(400.0),
                 child: CupertinoDatePicker(
                   use24hFormat: true,
                   mode: CupertinoDatePickerMode.time,
@@ -1415,7 +1427,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.time,
                 onDateTimeChanged: (DateTime newDate) {
@@ -1465,7 +1477,7 @@ void main() {
           CupertinoApp(
             home: Center(
               child: SizedBox.square(
-                dimension: 400.0,
+                dimension: const .fixed(400.0),
                 child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.time,
                   onDateTimeChanged: (DateTime newDate) {
@@ -1526,7 +1538,7 @@ void main() {
           home: Center(
             child: SizedBox(
               // This is too small to draw the picker out fully.
-              width: 100,
+              width: const .fixed(100),
               child: CupertinoDatePicker(
                 initialDateTime: DateTime(2019, 1, 1, 4),
                 onDateTimeChanged: (_) {},
@@ -1549,8 +1561,8 @@ void main() {
         return CupertinoApp(
           home: Center(
             child: SizedBox(
-              width: 500,
-              height: 400,
+              width: const .fixed(500),
+              height: const .fixed(400),
               child: RepaintBoundary(
                 child: CupertinoDatePicker(
                   key: ValueKey<CupertinoDatePickerMode>(mode),
@@ -1607,7 +1619,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 dateOrder: DatePickerDateOrder.ydm,
                 mode: CupertinoDatePickerMode.date,
@@ -1637,7 +1649,7 @@ void main() {
         return CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 key: ValueKey<DatePickerDateOrder>(order),
                 dateOrder: order,
@@ -1684,8 +1696,8 @@ void main() {
             textDirection: TextDirection.rtl,
             child: Center(
               child: SizedBox(
-                width: 500,
-                height: 400,
+                width: const .fixed(500),
+                height: const .fixed(400),
                 child: CupertinoDatePicker(
                   initialDateTime: DateTime(2019, 1, 1, 4),
                   onDateTimeChanged: (_) {},
@@ -1707,7 +1719,7 @@ void main() {
         CupertinoApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 changeReportingBehavior: ChangeReportingBehavior.onScrollEnd,
@@ -1748,8 +1760,8 @@ void main() {
         ),
         home: Center(
           child: SizedBox(
-            width: 320,
-            height: 216,
+            width: const .fixed(320),
+            height: const .fixed(216),
             child: RepaintBoundary(
               child: CupertinoTimerPicker(
                 mode: CupertinoTimerPickerMode.hm,
@@ -1789,8 +1801,8 @@ void main() {
       CupertinoApp(
         home: Center(
           child: SizedBox(
-            width: 320,
-            height: 216,
+            width: const .fixed(320),
+            height: const .fixed(216),
             child: CupertinoTimerPicker(
               mode: CupertinoTimerPickerMode.hm,
               initialTimerDuration: const Duration(hours: 2, minutes: 30),
@@ -2024,7 +2036,7 @@ void main() {
       CupertinoApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 400.0,
+            dimension: const .fixed(400.0),
             child: CupertinoDatePicker(
               onDateTimeChanged: (DateTime newDate) => date = newDate,
               initialDateTime: initialDate,
@@ -2054,7 +2066,7 @@ void main() {
       CupertinoApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 400.0,
+            dimension: const .fixed(400.0),
             child: CupertinoDatePicker(
               minimumDate: minimumDate,
               maximumDate: maximumDate,
@@ -2180,7 +2192,7 @@ void main() {
       CupertinoApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 400.0,
+            dimension: const .fixed(400.0),
             child: CupertinoDatePicker(
               initialDateTime: initial,
               minimumDate: minimum,
@@ -2226,7 +2238,7 @@ void main() {
       CupertinoApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 400.0,
+            dimension: const .fixed(400.0),
             child: CupertinoDatePicker(
               mode: CupertinoDatePickerMode.date,
               onDateTimeChanged: (_) {},
@@ -2758,7 +2770,7 @@ void main() {
       CupertinoApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 400.0,
+            dimension: const .fixed(400.0),
             child: CupertinoDatePicker(
               mode: CupertinoDatePickerMode.date,
               onDateTimeChanged: (_) {},
@@ -2799,7 +2811,13 @@ Widget _buildPicker({
       itemExtent: 100.0,
       onSelectedItemChanged: onSelectedItemChanged,
       children: List<Widget>.generate(100, (int index) {
-        return Center(child: SizedBox(width: 400.0, height: 100.0, child: Text(index.toString())));
+        return Center(
+          child: SizedBox(
+            width: const .fixed(400.0),
+            height: const .fixed(100.0),
+            child: Text(index.toString()),
+          ),
+        );
       }),
     ),
   );

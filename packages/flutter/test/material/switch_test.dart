@@ -128,13 +128,13 @@ void main() {
           body: Directionality(
             textDirection: TextDirection.ltr,
             child: SizedBox(
-              width: maxWidth,
-              height: maxHeight,
+              width: const .fixed(maxWidth),
+              height: const .fixed(maxHeight),
               child: RepaintBoundary(
                 key: boundaryKey,
                 child: SizedBox(
-                  width: width,
-                  height: height,
+                  width: .fixed(width),
+                  height: .fixed(height),
                   child: Switch(
                     dragStartBehavior: DragStartBehavior.down,
                     value: true,
@@ -169,13 +169,13 @@ void main() {
           body: Directionality(
             textDirection: TextDirection.ltr,
             child: SizedBox(
-              width: maxWidth,
-              height: maxHeight,
+              width: const .fixed(maxWidth),
+              height: const .fixed(maxHeight),
               child: RepaintBoundary(
                 key: boundaryKey,
                 child: SizedBox(
-                  width: width,
-                  height: height,
+                  width: .fixed(width),
+                  height: .fixed(height),
                   child: Switch(
                     dragStartBehavior: DragStartBehavior.down,
                     value: true,

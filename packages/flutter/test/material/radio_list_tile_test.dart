@@ -1645,7 +1645,7 @@ void main() {
       find.ancestor(of: find.byType(Radio<bool>), matching: find.byType(Transform)),
     );
 
-    expect(widget.transform.getMaxScaleOnAxis(), scale);
+    expect(widget.transform.value.getMaxScaleOnAxis(), scale);
   });
 
   testWidgets('RadioListTile isThreeLine', (WidgetTester tester) async {
@@ -1896,8 +1896,12 @@ void main() {
               value: true,
               groupValue: true,
               onChanged: (bool? newValue) {},
-              title: const SizedBox(width: 20.0, height: titleHeight),
-              secondary: const SizedBox(key: secondaryKey, width: 24.0, height: secondaryHeight),
+              title: const SizedBox(width: .fixed(20.0), height: .fixed(titleHeight)),
+              secondary: const SizedBox(
+                key: secondaryKey,
+                width: .fixed(24.0),
+                height: .fixed(secondaryHeight),
+              ),
             ),
           ),
         ),
@@ -2029,9 +2033,13 @@ void main() {
             child: RadioListTile<bool>(
               titleAlignment: titleAlignment,
               controlAffinity: ListTileControlAffinity.leading,
-              title: const SizedBox(width: 20.0, height: titleHeight),
-              subtitle: const SizedBox(width: 20.0, height: subtitleHeight),
-              secondary: const SizedBox(key: secondaryKey, width: 24.0, height: secondaryHeight),
+              title: const SizedBox(width: .fixed(20.0), height: .fixed(titleHeight)),
+              subtitle: const SizedBox(width: .fixed(20.0), height: .fixed(subtitleHeight)),
+              secondary: const SizedBox(
+                key: secondaryKey,
+                width: .fixed(24.0),
+                height: .fixed(secondaryHeight),
+              ),
               value: true,
               groupValue: true,
               onChanged: (bool? newValue) {},

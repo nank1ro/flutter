@@ -359,7 +359,7 @@ void main() {
       'a Container or Placeholder widget)', (WidgetTester tester) async {
     const children = <int, Widget>{
       0: Text('Child 1'),
-      1: SizedBox(width: 50, height: 50),
+      1: SizedBox(width: .fixed(50), height: .fixed(50)),
       2: Placeholder(),
     };
 
@@ -592,9 +592,9 @@ void main() {
   testWidgets('If proportionalWidth is true, the width of each segmented '
       'control segment is determined by its own content', (WidgetTester tester) async {
     final children = <int, Widget>{
-      0: const SizedBox(width: 50, child: Text('First')),
-      1: const SizedBox(width: 100, child: Text('Second')),
-      2: const SizedBox(width: 70, child: Text('Third')),
+      0: const SizedBox(width: .fixed(50), child: Text('First')),
+      1: const SizedBox(width: .fixed(100), child: Text('Second')),
+      2: const SizedBox(width: .fixed(70), child: Text('Third')),
     };
 
     await tester.pumpWidget(
@@ -638,9 +638,9 @@ void main() {
 
   testWidgets('proportionalWidth rebuild', (WidgetTester tester) async {
     final children = <int, Widget>{
-      0: const SizedBox(width: 50, child: Text('First')),
-      1: const SizedBox(width: 200, child: Text('Second')),
-      2: const SizedBox(width: 70, child: Text('Third')),
+      0: const SizedBox(width: .fixed(50), child: Text('First')),
+      1: const SizedBox(width: .fixed(200), child: Text('Second')),
+      2: const SizedBox(width: .fixed(70), child: Text('Third')),
     };
     var proportionalWidth = false;
 
@@ -691,9 +691,9 @@ void main() {
   testWidgets('If proportionalWidth is true, the width of each segmented '
       'control segment is updated when children change', (WidgetTester tester) async {
     var children = <int, Widget>{
-      0: const SizedBox(width: 50, child: Text('First')),
-      1: const SizedBox(width: 100, child: Text('Second')),
-      2: const SizedBox(width: 70, child: Text('Third')),
+      0: const SizedBox(width: .fixed(50), child: Text('First')),
+      1: const SizedBox(width: .fixed(100), child: Text('Second')),
+      2: const SizedBox(width: .fixed(70), child: Text('Third')),
     };
 
     await tester.pumpWidget(
@@ -728,8 +728,8 @@ void main() {
     setState!(() {
       children = <int, Widget>{
         0: const SizedBox(),
-        1: const SizedBox(width: 220, child: Text('Second')),
-        2: const SizedBox(width: 170, child: Text('Third')),
+        1: const SizedBox(width: .fixed(220), child: Text('Second')),
+        2: const SizedBox(width: .fixed(170), child: Text('Third')),
       };
     });
     await tester.pump();
@@ -749,16 +749,16 @@ void main() {
     WidgetTester tester,
   ) async {
     final children = <int, Widget>{
-      0: const SizedBox(width: 50, child: Text('First')),
-      1: const SizedBox(width: 100, child: Text('Second')),
-      2: const SizedBox(width: 200, child: Text('Third')),
+      0: const SizedBox(width: .fixed(50), child: Text('First')),
+      1: const SizedBox(width: .fixed(100), child: Text('Second')),
+      2: const SizedBox(width: .fixed(200), child: Text('Third')),
     };
 
     await tester.pumpWidget(
       boilerplate(
         builder: (BuildContext context) {
           return ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 200),
+            constraints: const .fixed(BoxConstraints(maxWidth: 200)),
             child: CupertinoSlidingSegmentedControl<int>(
               key: const ValueKey<String>('Segmented Control'),
               children: children,
@@ -797,16 +797,16 @@ void main() {
     WidgetTester tester,
   ) async {
     final children = <int, Widget>{
-      0: const SizedBox(width: 20, child: Text('First')),
-      1: const SizedBox(width: 30, child: Text('Second')),
-      2: const SizedBox(width: 50, child: Text('Third')),
+      0: const SizedBox(width: .fixed(20), child: Text('First')),
+      1: const SizedBox(width: .fixed(30), child: Text('Second')),
+      2: const SizedBox(width: .fixed(50), child: Text('Third')),
     };
 
     await tester.pumpWidget(
       boilerplate(
         builder: (BuildContext context) {
           return ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 200),
+            constraints: const .fixed(BoxConstraints(minWidth: 200)),
             child: CupertinoSlidingSegmentedControl<int>(
               key: const ValueKey<String>('Segmented Control'),
               children: children,
@@ -850,7 +850,7 @@ void main() {
   });
 
   testWidgets('Width is finite in unbounded space', (WidgetTester tester) async {
-    const children = <int, Widget>{0: SizedBox(width: 50), 1: SizedBox(width: 70)};
+    const children = <int, Widget>{0: SizedBox(width: .fixed(50)), 1: SizedBox(width: .fixed(70))};
 
     await tester.pumpWidget(
       boilerplate(
@@ -1075,9 +1075,9 @@ void main() {
 
   testWidgets('Non-centered taps work on proportional segments', (WidgetTester tester) async {
     final children = <int, Widget>{};
-    children[0] = const SizedBox(width: 50, height: 30);
+    children[0] = const SizedBox(width: .fixed(50), height: .fixed(30));
     children[1] = const SizedBox();
-    children[2] = const SizedBox(width: 100, height: 30);
+    children[2] = const SizedBox(width: .fixed(100), height: .fixed(30));
 
     await tester.pumpWidget(
       boilerplate(
@@ -1132,7 +1132,7 @@ void main() {
       onTapDown: (TapDownDetails details) {
         tapDownDetails = details;
       },
-      child: const SizedBox(width: 200, height: 200),
+      child: const SizedBox(width: .fixed(200), height: .fixed(200)),
     );
     children[1] = const Text('Child 2');
 
@@ -1168,7 +1168,7 @@ void main() {
       onTapDown: (TapDownDetails details) {
         tapDownDetails = details;
       },
-      child: const SizedBox(width: 200, height: 200),
+      child: const SizedBox(width: .fixed(200), height: .fixed(200)),
     );
     children[1] = const Text('Child 2');
 
@@ -1300,7 +1300,7 @@ void main() {
     const children = <int, Widget>{
       0: Text('Child 1', maxLines: 1),
       1: Text('wiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiide Child 2', maxLines: 1),
-      2: SizedBox(height: 400),
+      2: SizedBox(height: .fixed(400)),
     };
 
     await tester.pumpWidget(
@@ -1776,7 +1776,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 10,
+            width: const .fixed(10),
             child: CupertinoSlidingSegmentedControl<int>(
               key: key,
               children: children,
@@ -1838,7 +1838,7 @@ void main() {
         child: ListView(
           controller: scrollController,
           children: <Widget>[
-            const SizedBox(height: 100),
+            const SizedBox(height: .fixed(100)),
             boilerplate(
               builder: (BuildContext context) {
                 return CupertinoSlidingSegmentedControl<int>(
@@ -1848,7 +1848,7 @@ void main() {
                 );
               },
             ),
-            const SizedBox(height: 1000),
+            const SizedBox(height: .fixed(1000)),
           ],
         ),
       ),

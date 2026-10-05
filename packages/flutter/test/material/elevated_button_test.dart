@@ -687,7 +687,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox.square(
-          dimension: 100,
+          dimension: const .fixed(100),
           child: ElevatedButton(
             autofocus: true,
             onPressed: () {},
@@ -713,7 +713,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox.square(
-          dimension: 100,
+          dimension: const .fixed(100),
           child: ElevatedButton(
             focusNode: focusNode,
             onHover: (bool value) {
@@ -743,7 +743,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: ElevatedButton(
               onPressed: enabled ? () {} : null,
               onHover: (bool value) {
@@ -1016,7 +1016,7 @@ void main() {
             child: ElevatedButton(
               key: key,
               style: style,
-              child: const SizedBox(width: 50.0, height: 8.0),
+              child: const SizedBox(width: .fixed(50.0), height: .fixed(8.0)),
               onPressed: () {},
             ),
           ),
@@ -1306,7 +1306,7 @@ void main() {
               0,
             ).resolve(textDirection);
 
-            expect(paddingWidget.padding.resolve(textDirection), expectedPadding);
+            expect(paddingWidget.padding.value.resolve(textDirection), expectedPadding);
 
             // Measure padding in terms of the difference between the button and its label child
             // and check that.
@@ -1397,7 +1397,7 @@ void main() {
     final Padding paddingWidget = tester.widget<Padding>(
       find.descendant(of: find.byType(ElevatedButton), matching: find.byType(Padding)),
     );
-    expect(paddingWidget.padding, const EdgeInsets.symmetric(horizontal: 12));
+    expect(paddingWidget.padding.value, const EdgeInsets.symmetric(horizontal: 12));
   });
 
   testWidgets('Override ElevatedButton default padding', (WidgetTester tester) async {
@@ -1427,7 +1427,7 @@ void main() {
     final Padding paddingWidget = tester.widget<Padding>(
       find.descendant(of: find.byType(ElevatedButton), matching: find.byType(Padding)),
     );
-    expect(paddingWidget.padding, const EdgeInsets.all(22));
+    expect(paddingWidget.padding.value, const EdgeInsets.all(22));
   });
 
   testWidgets('M3 ElevatedButton has correct padding', (WidgetTester tester) async {
@@ -1446,7 +1446,7 @@ void main() {
     final Padding paddingWidget = tester.widget<Padding>(
       find.descendant(of: find.byKey(key), matching: find.byType(Padding)),
     );
-    expect(paddingWidget.padding, const EdgeInsets.symmetric(horizontal: 24));
+    expect(paddingWidget.padding.value, const EdgeInsets.symmetric(horizontal: 24));
   });
 
   testWidgets('M3 ElevatedButton.icon has correct padding', (WidgetTester tester) async {
@@ -1470,7 +1470,7 @@ void main() {
     final Padding paddingWidget = tester.widget<Padding>(
       find.descendant(of: find.byKey(key), matching: find.byType(Padding)),
     );
-    expect(paddingWidget.padding, const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 0.0));
+    expect(paddingWidget.padding.value, const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 0.0));
   });
 
   testWidgets('Elevated buttons animate elevation before color on disable', (
@@ -1680,7 +1680,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: 200,
+            width: const .fixed(200),
             child: ElevatedButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.add),
@@ -1709,13 +1709,13 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: 200,
+            width: const .fixed(200),
             child: ElevatedButton.icon(
               key: buttonKey,
               style: style,
               onPressed: () {},
-              icon: SizedBox(key: iconKey, width: 50, height: 100),
-              label: SizedBox(key: labelKey, width: 50, height: 100),
+              icon: SizedBox(key: iconKey, width: const .fixed(50), height: const .fixed(100)),
+              label: SizedBox(key: labelKey, width: const .fixed(50), height: const .fixed(100)),
             ),
           ),
         ),
@@ -2141,13 +2141,13 @@ void main() {
           style: ElevatedButton.styleFrom(
             backgroundBuilder: (BuildContext context, Set<WidgetState> states, Widget? child) {
               return DecoratedBox(
-                decoration: const BoxDecoration(color: backgroundColor),
+                decoration: const .fixed(BoxDecoration(color: backgroundColor)),
                 child: child,
               );
             },
             foregroundBuilder: (BuildContext context, Set<WidgetState> states, Widget? child) {
               return DecoratedBox(
-                decoration: const BoxDecoration(color: foregroundColor),
+                decoration: const .fixed(BoxDecoration(color: foregroundColor)),
                 child: child,
               );
             },
@@ -2159,7 +2159,7 @@ void main() {
     );
 
     BoxDecoration boxDecorationOf(Finder finder) {
-      return tester.widget<DecoratedBox>(finder).decoration as BoxDecoration;
+      return tester.widget<DecoratedBox>(finder).decoration.value as BoxDecoration;
     }
 
     final Finder decorations = find.descendant(
@@ -2190,10 +2190,14 @@ void main() {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundBuilder: (BuildContext context, Set<WidgetState> states, Widget? child) {
-                return const DecoratedBox(decoration: BoxDecoration(color: backgroundColor));
+                return const DecoratedBox(
+                  decoration: .fixed(BoxDecoration(color: backgroundColor)),
+                );
               },
               foregroundBuilder: (BuildContext context, Set<WidgetState> states, Widget? child) {
-                return const DecoratedBox(decoration: BoxDecoration(color: foregroundColor));
+                return const DecoratedBox(
+                  decoration: .fixed(BoxDecoration(color: foregroundColor)),
+                );
               },
             ),
             onPressed: () {},
@@ -2221,7 +2225,7 @@ void main() {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             foregroundBuilder: (BuildContext context, Set<WidgetState> states, Widget? child) {
-              return const DecoratedBox(decoration: BoxDecoration(color: foregroundColor));
+              return const DecoratedBox(decoration: .fixed(BoxDecoration(color: foregroundColor)));
             },
           ),
           onPressed: () {},

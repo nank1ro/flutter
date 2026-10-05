@@ -472,7 +472,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 400,
+            width: const .fixed(400),
             child: Builder(
               builder: (BuildContext context) {
                 localizations = WidgetsLocalizations.of(context);

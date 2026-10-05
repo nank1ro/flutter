@@ -22,9 +22,11 @@ const Color _redAccent400 = Color(0xFFFF1744);
 Widget _buildGoldenTest({required Color color, required BorderRadiusGeometry borderRadius}) {
   return RepaintBoundary(
     child: DecoratedBox(
-      decoration: ShapeDecoration(
-        color: color,
-        shape: ContinuousRectangleBorder(borderRadius: borderRadius),
+      decoration: .fixed(
+        ShapeDecoration(
+          color: color,
+          shape: ContinuousRectangleBorder(borderRadius: borderRadius),
+        ),
       ),
     ),
   );

@@ -763,7 +763,7 @@ void main() {
         minWidth: 0.0,
         height: 0.0,
         padding: const EdgeInsets.all(4.0),
-        child: const SizedBox(width: 8.0, height: 8.0),
+        child: const SizedBox(width: .fixed(8.0), height: .fixed(8.0)),
       ),
     );
     expect(tester.getSize(find.byType(MaterialButton)), const Size(16.0, 16.0));
@@ -774,7 +774,7 @@ void main() {
         minWidth: 18.0,
         height: 18.0,
         padding: const EdgeInsets.all(4.0),
-        child: const SizedBox(width: 8.0, height: 8.0),
+        child: const SizedBox(width: .fixed(8.0), height: .fixed(8.0)),
       ),
     );
     expect(tester.getSize(find.byType(MaterialButton)), const Size(18.0, 18.0));
@@ -792,7 +792,7 @@ void main() {
           child: Center(
             child: MaterialButton(
               key: key1,
-              child: const SizedBox(width: 50.0, height: 8.0),
+              child: const SizedBox(width: .fixed(50.0), height: .fixed(8.0)),
               onPressed: () {},
             ),
           ),
@@ -811,7 +811,7 @@ void main() {
           child: Center(
             child: MaterialButton(
               key: key2,
-              child: const SizedBox(width: 50.0, height: 8.0),
+              child: const SizedBox(width: .fixed(50.0), height: .fixed(8.0)),
               onPressed: () {},
             ),
           ),

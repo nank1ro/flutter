@@ -957,14 +957,14 @@ void main() {
     testWidgets('works with Padding around menu and overlay', (WidgetTester tester) async {
       await tester.pumpWidget(
         Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const .fixed(EdgeInsets.all(10.0)),
           child: MaterialApp(
             theme: ThemeData(useMaterial3: false),
             home: Material(
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const .fixed(EdgeInsets.all(12.0)),
                     child: Row(
                       children: <Widget>[
                         Expanded(
@@ -1023,7 +1023,7 @@ void main() {
     ) async {
       await tester.pumpWidget(
         Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const .fixed(EdgeInsets.all(10.0)),
           child: MaterialApp(
             theme: ThemeData(useMaterial3: false),
             home: Material(
@@ -1032,7 +1032,7 @@ void main() {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: const .fixed(EdgeInsets.all(12.0)),
                       child: Row(
                         children: <Widget>[
                           Expanded(
@@ -3283,7 +3283,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: 200,
+              width: const .fixed(200),
               child: MenuItemButton(
                 overflowAxis: Axis.vertical,
                 onPressed: () {},
@@ -3303,7 +3303,7 @@ void main() {
         return MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: constrainedLayout ? 200 : null,
+              width: .fixed(constrainedLayout ? 200 : null),
               child: MenuItemButton(
                 overflowAxis: overflowAxis,
                 onPressed: () {},
@@ -3378,7 +3378,9 @@ void main() {
     testWidgets('MenuItemButton can build when its child is null', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(body: SizedBox(width: 200, child: MenuItemButton())),
+          home: Scaffold(
+            body: SizedBox(width: .fixed(200), child: MenuItemButton()),
+          ),
         ),
       );
 
@@ -4032,7 +4034,11 @@ void main() {
                     MenuItemButton(onPressed: () {}, child: const Text('Button 1')),
                   ],
                   builder: (BuildContext context, MenuController controller, Widget? child) {
-                    return SizedBox(key: contentKey, width: 100, height: 100);
+                    return SizedBox(
+                      key: contentKey,
+                      width: const .fixed(100),
+                      height: const .fixed(100),
+                    );
                   },
                 ),
               ),
@@ -4135,7 +4141,11 @@ void main() {
                     MenuItemButton(onPressed: () {}, child: const Text('Button 1')),
                   ],
                   builder: (BuildContext context, MenuController controller, Widget? child) {
-                    return SizedBox(key: contentKey, width: 100, height: 100);
+                    return SizedBox(
+                      key: contentKey,
+                      width: const .fixed(100),
+                      height: const .fixed(100),
+                    );
                   },
                 ),
               ),
@@ -4196,11 +4206,11 @@ void main() {
                   ),
                   menuChildren: const <Widget>[
                     DecoratedBox(
-                      decoration: BoxDecoration(color: Colors.blue),
+                      decoration: .fixed(BoxDecoration(color: Colors.blue)),
                       child: Text('Text 1'),
                     ),
                     DecoratedBox(
-                      decoration: BoxDecoration(color: Colors.blue),
+                      decoration: .fixed(BoxDecoration(color: Colors.blue)),
                       child: Text('Text 2'),
                     ),
                   ],
@@ -5928,7 +5938,7 @@ void main() {
               // Different platforms have different default menu item heights.
               // To make the test consistent across platforms, use a fixed
               // height.
-              menuChildren: const <Widget>[SizedBox(height: 160)],
+              menuChildren: const <Widget>[SizedBox(height: .fixed(160))],
             ),
           ),
         ),
@@ -5970,7 +5980,7 @@ void main() {
               // Different platforms have different default menu item heights.
               // To make the test consistent across platforms, use a fixed
               // height.
-              menuChildren: const <Widget>[SizedBox(height: 160)],
+              menuChildren: const <Widget>[SizedBox(height: .fixed(160))],
             ),
           ),
         ),
@@ -6456,7 +6466,7 @@ void main() {
         MaterialApp(
           home: Material(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(minWidth: 400, minHeight: 400),
+              constraints: const .fixed(BoxConstraints(minWidth: 400, minHeight: 400)),
               child: Column(
                 children: <Widget>[
                   TextButton(
@@ -6817,7 +6827,7 @@ void main() {
               ),
               controller: controller,
               animated: true,
-              menuChildren: const <Widget>[SizedBox(height: 160)],
+              menuChildren: const <Widget>[SizedBox(height: .fixed(160))],
             ),
           ),
         ),
@@ -6847,9 +6857,9 @@ void main() {
           child: Center(
             child: MenuAnchor(
               controller: controller,
-              menuChildren: const <Widget>[SizedBox(width: 800, height: 24)],
+              menuChildren: const <Widget>[SizedBox(width: .fixed(800), height: .fixed(24))],
               builder: (BuildContext context, MenuController controller, Widget? child) {
-                return const SizedBox(width: 800, height: 24);
+                return const SizedBox(width: .fixed(800), height: .fixed(24));
               },
             ),
           ),
@@ -6873,9 +6883,9 @@ void main() {
             child: MenuAnchor(
               controller: controller,
               reservedPadding: reservedPadding,
-              menuChildren: const <Widget>[SizedBox(width: 800, height: 24)],
+              menuChildren: const <Widget>[SizedBox(width: .fixed(800), height: .fixed(24))],
               builder: (BuildContext context, MenuController controller, Widget? child) {
-                return const SizedBox(width: 800, height: 24);
+                return const SizedBox(width: .fixed(800), height: .fixed(24));
               },
             ),
           ),
@@ -6905,7 +6915,7 @@ void main() {
       MaterialApp(
         home: MenuAnchor(
           controller: controller,
-          menuChildren: const <Widget>[SizedBox(width: 800, height: 24)],
+          menuChildren: const <Widget>[SizedBox(width: .fixed(800), height: .fixed(24))],
         ),
       ),
     );
@@ -6918,7 +6928,7 @@ void main() {
         home: MenuAnchor(
           controller: controller,
           reservedPadding: reservedPadding,
-          menuChildren: const <Widget>[SizedBox(width: 800, height: 24)],
+          menuChildren: const <Widget>[SizedBox(width: .fixed(800), height: .fixed(24))],
         ),
       ),
     );

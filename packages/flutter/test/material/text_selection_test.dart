@@ -662,7 +662,7 @@ void main() {
                   height: 800,
                   width: 800,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 250),
+                    padding: const .fixed(EdgeInsets.symmetric(horizontal: 250)),
                     child: FittedBox(
                       child: materialTextSelectionControls.buildHandle(
                         context,
@@ -696,7 +696,7 @@ void main() {
                 height: 800,
                 width: 800,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 250),
+                  padding: const .fixed(EdgeInsets.symmetric(horizontal: 250)),
                   child: FittedBox(
                     child: materialTextSelectionControls.buildHandle(
                       context,
@@ -785,7 +785,7 @@ void main() {
               slivers: <Widget>[
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (_, int index) => index == 0 ? const TextField() : const SizedBox(height: 50),
+                    (_, int index) => index == 0 ? const TextField() : const SizedBox(height: .fixed(50)),
                     childCount: 200,
                     addAutomaticKeepAlives: false,
                   ),

@@ -56,7 +56,7 @@ class _SimpleExpansionPanelListTestWidgetState extends State<SimpleExpansionPane
           headerBuilder: (BuildContext context, bool isExpanded) {
             return Text(isExpanded ? 'B' : 'A', key: widget.firstPanelKey);
           },
-          body: const SizedBox(height: 100.0),
+          body: const SizedBox(height: .fixed(100.0)),
           canTapOnHeader: widget.canTapOnHeader,
           isExpanded: extendedState[0],
         ),
@@ -64,7 +64,7 @@ class _SimpleExpansionPanelListTestWidgetState extends State<SimpleExpansionPane
           headerBuilder: (BuildContext context, bool isExpanded) {
             return Text(isExpanded ? 'D' : 'C', key: widget.secondPanelKey);
           },
-          body: const SizedBox(height: 100.0),
+          body: const SizedBox(height: .fixed(100.0)),
           canTapOnHeader: widget.canTapOnHeader,
           isExpanded: extendedState[1],
         ),
@@ -127,7 +127,7 @@ void main() {
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return Text(isExpanded ? 'B' : 'A');
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
               ),
             ],
           ),
@@ -160,7 +160,7 @@ void main() {
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return Text(isExpanded ? 'B' : 'A');
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
                 isExpanded: true, // this is the addition
               ),
             ],
@@ -287,7 +287,7 @@ void main() {
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return Text(isExpanded ? 'B' : 'A');
                   },
-                  body: const SizedBox(height: 100.0),
+                  body: const SizedBox(height: .fixed(100.0)),
                   isExpanded: true,
                 ),
               ],
@@ -298,7 +298,7 @@ void main() {
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return Text(isExpanded ? 'D' : 'C');
                   },
-                  body: const SizedBox(height: 100.0),
+                  body: const SizedBox(height: .fixed(100.0)),
                   isExpanded: true,
                 ),
               ],
@@ -332,19 +332,22 @@ void main() {
                 ExpansionPanel(
                   headerBuilder: (BuildContext context, bool isExpanded) =>
                       const Placeholder(fallbackHeight: 12.0),
-                  body: const SizedBox(height: 100.0, child: Placeholder(fallbackHeight: 12.0)),
+                  body: const SizedBox(
+                    height: .fixed(100.0),
+                    child: Placeholder(fallbackHeight: 12.0),
+                  ),
                   isExpanded: a,
                 ),
                 ExpansionPanel(
                   headerBuilder: (BuildContext context, bool isExpanded) =>
                       const Placeholder(fallbackHeight: 12.0),
-                  body: const SizedBox(height: 100.0, child: Placeholder()),
+                  body: const SizedBox(height: .fixed(100.0), child: Placeholder()),
                   isExpanded: b,
                 ),
                 ExpansionPanel(
                   headerBuilder: (BuildContext context, bool isExpanded) =>
                       const Placeholder(fallbackHeight: 12.0),
-                  body: const SizedBox(height: 100.0, child: Placeholder()),
+                  body: const SizedBox(height: .fixed(100.0), child: Placeholder()),
                   isExpanded: c,
                 ),
               ],
@@ -464,21 +467,21 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'B' : 'A');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 0,
       ),
       ExpansionPanelRadio(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'D' : 'C');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 1,
       ),
       ExpansionPanelRadio(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'F' : 'E');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 2,
       ),
     ];
@@ -551,19 +554,19 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'B' : 'A');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
       ),
       ExpansionPanel(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'D' : 'C');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
       ),
       ExpansionPanel(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'F' : 'E');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
       ),
     ];
 
@@ -588,21 +591,21 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'B' : 'A');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 0,
       ),
       ExpansionPanelRadio(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'D' : 'C');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 1,
       ),
       ExpansionPanelRadio(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'F' : 'E');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 2,
       ),
     ];
@@ -652,21 +655,21 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'B' : 'A');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 0,
       ),
       ExpansionPanelRadio(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'D' : 'C');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 1,
       ),
       ExpansionPanelRadio(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'F' : 'E');
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 2,
       ),
     ];
@@ -730,7 +733,7 @@ void main() {
           headerBuilder: (BuildContext context, bool isExpanded) {
             return Text(isExpanded ? 'B' : 'A');
           },
-          body: const SizedBox(height: 100.0),
+          body: const SizedBox(height: .fixed(100.0)),
           value: 0,
         ),
         // bottomElement
@@ -738,7 +741,7 @@ void main() {
           headerBuilder: (BuildContext context, bool isExpanded) {
             return Text(isExpanded ? 'D' : 'C');
           },
-          body: const SizedBox(height: 100.0),
+          body: const SizedBox(height: .fixed(100.0)),
           value: 1,
         ),
       ];
@@ -818,21 +821,21 @@ void main() {
             headerBuilder: (BuildContext context, bool isExpanded) {
               return Text(isExpanded ? 'B' : 'A');
             },
-            body: const SizedBox(height: 100.0),
+            body: const SizedBox(height: .fixed(100.0)),
             value: 0,
           ),
           ExpansionPanelRadio(
             headerBuilder: (BuildContext context, bool isExpanded) {
               return Text(isExpanded ? 'D' : 'C');
             },
-            body: const SizedBox(height: 100.0),
+            body: const SizedBox(height: .fixed(100.0)),
             value: 1,
           ),
           ExpansionPanelRadio(
             headerBuilder: (BuildContext context, bool isExpanded) {
               return Text(isExpanded ? 'F' : 'E');
             },
-            body: const SizedBox(height: 100.0),
+            body: const SizedBox(height: .fixed(100.0)),
             value: 2,
           ),
         ],
@@ -850,21 +853,21 @@ void main() {
             headerBuilder: (BuildContext context, bool isExpanded) {
               return Text(isExpanded ? 'B' : 'A');
             },
-            body: const SizedBox(height: 100.0),
+            body: const SizedBox(height: .fixed(100.0)),
           ),
           ExpansionPanel(
             isExpanded: panelExpansionState[1],
             headerBuilder: (BuildContext context, bool isExpanded) {
               return Text(isExpanded ? 'D' : 'C');
             },
-            body: const SizedBox(height: 100.0),
+            body: const SizedBox(height: .fixed(100.0)),
           ),
           ExpansionPanel(
             isExpanded: panelExpansionState[2],
             headerBuilder: (BuildContext context, bool isExpanded) {
               return Text(isExpanded ? 'F' : 'E');
             },
-            body: const SizedBox(height: 100.0),
+            body: const SizedBox(height: .fixed(100.0)),
           ),
         ],
       );
@@ -958,21 +961,21 @@ void main() {
                         headerBuilder: (BuildContext context, bool isExpanded) {
                           return Text(isExpanded ? 'B' : 'A');
                         },
-                        body: const SizedBox(height: 100.0),
+                        body: const SizedBox(height: .fixed(100.0)),
                         value: 0,
                       ),
                       ExpansionPanelRadio(
                         headerBuilder: (BuildContext context, bool isExpanded) {
                           return Text(isExpanded ? 'D' : 'C');
                         },
-                        body: const SizedBox(height: 100.0),
+                        body: const SizedBox(height: .fixed(100.0)),
                         value: 1,
                       ),
                       ExpansionPanelRadio(
                         headerBuilder: (BuildContext context, bool isExpanded) {
                           return Text(isExpanded ? 'F' : 'E');
                         },
-                        body: const SizedBox(height: 100.0),
+                        body: const SizedBox(height: .fixed(100.0)),
                         value: 2,
                       ),
                     ],
@@ -1024,14 +1027,14 @@ void main() {
                           headerBuilder: (BuildContext context, bool isExpanded) {
                             return Text(isExpanded ? 'B' : 'A');
                           },
-                          body: const SizedBox(height: 100.0),
+                          body: const SizedBox(height: .fixed(100.0)),
                           isExpanded: panelExpansionState[0],
                         ),
                         ExpansionPanel(
                           headerBuilder: (BuildContext context, bool isExpanded) {
                             return Text(isExpanded ? 'D' : 'C');
                           },
-                          body: const SizedBox(height: 100.0),
+                          body: const SizedBox(height: .fixed(100.0)),
                           isExpanded: panelExpansionState[1],
                         ),
                       ],
@@ -1068,14 +1071,14 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return const Text('Expanded', key: expandedKey);
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         isExpanded: true,
       ),
       ExpansionPanel(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return const Text('Collapsed', key: collapsedKey);
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
       ),
     ];
 
@@ -1149,14 +1152,14 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return const Text('Expanded', key: expandedKey);
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         isExpanded: true,
       ),
       ExpansionPanel(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return const Text('Collapsed', key: collapsedKey);
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
       ),
     ];
 
@@ -1232,7 +1235,7 @@ void main() {
           return const Text('Expanded', key: expandedKey);
         },
         canTapOnHeader: true,
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         isExpanded: true,
       ),
       ExpansionPanel(
@@ -1240,7 +1243,7 @@ void main() {
           return const Text('Collapsed', key: collapsedKey);
         },
         canTapOnHeader: true,
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
       ),
     ];
 
@@ -1280,7 +1283,7 @@ void main() {
   testWidgets('Ensure canTapOnHeader is false by default', (WidgetTester tester) async {
     final expansionPanel = ExpansionPanel(
       headerBuilder: (BuildContext context, bool isExpanded) => const Text('Demo'),
-      body: const SizedBox(height: 100.0),
+      body: const SizedBox(height: .fixed(100.0)),
     );
 
     expect(expansionPanel.canTapOnHeader, isFalse);
@@ -1297,7 +1300,7 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'B' : 'A', key: firstPanelKey);
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 0,
         canTapOnHeader: true,
       ),
@@ -1305,7 +1308,7 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'D' : 'C', key: secondPanelKey);
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 1,
         canTapOnHeader: true,
       ),
@@ -1454,14 +1457,14 @@ void main() {
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'B' : 'A', key: firstPanelKey);
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 0,
       ),
       ExpansionPanelRadio(
         headerBuilder: (BuildContext context, bool isExpanded) {
           return Text(isExpanded ? 'D' : 'C', key: secondPanelKey);
         },
-        body: const SizedBox(height: 100.0),
+        body: const SizedBox(height: .fixed(100.0)),
         value: 1,
       ),
     ];
@@ -1652,7 +1655,7 @@ void main() {
     );
 
     final DecoratedBox decoratedBox = tester.widget(find.byType(DecoratedBox).last);
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
 
     // For the last DecoratedBox, we will have a Border.top with the provided dividerColor.
     expect(decoration.border!.top.color, dividerColor);
@@ -1670,14 +1673,14 @@ void main() {
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return Text(isExpanded ? 'B' : 'A', key: const Key('firstKey'));
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
                 value: 0,
               ),
               ExpansionPanelRadio(
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return Text(isExpanded ? 'D' : 'C', key: const Key('secondKey'));
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
                 value: 1,
               ),
             ],
@@ -1687,7 +1690,7 @@ void main() {
     );
 
     final DecoratedBox decoratedBox = tester.widget(find.byType(DecoratedBox).last);
-    final boxDecoration = decoratedBox.decoration as BoxDecoration;
+    final boxDecoration = decoratedBox.decoration.value as BoxDecoration;
 
     // For the last DecoratedBox, we will have a Border.top with the provided dividerColor.
     expect(boxDecoration.border!.top.color, dividerColor);
@@ -1771,14 +1774,14 @@ void main() {
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return Text(isExpanded ? 'B' : 'A', key: const Key('firstKey'));
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
                 value: 0,
               ),
               ExpansionPanelRadio(
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return Text(isExpanded ? 'D' : 'C', key: const Key('secondKey'));
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
                 value: 1,
               ),
             ],
@@ -1826,14 +1829,14 @@ void main() {
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return const Text('A');
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
               ),
               ExpansionPanel(
                 backgroundColor: secondPanelColor,
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return const Text('B');
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
               ),
             ],
           ),
@@ -1861,7 +1864,7 @@ void main() {
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return const Text('A');
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
                 value: 0,
               ),
               ExpansionPanelRadio(
@@ -1869,7 +1872,7 @@ void main() {
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return const Text('B');
                 },
-                body: const SizedBox(height: 100.0),
+                body: const SizedBox(height: .fixed(100.0)),
                 value: 1,
               ),
             ],

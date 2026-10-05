@@ -32,7 +32,7 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-              return SizedBox(height: 200.0, child: Text(item));
+              return SizedBox(height: const .fixed(200.0), child: Text(item));
             }).toList(),
           ),
         ),
@@ -64,11 +64,11 @@ void main() {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SizedBox(
-              width: 600.0,
+              width: const .fixed(600.0),
               child: ListView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-                  return SizedBox(height: 200.0, child: Text(item));
+                  return SizedBox(height: const .fixed(200.0), child: Text(item));
                 }).toList(),
               ),
             ),
@@ -101,7 +101,7 @@ void main() {
           child: ListView(
             reverse: true,
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -123,7 +123,7 @@ void main() {
           onRefresh: holdRefresh,
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -145,7 +145,7 @@ void main() {
           child: ListView(
             reverse: true,
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -166,7 +166,7 @@ void main() {
           onRefresh: refresh,
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -189,7 +189,7 @@ void main() {
           onRefresh: refresh,
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -211,7 +211,7 @@ void main() {
           onRefresh: refresh,
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -234,8 +234,8 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: const <Widget>[
-              SizedBox(height: 200.0, child: Text('X')),
-              SizedBox(height: 1000),
+              SizedBox(height: .fixed(200.0), child: Text('X')),
+              SizedBox(height: .fixed(1000)),
             ],
           ),
         ),
@@ -270,8 +270,8 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: const <Widget>[
-              SizedBox(height: 200.0, child: Text('X')),
-              SizedBox(height: 1000),
+              SizedBox(height: .fixed(200.0), child: Text('X')),
+              SizedBox(height: .fixed(1000)),
             ],
           ),
         ),
@@ -305,7 +305,7 @@ void main() {
           onRefresh: holdRefresh, // this one never returns
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -347,7 +347,7 @@ void main() {
           onRefresh: refresh,
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -390,7 +390,7 @@ void main() {
           onRefresh: refresh,
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const <Widget>[SizedBox(height: 200.0, child: Text('X'))],
+            children: const <Widget>[SizedBox(height: .fixed(200.0), child: Text('X'))],
           ),
         ),
       ),
@@ -434,7 +434,7 @@ void main() {
               controller: controller,
               physics: const AlwaysScrollableScrollPhysics(),
               children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-                return SizedBox(height: 200.0, child: Text(item));
+                return SizedBox(height: const .fixed(200.0), child: Text(item));
               }).toList(),
             ),
           ),
@@ -471,7 +471,7 @@ void main() {
       return ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-          return SizedBox(height: 200.0, child: Text(item));
+          return SizedBox(height: const .fixed(200.0), child: Text(item));
         }).toList(),
       );
     }
@@ -503,7 +503,7 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-              return SizedBox(height: 200.0, child: Text(item));
+              return SizedBox(height: const .fixed(200.0), child: Text(item));
             }).toList(),
           ),
         ),
@@ -524,7 +524,7 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-              return SizedBox(height: 200.0, child: Text(item));
+              return SizedBox(height: const .fixed(200.0), child: Text(item));
             }).toList(),
           ),
         ),
@@ -542,7 +542,7 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-              return SizedBox(height: 200.0, child: Text(item));
+              return SizedBox(height: const .fixed(200.0), child: Text(item));
             }).toList(),
           ),
         ),
@@ -560,7 +560,7 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-              return SizedBox(height: 200.0, child: Text(item));
+              return SizedBox(height: const .fixed(200.0), child: Text(item));
             }).toList(),
           ),
         ),
@@ -585,7 +585,7 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-              return SizedBox(height: 200.0, child: Text(item));
+              return SizedBox(height: const .fixed(200.0), child: Text(item));
             }).toList(),
           ),
         ),
@@ -615,8 +615,8 @@ void main() {
               controller: scrollController,
               physics: const AlwaysScrollableScrollPhysics(),
               children: const <Widget>[
-                SizedBox(height: 200.0, child: Text('X')),
-                SizedBox(height: 800.0, child: Text('Y')),
+                SizedBox(height: .fixed(200.0), child: Text('X')),
+                SizedBox(height: .fixed(800.0), child: Text('Y')),
               ],
             ),
           ),
@@ -650,8 +650,8 @@ void main() {
               controller: scrollController,
               physics: const AlwaysScrollableScrollPhysics(),
               children: const <Widget>[
-                SizedBox(height: 200.0, child: Text('X')),
-                SizedBox(height: 800.0, child: Text('Y')),
+                SizedBox(height: .fixed(200.0), child: Text('X')),
+                SizedBox(height: .fixed(800.0), child: Text('Y')),
               ],
             ),
           ),
@@ -685,8 +685,8 @@ void main() {
               controller: scrollController,
               physics: const AlwaysScrollableScrollPhysics(),
               children: const <Widget>[
-                SizedBox(height: 200.0, child: Text('X')),
-                SizedBox(height: 2000.0, child: Text('Y')),
+                SizedBox(height: .fixed(200.0), child: Text('X')),
+                SizedBox(height: .fixed(2000.0), child: Text('Y')),
               ],
             ),
           ),
@@ -719,8 +719,8 @@ void main() {
               controller: scrollController,
               physics: const AlwaysScrollableScrollPhysics(),
               children: const <Widget>[
-                SizedBox(height: 200.0, child: Text('X')),
-                SizedBox(height: 800.0, child: Text('Y')),
+                SizedBox(height: .fixed(200.0), child: Text('X')),
+                SizedBox(height: .fixed(800.0), child: Text('Y')),
               ],
             ),
           ),
@@ -753,8 +753,8 @@ void main() {
               controller: scrollController,
               physics: const AlwaysScrollableScrollPhysics(),
               children: const <Widget>[
-                SizedBox(height: 200.0, child: Text('X')),
-                SizedBox(height: 800.0, child: Text('Y')),
+                SizedBox(height: .fixed(200.0), child: Text('X')),
+                SizedBox(height: .fixed(800.0), child: Text('Y')),
               ],
             ),
           ),
@@ -786,8 +786,8 @@ void main() {
             controller: scrollController,
             physics: const AlwaysScrollableScrollPhysics(),
             children: const <Widget>[
-              SizedBox(height: 800.0, child: Text('X')),
-              SizedBox(height: 800.0, child: Text('Y')),
+              SizedBox(height: .fixed(800.0), child: Text('X')),
+              SizedBox(height: .fixed(800.0), child: Text('Y')),
             ],
           ),
         ),
@@ -812,7 +812,7 @@ void main() {
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
             children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-              return SizedBox(height: 200.0, child: Text(item));
+              return SizedBox(height: const .fixed(200.0), child: Text(item));
             }).toList(),
           ),
         ),
@@ -867,8 +867,8 @@ void main() {
                 reverse: true,
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: const <Widget>[
-                  SizedBox(height: 200.0, child: Text('X')),
-                  SizedBox(height: 800.0, child: Text('Y')),
+                  SizedBox(height: .fixed(200.0), child: Text('X')),
+                  SizedBox(height: .fixed(800.0), child: Text('Y')),
                 ],
               ),
             );
@@ -907,8 +907,8 @@ void main() {
                 reverse: true,
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: const <Widget>[
-                  SizedBox(height: 200.0, child: Text('X')),
-                  SizedBox(height: 800.0, child: Text('Y')),
+                  SizedBox(height: .fixed(200.0), child: Text('X')),
+                  SizedBox(height: .fixed(800.0), child: Text('Y')),
                 ],
               ),
             );
@@ -951,7 +951,8 @@ void main() {
             reverse: true,
             physics: const BouncingScrollPhysics(),
             children: <Widget>[
-              for (int i = 0; i < 4; i++) SizedBox(height: 200.0, child: Text('X - $i')),
+              for (int i = 0; i < 4; i++)
+                SizedBox(height: const .fixed(200.0), child: Text('X - $i')),
             ],
           ),
         ),
@@ -997,7 +998,7 @@ void main() {
                 child: ListView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-                    return SizedBox(height: 200.0, child: Text(item));
+                    return SizedBox(height: const .fixed(200.0), child: Text(item));
                   }).toList(),
                 ),
               );
@@ -1045,7 +1046,7 @@ void main() {
                 child: ListView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-                    return SizedBox(height: 200.0, child: Text(item));
+                    return SizedBox(height: const .fixed(200.0), child: Text(item));
                   }).toList(),
                 ),
               );
@@ -1097,7 +1098,7 @@ void main() {
             child: ListView(
               physics: const AlwaysScrollableScrollPhysics(),
               children: <String>['A', 'B', 'C', 'D', 'E', 'F'].map<Widget>((String item) {
-                return SizedBox(height: 200.0, child: Text(item));
+                return SizedBox(height: const .fixed(200.0), child: Text(item));
               }).toList(),
             ),
           ),

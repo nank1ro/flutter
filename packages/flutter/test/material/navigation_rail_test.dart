@@ -2646,9 +2646,9 @@ void main() {
       ),
     );
 
-    expect(firstItem.padding, defaultPadding);
-    expect(secondItem.padding, secondItemPadding);
-    expect(thirdItem.padding, thirdItemPadding);
+    expect(firstItem.padding.value, defaultPadding);
+    expect(secondItem.padding.value, secondItemPadding);
+    expect(thirdItem.padding.value, thirdItemPadding);
   });
 
   testWidgets(
@@ -2707,9 +2707,9 @@ void main() {
         ),
       );
 
-      expect(firstItem.padding, defaultPadding);
-      expect(secondItem.padding, secondItemPadding);
-      expect(thirdItem.padding, thirdItemPadding);
+      expect(firstItem.padding.value, defaultPadding);
+      expect(secondItem.padding.value, secondItemPadding);
+      expect(thirdItem.padding.value, thirdItemPadding);
     },
   );
 
@@ -2769,9 +2769,9 @@ void main() {
       ),
     );
 
-    expect(firstItem.padding, defaultPadding);
-    expect(secondItem.padding, secondItemPadding);
-    expect(thirdItem.padding, thirdItemPadding);
+    expect(firstItem.padding.value, defaultPadding);
+    expect(secondItem.padding.value, secondItemPadding);
+    expect(thirdItem.padding.value, thirdItemPadding);
   });
 
   testWidgets(
@@ -3702,17 +3702,17 @@ void main() {
     final Finder transformFinder = find
         .descendant(of: find.byType(NavigationIndicator), matching: find.byType(Transform))
         .last;
-    Matrix4 transform = tester.widget<Transform>(transformFinder).transform;
+    Matrix4 transform = tester.widget<Transform>(transformFinder).transform.value;
     expect(transform.getColumn(0)[0], 0.0);
 
     selectedIndex = 1;
     await buildWidget();
     await tester.pump(const Duration(milliseconds: 100));
-    transform = tester.widget<Transform>(transformFinder).transform;
+    transform = tester.widget<Transform>(transformFinder).transform.value;
     expect(transform.getColumn(0)[0], closeTo(0.9705023956298828, precisionErrorTolerance));
 
     await tester.pump(const Duration(milliseconds: 100));
-    transform = tester.widget<Transform>(transformFinder).transform;
+    transform = tester.widget<Transform>(transformFinder).transform.value;
     expect(transform.getColumn(0)[0], 1.0);
   });
 
@@ -3943,7 +3943,7 @@ void main() {
               body: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: 140.0,
+                    width: const .fixed(140.0),
                     child: NavigationRail(
                       selectedIndex: 1,
                       extended: true,
@@ -3992,7 +3992,7 @@ void main() {
                   children: <Widget>[
                     // Set NavigationRail height with 100
                     SizedBox(
-                      height: 100,
+                      height: const .fixed(100),
                       child: NavigationRail(
                         selectedIndex: 0,
                         scrollable: true,
@@ -4046,13 +4046,13 @@ void main() {
                 body: Row(
                   children: <Widget>[
                     SizedBox(
-                      width: 140.0,
+                      width: const .fixed(140.0),
                       child: NavigationRail(
                         selectedIndex: 0,
                         extended: true,
                         groupAlignment: 0.0,
-                        leading: const SizedBox(key: leadingKey, height: 50),
-                        trailing: const SizedBox(key: trailingKey, height: 50),
+                        leading: const SizedBox(key: leadingKey, height: .fixed(50)),
+                        trailing: const SizedBox(key: trailingKey, height: .fixed(50)),
                         destinations: const <NavigationRailDestination>[
                           NavigationRailDestination(icon: Icon(Icons.favorite), label: Text('Abc')),
                           NavigationRailDestination(icon: Icon(Icons.bookmark), label: Text('Def')),
@@ -4101,15 +4101,15 @@ void main() {
               body: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: 140.0,
+                    width: const .fixed(140.0),
                     child: NavigationRail(
                       selectedIndex: 0,
                       extended: true,
                       groupAlignment: 0.0,
                       leadingAtTop: false,
                       trailingAtBottom: true,
-                      leading: const SizedBox(key: leadingKey, height: 50),
-                      trailing: const SizedBox(key: trailingKey, height: 50),
+                      leading: const SizedBox(key: leadingKey, height: .fixed(50)),
+                      trailing: const SizedBox(key: trailingKey, height: .fixed(50)),
                       destinations: const <NavigationRailDestination>[
                         NavigationRailDestination(icon: Icon(Icons.favorite), label: Text('Abc')),
                         NavigationRailDestination(icon: Icon(Icons.bookmark), label: Text('Def')),

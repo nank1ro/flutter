@@ -15,12 +15,16 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 300.0,
+            dimension: const .fixed(300.0),
             child: CupertinoPicker(
               itemExtent: 50.0,
               onSelectedItemChanged: (_) {},
               children: List<Widget>.generate(3, (int index) {
-                return SizedBox(height: 50.0, width: 300.0, child: Text(index.toString()));
+                return SizedBox(
+                  height: const .fixed(50.0),
+                  width: const .fixed(300.0),
+                  child: Text(index.toString()),
+                );
               }),
             ),
           ),

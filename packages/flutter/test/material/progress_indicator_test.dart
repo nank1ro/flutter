@@ -36,7 +36,7 @@ void main() {
           child: const Directionality(
             textDirection: TextDirection.ltr,
             child: Center(
-              child: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.0)),
+              child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.0)),
             ),
           ),
         ),
@@ -56,7 +56,9 @@ void main() {
           data: theme,
           child: const Directionality(
             textDirection: TextDirection.rtl,
-            child: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator())),
+            child: Center(
+              child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator()),
+            ),
           ),
         ),
       );
@@ -74,7 +76,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 200.0,
+              width: .fixed(200.0),
               child: LinearProgressIndicator(value: 0.25, minHeight: 2.0),
             ),
           ),
@@ -96,7 +98,9 @@ void main() {
         ),
         child: const Directionality(
           textDirection: TextDirection.ltr,
-          child: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.25))),
+          child: Center(
+            child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.25)),
+          ),
         ),
       ),
     );
@@ -114,7 +118,9 @@ void main() {
         data: theme,
         child: const Directionality(
           textDirection: TextDirection.ltr,
-          child: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.25))),
+          child: Center(
+            child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.25)),
+          ),
         ),
       ),
     );
@@ -135,7 +141,9 @@ void main() {
         data: theme,
         child: const Directionality(
           textDirection: TextDirection.rtl,
-          child: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.25))),
+          child: Center(
+            child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.25)),
+          ),
         ),
       ),
     );
@@ -156,7 +164,9 @@ void main() {
         data: theme,
         child: const Directionality(
           textDirection: TextDirection.ltr,
-          child: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator())),
+          child: Center(
+            child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator()),
+          ),
         ),
       ),
     );
@@ -184,7 +194,9 @@ void main() {
         data: theme,
         child: const Directionality(
           textDirection: TextDirection.rtl,
-          child: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator())),
+          child: Center(
+            child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator()),
+          ),
         ),
       ),
     );
@@ -209,7 +221,9 @@ void main() {
   testWidgets('LinearProgressIndicator with colors', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.25))),
+        home: Center(
+          child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.25)),
+        ),
       ),
     );
 
@@ -232,7 +246,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 200.0,
+              width: .fixed(200.0),
               child: LinearProgressIndicator(
                 value: 0.25,
                 backgroundColor: Colors.black,
@@ -261,7 +275,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 200.0,
+              width: .fixed(200.0),
               child: LinearProgressIndicator(
                 value: 0.25,
                 backgroundColor: Colors.black,
@@ -290,7 +304,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 200.0,
+              width: .fixed(200.0),
               child: LinearProgressIndicator(value: 0.25, backgroundColor: Colors.black),
             ),
           ),
@@ -318,7 +332,9 @@ void main() {
         ),
         child: const Directionality(
           textDirection: TextDirection.ltr,
-          child: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.25))),
+          child: Center(
+            child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.25)),
+          ),
         ),
       ),
     );
@@ -342,7 +358,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 200.0,
+              width: .fixed(200.0),
               child: LinearProgressIndicator(
                 value: 0.25,
                 valueColor: AlwaysStoppedAnimation<Color?>(null),
@@ -549,8 +565,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 100.0,
-              height: 4.0,
+              width: .fixed(100.0),
+              height: .fixed(4.0),
               child: LinearProgressIndicator(
                 value: 0.25,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -582,7 +598,10 @@ void main() {
       MaterialApp(
         home: Material(
           child: Center(
-            child: SizedBox(width: 200, child: LinearProgressIndicator(controller: controller)),
+            child: SizedBox(
+              width: const .fixed(200),
+              child: LinearProgressIndicator(controller: controller),
+            ),
           ),
         ),
       ),
@@ -757,7 +776,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 200.0,
+              width: .fixed(200.0),
               child: RefreshProgressIndicator(strokeCap: StrokeCap.round),
             ),
           ),
@@ -777,7 +796,9 @@ void main() {
           data: theme,
           child: const Directionality(
             textDirection: TextDirection.ltr,
-            child: Center(child: SizedBox(width: 200.0, child: RefreshProgressIndicator())),
+            child: Center(
+              child: SizedBox(width: .fixed(200.0), child: RefreshProgressIndicator()),
+            ),
           ),
         ),
       );
@@ -876,8 +897,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 100.0,
-              height: 12.0,
+              width: .fixed(100.0),
+              height: .fixed(12.0),
               child: LinearProgressIndicator(value: 0.25),
             ),
           ),
@@ -902,7 +923,11 @@ void main() {
         child: const Directionality(
           textDirection: TextDirection.ltr,
           child: Center(
-            child: SizedBox(width: 100.0, height: 3.0, child: LinearProgressIndicator(value: 0.25)),
+            child: SizedBox(
+              width: .fixed(100.0),
+              height: .fixed(3.0),
+              child: LinearProgressIndicator(value: 0.25),
+            ),
           ),
         ),
       ),
@@ -923,7 +948,11 @@ void main() {
         child: const Directionality(
           textDirection: TextDirection.ltr,
           child: Center(
-            child: SizedBox(width: 100.0, height: 4.0, child: LinearProgressIndicator(value: 0.25)),
+            child: SizedBox(
+              width: .fixed(100.0),
+              height: .fixed(4.0),
+              child: LinearProgressIndicator(value: 0.25),
+            ),
           ),
         ),
       ),
@@ -1099,7 +1128,7 @@ void main() {
           data: ThemeData(useMaterial3: false),
           child: const Directionality(
             textDirection: TextDirection.ltr,
-            child: Padding(padding: EdgeInsets.all(4), child: CircularProgressIndicator()),
+            child: Padding(padding: .fixed(EdgeInsets.all(4)), child: CircularProgressIndicator()),
           ),
         ),
       ),
@@ -1124,7 +1153,7 @@ void main() {
           data: ThemeData(),
           child: const Directionality(
             textDirection: TextDirection.ltr,
-            child: Padding(padding: EdgeInsets.all(4), child: CircularProgressIndicator()),
+            child: Padding(padding: .fixed(EdgeInsets.all(4)), child: CircularProgressIndicator()),
           ),
         ),
       ),
@@ -1311,8 +1340,8 @@ void main() {
           .last,
     );
     expect(material.elevation, 2.0);
-    expect(padding.padding, const EdgeInsets.all(4.0));
-    expect(innerPadding.padding, const EdgeInsets.all(12.0));
+    expect(padding.padding.value, const EdgeInsets.all(4.0));
+    expect(innerPadding.padding.value, const EdgeInsets.all(12.0));
 
     // With values provided.
     const testElevation = 1.0;
@@ -1345,8 +1374,8 @@ void main() {
           .last,
     );
     expect(material.elevation, testElevation);
-    expect(padding.padding, testIndicatorMargin);
-    expect(innerPadding.padding, testIndicatorPadding);
+    expect(padding.padding.value, testIndicatorMargin);
+    expect(innerPadding.padding.value, testIndicatorPadding);
   });
 
   testWidgets('LinearProgressIndicator default stop indicator when year2023 is false', (
@@ -1357,7 +1386,7 @@ void main() {
         textDirection: textDirection,
         child: const Center(
           child: SizedBox(
-            width: 200.0,
+            width: .fixed(200.0),
             child: LinearProgressIndicator(year2023: false, value: 0.5),
           ),
         ),
@@ -1394,7 +1423,7 @@ void main() {
           child: Directionality(
             textDirection: textDirection,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 50)),
               child: Center(
                 child: ValueListenableBuilder<double>(
                   valueListenable: value,
@@ -1456,7 +1485,7 @@ void main() {
           child: Directionality(
             textDirection: textDirection,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 50)),
               child: Center(child: LinearProgressIndicator(year2023: false, trackGap: trackGap)),
             ),
           ),
@@ -1498,7 +1527,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 200.0,
+            width: const .fixed(200.0),
             child: LinearProgressIndicator(year2023: false, value: value),
           ),
         ),
@@ -1532,7 +1561,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 200.0,
+            width: const .fixed(200.0),
             child: LinearProgressIndicator(
               year2023: false,
               stopIndicatorColor: stopIndicatorColor,
@@ -1583,7 +1612,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 200.0,
+            width: const .fixed(200.0),
             child: LinearProgressIndicator(
               year2023: false,
               stopIndicatorRadius: stopIndicatorRadius,
@@ -1620,7 +1649,7 @@ void main() {
         textDirection: textDirection,
         child: const Center(
           child: SizedBox(
-            width: 200.0,
+            width: .fixed(200.0),
             child: LinearProgressIndicator(year2023: false, value: 0.5),
           ),
         ),
@@ -1684,7 +1713,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 200.0,
+            width: const .fixed(200.0),
             child: LinearProgressIndicator(year2023: false, trackGap: trackGap, value: 0.5),
           ),
         ),
@@ -1945,7 +1974,7 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox.square(
-              dimension: 200.0,
+              dimension: const .fixed(200.0),
               child: AnimatedBuilder(
                 animation: controller,
                 builder: (BuildContext context, Widget? child) {

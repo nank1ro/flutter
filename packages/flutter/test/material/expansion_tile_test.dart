@@ -113,13 +113,13 @@ void main() {
       expect(getHeight(topKey), getHeight(collapsedKey) - 2.0);
       expect(getHeight(topKey), getHeight(defaultKey) - 2.0);
 
-      var expandedContainerDecoration = getDecoratedBox(expandedKey).decoration as ShapeDecoration;
+      var expandedContainerDecoration = getDecoratedBox(expandedKey).decoration.value as ShapeDecoration;
       expect(expandedContainerDecoration.color, Colors.red);
       expect((expandedContainerDecoration.shape as Border).top.color, dividerColor);
       expect((expandedContainerDecoration.shape as Border).bottom.color, dividerColor);
 
       var collapsedContainerDecoration =
-          getDecoratedBox(collapsedKey).decoration as ShapeDecoration;
+          getDecoratedBox(collapsedKey).decoration.value as ShapeDecoration;
       expect(collapsedContainerDecoration.color, Colors.transparent);
       expect((collapsedContainerDecoration.shape as Border).top.color, Colors.transparent);
       expect((collapsedContainerDecoration.shape as Border).bottom.color, Colors.transparent);
@@ -133,7 +133,7 @@ void main() {
       // Pump to the middle of the animation for expansion.
       await tester.pump(const Duration(milliseconds: 100));
       final collapsingContainerDecoration =
-          getDecoratedBox(collapsedKey).decoration as ShapeDecoration;
+          getDecoratedBox(collapsedKey).decoration.value as ShapeDecoration;
       expect(collapsingContainerDecoration.color, Colors.transparent);
       expect(
         (collapsingContainerDecoration.shape as Border).top.color,
@@ -152,13 +152,13 @@ void main() {
       expect(getHeight(topKey), getHeight(defaultKey) - getHeight(tileKey) - 2.0);
 
       // Expanded should be collapsed now.
-      expandedContainerDecoration = getDecoratedBox(expandedKey).decoration as ShapeDecoration;
+      expandedContainerDecoration = getDecoratedBox(expandedKey).decoration.value as ShapeDecoration;
       expect(expandedContainerDecoration.color, Colors.transparent);
       expect((expandedContainerDecoration.shape as Border).top.color, Colors.transparent);
       expect((expandedContainerDecoration.shape as Border).bottom.color, Colors.transparent);
 
       // Collapsed should be expanded now.
-      collapsedContainerDecoration = getDecoratedBox(collapsedKey).decoration as ShapeDecoration;
+      collapsedContainerDecoration = getDecoratedBox(collapsedKey).decoration.value as ShapeDecoration;
       expect(collapsedContainerDecoration.color, Colors.transparent);
       expect((collapsedContainerDecoration.shape as Border).top.color, dividerColor);
       expect((collapsedContainerDecoration.shape as Border).bottom.color, dividerColor);
@@ -317,8 +317,8 @@ void main() {
               title: Text('title'),
               expandedAlignment: Alignment.centerLeft,
               children: <Widget>[
-                SizedBox(height: 100, width: 100),
-                SizedBox(height: 100, width: 80),
+                SizedBox(height: .fixed(100), width: .fixed(100)),
+                SizedBox(height: .fixed(100), width: .fixed(80)),
               ],
             ),
           ),
@@ -350,8 +350,8 @@ void main() {
                 title: Text('title'),
                 expandedAlignment: AlignmentDirectional.topEnd,
                 children: <Widget>[
-                  SizedBox(height: 100, width: 100),
-                  SizedBox(height: 100, width: 80),
+                  SizedBox(height: .fixed(100), width: .fixed(100)),
+                  SizedBox(height: .fixed(100), width: .fixed(80)),
                 ],
               ),
             ),
@@ -389,8 +389,8 @@ void main() {
               expandedAlignment: Alignment.centerRight,
               expandedCrossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 100, width: 100, key: child0Key),
-                SizedBox(height: 100, width: 80, key: child1Key),
+                SizedBox(height: .fixed(100), width: .fixed(100), key: child0Key),
+                SizedBox(height: .fixed(100), width: .fixed(80), key: child1Key),
               ],
             ),
           ),
@@ -439,8 +439,8 @@ void main() {
                 expandedAlignment: AlignmentDirectional.centerStart,
                 expandedCrossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
-                  SizedBox(height: 100, width: 100, key: child0Key),
-                  SizedBox(height: 100, width: 80, key: child1Key),
+                  SizedBox(height: .fixed(100), width: .fixed(100), key: child0Key),
+                  SizedBox(height: .fixed(100), width: .fixed(80), key: child1Key),
                 ],
               ),
             ),
@@ -508,8 +508,8 @@ void main() {
             child: ExpansionTile(
               title: Text('title'),
               children: <Widget>[
-                SizedBox(height: 100, width: 100),
-                SizedBox(height: 100, width: 80, key: child1Key),
+                SizedBox(height: .fixed(100), width: .fixed(100)),
+                SizedBox(height: .fixed(100), width: .fixed(80), key: child1Key),
               ],
             ),
           ),
@@ -540,7 +540,7 @@ void main() {
           child: Center(
             child: ExpansionTile(
               title: Text('title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -569,7 +569,7 @@ void main() {
             child: ExpansionTile(
               title: Text('title'),
               childrenPadding: EdgeInsets.fromLTRB(10, 8, 12, 4),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -603,7 +603,7 @@ void main() {
             title: Text('Title'),
             backgroundColor: backgroundColor,
             collapsedBackgroundColor: collapsedBackgroundColor,
-            children: <Widget>[SizedBox(height: 100, width: 100)],
+            children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
           ),
         ),
       ),
@@ -617,7 +617,7 @@ void main() {
                     matching: find.byType(DecoratedBox),
                   ),
                 )
-                .decoration
+                .decoration.value
             as ShapeDecoration;
 
     expect(shapeDecoration.color, collapsedBackgroundColor);
@@ -633,7 +633,7 @@ void main() {
                     matching: find.byType(DecoratedBox),
                   ),
                 )
-                .decoration
+                .decoration.value
             as ShapeDecoration;
 
     expect(shapeDecoration.color, backgroundColor);
@@ -649,7 +649,7 @@ void main() {
           child: ExpansionTile(
             title: TestText('title'),
             trailing: TestIcon(),
-            children: <Widget>[SizedBox(height: 100, width: 100)],
+            children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
           ),
         ),
       ),
@@ -686,7 +686,7 @@ void main() {
             collapsedTextColor: collapsedTextColor,
             title: TestText('title'),
             trailing: TestIcon(),
-            children: <Widget>[SizedBox(height: 100, width: 100)],
+            children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
           ),
         ),
       ),
@@ -949,7 +949,7 @@ void main() {
           home: Material(
             child: ExpansionTile(
               title: Text('Title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1032,7 +1032,7 @@ void main() {
           home: Material(
             child: ExpansionTile(
               title: Text('Title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1064,7 +1064,7 @@ void main() {
           home: Material(
             child: ExpansionTile(
               title: Text('Title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1212,7 +1212,7 @@ void main() {
                     collapsedIconColor: collapsedIconColor,
                     title: const TestText('title'),
                     trailing: const TestIcon(),
-                    children: const <Widget>[SizedBox(height: 100, width: 100)],
+                    children: const <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
                   ),
                   // This button is used to update the ExpansionTile properties.
                   FilledButton(
@@ -1306,7 +1306,7 @@ void main() {
                     iconColor: iconColor,
                     title: const TestText('title'),
                     trailing: const TestIcon(),
-                    children: const <Widget>[SizedBox(height: 100, width: 100)],
+                    children: const <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
                   ),
                   // This button is used to update the ExpansionTile properties.
                   FilledButton(
@@ -1391,7 +1391,7 @@ void main() {
               key: expansionTileKey,
               expansionAnimationStyle: animationStyle,
               title: const TestText('title'),
-              children: const <Widget>[SizedBox(height: 100, width: 100)],
+              children: const <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1536,7 +1536,7 @@ void main() {
         home: Material(
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              padding: .fixed(EdgeInsets.symmetric(horizontal: 24.0)),
               child: ExpansionTile(
                 key: expansionTileKey,
                 shape: shape,
@@ -1545,7 +1545,7 @@ void main() {
                 collapsedShape: collapsedShape,
                 title: TestText('title'),
                 trailing: TestIcon(),
-                children: <Widget>[SizedBox(height: 100, width: 100)],
+                children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
               ),
             ),
           ),
@@ -1622,7 +1622,7 @@ void main() {
             child: ExpansionTile(
               title: TestText('title'),
               trailing: TestIcon(),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1661,7 +1661,7 @@ void main() {
           home: const Material(
             child: Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                padding: .fixed(EdgeInsets.symmetric(horizontal: 24.0)),
                 child: ExpansionTile(
                   key: expansionTileKey,
                   shape: shape,
@@ -1670,7 +1670,7 @@ void main() {
                   collapsedShape: collapsedShape,
                   title: TestText('title'),
                   trailing: TestIcon(),
-                  children: <Widget>[SizedBox(height: 100, width: 100)],
+                  children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
                 ),
               ),
             ),
@@ -1915,7 +1915,7 @@ void main() {
             child: ExpansionTile(
               enabled: false,
               tilePadding: EdgeInsets.zero,
-              title: ColoredBox(color: Colors.red, child: Text('Title')),
+              title: ColoredBox(color: .fixed(Colors.red), child: Text('Title')),
               showTrailingIcon: false,
             ),
           ),
@@ -1940,7 +1940,7 @@ void main() {
             child: ExpansionTile(
               enabled: false,
               tilePadding: EdgeInsets.zero,
-              title: ColoredBox(color: Colors.red, child: Text('Title')),
+              title: ColoredBox(color: .fixed(Colors.red), child: Text('Title')),
               trailing: SizedBox.shrink(),
             ),
           ),

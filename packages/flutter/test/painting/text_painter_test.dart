@@ -1081,22 +1081,50 @@ void main() {
     painter.text = const TextSpan(
       text: text,
       children: <InlineSpan>[
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
         TextSpan(text: text),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
         TextSpan(text: text),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
-        WidgetSpan(child: SizedBox(width: 50, height: 30)),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(50), height: .fixed(30)),
+        ),
       ],
     );
 

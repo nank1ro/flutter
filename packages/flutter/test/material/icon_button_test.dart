@@ -2280,7 +2280,7 @@ void main() {
     final Padding paddingWidget1 = tester.widget<Padding>(
       find.descendant(of: find.byType(IconButton), matching: find.byType(Padding)),
     );
-    expect(paddingWidget1.padding, const EdgeInsets.all(20));
+    expect(paddingWidget1.padding.value, const EdgeInsets.all(20));
 
     // Use [IconButton.style]'s padding property to override default value.
     await tester.pumpWidget(
@@ -2301,7 +2301,7 @@ void main() {
     final Padding paddingWidget2 = tester.widget<Padding>(
       find.descendant(of: find.byType(IconButton), matching: find.byType(Padding)),
     );
-    expect(paddingWidget2.padding, const EdgeInsets.all(20));
+    expect(paddingWidget2.padding.value, const EdgeInsets.all(20));
 
     // [IconButton.style]'s padding will override [IconButton]'s padding if both
     // values are not null.
@@ -2324,7 +2324,7 @@ void main() {
     final Padding paddingWidget3 = tester.widget<Padding>(
       find.descendant(of: find.byType(IconButton), matching: find.byType(Padding)),
     );
-    expect(paddingWidget3.padding, const EdgeInsets.all(22));
+    expect(paddingWidget3.padding.value, const EdgeInsets.all(22));
   });
 
   testWidgets('Default IconButton is not selectable - M3', (WidgetTester tester) async {
@@ -3042,7 +3042,7 @@ void main() {
         home: Material(
           child: Center(
             child: ColoredBox(
-              color: const Color(0xFFFF0000),
+              color: const .fixed(Color(0xFFFF0000)),
               child: IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.favorite),

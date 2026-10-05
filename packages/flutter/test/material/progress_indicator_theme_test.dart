@@ -95,7 +95,9 @@ void main() {
       MaterialApp(
         theme: theme,
         home: const Scaffold(
-          body: Center(child: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.5))),
+          body: Center(
+            child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.5)),
+          ),
         ),
       ),
     );
@@ -155,7 +157,7 @@ void main() {
         home: const Scaffold(
           body: Center(
             child: SizedBox(
-              width: 200.0,
+              width: .fixed(200.0),
               child: LinearProgressIndicator(year2023: false, value: 0.5),
             ),
           ),
@@ -229,7 +231,7 @@ void main() {
                   stopIndicatorRadius: stopIndicatorRadius,
                   trackGap: trackGap,
                 ),
-                child: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.5)),
+                child: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.5)),
               ),
             ),
           ),
@@ -503,7 +505,7 @@ void main() {
         MaterialApp(
           theme: theme,
           home: const Scaffold(
-            body: SizedBox(width: 200.0, child: LinearProgressIndicator(value: 0.5)),
+            body: SizedBox(width: .fixed(200.0), child: LinearProgressIndicator(value: 0.5)),
           ),
         ),
       );
@@ -543,7 +545,10 @@ void main() {
       MaterialApp(
         theme: theme,
         home: const Scaffold(
-          body: SizedBox(width: 200.0, child: LinearProgressIndicator(year2023: true, value: 0.5)),
+          body: SizedBox(
+            width: .fixed(200.0),
+            child: LinearProgressIndicator(year2023: true, value: 0.5),
+          ),
         ),
       ),
     );
@@ -581,7 +586,7 @@ void main() {
               child: ProgressIndicatorTheme(
                 data: ProgressIndicatorThemeData(controller: indicatorThemeController),
                 child: SizedBox(
-                  width: 200.0,
+                  width: const .fixed(200.0),
                   child: LinearProgressIndicator(controller: widgetController),
                 ),
               ),
@@ -658,7 +663,7 @@ void main() {
               child: ProgressIndicatorTheme(
                 data: ProgressIndicatorThemeData(controller: indicatorThemeController),
                 child: SizedBox(
-                  width: 200.0,
+                  width: const .fixed(200.0),
                   child: CircularProgressIndicator(controller: widgetController),
                 ),
               ),

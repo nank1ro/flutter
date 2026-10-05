@@ -26,8 +26,8 @@ void main() {
     Widget listItemToWidget(String listItem) {
       return SizedBox(
         key: Key(listItem),
-        height: itemHeight,
-        width: itemHeight,
+        height: const .fixed(itemHeight),
+        width: const .fixed(itemHeight),
         child: Text(listItem),
       );
     }
@@ -46,7 +46,7 @@ void main() {
         home: Directionality(
           textDirection: textDirection,
           child: SizedBox.square(
-            dimension: itemHeight * 10,
+            dimension: const .fixed(itemHeight * 10),
             child: ReorderableListView(
               header: header,
               footer: footer,
@@ -80,7 +80,7 @@ void main() {
         final List<String> currentOriginalListItems = originalListItems.take(1).toList();
         await tester.pumpWidget(
           MaterialApp(
-            home: SizedBox(height: itemHeight * 10, child: reorderableListView),
+            home: SizedBox(height: const .fixed(itemHeight * 10), child: reorderableListView),
           ),
         );
         expect(currentListItems, orderedEquals(currentOriginalListItems));
@@ -181,14 +181,14 @@ void main() {
         final Widget reorderableListView = ReorderableListView(
           onReorderItem: (_, _) {},
           children: const <Widget>[
-            SizedBox(key: Key('Normal item'), height: itemHeight, child: Text('Normal item')),
-            SizedBox(key: Key('Tall item'), height: itemHeight * 2, child: Text('Tall item')),
-            SizedBox(key: Key('Last item'), height: itemHeight, child: Text('Last item')),
+            SizedBox(key: Key('Normal item'), height: .fixed(itemHeight), child: Text('Normal item')),
+            SizedBox(key: Key('Tall item'), height: .fixed(itemHeight * 2), child: Text('Tall item')),
+            SizedBox(key: Key('Last item'), height: .fixed(itemHeight), child: Text('Last item')),
           ],
         );
         await tester.pumpWidget(
           MaterialApp(
-            home: SizedBox(height: itemHeight * 10, child: reorderableListView),
+            home: SizedBox(height: const .fixed(itemHeight * 10), child: reorderableListView),
           ),
         );
 
@@ -277,7 +277,7 @@ void main() {
                       // Wrap the list in padding to test that the positioning
                       // is correct when the origin of the overlay is different
                       // from the list.
-                      return Padding(padding: const EdgeInsets.all(24), child: reorderableListView);
+                      return Padding(padding: const .fixed(EdgeInsets.all(24)), child: reorderableListView);
                     },
                   ),
                 ],
@@ -363,9 +363,9 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.ltr,
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: ReorderableListView(
-                  children: const <Widget>[SizedBox(key: firstBox, width: 10, height: 10)],
+                  children: const <Widget>[SizedBox(key: firstBox, width: .fixed(10), height: .fixed(10))],
                   onReorderItem: (_, _) {},
                 ),
               ),
@@ -386,9 +386,9 @@ void main() {
         addTearDown(primary.dispose);
         final Widget reorderableList = ReorderableListView(
           children: const <Widget>[
-            SizedBox(width: 100.0, height: 100.0, key: Key('C'), child: Text('C')),
-            SizedBox(width: 100.0, height: 100.0, key: Key('B'), child: Text('B')),
-            SizedBox(width: 100.0, height: 100.0, key: Key('A'), child: Text('A')),
+            SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('C'), child: Text('C')),
+            SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('B'), child: Text('B')),
+            SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('A'), child: Text('A')),
           ],
           onReorderItem: (_, _) {},
         );
@@ -397,7 +397,7 @@ void main() {
           return MaterialApp(
             home: PrimaryScrollController(
               controller: controller,
-              child: SizedBox(height: 100.0, width: 100.0, child: reorderableList),
+              child: SizedBox(height: const .fixed(100.0), width: const .fixed(100.0), child: reorderableList),
             ),
           );
         }
@@ -426,14 +426,14 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: SizedBox(
-                height: 150,
+                height: const .fixed(150),
                 child: ReorderableListView(
                   scrollController: customController,
                   onReorderItem: (_, _) {},
                   children: const <Widget>[
-                    SizedBox(width: 100.0, height: 100.0, key: firstBox, child: Text('C')),
-                    SizedBox(width: 100.0, height: 100.0, key: secondBox, child: Text('B')),
-                    SizedBox(width: 100.0, height: 100.0, key: thirdBox, child: Text('A')),
+                    SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: firstBox, child: Text('C')),
+                    SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: secondBox, child: Text('B')),
+                    SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: thirdBox, child: Text('A')),
                   ],
                 ),
               ),
@@ -516,9 +516,9 @@ void main() {
       ) async {
         final Widget reorderableList = ReorderableListView(
           children: const <Widget>[
-            SizedBox(width: 100.0, height: 100.0, key: Key('C'), child: Text('C')),
-            SizedBox(width: 100.0, height: 100.0, key: Key('B'), child: Text('B')),
-            SizedBox(width: 100.0, height: 100.0, key: Key('A'), child: Text('A')),
+            SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('C'), child: Text('C')),
+            SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('B'), child: Text('B')),
+            SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('A'), child: Text('A')),
           ],
           onReorderItem: (_, _) {},
         );
@@ -542,7 +542,7 @@ void main() {
             DefaultWidgetsLocalizations.delegate,
           ],
           child: SizedBox.square(
-            dimension: 100.0,
+            dimension: const .fixed(100.0),
             child: Directionality(textDirection: TextDirection.ltr, child: overlay),
           ),
         );
@@ -757,12 +757,12 @@ void main() {
             children: <Widget>[
               const SizedBox(
                 key: Key('List tile 1'),
-                height: itemHeight,
+                height: .fixed(itemHeight),
                 child: Text('List tile 1'),
               ),
               SizedBox(
                 key: const Key('Switch tile'),
-                height: itemHeight,
+                height: const .fixed(itemHeight),
                 child: Material(
                   child: SwitchListTile(
                     title: const Text('Switch tile'),
@@ -774,14 +774,14 @@ void main() {
               ),
               const SizedBox(
                 key: Key('List tile 2'),
-                height: itemHeight,
+                height: .fixed(itemHeight),
                 child: Text('List tile 2'),
               ),
             ],
           );
           await tester.pumpWidget(
             MaterialApp(
-              home: SizedBox(height: itemHeight * 10, child: reorderableListView),
+              home: SizedBox(height: const .fixed(itemHeight * 10), child: reorderableListView),
             ),
           );
 
@@ -844,7 +844,7 @@ void main() {
         final List<String> currentOriginalListItems = originalListItems.take(1).toList();
         await tester.pumpWidget(
           MaterialApp(
-            home: SizedBox(height: itemHeight * 10, child: reorderableListView),
+            home: SizedBox(height: const .fixed(itemHeight * 10), child: reorderableListView),
           ),
         );
         expect(currentListItems, orderedEquals(currentOriginalListItems));
@@ -959,14 +959,14 @@ void main() {
           scrollDirection: Axis.horizontal,
           onReorderItem: (_, _) {},
           children: const <Widget>[
-            SizedBox(key: Key('Normal item'), width: itemHeight, child: Text('Normal item')),
-            SizedBox(key: Key('Tall item'), width: itemHeight * 2, child: Text('Tall item')),
-            SizedBox(key: Key('Last item'), width: itemHeight, child: Text('Last item')),
+            SizedBox(key: Key('Normal item'), width: .fixed(itemHeight), child: Text('Normal item')),
+            SizedBox(key: Key('Tall item'), width: .fixed(itemHeight * 2), child: Text('Tall item')),
+            SizedBox(key: Key('Last item'), width: .fixed(itemHeight), child: Text('Last item')),
           ],
         );
         await tester.pumpWidget(
           MaterialApp(
-            home: SizedBox(width: itemHeight * 10, child: reorderableListView),
+            home: SizedBox(width: const .fixed(itemHeight * 10), child: reorderableListView),
           ),
         );
 
@@ -1056,7 +1056,7 @@ void main() {
                       // Wrap the list in padding to test that the positioning
                       // is correct when the origin of the overlay is different
                       // from the list.
-                      return Padding(padding: const EdgeInsets.all(24), child: reorderableListView);
+                      return Padding(padding: const .fixed(EdgeInsets.all(24)), child: reorderableListView);
                     },
                   ),
                 ],
@@ -1144,10 +1144,10 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.ltr,
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: ReorderableListView(
                   scrollDirection: Axis.horizontal,
-                  children: const <Widget>[SizedBox(key: firstBox, width: 10, height: 10)],
+                  children: const <Widget>[SizedBox(key: firstBox, width: .fixed(10), height: .fixed(10))],
                   onReorderItem: (_, _) {},
                 ),
               ),
@@ -1646,10 +1646,10 @@ void main() {
         const padding = EdgeInsets.fromLTRB(10, 20, 30, 40);
         const headerKey = Key('Header');
         const footerKey = Key('Footer');
-        const Widget verticalHeader = SizedBox(key: headerKey, height: 10);
-        const Widget horizontalHeader = SizedBox(key: headerKey, width: 10);
-        const Widget verticalFooter = SizedBox(key: footerKey, height: 10);
-        const Widget horizontalFooter = SizedBox(key: footerKey, width: 10);
+        const Widget verticalHeader = SizedBox(key: headerKey, height: .fixed(10));
+        const Widget horizontalHeader = SizedBox(key: headerKey, width: .fixed(10));
+        const Widget verticalFooter = SizedBox(key: footerKey, height: .fixed(10));
+        const Widget horizontalFooter = SizedBox(key: footerKey, width: .fixed(10));
 
         // Vertical Header
         await tester.pumpWidget(build(padding: padding, header: verticalHeader));
@@ -1839,14 +1839,14 @@ void main() {
       final Widget reorderableListView = ReorderableListView(
         onReorderItem: (_, _) {},
         children: const <Widget>[
-          SizedBox(key: Key('First item'), height: itemHeight, child: Text('First item')),
-          SizedBox(key: testItemKey, height: itemHeight, child: Text('Test item')),
-          SizedBox(key: Key('Last item'), height: itemHeight, child: Text('Last item')),
+          SizedBox(key: Key('First item'), height: .fixed(itemHeight), child: Text('First item')),
+          SizedBox(key: testItemKey, height: .fixed(itemHeight), child: Text('Test item')),
+          SizedBox(key: Key('Last item'), height: .fixed(itemHeight), child: Text('Last item')),
         ],
       );
       await tester.pumpWidget(
         MaterialApp(
-          home: SizedBox(height: itemHeight * 10, child: reorderableListView),
+          home: SizedBox(height: const .fixed(itemHeight * 10), child: reorderableListView),
         ),
       );
 
@@ -1946,7 +1946,7 @@ void main() {
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
                 key: ValueKey<int>(items[index]),
-                height: 100,
+                height: const .fixed(100),
                 child: ReorderableDragStartListener(
                   index: index,
                   child: Row(
@@ -2013,7 +2013,7 @@ void main() {
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
               key: ValueKey<int>(items[index]),
-              height: 100,
+              height: const .fixed(100),
               child: ReorderableDragStartListener(
                 index: index,
                 child: Row(
@@ -2081,7 +2081,7 @@ void main() {
       for (int index = 0; index < itemCount; index++)
         SizedBox(
           key: ValueKey<int>(index),
-          height: 100,
+          height: const .fixed(100),
           child: ReorderableDragStartListener(index: index, child: Text('item $index')),
         ),
     ];
@@ -2148,7 +2148,7 @@ void main() {
       for (int index = 0; index < itemCount; index++)
         SizedBox(
           key: ValueKey<int>(index),
-          height: 100,
+          height: const .fixed(100),
           child: ReorderableDragStartListener(index: index, child: Text('item $index')),
         ),
     ];
@@ -2241,7 +2241,7 @@ void main() {
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
               key: ValueKey<int>(items[index]),
-              height: 100,
+              height: const .fixed(100),
               child: ReorderableDragStartListener(
                 index: index,
                 child: Text('item ${items[index]}'),
@@ -2297,7 +2297,7 @@ void main() {
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
               key: ValueKey<int>(items[index]),
-              height: 100,
+              height: const .fixed(100),
               child: ReorderableDragStartListener(
                 index: index,
                 child: Text('item ${items[index]}'),
@@ -2378,9 +2378,9 @@ void main() {
   testWidgets('Throws an error if no overlay present', (WidgetTester tester) async {
     final Widget reorderableList = ReorderableListView(
       children: const <Widget>[
-        SizedBox(width: 100.0, height: 100.0, key: Key('C'), child: Text('C')),
-        SizedBox(width: 100.0, height: 100.0, key: Key('B'), child: Text('B')),
-        SizedBox(width: 100.0, height: 100.0, key: Key('A'), child: Text('A')),
+        SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('C'), child: Text('C')),
+        SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('B'), child: Text('B')),
+        SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: Key('A'), child: Text('A')),
       ],
       onReorderItem: (_, _) {},
     );
@@ -2391,7 +2391,7 @@ void main() {
         DefaultWidgetsLocalizations.delegate,
       ],
       child: SizedBox.square(
-        dimension: 100.0,
+        dimension: const .fixed(100.0),
         child: Directionality(textDirection: TextDirection.ltr, child: reorderableList),
       ),
     );
@@ -2429,7 +2429,7 @@ void main() {
         itemBuilder: (BuildContext context, int index) {
           return SizedBox(
             key: ValueKey<int>(numbers[index]),
-            height: 20 + numbers[index] * 10,
+            height: .fixed(20 + numbers[index] * 10),
             child: ReorderableDragStartListener(
               index: index,
               child: Text(numbers[index].toString()),
@@ -2460,7 +2460,7 @@ void main() {
                   return SizedBox(
                     key: ValueKey<int>(numbers[index]),
                     // children with different heights
-                    height: 20 + numbers[index] * 10,
+                    height: .fixed(20 + numbers[index] * 10),
                     child: ReorderableDragStartListener(
                       index: index,
                       child: Text(numbers[index].toString()),
@@ -2501,7 +2501,7 @@ void main() {
                   return SizedBox(
                     key: ValueKey<int>(numbers[index]),
                     // children with different heights
-                    height: 20 + numbers[index] * 10,
+                    height: .fixed(20 + numbers[index] * 10),
                     child: ReorderableDragStartListener(
                       index: index,
                       child: Text(numbers[index].toString()),
@@ -2509,7 +2509,7 @@ void main() {
                   );
                 },
                 itemCount: numbers.length,
-                prototypeItem: const SizedBox(height: 30, child: Text('3')),
+                prototypeItem: const SizedBox(height: .fixed(30), child: Text('3')),
                 onReorderItem: (_, _) {},
               );
             },
@@ -2794,7 +2794,7 @@ class _StatefulState extends State<_Stateful> {
   @override
   Widget build(BuildContext context) {
     return SizedBox.square(
-      dimension: 48.0,
+      dimension: const .fixed(48.0),
       child: Material(
         child: Checkbox(value: checked, onChanged: (bool? newValue) => checked = newValue),
       ),

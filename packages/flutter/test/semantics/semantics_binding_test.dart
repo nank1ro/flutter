@@ -108,7 +108,10 @@ void main() {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
-          child: Semantics(label: 'target', child: const SizedBox(width: 100.0, height: 50.0)),
+          child: Semantics(
+            label: 'target',
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(50.0)),
+          ),
         ),
       );
 
@@ -148,8 +151,11 @@ void main() {
           child: Align(
             alignment: Alignment.topLeft,
             child: Transform.translate(
-              offset: const Offset(40.0, 20.0),
-              child: Semantics(label: 'target', child: const SizedBox(width: 100.0, height: 50.0)),
+              offset: const .fixed(Offset(40.0, 20.0)),
+              child: Semantics(
+                label: 'target',
+                child: const SizedBox(width: .fixed(100.0), height: .fixed(50.0)),
+              ),
             ),
           ),
         ),

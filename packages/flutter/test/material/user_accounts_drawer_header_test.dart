@@ -138,8 +138,8 @@ void main() {
     Transform transformWidget = tester.firstWidget(findTransform);
 
     // Icon is right side up.
-    expect(transformWidget.transform.getRotation()[0], 1.0);
-    expect(transformWidget.transform.getRotation()[4], 1.0);
+    expect(transformWidget.transform.value.getRotation()[0], 1.0);
+    expect(transformWidget.transform.value.getRotation()[4], 1.0);
 
     await tester.tap(find.byType(Icon));
     await tester.pump();
@@ -151,8 +151,8 @@ void main() {
     transformWidget = tester.firstWidget(findTransform);
 
     // Icon has rotated 180 degrees.
-    expect(transformWidget.transform.getRotation()[0], -1.0);
-    expect(transformWidget.transform.getRotation()[4], -1.0);
+    expect(transformWidget.transform.value.getRotation()[0], -1.0);
+    expect(transformWidget.transform.value.getRotation()[4], -1.0);
 
     await tester.tap(find.byType(Icon));
     await tester.pump();
@@ -164,8 +164,8 @@ void main() {
     transformWidget = tester.firstWidget(findTransform);
 
     // Icon has rotated 180 degrees back to the original position.
-    expect(transformWidget.transform.getRotation()[0], 1.0);
-    expect(transformWidget.transform.getRotation()[4], 1.0);
+    expect(transformWidget.transform.value.getRotation()[0], 1.0);
+    expect(transformWidget.transform.value.getRotation()[4], 1.0);
   });
 
   // Regression test for https://github.com/flutter/flutter/issues/25801.
@@ -193,8 +193,8 @@ void main() {
     Transform transformWidget = tester.firstWidget(findTransform);
 
     // Icon is right side up.
-    expect(transformWidget.transform.getRotation()[0], 1.0);
-    expect(transformWidget.transform.getRotation()[4], 1.0);
+    expect(transformWidget.transform.value.getRotation()[0], 1.0);
+    expect(transformWidget.transform.value.getRotation()[4], 1.0);
 
     testSetState(() {});
     await tester.pump(const Duration(milliseconds: 10));
@@ -204,8 +204,8 @@ void main() {
     transformWidget = tester.firstWidget(findTransform);
 
     // Icon has not rotated.
-    expect(transformWidget.transform.getRotation()[0], 1.0);
-    expect(transformWidget.transform.getRotation()[4], 1.0);
+    expect(transformWidget.transform.value.getRotation()[0], 1.0);
+    expect(transformWidget.transform.value.getRotation()[4], 1.0);
   });
 
   testWidgets('UserAccountsDrawerHeader icon rotation test speeeeeedy', (
@@ -215,8 +215,8 @@ void main() {
     Transform transformWidget = tester.firstWidget(findTransform);
 
     // Icon is right side up.
-    expect(transformWidget.transform.getRotation()[0], 1.0);
-    expect(transformWidget.transform.getRotation()[4], 1.0);
+    expect(transformWidget.transform.value.getRotation()[0], 1.0);
+    expect(transformWidget.transform.value.getRotation()[4], 1.0);
 
     // Icon starts to rotate down.
     await tester.tap(find.byType(Icon));
@@ -247,8 +247,8 @@ void main() {
     transformWidget = tester.firstWidget(findTransform);
 
     // Icon has rotated 180 degrees back to the original position.
-    expect(transformWidget.transform.getRotation()[0], 1.0);
-    expect(transformWidget.transform.getRotation()[4], 1.0);
+    expect(transformWidget.transform.value.getRotation()[0], 1.0);
+    expect(transformWidget.transform.value.getRotation()[4], 1.0);
   });
 
   testWidgets('UserAccountsDrawerHeader icon color changes', (WidgetTester tester) async {

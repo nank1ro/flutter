@@ -24,7 +24,7 @@ void main() {
     return SliverList.builder(
       itemCount: testListLength,
       itemBuilder: (BuildContext context, int index) {
-        return SizedBox(height: 200.0, child: Center(child: Text(index.toString())));
+        return SizedBox(height: const .fixed(200.0), child: Center(child: Text(index.toString())));
       },
     );
   }
@@ -1827,7 +1827,7 @@ void main() {
             const CupertinoSliverRefreshControl(),
             SliverList.builder(
               itemCount: 20,
-              itemBuilder: (BuildContext context, int index) => const SizedBox(height: 100),
+              itemBuilder: (BuildContext context, int index) => const SizedBox(height: .fixed(100)),
             ),
           ],
         ),

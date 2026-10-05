@@ -160,7 +160,7 @@ void main() {
       final Finder coloredBoxFinder = find.byType(ColoredBox).last;
       expect(coloredBoxFinder, findsOneWidget);
       final ColoredBox coloredBox = tester.widget<ColoredBox>(coloredBoxFinder);
-      expect(coloredBox.color, Colors.pink);
+      expect(coloredBox.color.value, Colors.pink);
 
       await tester.pumpAndSettle();
       expect(find.text('page b'), findsOneWidget);
@@ -217,7 +217,7 @@ void main() {
       final Finder coloredBoxFinder = find.byType(ColoredBox).last;
       expect(coloredBoxFinder, findsOneWidget);
       final ColoredBox coloredBox = tester.widget<ColoredBox>(coloredBoxFinder);
-      expect(coloredBox.color, Colors.lightGreen);
+      expect(coloredBox.color.value, Colors.lightGreen);
 
       await tester.pumpAndSettle();
       expect(find.text('page b'), findsOneWidget);
@@ -370,7 +370,7 @@ void main() {
 
         void findColoredBox() {
           expect(
-            find.byWidgetPredicate((Widget w) => w is ColoredBox && w.color == Colors.lightGreen),
+            find.byWidgetPredicate((Widget w) => w is ColoredBox && w.color.value == Colors.lightGreen),
             findsNothing,
           );
         }
@@ -435,14 +435,14 @@ void main() {
       expect(find.text('page b'), findsNothing);
       ColoredBox coloredBox = tester.widget(find.byType(ColoredBox).last);
       expect(
-        coloredBox.color,
+        coloredBox.color.value,
         isNot(Colors.transparent),
       ); // Color is not transparent during animation.
 
       await tester.pump(const Duration(milliseconds: 801));
       expect(find.text('page b'), findsOneWidget);
       coloredBox = tester.widget(find.byType(ColoredBox).last);
-      expect(coloredBox.color, Colors.transparent); // Color is transparent during animation.
+      expect(coloredBox.color.value, Colors.transparent); // Color is transparent during animation.
     },
     variant: TargetPlatformVariant.only(TargetPlatform.android),
   );
@@ -545,14 +545,14 @@ void main() {
       expect(find.text('page b'), findsNothing);
       ColoredBox coloredBox = tester.widget(find.byType(ColoredBox).last);
       expect(
-        coloredBox.color,
+        coloredBox.color.value,
         isNot(Colors.transparent),
       ); // The color is not transparent during animation.
 
       await tester.pump(const Duration(milliseconds: 801));
       expect(find.text('page b'), findsOneWidget);
       coloredBox = tester.widget(find.byType(ColoredBox).last);
-      expect(coloredBox.color, Colors.transparent); // The color is transparent during animation.
+      expect(coloredBox.color.value, Colors.transparent); // The color is transparent during animation.
 
       await tester.pumpWidget(buildApp(const FadeUpwardsPageTransitionsBuilder()));
       await tester.pumpAndSettle();

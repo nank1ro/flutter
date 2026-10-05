@@ -318,7 +318,7 @@ void main() {
     );
 
     expect(
-      find.byWidgetPredicate((Widget widget) => widget is SizedBox && widget.height == 0),
+      find.byWidgetPredicate((Widget widget) => widget is SizedBox && widget.height?.value == 0),
       findsOneWidget,
     );
     await tester.tap(find.byIcon(Icons.skip_next));
@@ -326,7 +326,8 @@ void main() {
     expect(
       find.byWidgetPredicate(
         (Widget widget) =>
-            widget is SizedBox && widget.height == (rowsPerPage - (rowCount % rowsPerPage)) * 46.0,
+            widget is SizedBox &&
+            widget.height?.value == (rowsPerPage - (rowCount % rowsPerPage)) * 46.0,
       ),
       findsOneWidget,
     );
@@ -337,7 +338,7 @@ void main() {
     await tester.tap(find.byIcon(Icons.skip_previous));
     await tester.pump();
     expect(
-      find.byWidgetPredicate((Widget widget) => widget is SizedBox && widget.height == 0),
+      find.byWidgetPredicate((Widget widget) => widget is SizedBox && widget.height?.value == 0),
       findsOneWidget,
     );
     await tester.tap(find.byIcon(Icons.skip_next));
@@ -345,7 +346,8 @@ void main() {
     expect(
       find.byWidgetPredicate(
         (Widget widget) =>
-            widget is SizedBox && widget.height == (rowsPerPage - (rowCount % rowsPerPage)) * 46.0,
+            widget is SizedBox &&
+            widget.height?.value == (rowsPerPage - (rowCount % rowsPerPage)) * 46.0,
       ),
       findsOneWidget,
     );
@@ -357,7 +359,7 @@ void main() {
     await tester.pump();
 
     expect(
-      find.byWidgetPredicate((Widget widget) => widget is SizedBox && widget.height == 0),
+      find.byWidgetPredicate((Widget widget) => widget is SizedBox && widget.height?.value == 0),
       findsOneWidget,
     );
     await tester.tap(find.byIcon(Icons.skip_next));
@@ -365,7 +367,8 @@ void main() {
     expect(
       find.byWidgetPredicate(
         (Widget widget) =>
-            widget is SizedBox && widget.height == (rowsPerPage - (rowCount % rowsPerPage)) * 46.0,
+            widget is SizedBox &&
+            widget.height?.value == (rowsPerPage - (rowCount % rowsPerPage)) * 46.0,
       ),
       findsOneWidget,
     );
@@ -377,7 +380,7 @@ void main() {
     await tester.pump();
 
     expect(
-      find.byWidgetPredicate((Widget widget) => widget is SizedBox && widget.height == 0),
+      find.byWidgetPredicate((Widget widget) => widget is SizedBox && widget.height?.value == 0),
       findsOneWidget,
     );
     await tester.tap(find.byIcon(Icons.skip_next));
@@ -385,7 +388,8 @@ void main() {
     expect(
       find.byWidgetPredicate(
         (Widget widget) =>
-            widget is SizedBox && widget.height == (rowsPerPage - (rowCount % rowsPerPage)) * 46.0,
+            widget is SizedBox &&
+            widget.height?.value == (rowsPerPage - (rowCount % rowsPerPage)) * 46.0,
       ),
       findsOneWidget,
     );
@@ -584,7 +588,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 100.0,
+            width: const .fixed(100.0),
             child: PaginatedDataTable(
               header: const Text('HEADER'),
               source: source,
@@ -1357,7 +1361,7 @@ void main() {
       return Align(
         alignment: Alignment.topLeft,
         child: SizedBox(
-          width: 100,
+          width: const .fixed(100),
           child: PaginatedDataTable(
             controller: scrollController,
             header: const Text('Test table'),

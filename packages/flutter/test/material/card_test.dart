@@ -23,7 +23,7 @@ void main() {
 
     expect(material.clipBehavior, Clip.none);
     expect(material.elevation, 1.0);
-    expect(padding.padding, const EdgeInsets.all(4.0));
+    expect(padding.padding.value, const EdgeInsets.all(4.0));
     expect(material.color, colors.surfaceContainerLow);
     expect(material.shadowColor, colors.shadow);
     expect(
@@ -51,7 +51,7 @@ void main() {
 
     expect(material.clipBehavior, Clip.none);
     expect(material.elevation, 0.0);
-    expect(padding.padding, const EdgeInsets.all(4.0));
+    expect(padding.padding.value, const EdgeInsets.all(4.0));
     expect(material.color, colors.surfaceContainerHighest);
     expect(material.shadowColor, colors.shadow);
     expect(material.surfaceTintColor, Colors.transparent);
@@ -76,7 +76,7 @@ void main() {
 
     expect(material.clipBehavior, Clip.none);
     expect(material.elevation, 0.0);
-    expect(padding.padding, const EdgeInsets.all(4.0));
+    expect(padding.padding.value, const EdgeInsets.all(4.0));
     expect(material.color, colors.surface);
     expect(material.shadowColor, colors.shadow);
     expect(material.surfaceTintColor, Colors.transparent);

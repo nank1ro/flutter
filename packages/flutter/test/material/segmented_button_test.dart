@@ -1601,7 +1601,7 @@ void main() {
         home: Scaffold(
           body: Center(
             child: SizedBox(
-              width: double.infinity,
+              width: const .fixed(double.infinity),
               child: SegmentedButton<String>(
                 direction: Axis.vertical,
                 segments: const [

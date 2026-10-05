@@ -136,7 +136,10 @@ void main() {
           child: RepaintBoundary(
             child: CupertinoExpansionTile(
               title: Text('Title'),
-              child: SizedBox(height: 50.0, child: ColoredBox(color: Color(0xffff0000))),
+              child: SizedBox(
+                height: .fixed(50.0),
+                child: ColoredBox(color: .fixed(Color(0xffff0000))),
+              ),
             ),
           ),
         ),
@@ -183,7 +186,10 @@ void main() {
             child: CupertinoExpansionTile(
               title: Text('Title'),
               transitionMode: ExpansionTileTransitionMode.scroll,
-              child: SizedBox(height: 50.0, child: ColoredBox(color: Color(0xffff0000))),
+              child: SizedBox(
+                height: .fixed(50.0),
+                child: ColoredBox(color: .fixed(Color(0xffff0000))),
+              ),
             ),
           ),
         ),
@@ -224,12 +230,12 @@ void main() {
           children: <Widget>[
             const CupertinoExpansionTile(
               title: Text('First Expansion Tile'),
-              child: SizedBox(height: 50.0),
+              child: SizedBox(height: .fixed(50.0)),
             ),
             CupertinoExpansionTile(
               controller: controller,
               title: const Text('Second Expansion Tile'),
-              child: const SizedBox(height: 50.0),
+              child: const SizedBox(height: .fixed(50.0)),
             ),
           ],
         ),
@@ -273,12 +279,12 @@ void main() {
           children: <Widget>[
             const CupertinoExpansionTile(
               title: Text('First Expansion Tile'),
-              child: SizedBox(height: 100, width: 100),
+              child: SizedBox(height: .fixed(100), width: .fixed(100)),
             ),
             CupertinoExpansionTile(
               controller: controller,
               title: const Text('Second Expansion Tile'),
-              child: const SizedBox(height: 100, width: 100),
+              child: const SizedBox(height: .fixed(100), width: .fixed(100)),
             ),
           ],
         ),
@@ -331,12 +337,12 @@ void main() {
             children: <Widget>[
               const CupertinoExpansionTile(
                 title: Text('First Expansion Tile'),
-                child: SizedBox(height: 100, width: 100),
+                child: SizedBox(height: .fixed(100), width: .fixed(100)),
               ),
               CupertinoExpansionTile(
                 controller: controller,
                 title: const Text('Second Expansion Tile'),
-                child: const SizedBox(height: 100, width: 100),
+                child: const SizedBox(height: .fixed(100), width: .fixed(100)),
               ),
             ],
           ),

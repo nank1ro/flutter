@@ -50,7 +50,7 @@ void main() {
               controller: scrollController,
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: const SizedBox(width: 4000.0, height: 4000.0),
+                child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
               ),
             ),
           ),
@@ -140,7 +140,7 @@ void main() {
               controller: scrollController,
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: const SizedBox(width: 4000.0, height: 4000.0),
+                child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
               ),
             ),
           ),
@@ -240,7 +240,7 @@ void main() {
               controller: scrollController,
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: const SizedBox(width: 4000.0, height: 4000.0),
+                child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
               ),
             ),
           ),
@@ -278,7 +278,7 @@ void main() {
             controller: scrollController,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(width: 4000.0, height: 4000.0),
+              child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
             ),
           ),
         ),
@@ -331,7 +331,7 @@ void main() {
             controller: scrollController,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(width: 4000.0, height: 4000.0),
+              child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
             ),
           ),
         ),
@@ -398,7 +398,7 @@ void main() {
               controller: scrollController,
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: const SizedBox(width: 4000.0, height: 4000.0),
+                child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
               ),
             ),
           ),
@@ -502,7 +502,7 @@ void main() {
                 controller: scrollController,
                 child: SingleChildScrollView(
                   controller: scrollController,
-                  child: const SizedBox(width: 4000.0, height: 4000.0),
+                  child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
                 ),
               ),
             ),
@@ -680,7 +680,7 @@ void main() {
               controller: scrollController,
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: const SizedBox(width: 4000.0, height: 4000.0),
+                child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
               ),
             ),
           ),
