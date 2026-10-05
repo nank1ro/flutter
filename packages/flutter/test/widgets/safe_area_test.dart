@@ -256,11 +256,11 @@ void main() {
             offset: offset = ViewportOffset.fixed(0.0),
             slivers: <Widget>[
               const SliverToBoxAdapter(
-                child: SizedBox(width: 800.0, height: 100.0, child: Text('before')),
+                child: SizedBox(width: .fixed(800.0), height: .fixed(100.0), child: Text('before')),
               ),
               sliver,
               const SliverToBoxAdapter(
-                child: SizedBox(width: 800.0, height: 100.0, child: Text('after')),
+                child: SizedBox(width: .fixed(800.0), height: .fixed(100.0), child: Text('after')),
               ),
             ],
           ),
@@ -287,7 +287,7 @@ void main() {
           const SliverSafeArea(
             left: false,
             sliver: SliverToBoxAdapter(
-              child: SizedBox(width: 800.0, height: 100.0, child: Text('padded')),
+              child: SizedBox(width: .fixed(800.0), height: .fixed(100.0), child: Text('padded')),
             ),
           ),
         ),
@@ -307,7 +307,7 @@ void main() {
             top: false,
             minimum: EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 30.0),
             sliver: SliverToBoxAdapter(
-              child: SizedBox(width: 800.0, height: 100.0, child: Text('padded')),
+              child: SizedBox(width: .fixed(800.0), height: .fixed(100.0), child: Text('padded')),
             ),
           ),
         ),
@@ -328,7 +328,7 @@ void main() {
             sliver: SliverSafeArea(
               right: false,
               sliver: SliverToBoxAdapter(
-                child: SizedBox(width: 800.0, height: 100.0, child: Text('padded')),
+                child: SizedBox(width: .fixed(800.0), height: .fixed(100.0), child: Text('padded')),
               ),
             ),
           ),
@@ -348,7 +348,7 @@ void main() {
           left: false,
           bottom: false,
           sliver: SliverToBoxAdapter(
-            child: SizedBox(width: 800.0, height: 100.0, child: Text('padded')),
+            child: SizedBox(width: .fixed(800.0), height: .fixed(100.0), child: Text('padded')),
           ),
         ),
       );
@@ -375,7 +375,7 @@ void main() {
       right: false,
       bottom: false,
       sliver: SliverToBoxAdapter(
-        child: SizedBox(width: 800.0, height: 100.0, child: Text('padded')),
+        child: SizedBox(width: .fixed(800.0), height: .fixed(100.0), child: Text('padded')),
       ),
     );
     final properties = DiagnosticPropertiesBuilder();

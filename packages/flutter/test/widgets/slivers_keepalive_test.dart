@@ -434,7 +434,7 @@ class _SwitchingChildBuilderTest extends State<SwitchingChildBuilderTest> {
       textDirection: TextDirection.ltr,
       child: Center(
         child: SizedBox(
-          height: 100,
+          height: const .fixed(100),
           child: CustomScrollView(
             cacheExtent: 0,
             slivers: <Widget>[
@@ -467,7 +467,7 @@ class SwitchingChildListTest extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: Center(
         child: SizedBox(
-          height: 100,
+          height: const .fixed(100),
           child: CustomScrollView(
             cacheExtent: 0,
             slivers: <Widget>[
@@ -494,7 +494,7 @@ class SwitchingSliverListTest extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: Center(
         child: SizedBox(
-          height: 100,
+          height: const .fixed(100),
           child: CustomScrollView(
             cacheExtent: 0,
             slivers: <Widget>[SliverList.list(children: children)],

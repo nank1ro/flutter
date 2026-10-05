@@ -72,8 +72,8 @@ Widget _buildSliverConstrainedCrossAxis({
     textDirection: TextDirection.ltr,
     child: Center(
       child: SizedBox(
-        width: VIEWPORT_WIDTH,
-        height: VIEWPORT_HEIGHT,
+        width: const .fixed(VIEWPORT_WIDTH),
+        height: const .fixed(VIEWPORT_HEIGHT),
         child: CustomScrollView(
           scrollDirection: scrollDirection,
           slivers: <Widget>[

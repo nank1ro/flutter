@@ -57,8 +57,8 @@ void main() {
 
       expect(find.byWidget(childWidget), findsNothing);
       final shrinkBox = tester.firstWidget(find.byType(SizedBox)) as SizedBox;
-      expect(shrinkBox.width, 0);
-      expect(shrinkBox.height, 0);
+      expect(shrinkBox.width?.value, 0);
+      expect(shrinkBox.height?.value, 0);
 
       setContentSensitivityCompleter.complete();
 
@@ -116,8 +116,8 @@ void main() {
 
       expect(find.byWidget(childWidget), findsNothing);
       final shrinkBox = tester.firstWidget(find.byType(SizedBox)) as SizedBox;
-      expect(shrinkBox.width, 0);
-      expect(shrinkBox.height, 0);
+      expect(shrinkBox.width?.value, 0);
+      expect(shrinkBox.height?.value, 0);
 
       await tester.pump();
 

@@ -27,9 +27,11 @@ Future<void> main() async {
       Directionality(
         textDirection: TextDirection.ltr,
         child: DecoratedBox(
-          decoration: ShapeDecoration(
-            shape: Border.all(color: const Color(0xFFFFFFFF)) + Border.all(),
-            image: DecorationImage(image: image),
+          decoration: .fixed(
+            ShapeDecoration(
+              shape: Border.all(color: const Color(0xFFFFFFFF)) + Border.all(),
+              image: DecorationImage(image: image),
+            ),
           ),
         ),
       ),
@@ -46,9 +48,11 @@ Future<void> main() async {
   testWidgets('ShapeDecoration.color', (WidgetTester tester) async {
     await tester.pumpWidget(
       DecoratedBox(
-        decoration: ShapeDecoration(
-          shape: Border.all(color: const Color(0xFFFFFFFF)) + Border.all(),
-          color: const Color(0xFF0000FF),
+        decoration: .fixed(
+          ShapeDecoration(
+            shape: Border.all(color: const Color(0xFFFFFFFF)) + Border.all(),
+            color: const Color(0xFF0000FF),
+          ),
         ),
       ),
     );
@@ -75,7 +79,9 @@ Future<void> main() async {
       Directionality(
         textDirection: TextDirection.ltr,
         child: DecoratedBox(
-          decoration: ShapeDecoration(shape: TestBorder(log.add), color: const Color(0xFF00FF00)),
+          decoration: .fixed(
+            ShapeDecoration(shape: TestBorder(log.add), color: const Color(0xFF00FF00)),
+          ),
         ),
       ),
     );
@@ -92,9 +98,11 @@ Future<void> main() async {
       Directionality(
         textDirection: TextDirection.rtl,
         child: DecoratedBox(
-          decoration: ShapeDecoration(
-            shape: TestBorder(log.add),
-            image: DecorationImage(image: image),
+          decoration: .fixed(
+            ShapeDecoration(
+              shape: TestBorder(log.add),
+              image: DecorationImage(image: image),
+            ),
           ),
         ),
       ),
@@ -112,15 +120,17 @@ Future<void> main() async {
       const Directionality(
         textDirection: TextDirection.rtl,
         child: DecoratedBox(
-          decoration: ShapeDecoration(
-            gradient: RadialGradient(
-              focal: AlignmentDirectional.bottomCenter,
-              focalRadius: 5,
-              radius: 2,
-              colors: <Color>[Color(0xFFFF0000), Color(0xFF000000)],
-              stops: <double>[0.0, 0.4],
+          decoration: .fixed(
+            ShapeDecoration(
+              gradient: RadialGradient(
+                focal: AlignmentDirectional.bottomCenter,
+                focalRadius: 5,
+                radius: 2,
+                colors: <Color>[Color(0xFFFF0000), Color(0xFF000000)],
+                stops: <double>[0.0, 0.4],
+              ),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
             ),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
           ),
         ),
       ),

@@ -123,7 +123,7 @@ void main() {
             enabled: true,
             groupRegistry: registry,
             builder: (BuildContext context, ToggleableStateMixin state) {
-              return const SizedBox.square(dimension: 24);
+              return const SizedBox.square(dimension: .fixed(24));
             },
           ),
         ),
@@ -158,7 +158,7 @@ void main() {
             enabled: true,
             groupRegistry: registry,
             builder: (BuildContext context, ToggleableStateMixin state) {
-              return const SizedBox.square(dimension: 24);
+              return const SizedBox.square(dimension: .fixed(24));
             },
           ),
         ),

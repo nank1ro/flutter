@@ -21,7 +21,7 @@ void main() {
         child: ListView(
           controller: controller,
           children: kStates.map<Widget>((String state) {
-            return SizedBox(height: 200.0, child: Text(state));
+            return SizedBox(height: const .fixed(200.0), child: Text(state));
           }).toList(),
         ),
       ),
@@ -57,7 +57,7 @@ void main() {
           key: const Key('second'),
           controller: controller,
           children: kStates.map<Widget>((String state) {
-            return SizedBox(height: 200.0, child: Text(state));
+            return SizedBox(height: const .fixed(200.0), child: Text(state));
           }).toList(),
         ),
       ),
@@ -81,7 +81,7 @@ void main() {
           key: const Key('second'),
           controller: controller2,
           children: kStates.map<Widget>((String state) {
-            return SizedBox(height: 200.0, child: Text(state));
+            return SizedBox(height: const .fixed(200.0), child: Text(state));
           }).toList(),
         ),
       ),
@@ -109,7 +109,7 @@ void main() {
           controller: controller2,
           physics: const BouncingScrollPhysics(),
           children: kStates.map<Widget>((String state) {
-            return SizedBox(height: 200.0, child: Text(state));
+            return SizedBox(height: const .fixed(200.0), child: Text(state));
           }).toList(),
         ),
       ),
@@ -217,7 +217,7 @@ void main() {
               child: ListView(
                 controller: controller,
                 children: kStates.map<Widget>((String state) {
-                  return SizedBox(height: 200.0, child: Text(state));
+                  return SizedBox(height: const .fixed(200.0), child: Text(state));
                 }).toList(),
               ),
             ),
@@ -226,7 +226,7 @@ void main() {
               child: ListView(
                 controller: controller,
                 children: kStates.map<Widget>((String state) {
-                  return SizedBox(height: 200.0, child: Text(state));
+                  return SizedBox(height: const .fixed(200.0), child: Text(state));
                 }).toList(),
               ),
             ),
@@ -267,7 +267,7 @@ void main() {
               child: ListView(
                 controller: controller,
                 children: kStates.map<Widget>((String state) {
-                  return SizedBox(height: 200.0, child: Text(state));
+                  return SizedBox(height: const .fixed(200.0), child: Text(state));
                 }).toList(),
               ),
             ),
@@ -276,7 +276,7 @@ void main() {
               child: ListView(
                 controller: controller,
                 children: kStates.map<Widget>((String state) {
-                  return SizedBox(height: 200.0, child: Text(state));
+                  return SizedBox(height: const .fixed(200.0), child: Text(state));
                 }).toList(),
               ),
             ),
@@ -305,7 +305,7 @@ void main() {
         child: ListView(
           controller: controller,
           children: kStates.map<Widget>((String state) {
-            return SizedBox(height: 200.0, child: Text(state));
+            return SizedBox(height: const .fixed(200.0), child: Text(state));
           }).toList(),
         ),
       ),
@@ -338,7 +338,7 @@ void main() {
               key: UniqueKey(), // it's a different ListView every time
               controller: controller,
               children: List<Widget>.generate(50, (int index) {
-                return SizedBox(height: 100.0, child: Text('Item $index'));
+                return SizedBox(height: const .fixed(100.0), child: Text('Item $index'));
               }).toList(),
             ),
           ),
@@ -386,7 +386,7 @@ void main() {
         child: ListView(
           controller: controller,
           children: List<Widget>.generate(50, (int index) {
-            return SizedBox(height: 100.0, child: Text('Item $index'));
+            return SizedBox(height: const .fixed(100.0), child: Text('Item $index'));
           }).toList(),
         ),
       );

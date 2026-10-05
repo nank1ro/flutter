@@ -25,8 +25,8 @@ void main() {
       textDirection: TextDirection.ltr,
       child: Align(
         child: SizedBox(
-          height: 800.0,
-          width: 300.0, // forces the grid children to be 300..300
+          height: const .fixed(800.0),
+          width: const .fixed(300.0), // forces the grid children to be 300..300
           child: GridView.count(
             crossAxisCount: 1,
             padding: padding,
@@ -84,7 +84,7 @@ void main() {
         child: GridView.count(
           crossAxisCount: itemCount,
           children: List<Widget>.generate(itemCount, (int index) {
-            return SizedBox(height: 200.0, child: Text('item $index'));
+            return SizedBox(height: const .fixed(200.0), child: Text('item $index'));
           }),
         ),
       );

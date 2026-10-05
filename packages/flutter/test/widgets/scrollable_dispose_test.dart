@@ -48,7 +48,7 @@ void main() {
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: SizedBox(
-                  width: 500.0,
+                  width: const .fixed(500.0),
                   child: ListView.builder(
                     controller: controller,
                     itemBuilder: (BuildContext context, int index) {

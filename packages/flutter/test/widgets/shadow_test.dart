@@ -248,7 +248,7 @@ void main() {
             child: const PhysicalModel(
               elevation: 9.0,
               color: kCustomBlue,
-              child: SizedBox(height: 100.0, width: 100.0),
+              child: SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
             ),
           ),
         ),
@@ -283,7 +283,7 @@ void main() {
                 ),
               ),
               elevation: elevation,
-              child: const SizedBox(height: 100.0, width: 100.0),
+              child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
             ),
           ),
         ),

@@ -232,7 +232,10 @@ void main() {
             SliverFixedExtentList(
               itemExtent: 100.0,
               delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-                return ColoredBox(color: const Color(0xFF0000FF), child: Text(index.toString()));
+                return ColoredBox(
+                  color: const .fixed(Color(0xFF0000FF)),
+                  child: Text(index.toString()),
+                );
               }, childCount: 30),
             ),
           ],
@@ -265,7 +268,10 @@ void main() {
               itemExtent: 100.0,
               delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                 if (index > 3) {
-                  return ColoredBox(color: const Color(0xFF0000FF), child: Text(index.toString()));
+                  return ColoredBox(
+                    color: const .fixed(Color(0xFF0000FF)),
+                    child: Text(index.toString()),
+                  );
                 }
                 return null;
               }, childCount: 30),

@@ -310,7 +310,7 @@ void main() {
 
   testWidgets('Really small deficit double precision error', (WidgetTester tester) async {
     // Regression test for https://github.com/flutter/flutter/issues/27083
-    const cell = SizedBox(width: 16, height: 16);
+    const cell = SizedBox(width: .fixed(16), height: .fixed(16));
     await tester.pumpWidget(
       Directionality(
         textDirection: TextDirection.ltr,
@@ -326,12 +326,12 @@ void main() {
   });
 
   testWidgets('Calculating flex columns with small width deficit', (WidgetTester tester) async {
-    const cell = SizedBox(width: 1, height: 1);
+    const cell = SizedBox(width: .fixed(1), height: .fixed(1));
     // If the error is present, pumpWidget() will fail due to an unsatisfied
     // assertion during the layout phase.
     await tester.pumpWidget(
       ConstrainedBox(
-        constraints: BoxConstraints.tight(const Size(600, 800)),
+        constraints: .fixed(BoxConstraints.tight(const Size(600, 800))),
         child: Directionality(
           textDirection: TextDirection.ltr,
           child: Table(
@@ -931,14 +931,14 @@ void main() {
         children: const <TableRow>[
           TableRow(
             children: <Widget>[
-              SizedBox(height: 100, child: Text('A')),
-              SizedBox(height: 200, child: Text('B')),
+              SizedBox(height: .fixed(100), child: Text('A')),
+              SizedBox(height: .fixed(200), child: Text('B')),
             ],
           ),
           TableRow(
             children: <Widget>[
-              SizedBox(height: 200, child: Text('C')),
-              SizedBox(height: 300, child: Text('D')),
+              SizedBox(height: .fixed(200), child: Text('C')),
+              SizedBox(height: .fixed(300), child: Text('D')),
             ],
           ),
         ],
@@ -1039,18 +1039,18 @@ void main() {
             TableRow(
               children: <Widget>[
                 SizedBox(
-                  height: 20,
+                  height: .fixed(20),
                   child: OverflowBox(
                     maxHeight: double.infinity,
                     alignment: Alignment.topLeft,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        SizedBox(height: 10, child: Text('A')),
-                        SizedBox(height: 10, child: Text('B')),
+                        SizedBox(height: .fixed(10), child: Text('A')),
+                        SizedBox(height: .fixed(10), child: Text('B')),
                         // This Text's semantic rect top will be >= row's
                         // bottom (20).
-                        SizedBox(height: 10, child: Text('C')),
+                        SizedBox(height: .fixed(10), child: Text('C')),
                       ],
                     ),
                   ),

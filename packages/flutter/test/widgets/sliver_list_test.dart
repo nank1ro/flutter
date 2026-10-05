@@ -317,15 +317,16 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              height: 200,
+              height: const .fixed(200),
               child: ListView(
                 controller: controller,
                 children: <Widget>[
                   if (isShow)
-                    for (int i = 0; i < 20; i++) SizedBox(height: 50, child: Text('Tile $i')),
+                    for (int i = 0; i < 20; i++)
+                      SizedBox(height: const .fixed(50), child: Text('Tile $i')),
                   const SizedBox(), // Use this widget to occupy the position where the offset is 0 when rebuild
-                  const SizedBox(key: Key('key0'), height: 50.0),
-                  const SizedBox(key: Key('key1'), height: 50.0),
+                  const SizedBox(key: Key('key0'), height: .fixed(50.0)),
+                  const SizedBox(key: Key('key1'), height: .fixed(50.0)),
                 ],
               ),
             ),
@@ -387,7 +388,7 @@ Widget _buildSliverListRenderWidgetChild(List<String> items, ScrollController co
   return Directionality(
     textDirection: TextDirection.ltr,
     child: SizedBox(
-      height: 500,
+      height: const .fixed(500),
       child: CustomScrollView(
         controller: controller,
         slivers: <Widget>[
@@ -413,7 +414,7 @@ Widget _buildSliverList({
     textDirection: TextDirection.ltr,
     child: Center(
       child: SizedBox(
-        height: viewportHeight,
+        height: .fixed(viewportHeight),
         child: CustomScrollView(
           controller: controller,
           slivers: <Widget>[
@@ -422,7 +423,7 @@ Widget _buildSliverList({
                 (BuildContext context, int i) {
                   return SizedBox(
                     key: ValueKey<int>(items[i]),
-                    height: itemHeight,
+                    height: .fixed(itemHeight),
                     child: Text('Tile ${items[i]}'),
                   );
                 },
@@ -452,7 +453,7 @@ Widget _buildSliverListBuilder({
     textDirection: TextDirection.ltr,
     child: Center(
       child: SizedBox(
-        height: viewportHeight,
+        height: .fixed(viewportHeight),
         child: CustomScrollView(
           controller: controller,
           slivers: <Widget>[
@@ -460,7 +461,7 @@ Widget _buildSliverListBuilder({
               itemCount: itemCount,
               semanticIndexOffset: semanticIndexOffset,
               itemBuilder: (BuildContext context, int index) {
-                return SizedBox(height: itemHeight, child: Text('Tile $index'));
+                return SizedBox(height: .fixed(itemHeight), child: Text('Tile $index'));
               },
             ),
           ],

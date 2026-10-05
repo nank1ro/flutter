@@ -48,11 +48,11 @@ void main() {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             SizedBox(
-              height: 10.0,
+              height: const .fixed(10.0),
               child: Semantics(label: 'child1', textDirection: TextDirection.ltr, selected: true),
             ),
             SizedBox(
-              height: 10.0,
+              height: const .fixed(10.0),
               child: ExcludeSemantics(
                 child: Semantics(label: 'child1', textDirection: TextDirection.ltr, selected: true),
               ),
@@ -86,11 +86,11 @@ void main() {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             SizedBox(
-              height: 10.0,
+              height: const .fixed(10.0),
               child: Semantics(label: 'child1', textDirection: TextDirection.ltr, selected: true),
             ),
             SizedBox(
-              height: 10.0,
+              height: const .fixed(10.0),
               child: ExcludeSemantics(
                 excluding: false,
                 child: Semantics(label: 'child2', textDirection: TextDirection.ltr, selected: true),
@@ -138,11 +138,11 @@ void main() {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             SizedBox(
-              height: 10.0,
+              height: const .fixed(10.0),
               child: Semantics(label: 'child1', textDirection: TextDirection.ltr, selected: true),
             ),
             SizedBox(
-              height: 10.0,
+              height: const .fixed(10.0),
               child: ExcludeSemantics(
                 child: Semantics(label: 'child2', textDirection: TextDirection.ltr, selected: true),
               ),
@@ -176,11 +176,11 @@ void main() {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             SizedBox(
-              height: 10.0,
+              height: const .fixed(10.0),
               child: Semantics(label: 'child1', textDirection: TextDirection.ltr, selected: true),
             ),
             SizedBox(
-              height: 10.0,
+              height: const .fixed(10.0),
               child: ExcludeSemantics(
                 excluding: false,
                 child: Semantics(label: 'child2', textDirection: TextDirection.ltr, selected: true),

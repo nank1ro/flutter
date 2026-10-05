@@ -69,7 +69,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 100.0,
+            dimension: const .fixed(100.0),
             child: Stack(
               children: <Widget>[
                 PositionedTransition(

@@ -14,7 +14,7 @@ import 'widgets_app_tester.dart';
 
 List<Widget> children(int n) {
   return List<Widget>.generate(n, (int i) {
-    return SizedBox(height: 100.0, child: Text('$i'));
+    return SizedBox(height: const .fixed(100.0), child: Text('$i'));
   });
 }
 
@@ -226,7 +226,7 @@ void main() {
           controller: controller,
           children: List<Widget>.generate(30, (int i) {
             return SizedBox(
-              height: 100.0,
+              height: const .fixed(100.0),
               child: MouseRegion(
                 onHover: (PointerHoverEvent event) {
                   lastHovered = i;

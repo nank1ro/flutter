@@ -28,7 +28,7 @@ class TestSlider extends StatelessWidget {
       decreasedValue: '${((value - 0.1).clamp(0.0, 1.0) * 100).round()}%',
       onIncrease: () => onChanged((value + 0.1).clamp(0.0, 1.0)),
       onDecrease: () => onChanged((value - 0.1).clamp(0.0, 1.0)),
-      child: const SizedBox(width: 200, height: 36),
+      child: const SizedBox(width: .fixed(200), height: .fixed(36)),
     );
   }
 }

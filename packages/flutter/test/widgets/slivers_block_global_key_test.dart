@@ -38,7 +38,11 @@ Future<void> test(WidgetTester tester, double offset, List<int> keys) {
         slivers: <Widget>[
           SliverList.list(
             children: keys.map<Widget>((int key) {
-              return SizedBox(key: GlobalObjectKey(key), height: 100.0, child: GenerationText(key));
+              return SizedBox(
+                key: GlobalObjectKey(key),
+                height: const .fixed(100.0),
+                child: GenerationText(key),
+              );
             }).toList(),
           ),
         ],

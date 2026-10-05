@@ -773,7 +773,11 @@ void main() {
             manager: testManager,
             child: Focus(
               autofocus: true,
-              child: SizedBox(key: containerKey, width: 100, height: 100),
+              child: SizedBox(
+                key: containerKey,
+                width: const .fixed(100),
+                height: const .fixed(100),
+              ),
             ),
           ),
         ),
@@ -809,7 +813,11 @@ void main() {
             manager: testManager,
             child: Focus(
               autofocus: true,
-              child: SizedBox(key: containerKey, width: 100, height: 100),
+              child: SizedBox(
+                key: containerKey,
+                width: const .fixed(100),
+                height: const .fixed(100),
+              ),
             ),
           ),
         ),
@@ -845,7 +853,7 @@ void main() {
           },
           child: Shortcuts.manager(
             manager: testManager,
-            child: SizedBox(key: containerKey, width: 100, height: 100),
+            child: SizedBox(key: containerKey, width: const .fixed(100), height: const .fixed(100)),
           ),
         ),
       );
@@ -894,7 +902,11 @@ void main() {
               },
               child: Focus(
                 autofocus: true,
-                child: SizedBox(key: containerKey, width: 100, height: 100),
+                child: SizedBox(
+                  key: containerKey,
+                  width: const .fixed(100),
+                  height: const .fixed(100),
+                ),
               ),
             ),
           ),
@@ -938,7 +950,11 @@ void main() {
                 },
                 child: Focus(
                   autofocus: true,
-                  child: SizedBox(key: containerKey, width: 100, height: 100),
+                  child: SizedBox(
+                    key: containerKey,
+                    width: const .fixed(100),
+                    height: const .fixed(100),
+                  ),
                 ),
               ),
             ),
@@ -2284,7 +2300,10 @@ Widget activatorTester(
         activator: const TestIntent(),
         if (hasSecond) activator2: const TestIntent2(),
       },
-      child: const Focus(autofocus: true, child: SizedBox(width: 100, height: 100)),
+      child: const Focus(
+        autofocus: true,
+        child: SizedBox(width: .fixed(100), height: .fixed(100)),
+      ),
     ),
   );
 }

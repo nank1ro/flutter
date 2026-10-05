@@ -112,9 +112,21 @@ void main() {
   });
 
   testWidgets('key reparenting', (WidgetTester tester) async {
-    const Widget widget1 = SizedBox(key: ValueKey<String>('smol'), height: 10, width: 10);
-    const Widget widget2 = SizedBox(key: ValueKey<String>('big'), height: 100, width: 100);
-    const Widget nullWidget = SizedBox(key: ValueKey<String>('null'), height: 50, width: 50);
+    const Widget widget1 = SizedBox(
+      key: ValueKey<String>('smol'),
+      height: .fixed(10),
+      width: .fixed(10),
+    );
+    const Widget widget2 = SizedBox(
+      key: ValueKey<String>('big'),
+      height: .fixed(100),
+      width: .fixed(100),
+    );
+    const Widget nullWidget = SizedBox(
+      key: ValueKey<String>('null'),
+      height: .fixed(50),
+      width: .fixed(50),
+    );
 
     await tester.pumpWidget(
       buildWidget(topLeft: widget1, bottomRight: widget2, nullSlot: nullWidget),
@@ -171,9 +183,21 @@ void main() {
     experimentalLeakTesting: LeakTesting.settings
         .withIgnoredAll(), // leaking by design because of exception
     (WidgetTester tester) async {
-      const Widget widget1 = SizedBox(key: ValueKey<String>('widget 1'), height: 10, width: 10);
-      const Widget widget2 = SizedBox(key: ValueKey<String>('widget 1'), height: 100, width: 100);
-      const Widget widget3 = SizedBox(key: ValueKey<String>('widget 1'), height: 50, width: 50);
+      const Widget widget1 = SizedBox(
+        key: ValueKey<String>('widget 1'),
+        height: .fixed(10),
+        width: .fixed(10),
+      );
+      const Widget widget2 = SizedBox(
+        key: ValueKey<String>('widget 1'),
+        height: .fixed(100),
+        width: .fixed(100),
+      );
+      const Widget widget3 = SizedBox(
+        key: ValueKey<String>('widget 1'),
+        height: .fixed(50),
+        width: .fixed(50),
+      );
 
       await tester.pumpWidget(
         buildWidget(topLeft: widget1, bottomRight: widget2, nullSlot: widget3),
@@ -196,8 +220,8 @@ void main() {
   testWidgets('debugDescribeChildren', (WidgetTester tester) async {
     await tester.pumpWidget(
       buildWidget(
-        topLeft: const SizedBox(height: 100, width: 80),
-        bottomRight: const SizedBox(height: 120, width: 110),
+        topLeft: const SizedBox(height: .fixed(100), width: .fixed(80)),
+        bottomRight: const SizedBox(height: .fixed(120), width: .fixed(110)),
       ),
     );
 

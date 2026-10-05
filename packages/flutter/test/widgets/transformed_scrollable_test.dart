@@ -20,10 +20,10 @@ void main() {
     await tester.pumpWidget(
       TestWidgetsApp(
         home: Transform.scale(
-          scale: 2.0,
+          scale: const .fixed(2.0),
           child: Center(
             child: SizedBox(
-              width: 200,
+              width: const .fixed(200),
               child: ListView.builder(
                 controller: controller,
                 cacheExtent: 0.0,
@@ -66,10 +66,10 @@ void main() {
     await tester.pumpWidget(
       TestWidgetsApp(
         home: Transform.scale(
-          scale: 0.5,
+          scale: const .fixed(0.5),
           child: Center(
             child: SizedBox(
-              width: 200,
+              width: const .fixed(200),
               child: ListView.builder(
                 controller: controller,
                 cacheExtent: 0.0,
@@ -112,10 +112,10 @@ void main() {
     await tester.pumpWidget(
       TestWidgetsApp(
         home: Transform.rotate(
-          angle: math.pi / 2,
+          angle: const .fixed(math.pi / 2),
           child: Center(
             child: SizedBox(
-              width: 200,
+              width: const .fixed(200),
               child: ListView.builder(
                 controller: controller,
                 cacheExtent: 0.0,
@@ -154,12 +154,14 @@ void main() {
     await tester.pumpWidget(
       TestWidgetsApp(
         home: Transform(
-          transform: Matrix4.identity()
-            ..setEntry(3, 2, 0.001)
-            ..rotateX(math.pi / 4),
+          transform: .fixed(
+            Matrix4.identity()
+              ..setEntry(3, 2, 0.001)
+              ..rotateX(math.pi / 4),
+          ),
           child: Center(
             child: SizedBox(
-              width: 200,
+              width: const .fixed(200),
               child: ListView.builder(
                 controller: controller,
                 cacheExtent: 0.0,

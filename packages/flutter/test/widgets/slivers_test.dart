@@ -23,11 +23,11 @@ Future<void> test(WidgetTester tester, double offset, {double anchor = 0.0}) {
         anchor: anchor / 600.0,
         offset: viewportOffset,
         slivers: const <Widget>[
-          SliverToBoxAdapter(child: SizedBox(height: 400.0)),
-          SliverToBoxAdapter(child: SizedBox(height: 400.0)),
-          SliverToBoxAdapter(child: SizedBox(height: 400.0)),
-          SliverToBoxAdapter(child: SizedBox(height: 400.0)),
-          SliverToBoxAdapter(child: SizedBox(height: 400.0)),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(400.0))),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(400.0))),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(400.0))),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(400.0))),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(400.0))),
         ],
       ),
     ),
@@ -77,7 +77,7 @@ Widget _buildIndexedTapTarget({required int index, required VoidCallback onTap})
     behavior: HitTestBehavior.opaque,
     onTap: onTap,
     child: ColoredBox(
-      color: index.isEven ? _debugEvenColor : _debugOddColor,
+      color: .fixed(index.isEven ? _debugEvenColor : _debugOddColor),
       child: Text('Index $index'),
     ),
   );
@@ -87,7 +87,7 @@ Widget _buildTapTarget({required String label, required Color color, required Vo
   return GestureDetector(
     behavior: HitTestBehavior.opaque,
     onTap: onTap,
-    child: ColoredBox(color: color, child: Text(label)),
+    child: ColoredBox(color: .fixed(color), child: Text(label)),
   );
 }
 
@@ -212,17 +212,17 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox(
-          width: 44.4,
-          height: 60.0,
+          width: const .fixed(44.4),
+          height: const .fixed(60.0),
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: CustomScrollView(
               slivers: <Widget>[
                 SliverList.list(
                   children: const <Widget>[
-                    SizedBox(height: 22.2, child: Text('TOP')),
-                    SizedBox(height: 22.2),
-                    SizedBox(height: 22.2),
+                    SizedBox(height: .fixed(22.2), child: Text('TOP')),
+                    SizedBox(height: .fixed(22.2)),
+                    SizedBox(height: .fixed(22.2)),
                   ],
                 ),
                 SliverFixedExtentList.list(
@@ -239,9 +239,9 @@ void main() {
                 ),
                 SliverList.list(
                   children: const <Widget>[
-                    SizedBox(height: 22.2),
-                    SizedBox(height: 22.2),
-                    SizedBox(height: 22.2, child: Text('BOTTOM')),
+                    SizedBox(height: .fixed(22.2)),
+                    SizedBox(height: .fixed(22.2)),
+                    SizedBox(height: .fixed(22.2), child: Text('BOTTOM')),
                   ],
                 ),
               ],
@@ -285,7 +285,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox.square(
-            dimension: 200,
+            dimension: const .fixed(200),
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: CustomScrollView(
@@ -468,7 +468,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 4,
+            dimension: const .fixed(4),
             child: CustomScrollView(
               slivers: <Widget>[
                 SliverGrid(
@@ -502,7 +502,7 @@ void main() {
     Widget buildItem(BuildContext context, int index) {
       return !skip || index.isEven
           ? SizedBox(
-              height: 96.0,
+              height: const .fixed(96.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text('item$index', style: const TextStyle(fontSize: 72)),
@@ -1046,7 +1046,7 @@ void main() {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const .fixed(EdgeInsets.all(8.0)),
                       child: Text('Lorem Ipsum $index'),
                     );
                   },
@@ -1151,7 +1151,7 @@ void main() {
     await tester.pumpWidget(
       TestWidgetsApp(
         home: SizedBox(
-          height: 200,
+          height: const .fixed(200),
           child: CustomScrollView(
             slivers: <Widget>[
               SliverFixedExtentList.builder(
@@ -1159,7 +1159,7 @@ void main() {
                 itemCount: 3,
                 semanticIndexOffset: 10,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 50, child: Text('Item $index'));
+                  return SizedBox(height: const .fixed(50), child: Text('Item $index'));
                 },
               ),
             ],
@@ -1626,7 +1626,7 @@ void main() {
                 itemExtent: 100.0,
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) =>
-                      SizedBox(height: 100.0, child: Text('Item $index')),
+                      SizedBox(height: const .fixed(100.0), child: Text('Item $index')),
                   childCount: 20,
                 ),
               ),

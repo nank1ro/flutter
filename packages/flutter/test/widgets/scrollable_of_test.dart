@@ -119,7 +119,10 @@ class TestChildState extends State<TestChild> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.square(dimension: 1000, child: Text(scrollable.axisDirection.toString()));
+    return SizedBox.square(
+      dimension: const .fixed(1000),
+      child: Text(scrollable.axisDirection.toString()),
+    );
   }
 }
 
@@ -142,7 +145,7 @@ void main() {
           log: (String s) {
             logValue = s;
           },
-          child: const SizedBox(height: 400.0),
+          child: const SizedBox(height: .fixed(400.0)),
         ),
       );
     }
@@ -180,7 +183,7 @@ void main() {
           notification = value;
           return false;
         },
-        child: const SingleChildScrollView(child: SizedBox(height: 1200.0)),
+        child: const SingleChildScrollView(child: SizedBox(height: .fixed(1200.0))),
       ),
     );
 
@@ -218,7 +221,7 @@ void main() {
                   context,
                   axis: Axis.horizontal,
                 );
-                return const SizedBox(height: 1200.0, width: 1200.0);
+                return const SizedBox(height: .fixed(1200.0), width: .fixed(1200.0));
               },
             ),
           ),

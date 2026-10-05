@@ -20,7 +20,10 @@ void main() {
               controller: controller,
               children: List<Widget>.generate(
                 10,
-                (int i) => SizedBox(height: listItemHeight, child: Text('Page$index-Item$i')),
+                (int i) => SizedBox(
+                  height: const .fixed(listItemHeight),
+                  child: Text('Page$index-Item$i'),
+                ),
               ).toList(),
             );
           },
@@ -80,7 +83,10 @@ void main() {
               controller: controller,
               children: List<Widget>.generate(
                 10,
-                (int i) => SizedBox(height: listItemHeight, child: Text('Page$index-Item$i')),
+                (int i) => SizedBox(
+                  height: const .fixed(listItemHeight),
+                  child: Text('Page$index-Item$i'),
+                ),
               ).toList(),
             );
           },

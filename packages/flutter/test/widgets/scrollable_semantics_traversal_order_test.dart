@@ -17,7 +17,7 @@ void main() {
 
     final listChildren = List<Widget>.generate(30, (int i) {
       return SizedBox(
-        height: 200.0,
+        height: const .fixed(200.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -167,7 +167,7 @@ void main() {
 
     final listChildren = List<Widget>.generate(30, (int i) {
       return SizedBox(
-        height: 200.0,
+        height: const .fixed(200.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -287,7 +287,7 @@ void main() {
     addTearDown(controller.dispose);
 
     final listChildren = List<Widget>.generate(30, (int i) {
-      return SizedBox(height: 200.0, child: Text('Item $i'));
+      return SizedBox(height: const .fixed(200.0), child: Text('Item $i'));
     });
     await tester.pumpWidget(
       Semantics(
@@ -401,7 +401,7 @@ void main() {
     final listChildren = List<Widget>.generate(30, (int i) {
       return SliverToBoxAdapter(
         child: SizedBox(
-          height: 200.0,
+          height: const .fixed(200.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -514,7 +514,7 @@ void main() {
 
     final listChildren = List<Widget>.generate(30, (int i) {
       return SizedBox(
-        height: 200.0,
+        height: const .fixed(200.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -609,7 +609,7 @@ void main() {
                     return SliverToBoxAdapter(
                       key: ValueKey<int>(item),
                       child: SizedBox(
-                        height: 200.0,
+                        height: const .fixed(200.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[

@@ -44,8 +44,8 @@ Future<void> pumpTest(
           slivers: <Widget>[
             SliverToBoxAdapter(
               child: SizedBox(
-                height: scrollDirection == Axis.vertical ? 2000.0 : null,
-                width: scrollDirection == Axis.horizontal ? 2000.0 : null,
+                height: .fixed(scrollDirection == Axis.vertical ? 2000.0 : null),
+                width: .fixed(scrollDirection == Axis.horizontal ? 2000.0 : null),
               ),
             ),
           ],
@@ -155,7 +155,7 @@ void main() {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () => tapped = true,
-                child: SizedBox(key: key, height: 300),
+                child: SizedBox(key: key, height: const .fixed(300)),
               ),
             ),
             const SingleChildScrollView(hitTestBehavior: HitTestBehavior.translucent),
@@ -462,13 +462,13 @@ void main() {
           slivers: <Widget>[
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 300,
+                height: .fixed(300),
                 child: CustomScrollView(
-                  slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+                  slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
                 ),
               ),
             ),
-            SliverToBoxAdapter(child: SizedBox(height: 2000.0)),
+            SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0))),
           ],
         ),
       ),
@@ -497,33 +497,31 @@ void main() {
     expect(getScrollOffset(tester), 0.0);
   });
 
-  testWidgets(
-    'Engine is notified of ignored pointer signals (no scroll physics)',
-    (WidgetTester tester) async {
-      await pumpTest(tester, debugDefaultTargetPlatformOverride, scrollable: false);
-      final Offset scrollEventLocation = tester.getCenter(find.byType(Viewport));
-      final testPointer = TestPointer(1, ui.PointerDeviceKind.mouse);
-      // Create a hover event so that |testPointer| has a location when generating the scroll.
-      testPointer.hover(scrollEventLocation);
+  testWidgets('Engine is notified of ignored pointer signals (no scroll physics)', (
+    WidgetTester tester,
+  ) async {
+    await pumpTest(tester, debugDefaultTargetPlatformOverride, scrollable: false);
+    final Offset scrollEventLocation = tester.getCenter(find.byType(Viewport));
+    final testPointer = TestPointer(1, ui.PointerDeviceKind.mouse);
+    // Create a hover event so that |testPointer| has a location when generating the scroll.
+    testPointer.hover(scrollEventLocation);
 
-      var allowedPlatformDefault = false;
-      await tester.sendEventToBinding(
-        testPointer.scroll(
-          const Offset(0.0, 20.0),
-          onRespond: ({required bool allowPlatformDefault}) {
-            allowedPlatformDefault = allowPlatformDefault;
-          },
-        ),
-      );
+    var allowedPlatformDefault = false;
+    await tester.sendEventToBinding(
+      testPointer.scroll(
+        const Offset(0.0, 20.0),
+        onRespond: ({required bool allowPlatformDefault}) {
+          allowedPlatformDefault = allowPlatformDefault;
+        },
+      ),
+    );
 
-      expect(
-        allowedPlatformDefault,
-        isTrue,
-        reason: 'Engine should be notified of ignored scroll pointer signals.',
-      );
-    },
-    variant: TargetPlatformVariant.all(),
-  );
+    expect(
+      allowedPlatformDefault,
+      isTrue,
+      reason: 'Engine should be notified of ignored scroll pointer signals.',
+    );
+  }, variant: TargetPlatformVariant.all());
 
   testWidgets('Engine is notified of accepted and rejected scroll events', (
     WidgetTester tester,
@@ -703,39 +701,37 @@ void main() {
     expect(getScrollOffset(tester), 20.0);
   }, variant: TargetPlatformVariant.all());
 
-  testWidgets(
-    'Still scrolls horizontally when other keys are pressed at the same time',
-    (WidgetTester tester) async {
-      await pumpTest(
-        tester,
-        debugDefaultTargetPlatformOverride,
-        scrollDirection: Axis.horizontal,
-        axisModifier: <LogicalKeyboardKey>{LogicalKeyboardKey.altLeft},
-      );
+  testWidgets('Still scrolls horizontally when other keys are pressed at the same time', (
+    WidgetTester tester,
+  ) async {
+    await pumpTest(
+      tester,
+      debugDefaultTargetPlatformOverride,
+      scrollDirection: Axis.horizontal,
+      axisModifier: <LogicalKeyboardKey>{LogicalKeyboardKey.altLeft},
+    );
 
-      final Offset scrollEventLocation = tester.getCenter(find.byType(Viewport));
-      final testPointer = TestPointer(1, ui.PointerDeviceKind.mouse);
-      // Create a hover event so that |testPointer| has a location when generating the scroll.
-      testPointer.hover(scrollEventLocation);
-      await tester.sendEventToBinding(testPointer.scroll(const Offset(0.0, 20.0)));
-      // Vertical input not accepted
-      expect(getScrollOffset(tester), 0.0);
+    final Offset scrollEventLocation = tester.getCenter(find.byType(Viewport));
+    final testPointer = TestPointer(1, ui.PointerDeviceKind.mouse);
+    // Create a hover event so that |testPointer| has a location when generating the scroll.
+    testPointer.hover(scrollEventLocation);
+    await tester.sendEventToBinding(testPointer.scroll(const Offset(0.0, 20.0)));
+    // Vertical input not accepted
+    expect(getScrollOffset(tester), 0.0);
 
-      await tester.sendKeyDownEvent(LogicalKeyboardKey.altLeft);
-      await tester.sendKeyDownEvent(LogicalKeyboardKey.space);
-      await tester.sendEventToBinding(testPointer.scroll(const Offset(0.0, 20.0)));
-      // Vertical flipped & accepted.
-      expect(getScrollOffset(tester), 20.0);
-      await tester.sendKeyUpEvent(LogicalKeyboardKey.altLeft);
-      await tester.sendKeyUpEvent(LogicalKeyboardKey.space);
-      await tester.pump();
+    await tester.sendKeyDownEvent(LogicalKeyboardKey.altLeft);
+    await tester.sendKeyDownEvent(LogicalKeyboardKey.space);
+    await tester.sendEventToBinding(testPointer.scroll(const Offset(0.0, 20.0)));
+    // Vertical flipped & accepted.
+    expect(getScrollOffset(tester), 20.0);
+    await tester.sendKeyUpEvent(LogicalKeyboardKey.altLeft);
+    await tester.sendKeyUpEvent(LogicalKeyboardKey.space);
+    await tester.pump();
 
-      await tester.sendEventToBinding(testPointer.scroll(const Offset(0.0, 20.0)));
-      // Vertical input not accepted
-      expect(getScrollOffset(tester), 20.0);
-    },
-    variant: TargetPlatformVariant.all(),
-  );
+    await tester.sendEventToBinding(testPointer.scroll(const Offset(0.0, 20.0)));
+    // Vertical input not accepted
+    expect(getScrollOffset(tester), 20.0);
+  }, variant: TargetPlatformVariant.all());
 
   group('setCanDrag to false with active drag gesture: ', () {
     Future<void> pumpTestWidget(WidgetTester tester, {required bool canDrag}) {
@@ -748,7 +744,10 @@ void main() {
                 : const NeverScrollableScrollPhysics(),
             slivers: <Widget>[
               SliverToBoxAdapter(
-                child: SizedBox(height: 2000, child: GestureDetector(onTap: () {})),
+                child: SizedBox(
+                  height: const .fixed(2000),
+                  child: GestureDetector(onTap: () {}),
+                ),
               ),
             ],
           ),
@@ -835,11 +834,11 @@ void main() {
             if (Scrollable.recommendDeferredLoadingForContext(context)) {
               cheapWidgets += 1;
               widgetTracker.add('cheap');
-              return const SizedBox(height: 50.0);
+              return const SizedBox(height: .fixed(50.0));
             }
             widgetTracker.add('expensive');
             expensiveWidgets += 1;
-            return const SizedBox(height: 50.0);
+            return const SizedBox(height: .fixed(50.0));
           },
         ),
       ),
@@ -887,10 +886,10 @@ void main() {
           itemBuilder: (BuildContext context, int index) {
             if (Scrollable.recommendDeferredLoadingForContext(context)) {
               cheapWidgets += 1;
-              return const SizedBox(height: 50.0);
+              return const SizedBox(height: .fixed(50.0));
             }
             expensiveWidgets += 1;
-            return SizedBox(key: ValueKey<String>('Box $index'), height: 50.0);
+            return SizedBox(key: ValueKey<String>('Box $index'), height: const .fixed(50.0));
           },
         ),
       ),
@@ -931,10 +930,13 @@ void main() {
           itemBuilder: (BuildContext context, int index) {
             if (Scrollable.recommendDeferredLoadingForContext(context)) {
               cheapWidgets += 1;
-              return SizedBox(key: ValueKey<String>('Cheap box $index'), height: 50.0);
+              return SizedBox(
+                key: ValueKey<String>('Cheap box $index'),
+                height: const .fixed(50.0),
+              );
             }
             expensiveWidgets += 1;
-            return SizedBox(key: ValueKey<String>('Box $index'), height: 50.0);
+            return SizedBox(key: ValueKey<String>('Box $index'), height: const .fixed(50.0));
           },
         ),
       ),
@@ -979,10 +981,13 @@ void main() {
             itemBuilder: (BuildContext context, int index) {
               if (Scrollable.recommendDeferredLoadingForContext(context)) {
                 cheapWidgets += 1;
-                return SizedBox(key: ValueKey<String>('Cheap box $index'), height: 50.0);
+                return SizedBox(
+                  key: ValueKey<String>('Cheap box $index'),
+                  height: const .fixed(50.0),
+                );
               }
               expensiveWidgets += 1;
-              return SizedBox(key: ValueKey<String>('Box $index'), height: 50.0);
+              return SizedBox(key: ValueKey<String>('Box $index'), height: const .fixed(50.0));
             },
           ),
         ),
@@ -1113,8 +1118,8 @@ void main() {
                 children: <Widget>[for (int i = 0; i < 100; i++) Text('SingleChildScrollView $i')],
               ),
               SizedBox(
-                height: 3000,
-                width: 400,
+                height: const .fixed(3000),
+                width: const .fixed(400),
                 child: ListView.builder(
                   controller: innerController,
                   physics: const NeverScrollableScrollPhysics(),
@@ -1164,11 +1169,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Align(
           child: SizedBox(
-            width: double.infinity,
-            height: height,
+            width: const .fixed(double.infinity),
+            height: .fixed(height),
             child: SingleChildScrollView(
               controller: controller,
-              child: const SizedBox(width: double.infinity, height: 300.0),
+              child: const SizedBox(width: .fixed(double.infinity), height: .fixed(300.0)),
             ),
           ),
         ),
@@ -1203,7 +1208,7 @@ void main() {
         const Directionality(
           textDirection: TextDirection.ltr,
           child: CustomScrollView(
-            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
           ),
         ),
       );
@@ -1531,7 +1536,7 @@ void main() {
       const Directionality(
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
         ),
       ),
     );
@@ -1556,7 +1561,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
           physics: AlwaysScrollableScrollPhysics(),
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
         ),
       ),
     );
@@ -1613,7 +1618,7 @@ void main() {
                             Viewport(
                               offset: position,
                               slivers: const <Widget>[
-                                SliverToBoxAdapter(child: SizedBox(height: 2000.0)),
+                                SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0))),
                               ],
                             ),
                       ),
@@ -1686,7 +1691,7 @@ void main() {
                             Viewport(
                               offset: position,
                               slivers: const <Widget>[
-                                SliverToBoxAdapter(child: SizedBox(height: 2000.0)),
+                                SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0))),
                               ],
                             ),
                       ),
@@ -1746,7 +1751,7 @@ void main() {
             controller: verticalController,
             children: <Widget>[
               SizedBox(
-                height: 200,
+                height: const .fixed(200),
                 child: ListView(
                   controller: horizontalController,
                   scrollDirection: Axis.horizontal,

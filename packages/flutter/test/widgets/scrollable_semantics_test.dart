@@ -217,7 +217,7 @@ void main() {
       80,
       (int i) => MergeSemantics(
         child: SizedBox(
-          height: kItemHeight,
+          height: const .fixed(kItemHeight),
           child: Text('container $i', textDirection: TextDirection.ltr),
         ),
       ),
@@ -262,7 +262,7 @@ void main() {
     final containers = List<Widget>.generate(
       80,
       (int i) => MergeSemantics(
-        child: SizedBox(height: kItemHeight, child: Text('container $i')),
+        child: SizedBox(height: const .fixed(kItemHeight), child: Text('container $i')),
       ),
     );
 
@@ -328,7 +328,9 @@ void main() {
 
     final children = <Widget>[];
     final slivers = List<Widget>.generate(30, (int i) {
-      final Widget child = MergeSemantics(child: SizedBox(height: 72.0, child: Text('Item $i')));
+      final Widget child = MergeSemantics(
+        child: SizedBox(height: const .fixed(72.0), child: Text('Item $i')),
+      );
       children.add(child);
       return SliverToBoxAdapter(child: child);
     });
@@ -496,7 +498,7 @@ void main() {
 
     final children = List<Widget>.generate(
       80,
-      (int i) => SizedBox(height: 40.0, child: Text('Item $i')),
+      (int i) => SizedBox(height: const .fixed(40.0), child: Text('Item $i')),
     );
     await tester.pumpWidget(
       Directionality(
@@ -522,7 +524,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: List<Widget>.generate(40, (int i) {
-            return SizedBox(height: 400.0, child: Text('item $i'));
+            return SizedBox(height: const .fixed(400.0), child: Text('item $i'));
           }),
         ),
       ),
@@ -585,7 +587,7 @@ void main() {
     setUp(() {
       children = List<Widget>.generate(10, (int i) {
         return MergeSemantics(
-          child: SizedBox(height: kItemHeight, child: Text('container $i')),
+          child: SizedBox(height: const .fixed(kItemHeight), child: Text('container $i')),
         );
       });
 
@@ -595,7 +597,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 2 * kItemHeight,
+            height: const .fixed(2 * kItemHeight),
             child: ListView(controller: scrollController, children: children),
           ),
         ),
@@ -686,7 +688,7 @@ void main() {
           key: i == 5 ? center : null,
           child: MergeSemantics(
             key: ValueKey<int>(i),
-            child: SizedBox(height: kItemHeight, child: Text('container $i')),
+            child: SizedBox(height: const .fixed(kItemHeight), child: Text('container $i')),
           ),
         );
       });
@@ -704,7 +706,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 2 * kItemHeight,
+            height: const .fixed(2 * kItemHeight),
             child: Scrollable(
               controller: scrollController,
               viewportBuilder: (BuildContext context, ViewportOffset offset) {

@@ -17,7 +17,7 @@ void main() {
             SliverList.builder(
               itemCount: 50,
               itemBuilder: (BuildContext context, int index) {
-                return SizedBox(height: 50, child: Text('Tile $index'));
+                return SizedBox(height: const .fixed(50), child: Text('Tile $index'));
               },
             ),
           ],
@@ -36,7 +36,7 @@ void main() {
           cacheExtent: 0,
           children: List<Widget>.generate(
             50,
-            (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+            (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
           ),
         ),
       ),
@@ -52,7 +52,7 @@ void main() {
           restorationId: 'list',
           cacheExtent: 0,
           itemBuilder: (BuildContext context, int index) =>
-              SizedBox(height: 50, child: Text('Tile $index')),
+              SizedBox(height: const .fixed(50), child: Text('Tile $index')),
         ),
       ),
     );
@@ -69,7 +69,7 @@ void main() {
           itemCount: 50,
           separatorBuilder: (BuildContext context, int index) => const SizedBox.shrink(),
           itemBuilder: (BuildContext context, int index) =>
-              SizedBox(height: 50, child: Text('Tile $index')),
+              SizedBox(height: const .fixed(50), child: Text('Tile $index')),
         ),
       ),
     );
@@ -86,7 +86,7 @@ void main() {
           childrenDelegate: SliverChildListDelegate(
             List<Widget>.generate(
               50,
-              (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+              (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
             ),
           ),
         ),
@@ -105,7 +105,7 @@ void main() {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
           children: List<Widget>.generate(
             50,
-            (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+            (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
           ),
         ),
       ),
@@ -122,7 +122,7 @@ void main() {
           cacheExtent: 0,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
           itemBuilder: (BuildContext context, int index) =>
-              SizedBox(height: 50, child: Text('Tile $index')),
+              SizedBox(height: const .fixed(50), child: Text('Tile $index')),
         ),
       ),
     );
@@ -140,7 +140,7 @@ void main() {
           childrenDelegate: SliverChildListDelegate(
             List<Widget>.generate(
               50,
-              (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+              (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
             ),
           ),
         ),
@@ -159,7 +159,7 @@ void main() {
           crossAxisCount: 1,
           children: List<Widget>.generate(
             50,
-            (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+            (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
           ),
         ),
       ),
@@ -177,7 +177,7 @@ void main() {
           maxCrossAxisExtent: 50,
           children: List<Widget>.generate(
             50,
-            (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+            (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
           ),
         ),
       ),
@@ -194,7 +194,7 @@ void main() {
           child: Column(
             children: List<Widget>.generate(
               50,
-              (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+              (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
             ),
           ),
         ),
@@ -249,7 +249,7 @@ void main() {
         child: PageView.builder(
           restorationId: 'pager',
           itemBuilder: (BuildContext context, int index) =>
-              SizedBox(height: 50, child: Text('Tile $index')),
+              SizedBox(height: const .fixed(50), child: Text('Tile $index')),
         ),
       ),
     );
@@ -265,7 +265,7 @@ void main() {
           childrenDelegate: SliverChildListDelegate(
             List<Widget>.generate(
               50,
-              (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+              (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
             ),
           ),
         ),
@@ -298,7 +298,7 @@ void main() {
           childDelegate: ListWheelChildListDelegate(
             children: List<Widget>.generate(
               50,
-              (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+              (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
             ),
           ),
         ),
@@ -330,7 +330,7 @@ void main() {
             cacheExtent: 0,
             children: List<Widget>.generate(
               50,
-              (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+              (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
             ),
           ),
         ),
@@ -394,7 +394,7 @@ void main() {
           cacheExtent: 0,
           children: List<Widget>.generate(
             50,
-            (int index) => SizedBox(height: 50, child: Text('Tile $index')),
+            (int index) => SizedBox(height: const .fixed(50), child: Text('Tile $index')),
           ),
         ),
       ),
@@ -518,7 +518,7 @@ class TestHarness extends StatelessWidget {
         textDirection: TextDirection.ltr,
         child: Align(
           alignment: Alignment.topLeft,
-          child: SizedBox(height: height, width: 50, child: child),
+          child: SizedBox(height: .fixed(height), width: const .fixed(50), child: child),
         ),
       ),
     );

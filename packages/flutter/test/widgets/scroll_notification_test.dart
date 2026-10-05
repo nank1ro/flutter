@@ -17,7 +17,7 @@ void main() {
           events.add(value);
           return false;
         },
-        child: SingleChildScrollView(child: SizedBox(height: height)),
+        child: SingleChildScrollView(child: SizedBox(height: .fixed(height))),
       );
     }
 
@@ -84,7 +84,7 @@ void main() {
           }
           return false;
         },
-        child: const SingleChildScrollView(child: SizedBox(height: 1200.0)),
+        child: const SingleChildScrollView(child: SizedBox(height: .fixed(1200.0))),
       ),
     );
 
@@ -130,7 +130,7 @@ void main() {
         child: SingleChildScrollView(
           dragStartBehavior: DragStartBehavior.down,
           child: SizedBox(
-            height: 1200.0,
+            height: const .fixed(1200.0),
             child: NotificationListener<ScrollNotification>(
               onNotification: (ScrollNotification value) {
                 depth0Types.add(value.runtimeType);
@@ -141,7 +141,7 @@ void main() {
                 padding: const EdgeInsets.all(50.0),
                 child: const SingleChildScrollView(
                   dragStartBehavior: DragStartBehavior.down,
-                  child: SizedBox(height: 1200.0),
+                  child: SizedBox(height: .fixed(1200.0)),
                 ),
               ),
             ),
@@ -185,12 +185,12 @@ void main() {
             child: SingleChildScrollView(
               dragStartBehavior: DragStartBehavior.down,
               child: SizedBox(
-                height: 1200.0,
+                height: const .fixed(1200.0),
                 child: Container(
                   padding: const EdgeInsets.all(50.0),
                   child: const SingleChildScrollView(
                     dragStartBehavior: DragStartBehavior.down,
-                    child: SizedBox(height: 1200.0),
+                    child: SizedBox(height: .fixed(1200.0)),
                   ),
                 ),
               ),
@@ -234,7 +234,7 @@ void main() {
         child: Builder(
           builder: (BuildContext context) {
             observer = ScrollNotificationObserver.of(context);
-            return const SingleChildScrollView(child: SizedBox(height: 1200.0));
+            return const SingleChildScrollView(child: SizedBox(height: .fixed(1200.0)));
           },
         ),
       ),
@@ -311,7 +311,7 @@ void main() {
               onNotification: handleScrollNotification,
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: const SizedBox(height: 1200.0),
+                child: const SizedBox(height: .fixed(1200.0)),
               ),
             ),
           ),

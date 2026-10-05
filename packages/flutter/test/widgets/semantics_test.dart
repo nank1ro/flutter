@@ -197,7 +197,7 @@ void main() {
           child: Semantics(
             key: key,
             localeForSubtree: const Locale('DE', 'FG'),
-            child: const SizedBox(width: 10, height: 10),
+            child: const SizedBox(width: .fixed(10), height: .fixed(10)),
           ),
         ),
       ),
@@ -369,8 +369,14 @@ void main() {
           container: true,
           child: Column(
             children: <Widget>[
-              Semantics(value: 'value one', child: const SizedBox(height: 10.0, width: 10.0)),
-              Semantics(value: 'value two', child: const SizedBox(height: 10.0, width: 10.0)),
+              Semantics(
+                value: 'value one',
+                child: const SizedBox(height: .fixed(10.0), width: .fixed(10.0)),
+              ),
+              Semantics(
+                value: 'value two',
+                child: const SizedBox(height: .fixed(10.0), width: .fixed(10.0)),
+              ),
             ],
           ),
         ),
@@ -846,14 +852,14 @@ void main() {
               customSemanticsActions: <CustomSemanticsAction, VoidCallback>{
                 const CustomSemanticsAction(label: 'action1'): () {},
               },
-              child: const SizedBox(width: 10, height: 10),
+              child: const SizedBox(width: .fixed(10), height: .fixed(10)),
             ),
             Semantics(
               container: true,
               customSemanticsActions: <CustomSemanticsAction, VoidCallback>{
                 const CustomSemanticsAction(label: 'action2'): () {},
               },
-              child: const SizedBox(width: 10, height: 10),
+              child: const SizedBox(width: .fixed(10), height: .fixed(10)),
             ),
           ],
         ),
@@ -890,7 +896,7 @@ void main() {
               customSemanticsActions: <CustomSemanticsAction, VoidCallback>{
                 const CustomSemanticsAction(label: 'action1'): () {},
               },
-              child: const SizedBox(width: 10, height: 10),
+              child: const SizedBox(width: .fixed(10), height: .fixed(10)),
             ),
             // If the child doesn't have a value for accessibilityFocusable, it will also use the parent data.
             Semantics(
@@ -898,7 +904,7 @@ void main() {
               customSemanticsActions: <CustomSemanticsAction, VoidCallback>{
                 const CustomSemanticsAction(label: 'action2'): () {},
               },
-              child: const SizedBox(width: 10, height: 10),
+              child: const SizedBox(width: .fixed(10), height: .fixed(10)),
             ),
           ],
         ),
@@ -954,14 +960,14 @@ void main() {
               customSemanticsActions: <CustomSemanticsAction, VoidCallback>{
                 const CustomSemanticsAction(label: 'action1'): () {},
               },
-              child: const SizedBox(width: 10, height: 10),
+              child: const SizedBox(width: .fixed(10), height: .fixed(10)),
             ),
             Semantics(
               container: true,
               customSemanticsActions: <CustomSemanticsAction, VoidCallback>{
                 const CustomSemanticsAction(label: 'action2'): () {},
               },
-              child: const SizedBox(width: 10, height: 10),
+              child: const SizedBox(width: .fixed(10), height: .fixed(10)),
             ),
           ],
         ),
@@ -1007,12 +1013,12 @@ void main() {
                 container: true,
                 accessibilityFocusBlockType: AccessibilityFocusBlockType.blockNode,
                 label: 'node1',
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
               Semantics(
                 container: true,
                 label: 'node2',
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
             ],
           ),
@@ -1055,8 +1061,14 @@ void main() {
             label: 'semantics label 0',
             child: Column(
               children: <Widget>[
-                Semantics(label: 'semantics label 1', child: const SizedBox(width: 10, height: 10)),
-                Semantics(label: 'semantics label 2', child: const SizedBox(width: 10, height: 10)),
+                Semantics(
+                  label: 'semantics label 1',
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+                ),
+                Semantics(
+                  label: 'semantics label 2',
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+                ),
               ],
             ),
           ),
@@ -1110,8 +1122,14 @@ void main() {
             label: 'semantics label 0',
             child: Column(
               children: <Widget>[
-                Semantics(label: 'semantics label 1', child: const SizedBox(width: 10, height: 10)),
-                Semantics(label: 'semantics label 2', child: const SizedBox(width: 10, height: 10)),
+                Semantics(
+                  label: 'semantics label 1',
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+                ),
+                Semantics(
+                  label: 'semantics label 2',
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+                ),
               ],
             ),
           ),
@@ -1155,7 +1173,7 @@ void main() {
         customSemanticsActions: <CustomSemanticsAction, VoidCallback>{
           const CustomSemanticsAction(label: 'action1'): () {},
         },
-        child: const SizedBox(width: 10, height: 10),
+        child: const SizedBox(width: .fixed(10), height: .fixed(10)),
       ),
     );
 
@@ -1176,7 +1194,7 @@ void main() {
           child: Semantics(
             container: true,
             label: 'child',
-            child: const SizedBox(width: 10, height: 10),
+            child: const SizedBox(width: .fixed(10), height: .fixed(10)),
           ),
         ),
       );
@@ -1398,7 +1416,7 @@ void main() {
             const Text('Label 1'),
             const Text('Label 2'),
             Transform.rotate(
-              angle: pi / 2.0,
+              angle: const .fixed(pi / 2.0),
               child: const Row(
                 children: <Widget>[Text('Label 3'), Text('Label 4'), Text('Label 5')],
               ),
@@ -1456,7 +1474,7 @@ void main() {
               child: Semantics(
                 // Box 0
                 button: true,
-                child: const SizedBox(width: 30.0, height: 30.0),
+                child: const SizedBox(width: .fixed(30.0), height: .fixed(30.0)),
               ),
             ),
             Positioned(
@@ -1465,7 +1483,7 @@ void main() {
               child: Semantics(
                 // Box 1
                 button: true,
-                child: const SizedBox(width: 30.0, height: 30.0),
+                child: const SizedBox(width: .fixed(30.0), height: .fixed(30.0)),
               ),
             ),
             Positioned(
@@ -1474,7 +1492,7 @@ void main() {
               child: Semantics(
                 // Box 2
                 button: true,
-                child: const SizedBox(width: 30.0, height: 30.0),
+                child: const SizedBox(width: .fixed(30.0), height: .fixed(30.0)),
               ),
             ),
             Positioned(
@@ -1483,7 +1501,7 @@ void main() {
               child: Semantics(
                 // Box 3
                 button: true,
-                child: const SizedBox(width: 30.0, height: 30.0),
+                child: const SizedBox(width: .fixed(30.0), height: .fixed(30.0)),
               ),
             ),
             Positioned(
@@ -1492,7 +1510,7 @@ void main() {
               child: Semantics(
                 // Box 4
                 button: true,
-                child: const SizedBox(width: 30.0, height: 30.0),
+                child: const SizedBox(width: .fixed(30.0), height: .fixed(30.0)),
               ),
             ),
           ],
@@ -1882,12 +1900,12 @@ void main() {
       const Column(
         children: <Widget>[
           SizedBox(
-            height: 0,
-            width: 500,
+            height: .fixed(0),
+            width: .fixed(500),
             child: FittedBox(
               child: SizedBox(
-                height: 55,
-                width: 266,
+                height: .fixed(55),
+                width: .fixed(266),
                 child: SingleChildScrollView(child: Column()),
               ),
             ),
@@ -1919,13 +1937,13 @@ void main() {
                 key: key1,
                 label: 'label1',
                 onTap: () {},
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
               Semantics(
                 key: key2,
                 label: 'label2',
                 onTap: () {},
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
             ],
           ),
@@ -1958,12 +1976,12 @@ void main() {
                 blockUserActions: true,
                 label: 'label1',
                 onTap: () {},
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
               Semantics(
                 label: 'label2',
                 onLongPress: () {},
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
             ],
           ),
@@ -1993,12 +2011,12 @@ void main() {
                 blockUserActions: true,
                 label: 'label1',
                 onTap: () {},
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
               Semantics(
                 label: 'label2',
                 onTap: () {},
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
             ],
           ),
@@ -2265,13 +2283,13 @@ void main() {
           children: <Widget>[
             Semantics(
               traversalParentIdentifier: identifier,
-              child: const SizedBox.square(dimension: 10),
+              child: const SizedBox.square(dimension: .fixed(10)),
             ),
             Semantics(
               traversalChildIdentifier: identifier,
-              child: const SizedBox.square(dimension: 10),
+              child: const SizedBox.square(dimension: .fixed(10)),
             ),
-            const SizedBox.square(dimension: 10),
+            const SizedBox.square(dimension: .fixed(10)),
           ],
         ),
       ),
@@ -2339,17 +2357,17 @@ void main() {
           children: <Widget>[
             Semantics(
               traversalParentIdentifier: identifier,
-              child: const SizedBox.square(dimension: 10),
+              child: const SizedBox.square(dimension: .fixed(10)),
             ),
             Semantics(
               traversalChildIdentifier: identifier,
-              child: const SizedBox.square(dimension: 10),
+              child: const SizedBox.square(dimension: .fixed(10)),
             ),
             Semantics(
               traversalChildIdentifier: identifier,
-              child: const SizedBox.square(dimension: 10),
+              child: const SizedBox.square(dimension: .fixed(10)),
             ),
-            const SizedBox.square(dimension: 10),
+            const SizedBox.square(dimension: .fixed(10)),
           ],
         ),
       ),
@@ -2432,7 +2450,7 @@ void main() {
                     ),
                   ),
                 ),
-                const SizedBox.square(dimension: 10),
+                const SizedBox.square(dimension: .fixed(10)),
               ],
             ),
           ),
@@ -2474,7 +2492,7 @@ void main() {
               children: <Widget>[
                 for (int i = 0; i < 20; i++) ...<Widget>[
                   Text('Label text $i'),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: .fixed(50)),
                 ],
               ],
             ),

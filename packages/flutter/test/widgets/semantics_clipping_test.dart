@@ -16,14 +16,14 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 100.0,
+            width: .fixed(100.0),
             child: Flex(
               clipBehavior: Clip.hardEdge,
               direction: Axis.horizontal,
               children: <Widget>[
-                SizedBox(width: 75.0, child: Text('1')),
-                SizedBox(width: 75.0, child: Text('2')),
-                SizedBox(width: 75.0, child: Text('3')),
+                SizedBox(width: .fixed(75.0), child: Text('1')),
+                SizedBox(width: .fixed(75.0), child: Text('2')),
+                SizedBox(width: .fixed(75.0), child: Text('3')),
               ],
             ),
           ),
@@ -69,18 +69,18 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              width: 100.0,
+              width: .fixed(100.0),
               child: Flex(
                 clipBehavior: Clip.hardEdge,
                 direction: Axis.horizontal,
                 children: <Widget>[
-                  SizedBox(width: 75.0, child: Text('1')),
+                  SizedBox(width: .fixed(75.0), child: Text('1')),
                   MergeSemantics(
                     child: Flex(
                       direction: Axis.horizontal,
                       children: <Widget>[
-                        SizedBox(width: 75.0, child: Text('2')),
-                        SizedBox(width: 75.0, child: Text('3')),
+                        SizedBox(width: .fixed(75.0), child: Text('2')),
+                        SizedBox(width: .fixed(75.0), child: Text('3')),
                       ],
                     ),
                   ),

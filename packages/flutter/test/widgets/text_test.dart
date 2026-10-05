@@ -301,8 +301,8 @@ void main() {
             const TextSpan(text: 'a very very very very very very very very very very long line'),
             WidgetSpan(
               child: SizedBox(
-                width: 20,
-                height: 40,
+                width: const .fixed(20),
+                height: const .fixed(40),
                 child: RichText(
                   text: const TextSpan(text: 'widget should be truncated'),
                   textDirection: TextDirection.rtl,
@@ -330,8 +330,8 @@ void main() {
             const TextSpan(text: 'a very very very very very very very very very very long line'),
             WidgetSpan(
               child: SizedBox(
-                width: 20,
-                height: 40,
+                width: const .fixed(20),
+                height: const .fixed(40),
                 child: RichText(
                   text: const TextSpan(text: 'widget should be truncated'),
                   textDirection: TextDirection.rtl,
@@ -416,7 +416,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 502.5454545454545,
+            width: .fixed(502.5454545454545),
             child: Text.rich(WidgetSpan(child: Row()), textScaleFactor: 0.95),
           ),
         ),
@@ -530,7 +530,7 @@ void main() {
               const WidgetSpan(
                 alignment: PlaceholderAlignment.baseline,
                 baseline: TextBaseline.alphabetic,
-                child: SizedBox(width: 10.0),
+                child: SizedBox(width: .fixed(10.0)),
               ),
               const TextSpan(text: ' mid'),
               WidgetSpan(
@@ -542,7 +542,7 @@ void main() {
               const WidgetSpan(
                 alignment: PlaceholderAlignment.baseline,
                 baseline: TextBaseline.alphabetic,
-                child: SizedBox(width: 10.0),
+                child: SizedBox(width: .fixed(10.0)),
               ),
             ],
           ),
@@ -578,19 +578,19 @@ void main() {
               WidgetSpan(
                 alignment: PlaceholderAlignment.baseline,
                 baseline: TextBaseline.alphabetic,
-                child: SizedBox(width: 10.0),
+                child: SizedBox(width: .fixed(10.0)),
               ),
               TextSpan(text: ' mid'),
               WidgetSpan(
                 alignment: PlaceholderAlignment.baseline,
                 baseline: TextBaseline.alphabetic,
-                child: SizedBox(width: 10.0),
+                child: SizedBox(width: .fixed(10.0)),
               ),
               TextSpan(text: ' after'),
               WidgetSpan(
                 alignment: PlaceholderAlignment.baseline,
                 baseline: TextBaseline.alphabetic,
-                child: SizedBox(width: 10.0),
+                child: SizedBox(width: .fixed(10.0)),
               ),
             ],
           ),
@@ -629,7 +629,7 @@ void main() {
                 child: Semantics(
                   label: 'inner',
                   container: true,
-                  child: const SizedBox(width: 10, height: 10),
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
                 ),
               ),
               const TextSpan(text: ' after'),
@@ -817,7 +817,7 @@ void main() {
 
     await tester.pumpWidget(
       SizedBox(
-        height: 10,
+        height: const .fixed(10),
         child: Text.rich(
           TextSpan(
             children: <TextSpan>[
@@ -1024,8 +1024,8 @@ void main() {
             const TextSpan(text: ' in the '),
             WidgetSpan(
               child: SizedBox(
-                width: 20,
-                height: 40,
+                width: const .fixed(20),
+                height: const .fixed(40),
                 child: RichText(
                   text: const TextSpan(text: 'INTERRUPTION'),
                   textDirection: TextDirection.rtl,
@@ -1079,8 +1079,8 @@ void main() {
             const TextSpan(text: ' in the '),
             WidgetSpan(
               child: SizedBox(
-                width: 20,
-                height: 40,
+                width: const .fixed(20),
+                height: const .fixed(40),
                 child: RichText(
                   text: const TextSpan(text: 'INTERRUPTION'),
                   textDirection: TextDirection.rtl,
@@ -1325,7 +1325,7 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 400,
+            width: const .fixed(400),
             child: Center(
               child: RichText(
                 // 400 is not wide enough for this string. The part after the
@@ -1580,14 +1580,14 @@ void main() {
                       WidgetSpan(
                         child: Semantics(
                           label: 'not clipped',
-                          child: const SizedBox(width: 16, height: 16),
+                          child: const SizedBox(width: .fixed(16), height: .fixed(16)),
                         ),
                       ),
                       TextSpan(text: 'next WS is clipped', recognizer: recognizer..onTap = () {}),
                       WidgetSpan(
                         child: Semantics(
                           label: 'clipped',
-                          child: const SizedBox(width: 16, height: 16),
+                          child: const SizedBox(width: .fixed(16), height: .fixed(16)),
                         ),
                       ),
                     ],
@@ -1631,7 +1631,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 100,
+            height: const .fixed(100),
             child: IntrinsicWidth(
               child: RichText(
                 text: const TextSpan(
@@ -1643,8 +1643,8 @@ void main() {
                       child: Wrap(
                         direction: Axis.vertical,
                         children: <Widget>[
-                          SizedBox(width: 200, height: 100),
-                          SizedBox(width: 200, height: 30),
+                          SizedBox(width: .fixed(200), height: .fixed(100)),
+                          SizedBox(width: .fixed(200), height: .fixed(30)),
                         ],
                       ),
                     ),
@@ -1881,7 +1881,11 @@ Future<void> _pumpTextWidget({
     Directionality(
       textDirection: TextDirection.ltr,
       child: Center(
-        child: SizedBox(width: 50.0, height: 50.0, child: Text(text, overflow: overflow)),
+        child: SizedBox(
+          width: const .fixed(50.0),
+          height: const .fixed(50.0),
+          child: Text(text, overflow: overflow),
+        ),
       ),
     ),
   );

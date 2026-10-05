@@ -20,7 +20,7 @@ void main() {
     WidgetTester tester,
   ) async {
     // No render tree exists to attach the RenderObjectWidget to.
-    await tester.pumpWidget(wrapWithView: false, const ColoredBox(color: red));
+    await tester.pumpWidget(wrapWithView: false, const ColoredBox(color: .fixed(red)));
 
     expect(
       tester.takeException(),
@@ -37,7 +37,7 @@ void main() {
   testWidgets('Moving a RenderObjectWidget to the RootWidget via GlobalKey fails', (
     WidgetTester tester,
   ) async {
-    final Widget globalKeyedWidget = ColoredBox(key: GlobalKey(), color: red);
+    final Widget globalKeyedWidget = ColoredBox(key: GlobalKey(), color: const .fixed(red));
 
     await tester.pumpWidget(wrapWithView: false, View(view: tester.view, child: globalKeyedWidget));
     expect(tester.takeException(), isNull);
@@ -106,7 +106,7 @@ void main() {
       final Widget globalKeyedView = View(
         key: GlobalKey(),
         view: FakeView(tester.view),
-        child: const ColoredBox(color: red),
+        child: const ColoredBox(color: .fixed(red)),
       );
 
       await tester.pumpWidget(wrapWithView: false, globalKeyedView);
@@ -130,7 +130,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       ViewAnchor(
-        view: const ColoredBox(color: red),
+        view: const ColoredBox(color: .fixed(red)),
         child: Container(),
       ),
     );
@@ -150,7 +150,7 @@ void main() {
   testWidgets(
     'A RenderObject cannot be moved into the view property of a ViewAnchor via GlobalKey',
     (WidgetTester tester) async {
-      final Widget globalKeyedWidget = ColoredBox(key: GlobalKey(), color: red);
+      final Widget globalKeyedWidget = ColoredBox(key: GlobalKey(), color: const .fixed(red));
 
       await tester.pumpWidget(ViewAnchor(child: globalKeyedWidget));
       expect(tester.takeException(), isNull);
@@ -220,7 +220,7 @@ void main() {
   ) async {
     final Widget globalKeyView = View(
       view: FakeView(tester.view),
-      child: const ColoredBox(color: red),
+      child: const ColoredBox(color: .fixed(red)),
     );
 
     await tester.pumpWidget(
@@ -293,7 +293,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       wrapWithView: false,
-      const ViewCollection(views: <Widget>[ColoredBox(color: red)]),
+      const ViewCollection(views: <Widget>[ColoredBox(color: .fixed(red))]),
     );
 
     expect(
@@ -314,12 +314,12 @@ void main() {
     final Widget greenView = View(
       key: GlobalKey(debugLabel: 'green'),
       view: tester.view,
-      child: const ColoredBox(color: green),
+      child: const ColoredBox(color: .fixed(green)),
     );
     final Widget redView = View(
       key: GlobalKey(debugLabel: 'red'),
       view: FakeView(tester.view),
-      child: const ColoredBox(color: red),
+      child: const ColoredBox(color: .fixed(red)),
     );
 
     await tester.pumpWidget(
@@ -373,11 +373,11 @@ void main() {
         views: <Widget>[
           View(
             view: greenView,
-            child: ColoredBox(color: green, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(green), child: globalKeyChild),
           ),
           View(
             view: redView,
-            child: const ColoredBox(color: red),
+            child: const ColoredBox(color: .fixed(red)),
           ),
         ],
       ),
@@ -403,11 +403,11 @@ void main() {
         views: <Widget>[
           View(
             view: greenView,
-            child: const ColoredBox(color: green),
+            child: const ColoredBox(color: .fixed(green)),
           ),
           View(
             view: redView,
-            child: ColoredBox(color: red, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(red), child: globalKeyChild),
           ),
         ],
       ),
@@ -454,11 +454,11 @@ void main() {
         views: <Widget>[
           View(
             view: greenView,
-            child: const ColoredBox(color: green),
+            child: const ColoredBox(color: .fixed(green)),
           ),
           View(
             view: redView,
-            child: ColoredBox(color: red, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(red), child: globalKeyChild),
           ),
         ],
       ),
@@ -484,11 +484,11 @@ void main() {
         views: <Widget>[
           View(
             view: greenView,
-            child: ColoredBox(color: green, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(green), child: globalKeyChild),
           ),
           View(
             view: redView,
-            child: const ColoredBox(color: red),
+            child: const ColoredBox(color: .fixed(red)),
           ),
         ],
       ),
@@ -525,12 +525,12 @@ void main() {
           View(
             key: greenKey,
             view: greenView,
-            child: const ColoredBox(color: green),
+            child: const ColoredBox(color: .fixed(green)),
           ),
           View(
             key: redKey,
             view: redView,
-            child: ColoredBox(color: red, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(red), child: globalKeyChild),
           ),
         ],
       ),
@@ -553,7 +553,7 @@ void main() {
           View(
             key: greenKey,
             view: greenView,
-            child: ColoredBox(color: green, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(green), child: globalKeyChild),
           ),
         ],
       ),
@@ -583,12 +583,12 @@ void main() {
           View(
             key: greenKey,
             view: greenView,
-            child: ColoredBox(color: green, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(green), child: globalKeyChild),
           ),
           View(
             key: redKey,
             view: redView,
-            child: const ColoredBox(color: red),
+            child: const ColoredBox(color: .fixed(red)),
           ),
         ],
       ),
@@ -611,7 +611,7 @@ void main() {
           View(
             key: redKey,
             view: redView,
-            child: ColoredBox(color: red, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(red), child: globalKeyChild),
           ),
         ],
       ),
@@ -646,7 +646,7 @@ void main() {
               key: viewKey,
               view: FakeView(tester.view),
               child: SizedBox(
-                child: ColoredBox(key: childKey, color: green),
+                child: ColoredBox(key: childKey, color: const .fixed(green)),
               ),
             ),
             child: const SizedBox(),
@@ -662,7 +662,7 @@ void main() {
         children: <Widget>[
           SizedBox(
             key: key1,
-            child: ColoredBox(key: childKey, color: green),
+            child: ColoredBox(key: childKey, color: const .fixed(green)),
           ),
           ViewAnchor(key: key2, child: const SizedBox()),
           ViewAnchor(
@@ -685,7 +685,7 @@ void main() {
               key: viewKey,
               view: FakeView(tester.view),
               child: SizedBox(
-                child: ColoredBox(key: childKey, color: green),
+                child: ColoredBox(key: childKey, color: const .fixed(green)),
               ),
             ),
             child: const SizedBox(),
@@ -718,7 +718,7 @@ void main() {
               key: viewKey,
               view: FakeView(tester.view),
               child: SizedBox(
-                child: ColoredBox(key: childKey, color: green),
+                child: ColoredBox(key: childKey, color: const .fixed(green)),
               ),
             ),
             child: const SizedBox(),
@@ -741,7 +741,7 @@ void main() {
           ),
           SizedBox(
             key: key4,
-            child: ColoredBox(key: childKey, color: green),
+            child: ColoredBox(key: childKey, color: const .fixed(green)),
           ),
         ],
       ),
@@ -757,7 +757,7 @@ void main() {
               key: viewKey,
               view: FakeView(tester.view),
               child: SizedBox(
-                child: ColoredBox(key: childKey, color: green),
+                child: ColoredBox(key: childKey, color: const .fixed(green)),
               ),
             ),
             child: const SizedBox(),
@@ -777,13 +777,13 @@ void main() {
 
     await tester.pumpWidget(
       ColoredBox(
-        color: green,
+        color: const .fixed(green),
         child: ViewAnchor(
           view: View(
             view: anchorView,
-            child: ColoredBox(color: yellow, child: globalKeyChild),
+            child: ColoredBox(color: const .fixed(yellow), child: globalKeyChild),
           ),
-          child: const ColoredBox(color: red),
+          child: const ColoredBox(color: .fixed(red)),
         ),
       ),
     );
@@ -804,9 +804,9 @@ void main() {
 
     await tester.pumpWidget(
       ColoredBox(
-        color: green,
+        color: const .fixed(green),
         child: ViewAnchor(
-          child: ColoredBox(color: red, child: globalKeyChild),
+          child: ColoredBox(color: const .fixed(red), child: globalKeyChild),
         ),
       ),
     );
@@ -832,13 +832,13 @@ void main() {
 
     await tester.pumpWidget(
       ColoredBox(
-        color: green,
+        color: const .fixed(green),
         child: ViewAnchor(
           view: View(
             view: anchorView,
-            child: const ColoredBox(color: yellow),
+            child: const ColoredBox(color: .fixed(yellow)),
           ),
-          child: const ColoredBox(color: red),
+          child: const ColoredBox(color: .fixed(red)),
         ),
       ),
     );
@@ -847,8 +847,8 @@ void main() {
 
     await tester.pumpWidget(
       const ColoredBox(
-        color: green,
-        child: ViewAnchor(child: ColoredBox(color: red)),
+        color: .fixed(green),
+        child: ViewAnchor(child: ColoredBox(color: .fixed(red))),
       ),
     );
 
@@ -867,11 +867,11 @@ void main() {
         views: <Widget>[
           View(
             view: redView,
-            child: const ColoredBox(color: red),
+            child: const ColoredBox(color: .fixed(red)),
           ),
           View(
             view: greenView,
-            child: const ColoredBox(color: green),
+            child: const ColoredBox(color: .fixed(green)),
           ),
         ],
       ),
@@ -887,7 +887,7 @@ void main() {
         views: <Widget>[
           View(
             view: redView,
-            child: const ColoredBox(color: red),
+            child: const ColoredBox(color: .fixed(red)),
           ),
         ],
       ),
@@ -920,7 +920,7 @@ void main() {
   testWidgets('ViewAnchor with View can be wrapped and unwrapped', (WidgetTester tester) async {
     final Widget viewAnchor = ViewAnchor(
       view: View(view: FakeView(tester.view), child: const SizedBox()),
-      child: const ColoredBox(color: green),
+      child: const ColoredBox(color: .fixed(green)),
     );
 
     await tester.pumpWidget(viewAnchor);
@@ -928,7 +928,7 @@ void main() {
     final List<RenderObject> renderViews = tester.renderObjectList(find.byType(View)).toList();
     final RenderObject renderSizedBox = tester.renderObject(find.byType(SizedBox));
 
-    await tester.pumpWidget(ColoredBox(color: yellow, child: viewAnchor));
+    await tester.pumpWidget(ColoredBox(color: const .fixed(yellow), child: viewAnchor));
 
     expect(tester.renderObjectList(find.byType(View)), renderViews);
     expect(tester.renderObject(find.byType(SizedBox)), same(renderSizedBox));
@@ -965,5 +965,7 @@ void main() {
 }
 
 Finder findsColoredBox(Color color) {
-  return find.byWidgetPredicate((Widget widget) => widget is ColoredBox && widget.color == color);
+  return find.byWidgetPredicate(
+    (Widget widget) => widget is ColoredBox && widget.color.value == color,
+  );
 }

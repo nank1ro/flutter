@@ -570,7 +570,8 @@ void main() {
           slivers: <Widget>[
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (_, int index) => index == 0 ? const TestTextField() : const SizedBox(height: 50),
+                (_, int index) =>
+                    index == 0 ? const TestTextField() : const SizedBox(height: .fixed(50)),
                 childCount: 200,
                 addAutomaticKeepAlives: false,
               ),
@@ -1296,11 +1297,11 @@ void main() {
             builder: (BuildContext context, StateSetter localSetState) {
               setState = localSetState;
               return Transform(
-                transform: Matrix4.diagonal3Values(1.0, scaleY, 1.0),
+                transform: .fixed(Matrix4.diagonal3Values(1.0, scaleY, 1.0)),
                 alignment: Alignment.center,
                 child: SizedBox(
-                  width: 300,
-                  height: 200,
+                  width: const .fixed(300),
+                  height: const .fixed(200),
                   child: TestTextField(
                     controller: controller,
                     focusNode: focusNode,
@@ -1377,8 +1378,8 @@ void main() {
               builder: (BuildContext context, StateSetter localSetState) {
                 setState = localSetState;
                 return SizedBox(
-                  width: 300,
-                  height: 200,
+                  width: const .fixed(300),
+                  height: const .fixed(200),
                   child: MediaQuery(
                     data: MediaQuery.of(
                       context,
@@ -1472,15 +1473,15 @@ void main() {
             children: <Widget>[
               CompositedTransformTarget(
                 link: startHandleLayerLink,
-                child: const SizedBox(height: 100, child: Text('start handle')),
+                child: const SizedBox(height: .fixed(100), child: Text('start handle')),
               ),
               CompositedTransformTarget(
                 link: endHandleLayerLink,
-                child: const SizedBox(height: 100, child: Text('end handle')),
+                child: const SizedBox(height: .fixed(100), child: Text('end handle')),
               ),
               CompositedTransformTarget(
                 link: toolbarLayerLink,
-                child: const SizedBox(height: 100, child: Text('toolbar')),
+                child: const SizedBox(height: .fixed(100), child: Text('toolbar')),
               ),
             ],
           ),
@@ -1864,7 +1865,7 @@ void main() {
       TestWidgetsApp(
         home: SizedBox(
           // Only 4 lines visible of 8 given.
-          height: kLineHeight * 4,
+          height: const .fixed(kLineHeight * 4),
           child: SingleChildScrollView(
             controller: scrollController,
             child: provider.buildGestureDetector(
@@ -1940,7 +1941,7 @@ void main() {
         TestWidgetsApp(
           home: SizedBox(
             // Only 4 lines visible of 8 given.
-            height: kLineHeight * 4,
+            height: const .fixed(kLineHeight * 4),
             child: SingleChildScrollView(
               controller: scrollController,
               child: provider.buildGestureDetector(
@@ -2361,10 +2362,10 @@ class _MockTextSelectionHandleControls extends TextSelectionControls
       onTap: onTap,
       // A plain colored container that is large enough to target and drag easily in tests.
       child: const SizedBox(
-        width: 30.0,
-        height: 30.0,
+        width: .fixed(30.0),
+        height: .fixed(30.0),
         child: ColoredBox(
-          color: Color(0xFF0000FF), // Pure Blue
+          color: .fixed(Color(0xFF0000FF)), // Pure Blue
         ),
       ),
     );

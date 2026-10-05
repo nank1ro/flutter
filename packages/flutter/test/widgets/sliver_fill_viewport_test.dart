@@ -12,7 +12,7 @@ void main() {
   testWidgets('SliverFillViewport control test', (WidgetTester tester) async {
     final children = List<Widget>.generate(20, (int i) {
       return ColoredBox(
-        color: const Color(0xff00ff00),
+        color: const .fixed(Color(0xff00ff00)),
         child: Text('$i', textDirection: TextDirection.ltr),
       );
     });

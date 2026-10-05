@@ -199,7 +199,7 @@ void main() {
       ViewAnchor(
         view: View(
           view: FakeView(tester.view),
-          child: const ColoredBox(color: green),
+          child: const ColoredBox(color: .fixed(green)),
         ),
         child: const SizedBox(),
       ),
@@ -313,7 +313,7 @@ void main() {
             return ViewAnchor(
               view: View(
                 view: FakeView(tester.view),
-                child: const ColoredBox(color: green),
+                child: const ColoredBox(color: .fixed(green)),
               ),
               child: const SizedBox(),
             );
@@ -413,7 +413,7 @@ void main() {
             return View(key: viewKey, view: FakeView(tester.view), child: const SizedBox());
           },
         ),
-        child: const ColoredBox(color: green),
+        child: const ColoredBox(color: .fixed(green)),
       ),
     );
 
@@ -430,7 +430,7 @@ void main() {
     expect(children, contains(rawViewOwner));
 
     // Remove that View from the tree.
-    await tester.pumpWidget(const ViewAnchor(child: ColoredBox(color: green)));
+    await tester.pumpWidget(const ViewAnchor(child: ColoredBox(color: .fixed(green))));
 
     expect(rawView.owner, isNull);
     expect(RendererBinding.instance.renderViews, isNot(contains(rawView)));
@@ -464,7 +464,7 @@ void main() {
   ) async {
     const size = Size(300, 600);
     tester.view.physicalConstraints = const ViewConstraints(); // unconstrained
-    await tester.pumpWidget(SizedBox.fromSize(size: size));
+    await tester.pumpWidget(SizedBox.fromSize(size: const .fixed(size)));
 
     final RenderView renderView = tester.renderObject<RenderView>(find.byType(View));
     expect(renderView.constraints, const BoxConstraints());
@@ -485,7 +485,7 @@ void main() {
       viewConstraints / tester.view.devicePixelRatio,
     );
     tester.view.physicalConstraints = viewConstraints;
-    await tester.pumpWidget(SizedBox.fromSize(size: size));
+    await tester.pumpWidget(SizedBox.fromSize(size: const .fixed(size)));
 
     final RenderView renderView = tester.renderObject<RenderView>(find.byType(View));
     expect(renderView.constraints, boxConstraints);
@@ -503,7 +503,7 @@ void main() {
     const size = Size(3000, 6000);
     const viewConstraints = ViewConstraints(maxWidth: 300, maxHeight: 600);
     tester.view.physicalConstraints = viewConstraints;
-    await tester.pumpWidget(SizedBox.fromSize(size: size));
+    await tester.pumpWidget(SizedBox.fromSize(size: const .fixed(size)));
 
     final RenderView renderView = tester.renderObject<RenderView>(find.byType(View));
     expect(renderView.size, const Size(100, 200)); // viewConstraints.biggest / devicePixelRatio

@@ -373,7 +373,7 @@ void main() {
               child: SizeTransition(
                 sizeFactor: animation,
                 fixedCrossAxisSizeFactor: 1.0,
-                child: const SizedBox.square(dimension: 100),
+                child: const SizedBox.square(dimension: .fixed(100)),
               ),
             ),
           ),
@@ -436,7 +436,7 @@ void main() {
                 axis: Axis.horizontal,
                 sizeFactor: animation,
                 fixedCrossAxisSizeFactor: 1.0,
-                child: const SizedBox.square(dimension: 100),
+                child: const SizedBox.square(dimension: .fixed(100)),
               ),
             ),
           ),
@@ -549,13 +549,13 @@ void main() {
 
     await tester.pumpWidget(widget);
     Transform actualTransformedBox = tester.widget(find.byType(Transform));
-    Matrix4 actualTransform = actualTransformedBox.transform;
+    Matrix4 actualTransform = actualTransformedBox.transform.value;
     expect(actualTransform, equals(Matrix4.rotationZ(0.0)));
 
     controller.value = 0.5;
     await tester.pump();
     actualTransformedBox = tester.widget(find.byType(Transform));
-    actualTransform = actualTransformedBox.transform;
+    actualTransform = actualTransformedBox.transform.value;
     expect(
       actualTransform,
       Matrix4.fromList(<double>[
@@ -581,7 +581,7 @@ void main() {
     controller.value = 0.75;
     await tester.pump();
     actualTransformedBox = tester.widget(find.byType(Transform));
-    actualTransform = actualTransformedBox.transform;
+    actualTransform = actualTransformedBox.transform.value;
     expect(
       actualTransform,
       Matrix4.fromList(<double>[
@@ -641,13 +641,13 @@ void main() {
 
       await tester.pumpWidget(widget);
       Transform actualRotatedBox = tester.widget(find.byType(Transform));
-      Matrix4 actualTurns = actualRotatedBox.transform;
+      Matrix4 actualTurns = actualRotatedBox.transform.value;
       expect(actualTurns, equals(Matrix4.rotationZ(0.0)));
 
       controller.value = 0.5;
       await tester.pump();
       actualRotatedBox = tester.widget(find.byType(Transform));
-      actualTurns = actualRotatedBox.transform;
+      actualTurns = actualRotatedBox.transform.value;
       expect(
         actualTurns,
         matrixMoreOrLessEquals(
@@ -675,7 +675,7 @@ void main() {
       controller.value = 0.75;
       await tester.pump();
       actualRotatedBox = tester.widget(find.byType(Transform));
-      actualTurns = actualRotatedBox.transform;
+      actualTurns = actualRotatedBox.transform.value;
       expect(
         actualTurns,
         matrixMoreOrLessEquals(

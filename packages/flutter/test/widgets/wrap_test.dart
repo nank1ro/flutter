@@ -22,10 +22,10 @@ void main() {
       const Wrap(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -41,10 +41,10 @@ void main() {
         alignment: WrapAlignment.center,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -60,10 +60,10 @@ void main() {
         alignment: WrapAlignment.end,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -78,10 +78,10 @@ void main() {
       const Wrap(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 50.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 50.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
         ],
       ),
     );
@@ -97,10 +97,10 @@ void main() {
         crossAxisAlignment: WrapCrossAlignment.center,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 50.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 50.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
         ],
       ),
     );
@@ -116,10 +116,10 @@ void main() {
         crossAxisAlignment: WrapCrossAlignment.end,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 50.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 50.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
         ],
       ),
     );
@@ -136,10 +136,10 @@ void main() {
       const Wrap(
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -155,10 +155,10 @@ void main() {
         alignment: WrapAlignment.center,
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -174,10 +174,10 @@ void main() {
         alignment: WrapAlignment.end,
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -193,10 +193,10 @@ void main() {
         textDirection: TextDirection.ltr,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 50.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 50.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
         ],
       ),
     );
@@ -213,10 +213,10 @@ void main() {
         textDirection: TextDirection.ltr,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 50.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 50.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
         ],
       ),
     );
@@ -233,10 +233,10 @@ void main() {
         textDirection: TextDirection.ltr,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          SizedBox(width: 300.0, height: 50.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 100.0),
-          SizedBox(width: 300.0, height: 50.0),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(100.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(50.0)),
         ],
       ),
     );
@@ -260,9 +260,9 @@ void main() {
         spacing: 5.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
         ],
       ),
     );
@@ -282,9 +282,9 @@ void main() {
         spacing: 5.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
         ],
       ),
     );
@@ -300,9 +300,9 @@ void main() {
         spacing: 5.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 310.0, height: 30.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(310.0), height: .fixed(30.0)),
         ],
       ),
     );
@@ -322,9 +322,9 @@ void main() {
         spacing: 5.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 310.0, height: 30.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(310.0), height: .fixed(30.0)),
         ],
       ),
     );
@@ -346,9 +346,9 @@ void main() {
         spacing: 5.0,
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
         ],
       ),
     );
@@ -368,9 +368,9 @@ void main() {
         spacing: 5.0,
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
         ],
       ),
     );
@@ -386,9 +386,9 @@ void main() {
         spacing: 5.0,
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 310.0, height: 30.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(310.0), height: .fixed(30.0)),
         ],
       ),
     );
@@ -408,9 +408,9 @@ void main() {
         spacing: 5.0,
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 310.0, height: 30.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(310.0), height: .fixed(30.0)),
         ],
       ),
     );
@@ -432,11 +432,11 @@ void main() {
         runSpacing: 5.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
-          SizedBox(width: 400.0, height: 40.0),
-          SizedBox(width: 500.0, height: 60.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+          SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(60.0)),
         ],
       ),
     );
@@ -458,11 +458,11 @@ void main() {
         runSpacing: 5.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
-          SizedBox(width: 400.0, height: 40.0),
-          SizedBox(width: 500.0, height: 60.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+          SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(60.0)),
         ],
       ),
     );
@@ -484,11 +484,11 @@ void main() {
         runSpacing: 5.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
-          SizedBox(width: 400.0, height: 40.0),
-          SizedBox(width: 500.0, height: 70.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+          SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(70.0)),
         ],
       ),
     );
@@ -510,11 +510,11 @@ void main() {
         runSpacing: 5.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
-          SizedBox(width: 400.0, height: 40.0),
-          SizedBox(width: 500.0, height: 60.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+          SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(60.0)),
         ],
       ),
     );
@@ -539,11 +539,11 @@ void main() {
         textDirection: TextDirection.ltr,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
-          SizedBox(width: 400.0, height: 40.0),
-          SizedBox(width: 500.0, height: 60.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+          SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(60.0)),
         ],
       ),
     );
@@ -566,11 +566,11 @@ void main() {
         textDirection: TextDirection.ltr,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
-          SizedBox(width: 400.0, height: 40.0),
-          SizedBox(width: 500.0, height: 60.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+          SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(60.0)),
         ],
       ),
     );
@@ -593,11 +593,11 @@ void main() {
         textDirection: TextDirection.ltr,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
-          SizedBox(width: 400.0, height: 40.0),
-          SizedBox(width: 500.0, height: 70.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+          SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(70.0)),
         ],
       ),
     );
@@ -620,11 +620,11 @@ void main() {
         textDirection: TextDirection.ltr,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 10.0),
-          SizedBox(width: 200.0, height: 20.0),
-          SizedBox(width: 300.0, height: 30.0),
-          SizedBox(width: 400.0, height: 40.0),
-          SizedBox(width: 500.0, height: 60.0),
+          SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+          SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+          SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(60.0)),
         ],
       ),
     );
@@ -650,10 +650,10 @@ void main() {
           crossAxisAlignment: WrapCrossAlignment.end,
           textDirection: TextDirection.ltr,
           children: <Widget>[
-            SizedBox(width: 100.0, height: 10.0),
-            SizedBox(width: 200.0, height: 20.0),
-            SizedBox(width: 300.0, height: 30.0),
-            SizedBox(width: 400.0, height: 40.0),
+            SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
+            SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+            SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+            SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
           ],
         ),
       ),
@@ -674,10 +674,10 @@ void main() {
           crossAxisAlignment: WrapCrossAlignment.end,
           textDirection: TextDirection.ltr,
           children: <Widget>[
-            SizedBox(width: 400.0, height: 40.0),
-            SizedBox(width: 300.0, height: 30.0),
-            SizedBox(width: 200.0, height: 20.0),
-            SizedBox(width: 100.0, height: 10.0),
+            SizedBox(width: .fixed(400.0), height: .fixed(40.0)),
+            SizedBox(width: .fixed(300.0), height: .fixed(30.0)),
+            SizedBox(width: .fixed(200.0), height: .fixed(20.0)),
+            SizedBox(width: .fixed(100.0), height: .fixed(10.0)),
           ],
         ),
       ),
@@ -699,10 +699,10 @@ void main() {
           runSpacing: 10.0,
           textDirection: TextDirection.ltr,
           children: <Widget>[
-            SizedBox(width: 500.0, height: 10.0),
-            SizedBox(width: 500.0, height: 20.0),
-            SizedBox(width: 500.0, height: 30.0),
-            SizedBox(width: 500.0, height: 40.0),
+            SizedBox(width: .fixed(500.0), height: .fixed(10.0)),
+            SizedBox(width: .fixed(500.0), height: .fixed(20.0)),
+            SizedBox(width: .fixed(500.0), height: .fixed(30.0)),
+            SizedBox(width: .fixed(500.0), height: .fixed(40.0)),
           ],
         ),
       ),
@@ -729,12 +729,12 @@ void main() {
           runSpacing: 15.0,
           textDirection: TextDirection.ltr,
           children: <Widget>[
-            SizedBox(width: 10.0, height: 250.0),
-            SizedBox(width: 20.0, height: 250.0),
-            SizedBox(width: 30.0, height: 250.0),
-            SizedBox(width: 40.0, height: 250.0),
-            SizedBox(width: 50.0, height: 250.0),
-            SizedBox(width: 60.0, height: 250.0),
+            SizedBox(width: .fixed(10.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(20.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(30.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(40.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(50.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(60.0), height: .fixed(250.0)),
           ],
         ),
       ),
@@ -760,12 +760,12 @@ void main() {
           runSpacing: 8.0,
           textDirection: TextDirection.ltr,
           children: <Widget>[
-            SizedBox(width: 10.0, height: 250.0),
-            SizedBox(width: 20.0, height: 250.0),
-            SizedBox(width: 30.0, height: 250.0),
-            SizedBox(width: 40.0, height: 250.0),
-            SizedBox(width: 50.0, height: 250.0),
-            SizedBox(width: 60.0, height: 250.0),
+            SizedBox(width: .fixed(10.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(20.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(30.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(40.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(50.0), height: .fixed(250.0)),
+            SizedBox(width: .fixed(60.0), height: .fixed(250.0)),
           ],
         ),
       ),
@@ -788,7 +788,7 @@ void main() {
     await tester.pumpWidget(
       const Wrap(
         textDirection: TextDirection.ltr,
-        children: <Widget>[SizedBox(width: 500.0, height: 500.0)],
+        children: <Widget>[SizedBox(width: .fixed(500.0), height: .fixed(500.0))],
       ),
     );
 
@@ -799,8 +799,8 @@ void main() {
         textDirection: TextDirection.ltr,
         clipBehavior: Clip.hardEdge,
         children: <Widget>[
-          SizedBox(width: 500.0, height: 500.0),
-          SizedBox(width: 500.0, height: 500.0),
+          SizedBox(width: .fixed(500.0), height: .fixed(500.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(500.0)),
         ],
       ),
     );
@@ -817,13 +817,13 @@ void main() {
         runSpacing: 15.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          const SizedBox(width: 200.0, height: 300.0),
-          const SizedBox(width: 200.0, height: 300.0),
-          const SizedBox(width: 200.0, height: 300.0),
-          const SizedBox(width: 200.0, height: 300.0),
+          const SizedBox(width: .fixed(200.0), height: .fixed(300.0)),
+          const SizedBox(width: .fixed(200.0), height: .fixed(300.0)),
+          const SizedBox(width: .fixed(200.0), height: .fixed(300.0)),
+          const SizedBox(width: .fixed(200.0), height: .fixed(300.0)),
           SizedBox(
-            width: 200.0,
-            height: 300.0,
+            width: const .fixed(200.0),
+            height: const .fixed(300.0),
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
@@ -862,10 +862,10 @@ void main() {
         runSpacing: 7.0,
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 500.0, height: 400.0),
-          SizedBox(width: 500.0, height: 400.0),
-          SizedBox(width: 500.0, height: 400.0),
-          SizedBox(width: 500.0, height: 400.0),
+          SizedBox(width: .fixed(500.0), height: .fixed(400.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(400.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(400.0)),
+          SizedBox(width: .fixed(500.0), height: .fixed(400.0)),
         ],
       ),
     );
@@ -902,10 +902,10 @@ void main() {
         spacing: 10.0,
         runSpacing: 10.0,
         children: <Widget>[
-          SizedBox(width: 200.0, height: 10.0),
-          SizedBox(width: 200.0, height: 10.0),
-          SizedBox(width: 200.0, height: 10.0),
-          SizedBox(width: 171.0, height: 10.0),
+          SizedBox(width: .fixed(200.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(200.0), height: .fixed(10.0)),
+          SizedBox(width: .fixed(171.0), height: .fixed(10.0)),
         ],
       ),
     );
@@ -930,7 +930,7 @@ void main() {
             textDirection: TextDirection.ltr,
             spacing: 10.0,
             runSpacing: 10.0,
-            children: <Widget>[SizedBox(width: 800.0, height: 10.0)],
+            children: <Widget>[SizedBox(width: .fixed(800.0), height: .fixed(10.0))],
           ),
         ],
       ),
@@ -947,8 +947,8 @@ void main() {
             spacing: 10.0,
             runSpacing: 10.0,
             children: <Widget>[
-              SizedBox(width: 800.0, height: 10.0),
-              SizedBox(width: 800.0, height: 10.0),
+              SizedBox(width: .fixed(800.0), height: .fixed(10.0)),
+              SizedBox(width: .fixed(800.0), height: .fixed(10.0)),
             ],
           ),
         ],
@@ -978,11 +978,13 @@ void main() {
         child: Center(
           child: IntrinsicHeight(
             child: ColoredBox(
-              color: green,
+              color: .fixed(green),
               child: Wrap(
                 children: <Widget>[
                   Text('Start', style: TextStyle(height: 1.0, fontSize: 16)),
-                  Row(children: <Widget>[SizedBox(height: 40, width: 60)]),
+                  Row(
+                    children: <Widget>[SizedBox(height: .fixed(40), width: .fixed(60))],
+                  ),
                   Text('End', style: TextStyle(height: 1.0, fontSize: 16)),
                 ],
               ),
@@ -1006,12 +1008,14 @@ void main() {
         child: Center(
           child: IntrinsicWidth(
             child: ColoredBox(
-              color: green,
+              color: .fixed(green),
               child: Wrap(
                 direction: Axis.vertical,
                 children: <Widget>[
                   Text('Start', style: TextStyle(height: 1.0, fontSize: 16)),
-                  Column(children: <Widget>[SizedBox(height: 40, width: 60)]),
+                  Column(
+                    children: <Widget>[SizedBox(height: .fixed(40), width: .fixed(60))],
+                  ),
                   Text('End', style: TextStyle(height: 1.0, fontSize: 16)),
                 ],
               ),
@@ -1032,7 +1036,7 @@ void main() {
       const Wrap(
         textDirection: TextDirection.rtl,
         alignment: WrapAlignment.spaceBetween,
-        children: <Widget>[SizedBox(width: 100.0, height: 100.0)],
+        children: <Widget>[SizedBox(width: .fixed(100.0), height: .fixed(100.0))],
       ),
     );
     expect(

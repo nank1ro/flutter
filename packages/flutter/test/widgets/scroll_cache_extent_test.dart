@@ -208,7 +208,7 @@ void main() {
           scrollCacheExtent: const ScrollCacheExtent.pixels(100.0),
           itemCount: 20,
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(height: 100, child: Text('Item $index'));
+            return SizedBox(height: const .fixed(100), child: Text('Item $index'));
           },
         ),
       ),
@@ -246,7 +246,7 @@ void main() {
           scrollCacheExtent: const ScrollCacheExtent.viewport(2.0),
           itemCount: 20,
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(height: 100, child: Text('Item $index'));
+            return SizedBox(height: const .fixed(100), child: Text('Item $index'));
           },
         ),
       ),

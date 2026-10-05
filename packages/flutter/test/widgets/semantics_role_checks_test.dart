@@ -152,7 +152,7 @@ void main() {
             child: Semantics(
               checked: false,
               inMutuallyExclusiveGroup: false,
-              child: const SizedBox.square(dimension: 1),
+              child: const SizedBox.square(dimension: .fixed(1)),
             ),
           ),
         ),
@@ -173,12 +173,12 @@ void main() {
                 Semantics(
                   checked: true,
                   inMutuallyExclusiveGroup: true,
-                  child: const SizedBox.square(dimension: 1),
+                  child: const SizedBox.square(dimension: .fixed(1)),
                 ),
                 Semantics(
                   checked: true,
                   inMutuallyExclusiveGroup: true,
-                  child: const SizedBox.square(dimension: 1),
+                  child: const SizedBox.square(dimension: .fixed(1)),
                 ),
               ],
             ),
@@ -203,12 +203,12 @@ void main() {
                 Semantics(
                   checked: false,
                   inMutuallyExclusiveGroup: true,
-                  child: const SizedBox.square(dimension: 1),
+                  child: const SizedBox.square(dimension: .fixed(1)),
                 ),
                 Semantics(
                   checked: true,
                   inMutuallyExclusiveGroup: true,
-                  child: const SizedBox.square(dimension: 1),
+                  child: const SizedBox.square(dimension: .fixed(1)),
                 ),
               ],
             ),
@@ -232,7 +232,7 @@ void main() {
                   child: Semantics(
                     checked: false,
                     inMutuallyExclusiveGroup: true,
-                    child: const SizedBox.square(dimension: 1),
+                    child: const SizedBox.square(dimension: .fixed(1)),
                   ),
                 ),
                 Semantics(
@@ -240,7 +240,7 @@ void main() {
                   child: Semantics(
                     checked: true,
                     inMutuallyExclusiveGroup: true,
-                    child: const SizedBox.square(dimension: 1),
+                    child: const SizedBox.square(dimension: .fixed(1)),
                   ),
                 ),
               ],
@@ -260,7 +260,7 @@ void main() {
           child: Semantics(
             role: SemanticsRole.radioGroup,
             explicitChildNodes: true,
-            child: Semantics(toggled: true, child: const SizedBox.square(dimension: 1)),
+            child: Semantics(toggled: true, child: const SizedBox.square(dimension: .fixed(1))),
           ),
         ),
       );
@@ -598,7 +598,7 @@ void main() {
           child: Semantics(
             role: SemanticsRole.alert,
             liveRegion: true,
-            child: const SizedBox.square(dimension: 1),
+            child: const SizedBox.square(dimension: .fixed(1)),
           ),
         ),
       );
@@ -618,7 +618,7 @@ void main() {
           child: Semantics(
             role: SemanticsRole.status,
             liveRegion: true,
-            child: const SizedBox.square(dimension: 1),
+            child: const SizedBox.square(dimension: .fixed(1)),
           ),
         ),
       );
@@ -639,8 +639,14 @@ void main() {
             explicitChildNodes: true,
             child: Column(
               children: <Widget>[
-                Semantics(role: SemanticsRole.status, child: const SizedBox.square(dimension: 1)),
-                Semantics(role: SemanticsRole.alert, child: const SizedBox.square(dimension: 1)),
+                Semantics(
+                  role: SemanticsRole.status,
+                  child: const SizedBox.square(dimension: .fixed(1)),
+                ),
+                Semantics(
+                  role: SemanticsRole.alert,
+                  child: const SizedBox.square(dimension: .fixed(1)),
+                ),
               ],
             ),
           ),
@@ -663,7 +669,7 @@ void main() {
                   child: Semantics(
                     checked: false,
                     inMutuallyExclusiveGroup: true,
-                    child: const SizedBox.square(dimension: 1),
+                    child: const SizedBox.square(dimension: .fixed(1)),
                   ),
                 ),
                 Semantics(
@@ -671,7 +677,7 @@ void main() {
                   child: Semantics(
                     checked: true,
                     inMutuallyExclusiveGroup: true,
-                    child: const SizedBox.square(dimension: 1),
+                    child: const SizedBox.square(dimension: .fixed(1)),
                   ),
                 ),
               ],
@@ -691,7 +697,7 @@ void main() {
           child: Semantics(
             role: SemanticsRole.radioGroup,
             explicitChildNodes: true,
-            child: Semantics(toggled: true, child: const SizedBox.square(dimension: 1)),
+            child: Semantics(toggled: true, child: const SizedBox.square(dimension: .fixed(1))),
           ),
         ),
       );
@@ -735,14 +741,14 @@ void main() {
             children: <Widget>[
               Semantics(
                 role: SemanticsRole.complementary,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
               Semantics(
                 container: true,
                 child: SizedBox(
                   child: Semantics(
                     role: SemanticsRole.complementary,
-                    child: const SizedBox.square(dimension: 1),
+                    child: const SizedBox.square(dimension: .fixed(1)),
                   ),
                 ),
               ),
@@ -782,12 +788,12 @@ void main() {
               Semantics(
                 label: 'complementary 1',
                 role: SemanticsRole.complementary,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
               Semantics(
                 label: 'complementary 2',
                 role: SemanticsRole.complementary,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
             ],
           ),
@@ -806,14 +812,14 @@ void main() {
             children: <Widget>[
               Semantics(
                 role: SemanticsRole.contentInfo,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
               Semantics(
                 container: true,
                 child: SizedBox(
                   child: Semantics(
                     role: SemanticsRole.contentInfo,
-                    child: const SizedBox.square(dimension: 1),
+                    child: const SizedBox.square(dimension: .fixed(1)),
                   ),
                 ),
               ),
@@ -878,12 +884,12 @@ void main() {
               Semantics(
                 label: 'contentInfo 1',
                 role: SemanticsRole.contentInfo,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
               Semantics(
                 label: 'contentInfo 2',
                 role: SemanticsRole.contentInfo,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
             ],
           ),
@@ -900,13 +906,16 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Column(
             children: <Widget>[
-              Semantics(role: SemanticsRole.main, child: const SizedBox.square(dimension: 1)),
+              Semantics(
+                role: SemanticsRole.main,
+                child: const SizedBox.square(dimension: .fixed(1)),
+              ),
               Semantics(
                 container: true,
                 child: SizedBox(
                   child: Semantics(
                     role: SemanticsRole.main,
-                    child: const SizedBox.square(dimension: 1),
+                    child: const SizedBox.square(dimension: .fixed(1)),
                   ),
                 ),
               ),
@@ -967,12 +976,12 @@ void main() {
               Semantics(
                 label: 'main 1',
                 role: SemanticsRole.main,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
               Semantics(
                 label: 'main 2',
                 role: SemanticsRole.main,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
             ],
           ),
@@ -989,13 +998,16 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Column(
             children: <Widget>[
-              Semantics(role: SemanticsRole.navigation, child: const SizedBox.square(dimension: 1)),
+              Semantics(
+                role: SemanticsRole.navigation,
+                child: const SizedBox.square(dimension: .fixed(1)),
+              ),
               Semantics(
                 container: true,
                 child: SizedBox(
                   child: Semantics(
                     role: SemanticsRole.navigation,
-                    child: const SizedBox.square(dimension: 1),
+                    child: const SizedBox.square(dimension: .fixed(1)),
                   ),
                 ),
               ),
@@ -1035,12 +1047,12 @@ void main() {
               Semantics(
                 label: 'navigation 1',
                 role: SemanticsRole.navigation,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
               Semantics(
                 label: 'navigation 2',
                 role: SemanticsRole.navigation,
-                child: const SizedBox.square(dimension: 1),
+                child: const SizedBox.square(dimension: .fixed(1)),
               ),
             ],
           ),
