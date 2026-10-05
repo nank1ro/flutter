@@ -2407,7 +2407,9 @@ void main() {
               ),
             ],
             child: const Stack(
-              children: <Widget>[ColoredBox(color: .fixed(Color(0xFF00FF00)), child: SizedBox.expand())],
+              children: <Widget>[
+                ColoredBox(color: .fixed(Color(0xFF00FF00)), child: SizedBox.expand()),
+              ],
             ),
           ),
         );
@@ -2466,7 +2468,9 @@ void main() {
               ),
             ],
             child: const Stack(
-              children: <Widget>[ColoredBox(color: .fixed(Color(0xFF00FF00)), child: SizedBox.expand())],
+              children: <Widget>[
+                ColoredBox(color: .fixed(Color(0xFF00FF00)), child: SizedBox.expand()),
+              ],
             ),
           ),
         );
@@ -2685,7 +2689,10 @@ void main() {
             constrainCrossAxis: true,
             constraints: BoxConstraints.tight(const Size(200, 200)),
             menuChildren: const <Widget>[SizedBox()],
-            child: const ColoredBox(color: .fixed(CupertinoColors.systemOrange), child: SizedBox.expand()),
+            child: const ColoredBox(
+              color: .fixed(CupertinoColors.systemOrange),
+              child: SizedBox.expand(),
+            ),
           ),
         ),
       );
@@ -2942,7 +2949,9 @@ void main() {
           CupertinoMenuAnchor(
             overlayPadding: EdgeInsets.zero,
             constraints: const BoxConstraints(minWidth: 75, maxHeight: 100),
-            menuChildren: <Widget>[SizedBox(key: Tag.a.key, height: const .fixed(150), width: const .fixed(50))],
+            menuChildren: <Widget>[
+              SizedBox(key: Tag.a.key, height: const .fixed(150), width: const .fixed(50)),
+            ],
             child: const AnchorButton(Tag.anchor),
           ),
         ),
@@ -3743,7 +3752,8 @@ void main() {
                       matching: find.byType(DecoratedBox),
                     ),
                   )
-                  .decoration.value
+                  .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -3833,7 +3843,8 @@ void main() {
                       matching: find.byType(DecoratedBox),
                     ),
                   )
-                  .decoration.value
+                  .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -3922,7 +3933,8 @@ void main() {
                       matching: find.byType(DecoratedBox),
                     ),
                   )
-                  .decoration.value
+                  .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -4024,7 +4036,8 @@ void main() {
                       matching: find.byType(DecoratedBox),
                     ),
                   )
-                  .decoration.value
+                  .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -4105,12 +4118,11 @@ void main() {
           darkColor: Color.fromRGBO(150, 0, 0, 1),
         );
 
-        const decoration = WidgetStateProperty<BoxDecoration>.fromMap(
-          <WidgetStatesConstraint, BoxDecoration>{
-            WidgetState.dragged: BoxDecoration(color: customSwipedColor),
-            WidgetState.any: BoxDecoration(),
-          },
-        );
+        const decoration =
+            WidgetStateProperty<BoxDecoration>.fromMap(<WidgetStatesConstraint, BoxDecoration>{
+              WidgetState.dragged: BoxDecoration(color: customSwipedColor),
+              WidgetState.any: BoxDecoration(),
+            });
 
         BoxDecoration getItemDecoration(Tag tag) {
           return tester
@@ -4120,7 +4132,8 @@ void main() {
                       matching: find.byType(DecoratedBox),
                     ),
                   )
-                  .decoration.value
+                  .decoration
+                  .value
               as BoxDecoration;
         }
 

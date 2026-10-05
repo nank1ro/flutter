@@ -27,7 +27,9 @@ void main() {
         child: MediaQuery(
           data: MediaQueryData(),
           child: CupertinoScrollbar(
-            child: SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+            child: SingleChildScrollView(
+              child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+            ),
           ),
         ),
       ),
@@ -69,7 +71,9 @@ void main() {
             return MediaQuery(
               data: MediaQueryData(platformBrightness: brightness),
               child: const CupertinoScrollbar(
-                child: SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+                child: SingleChildScrollView(
+                  child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+                ),
               ),
             );
           },
@@ -105,7 +109,9 @@ void main() {
           child: PrimaryScrollController(
             controller: scrollController,
             child: const CupertinoScrollbar(
-              child: SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+              child: SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -364,7 +370,9 @@ void main() {
             data: MediaQueryData(),
             child: CupertinoScrollbar(
               thumbVisibility: true,
-              child: SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+              child: SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         );
@@ -389,7 +397,9 @@ void main() {
             child: CupertinoScrollbar(
               controller: controller,
               thumbVisibility: true,
-              child: const SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         );
@@ -418,7 +428,9 @@ void main() {
             data: MediaQueryData(),
             child: CupertinoScrollbar(
               thumbVisibility: true,
-              child: SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+              child: SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         );
@@ -443,7 +455,9 @@ void main() {
             child: CupertinoScrollbar(
               controller: controller,
               thumbVisibility: true,
-              child: const SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         );
@@ -511,7 +525,9 @@ void main() {
             child: CupertinoScrollbar(
               thumbVisibility: true,
               controller: controller,
-              child: const SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -576,7 +592,9 @@ void main() {
             child: CupertinoScrollbar(
               thumbVisibility: true,
               controller: controller,
-              child: const SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -606,7 +624,9 @@ void main() {
             controller: controller,
             child: CupertinoScrollbar(
               controller: controller,
-              child: const SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -989,130 +1009,126 @@ void main() {
     await tester.pump(kScrollbarFadeDuration);
   });
 
-  testWidgets(
-    'Tapping the track area pages the Scroll View except on iOS',
-    (WidgetTester tester) async {
-      final scrollController = ScrollController();
-      addTearDown(scrollController.dispose);
-      await tester.pumpWidget(
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: MediaQuery(
-            data: const MediaQueryData(),
-            child: CupertinoScrollbar(
-              thumbVisibility: true,
+  testWidgets('Tapping the track area pages the Scroll View except on iOS', (
+    WidgetTester tester,
+  ) async {
+    final scrollController = ScrollController();
+    addTearDown(scrollController.dispose);
+    await tester.pumpWidget(
+      Directionality(
+        textDirection: TextDirection.ltr,
+        child: MediaQuery(
+          data: const MediaQueryData(),
+          child: CupertinoScrollbar(
+            thumbVisibility: true,
+            controller: scrollController,
+            child: SingleChildScrollView(
               controller: scrollController,
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
-              ),
+              child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
             ),
           ),
         ),
-      );
+      ),
+    );
 
-      await tester.pumpAndSettle();
-      expect(scrollController.offset, 0.0);
-      expect(
-        find.byType(CupertinoScrollbar),
-        paints..rrect(
-          color: _kScrollbarColor.color,
-          rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
+    await tester.pumpAndSettle();
+    expect(scrollController.offset, 0.0);
+    expect(
+      find.byType(CupertinoScrollbar),
+      paints..rrect(
+        color: _kScrollbarColor.color,
+        rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
+      ),
+    );
+
+    // Tap on the track area below the thumb.
+    await tester.tapAt(const Offset(796.0, 550.0));
+    await tester.pumpAndSettle();
+
+    expect(scrollController.offset, 400.0);
+    expect(
+      find.byType(CupertinoScrollbar),
+      paints..rrect(
+        color: _kScrollbarColor.color,
+        rrect: RRect.fromRectAndRadius(
+          const Rect.fromLTRB(794.0, 240.6, 797.0, 597.0),
+          const Radius.circular(1.5),
         ),
-      );
+      ),
+    );
 
-      // Tap on the track area below the thumb.
-      await tester.tapAt(const Offset(796.0, 550.0));
-      await tester.pumpAndSettle();
+    // Tap on the track area above the thumb.
+    await tester.tapAt(const Offset(796.0, 50.0));
+    await tester.pumpAndSettle();
 
-      expect(scrollController.offset, 400.0);
-      expect(
-        find.byType(CupertinoScrollbar),
-        paints..rrect(
-          color: _kScrollbarColor.color,
-          rrect: RRect.fromRectAndRadius(
-            const Rect.fromLTRB(794.0, 240.6, 797.0, 597.0),
-            const Radius.circular(1.5),
-          ),
-        ),
-      );
+    expect(scrollController.offset, 0.0);
+    expect(
+      find.byType(CupertinoScrollbar),
+      paints..rrect(
+        color: _kScrollbarColor.color,
+        rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
+      ),
+    );
+  }, variant: TargetPlatformVariant.all(excluding: <TargetPlatform>{TargetPlatform.iOS}));
 
-      // Tap on the track area above the thumb.
-      await tester.tapAt(const Offset(796.0, 50.0));
-      await tester.pumpAndSettle();
-
-      expect(scrollController.offset, 0.0);
-      expect(
-        find.byType(CupertinoScrollbar),
-        paints..rrect(
-          color: _kScrollbarColor.color,
-          rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
-        ),
-      );
-    },
-    variant: TargetPlatformVariant.all(excluding: <TargetPlatform>{TargetPlatform.iOS}),
-  );
-
-  testWidgets(
-    'Tapping the track area does not page the Scroll View on iOS',
-    (WidgetTester tester) async {
-      final scrollController = ScrollController();
-      addTearDown(scrollController.dispose);
-      await tester.pumpWidget(
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: MediaQuery(
-            data: const MediaQueryData(),
-            child: CupertinoScrollbar(
-              thumbVisibility: true,
+  testWidgets('Tapping the track area does not page the Scroll View on iOS', (
+    WidgetTester tester,
+  ) async {
+    final scrollController = ScrollController();
+    addTearDown(scrollController.dispose);
+    await tester.pumpWidget(
+      Directionality(
+        textDirection: TextDirection.ltr,
+        child: MediaQuery(
+          data: const MediaQueryData(),
+          child: CupertinoScrollbar(
+            thumbVisibility: true,
+            controller: scrollController,
+            child: SingleChildScrollView(
               controller: scrollController,
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
-              ),
+              child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
             ),
           ),
         ),
-      );
+      ),
+    );
 
-      await tester.pumpAndSettle();
-      expect(scrollController.offset, 0.0);
-      expect(
-        find.byType(CupertinoScrollbar),
-        paints..rrect(
-          color: _kScrollbarColor.color,
-          rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
-        ),
-      );
+    await tester.pumpAndSettle();
+    expect(scrollController.offset, 0.0);
+    expect(
+      find.byType(CupertinoScrollbar),
+      paints..rrect(
+        color: _kScrollbarColor.color,
+        rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
+      ),
+    );
 
-      // Tap on the track area below the thumb.
-      await tester.tapAt(const Offset(796.0, 550.0));
-      await tester.pumpAndSettle();
+    // Tap on the track area below the thumb.
+    await tester.tapAt(const Offset(796.0, 550.0));
+    await tester.pumpAndSettle();
 
-      expect(scrollController.offset, 0.0);
-      expect(
-        find.byType(CupertinoScrollbar),
-        paints..rrect(
-          color: _kScrollbarColor.color,
-          rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
-        ),
-      );
+    expect(scrollController.offset, 0.0);
+    expect(
+      find.byType(CupertinoScrollbar),
+      paints..rrect(
+        color: _kScrollbarColor.color,
+        rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
+      ),
+    );
 
-      // Tap on the track area above the thumb.
-      await tester.tapAt(const Offset(796.0, 50.0));
-      await tester.pumpAndSettle();
+    // Tap on the track area above the thumb.
+    await tester.tapAt(const Offset(796.0, 50.0));
+    await tester.pumpAndSettle();
 
-      expect(scrollController.offset, 0.0);
-      expect(
-        find.byType(CupertinoScrollbar),
-        paints..rrect(
-          color: _kScrollbarColor.color,
-          rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
-        ),
-      );
-    },
-    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
-  );
+    expect(scrollController.offset, 0.0);
+    expect(
+      find.byType(CupertinoScrollbar),
+      paints..rrect(
+        color: _kScrollbarColor.color,
+        rrect: RRect.fromLTRBR(794.0, 3.0, 797.0, 359.4, const Radius.circular(1.5)),
+      ),
+    );
+  }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
   testWidgets('Throw if interactive with the bar when no position attached', (
     WidgetTester tester,
@@ -1215,7 +1231,9 @@ void main() {
           child: CupertinoScrollbar(
             thumbVisibility: true,
             controller: scrollController,
-            child: const SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+            child: const SingleChildScrollView(
+              child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+            ),
           ),
         ),
       ),
@@ -1325,7 +1343,9 @@ void main() {
             thumbVisibility: true,
             controller: scrollController,
             scrollbarOrientation: ScrollbarOrientation.left,
-            child: const SingleChildScrollView(child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0))),
+            child: const SingleChildScrollView(
+              child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+            ),
           ),
         ),
       ),

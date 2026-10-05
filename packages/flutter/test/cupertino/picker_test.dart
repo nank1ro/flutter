@@ -45,7 +45,11 @@ void main() {
               itemExtent: 50.0,
               onSelectedItemChanged: (_) {},
               children: List<Widget>.generate(3, (int index) {
-                return SizedBox(height: const .fixed(50.0), width: const .fixed(300.0), child: Text(index.toString()));
+                return SizedBox(
+                  height: const .fixed(50.0),
+                  width: const .fixed(300.0),
+                  child: Text(index.toString()),
+                );
               }),
             ),
           ),
@@ -80,7 +84,11 @@ void main() {
             itemExtent: 50.0,
             onSelectedItemChanged: (_) {},
             children: List<Widget>.generate(13, (int index) {
-              return SizedBox(height: const .fixed(50.0), width: const .fixed(300.0), child: Text(index.toString()));
+              return SizedBox(
+                height: const .fixed(50.0),
+                width: const .fixed(300.0),
+                child: Text(index.toString()),
+              );
             }),
           ),
         ),
@@ -221,7 +229,11 @@ void main() {
                 itemExtent: 50.0,
                 onSelectedItemChanged: (_) {},
                 children: List<Widget>.generate(3, (int index) {
-                  return SizedBox(height: const .fixed(50.0), width: const .fixed(300.0), child: Text(index.toString()));
+                  return SizedBox(
+                    height: const .fixed(50.0),
+                    width: const .fixed(300.0),
+                    child: Text(index.toString()),
+                  );
                 }),
               ),
             ),
@@ -370,7 +382,11 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
+                  child: SizedBox(
+                    width: const .fixed(400.0),
+                    height: const .fixed(100.0),
+                    child: Text(index.toString()),
+                  ),
                 );
               }),
             ),
@@ -438,7 +454,11 @@ void main() {
             },
             children: List<Widget>.generate(100, (int index) {
               return Center(
-                child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
+                child: SizedBox(
+                  width: const .fixed(400.0),
+                  height: const .fixed(100.0),
+                  child: Text(index.toString()),
+                ),
               );
             }),
           ),
@@ -473,51 +493,53 @@ void main() {
       expect(selectedItems, <int>[2, 1]);
     });
 
-    testWidgets(
-      'does not trigger haptics or sounds when scrolling by tapping on the item',
-      (WidgetTester tester) async {
-        final selectedItems = <int>[];
-        final systemCalls = <MethodCall>[];
+    testWidgets('does not trigger haptics or sounds when scrolling by tapping on the item', (
+      WidgetTester tester,
+    ) async {
+      final selectedItems = <int>[];
+      final systemCalls = <MethodCall>[];
 
-        tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(SystemChannels.platform, (
-          MethodCall methodCall,
-        ) async {
-          systemCalls.add(methodCall);
-          return null;
-        });
+      tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(SystemChannels.platform, (
+        MethodCall methodCall,
+      ) async {
+        systemCalls.add(methodCall);
+        return null;
+      });
 
-        await tester.pumpWidget(
-          Directionality(
-            textDirection: TextDirection.ltr,
-            child: CupertinoPicker(
-              itemExtent: 100.0,
-              onSelectedItemChanged: (int index) {
-                selectedItems.add(index);
-              },
-              children: List<Widget>.generate(100, (int index) {
-                return Center(
-                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
-                );
-              }),
-            ),
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: CupertinoPicker(
+            itemExtent: 100.0,
+            onSelectedItemChanged: (int index) {
+              selectedItems.add(index);
+            },
+            children: List<Widget>.generate(100, (int index) {
+              return Center(
+                child: SizedBox(
+                  width: const .fixed(400.0),
+                  height: const .fixed(100.0),
+                  child: Text(index.toString()),
+                ),
+              );
+            }),
           ),
-        );
+        ),
+      );
 
-        await tester.tap(find.text('2'), warnIfMissed: false); // has an IgnorePointer
-        await tester.pumpAndSettle(const Duration(milliseconds: 10));
+      await tester.tap(find.text('2'), warnIfMissed: false); // has an IgnorePointer
+      await tester.pumpAndSettle(const Duration(milliseconds: 10));
 
-        // Expect that the item changed, but haptics were not triggered.
-        expect(selectedItems, <int>[1, 2]);
-        expect(systemCalls, isEmpty);
+      // Expect that the item changed, but haptics were not triggered.
+      expect(selectedItems, <int>[1, 2]);
+      expect(systemCalls, isEmpty);
 
-        await tester.drag(find.text('2'), const Offset(0.0, -30.0), warnIfMissed: false);
-        await tester.pumpAndSettle(const Duration(milliseconds: 10));
-        // Expect that moving within the item does not trigger haptics after animating scroll.
-        expect(selectedItems, <int>[1, 2]);
-        expect(systemCalls, isEmpty);
-      },
-      variant: TargetPlatformVariant.only(TargetPlatform.iOS),
-    );
+      await tester.drag(find.text('2'), const Offset(0.0, -30.0), warnIfMissed: false);
+      await tester.pumpAndSettle(const Duration(milliseconds: 10));
+      // Expect that moving within the item does not trigger haptics after animating scroll.
+      expect(selectedItems, <int>[1, 2]);
+      expect(systemCalls, isEmpty);
+    }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
     testWidgets(
       'do not trigger haptic or sounds on non-iOS devices',
@@ -542,7 +564,11 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
+                  child: SizedBox(
+                    width: const .fixed(400.0),
+                    height: const .fixed(100.0),
+                    child: Text(index.toString()),
+                  ),
                 );
               }),
             ),
@@ -586,7 +612,11 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
+                  child: SizedBox(
+                    width: const .fixed(400.0),
+                    height: const .fixed(100.0),
+                    child: Text(index.toString()),
+                  ),
                 );
               }),
             ),
@@ -655,7 +685,11 @@ void main() {
               },
               children: List<Widget>.generate(100, (int index) {
                 return Center(
-                  child: SizedBox(width: const .fixed(400.0), height: const .fixed(100.0), child: Text(index.toString())),
+                  child: SizedBox(
+                    width: const .fixed(400.0),
+                    height: const .fixed(100.0),
+                    child: Text(index.toString()),
+                  ),
                 );
               }),
             ),
@@ -716,7 +750,11 @@ void main() {
               itemExtent: 50.0,
               onSelectedItemChanged: (_) {},
               children: List<Widget>.generate(3, (int index) {
-                return SizedBox(height: const .fixed(50.0), width: const .fixed(300.0), child: Text(index.toString()));
+                return SizedBox(
+                  height: const .fixed(50.0),
+                  width: const .fixed(300.0),
+                  child: Text(index.toString()),
+                );
               }),
             ),
           ),

@@ -181,8 +181,16 @@ void main() {
         final Widget reorderableListView = ReorderableListView(
           onReorderItem: (_, _) {},
           children: const <Widget>[
-            SizedBox(key: Key('Normal item'), height: .fixed(itemHeight), child: Text('Normal item')),
-            SizedBox(key: Key('Tall item'), height: .fixed(itemHeight * 2), child: Text('Tall item')),
+            SizedBox(
+              key: Key('Normal item'),
+              height: .fixed(itemHeight),
+              child: Text('Normal item'),
+            ),
+            SizedBox(
+              key: Key('Tall item'),
+              height: .fixed(itemHeight * 2),
+              child: Text('Tall item'),
+            ),
             SizedBox(key: Key('Last item'), height: .fixed(itemHeight), child: Text('Last item')),
           ],
         );
@@ -277,7 +285,10 @@ void main() {
                       // Wrap the list in padding to test that the positioning
                       // is correct when the origin of the overlay is different
                       // from the list.
-                      return Padding(padding: const .fixed(EdgeInsets.all(24)), child: reorderableListView);
+                      return Padding(
+                        padding: const .fixed(EdgeInsets.all(24)),
+                        child: reorderableListView,
+                      );
                     },
                   ),
                 ],
@@ -365,7 +376,9 @@ void main() {
               child: SizedBox.square(
                 dimension: const .fixed(100.0),
                 child: ReorderableListView(
-                  children: const <Widget>[SizedBox(key: firstBox, width: .fixed(10), height: .fixed(10))],
+                  children: const <Widget>[
+                    SizedBox(key: firstBox, width: .fixed(10), height: .fixed(10)),
+                  ],
                   onReorderItem: (_, _) {},
                 ),
               ),
@@ -397,7 +410,11 @@ void main() {
           return MaterialApp(
             home: PrimaryScrollController(
               controller: controller,
-              child: SizedBox(height: const .fixed(100.0), width: const .fixed(100.0), child: reorderableList),
+              child: SizedBox(
+                height: const .fixed(100.0),
+                width: const .fixed(100.0),
+                child: reorderableList,
+              ),
             ),
           );
         }
@@ -431,9 +448,24 @@ void main() {
                   scrollController: customController,
                   onReorderItem: (_, _) {},
                   children: const <Widget>[
-                    SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: firstBox, child: Text('C')),
-                    SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: secondBox, child: Text('B')),
-                    SizedBox(width: .fixed(100.0), height: .fixed(100.0), key: thirdBox, child: Text('A')),
+                    SizedBox(
+                      width: .fixed(100.0),
+                      height: .fixed(100.0),
+                      key: firstBox,
+                      child: Text('C'),
+                    ),
+                    SizedBox(
+                      width: .fixed(100.0),
+                      height: .fixed(100.0),
+                      key: secondBox,
+                      child: Text('B'),
+                    ),
+                    SizedBox(
+                      width: .fixed(100.0),
+                      height: .fixed(100.0),
+                      key: thirdBox,
+                      child: Text('A'),
+                    ),
                   ],
                 ),
               ),
@@ -959,8 +991,16 @@ void main() {
           scrollDirection: Axis.horizontal,
           onReorderItem: (_, _) {},
           children: const <Widget>[
-            SizedBox(key: Key('Normal item'), width: .fixed(itemHeight), child: Text('Normal item')),
-            SizedBox(key: Key('Tall item'), width: .fixed(itemHeight * 2), child: Text('Tall item')),
+            SizedBox(
+              key: Key('Normal item'),
+              width: .fixed(itemHeight),
+              child: Text('Normal item'),
+            ),
+            SizedBox(
+              key: Key('Tall item'),
+              width: .fixed(itemHeight * 2),
+              child: Text('Tall item'),
+            ),
             SizedBox(key: Key('Last item'), width: .fixed(itemHeight), child: Text('Last item')),
           ],
         );
@@ -1056,7 +1096,10 @@ void main() {
                       // Wrap the list in padding to test that the positioning
                       // is correct when the origin of the overlay is different
                       // from the list.
-                      return Padding(padding: const .fixed(EdgeInsets.all(24)), child: reorderableListView);
+                      return Padding(
+                        padding: const .fixed(EdgeInsets.all(24)),
+                        child: reorderableListView,
+                      );
                     },
                   ),
                 ],
@@ -1147,7 +1190,9 @@ void main() {
                 dimension: const .fixed(100.0),
                 child: ReorderableListView(
                   scrollDirection: Axis.horizontal,
-                  children: const <Widget>[SizedBox(key: firstBox, width: .fixed(10), height: .fixed(10))],
+                  children: const <Widget>[
+                    SizedBox(key: firstBox, width: .fixed(10), height: .fixed(10)),
+                  ],
                   onReorderItem: (_, _) {},
                 ),
               ),
@@ -1876,27 +1921,23 @@ void main() {
     });
     // TODO(djshuckerow): figure out how to write a test for scrolling the list.
 
-    testWidgets(
-      'ReorderableListView on desktop platforms should have drag handles',
-      (WidgetTester tester) async {
-        await tester.pumpWidget(build());
-        // All four items should have drag handles and not delayed listeners.
-        expect(find.byIcon(Icons.drag_handle), findsNWidgets(4));
-        expect(find.byType(ReorderableDelayedDragStartListener), findsNothing);
-      },
-      variant: TargetPlatformVariant.desktop(),
-    );
+    testWidgets('ReorderableListView on desktop platforms should have drag handles', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(build());
+      // All four items should have drag handles and not delayed listeners.
+      expect(find.byIcon(Icons.drag_handle), findsNWidgets(4));
+      expect(find.byType(ReorderableDelayedDragStartListener), findsNothing);
+    }, variant: TargetPlatformVariant.desktop());
 
-    testWidgets(
-      'ReorderableListView on mobile platforms should not have drag handles',
-      (WidgetTester tester) async {
-        await tester.pumpWidget(build());
-        // All four items should have delayed listeners and not drag handles.
-        expect(find.byType(ReorderableDelayedDragStartListener), findsNWidgets(4));
-        expect(find.byIcon(Icons.drag_handle), findsNothing);
-      },
-      variant: TargetPlatformVariant.mobile(),
-    );
+    testWidgets('ReorderableListView on mobile platforms should not have drag handles', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(build());
+      // All four items should have delayed listeners and not drag handles.
+      expect(find.byType(ReorderableDelayedDragStartListener), findsNWidgets(4));
+      expect(find.byIcon(Icons.drag_handle), findsNothing);
+    }, variant: TargetPlatformVariant.mobile());
 
     testWidgets('Vertical list renders drag handle in correct position', (
       WidgetTester tester,
@@ -2699,57 +2740,54 @@ void main() {
     );
   }, variant: TargetPlatformVariant.desktop());
 
-  testWidgets(
-    'Mouse cursor behavior on the drag handle can be provided',
-    (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ReorderableListView.builder(
-              mouseCursor:
-                  const WidgetStateMouseCursor.fromMap(<WidgetStatesConstraint, MouseCursor>{
-                    WidgetState.dragged: SystemMouseCursors.copy,
-                    WidgetState.any: SystemMouseCursors.resizeColumn,
-                  }),
-              itemBuilder: (BuildContext context, int index) {
-                return ReorderableDragStartListener(
-                  key: ValueKey<int>(index),
-                  index: index,
-                  child: Text('$index'),
-                );
-              },
-              itemCount: 5,
-              onReorderItem: (_, _) {},
-            ),
+  testWidgets('Mouse cursor behavior on the drag handle can be provided', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ReorderableListView.builder(
+            mouseCursor: const WidgetStateMouseCursor.fromMap(<WidgetStatesConstraint, MouseCursor>{
+              WidgetState.dragged: SystemMouseCursors.copy,
+              WidgetState.any: SystemMouseCursors.resizeColumn,
+            }),
+            itemBuilder: (BuildContext context, int index) {
+              return ReorderableDragStartListener(
+                key: ValueKey<int>(index),
+                index: index,
+                child: Text('$index'),
+              );
+            },
+            itemCount: 5,
+            onReorderItem: (_, _) {},
           ),
         ),
-      );
+      ),
+    );
 
-      final TestGesture gesture = await tester.createGesture(
-        kind: PointerDeviceKind.mouse,
-        pointer: 1,
-      );
-      await gesture.addPointer(location: tester.getCenter(find.byIcon(Icons.drag_handle).first));
-      await tester.pump();
-      expect(
-        RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
-        SystemMouseCursors.resizeColumn,
-      );
-      await gesture.down(tester.getCenter(find.byIcon(Icons.drag_handle).first));
-      await tester.pump(kLongPressTimeout);
-      expect(
-        RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
-        SystemMouseCursors.copy,
-      );
-      await gesture.up();
-      await tester.pumpAndSettle();
-      expect(
-        RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
-        SystemMouseCursors.resizeColumn,
-      );
-    },
-    variant: TargetPlatformVariant.desktop(),
-  );
+    final TestGesture gesture = await tester.createGesture(
+      kind: PointerDeviceKind.mouse,
+      pointer: 1,
+    );
+    await gesture.addPointer(location: tester.getCenter(find.byIcon(Icons.drag_handle).first));
+    await tester.pump();
+    expect(
+      RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
+      SystemMouseCursors.resizeColumn,
+    );
+    await gesture.down(tester.getCenter(find.byIcon(Icons.drag_handle).first));
+    await tester.pump(kLongPressTimeout);
+    expect(
+      RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
+      SystemMouseCursors.copy,
+    );
+    await gesture.up();
+    await tester.pumpAndSettle();
+    expect(
+      RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
+      SystemMouseCursors.resizeColumn,
+    );
+  }, variant: TargetPlatformVariant.desktop());
 
   testWidgets('ReorderableListView does not crash at zero area', (WidgetTester tester) async {
     await tester.pumpWidget(

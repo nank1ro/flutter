@@ -308,22 +308,20 @@ void main() {
       semanticsHandle.dispose();
     });
 
-    testWidgets(
-      'Throws StateError if semantics are not enabled (bySemanticsIdentifier)',
-      (WidgetTester tester) async {
-        expect(
-          () => find.bySemanticsIdentifier('Add'),
-          throwsA(
-            isA<StateError>().having(
-              (StateError e) => e.message,
-              'message',
-              contains('Semantics are not enabled'),
-            ),
+    testWidgets('Throws StateError if semantics are not enabled (bySemanticsIdentifier)', (
+      WidgetTester tester,
+    ) async {
+      expect(
+        () => find.bySemanticsIdentifier('Add'),
+        throwsA(
+          isA<StateError>().having(
+            (StateError e) => e.message,
+            'message',
+            contains('Semantics are not enabled'),
           ),
-        );
-      },
-      semanticsEnabled: false,
-    );
+        ),
+      );
+    }, semanticsEnabled: false);
 
     testWidgets('finds Semantically labeled widgets by identifier', (WidgetTester tester) async {
       final SemanticsHandle semanticsHandle = tester.ensureSemantics();
@@ -1851,7 +1849,11 @@ void main() {
                   scrollDirection: Axis.horizontal,
                   child: SizedBox(width: .fixed(1000), height: .fixed(100)),
                 ),
-                Expanded(child: SingleChildScrollView(child: SizedBox(width: .fixed(100), height: .fixed(1000)))),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: SizedBox(width: .fixed(100), height: .fixed(1000)),
+                  ),
+                ),
               ],
             ),
           ),
@@ -1869,7 +1871,11 @@ void main() {
                   scrollDirection: Axis.horizontal,
                   child: SizedBox(width: .fixed(1000), height: .fixed(100)),
                 ),
-                Expanded(child: SingleChildScrollView(child: SizedBox(width: .fixed(100), height: .fixed(1000)))),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: SizedBox(width: .fixed(100), height: .fixed(1000)),
+                  ),
+                ),
               ],
             ),
           ),
