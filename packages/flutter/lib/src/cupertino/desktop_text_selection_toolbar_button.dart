@@ -103,7 +103,7 @@ class _CupertinoDesktopTextSelectionToolbarButtonState
         );
 
     return SizedBox(
-      width: double.infinity,
+      width: const .fixed(double.infinity),
       child: MouseRegion(
         onEnter: _onEnter,
         onExit: _onExit,

@@ -58,7 +58,7 @@ class DesktopTextSelectionToolbarButton extends StatelessWidget {
     final Color foregroundColor = isDark ? Colors.white : Colors.black87;
 
     return SizedBox(
-      width: double.infinity,
+      width: const .fixed(double.infinity),
       child: TextButton(
         style: TextButton.styleFrom(
           alignment: Alignment.centerLeft,

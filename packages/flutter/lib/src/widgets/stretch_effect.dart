@@ -104,7 +104,7 @@ class StretchEffect extends StatelessWidget {
 
     return Transform(
       alignment: _getAlignment(textDirection),
-      transform: Matrix4.diagonal3Values(x, y, 1.0),
+      transform: .fixed(Matrix4.diagonal3Values(x, y, 1.0)),
       filterQuality: stretchStrength == 0 ? null : FilterQuality.medium,
       child: child,
     );

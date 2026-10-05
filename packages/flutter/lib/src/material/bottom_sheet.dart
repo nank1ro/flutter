@@ -401,7 +401,7 @@ class _BottomSheetState extends State<BottomSheet> {
                 children: <Widget>[
                   dragHandle!,
                   Padding(
-                    padding: const EdgeInsets.only(top: kMinInteractiveDimension),
+                    padding: const .fixed(EdgeInsets.only(top: kMinInteractiveDimension)),
                     child: widget.builder(context),
                   ),
                 ],
@@ -413,7 +413,7 @@ class _BottomSheetState extends State<BottomSheet> {
       bottomSheet = Align(
         alignment: Alignment.bottomCenter,
         heightFactor: 1.0,
-        child: ConstrainedBox(constraints: constraints, child: bottomSheet),
+        child: ConstrainedBox(constraints: .fixed(constraints), child: bottomSheet),
       );
     }
 
@@ -463,8 +463,8 @@ class _DragHandle extends StatelessWidget {
         button: true,
         onTap: onSemanticsTap,
         child: SizedBox(
-          width: math.max(handleSize.width, kMinInteractiveDimension),
-          height: math.max(handleSize.height, kMinInteractiveDimension),
+          width: .fixed(math.max(handleSize.width, kMinInteractiveDimension)),
+          height: .fixed(math.max(handleSize.height, kMinInteractiveDimension)),
           child: Center(
             child: Container(
               height: handleSize.height,

@@ -145,7 +145,7 @@ class _CupertinoExpansionTileState extends State<CupertinoExpansionTile> {
     return RotationTransition(
       turns: _iconTurns,
       child: SizedBox.square(
-        dimension: CupertinoTheme.of(context).textTheme.textStyle.fontSize,
+        dimension: .fixed(CupertinoTheme.of(context).textTheme.textStyle.fontSize),
         child: const Center(
           child: Icon(
             CupertinoIcons.right_chevron,
@@ -231,7 +231,7 @@ class _CupertinoExpansionTileState extends State<CupertinoExpansionTile> {
               top: headerOffset.dy + _kHeaderHeight,
               left: headerOffset.dx,
               child: ConstrainedBox(
-                constraints: constraints,
+                constraints: .fixed(constraints),
                 child: Visibility(
                   visible: animation.isAnimating,
                   child: FadeTransition(opacity: animation, child: widget.child),

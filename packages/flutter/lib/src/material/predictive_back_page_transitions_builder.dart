@@ -518,15 +518,15 @@ class _PredictiveBackSharedElementPageTransitionState
       builder: (BuildContext context, Widget? child) {
         _lastBounceAnimationValue = _bounceAnimation.value;
         return Transform.scale(
-          scale: _scaleTween.evaluate(_bounceAnimation),
+          scale: .fixed(_scaleTween.evaluate(_bounceAnimation)),
           child: Transform.translate(
-            offset: switch (widget.phase) {
+            offset: .fixed(switch (widget.phase) {
               _PredictiveBackPhase.commit => _positionAnimation.value,
               _ => _lastDrag = Offset(
                 _positionAnimation.value.dx,
                 _getYShiftPosition(MediaQuery.heightOf(context)),
               ),
-            },
+            }),
             child: Opacity(
               opacity: .fixed(_opacityTween.evaluate(_commitAnimation)),
               child: ClipRRect(
@@ -660,13 +660,17 @@ class _PredictiveBackFullscreenPageTransitionState
     final bool isCurrent = widget.getIsCurrent();
 
     return Transform.translate(
-      offset: isCurrent
-          ? _secondaryCurrentPositionTween.evaluate(widget.secondaryAnimation)
-          : _secondaryPositionTween.evaluate(widget.secondaryAnimation),
+      offset: .fixed(
+        isCurrent
+            ? _secondaryCurrentPositionTween.evaluate(widget.secondaryAnimation)
+            : _secondaryPositionTween.evaluate(widget.secondaryAnimation),
+      ),
       child: Transform.scale(
-        scale: isCurrent
-            ? _secondaryScaleTweenCurrent.evaluate(widget.secondaryAnimation)
-            : _secondaryTweenScale.evaluate(widget.secondaryAnimation),
+        scale: .fixed(
+          isCurrent
+              ? _secondaryScaleTweenCurrent.evaluate(widget.secondaryAnimation)
+              : _secondaryTweenScale.evaluate(widget.secondaryAnimation),
+        ),
         child: Opacity(
           opacity: .fixed(
             isCurrent
@@ -681,9 +685,9 @@ class _PredictiveBackFullscreenPageTransitionState
 
   Widget _primaryAnimatedBuilder(BuildContext context, Widget? child) {
     return Transform.translate(
-      offset: _primaryPositionTween.evaluate(widget.animation),
+      offset: .fixed(_primaryPositionTween.evaluate(widget.animation)),
       child: Transform.scale(
-        scale: _primaryScaleTween.evaluate(widget.animation),
+        scale: .fixed(_primaryScaleTween.evaluate(widget.animation)),
         // A slight change in opacity before reaching the commit point.
         child: Opacity(
           opacity: .fixed(_primaryOpacityTween.evaluate(widget.animation)),

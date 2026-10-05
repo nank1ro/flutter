@@ -638,11 +638,11 @@ class _RawAutocompleteState<T extends Object> extends State<RawAutocomplete<T>> 
       builder: (BuildContext context) => widget.optionsViewBuilder(context, _select, _options),
     );
     return Transform(
-      transform: transform,
+      transform: .fixed(transform),
       child: Align(
         alignment: Alignment.topLeft,
         child: ConstrainedBox(
-          constraints: BoxConstraints.tight(optionsViewBoundingBox),
+          constraints: .fixed(BoxConstraints.tight(optionsViewBoundingBox)),
           child: Align(
             alignment: opensUp ? AlignmentDirectional.bottomStart : AlignmentDirectional.topStart,
             child: TextFieldTapRegion(
@@ -716,7 +716,7 @@ class _RawAutocompleteState<T extends Object> extends State<RawAutocomplete<T>> 
           _onFieldSubmitted,
         ) ??
         // Horizontally expand to make sure the options view's width won't be zero.
-        const SizedBox(width: double.infinity, height: 0.0);
+        const SizedBox(width: .fixed(double.infinity), height: .fixed(0.0));
     return OverlayPortal.overlayChildLayoutBuilder(
       controller: _optionsViewController,
       overlayChildBuilder: _buildOptionsView,

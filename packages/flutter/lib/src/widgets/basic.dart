@@ -389,10 +389,6 @@ class Opacity extends SingleChildRenderObjectWidget with ReactiveRenderObjectWid
   bool get hasReactiveProps => opacity is! FixedSignal<double>;
 
   @override
-  ReactiveSingleChildRenderObjectElement createElement() =>
-      ReactiveSingleChildRenderObjectElement(this);
-
-  @override
   RenderOpacity createRenderObject(BuildContext context) {
     return RenderOpacity(opacity: opacity.peek, alwaysIncludeSemantics: alwaysIncludeSemantics);
   }
@@ -1579,6 +1575,36 @@ class PhysicalShape extends SingleChildRenderObjectWidget {
 
 // POSITIONING AND SIZING NODES
 
+/// A read-only view computed from other reactive values.
+///
+/// This is how a widget whose render object takes one value builds that value
+/// from several inputs, such as [Transform.rotate] turning an angle into a
+/// matrix. Reading it reads the inputs, so a binding that reads it subscribes
+/// to them directly, with no [Computed] node in between.
+final class _DerivedSignal<T> implements ReadonlySignal<T> {
+  const _DerivedSignal(this._read);
+
+  final T Function() _read;
+
+  @override
+  T get value => _read();
+
+  @override
+  T get peek => untracked(_read);
+
+  @override
+  T call() => _read();
+}
+
+/// A [FixedSignal] of [read] if every input is fixed, so that the all-fixed
+/// case allocates no binding, and a [_DerivedSignal] of it otherwise.
+ReadonlySignal<T> _derive<T>(bool inputsFixed, T Function() read) =>
+    inputsFixed ? FixedSignal<T>(read()) : _DerivedSignal<T>(read);
+
+/// Whether [signal] can never change. A missing optional input counts as
+/// fixed.
+bool _isFixed(ReadonlySignal<Object?>? signal) => signal == null || signal is FixedSignal<Object?>;
+
 /// A widget that applies a transformation before painting its child.
 ///
 /// Unlike [RotatedBox], which applies a rotation prior to layout, this object
@@ -1595,10 +1621,10 @@ class PhysicalShape extends SingleChildRenderObjectWidget {
 ///
 /// ```dart
 /// ColoredBox(
-///   color: Colors.black,
+///   color: .fixed(Colors.black),
 ///   child: Transform(
 ///     alignment: Alignment.topRight,
-///     transform: Matrix4.skewY(0.3)..rotateZ(-math.pi / 12.0),
+///     transform: .fixed(Matrix4.skewY(0.3)..rotateZ(-math.pi / 12.0)),
 ///     child: Container(
 ///       padding: const EdgeInsets.all(8.0),
 ///       color: const Color(0xFFE8581C),
@@ -1618,7 +1644,7 @@ class PhysicalShape extends SingleChildRenderObjectWidget {
 ///  * [FittedBox], which sizes and positions its child widget to fit the parent
 ///    according to a given [BoxFit] discipline.
 ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
-class Transform extends SingleChildRenderObjectWidget {
+class Transform extends SingleChildRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a widget that transforms its child.
   const Transform({
     super.key,
@@ -1642,7 +1668,7 @@ class Transform extends SingleChildRenderObjectWidget {
   ///
   /// ```dart
   /// Transform.rotate(
-  ///   angle: -math.pi / 12.0,
+  ///   angle: .fixed(-math.pi / 12.0),
   ///   child: Container(
   ///     padding: const EdgeInsets.all(8.0),
   ///     color: const Color(0xFFE8581C),
@@ -1658,13 +1684,13 @@ class Transform extends SingleChildRenderObjectWidget {
   ///    over a given duration.
   Transform.rotate({
     super.key,
-    required double angle,
+    required ReadonlySignal<double> angle,
     this.origin,
     this.alignment = Alignment.center,
     this.transformHitTests = true,
     this.filterQuality,
     super.child,
-  }) : transform = _computeRotation(angle);
+  }) : transform = _derive(angle is FixedSignal<double>, () => _computeRotation(angle.value));
 
   /// Creates a widget that transforms its child using a translation.
   ///
@@ -1676,7 +1702,7 @@ class Transform extends SingleChildRenderObjectWidget {
   ///
   /// ```dart
   /// Transform.translate(
-  ///   offset: const Offset(0.0, 15.0),
+  ///   offset: .fixed(const Offset(0.0, 15.0)),
   ///   child: Container(
   ///     padding: const EdgeInsets.all(8.0),
   ///     color: const Color(0xFF7F7F7F),
@@ -1687,11 +1713,14 @@ class Transform extends SingleChildRenderObjectWidget {
   /// {@end-tool}
   Transform.translate({
     super.key,
-    required Offset offset,
+    required ReadonlySignal<Offset> offset,
     this.transformHitTests = true,
     this.filterQuality,
     super.child,
-  }) : transform = Matrix4.translationValues(offset.dx, offset.dy, 0.0),
+  }) : transform = _derive(offset is FixedSignal<Offset>, () {
+         final Offset value = offset.value;
+         return Matrix4.translationValues(value.dx, value.dy, 0.0);
+       }),
        origin = null,
        alignment = null;
 
@@ -1719,7 +1748,7 @@ class Transform extends SingleChildRenderObjectWidget {
   ///
   /// ```dart
   /// Transform.scale(
-  ///   scale: 0.5,
+  ///   scale: .fixed(0.5),
   ///   child: Container(
   ///     padding: const EdgeInsets.all(8.0),
   ///     color: const Color(0xFFE8581C),
@@ -1735,9 +1764,9 @@ class Transform extends SingleChildRenderObjectWidget {
   ///   duration.
   Transform.scale({
     super.key,
-    double? scale,
-    double? scaleX,
-    double? scaleY,
+    ReadonlySignal<double>? scale,
+    ReadonlySignal<double>? scaleX,
+    ReadonlySignal<double>? scaleY,
     this.origin,
     this.alignment = Alignment.center,
     this.transformHitTests = true,
@@ -1751,7 +1780,14 @@ class Transform extends SingleChildRenderObjectWidget {
          scale == null || (scaleX == null && scaleY == null),
          "If 'scale' is non-null then 'scaleX' and 'scaleY' must be left null",
        ),
-       transform = Matrix4.diagonal3Values(scale ?? scaleX ?? 1.0, scale ?? scaleY ?? 1.0, 1.0);
+       transform = _derive(
+         _isFixed(scale) && _isFixed(scaleX) && _isFixed(scaleY),
+         () => Matrix4.diagonal3Values(
+           scale?.value ?? scaleX?.value ?? 1.0,
+           scale?.value ?? scaleY?.value ?? 1.0,
+           1.0,
+         ),
+       );
 
   /// Creates a widget that mirrors its child about the widget's center point.
   ///
@@ -1767,21 +1803,24 @@ class Transform extends SingleChildRenderObjectWidget {
   ///
   /// ```dart
   /// Transform.flip(
-  ///   flipX: true,
+  ///   flipX: .fixed(true),
   ///   child: const Text('Horizontal Flip'),
   /// )
   /// ```
   /// {@end-tool}
   Transform.flip({
     super.key,
-    bool flipX = false,
-    bool flipY = false,
+    ReadonlySignal<bool> flipX = const FixedSignal<bool>(false),
+    ReadonlySignal<bool> flipY = const FixedSignal<bool>(false),
     this.origin,
     this.transformHitTests = true,
     this.filterQuality,
     super.child,
   }) : alignment = Alignment.center,
-       transform = Matrix4.diagonal3Values(flipX ? -1.0 : 1.0, flipY ? -1.0 : 1.0, 1.0);
+       transform = _derive(
+         _isFixed(flipX) && _isFixed(flipY),
+         () => Matrix4.diagonal3Values(flipX.value ? -1.0 : 1.0, flipY.value ? -1.0 : 1.0, 1.0),
+       );
 
   // Computes a rotation matrix for an angle in radians, attempting to keep rotations
   // at integral values for angles of 0, π/2, π, 3π/2.
@@ -1816,7 +1855,7 @@ class Transform extends SingleChildRenderObjectWidget {
   }
 
   /// The matrix to transform the child by during painting.
-  final Matrix4 transform;
+  final ReadonlySignal<Matrix4> transform;
 
   /// The origin of the coordinate system in which to apply the matrix,
   /// described relative to the point given by [alignment].
@@ -1830,7 +1869,7 @@ class Transform extends SingleChildRenderObjectWidget {
   ///
   /// ```dart
   /// Transform.rotate(
-  ///   angle: math.pi,
+  ///   angle: .fixed(math.pi),
   ///   child: Container(
   ///    width: 150.0,
   ///    height: 150.0,
@@ -1844,7 +1883,7 @@ class Transform extends SingleChildRenderObjectWidget {
   ///
   /// ```dart
   /// Transform.rotate(
-  ///   angle: math.pi,
+  ///   angle: .fixed(math.pi),
   ///   origin: const Offset(75.0, 75.0),
   ///   child: Container(
   ///    width: 150.0,
@@ -1904,14 +1943,14 @@ class Transform extends SingleChildRenderObjectWidget {
   /// ```dart
   /// Center(
   ///   child: SizedBox(
-  ///     width: 100.0,
-  ///     height: 100.0,
+  ///     width: .fixed(100.0),
+  ///     height: .fixed(100.0),
   ///     child: Transform.scale(
-  ///       scale: 2.0,
+  ///       scale: .fixed(2.0),
   ///       child: GestureDetector(
   ///         onTap: () => debugPrint('Tapped!'),
   ///         child: const ColoredBox(
-  ///           color: Colors.purple,
+  ///           color: .fixed(Colors.purple),
   ///         ),
   ///       ),
   ///     ),
@@ -1933,9 +1972,12 @@ class Transform extends SingleChildRenderObjectWidget {
   final FilterQuality? filterQuality;
 
   @override
+  bool get hasReactiveProps => transform is! FixedSignal<Matrix4>;
+
+  @override
   RenderTransform createRenderObject(BuildContext context) {
     return RenderTransform(
-      transform: transform,
+      transform: transform.peek,
       origin: origin,
       alignment: alignment,
       textDirection: Directionality.maybeOf(context),
@@ -1946,13 +1988,21 @@ class Transform extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(BuildContext context, RenderTransform renderObject) {
+    if (transform case FixedSignal<Matrix4>(:final Matrix4 value)) {
+      // A reactive matrix is written by its binding instead, in [bindProps].
+      renderObject.transform = value;
+    }
     renderObject
-      ..transform = transform
       ..origin = origin
       ..alignment = alignment
       ..textDirection = Directionality.maybeOf(context)
       ..transformHitTests = transformHitTests
       ..filterQuality = filterQuality;
+  }
+
+  @override
+  void bindProps(PropBinder binder, RenderTransform renderObject) {
+    binder.bind<Matrix4>(transform, (Matrix4 value) => renderObject.transform = value);
   }
 }
 
@@ -2316,7 +2366,7 @@ class RotatedBox extends SingleChildRenderObjectWidget {
 /// ```dart
 /// const Card(
 ///   child: Padding(
-///     padding: EdgeInsets.all(16.0),
+///     padding: .fixed(EdgeInsets.all(16.0)),
 ///     child: Text('Hello World!'),
 ///   ),
 /// )
@@ -2350,29 +2400,42 @@ class RotatedBox extends SingleChildRenderObjectWidget {
 ///    duration.
 ///  * [SliverPadding], the sliver equivalent of this widget.
 ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
-class Padding extends SingleChildRenderObjectWidget {
+class Padding extends SingleChildRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a widget that insets its child.
   const Padding({super.key, required this.padding, super.child});
 
   /// The amount of space by which to inset the child.
-  final EdgeInsetsGeometry padding;
+  final ReadonlySignal<EdgeInsetsGeometry> padding;
+
+  @override
+  bool get hasReactiveProps => padding is! FixedSignal<EdgeInsetsGeometry>;
 
   @override
   RenderPadding createRenderObject(BuildContext context) {
-    return RenderPadding(padding: padding, textDirection: Directionality.maybeOf(context));
+    return RenderPadding(padding: padding.peek, textDirection: Directionality.maybeOf(context));
   }
 
   @override
   void updateRenderObject(BuildContext context, RenderPadding renderObject) {
-    renderObject
-      ..padding = padding
-      ..textDirection = Directionality.maybeOf(context);
+    if (padding case FixedSignal<EdgeInsetsGeometry>(:final EdgeInsetsGeometry value)) {
+      // A reactive value is written by its binding instead, in [bindProps].
+      renderObject.padding = value;
+    }
+    renderObject.textDirection = Directionality.maybeOf(context);
+  }
+
+  @override
+  void bindProps(PropBinder binder, RenderPadding renderObject) {
+    binder.bind<EdgeInsetsGeometry>(
+      padding,
+      (EdgeInsetsGeometry value) => renderObject.padding = value,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>('padding', padding));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>('padding', padding.peek));
   }
 }
 
@@ -2754,8 +2817,8 @@ class CustomMultiChildLayout extends MultiChildRenderObjectWidget {
 ///
 /// ```dart
 /// const SizedBox(
-///   width: 200.0,
-///   height: 300.0,
+///   width: .fixed(200.0),
+///   height: .fixed(300.0),
 ///   child: Card(child: Text('Hello World!')),
 /// )
 /// ```
@@ -2777,12 +2840,12 @@ class CustomMultiChildLayout extends MultiChildRenderObjectWidget {
 ///
 /// ```dart
 /// const SizedBox(
-///   width: 200.0,
-///   height: 200.0,
+///   width: .fixed(200.0),
+///   height: .fixed(200.0),
 ///   child: SizedBox( // Ignored!
-///     width: 100.0,
-///     height: 100.0,
-///     child: ColoredBox(color: Colors.green),
+///     width: .fixed(100.0),
+///     height: .fixed(100.0),
+///     child: ColoredBox(color: .fixed(Colors.green)),
 ///   ),
 /// )
 /// ```
@@ -2806,7 +2869,7 @@ class CustomMultiChildLayout extends MultiChildRenderObjectWidget {
 ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
 ///  * [Understanding constraints](https://docs.flutter.dev/ui/layout/constraints),
 ///    an in-depth article about layout in Flutter.
-class SizedBox extends SingleChildRenderObjectWidget {
+class SizedBox extends SingleChildRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a fixed size box. The [width] and [height] parameters can be null
   /// to indicate that the size of the box should not be constrained in
   /// the corresponding dimension.
@@ -2814,45 +2877,65 @@ class SizedBox extends SingleChildRenderObjectWidget {
 
   /// Creates a box that will become as large as its parent allows.
   const SizedBox.expand({super.key, super.child})
-    : width = double.infinity,
-      height = double.infinity;
+    : width = const FixedSignal<double>(double.infinity),
+      height = const FixedSignal<double>(double.infinity);
 
   /// Creates a box that will become as small as its parent allows.
-  const SizedBox.shrink({super.key, super.child}) : width = 0.0, height = 0.0;
+  const SizedBox.shrink({super.key, super.child})
+    : width = const FixedSignal<double>(0.0),
+      height = const FixedSignal<double>(0.0);
 
   /// Creates a box with the specified size.
-  SizedBox.fromSize({super.key, super.child, Size? size})
-    : width = size?.width,
-      height = size?.height;
+  SizedBox.fromSize({super.key, super.child, ReadonlySignal<Size?>? size})
+    : width = size == null ? null : _derive(size is FixedSignal<Size?>, () => size.value?.width),
+      height = size == null ? null : _derive(size is FixedSignal<Size?>, () => size.value?.height);
 
   /// Creates a box whose [width] and [height] are equal.
-  const SizedBox.square({super.key, super.child, double? dimension})
+  const SizedBox.square({super.key, super.child, ReadonlySignal<double?>? dimension})
     : width = dimension,
       height = dimension;
 
   /// If non-null, requires the child to have exactly this width.
-  final double? width;
+  final ReadonlySignal<double?>? width;
 
   /// If non-null, requires the child to have exactly this height.
-  final double? height;
+  final ReadonlySignal<double?>? height;
+
+  @override
+  bool get hasReactiveProps => !_isFixed(width) || !_isFixed(height);
 
   @override
   RenderConstrainedBox createRenderObject(BuildContext context) {
-    return RenderConstrainedBox(additionalConstraints: _additionalConstraints);
+    return RenderConstrainedBox(additionalConstraints: untracked(_additionalConstraints));
   }
 
-  BoxConstraints get _additionalConstraints {
-    return BoxConstraints.tightFor(width: width, height: height);
+  // Width and height feed one render object setter, so they are read together
+  // and bound as one property.
+  BoxConstraints _additionalConstraints() {
+    return BoxConstraints.tightFor(width: width?.value, height: height?.value);
   }
 
   @override
   void updateRenderObject(BuildContext context, RenderConstrainedBox renderObject) {
-    renderObject.additionalConstraints = _additionalConstraints;
+    if (!hasReactiveProps) {
+      // Reactive sizes are written by their binding instead, in [bindProps].
+      renderObject.additionalConstraints = _additionalConstraints();
+    }
+  }
+
+  @override
+  void bindProps(PropBinder binder, RenderConstrainedBox renderObject) {
+    binder.bind<BoxConstraints>(
+      hasReactiveProps
+          ? _additionalConstraints
+          : FixedSignal<BoxConstraints>(_additionalConstraints()),
+      (BoxConstraints value) => renderObject.additionalConstraints = value,
+    );
   }
 
   @override
   String toStringShort() {
-    final String type = switch ((width, height)) {
+    final String type = switch ((width?.peek, height?.peek)) {
       (double.infinity, double.infinity) => '${objectRuntimeType(this, 'SizedBox')}.expand',
       (0.0, 0.0) => '${objectRuntimeType(this, 'SizedBox')}.shrink',
       _ => objectRuntimeType(this, 'SizedBox'),
@@ -2864,6 +2947,8 @@ class SizedBox extends SingleChildRenderObjectWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     final DiagnosticLevel level;
+    final double? width = this.width?.peek;
+    final double? height = this.height?.peek;
     if ((width == double.infinity && height == double.infinity) ||
         (width == 0.0 && height == 0.0)) {
       level = DiagnosticLevel.hidden;
@@ -2890,7 +2975,7 @@ class SizedBox extends SingleChildRenderObjectWidget {
 ///
 /// ```dart
 /// ConstrainedBox(
-///   constraints: const BoxConstraints.expand(),
+///   constraints: .fixed(const BoxConstraints.expand()),
 ///   child: const Card(child: Text('Hello World!')),
 /// )
 /// ```
@@ -2910,29 +2995,42 @@ class SizedBox extends SingleChildRenderObjectWidget {
 ///  * [AspectRatio], a widget that attempts to fit within the parent's
 ///    constraints while also sizing its child to match a given aspect ratio.
 ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
-class ConstrainedBox extends SingleChildRenderObjectWidget {
+class ConstrainedBox extends SingleChildRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a widget that imposes additional constraints on its child.
-  ConstrainedBox({super.key, required this.constraints, super.child})
-    : assert(constraints.debugAssertIsValid());
+  const ConstrainedBox({super.key, required this.constraints, super.child});
 
   /// The additional constraints to impose on the child.
-  final BoxConstraints constraints;
+  final ReadonlySignal<BoxConstraints> constraints;
+
+  @override
+  bool get hasReactiveProps => constraints is! FixedSignal<BoxConstraints>;
 
   @override
   RenderConstrainedBox createRenderObject(BuildContext context) {
-    return RenderConstrainedBox(additionalConstraints: constraints);
+    return RenderConstrainedBox(additionalConstraints: constraints.peek);
   }
 
   @override
   void updateRenderObject(BuildContext context, RenderConstrainedBox renderObject) {
-    renderObject.additionalConstraints = constraints;
+    if (constraints case FixedSignal<BoxConstraints>(:final BoxConstraints value)) {
+      // A reactive value is written by its binding instead, in [bindProps].
+      renderObject.additionalConstraints = value;
+    }
+  }
+
+  @override
+  void bindProps(PropBinder binder, RenderConstrainedBox renderObject) {
+    binder.bind<BoxConstraints>(
+      constraints,
+      (BoxConstraints value) => renderObject.additionalConstraints = value,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(
-      DiagnosticsProperty<BoxConstraints>('constraints', constraints, showName: false),
+      DiagnosticsProperty<BoxConstraints>('constraints', constraints.peek, showName: false),
     );
   }
 }
@@ -4731,8 +4829,8 @@ class ListBody extends MultiChildRenderObjectWidget {
 ///
 /// ```dart
 /// SizedBox(
-///   width: 250,
-///   height: 250,
+///   width: .fixed(250),
+///   height: .fixed(250),
 ///   child: Stack(
 ///     children: <Widget>[
 ///       Container(
@@ -8412,12 +8510,12 @@ class _StatefulBuilderState extends State<StatefulBuilder> {
 
 /// A widget that paints its area with a specified [Color] and then draws its
 /// child on top of that color.
-class ColoredBox extends SingleChildRenderObjectWidget {
+class ColoredBox extends SingleChildRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a widget that paints its area with the specified [Color].
   const ColoredBox({required this.color, this.isAntiAlias = true, super.child, super.key});
 
   /// The color to paint the background area with.
-  final Color color;
+  final ReadonlySignal<Color> color;
 
   /// {@template flutter.widgets.ColoredBox.isAntiAlias}
   /// Whether to apply anti-aliasing when painting the box.
@@ -8444,21 +8542,32 @@ class ColoredBox extends SingleChildRenderObjectWidget {
   final bool isAntiAlias;
 
   @override
+  bool get hasReactiveProps => color is! FixedSignal<Color>;
+
+  @override
   RenderObject createRenderObject(BuildContext context) {
-    return _RenderColoredBox(color: color, isAntiAlias: isAntiAlias);
+    return _RenderColoredBox(color: color.peek, isAntiAlias: isAntiAlias);
   }
 
   @override
   void updateRenderObject(BuildContext context, RenderObject renderObject) {
-    (renderObject as _RenderColoredBox)
-      ..color = color
-      ..isAntiAlias = isAntiAlias;
+    final box = renderObject as _RenderColoredBox;
+    if (color case FixedSignal<Color>(:final Color value)) {
+      // A reactive value is written by its binding instead, in [bindProps].
+      box.color = value;
+    }
+    box.isAntiAlias = isAntiAlias;
+  }
+
+  @override
+  void bindProps(PropBinder binder, RenderObject renderObject) {
+    binder.bind<Color>(color, (Color value) => (renderObject as _RenderColoredBox).color = value);
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<Color>('color', color));
+    properties.add(DiagnosticsProperty<Color>('color', color.peek));
     properties.add(DiagnosticsProperty<bool>('isAntiAlias', isAntiAlias, defaultValue: true));
   }
 }

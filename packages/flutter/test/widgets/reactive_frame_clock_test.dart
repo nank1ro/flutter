@@ -165,7 +165,10 @@ void main() {
       Builder(
         builder: (BuildContext context) {
           builds += 1;
-          return ReactiveOffset(offset: position, child: const SizedBox(width: 10, height: 10));
+          return ReactiveOffset(
+            offset: position,
+            child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+          );
         },
       ),
     );

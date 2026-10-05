@@ -66,7 +66,7 @@ enum _RadioType { material, adaptive }
 /// {@tool snippet}
 /// ```dart
 /// const ColoredBox(
-///   color: Colors.green,
+///   color: .fixed(Colors.green),
 ///   child: Material(
 ///     child: RadioListTile<Meridiem>(
 ///       tileColor: Colors.red,
@@ -708,7 +708,7 @@ class _RadioListTileState<T> extends State<RadioListTile<T>> with RadioClient<T>
     }
 
     if (widget.radioScaleFactor != 1.0) {
-      control = Transform.scale(scale: widget.radioScaleFactor, child: control);
+      control = Transform.scale(scale: .fixed(widget.radioScaleFactor), child: control);
     }
 
     final ListTileThemeData listTileTheme = ListTileTheme.of(context);

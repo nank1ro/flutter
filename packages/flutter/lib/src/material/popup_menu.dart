@@ -432,9 +432,9 @@ class PopupMenuItemState<T, W extends PopupMenuItem<T>> extends State<W> {
       style: style,
       duration: kThemeChangeDuration,
       child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: widget.height),
+        constraints: .fixed(BoxConstraints(minHeight: widget.height)),
         child: Padding(
-          padding: padding,
+          padding: .fixed(padding),
           child: Align(alignment: AlignmentDirectional.centerStart, child: buildChild()),
         ),
       ),
@@ -740,7 +740,7 @@ class _PopupMenuState<T> extends State<_PopupMenu<T>> {
       Widget item = widget.route.items[i];
       if (widget.route.initialValue != null &&
           widget.route.items[i].represents(widget.route.initialValue)) {
-        item = ColoredBox(color: Theme.of(context).highlightColor, child: item);
+        item = ColoredBox(color: .fixed(Theme.of(context).highlightColor), child: item);
       }
       children.add(
         _MenuItem(
@@ -757,9 +757,10 @@ class _PopupMenuState<T> extends State<_PopupMenu<T>> {
     final height = CurveTween(curve: Interval(0.0, unit * widget.route.items.length));
 
     final Widget child = ConstrainedBox(
-      constraints:
-          widget.constraints ??
-          const BoxConstraints(minWidth: _kMenuMinWidth, maxWidth: _kMenuMaxWidth),
+      constraints: .fixed(
+        widget.constraints ??
+            const BoxConstraints(minWidth: _kMenuMinWidth, maxWidth: _kMenuMaxWidth),
+      ),
       child: IntrinsicWidth(
         stepWidth: _kMenuWidthStep,
         child: Semantics(
@@ -1763,9 +1764,8 @@ class PopupMenuButtonState<T> extends State<PopupMenuButton<T>> {
           widget.style?.tapTargetSize ?? MaterialTapTargetSize.shrinkWrap;
       if (tapTargetSize == MaterialTapTargetSize.padded) {
         return ConstrainedBox(
-          constraints: const BoxConstraints(
-            minWidth: kMinInteractiveDimension,
-            minHeight: kMinInteractiveDimension,
+          constraints: const .fixed(
+            BoxConstraints(minWidth: kMinInteractiveDimension, minHeight: kMinInteractiveDimension),
           ),
           child: child,
         );

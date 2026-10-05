@@ -12,7 +12,6 @@ import 'package:flutter/rendering.dart';
 
 import 'basic.dart';
 import 'framework.dart';
-import 'image.dart';
 import 'localizations.dart';
 import 'media_query.dart';
 import 'reactive_props.dart';
@@ -21,69 +20,14 @@ import 'text.dart';
 // -----------------------------------------------------------------------------
 // Reactive leaf widgets.
 //
-// Naming: every widget here is the reactive twin of an existing Flutter
-// widget, named with a `Reactive` prefix and keeping the original's property
-// names, with each reactive property typed `Prop<T>` instead of `T`. Where two
-// of the original's properties feed a single render object setter (Text's
-// `data` and `style`, SizedBox's `width` and `height`), they are collapsed
-// into the one property the setter actually takes, because a binding is a
-// property-to-setter pair.
+// Stock render-object widgets such as Opacity, Padding and SizedBox take
+// ReadonlySignal properties directly. The widgets here are the ones that have
+// no stock counterpart with that shape yet: ReactiveOffset has no original at
+// all, and Text and CustomPaint need their own design pass. Where two
+// properties feed a single render object setter (ReactiveText's `data` and
+// `style`), they are collapsed into the one property the setter takes,
+// because a binding is a property-to-setter pair.
 // -----------------------------------------------------------------------------
-
-/// Makes its child partially transparent, with a reactive opacity.
-///
-/// A write to [opacity] runs one effect, which calls [RenderOpacity.opacity].
-/// Nothing rebuilds and nothing relayouts.
-class ReactiveOpacity extends ReactiveSingleChildRenderObjectWidget {
-  /// Creates a widget that makes its child partially transparent.
-  const ReactiveOpacity({
-    super.key,
-    required this.opacity,
-    this.alwaysIncludeSemantics = false,
-    super.child,
-  });
-
-  /// The fraction to multiply the child's alpha value by, between 0.0 and 1.0.
-  final Prop<double> opacity;
-
-  /// Whether the semantics of the child are included when it is transparent.
-  final bool alwaysIncludeSemantics;
-
-  @override
-  RenderOpacity createRenderObject(BuildContext context) =>
-      RenderOpacity(opacity: untracked(opacity), alwaysIncludeSemantics: alwaysIncludeSemantics);
-
-  @override
-  void updateRenderObject(BuildContext context, RenderOpacity renderObject) {
-    renderObject.alwaysIncludeSemantics = alwaysIncludeSemantics;
-  }
-
-  @override
-  void bindProps(PropBinder binder, RenderOpacity renderObject) {
-    binder.bind<double>(opacity, (double value) => renderObject.opacity = value);
-  }
-}
-
-/// Paints its child, and the area behind it, in a reactive colour.
-///
-/// The render object is this file's own rather than [ColoredBox]'s, whose
-/// render object is private; the paint is the same.
-class ReactiveColoredBox extends ReactiveSingleChildRenderObjectWidget {
-  /// Creates a widget that paints its area in the given colour.
-  const ReactiveColoredBox({super.key, required this.color, super.child});
-
-  /// The colour to fill this widget's bounds with.
-  final Prop<Color> color;
-
-  @override
-  RenderReactiveColoredBox createRenderObject(BuildContext context) =>
-      RenderReactiveColoredBox(color: untracked(color));
-
-  @override
-  void bindProps(PropBinder binder, RenderReactiveColoredBox renderObject) {
-    binder.bind<Color>(color, (Color value) => renderObject.color = value);
-  }
-}
 
 /// Fills its bounds with [color], then paints its child over the top.
 class RenderReactiveColoredBox extends RenderProxyBoxWithHitTestBehavior {
@@ -123,81 +67,6 @@ class RenderReactiveColoredBox extends RenderProxyBoxWithHitTestBehavior {
   }
 }
 
-/// Insets its child by a reactive amount.
-///
-/// Padding is a layout property, so a write here marks the render object as
-/// needing layout. It still rebuilds nothing.
-class ReactivePadding extends ReactiveSingleChildRenderObjectWidget {
-  /// Creates a widget that insets its child.
-  const ReactivePadding({super.key, required this.padding, super.child});
-
-  /// The amount of space to inset the child by.
-  final Prop<EdgeInsetsGeometry> padding;
-
-  @override
-  RenderPadding createRenderObject(BuildContext context) =>
-      RenderPadding(padding: untracked(padding), textDirection: Directionality.maybeOf(context));
-
-  @override
-  void updateRenderObject(BuildContext context, RenderPadding renderObject) {
-    renderObject.textDirection = Directionality.maybeOf(context);
-  }
-
-  @override
-  void bindProps(PropBinder binder, RenderPadding renderObject) {
-    binder.bind<EdgeInsetsGeometry>(
-      padding,
-      (EdgeInsetsGeometry value) => renderObject.padding = value,
-    );
-  }
-}
-
-/// Applies a reactive transform matrix to its child before painting it.
-///
-/// Note that [RenderTransform.transform] copies the matrix it is given, so a
-/// caller that mutates one matrix in place and expects the render object to
-/// follow will be disappointed; produce a new matrix, or use [ReactiveOffset]
-/// for the common translate-only case, which allocates nothing.
-class ReactiveTransform extends ReactiveSingleChildRenderObjectWidget {
-  /// Creates a widget that transforms its child.
-  const ReactiveTransform({
-    super.key,
-    required this.transform,
-    this.transformHitTests = true,
-    this.filterQuality,
-    super.child,
-  });
-
-  /// The matrix to transform the child by during painting.
-  final Prop<Matrix4> transform;
-
-  /// Whether to apply the transform to hit tests as well as to painting.
-  final bool transformHitTests;
-
-  /// The filter quality to apply the transform with, if it is applied as a
-  /// bitmap operation.
-  final FilterQuality? filterQuality;
-
-  @override
-  RenderTransform createRenderObject(BuildContext context) => RenderTransform(
-    transform: untracked(transform),
-    transformHitTests: transformHitTests,
-    filterQuality: filterQuality,
-  );
-
-  @override
-  void updateRenderObject(BuildContext context, RenderTransform renderObject) {
-    renderObject
-      ..transformHitTests = transformHitTests
-      ..filterQuality = filterQuality;
-  }
-
-  @override
-  void bindProps(PropBinder binder, RenderTransform renderObject) {
-    binder.bind<Matrix4>(transform, (Matrix4 value) => renderObject.transform = value);
-  }
-}
-
 /// Paints its child shifted by a reactive [offset], without affecting layout.
 ///
 /// This is the sprite case. Because the offset is applied at paint time, and
@@ -205,7 +74,7 @@ class ReactiveTransform extends ReactiveSingleChildRenderObjectWidget {
 /// exactly one render object as needing paint: no ancestor relayouts, and no
 /// parent data is touched, which is what separates this from moving a
 /// [Positioned] inside a [Stack].
-class ReactiveOffset extends ReactiveSingleChildRenderObjectWidget {
+class ReactiveOffset extends SingleChildRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a widget that paints its child at an offset.
   const ReactiveOffset({
     super.key,
@@ -302,96 +171,13 @@ class RenderReactiveOffset extends RenderProxyBox {
   }
 }
 
-/// Imposes reactive additional constraints on its child.
-class ReactiveConstrainedBox extends ReactiveSingleChildRenderObjectWidget {
-  /// Creates a widget that imposes additional constraints on its child.
-  const ReactiveConstrainedBox({super.key, required this.constraints, super.child});
-
-  /// The additional constraints to impose on the child.
-  final Prop<BoxConstraints> constraints;
-
-  @override
-  RenderConstrainedBox createRenderObject(BuildContext context) =>
-      RenderConstrainedBox(additionalConstraints: untracked(constraints));
-
-  @override
-  void bindProps(PropBinder binder, RenderConstrainedBox renderObject) {
-    binder.bind<BoxConstraints>(
-      constraints,
-      (BoxConstraints value) => renderObject.additionalConstraints = value,
-    );
-  }
-}
-
-/// Forces its child to a reactive size.
-///
-/// The reactive counterpart of [SizedBox]. Width and height are one [Prop] of
-/// type [Size] rather than two of type `double`, because the render object
-/// takes both at once: one binding is one setter, and splitting it would mean
-/// two effects that each read both values.
-class ReactiveSizedBox extends ReactiveSingleChildRenderObjectWidget {
-  /// Creates a widget with a reactive size.
-  const ReactiveSizedBox({super.key, required this.size, super.child});
-
-  /// The size to force on the child.
-  final Prop<Size> size;
-
-  @override
-  RenderConstrainedBox createRenderObject(BuildContext context) =>
-      RenderConstrainedBox(additionalConstraints: BoxConstraints.tight(untracked(size)));
-
-  @override
-  void bindProps(PropBinder binder, RenderConstrainedBox renderObject) {
-    binder.bind<Size>(
-      size,
-      (Size value) => renderObject.additionalConstraints = BoxConstraints.tight(value),
-    );
-  }
-}
-
-/// Paints a reactive [Decoration] before or after painting its child.
-class ReactiveDecoratedBox extends ReactiveSingleChildRenderObjectWidget {
-  /// Creates a widget that paints a decoration.
-  const ReactiveDecoratedBox({
-    super.key,
-    required this.decoration,
-    this.position = DecorationPosition.background,
-    super.child,
-  });
-
-  /// The decoration to paint.
-  final Prop<Decoration> decoration;
-
-  /// Whether to paint the decoration behind or in front of the child.
-  final DecorationPosition position;
-
-  @override
-  RenderDecoratedBox createRenderObject(BuildContext context) => RenderDecoratedBox(
-    decoration: untracked(decoration),
-    position: position,
-    configuration: createLocalImageConfiguration(context),
-  );
-
-  @override
-  void updateRenderObject(BuildContext context, RenderDecoratedBox renderObject) {
-    renderObject
-      ..position = position
-      ..configuration = createLocalImageConfiguration(context);
-  }
-
-  @override
-  void bindProps(PropBinder binder, RenderDecoratedBox renderObject) {
-    binder.bind<Decoration>(decoration, (Decoration value) => renderObject.decoration = value);
-  }
-}
-
 /// A run of text with a reactive string and style.
 ///
 /// The reactive counterpart of [Text]. [data] and [style] are bound together,
 /// as one [InlineSpan], because [RenderParagraph.text] takes the whole span:
 /// writing either signal rebuilds one [TextSpan] and hands it to the setter,
 /// which compares it with the old one and relayouts only if it differs.
-class ReactiveText extends ReactiveLeafRenderObjectWidget {
+class ReactiveText extends LeafRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a run of reactive text.
   const ReactiveText(
     this.data, {

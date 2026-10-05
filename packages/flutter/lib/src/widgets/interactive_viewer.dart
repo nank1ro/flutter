@@ -1122,7 +1122,7 @@ class _InteractiveViewerBuilt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget child = Transform(
-      transform: matrix,
+      transform: .fixed(matrix),
       alignment: alignment,
       child: KeyedSubtree(key: childKey, child: this.child),
     );

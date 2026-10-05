@@ -856,9 +856,11 @@ class DataTable extends StatelessWidget {
     Widget contents = Semantics(
       container: true,
       child: Padding(
-        padding: EdgeInsetsDirectional.only(
-          start: effectiveCheckboxHorizontalMarginStart,
-          end: effectiveCheckboxHorizontalMarginEnd,
+        padding: .fixed(
+          EdgeInsetsDirectional.only(
+            start: effectiveCheckboxHorizontalMarginStart,
+            end: effectiveCheckboxHorizontalMarginEnd,
+          ),
         ),
         child: Center(
           child: Checkbox(value: checked, onChanged: onCheckboxChanged, tristate: tristate),
@@ -898,7 +900,7 @@ class DataTable extends StatelessWidget {
         mainAxisAlignment: headingRowAlignment,
         children: <Widget>[
           if (headingRowAlignment == MainAxisAlignment.center && onSort != null)
-            const SizedBox(width: _SortArrowState._arrowIconSize + _sortArrowPadding),
+            const SizedBox(width: .fixed(_SortArrowState._arrowIconSize + _sortArrowPadding)),
           label,
           if (onSort != null) ...<Widget>[
             _SortArrow(
@@ -906,7 +908,7 @@ class DataTable extends StatelessWidget {
               up: sorted ? ascending : null,
               duration: _sortArrowAnimationDuration,
             ),
-            const SizedBox(width: _sortArrowPadding),
+            const SizedBox(width: .fixed(_sortArrowPadding)),
           ],
         ],
       ),
@@ -1430,8 +1432,10 @@ class _SortArrowState extends State<_SortArrow> with TickerProviderStateMixin {
     return FadeTransition(
       opacity: _opacityAnimation,
       child: Transform(
-        transform: Matrix4.rotationZ(_orientationOffset + _orientationAnimation.value)
-          ..setTranslationRaw(0.0, _arrowIconBaselineOffset, 0.0),
+        transform: .fixed(
+          Matrix4.rotationZ(_orientationOffset + _orientationAnimation.value)
+            ..setTranslationRaw(0.0, _arrowIconBaselineOffset, 0.0),
+        ),
         alignment: Alignment.center,
         child: const Icon(Icons.arrow_upward, size: _arrowIconSize),
       ),

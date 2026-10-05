@@ -342,14 +342,16 @@ class _CupertinoTabScaffoldState extends State<CupertinoTabScaffold> with Restor
 
     content = MediaQuery(
       data: newMediaQuery,
-      child: Padding(padding: contentPadding, child: content),
+      child: Padding(padding: .fixed(contentPadding), child: content),
     );
 
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color:
-            CupertinoDynamicColor.maybeResolve(widget.backgroundColor, context) ??
-            CupertinoTheme.of(context).scaffoldBackgroundColor,
+      decoration: .fixed(
+        BoxDecoration(
+          color:
+              CupertinoDynamicColor.maybeResolve(widget.backgroundColor, context) ??
+              CupertinoTheme.of(context).scaffoldBackgroundColor,
+        ),
       ),
       child: Stack(
         children: <Widget>[

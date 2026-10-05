@@ -691,7 +691,7 @@ class SegmentedButtonState<T> extends State<SegmentedButton<T>> {
       child: TextButtonTheme(
         data: TextButtonThemeData(style: segmentThemeStyle),
         child: Padding(
-          padding: widget.expandedInsets ?? EdgeInsets.zero,
+          padding: .fixed(widget.expandedInsets ?? EdgeInsets.zero),
           child: _SegmentedButtonRenderWidget<T>(
             tapTargetVerticalPadding: tapTargetVerticalPadding,
             segments: widget.segments,

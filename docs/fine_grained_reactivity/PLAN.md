@@ -728,6 +728,32 @@ once and splitting them would mean two effects that each read both values.
 they stay separate, and are bound together as one `InlineSpan` prop, because
 `RenderParagraph.text` is a span.
 
+**Superseded: stock widgets take `ReadonlySignal` properties.** The twins
+above were later folded into the stock widgets and deleted. `Opacity`,
+`Padding`, `SizedBox`, `ConstrainedBox`, `ColoredBox`, `DecoratedBox` and
+`Transform` (including `Transform.rotate`, `.translate`, `.scale` and
+`.flip`) declare their properties as `ReadonlySignal<T>`, which a `Signal`, a
+`Computed` and a const `.fixed(value)` all satisfy:
+
+```dart
+const SizedBox(height: .fixed(8));
+Opacity(opacity: fade, child: child);
+Transform.rotate(angle: spin, child: icon);
+```
+
+A fixed value takes the classic `updateRenderObject` path and allocates no
+binding, so static code costs what it always did and stays `const`. Where
+several inputs feed one setter (`SizedBox`'s width and height, the inputs of
+the named `Transform` constructors) they are read together and bound as one
+property. `ReactiveOffset`, `ReactiveText` and `ReactiveCustomPaint` remain,
+because they have no stock counterpart of that shape yet.
+
+Binding moved into `RenderObjectElement` itself: it binds any widget that
+mixes in `ReactiveRenderObjectWidget`, so converted widgets keep their stock
+element types (finders and diagnostics that name `SingleChildRenderObjectElement`
+are unaffected) and the `Reactive*RenderObjectElement` and
+`Reactive*RenderObjectWidget` base classes are gone.
+
 **One effect per binding, and the prop lives in a field.** A binding is a
 property-to-setter pair. `PropBinder.bind(prop, apply)` creates an `Effect`
 owned by the element's `reactiveOwner`, whose body is `apply(prop())`. The

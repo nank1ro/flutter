@@ -285,7 +285,7 @@ class Dialog extends StatelessWidget {
       dialogChild = Align(
         alignment: alignment ?? dialogTheme.alignment ?? defaults.alignment!,
         child: ConstrainedBox(
-          constraints: boxConstraints,
+          constraints: .fixed(boxConstraints),
           child: Material(
             color: backgroundColor ?? dialogTheme.backgroundColor ?? defaults.backgroundColor,
             elevation: elevation ?? dialogTheme.elevation ?? defaults.elevation!,
@@ -808,11 +808,13 @@ class AlertDialog extends StatelessWidget {
       final EdgeInsets effectiveIconPadding =
           iconPadding?.resolve(textDirection) ?? defaultIconPadding;
       iconWidget = Padding(
-        padding: EdgeInsets.only(
-          left: effectiveIconPadding.left * paddingScaleFactor,
-          right: effectiveIconPadding.right * paddingScaleFactor,
-          top: effectiveIconPadding.top * paddingScaleFactor,
-          bottom: effectiveIconPadding.bottom,
+        padding: .fixed(
+          EdgeInsets.only(
+            left: effectiveIconPadding.left * paddingScaleFactor,
+            right: effectiveIconPadding.right * paddingScaleFactor,
+            top: effectiveIconPadding.top * paddingScaleFactor,
+            bottom: effectiveIconPadding.bottom,
+          ),
         ),
         child: IconTheme(
           data: IconThemeData(color: iconColor ?? dialogTheme.iconColor ?? defaults.iconColor),
@@ -831,13 +833,15 @@ class AlertDialog extends StatelessWidget {
       final EdgeInsets effectiveTitlePadding =
           titlePadding?.resolve(textDirection) ?? defaultTitlePadding;
       titleWidget = Padding(
-        padding: EdgeInsets.only(
-          left: effectiveTitlePadding.left * paddingScaleFactor,
-          right: effectiveTitlePadding.right * paddingScaleFactor,
-          top: icon == null
-              ? effectiveTitlePadding.top * paddingScaleFactor
-              : effectiveTitlePadding.top,
-          bottom: effectiveTitlePadding.bottom,
+        padding: .fixed(
+          EdgeInsets.only(
+            left: effectiveTitlePadding.left * paddingScaleFactor,
+            right: effectiveTitlePadding.right * paddingScaleFactor,
+            top: icon == null
+                ? effectiveTitlePadding.top * paddingScaleFactor
+                : effectiveTitlePadding.top,
+            bottom: effectiveTitlePadding.bottom,
+          ),
         ),
         child: DefaultTextStyle(
           style: titleTextStyle ?? dialogTheme.titleTextStyle ?? defaults.titleTextStyle!,
@@ -863,13 +867,15 @@ class AlertDialog extends StatelessWidget {
       final EdgeInsets effectiveContentPadding =
           contentPadding?.resolve(textDirection) ?? defaultContentPadding;
       contentWidget = Padding(
-        padding: EdgeInsets.only(
-          left: effectiveContentPadding.left * paddingScaleFactor,
-          right: effectiveContentPadding.right * paddingScaleFactor,
-          top: title == null && icon == null
-              ? effectiveContentPadding.top * paddingScaleFactor
-              : effectiveContentPadding.top,
-          bottom: effectiveContentPadding.bottom,
+        padding: .fixed(
+          EdgeInsets.only(
+            left: effectiveContentPadding.left * paddingScaleFactor,
+            right: effectiveContentPadding.right * paddingScaleFactor,
+            top: title == null && icon == null
+                ? effectiveContentPadding.top * paddingScaleFactor
+                : effectiveContentPadding.top,
+            bottom: effectiveContentPadding.bottom,
+          ),
         ),
         child: DefaultTextStyle(
           style: contentTextStyle ?? dialogTheme.contentTextStyle ?? defaults.contentTextStyle!,
@@ -881,12 +887,13 @@ class AlertDialog extends StatelessWidget {
     if (actions != null) {
       final double spacing = (buttonPadding?.horizontal ?? 16) / 2;
       actionsWidget = Padding(
-        padding:
-            actionsPadding ??
-            dialogTheme.actionsPadding ??
-            (theme.useMaterial3
-                ? defaults.actionsPadding!
-                : defaults.actionsPadding!.add(EdgeInsets.all(spacing))),
+        padding: .fixed(
+          actionsPadding ??
+              dialogTheme.actionsPadding ??
+              (theme.useMaterial3
+                  ? defaults.actionsPadding!
+                  : defaults.actionsPadding!.add(EdgeInsets.all(spacing))),
+        ),
         child: OverflowBar(
           alignment: actionsAlignment ?? MainAxisAlignment.end,
           spacing: spacing,
@@ -1079,7 +1086,7 @@ class SimpleDialogOption extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Padding(
-        padding: padding ?? const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+        padding: .fixed(padding ?? const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0)),
         child: child,
       ),
     );
@@ -1309,13 +1316,15 @@ class SimpleDialog extends StatelessWidget {
     if (title != null) {
       final EdgeInsets effectiveTitlePadding = titlePadding.resolve(textDirection);
       titleWidget = Padding(
-        padding: EdgeInsets.only(
-          left: effectiveTitlePadding.left * paddingScaleFactor,
-          right: effectiveTitlePadding.right * paddingScaleFactor,
-          top: effectiveTitlePadding.top * paddingScaleFactor,
-          bottom: children == null
-              ? effectiveTitlePadding.bottom * paddingScaleFactor
-              : effectiveTitlePadding.bottom,
+        padding: .fixed(
+          EdgeInsets.only(
+            left: effectiveTitlePadding.left * paddingScaleFactor,
+            right: effectiveTitlePadding.right * paddingScaleFactor,
+            top: effectiveTitlePadding.top * paddingScaleFactor,
+            bottom: children == null
+                ? effectiveTitlePadding.bottom * paddingScaleFactor
+                : effectiveTitlePadding.bottom,
+          ),
         ),
         child: DefaultTextStyle(
           style: effectiveTitleTextStyle,

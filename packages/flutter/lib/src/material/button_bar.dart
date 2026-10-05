@@ -239,7 +239,7 @@ class ButtonBar extends StatelessWidget {
         overflowButtonSpacing: overflowButtonSpacing,
         children: children.map<Widget>((Widget child) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: paddingUnit),
+            padding: .fixed(EdgeInsets.symmetric(horizontal: paddingUnit)),
             child: child,
           );
         }).toList(),
@@ -248,14 +248,16 @@ class ButtonBar extends StatelessWidget {
     switch (buttonTheme.layoutBehavior) {
       case ButtonBarLayoutBehavior.padded:
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.0 * paddingUnit, horizontal: paddingUnit),
+          padding: .fixed(
+            EdgeInsets.symmetric(vertical: 2.0 * paddingUnit, horizontal: paddingUnit),
+          ),
           child: child,
         );
       case ButtonBarLayoutBehavior.constrained:
         return ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 52.0),
+          constraints: const .fixed(BoxConstraints(minHeight: 52.0)),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: paddingUnit),
+            padding: .fixed(EdgeInsets.symmetric(horizontal: paddingUnit)),
             child: Center(child: child),
           ),
         );

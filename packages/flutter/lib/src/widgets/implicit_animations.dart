@@ -946,7 +946,9 @@ class _AnimatedPaddingState extends AnimatedWidgetBaseState<AnimatedPadding> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: _padding!.evaluate(animation).clamp(EdgeInsets.zero, EdgeInsetsGeometry.infinity),
+      padding: .fixed(
+        _padding!.evaluate(animation).clamp(EdgeInsets.zero, EdgeInsetsGeometry.infinity),
+      ),
       child: widget.child,
     );
   }
@@ -1464,7 +1466,7 @@ class _AnimatedPositionedDirectionalState
 ///           child: const Text('Scale Logo'),
 ///         ),
 ///         Padding(
-///           padding: const EdgeInsets.all(50),
+///           padding: .fixed(const EdgeInsets.all(50)),
 ///           child: AnimatedScale(
 ///             scale: scale,
 ///             duration: const Duration(seconds: 2),
@@ -1593,7 +1595,7 @@ class _AnimatedScaleState extends ImplicitlyAnimatedWidgetState<AnimatedScale> {
 ///           child: const Text('Rotate Logo'),
 ///         ),
 ///         Padding(
-///           padding: const EdgeInsets.all(50),
+///           padding: .fixed(const EdgeInsets.all(50)),
 ///           child: AnimatedRotation(
 ///             turns: turns,
 ///             duration: const Duration(seconds: 1),

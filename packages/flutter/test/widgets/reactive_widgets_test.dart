@@ -178,16 +178,41 @@ class _RenderPaintProbe extends RenderBox {
 /// Two tear-offs of the same instance's `call` are equal but not identical,
 /// exactly like a [Signal] passed straight to a property, so a rebind with the
 /// same object must not re-run the binding.
-class _CountingProp<T> {
+/// A [ReadonlySignal] that counts every read, tracked or not.
+class _CountingProp<T> implements ReadonlySignal<T> {
   _CountingProp(this.signal);
 
   final Signal<T> signal;
   int reads = 0;
 
-  T call() {
+  @override
+  T get value {
     reads += 1;
     return signal.value;
   }
+
+  @override
+  T get peek => untracked(() => value);
+
+  @override
+  T call() => value;
+}
+
+/// A [ReadonlySignal] read through a closure, so that a test can count reads,
+/// or hand a widget a fresh accessor on every build.
+final class _Read<T> implements ReadonlySignal<T> {
+  _Read(this._read);
+
+  final T Function() _read;
+
+  @override
+  T get value => _read();
+
+  @override
+  T get peek => untracked(_read);
+
+  @override
+  T call() => _read();
 }
 
 /// Rebuilds a [Directionality] around the *same* child widget instance, so
@@ -235,7 +260,7 @@ class _QueuedRebind extends StatefulWidget {
 class _QueuedRebindState extends State<_QueuedRebind> {
   /// A property that is the same object on every build, so the second binding
   /// is never rebound and stays in the queue as it was left.
-  late final double Function() _stableProp = _readB;
+  late final _Read<double> _stableProp = _Read<double>(_readB);
 
   double _readB() => widget.b.value;
 
@@ -250,12 +275,15 @@ class _QueuedRebindState extends State<_QueuedRebind> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        // A fresh closure on every build, so this binding is rebound.
-        ReactiveOpacity(
-          opacity: () => widget.a.value,
-          child: const SizedBox(width: 10, height: 10),
+        // A fresh accessor on every build, so this binding is rebound.
+        Opacity(
+          opacity: _Read<double>(() => widget.a.value),
+          child: const SizedBox(width: .fixed(10), height: .fixed(10)),
         ),
-        ReactiveOpacity(opacity: _stableProp, child: const SizedBox(width: 10, height: 10)),
+        Opacity(
+          opacity: _stableProp,
+          child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+        ),
         Builder(
           builder: (BuildContext context) {
             widget.a.value = 0.5;
@@ -276,7 +304,11 @@ class _Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     builds.add(label);
-    return SizedBox(key: ValueKey<String>('box-$label'), width: 10, height: 10);
+    return SizedBox(
+      key: ValueKey<String>('box-$label'),
+      width: const .fixed(10),
+      height: const .fixed(10),
+    );
   }
 }
 
@@ -297,18 +329,16 @@ void main() {
             counts: counts,
             child: _PipelineSpy(
               stats: stats,
-              child: ReactiveOpacity(
+              child: Opacity(
                 opacity: opacity,
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
             ),
           ),
         ),
       );
 
-      final RenderOpacity renderObject = tester.renderObject<RenderOpacity>(
-        find.byType(ReactiveOpacity),
-      );
+      final RenderOpacity renderObject = tester.renderObject<RenderOpacity>(find.byType(Opacity));
       expect(renderObject.opacity, 1.0);
       expect(counts, everyElement(1));
 
@@ -333,12 +363,12 @@ void main() {
       final applied = <Color>[];
 
       await tester.pumpWidget(
-        ReactiveColoredBox(
-          color: () {
+        ColoredBox(
+          color: _Read<Color>(() {
             applied.add(color.value);
             return color.value;
-          },
-          child: const SizedBox(width: 10, height: 10),
+          }),
+          child: const SizedBox(width: .fixed(10), height: .fixed(10)),
         ),
       );
       // Two reads at mount: createRenderObject seeds the render object with
@@ -355,8 +385,8 @@ void main() {
       await tester.pump();
       expect(applied, hasLength(3));
       expect(
-        tester.renderObject<RenderReactiveColoredBox>(find.byType(ReactiveColoredBox)).color,
-        const Color(0xFFFF0000),
+        tester.renderObject<RenderObject>(find.byType(ColoredBox)),
+        paints..rect(color: const Color(0xFFFF0000)),
       );
     });
 
@@ -369,7 +399,10 @@ void main() {
       await tester.pumpWidget(
         _PipelineSpy(
           stats: stats,
-          child: ReactiveOffset(offset: position, child: const SizedBox(width: 10, height: 10)),
+          child: ReactiveOffset(
+            offset: position,
+            child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+          ),
         ),
       );
       final RenderReactiveOffset renderObject = tester.renderObject<RenderReactiveOffset>(
@@ -386,7 +419,7 @@ void main() {
       expect(stats.paints, 1);
     });
 
-    testWidgets('ReactivePadding relayouts but does not rebuild', (WidgetTester tester) async {
+    testWidgets('Padding relayouts but does not rebuild', (WidgetTester tester) async {
       final padding = Signal<EdgeInsetsGeometry>(EdgeInsets.zero);
       final counts = List<int>.filled(3, 0);
       final stats = _PipelineStats();
@@ -397,16 +430,17 @@ void main() {
           child: _BuildCounter(
             depth: 2,
             counts: counts,
-            child: ReactivePadding(
+            child: Padding(
               padding: padding,
-              child: _PipelineSpy(stats: stats, child: const SizedBox(width: 10, height: 10)),
+              child: _PipelineSpy(
+                stats: stats,
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+              ),
             ),
           ),
         ),
       );
-      final RenderPadding renderObject = tester.renderObject<RenderPadding>(
-        find.byType(ReactivePadding),
-      );
+      final RenderPadding renderObject = tester.renderObject<RenderPadding>(find.byType(Padding));
 
       counts.fillRange(0, counts.length, 0);
       stats.reset();
@@ -460,13 +494,13 @@ void main() {
       final a = Signal<double>(0.5);
       final b = Signal<double>(0.25);
 
-      Widget build(Signal<double> source) =>
-          ReactiveOpacity(opacity: source, child: const SizedBox(width: 10, height: 10));
+      Widget build(Signal<double> source) => Opacity(
+        opacity: source,
+        child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+      );
 
       await tester.pumpWidget(build(a));
-      final RenderOpacity renderObject = tester.renderObject<RenderOpacity>(
-        find.byType(ReactiveOpacity),
-      );
+      final RenderOpacity renderObject = tester.renderObject<RenderOpacity>(find.byType(Opacity));
       expect(renderObject.opacity, 0.5);
 
       await tester.pumpWidget(build(b));
@@ -486,7 +520,10 @@ void main() {
       final opacity = Signal<double>(1);
 
       await tester.pumpWidget(
-        ReactiveOpacity(opacity: opacity, child: const SizedBox(width: 10, height: 10)),
+        Opacity(
+          opacity: opacity,
+          child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+        ),
       );
       expect(opacity.subs, isNotNull);
 
@@ -540,7 +577,7 @@ void main() {
             applied.add(offset);
             return offset;
           },
-          child: const SizedBox(width: 10, height: 10),
+          child: const SizedBox(width: .fixed(10), height: .fixed(10)),
         ),
       );
       // Once to seed createRenderObject, once for the effect's first run.
@@ -561,8 +598,10 @@ void main() {
       final opacity = Signal<double>(1);
       final prop = _CountingProp<double>(opacity);
 
-      Widget build() =>
-          ReactiveOpacity(opacity: prop, child: const SizedBox(width: 10, height: 10));
+      Widget build() => Opacity(
+        opacity: prop,
+        child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+      );
 
       await tester.pumpWidget(build());
       // Once to seed createRenderObject, once for the effect's first run.
@@ -576,7 +615,7 @@ void main() {
       opacity.value = 0.5;
       await tester.pump();
       expect(prop.reads, 3);
-      expect(tester.renderObject<RenderOpacity>(find.byType(ReactiveOpacity)).opacity, 0.5);
+      expect(tester.renderObject<RenderOpacity>(find.byType(Opacity)).opacity, 0.5);
     });
 
     testWidgets('a re-run that writes an equal value does not repaint', (
@@ -587,13 +626,16 @@ void main() {
       var reads = 0;
 
       await tester.pumpWidget(
-        ReactiveColoredBox(
-          color: () {
+        ColoredBox(
+          color: _Read<Color>(() {
             tick.value;
             reads += 1;
             return const Color(0xFF00FF00);
-          },
-          child: _PipelineSpy(stats: stats, child: const SizedBox(width: 10, height: 10)),
+          }),
+          child: _PipelineSpy(
+            stats: stats,
+            child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+          ),
         ),
       );
       expect(reads, 2);
@@ -617,7 +659,7 @@ void main() {
 
       await tester.pumpWidget(_QueuedRebind(a: a, b: b));
       final List<RenderOpacity> boxes = tester
-          .renderObjectList<RenderOpacity>(find.byType(ReactiveOpacity))
+          .renderObjectList<RenderOpacity>(find.byType(Opacity))
           .toList();
       expect(boxes, hasLength(2));
 
@@ -643,16 +685,17 @@ void main() {
 
       await tester.pumpWidget(
         _DirectionalityHost(
-          child: ReactivePadding(padding: prop, child: const SizedBox(width: 10, height: 10)),
+          child: Padding(
+            padding: prop,
+            child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+          ),
         ),
       );
-      final RenderPadding renderObject = tester.renderObject<RenderPadding>(
-        find.byType(ReactivePadding),
-      );
+      final RenderPadding renderObject = tester.renderObject<RenderPadding>(find.byType(Padding));
       expect(renderObject.textDirection, TextDirection.ltr);
       expect(prop.reads, 2);
 
-      // The same ReactivePadding widget instance, under a Directionality that
+      // The same Padding widget instance, under a Directionality that
       // changed: the element is dirtied by its inherited dependency and
       // rebuilt through performRebuild rather than update.
       tester.state<_DirectionalityHostState>(find.byType(_DirectionalityHost)).flip();
@@ -670,35 +713,33 @@ void main() {
 
     testWidgets('a GlobalKey reparent keeps the binding live', (WidgetTester tester) async {
       final opacity = Signal<double>(1);
-      final Widget target = ReactiveOpacity(
+      final Widget target = Opacity(
         key: GlobalKey(),
         opacity: opacity,
-        child: const SizedBox(width: 10, height: 10),
+        child: const SizedBox(width: .fixed(10), height: .fixed(10)),
       );
 
       await tester.pumpWidget(
         Column(
           children: <Widget>[
-            Padding(padding: EdgeInsets.zero, child: target),
-            const SizedBox(width: 10, height: 10),
+            Padding(padding: const .fixed(EdgeInsets.zero), child: target),
+            const SizedBox(width: .fixed(10), height: .fixed(10)),
           ],
         ),
       );
-      final RenderOpacity renderObject = tester.renderObject<RenderOpacity>(
-        find.byType(ReactiveOpacity),
-      );
+      final RenderOpacity renderObject = tester.renderObject<RenderOpacity>(find.byType(Opacity));
 
       // The same widget under a different parent: the element is deactivated
       // and reactivated in one frame, and its bindings must survive the move.
       await tester.pumpWidget(
         Column(
           children: <Widget>[
-            const SizedBox(width: 10, height: 10),
-            Padding(padding: EdgeInsets.zero, child: target),
+            const SizedBox(width: .fixed(10), height: .fixed(10)),
+            Padding(padding: const .fixed(EdgeInsets.zero), child: target),
           ],
         ),
       );
-      expect(tester.renderObject<RenderOpacity>(find.byType(ReactiveOpacity)), same(renderObject));
+      expect(tester.renderObject<RenderOpacity>(find.byType(Opacity)), same(renderObject));
 
       opacity.value = 0.25;
       await tester.pump();
@@ -776,7 +817,10 @@ void main() {
         ReactiveCustomPaint(
           painter: _LogPainter('background', log),
           foregroundPainter: _LogPainter('foreground', log),
-          child: _PipelineSpy(stats: stats, child: const SizedBox(width: 10, height: 10)),
+          child: _PipelineSpy(
+            stats: stats,
+            child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+          ),
         ),
       );
 
@@ -967,21 +1011,21 @@ void main() {
           For<int>(
             each: items,
             keyOf: (int item) => item,
-            builder: (int item) => ReactiveColoredBox(
+            builder: (int item) => ColoredBox(
               key: ValueKey<int>(item),
               color: colors[item]!,
-              child: const SizedBox(width: 10, height: 10),
+              child: const SizedBox(width: .fixed(10), height: .fixed(10)),
             ),
           ),
         ),
       );
 
-      final RenderReactiveColoredBox renderObject = tester.renderObject<RenderReactiveColoredBox>(
+      final RenderObject renderObject = tester.renderObject<RenderObject>(
         find.byKey(const ValueKey<int>(1)),
       );
       colors[1]!.value = const Color(0xFFABCDEF);
       await tester.pump();
-      expect(renderObject.color, const Color(0xFFABCDEF));
+      expect(renderObject, paints..rect(color: const Color(0xFFABCDEF)));
     });
 
     testWidgets('unmounting the For deactivates every child', (WidgetTester tester) async {

@@ -324,15 +324,15 @@ class Stepper extends StatefulWidget {
   ///       Step(
   ///         title: Text('A'),
   ///         content: SizedBox(
-  ///           width: 100.0,
-  ///           height: 100.0,
+  ///           width: .fixed(100.0),
+  ///           height: .fixed(100.0),
   ///         ),
   ///       ),
   ///       Step(
   ///         title: Text('B'),
   ///         content: SizedBox(
-  ///           width: 100.0,
-  ///           height: 100.0,
+  ///           width: .fixed(100.0),
+  ///           height: .fixed(100.0),
   ///         ),
   ///       ),
   ///     ],
@@ -479,8 +479,11 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
 
   Widget _buildLine(bool visible, bool isActive) {
     return ColoredBox(
-      color: _connectorColor(isActive),
-      child: SizedBox(width: visible ? widget.connectorThickness ?? 1.0 : 0.0, height: 16.0),
+      color: .fixed(_connectorColor(isActive)),
+      child: SizedBox(
+        width: .fixed(visible ? widget.connectorThickness ?? 1.0 : 0.0),
+        height: const .fixed(16.0),
+      ),
     );
   }
 
@@ -519,10 +522,10 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
 
   Widget _buildCircle(int index, bool oldState) {
     return Padding(
-      padding: _stepIconMargin ?? const EdgeInsets.symmetric(vertical: 8.0),
+      padding: .fixed(_stepIconMargin ?? const EdgeInsets.symmetric(vertical: 8.0)),
       child: SizedBox(
-        width: _stepIconWidth ?? _kStepSize,
-        height: _stepIconHeight ?? _kStepSize,
+        width: .fixed(_stepIconWidth ?? _kStepSize),
+        height: .fixed(_stepIconHeight ?? _kStepSize),
         child: AnimatedContainer(
           curve: Curves.fastOutSlowIn,
           duration: kThemeAnimationDuration,
@@ -551,14 +554,16 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
     color ??= _isDark() ? _kErrorDark : _kErrorLight;
 
     return Padding(
-      padding: _stepIconMargin ?? const EdgeInsets.symmetric(vertical: 8.0),
+      padding: .fixed(_stepIconMargin ?? const EdgeInsets.symmetric(vertical: 8.0)),
       child: SizedBox(
-        width: _stepIconWidth ?? _kStepSize,
-        height: _stepIconHeight ?? _kStepSize,
+        width: .fixed(_stepIconWidth ?? _kStepSize),
+        height: .fixed(_stepIconHeight ?? _kStepSize),
         child: Center(
           child: SizedBox(
-            width: _stepIconWidth ?? _kStepSize,
-            height: _stepIconHeight != null ? _stepIconHeight! * _kTriangleSqrt : _kTriangleHeight,
+            width: .fixed(_stepIconWidth ?? _kStepSize),
+            height: .fixed(
+              _stepIconHeight != null ? _stepIconHeight! * _kTriangleSqrt : _kTriangleHeight,
+            ),
             child: CustomPaint(
               painter: _TrianglePainter(color: color),
               child: Align(
@@ -625,9 +630,9 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
     const buttonPadding = EdgeInsets.symmetric(horizontal: 16.0);
 
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const .fixed(EdgeInsets.only(top: 16.0)),
       child: SizedBox(
-        height: 48.0,
+        height: const .fixed(48.0),
         child: Row(
           // The Material spec no longer includes a Stepper widget. The continue
           // and cancel button styles have been configured to match the original
@@ -656,7 +661,7 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.only(start: 8.0),
+              padding: const .fixed(EdgeInsetsDirectional.only(start: 8.0)),
               child: TextButton(
                 onPressed: widget.onStepCancel,
                 style: TextButton.styleFrom(
@@ -738,7 +743,7 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
         ),
         if (widget.steps[index].subtitle != null)
           Padding(
-            padding: const EdgeInsets.only(top: 2.0),
+            padding: const .fixed(EdgeInsets.only(top: 2.0)),
             child: AnimatedDefaultTextStyle(
               style: _subtitleStyle(index),
               duration: kThemeAnimationDuration,
@@ -765,7 +770,7 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
     final bool isActive = widget.steps[index].isActive;
     final bool isPreviousActive = index > 0 && widget.steps[index - 1].isActive;
     return Padding(
-      padding: effectiveHeaderPadding,
+      padding: .fixed(effectiveHeaderPadding),
       child: Row(
         children: <Widget>[
           Column(
@@ -779,7 +784,7 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 12.0),
+              padding: const .fixed(EdgeInsetsDirectional.only(start: 12.0)),
               child: _buildHeaderText(index),
             ),
           ),
@@ -814,16 +819,16 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
             // it reaches the bottom and then horizontally to the edge of the
             // stepper.
             child: SizedBox(
-              width: !_isLast(index) ? (widget.connectorThickness ?? 1.0) : 0.0,
-              height: double.infinity,
-              child: ColoredBox(color: _connectorColor(widget.steps[index].isActive)),
+              width: .fixed(!_isLast(index) ? (widget.connectorThickness ?? 1.0) : 0.0),
+              height: const .fixed(double.infinity),
+              child: ColoredBox(color: .fixed(_connectorColor(widget.steps[index].isActive))),
             ),
           ),
         ),
         AnimatedCrossFade(
-          firstChild: const SizedBox(width: double.infinity, height: 0),
+          firstChild: const SizedBox(width: .fixed(double.infinity), height: .fixed(0)),
           secondChild: Padding(
-            padding: effectiveVerticalContentPadding,
+            padding: .fixed(effectiveVerticalContentPadding),
             child: Column(
               children: <Widget>[
                 ClipRect(clipBehavior: widget.clipBehavior, child: widget.steps[index].content),
@@ -892,19 +897,19 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
           child: Row(
             children: <Widget>[
               SizedBox(
-                height: _isLabel() ? 104.0 : 72.0,
+                height: .fixed(_isLabel() ? 104.0 : 72.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    if (widget.steps[i].label != null) const SizedBox(height: 24.0),
+                    if (widget.steps[i].label != null) const SizedBox(height: .fixed(24.0)),
                     Center(child: _buildIcon(i)),
                     if (widget.steps[i].label != null)
-                      SizedBox(height: 24.0, child: _buildLabelText(i)),
+                      SizedBox(height: const .fixed(24.0), child: _buildLabelText(i)),
                   ],
                 ),
               ),
               Padding(
-                padding: _stepIconMargin ?? const EdgeInsetsDirectional.only(start: 12.0),
+                padding: .fixed(_stepIconMargin ?? const EdgeInsetsDirectional.only(start: 12.0)),
                 child: _buildHeaderText(i),
               ),
             ],
@@ -913,16 +918,16 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
         if (!_isLast(i))
           Expanded(
             child: Padding(
-              padding: _stepIconMargin ?? const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: .fixed(_stepIconMargin ?? const EdgeInsets.symmetric(horizontal: 8.0)),
               child: SizedBox(
-                height:
-                    widget.steps[i].stepStyle?.connectorThickness ??
-                    widget.connectorThickness ??
-                    1.0,
+                height: .fixed(
+                  widget.steps[i].stepStyle?.connectorThickness ?? widget.connectorThickness ?? 1.0,
+                ),
                 child: ColoredBox(
-                  color:
-                      widget.steps[i].stepStyle?.connectorColor ??
-                      _connectorColor(widget.steps[i].isActive),
+                  color: .fixed(
+                    widget.steps[i].stepStyle?.connectorColor ??
+                        _connectorColor(widget.steps[i].isActive),
+                  ),
                 ),
               ),
             ),
@@ -946,9 +951,9 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
         Material(
           elevation: widget.elevation ?? 2,
           child: Padding(
-            padding: effectiveHeaderPadding,
+            padding: .fixed(effectiveHeaderPadding),
             child: SizedBox(
-              height: _stepIconHeight != null ? _stepIconHeight! * _heightFactor : null,
+              height: .fixed(_stepIconHeight != null ? _stepIconHeight! * _heightFactor : null),
               child: Row(children: children),
             ),
           ),

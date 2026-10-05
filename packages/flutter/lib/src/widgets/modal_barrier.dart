@@ -245,8 +245,8 @@ class ModalBarrier extends StatelessWidget {
       child: MouseRegion(
         cursor: SystemMouseCursors.basic,
         child: ConstrainedBox(
-          constraints: const BoxConstraints.expand(),
-          child: color == null ? null : ColoredBox(color: color!),
+          constraints: const .fixed(BoxConstraints.expand()),
+          child: color == null ? null : ColoredBox(color: .fixed(color!)),
         ),
       ),
     );

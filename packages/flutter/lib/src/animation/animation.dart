@@ -166,10 +166,10 @@ abstract class Animation<T> extends Listenable implements ValueListenable<T> {
   ///     valueListenable: _scrollPosition,
   ///     builder: (BuildContext context, double value, Widget? child) {
   ///       final double opacity = (value / 1000).clamp(0, 1);
-  ///       return Opacity(opacity: opacity, child: child);
+  ///       return Opacity(opacity: .fixed(opacity), child: child);
   ///     },
   ///     child: const ColoredBox(
-  ///       color: Colors.red,
+  ///       color: .fixed(Colors.red),
   ///       child: Text('Hello, Animation'),
   ///     ),
   ///   );
@@ -188,7 +188,7 @@ abstract class Animation<T> extends Listenable implements ValueListenable<T> {
   ///       return (value / 1000).clamp(0, 1);
   ///     }),
   ///     child: const ColoredBox(
-  ///       color: Colors.red,
+  ///       color: .fixed(Colors.red),
   ///       child: Text('Hello, Animation'),
   ///     ),
   ///   );

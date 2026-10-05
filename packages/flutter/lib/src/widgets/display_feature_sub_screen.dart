@@ -109,11 +109,13 @@ class DisplayFeatureSubScreen extends StatelessWidget {
     final Rect closestSubScreen = _closestToAnchorPoint(subScreens, resolvedAnchorPoint);
 
     return Padding(
-      padding: EdgeInsets.only(
-        left: closestSubScreen.left,
-        top: closestSubScreen.top,
-        right: parentSize.width - closestSubScreen.right,
-        bottom: parentSize.height - closestSubScreen.bottom,
+      padding: .fixed(
+        EdgeInsets.only(
+          left: closestSubScreen.left,
+          top: closestSubScreen.top,
+          right: parentSize.width - closestSubScreen.right,
+          bottom: parentSize.height - closestSubScreen.bottom,
+        ),
       ),
       child: MediaQuery(data: mediaQuery.removeDisplayFeatures(closestSubScreen), child: child),
     );

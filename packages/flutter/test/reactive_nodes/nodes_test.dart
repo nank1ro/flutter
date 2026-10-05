@@ -152,7 +152,11 @@ void main() {
 
     await tester.pumpWidget(
       Center(
-        child: SizedBox(width: 100, height: 50, child: NodeHost(node: root)),
+        child: SizedBox(
+          width: const .fixed(100),
+          height: const .fixed(50),
+          child: NodeHost(node: root),
+        ),
       ),
     );
 

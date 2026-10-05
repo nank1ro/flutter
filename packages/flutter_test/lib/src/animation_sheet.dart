@@ -269,7 +269,7 @@ class _AnimationSheetRecorderState extends State<_AnimationSheetRecorder> {
     return Align(
       alignment: Alignment.topLeft,
       child: SizedBox.fromSize(
-        size: widget.size,
+        size: .fixed(widget.size),
         child: _RootableRepaintBoundary(
           key: boundaryKey,
           child: _PostFrameCallbacker(

@@ -572,22 +572,24 @@ class _CupertinoButtonState extends State<CupertinoButton> with SingleTickerProv
           child: Semantics(
             button: true,
             child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minWidth:
-                    minimumSize?.width ??
-                    kCupertinoButtonMinSize[widget.sizeStyle] ??
-                    kMinInteractiveDimensionCupertino,
-                minHeight:
-                    minimumSize?.height ??
-                    kCupertinoButtonMinSize[widget.sizeStyle] ??
-                    kMinInteractiveDimensionCupertino,
+              constraints: .fixed(
+                BoxConstraints(
+                  minWidth:
+                      minimumSize?.width ??
+                      kCupertinoButtonMinSize[widget.sizeStyle] ??
+                      kMinInteractiveDimensionCupertino,
+                  minHeight:
+                      minimumSize?.height ??
+                      kCupertinoButtonMinSize[widget.sizeStyle] ??
+                      kMinInteractiveDimensionCupertino,
+                ),
               ),
               child: FadeTransition(
                 opacity: _opacityAnimation,
                 child: DecoratedBox(
-                  decoration: shapeDecoration,
+                  decoration: .fixed(shapeDecoration),
                   child: Padding(
-                    padding: widget.padding ?? kCupertinoButtonPadding[widget.sizeStyle]!,
+                    padding: .fixed(widget.padding ?? kCupertinoButtonPadding[widget.sizeStyle]!),
                     child: Align(
                       alignment: widget.alignment,
                       widthFactor: 1.0,

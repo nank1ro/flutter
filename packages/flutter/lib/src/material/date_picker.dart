@@ -596,11 +596,11 @@ class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMix
     headlineStyle = headlineStyle?.copyWith(color: headerForegroundColor);
 
     final Widget actions = ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 52.0),
+      constraints: const .fixed(BoxConstraints(minHeight: 52.0)),
       child: MediaQuery.withClampedTextScaling(
         maxScaleFactor: isLandscapeOrientation ? 1.6 : _kMaxTextScaleFactor,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const .fixed(EdgeInsets.symmetric(horizontal: 8)),
           child: Align(
             alignment: AlignmentDirectional.centerEnd,
             child: OverflowBar(
@@ -647,11 +647,13 @@ class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMix
         key: _formKey,
         autovalidateMode: _autovalidateMode.value,
         child: SizedBox(
-          height: orientation == Orientation.portrait
-              ? _inputFormPortraitHeight
-              : _inputFormLandscapeHeight,
+          height: .fixed(
+            orientation == Orientation.portrait
+                ? _inputFormPortraitHeight
+                : _inputFormLandscapeHeight,
+          ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 24)),
             child: Shortcuts(
               shortcuts: _formShortcutMap,
               child: Column(
@@ -984,17 +986,17 @@ class _DatePickerHeader extends StatelessWidget {
         return Semantics(
           container: true,
           child: SizedBox(
-            height: _datePickerHeaderPortraitHeight * fontScaleAdjustedHeaderHeight,
+            height: .fixed(_datePickerHeaderPortraitHeight * fontScaleAdjustedHeaderHeight),
             child: Material(
               color: backgroundColor,
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(start: 24, end: 12, bottom: 12),
+                padding: const .fixed(EdgeInsetsDirectional.only(start: 24, end: 12, bottom: 12)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const SizedBox(height: 16),
+                    const SizedBox(height: .fixed(16)),
                     help,
-                    const Flexible(child: SizedBox(height: 38)),
+                    const Flexible(child: SizedBox(height: .fixed(38))),
                     Row(
                       children: <Widget>[
                         Expanded(child: title),
@@ -1012,32 +1014,38 @@ class _DatePickerHeader extends StatelessWidget {
         return Semantics(
           container: true,
           child: SizedBox(
-            width: _datePickerHeaderLandscapeWidth,
+            width: const .fixed(_datePickerHeaderLandscapeWidth),
             child: Material(
               color: backgroundColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const SizedBox(height: 16),
+                  const SizedBox(height: .fixed(16)),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: _headerPaddingLandscape),
+                    padding: const .fixed(
+                      EdgeInsets.symmetric(horizontal: _headerPaddingLandscape),
+                    ),
                     child: help,
                   ),
-                  SizedBox(height: isShort ? 16 : 56),
+                  SizedBox(height: .fixed(isShort ? 16 : 56)),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: _headerPaddingLandscape),
+                      padding: const .fixed(
+                        EdgeInsets.symmetric(horizontal: _headerPaddingLandscape),
+                      ),
                       child: title,
                     ),
                   ),
                   if (entryModeButton != null)
                     Padding(
-                      padding: theme.useMaterial3
-                          // TODO(TahaTesser): This is an eye-balled M3 entry mode button padding
-                          // from https://m3.material.io/components/date-pickers/specs#c16c142b-4706-47f3-9400-3cde654b9aa8.
-                          // Update this value to use tokens when available.
-                          ? const EdgeInsetsDirectional.only(start: 8.0, end: 4.0, bottom: 6.0)
-                          : const EdgeInsets.symmetric(horizontal: 4),
+                      padding: .fixed(
+                        theme.useMaterial3
+                            // TODO(TahaTesser): This is an eye-balled M3 entry mode button padding
+                            // from https://m3.material.io/components/date-pickers/specs#c16c142b-4706-47f3-9400-3cde654b9aa8.
+                            // Update this value to use tokens when available.
+                            ? const EdgeInsetsDirectional.only(start: 8.0, end: 4.0, bottom: 6.0)
+                            : const EdgeInsets.symmetric(horizontal: 4),
+                      ),
                       child: Semantics(container: true, child: entryModeButton),
                     ),
                 ],
@@ -1677,11 +1685,13 @@ class _DateRangePickerDialogState extends State<DateRangePickerDialog> with Rest
           selectedEndDate: _selectedEnd.value,
           currentDate: widget.currentDate,
           picker: SizedBox(
-            height: orientation == Orientation.portrait
-                ? _inputFormPortraitHeight
-                : _inputFormLandscapeHeight,
+            height: .fixed(
+              orientation == Orientation.portrait
+                  ? _inputFormPortraitHeight
+                  : _inputFormLandscapeHeight,
+            ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 24)),
               child: Column(
                 children: <Widget>[
                   const Spacer(),
@@ -1871,13 +1881,13 @@ class _CalendarRangePickerDialog extends StatelessWidget {
           actions: <Widget>[
             if (orientation == Orientation.landscape && entryModeButton != null) entryModeButton!,
             TextButton(style: buttonStyle, onPressed: onConfirm, child: Text(confirmText)),
-            const SizedBox(width: 8),
+            const SizedBox(width: .fixed(8)),
           ],
           bottom: PreferredSize(
             preferredSize: const Size(double.infinity, 64),
             child: Row(
               children: <Widget>[
-                SizedBox(width: MediaQuery.widthOf(context) < 360 ? 42 : 72),
+                SizedBox(width: .fixed(MediaQuery.widthOf(context) < 360 ? 42 : 72)),
                 Expanded(
                   child: Semantics(
                     label: '$helpText $startDateText to $endDateText',
@@ -1891,7 +1901,7 @@ class _CalendarRangePickerDialog extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: .fixed(8)),
                         Row(
                           children: <Widget>[
                             Text(
@@ -1911,14 +1921,14 @@ class _CalendarRangePickerDialog extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: .fixed(16)),
                       ],
                     ),
                   ),
                 ),
                 if (orientation == Orientation.portrait && entryModeButton != null)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const .fixed(EdgeInsets.symmetric(horizontal: 8.0)),
                     child: IconTheme(data: iconTheme, child: entryModeButton!),
                   ),
               ],
@@ -2379,11 +2389,13 @@ class _DayHeaders extends StatelessWidget {
     labels.add(const SizedBox.shrink());
 
     return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxWidth: MediaQuery.orientationOf(context) == Orientation.landscape
-            ? _maxCalendarWidthLandscape
-            : _maxCalendarWidthPortrait,
-        maxHeight: _monthItemRowHeight,
+      constraints: .fixed(
+        BoxConstraints(
+          maxWidth: MediaQuery.orientationOf(context) == Orientation.landscape
+              ? _maxCalendarWidthLandscape
+              : _maxCalendarWidthPortrait,
+          maxHeight: _monthItemRowHeight,
+        ),
       ),
       child: GridView.custom(
         shrinkWrap: true,
@@ -2680,7 +2692,9 @@ class _MonthItemState extends State<_MonthItem> {
 
   Widget _buildEdgeBox(BuildContext context, bool isHighlighted) {
     const Widget empty = LimitedBox(maxWidth: 0.0, maxHeight: 0.0, child: SizedBox.expand());
-    return isHighlighted ? ColoredBox(color: _highlightColor(context), child: empty) : empty;
+    return isHighlighted
+        ? ColoredBox(color: .fixed(_highlightColor(context)), child: empty)
+        : empty;
   }
 
   @override
@@ -2760,9 +2774,11 @@ class _MonthItemState extends State<_MonthItem> {
     return Column(
       children: <Widget>[
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: maxWidth).tighten(height: _monthItemHeaderHeight),
+          constraints: .fixed(
+            BoxConstraints(maxWidth: maxWidth).tighten(height: _monthItemHeaderHeight),
+          ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 16)),
             child: Align(
               alignment: AlignmentDirectional.centerStart,
               child: ExcludeSemantics(
@@ -2775,14 +2791,14 @@ class _MonthItemState extends State<_MonthItem> {
           ),
         ),
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: maxWidth, maxHeight: gridHeight),
+          constraints: .fixed(BoxConstraints(maxWidth: maxWidth, maxHeight: gridHeight)),
           child: GridView.custom(
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: _monthItemGridDelegate,
             childrenDelegate: SliverChildListDelegate(paddedDayItems, addRepaintBoundaries: false),
           ),
         ),
-        const SizedBox(height: _monthItemFooterHeight),
+        const SizedBox(height: .fixed(_monthItemFooterHeight)),
       ],
     );
   }
@@ -3136,9 +3152,9 @@ class _InputDateRangePickerDialog extends StatelessWidget {
     );
 
     final Widget actions = ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 52.0),
+      constraints: const .fixed(BoxConstraints(minHeight: 52.0)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const .fixed(EdgeInsets.symmetric(horizontal: 8)),
         child: Align(
           alignment: AlignmentDirectional.centerEnd,
           child: OverflowBar(
@@ -3469,7 +3485,7 @@ class _InputDateRangePickerState extends State<_InputDateRangePicker> {
             autofocus: widget.autofocus,
           ),
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: .fixed(8)),
         Expanded(
           child: TextField(
             controller: _endController,

@@ -69,7 +69,7 @@ enum _SwitchListTileType { material, adaptive }
 /// {@tool snippet}
 /// ```dart
 /// ColoredBox(
-///   color: Colors.green,
+///   color: .fixed(Colors.green),
 ///   child: Material(
 ///     child: SwitchListTile(
 ///       tileColor: Colors.red,

@@ -218,9 +218,9 @@ class _DropdownMenuItemButtonState<T> extends State<_DropdownMenuItemButton<T>> 
     final DropdownMenuItem<T> dropdownMenuItem = widget.route.items[widget.itemIndex].item!;
     Widget child = widget.route.items[widget.itemIndex];
     if (widget.padding case final EdgeInsetsGeometry padding) {
-      child = Padding(padding: padding, child: child);
+      child = Padding(padding: .fixed(padding), child: child);
     }
-    child = SizedBox(height: widget.route.itemHeight, child: child);
+    child = SizedBox(height: .fixed(widget.route.itemHeight), child: child);
 
     final isSelected = widget.itemIndex == widget.route.selectedIndex;
     final FocusHighlightMode highlightMode = FocusManager.instance.highlightMode;
@@ -821,7 +821,7 @@ class _DropdownMenuItemContainer extends StatelessWidget {
     return Semantics(
       button: true,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: _kMenuItemHeight),
+        constraints: const .fixed(BoxConstraints(minHeight: _kMenuItemHeight)),
         child: Align(alignment: alignment, child: child),
       ),
     );
@@ -1628,7 +1628,7 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
             ? items
             : items.map((Widget item) {
                 return widget.itemHeight != null
-                    ? SizedBox(height: widget.itemHeight, child: item)
+                    ? SizedBox(height: .fixed(widget.itemHeight), child: item)
                     : Column(mainAxisSize: MainAxisSize.min, children: <Widget>[item]);
               }).toList(),
       );
@@ -1643,9 +1643,9 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
     Widget result = DefaultTextStyle(
       style: _enabled ? _textStyle! : _textStyle!.copyWith(color: Theme.of(context).disabledColor),
       child: SizedBox(
-        height: widget.isDense ? _denseButtonHeight : null,
+        height: .fixed(widget.isDense ? _denseButtonHeight : null),
         child: Padding(
-          padding: padding.resolve(Directionality.of(context)),
+          padding: .fixed(padding.resolve(Directionality.of(context))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
@@ -1711,7 +1711,7 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
         ),
         // suffixIconGap: 0.0,
         suffixIcon: Padding(
-          padding: EdgeInsetsGeometry.directional(end: suffixIconEndMargin),
+          padding: .fixed(EdgeInsetsGeometry.directional(end: suffixIconEndMargin)),
           child: effectiveSuffixIcon,
         ),
       );
@@ -1752,7 +1752,7 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
               isHovering: _isHovering,
               child: widget.padding == null
                   ? result
-                  : Padding(padding: widget.padding!, child: result),
+                  : Padding(padding: .fixed(widget.padding!), child: result),
             ),
           ),
         ),
@@ -1767,7 +1767,9 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
         autofocus: widget.autofocus,
         focusColor: widget.focusColor ?? Theme.of(context).focusColor,
         enableFeedback: false,
-        child: widget.padding == null ? result : Padding(padding: widget.padding!, child: result),
+        child: widget.padding == null
+            ? result
+            : Padding(padding: .fixed(widget.padding!), child: result),
       );
     }
 

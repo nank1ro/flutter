@@ -179,7 +179,7 @@ class _CupertinoDesktopTextSelectionControlsToolbarState
     final items = <Widget>[];
     final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
     final Widget onePhysicalPixelVerticalDivider = SizedBox(
-      width: 1.0 / MediaQuery.devicePixelRatioOf(context),
+      width: .fixed(1.0 / MediaQuery.devicePixelRatioOf(context)),
     );
 
     void addToolbarButton(String text, VoidCallback onPressed) {

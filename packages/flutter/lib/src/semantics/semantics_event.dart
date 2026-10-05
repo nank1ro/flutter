@@ -218,7 +218,7 @@ class TapSemanticEvent extends SemanticsEvent {
 ///       body: Column(
 ///         children: <Widget>[
 ///           const Text('Hello World'),
-///           const SizedBox(height: 50),
+///           const SizedBox(height: .fixed(50)),
 ///           Text('set focus here', key: mykey),
 ///         ],
 ///       ),

@@ -4640,7 +4640,7 @@ class _WidgetFactory {
 /// extension PaddingModifier on Widget {
 ///   @widgetFactory
 ///   Widget padding(EdgeInsetsGeometry padding) {
-///     return Padding(padding: padding, child: this);
+///     return Padding(padding: .fixed(padding), child: this);
 ///   }
 /// }
 /// ```

@@ -1503,7 +1503,9 @@ class CheckboxMenuButton extends StatelessWidget {
       leadingIcon: ExcludeFocus(
         child: IgnorePointer(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: Checkbox.width, maxWidth: Checkbox.width),
+            constraints: const .fixed(
+              BoxConstraints(maxHeight: Checkbox.width, maxWidth: Checkbox.width),
+            ),
             child: Checkbox(
               tristate: tristate,
               value: value,
@@ -1697,7 +1699,9 @@ class RadioMenuButton<T> extends StatelessWidget {
       leadingIcon: ExcludeFocus(
         child: IgnorePointer(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: Checkbox.width, maxWidth: Checkbox.width),
+            constraints: const .fixed(
+              BoxConstraints(maxHeight: Checkbox.width, maxWidth: Checkbox.width),
+            ),
             child: Radio<T>(
               value: value,
               groupValue: groupValue,
@@ -3267,9 +3271,11 @@ class _MenuItemLabel extends StatelessWidget {
                 Expanded(
                   child: ClipRect(
                     child: Padding(
-                      padding: leadingIcon != null
-                          ? EdgeInsetsDirectional.only(start: horizontalPadding)
-                          : EdgeInsets.zero,
+                      padding: .fixed(
+                        leadingIcon != null
+                            ? EdgeInsetsDirectional.only(start: horizontalPadding)
+                            : EdgeInsets.zero,
+                      ),
                       child: child,
                     ),
                   ),
@@ -3285,9 +3291,11 @@ class _MenuItemLabel extends StatelessWidget {
           ?leadingIcon,
           if (child != null)
             Padding(
-              padding: leadingIcon != null
-                  ? EdgeInsetsDirectional.only(start: horizontalPadding)
-                  : EdgeInsets.zero,
+              padding: .fixed(
+                leadingIcon != null
+                    ? EdgeInsetsDirectional.only(start: horizontalPadding)
+                    : EdgeInsets.zero,
+              ),
               child: child,
             ),
         ],
@@ -3300,12 +3308,12 @@ class _MenuItemLabel extends StatelessWidget {
         leadings,
         if (trailingIcon != null)
           Padding(
-            padding: EdgeInsetsDirectional.only(start: horizontalPadding),
+            padding: .fixed(EdgeInsetsDirectional.only(start: horizontalPadding)),
             child: trailingIcon,
           ),
         if (showDecoration && shortcut != null)
           Padding(
-            padding: EdgeInsetsDirectional.only(start: horizontalPadding),
+            padding: .fixed(EdgeInsetsDirectional.only(start: horizontalPadding)),
             child: Text(
               _LocalizedShortcutLabeler.instance.getShortcutLabel(
                 shortcut!,
@@ -3315,7 +3323,7 @@ class _MenuItemLabel extends StatelessWidget {
           ),
         if (showDecoration && hasSubmenu)
           Padding(
-            padding: EdgeInsetsDirectional.only(start: horizontalPadding),
+            padding: .fixed(EdgeInsetsDirectional.only(start: horizontalPadding)),
             child: submenuIcon,
           ),
       ],
@@ -3701,7 +3709,7 @@ class _MenuPanelState extends State<_MenuPanel> {
     };
 
     Widget menuPanel = Padding(
-      padding: resolvedPadding,
+      padding: .fixed(resolvedPadding),
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(
           context,
@@ -3758,7 +3766,7 @@ class _MenuPanelState extends State<_MenuPanel> {
       );
     }
 
-    return ConstrainedBox(constraints: effectiveConstraints, child: menuPanel);
+    return ConstrainedBox(constraints: .fixed(effectiveConstraints), child: menuPanel);
   }
 
   Widget _intrinsicCrossSize({required Widget child}) {
@@ -3897,7 +3905,7 @@ class _Submenu extends StatelessWidget {
     final Widget layout = Theme(
       data: Theme.of(context).copyWith(visualDensity: visualDensity),
       child: ConstrainedBox(
-        constraints: BoxConstraints.loose(menuPosition.overlaySize),
+        constraints: .fixed(BoxConstraints.loose(menuPosition.overlaySize)),
         child: AnimatedBuilder(
           animation: heightAnimation,
           builder: (BuildContext context, Widget? child) {

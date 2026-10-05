@@ -348,11 +348,13 @@ class CupertinoMagnifier extends StatelessWidget {
     focalPointOffset += additionalFocalPointOffset;
 
     return Transform.translate(
-      offset: Offset.lerp(
-        const Offset(0, -kMagnifierAboveFocalPoint),
-        Offset.zero,
-        inOutAnimation?.value ?? 1,
-      )!,
+      offset: .fixed(
+        Offset.lerp(
+          const Offset(0, -kMagnifierAboveFocalPoint),
+          Offset.zero,
+          inOutAnimation?.value ?? 1,
+        )!,
+      ),
       child: RawMagnifier(
         size: size,
         focalPointOffset: focalPointOffset,

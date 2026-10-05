@@ -113,7 +113,9 @@ class TextSelectionToolbar extends StatelessWidget {
     final localAdjustment = Offset(screenPadding, paddingAbove);
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(screenPadding, paddingAbove, screenPadding, screenPadding),
+      padding: .fixed(
+        EdgeInsets.fromLTRB(screenPadding, paddingAbove, screenPadding, screenPadding),
+      ),
       child: CustomSingleChildLayout(
         delegate: TextSelectionToolbarLayoutDelegate(
           anchorAbove: anchorAbovePadded - localAdjustment,

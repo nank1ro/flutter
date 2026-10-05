@@ -170,9 +170,9 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
 
     final Color inactive = CupertinoDynamicColor.resolve(inactiveColor, context);
     Widget result = DecoratedBox(
-      decoration: BoxDecoration(border: resolvedBorder, color: backgroundColor),
+      decoration: .fixed(BoxDecoration(border: resolvedBorder, color: backgroundColor)),
       child: SizedBox(
-        height: height + bottomPadding,
+        height: .fixed(height + bottomPadding),
         child: IconTheme.merge(
           // Default with the inactive state.
           data: IconThemeData(color: inactive, size: iconSize),
@@ -180,7 +180,7 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
             // Default with the inactive state.
             style: CupertinoTheme.of(context).textTheme.tabLabelTextStyle.copyWith(color: inactive),
             child: Padding(
-              padding: EdgeInsets.only(bottom: bottomPadding),
+              padding: .fixed(EdgeInsets.only(bottom: bottomPadding)),
               child: Semantics(
                 explicitChildNodes: true,
                 child: Row(
@@ -231,7 +231,7 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
                             onTap!(index);
                           },
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 4.0),
+                      padding: const .fixed(EdgeInsets.only(bottom: 4.0)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: _buildSingleTabItem(items[index], active),

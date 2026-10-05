@@ -2452,7 +2452,7 @@ class _InputDecoratorState extends State<InputDecorator> with TickerProviderStat
         : MouseRegion(
             cursor: SystemMouseCursors.basic,
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(end: 16.0),
+              padding: const .fixed(EdgeInsetsDirectional.only(end: 16.0)),
               child: IconTheme.merge(
                 data: IconThemeData(color: _getIconColor(themeData, defaults), size: iconSize),
                 child: decoration.icon!,
@@ -2468,14 +2468,15 @@ class _InputDecoratorState extends State<InputDecorator> with TickerProviderStat
             child: MouseRegion(
               cursor: SystemMouseCursors.basic,
               child: ConstrainedBox(
-                constraints:
-                    decoration.prefixIconConstraints ??
-                    visualDensity.effectiveConstraints(
-                      const BoxConstraints(
-                        minWidth: kMinInteractiveDimension,
-                        minHeight: kMinInteractiveDimension,
+                constraints: .fixed(
+                  decoration.prefixIconConstraints ??
+                      visualDensity.effectiveConstraints(
+                        const BoxConstraints(
+                          minWidth: kMinInteractiveDimension,
+                          minHeight: kMinInteractiveDimension,
+                        ),
                       ),
-                    ),
+                ),
                 child: IconTheme.merge(
                   data: IconThemeData(
                     color: _getPrefixIconColor(iconButtonTheme, defaults),
@@ -2508,14 +2509,15 @@ class _InputDecoratorState extends State<InputDecorator> with TickerProviderStat
             child: MouseRegion(
               cursor: SystemMouseCursors.basic,
               child: ConstrainedBox(
-                constraints:
-                    decoration.suffixIconConstraints ??
-                    visualDensity.effectiveConstraints(
-                      const BoxConstraints(
-                        minWidth: kMinInteractiveDimension,
-                        minHeight: kMinInteractiveDimension,
+                constraints: .fixed(
+                  decoration.suffixIconConstraints ??
+                      visualDensity.effectiveConstraints(
+                        const BoxConstraints(
+                          minWidth: kMinInteractiveDimension,
+                          minHeight: kMinInteractiveDimension,
+                        ),
                       ),
-                    ),
+                ),
                 child: IconTheme.merge(
                   data: IconThemeData(
                     color: _getSuffixIconColor(iconButtonTheme, defaults),
@@ -2695,7 +2697,7 @@ class _InputDecoratorState extends State<InputDecorator> with TickerProviderStat
 
     final BoxConstraints? constraints = decoration.constraints;
     if (constraints != null) {
-      return ConstrainedBox(constraints: constraints, child: result);
+      return ConstrainedBox(constraints: .fixed(constraints), child: result);
     }
     return result;
   }
@@ -3380,7 +3382,7 @@ class InputDecoration {
   ///
   /// ```dart
   /// prefixIcon: Padding(
-  ///   padding: const EdgeInsetsDirectional.only(start: 12.0),
+  ///   padding: .fixed(const EdgeInsetsDirectional.only(start: 12.0)),
   ///   child: _myIcon, // _myIcon is a 48px-wide widget.
   /// )
   /// ```
@@ -3500,7 +3502,7 @@ class InputDecoration {
   ///
   /// ```dart
   /// suffixIcon: Padding(
-  ///   padding: const EdgeInsetsDirectional.only(end: 12.0),
+  ///   padding: .fixed(const EdgeInsetsDirectional.only(end: 12.0)),
   ///   child: _myIcon, // myIcon is a 48px-wide widget.
   /// )
   /// ```

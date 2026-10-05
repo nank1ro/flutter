@@ -611,14 +611,6 @@ mixin WidgetsBinding
       className: 'SingleChildRenderObjectElement',
       method: 'mount',
     );
-    // A render-object widget with bindable properties mounts through the
-    // mixin, which adds one frame between `updateChild` and the element's own
-    // `mount`.
-    const reactivePropsMount = PartialStackFrame(
-      package: 'package:flutter/src/widgets/reactive_props.dart',
-      className: '_ReactivePropsElement',
-      method: 'mount',
-    );
     const statefulElementRebuild = PartialStackFrame(
       package: 'package:flutter/src/widgets/framework.dart',
       className: 'StatefulElement',
@@ -695,25 +687,6 @@ mixin WidgetsBinding
     FlutterError.addDefaultStackFilter(
       const RepetitiveStackFrameFilter(
         frames: <PartialStackFrame>[elementUpdateChild, singleChildMount],
-        replacement: replacementString,
-      ),
-    );
-
-    // ReactiveSingleChildRenderObjectElement variations
-    FlutterError.addDefaultStackFilter(
-      const RepetitiveStackFrameFilter(
-        frames: <PartialStackFrame>[
-          elementInflateWidget,
-          elementUpdateChild,
-          singleChildMount,
-          reactivePropsMount,
-        ],
-        replacement: replacementString,
-      ),
-    );
-    FlutterError.addDefaultStackFilter(
-      const RepetitiveStackFrameFilter(
-        frames: <PartialStackFrame>[elementUpdateChild, singleChildMount, reactivePropsMount],
         replacement: replacementString,
       ),
     );

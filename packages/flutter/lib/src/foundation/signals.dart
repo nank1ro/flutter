@@ -46,6 +46,8 @@
 /// (in the framework, the scheduler binding, once per frame).
 library;
 
+import 'package:meta/meta.dart';
+
 import 'assertions.dart';
 
 /// Bit flags describing the state of a [ReactiveNode].
@@ -891,6 +893,7 @@ abstract interface class ReadonlySignal<T> {
 /// It is not part of the reactive graph: reading it subscribes nothing, so a
 /// consumer that sees one can skip setting up a subscription altogether.
 /// Usually written as `.fixed(value)` where a [ReadonlySignal] is expected.
+@immutable
 final class FixedSignal<T> implements ReadonlySignal<T> {
   /// Creates a fixed value.
   const FixedSignal(this.value);
@@ -903,6 +906,14 @@ final class FixedSignal<T> implements ReadonlySignal<T> {
 
   @override
   T call() => value;
+
+  /// Fixed values compare by the value they hold, so a widget property read
+  /// back from the tree compares equal to one built fresh with the same value.
+  @override
+  bool operator ==(Object other) => other is FixedSignal<Object?> && other.value == value;
+
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// A mutable reactive value.

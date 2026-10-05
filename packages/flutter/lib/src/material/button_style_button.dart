@@ -533,7 +533,7 @@ class _ButtonStyleState extends State<ButtonStyleButton> with TickerProviderStat
     backgroundColor = resolvedBackgroundColor;
 
     Widget result = Padding(
-      padding: padding,
+      padding: .fixed(padding),
       child: Align(
         alignment: resolvedAlignment!,
         widthFactor: 1.0,
@@ -595,7 +595,7 @@ class _ButtonStyleState extends State<ButtonStyleButton> with TickerProviderStat
       child: _InputPadding(
         minSize: minSize,
         child: ConstrainedBox(
-          constraints: effectiveConstraints,
+          constraints: .fixed(effectiveConstraints),
           child: Material(
             elevation: resolvedElevation!,
             textStyle: resolvedTextStyle?.copyWith(color: resolvedForegroundColor),

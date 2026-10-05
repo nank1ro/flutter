@@ -211,7 +211,7 @@ class _AutocompleteOptions<T extends Object> extends StatelessWidget {
     return Material(
       elevation: 4.0,
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: optionsMaxHeight),
+        constraints: .fixed(BoxConstraints(maxHeight: optionsMaxHeight)),
         child: _AutocompleteOptionsList<T>(
           displayStringForOption: displayStringForOption,
           highlightedIndex: highlightedIndex,

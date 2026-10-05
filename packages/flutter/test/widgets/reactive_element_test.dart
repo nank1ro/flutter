@@ -760,7 +760,7 @@ void main() {
         child: ListView.builder(
           itemCount: labels.length,
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(height: 100, child: Text(labels[index].value));
+            return SizedBox(height: const .fixed(100), child: Text(labels[index].value));
           },
         ),
       ),
@@ -905,7 +905,7 @@ void main() {
             // never the one at the tail of the dependency list, which is what
             // used to make every row append another edge.
             final Signal<int> row = perRow.putIfAbsent(index, () => Signal<int>(index));
-            return SizedBox(height: 50, child: Text('${row.value}:${shared.value}'));
+            return SizedBox(height: const .fixed(50), child: Text('${row.value}:${shared.value}'));
           },
         ),
       ),

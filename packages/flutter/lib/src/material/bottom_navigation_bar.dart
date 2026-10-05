@@ -569,7 +569,7 @@ class _BottomNavigationTile extends StatelessWidget {
       mouseCursor: mouseCursor,
       enableFeedback: enableFeedback,
       child: Padding(
-        padding: EdgeInsets.only(top: topPadding, bottom: bottomPadding),
+        padding: .fixed(EdgeInsets.only(top: topPadding, bottom: bottomPadding)),
         child: _Tile(
           layout: layout,
           icon: _TileIcon(
@@ -733,12 +733,14 @@ class _Label extends StatelessWidget {
       // font rendering works, it doesn't grow smoothly if we just animate
       // the font size, so we use a transform instead.
       child: Transform(
-        transform: Matrix4.diagonal3(
-          Vector3.all(
-            Tween<double>(
-              begin: unselectedFontSize! / selectedFontSize!,
-              end: 1.0,
-            ).evaluate(animation),
+        transform: .fixed(
+          Matrix4.diagonal3(
+            Vector3.all(
+              Tween<double>(
+                begin: unselectedFontSize! / selectedFontSize!,
+                end: 1.0,
+              ).evaluate(animation),
+            ),
           ),
         ),
         alignment: Alignment.bottomCenter,
@@ -1118,8 +1120,8 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> with TickerPr
         elevation: widget.elevation ?? bottomTheme.elevation ?? 8.0,
         color: backgroundColor,
         child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: kBottomNavigationBarHeight + additionalBottomPadding,
+          constraints: .fixed(
+            BoxConstraints(minHeight: kBottomNavigationBarHeight + additionalBottomPadding),
           ),
           child: CustomPaint(
             painter: _RadialPainter(
@@ -1130,7 +1132,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> with TickerPr
               // Splashes.
               type: MaterialType.transparency,
               child: Padding(
-                padding: EdgeInsets.only(bottom: additionalBottomPadding),
+                padding: .fixed(EdgeInsets.only(bottom: additionalBottomPadding)),
                 child: MediaQuery.removePadding(
                   context: context,
                   removeBottom: true,
@@ -1174,7 +1176,7 @@ class _Bar extends StatelessWidget {
       alignedChild = Align(
         alignment: Alignment.bottomCenter,
         heightFactor: 1,
-        child: SizedBox(width: MediaQuery.heightOf(context), child: child),
+        child: SizedBox(width: .fixed(MediaQuery.heightOf(context)), child: child),
       );
     }
     return Material(elevation: elevation, color: color, child: alignedChild);

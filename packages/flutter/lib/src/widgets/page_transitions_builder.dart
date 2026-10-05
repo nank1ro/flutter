@@ -266,12 +266,14 @@ class _OpenUpwardsPageTransitionState extends State<_OpenUpwardsPageTransition> 
           animation: Listenable.merge(<Listenable>[widget.animation, widget.secondaryAnimation]),
           builder: (BuildContext context, Widget? child) {
             return ColoredBox(
-              color: _OpenUpwardsPageTransition._scrimColor.withOpacity(opacityAnimation.value),
+              color: .fixed(
+                _OpenUpwardsPageTransition._scrimColor.withOpacity(opacityAnimation.value),
+              ),
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: ClipRect(
                   child: SizedBox(
-                    height: clipAnimation.value,
+                    height: .fixed(clipAnimation.value),
                     child: OverflowBox(
                       alignment: Alignment.bottomLeft,
                       maxHeight: size.height,

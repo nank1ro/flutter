@@ -828,7 +828,7 @@ void main() {
           MaterialApp(
             home: ListView(
               children: <Widget>[
-                const SizedBox(height: 2000), // Push the target off-screen
+                const SizedBox(height: .fixed(2000)), // Push the target off-screen
                 GestureDetector(
                   onTap: () {
                     tapCount++;
@@ -1773,7 +1773,7 @@ void main() {
           MaterialApp(
             home: SingleChildScrollView(
               controller: controller,
-              child: const SizedBox(width: 100, height: 1000),
+              child: const SizedBox(width: .fixed(100), height: .fixed(1000)),
             ),
           ),
         );
@@ -1791,7 +1791,7 @@ void main() {
           MaterialApp(
             home: SingleChildScrollView(
               controller: controller,
-              child: const SizedBox(width: 100, height: 1000),
+              child: const SizedBox(width: .fixed(100), height: .fixed(1000)),
             ),
           ),
         );
@@ -1810,7 +1810,7 @@ void main() {
             home: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               controller: controller,
-              child: const SizedBox(width: 1000, height: 100),
+              child: const SizedBox(width: .fixed(1000), height: .fixed(100)),
             ),
           ),
         );
@@ -1829,7 +1829,7 @@ void main() {
             home: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               controller: controller,
-              child: const SizedBox(width: 1000, height: 100),
+              child: const SizedBox(width: .fixed(1000), height: .fixed(100)),
             ),
           ),
         );
@@ -1849,9 +1849,9 @@ void main() {
               children: <Widget>[
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: SizedBox(width: 1000, height: 100),
+                  child: SizedBox(width: .fixed(1000), height: .fixed(100)),
                 ),
-                Expanded(child: SingleChildScrollView(child: SizedBox(width: 100, height: 1000))),
+                Expanded(child: SingleChildScrollView(child: SizedBox(width: .fixed(100), height: .fixed(1000)))),
               ],
             ),
           ),
@@ -1867,9 +1867,9 @@ void main() {
               children: <Widget>[
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: SizedBox(width: 1000, height: 100),
+                  child: SizedBox(width: .fixed(1000), height: .fixed(100)),
                 ),
-                Expanded(child: SingleChildScrollView(child: SizedBox(width: 100, height: 1000))),
+                Expanded(child: SingleChildScrollView(child: SizedBox(width: .fixed(100), height: .fixed(1000)))),
               ],
             ),
           ),
@@ -2157,7 +2157,7 @@ class _ButtonWithTransform extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Transform.scale(
-    scale: 1.1,
+    scale: const .fixed(1.1),
     child: GestureDetector(
       onTap: onTap,
       child: Container(width: 40, height: 40, color: const Color(0xffff0000)),

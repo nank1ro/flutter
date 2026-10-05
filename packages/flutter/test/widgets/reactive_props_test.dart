@@ -32,11 +32,21 @@ double _opacityOf(WidgetTester tester) =>
 
 void main() {
   testWidgets('a fixed value behaves exactly as a plain double did', (WidgetTester tester) async {
-    await tester.pumpWidget(const Opacity(opacity: .fixed(0.5), child: SizedBox(width: 10)));
+    await tester.pumpWidget(
+      const Opacity(
+        opacity: .fixed(0.5),
+        child: SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(_opacityOf(tester), 0.5);
 
     // A rebuild with a new value copies it across, which is the classic path.
-    await tester.pumpWidget(const Opacity(opacity: .fixed(0.25), child: SizedBox(width: 10)));
+    await tester.pumpWidget(
+      const Opacity(
+        opacity: .fixed(0.25),
+        child: SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(_opacityOf(tester), 0.25);
   });
 
@@ -45,7 +55,10 @@ void main() {
     // the framework skip an unchanged subtree by identity. Two const widgets
     // written on different lines are not compared: in debug builds the
     // widget-creation tracker gives each a distinct source location.
-    Widget build() => const Opacity(opacity: .fixed(0.5), child: SizedBox(width: 10));
+    Widget build() => const Opacity(
+      opacity: .fixed(0.5),
+      child: SizedBox(width: .fixed(10)),
+    );
     expect(identical(build(), build()), isTrue);
   });
 
@@ -54,16 +67,52 @@ void main() {
     expect(opacity.opacity.value, isA<double>());
   });
 
+  test('fixed values compare by value, signals by identity', () {
+    // A property read back from the tree compares equal to one built fresh.
+    expect(
+      Transform.rotate(angle: const .fixed(0.0)).transform,
+      Transform.rotate(angle: const .fixed(0.0)).transform,
+    );
+    expect(
+      Transform.rotate(angle: const .fixed(0.0)).transform,
+      isNot(Transform.rotate(angle: const .fixed(1.0)).transform),
+    );
+    // Two signals holding the same value are still two signals.
+    expect(Signal<double>(1) == Signal<double>(1), isFalse);
+  });
+
   testWidgets('a fixed value creates no effect', (WidgetTester tester) async {
-    await tester.pumpWidget(const Opacity(opacity: .fixed(0.5), child: SizedBox(width: 10)));
+    await tester.pumpWidget(
+      const Opacity(
+        opacity: .fixed(0.5),
+        child: SizedBox(width: .fixed(10)),
+      ),
+    );
 
     final Element element = tester.element(find.byType(Opacity));
-    expect(element, isA<ReactiveSingleChildRenderObjectElement>());
+    // The stock element, not a reactive subclass.
+    expect(element.runtimeType, SingleChildRenderObjectElement);
     // An effect created under an element's owner is linked into it, so an
     // owner with nothing linked is an element that bound nothing. A fixed
     // value short-circuits before `bindProps`, so there is no binder either.
     // ignore: invalid_use_of_protected_member
     expect((element.reactiveOwner as ReactiveNode).deps, isNull);
+  });
+
+  testWidgets('a bound widget keeps its stock element type', (WidgetTester tester) async {
+    final fade = Signal<double>(1);
+    await tester.pumpWidget(
+      Opacity(
+        opacity: fade,
+        child: const SizedBox(width: .fixed(10)),
+      ),
+    );
+
+    // Binding lives in RenderObjectElement itself, so finders and diagnostics
+    // that name the element type keep working.
+    expect(tester.element(find.byType(Opacity)).runtimeType, SingleChildRenderObjectElement);
+    expect(find.byElementType(SingleChildRenderObjectElement), findsWidgets);
+    expect(fade.subs, isNotNull);
   });
 
   testWidgets('a signal write repaints without rebuilding anything', (WidgetTester tester) async {
@@ -73,7 +122,10 @@ void main() {
     await tester.pumpWidget(
       _Counter(
         counts: counts,
-        child: Opacity(opacity: fade, child: const SizedBox(width: 10)),
+        child: Opacity(
+          opacity: fade,
+          child: const SizedBox(width: .fixed(10)),
+        ),
       ),
     );
     expect(_opacityOf(tester), 1.0);
@@ -91,7 +143,12 @@ void main() {
     final fade = Signal<double>(1);
     final half = Computed<double>(() => fade.value / 2);
 
-    await tester.pumpWidget(Opacity(opacity: half, child: const SizedBox(width: 10)));
+    await tester.pumpWidget(
+      Opacity(
+        opacity: half,
+        child: const SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(_opacityOf(tester), 0.5);
 
     fade.value = 0.4;
@@ -102,12 +159,22 @@ void main() {
   testWidgets('a property may switch between fixed and reactive', (WidgetTester tester) async {
     final fade = Signal<double>(1);
 
-    await tester.pumpWidget(const Opacity(opacity: .fixed(0.5), child: SizedBox(width: 10)));
+    await tester.pumpWidget(
+      const Opacity(
+        opacity: .fixed(0.5),
+        child: SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(_opacityOf(tester), 0.5);
     expect(fade.subs, isNull);
 
     // Becomes reactive: the binding is created on update, not just on mount.
-    await tester.pumpWidget(Opacity(opacity: fade, child: const SizedBox(width: 10)));
+    await tester.pumpWidget(
+      Opacity(
+        opacity: fade,
+        child: const SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(_opacityOf(tester), 1.0);
     expect(fade.subs, isNotNull);
 
@@ -116,7 +183,12 @@ void main() {
     expect(_opacityOf(tester), 0.75);
 
     // Back to fixed: the effect is disposed, so later writes reach nothing.
-    await tester.pumpWidget(const Opacity(opacity: .fixed(0.1), child: SizedBox(width: 10)));
+    await tester.pumpWidget(
+      const Opacity(
+        opacity: .fixed(0.1),
+        child: SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(_opacityOf(tester), 0.1);
     expect(fade.subs, isNull, reason: 'the binding was disposed');
 
@@ -129,10 +201,20 @@ void main() {
     final a = Signal<double>(1);
     final b = Signal<double>(0.5);
 
-    await tester.pumpWidget(Opacity(opacity: a, child: const SizedBox(width: 10)));
+    await tester.pumpWidget(
+      Opacity(
+        opacity: a,
+        child: const SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(_opacityOf(tester), 1.0);
 
-    await tester.pumpWidget(Opacity(opacity: b, child: const SizedBox(width: 10)));
+    await tester.pumpWidget(
+      Opacity(
+        opacity: b,
+        child: const SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(_opacityOf(tester), 0.5);
     expect(a.subs, isNull);
     expect(b.subs, isNotNull);
@@ -148,16 +230,31 @@ void main() {
 
   testWidgets('the render object is never recreated by a rebind', (WidgetTester tester) async {
     final fade = Signal<double>(1);
-    await tester.pumpWidget(Opacity(opacity: fade, child: const SizedBox(width: 10)));
+    await tester.pumpWidget(
+      Opacity(
+        opacity: fade,
+        child: const SizedBox(width: .fixed(10)),
+      ),
+    );
     final RenderOpacity renderObject = tester.renderObject<RenderOpacity>(find.byType(Opacity));
 
-    await tester.pumpWidget(const Opacity(opacity: .fixed(0.5), child: SizedBox(width: 10)));
+    await tester.pumpWidget(
+      const Opacity(
+        opacity: .fixed(0.5),
+        child: SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(tester.renderObject<RenderOpacity>(find.byType(Opacity)), same(renderObject));
   });
 
   testWidgets('disposing the element disposes the binding', (WidgetTester tester) async {
     final fade = Signal<double>(1);
-    await tester.pumpWidget(Opacity(opacity: fade, child: const SizedBox(width: 10)));
+    await tester.pumpWidget(
+      Opacity(
+        opacity: fade,
+        child: const SizedBox(width: .fixed(10)),
+      ),
+    );
     expect(fade.subs, isNotNull);
 
     await tester.pumpWidget(const SizedBox.shrink());
@@ -169,7 +266,12 @@ void main() {
     // ever see the first value. The render object's setter asserts on every
     // write, so a bound signal is checked too.
     final fade = Signal<double>(1);
-    await tester.pumpWidget(Opacity(opacity: fade, child: const SizedBox(width: 10)));
+    await tester.pumpWidget(
+      Opacity(
+        opacity: fade,
+        child: const SizedBox(width: .fixed(10)),
+      ),
+    );
 
     fade.value = 1.5;
     await tester.pump();
@@ -191,7 +293,10 @@ void main() {
         counts: counts,
         child: Builder(
           builder: (BuildContext context) {
-            return Opacity(opacity: .fixed(fade.value), child: const SizedBox(width: 10));
+            return Opacity(
+              opacity: .fixed(fade.value),
+              child: const SizedBox(width: .fixed(10)),
+            );
           },
         ),
       ),

@@ -15,6 +15,7 @@ import 'package:flutter/rendering.dart';
 import 'basic.dart';
 import 'framework.dart';
 import 'image.dart';
+import 'reactive_props.dart';
 
 // Examples can assume:
 // late BuildContext context;
@@ -35,7 +36,7 @@ import 'image.dart';
 ///
 /// ```dart
 /// const DecoratedBox(
-///   decoration: BoxDecoration(
+///   decoration: .fixed(BoxDecoration(
 ///     gradient: RadialGradient(
 ///       center: Alignment(-0.5, -0.6),
 ///       radius: 0.15,
@@ -45,7 +46,7 @@ import 'image.dart';
 ///       ],
 ///       stops: <double>[0.9, 1.0],
 ///     ),
-///   ),
+///   )),
 /// )
 /// ```
 /// {@end-tool}
@@ -60,7 +61,7 @@ import 'image.dart';
 ///    [DecoratedBox].
 ///  * [CustomPaint], another way to draw custom effects from the widget layer.
 ///  * [DecoratedSliver], which applies a [Decoration] to a sliver.
-class DecoratedBox extends SingleChildRenderObjectWidget {
+class DecoratedBox extends SingleChildRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a widget that paints a [Decoration].
   ///
   /// By default the decoration paints behind the child.
@@ -74,15 +75,18 @@ class DecoratedBox extends SingleChildRenderObjectWidget {
   /// What decoration to paint.
   ///
   /// Commonly a [BoxDecoration].
-  final Decoration decoration;
+  final ReadonlySignal<Decoration> decoration;
 
   /// Whether to paint the box decoration behind or in front of the child.
   final DecorationPosition position;
 
   @override
+  bool get hasReactiveProps => decoration is! FixedSignal<Decoration>;
+
+  @override
   RenderDecoratedBox createRenderObject(BuildContext context) {
     return RenderDecoratedBox(
-      decoration: decoration,
+      decoration: decoration.peek,
       position: position,
       configuration: createLocalImageConfiguration(context),
     );
@@ -90,10 +94,18 @@ class DecoratedBox extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(BuildContext context, RenderDecoratedBox renderObject) {
+    if (decoration case FixedSignal<Decoration>(:final Decoration value)) {
+      // A reactive value is written by its binding instead, in [bindProps].
+      renderObject.decoration = value;
+    }
     renderObject
-      ..decoration = decoration
       ..configuration = createLocalImageConfiguration(context)
       ..position = position;
+  }
+
+  @override
+  void bindProps(PropBinder binder, RenderDecoratedBox renderObject) {
+    binder.bind<Decoration>(decoration, (Decoration value) => renderObject.decoration = value);
   }
 
   @override
@@ -106,7 +118,7 @@ class DecoratedBox extends SingleChildRenderObjectWidget {
     properties.add(
       EnumProperty<DecorationPosition>('position', position, level: DiagnosticLevel.hidden),
     );
-    properties.add(DiagnosticsProperty<Decoration>(label, decoration));
+    properties.add(DiagnosticsProperty<Decoration>(label, decoration.peek));
   }
 }
 
@@ -388,10 +400,10 @@ class Container extends StatelessWidget {
     Widget? current = child;
 
     if (child == null && (constraints == null || !constraints!.isTight)) {
-      current = LimitedBox(
+      current = const LimitedBox(
         maxWidth: 0.0,
         maxHeight: 0.0,
-        child: ConstrainedBox(constraints: const BoxConstraints.expand()),
+        child: ConstrainedBox(constraints: .fixed(BoxConstraints.expand())),
       );
     } else if (alignment != null) {
       current = Align(alignment: alignment!, child: current);
@@ -399,11 +411,11 @@ class Container extends StatelessWidget {
 
     final EdgeInsetsGeometry? effectivePadding = _paddingIncludingDecoration;
     if (effectivePadding != null) {
-      current = Padding(padding: effectivePadding, child: current);
+      current = Padding(padding: .fixed(effectivePadding), child: current);
     }
 
     if (color != null) {
-      current = ColoredBox(color: color!, isAntiAlias: isAntiAlias, child: current);
+      current = ColoredBox(color: .fixed(color!), isAntiAlias: isAntiAlias, child: current);
     }
 
     if (clipBehavior != Clip.none) {
@@ -419,27 +431,31 @@ class Container extends StatelessWidget {
     }
 
     if (decoration != null) {
-      current = DecoratedBox(decoration: decoration!, child: current);
+      current = DecoratedBox(decoration: .fixed(decoration!), child: current);
     }
 
     if (foregroundDecoration != null) {
       current = DecoratedBox(
-        decoration: foregroundDecoration!,
+        decoration: .fixed(foregroundDecoration!),
         position: DecorationPosition.foreground,
         child: current,
       );
     }
 
     if (constraints != null) {
-      current = ConstrainedBox(constraints: constraints!, child: current);
+      current = ConstrainedBox(constraints: .fixed(constraints!), child: current);
     }
 
     if (margin != null) {
-      current = Padding(padding: margin!, child: current);
+      current = Padding(padding: .fixed(margin!), child: current);
     }
 
     if (transform != null) {
-      current = Transform(transform: transform!, alignment: transformAlignment, child: current);
+      current = Transform(
+        transform: .fixed(transform!),
+        alignment: transformAlignment,
+        child: current,
+      );
     }
 
     return current!;

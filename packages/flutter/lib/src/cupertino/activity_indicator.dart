@@ -119,7 +119,7 @@ class _CupertinoActivityIndicatorState extends State<CupertinoActivityIndicator>
   @override
   Widget build(BuildContext context) {
     return SizedBox.square(
-      dimension: widget.radius * 2,
+      dimension: .fixed(widget.radius * 2),
       child: CustomPaint(
         painter: _CupertinoActivityIndicatorPainter(
           position: _controller,
@@ -242,7 +242,7 @@ class CupertinoLinearActivityIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: height, minWidth: double.infinity),
+      constraints: .fixed(BoxConstraints(minHeight: height, minWidth: double.infinity)),
       child: CustomPaint(
         painter: _CupertinoLinearActivityIndicator(progress: progress, color: color),
       ),

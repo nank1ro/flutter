@@ -129,12 +129,14 @@ class _CupertinoFocusHaloState extends State<CupertinoFocusHalo> {
       },
       child: DecoratedBox(
         position: DecorationPosition.foreground,
-        decoration: ShapeDecoration(
-          shape: widget._shapeBuilder(
-            side: _childHasFocus
-                ? BorderSide(color: _effectiveFocusOutlineColor, width: 3.5)
-                : BorderSide.none,
-            borderRadius: widget._borderRadius,
+        decoration: .fixed(
+          ShapeDecoration(
+            shape: widget._shapeBuilder(
+              side: _childHasFocus
+                  ? BorderSide(color: _effectiveFocusOutlineColor, width: 3.5)
+                  : BorderSide.none,
+              borderRadius: widget._borderRadius,
+            ),
           ),
         ),
         child: widget.child,

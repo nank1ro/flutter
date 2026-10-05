@@ -358,7 +358,7 @@ class Magnifier extends StatelessWidget {
         // decoration's shadows are offset and therefore we set a clipBehavior
         // that clips the inner part of the decoration to avoid occluding the
         // magnified image with the shadow.
-        color: filmColor,
+        color: .fixed(filmColor),
       ),
     );
   }

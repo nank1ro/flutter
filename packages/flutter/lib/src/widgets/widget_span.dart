@@ -42,8 +42,8 @@ import 'framework.dart';
 ///       TextSpan(text: 'Flutter is'),
 ///       WidgetSpan(
 ///         child: SizedBox(
-///           width: 120,
-///           height: 50,
+///           width: .fixed(120),
+///           height: .fixed(50),
 ///           child: Card(
 ///             child: Center(
 ///               child: Text('Hello World!')

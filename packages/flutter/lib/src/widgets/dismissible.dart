@@ -638,8 +638,8 @@ class _DismissibleState extends State<Dismissible>
         sizeFactor: _resizeAnimation!,
         axis: _directionIsXAxis ? Axis.vertical : Axis.horizontal,
         child: SizedBox(
-          width: _sizePriorToCollapse!.width,
-          height: _sizePriorToCollapse!.height,
+          width: .fixed(_sizePriorToCollapse!.width),
+          height: .fixed(_sizePriorToCollapse!.height),
           child: background,
         ),
       );

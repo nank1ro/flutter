@@ -60,7 +60,11 @@ void main() {
         child: BuildCounter(
           counter: builds,
           child: Center(
-            child: SizedBox(width: 100, height: 100, child: SceneView(scene: scene)),
+            child: SizedBox(
+              width: const .fixed(100),
+              height: const .fixed(100),
+              child: SceneView(scene: scene),
+            ),
           ),
         ),
       ),
@@ -125,7 +129,11 @@ void main() {
 
     await tester.pumpWidget(
       Center(
-        child: SizedBox(width: 200, height: 200, child: SceneView(scene: scene)),
+        child: SizedBox(
+          width: const .fixed(200),
+          height: const .fixed(200),
+          child: SceneView(scene: scene),
+        ),
       ),
     );
 
@@ -155,8 +163,16 @@ void main() {
     await tester.pumpWidget(
       Column(
         children: <Widget>[
-          SizedBox(width: 50, height: 50, child: SceneView(scene: scene)),
-          SizedBox(width: 50, height: 50, child: SceneView(scene: scene)),
+          SizedBox(
+            width: const .fixed(50),
+            height: const .fixed(50),
+            child: SceneView(scene: scene),
+          ),
+          SizedBox(
+            width: const .fixed(50),
+            height: const .fixed(50),
+            child: SceneView(scene: scene),
+          ),
         ],
       ),
     );
@@ -176,7 +192,13 @@ void main() {
     // Taking one view away must not stop the other from being told.
     await tester.pumpWidget(
       Column(
-        children: <Widget>[SizedBox(width: 50, height: 50, child: SceneView(scene: scene))],
+        children: <Widget>[
+          SizedBox(
+            width: const .fixed(50),
+            height: const .fixed(50),
+            child: SceneView(scene: scene),
+          ),
+        ],
       ),
     );
     final RenderSceneView survivor = tester.renderObject<RenderSceneView>(find.byType(SceneView));

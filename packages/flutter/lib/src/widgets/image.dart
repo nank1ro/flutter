@@ -801,7 +801,7 @@ class Image extends StatefulWidget {
   ///   image: _image,
   ///   frameBuilder: (BuildContext context, Widget child, int? frame, bool? wasSynchronouslyLoaded) {
   ///     return Padding(
-  ///       padding: const EdgeInsets.all(8.0),
+  ///       padding: .fixed(const EdgeInsets.all(8.0)),
   ///       child: child,
   ///     );
   ///   },
@@ -816,7 +816,7 @@ class Image extends StatefulWidget {
   /// ```dart
   /// Center(
   ///   child: Padding(
-  ///     padding: const EdgeInsets.all(8.0),
+  ///     padding: .fixed(const EdgeInsets.all(8.0)),
   ///     child: image,
   ///   ),
   /// ),
@@ -1357,7 +1357,7 @@ class _ImageState extends State<Image> with WidgetsBindingObserver {
       children: <Widget>[
         const Positioned.fill(child: Placeholder(color: Color(0xCF8D021F))),
         Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const .fixed(EdgeInsets.all(4.0)),
           child: FittedBox(
             child: Text(
               '$error',

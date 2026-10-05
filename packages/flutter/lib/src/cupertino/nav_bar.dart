@@ -245,7 +245,7 @@ Widget _wrapWithBackground({
     );
   }
   final childWithBackground = DecoratedBox(
-    decoration: BoxDecoration(border: border, color: backgroundColor),
+    decoration: .fixed(BoxDecoration(border: border, color: backgroundColor)),
     child: result,
   );
 
@@ -788,15 +788,17 @@ class _CupertinoNavigationBarState extends State<CupertinoNavigationBar> {
     if (widget.largeTitle != null) {
       // Large nav bar
       navBar = ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: largeHeight),
+        constraints: .fixed(BoxConstraints(maxHeight: largeHeight)),
         child: Column(
           children: <Widget>[
             navBar,
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(
-                  start: _kNavBarEdgePadding,
-                  bottom: _kNavBarBottomPadding,
+                padding: const .fixed(
+                  EdgeInsetsDirectional.only(
+                    start: _kNavBarEdgePadding,
+                    bottom: _kNavBarBottomPadding,
+                  ),
                 ),
                 child: Semantics(
                   header: true,
@@ -813,19 +815,19 @@ class _CupertinoNavigationBarState extends State<CupertinoNavigationBar> {
               ),
             ),
             if (widget.bottom != null)
-              SizedBox(height: bottomHeight, child: components.navBarBottom),
+              SizedBox(height: .fixed(bottomHeight), child: components.navBarBottom),
           ],
         ),
       );
     } else {
       // Small nav bar
       navBar = ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: persistentHeight),
+        constraints: .fixed(BoxConstraints(maxHeight: persistentHeight)),
         child: Column(
           children: <Widget>[
             navBar,
             if (widget.bottom != null)
-              SizedBox(height: bottomHeight, child: components.navBarBottom),
+              SizedBox(height: .fixed(bottomHeight), child: components.navBarBottom),
           ],
         ),
       );
@@ -1536,9 +1538,11 @@ class _LargeTitleNavigationBarSliverDelegate extends SliverPersistentHeaderDeleg
                         : 0.0,
                     child: ClipRect(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.only(
-                          start: _kNavBarEdgePadding,
-                          bottom: _kNavBarBottomPadding,
+                        padding: const .fixed(
+                          EdgeInsetsDirectional.only(
+                            start: _kNavBarEdgePadding,
+                            bottom: _kNavBarBottomPadding,
+                          ),
                         ),
                         child: SafeArea(
                           top: false,
@@ -1571,7 +1575,7 @@ class _LargeTitleNavigationBarSliverDelegate extends SliverPersistentHeaderDeleg
                       right: 0.0,
                       bottom: 0.0,
                       child: SizedBox(
-                        height: bottomHeight * (1.0 - bottomShrinkFactor),
+                        height: .fixed(bottomHeight * (1.0 - bottomShrinkFactor)),
                         child: ClipRect(child: components.navBarBottom),
                       ),
                     ),
@@ -1579,7 +1583,7 @@ class _LargeTitleNavigationBarSliverDelegate extends SliverPersistentHeaderDeleg
               ),
             ),
             if (bottomMode == NavigationBarBottomMode.always)
-              SizedBox(height: bottomHeight, child: components.navBarBottom),
+              SizedBox(height: .fixed(bottomHeight), child: components.navBarBottom),
           ],
         ),
       ),
@@ -1854,13 +1858,13 @@ class _PersistentNavigationBar extends StatelessWidget {
 
     if (padding != null) {
       paddedToolbar = Padding(
-        padding: EdgeInsets.only(top: padding!.top, bottom: padding!.bottom),
+        padding: .fixed(EdgeInsets.only(top: padding!.top, bottom: padding!.bottom)),
         child: paddedToolbar,
       );
     }
 
     return SizedBox(
-      height: _kNavBarPersistentHeight + MediaQuery.paddingOf(context).top,
+      height: .fixed(_kNavBarPersistentHeight + MediaQuery.paddingOf(context).top),
       child: SafeArea(
         top: !CupertinoSheetRoute.hasParentSheet(context),
         bottom: false,
@@ -2019,7 +2023,7 @@ class _NavigationBarStaticComponents {
     return KeyedSubtree(
       key: leadingKey,
       child: Padding(
-        padding: EdgeInsetsDirectional.only(start: padding?.start ?? _kNavBarEdgePadding),
+        padding: .fixed(EdgeInsetsDirectional.only(start: padding?.start ?? _kNavBarEdgePadding)),
         child: MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaler: _clampedTextScaler(context)),
           child: IconTheme.merge(data: const IconThemeData(size: 32.0), child: leadingContent),
@@ -2138,7 +2142,7 @@ class _NavigationBarStaticComponents {
     return KeyedSubtree(
       key: trailingKey,
       child: Padding(
-        padding: EdgeInsetsDirectional.only(end: padding?.end ?? _kNavBarEdgePadding),
+        padding: .fixed(EdgeInsetsDirectional.only(end: padding?.end ?? _kNavBarEdgePadding)),
         child: MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaler: _clampedTextScaler(context)),
           child: IconTheme.merge(data: const IconThemeData(size: 32.0), child: userTrailing),
@@ -2295,13 +2299,13 @@ class CupertinoNavigationBarBackButton extends StatelessWidget {
         child: DefaultTextStyle(
           style: actionTextStyle,
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: _kNavBarBackButtonTapWidth),
+            constraints: const .fixed(BoxConstraints(minWidth: _kNavBarBackButtonTapWidth)),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const Padding(padding: EdgeInsetsDirectional.only(start: 8.0)),
+                const Padding(padding: .fixed(EdgeInsetsDirectional.only(start: 8.0))),
                 _backChevron ?? const _BackChevron(),
-                const Padding(padding: EdgeInsetsDirectional.only(start: 6.0)),
+                const Padding(padding: .fixed(EdgeInsetsDirectional.only(start: 6.0))),
                 Flexible(
                   child:
                       _backLabel ??
@@ -2334,7 +2338,7 @@ class _BackChevron extends StatelessWidget {
     // Replicate the Icon logic here to get a tightly sized icon and add
     // custom non-square padding.
     Widget iconWidget = Padding(
-      padding: const EdgeInsetsDirectional.only(start: 6, end: 2),
+      padding: const .fixed(EdgeInsetsDirectional.only(start: 6, end: 2)),
       child: Text.rich(
         TextSpan(
           text: String.fromCharCode(CupertinoIcons.back.codePoint),
@@ -2351,7 +2355,7 @@ class _BackChevron extends StatelessWidget {
     switch (textDirection) {
       case TextDirection.rtl:
         iconWidget = Transform(
-          transform: Matrix4.identity()..scaleByDouble(-1.0, 1.0, 1.0, 1),
+          transform: .fixed(Matrix4.identity()..scaleByDouble(-1.0, 1.0, 1.0, 1)),
           alignment: Alignment.center,
           transformHitTests: false,
           child: iconWidget,
@@ -2461,12 +2465,14 @@ class _InactiveSearchableBottom extends StatelessWidget {
           child: FocusableActionDetector(
             descendantsAreFocusable: false,
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: _kNavBarEdgePadding,
-                end: _kNavBarEdgePadding,
-                bottom: _kNavBarBottomPadding,
+              padding: const .fixed(
+                EdgeInsetsDirectional.only(
+                  start: _kNavBarEdgePadding,
+                  end: _kNavBarEdgePadding,
+                  bottom: _kNavBarBottomPadding,
+                ),
               ),
-              child: SizedBox(height: searchFieldHeight, child: searchField),
+              child: SizedBox(height: .fixed(searchFieldHeight), child: searchField),
             ),
           ),
         ),
@@ -2477,16 +2483,17 @@ class _InactiveSearchableBottom extends StatelessWidget {
             return Row(
               children: <Widget>[
                 SizedBox(
-                  width:
-                      constraints.maxWidth -
-                      (_kSearchFieldCancelButtonWidth * animationController.value),
+                  width: .fixed(
+                    constraints.maxWidth -
+                        (_kSearchFieldCancelButtonWidth * animationController.value),
+                  ),
                   child: child,
                 ),
                 // A decoy 'Cancel' button used in the collapsed-to-expanded animation.
                 SizedBox(
-                  width: animationController.value * _kSearchFieldCancelButtonWidth,
+                  width: .fixed(animationController.value * _kSearchFieldCancelButtonWidth),
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: _kNavBarBottomPadding),
+                    padding: const .fixed(EdgeInsets.only(bottom: _kNavBarBottomPadding)),
                     child: _CancelButton(opacity: 0.4, onPressed: () {}),
                   ),
                 ),
@@ -2519,16 +2526,15 @@ class _ActiveSearchableBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(
-        start: _kNavBarEdgePadding,
-        bottom: _kNavBarBottomPadding,
+      padding: const .fixed(
+        EdgeInsetsDirectional.only(start: _kNavBarEdgePadding, bottom: _kNavBarBottomPadding),
       ),
       child: Row(
         spacing: 12.0, // Eyeballed on an iPhone 15 simulator running iOS 17.5.
         children: <Widget>[
           Expanded(
             child: SizedBox(
-              height: searchFieldHeight,
+              height: .fixed(searchFieldHeight),
               child: searchField ?? const SizedBox.shrink(),
             ),
           ),
@@ -2540,7 +2546,7 @@ class _ActiveSearchableBottom extends StatelessWidget {
             ),
             builder: (BuildContext context, Widget? child) {
               return SizedBox(
-                width: animationController.value * _kSearchFieldCancelButtonWidth,
+                width: .fixed(animationController.value * _kSearchFieldCancelButtonWidth),
                 child: child,
               );
             },
@@ -2696,8 +2702,10 @@ class _NavigationBarTransition extends StatelessWidget {
     // The text scaling is disabled to avoid odd transitions between pages.
     return MediaQuery.withNoTextScaling(
       child: SizedBox(
-        height: math.max(heightTween.begin!, heightTween.end!) + MediaQuery.paddingOf(context).top,
-        width: double.infinity,
+        height: .fixed(
+          math.max(heightTween.begin!, heightTween.end!) + MediaQuery.paddingOf(context).top,
+        ),
+        width: const .fixed(double.infinity),
         child: Stack(children: children),
       ),
     );
@@ -2927,7 +2935,10 @@ class _NavigationBarComponentsTransition {
         updateSystemUiOverlay: false,
         backgroundColor: bottomBackgroundColor!,
         border: topBorder,
-        child: SizedBox(height: bottomNavBarBox.size.height, width: double.infinity),
+        child: SizedBox(
+          height: .fixed(bottomNavBarBox.size.height),
+          width: const .fixed(double.infinity),
+        ),
       ),
     );
   }
@@ -3181,7 +3192,10 @@ class _NavigationBarComponentsTransition {
         updateSystemUiOverlay: false,
         backgroundColor: topBackgroundColor!,
         border: topBorder,
-        child: SizedBox(height: topNavBarBox.size.height, width: double.infinity),
+        child: SizedBox(
+          height: .fixed(topNavBarBox.size.height),
+          width: const .fixed(double.infinity),
+        ),
       ),
     );
   }

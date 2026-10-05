@@ -42,12 +42,15 @@ class _AccountPictures extends StatelessWidget {
           child: Row(
             children: (otherAccountsPictures ?? <Widget>[]).take(3).map<Widget>((Widget picture) {
               return Padding(
-                padding: const EdgeInsetsDirectional.only(start: 8.0),
+                padding: const .fixed(EdgeInsetsDirectional.only(start: 8.0)),
                 child: Semantics(
                   container: true,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                    child: SizedBox.fromSize(size: otherAccountsPicturesSize, child: picture),
+                    padding: const .fixed(EdgeInsets.only(left: 8.0, bottom: 8.0)),
+                    child: SizedBox.fromSize(
+                      size: .fixed(otherAccountsPicturesSize),
+                      child: picture,
+                    ),
                   ),
                 ),
               );
@@ -58,7 +61,10 @@ class _AccountPictures extends StatelessWidget {
           top: 0.0,
           child: Semantics(
             explicitChildNodes: true,
-            child: SizedBox.fromSize(size: currentAccountPictureSize, child: currentAccountPicture),
+            child: SizedBox.fromSize(
+              size: .fixed(currentAccountPictureSize),
+              child: currentAccountPicture,
+            ),
           ),
         ),
       ],
@@ -146,7 +152,7 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
           LayoutId(
             id: _AccountDetailsLayout.accountName,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2.0),
+              padding: const .fixed(EdgeInsets.symmetric(vertical: 2.0)),
               child: DefaultTextStyle(
                 style: theme.primaryTextTheme.bodyLarge!,
                 overflow: TextOverflow.ellipsis,
@@ -158,7 +164,7 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
           LayoutId(
             id: _AccountDetailsLayout.accountEmail,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2.0),
+              padding: const .fixed(EdgeInsets.symmetric(vertical: 2.0)),
               child: DefaultTextStyle(
                 style: theme.primaryTextTheme.bodyMedium!,
                 overflow: TextOverflow.ellipsis,
@@ -174,10 +180,10 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
               button: true,
               onTap: widget.onTap,
               child: SizedBox.square(
-                dimension: _kAccountDetailsHeight,
+                dimension: const .fixed(_kAccountDetailsHeight),
                 child: Center(
                   child: Transform.rotate(
-                    angle: _animation.value * math.pi,
+                    angle: .fixed(_animation.value * math.pi),
                     child: Icon(
                       Icons.arrow_drop_down,
                       color: widget.arrowColor,
@@ -201,7 +207,7 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
       );
     }
 
-    return SizedBox(height: _kAccountDetailsHeight, child: accountDetails);
+    return SizedBox(height: const .fixed(_kAccountDetailsHeight), child: accountDetails);
   }
 }
 
@@ -371,7 +377,7 @@ class _UserAccountsDrawerHeaderState extends State<UserAccountsDrawerHeader> {
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 16.0),
+                  padding: const .fixed(EdgeInsetsDirectional.only(end: 16.0)),
                   child: _AccountPictures(
                     currentAccountPicture: widget.currentAccountPicture,
                     otherAccountsPictures: widget.otherAccountsPictures,

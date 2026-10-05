@@ -789,11 +789,11 @@ class IconButton extends StatelessWidget {
     final bool effectiveEnableFeedback = enableFeedback ?? true;
 
     Widget result = ConstrainedBox(
-      constraints: adjustedConstraints,
+      constraints: .fixed(adjustedConstraints),
       child: Padding(
-        padding: effectivePadding,
+        padding: .fixed(effectivePadding),
         child: SizedBox.square(
-          dimension: effectiveIconSize,
+          dimension: .fixed(effectiveIconSize),
           child: Align(
             alignment: effectiveAlignment,
             child: IconTheme.merge(

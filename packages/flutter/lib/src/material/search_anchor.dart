@@ -1111,18 +1111,20 @@ class _ViewContentState extends State<_ViewContent> {
     return Align(
       alignment: Alignment.topLeft,
       child: Transform.translate(
-        offset: _viewRect.topLeft,
+        offset: .fixed(_viewRect.topLeft),
         child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minWidth: minWidth,
-            maxWidth: _viewRect.width,
-            minHeight: minHeight,
-            maxHeight: _viewRect.height,
+          constraints: .fixed(
+            BoxConstraints(
+              minWidth: minWidth,
+              maxWidth: _viewRect.width,
+              minHeight: minHeight,
+              maxHeight: _viewRect.height,
+            ),
           ),
           child: Padding(
-            padding: widget.showFullScreenView
-                ? EdgeInsets.zero
-                : (effectivePadding ?? EdgeInsets.zero),
+            padding: .fixed(
+              widget.showFullScreenView ? EdgeInsets.zero : (effectivePadding ?? EdgeInsets.zero),
+            ),
             child: Material(
               clipBehavior: Clip.antiAlias,
               shape: effectiveShape,
@@ -1141,7 +1143,7 @@ class _ViewContentState extends State<_ViewContent> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.only(top: widget.topPadding),
+                        padding: .fixed(EdgeInsets.only(top: widget.topPadding)),
                         child: SafeArea(
                           top: false,
                           bottom: false,
@@ -1758,7 +1760,9 @@ class _SearchBarState extends State<SearchBar> {
         .toList();
 
     return ConstrainedBox(
-      constraints: widget.constraints ?? searchBarTheme.constraints ?? defaults.constraints!,
+      constraints: .fixed(
+        widget.constraints ?? searchBarTheme.constraints ?? defaults.constraints!,
+      ),
       child: Opacity(
         opacity: .fixed(widget.enabled ? 1 : _kDisableSearchBarOpacity),
         child: Material(
@@ -1780,14 +1784,14 @@ class _SearchBarState extends State<SearchBar> {
               customBorder: effectiveShape?.copyWith(side: effectiveSide),
               statesController: _internalStatesController,
               child: Padding(
-                padding: effectivePadding!,
+                padding: .fixed(effectivePadding!),
                 child: Row(
                   textDirection: textDirection,
                   children: <Widget>[
                     ?leading,
                     Expanded(
                       child: Padding(
-                        padding: effectivePadding,
+                        padding: .fixed(effectivePadding),
                         child: Semantics(
                           inputType: SemanticsInputType.search,
                           child: TextField(

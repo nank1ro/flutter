@@ -64,7 +64,7 @@ enum _CheckboxType { material, adaptive }
 /// {@tool snippet}
 /// ```dart
 /// ColoredBox(
-///   color: Colors.green,
+///   color: .fixed(Colors.green),
 ///   child: Material(
 ///     child: CheckboxListTile(
 ///       tileColor: Colors.red,
@@ -585,7 +585,7 @@ class CheckboxListTile extends StatelessWidget {
         );
     }
     if (checkboxScaleFactor != 1.0) {
-      control = Transform.scale(scale: checkboxScaleFactor, child: control);
+      control = Transform.scale(scale: .fixed(checkboxScaleFactor), child: control);
     }
 
     final ListTileThemeData listTileTheme = ListTileTheme.of(context);

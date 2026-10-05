@@ -557,14 +557,14 @@ class TreeSliver<T> extends StatefulWidget {
     final Curve animationCurve = toggleAnimationStyle.curve ?? TreeSliver.defaultAnimationCurve;
     final int index = TreeSliverController.of(context).getActiveIndexFor(node)!;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const .fixed(EdgeInsets.all(8.0)),
       child: Row(
         children: <Widget>[
           // Icon for parent nodes
           TreeSliver.wrapChildToToggleNode(
             node: node,
             child: SizedBox.square(
-              dimension: 30.0,
+              dimension: const .fixed(30.0),
               child: node.children.isNotEmpty
                   ? AnimatedRotation(
                       key: ValueKey<int>(index),
@@ -578,7 +578,7 @@ class TreeSliver<T> extends StatefulWidget {
             ),
           ),
           // Spacer
-          const SizedBox(width: 8.0),
+          const SizedBox(width: .fixed(8.0)),
           // Content
           Text(node.content.toString()),
         ],

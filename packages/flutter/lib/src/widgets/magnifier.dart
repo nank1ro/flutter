@@ -529,7 +529,7 @@ class RawMagnifier extends StatelessWidget {
             child: _Magnifier(
               focalPointOffset: focalPointOffset,
               magnificationScale: magnificationScale,
-              child: SizedBox.fromSize(size: size, child: child),
+              child: SizedBox.fromSize(size: .fixed(size), child: child),
             ),
           ),
         ),
@@ -543,8 +543,10 @@ class RawMagnifier extends StatelessWidget {
               clipBehavior: clipBehavior,
               clipper: _NegativeClip(shape: decoration.shape),
               child: DecoratedBox(
-                decoration: ShapeDecoration(shape: decoration.shape, shadows: decoration.shadows),
-                child: SizedBox.fromSize(size: size),
+                decoration: .fixed(
+                  ShapeDecoration(shape: decoration.shape, shadows: decoration.shadows),
+                ),
+                child: SizedBox.fromSize(size: .fixed(size)),
               ),
             ),
           ),

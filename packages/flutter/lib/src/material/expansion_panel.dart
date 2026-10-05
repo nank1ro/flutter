@@ -395,7 +395,7 @@ class _ExpansionPanelListState extends State<ExpansionPanelList> {
       final Widget headerWidget = child.headerBuilder(context, _isChildExpanded(index));
 
       Widget expandIconPadded = Padding(
-        padding: const EdgeInsetsDirectional.only(end: 8.0),
+        padding: const .fixed(EdgeInsetsDirectional.only(end: 8.0)),
         child: IgnorePointer(
           ignoring: child.canTapOnHeader,
           child: ExpandIcon(
@@ -427,7 +427,7 @@ class _ExpansionPanelListState extends State<ExpansionPanelList> {
               curve: Curves.fastOutSlowIn,
               margin: _isChildExpanded(index) ? widget.expandedHeaderPadding : EdgeInsets.zero,
               child: ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: _kPanelHeaderCollapsedHeight),
+                constraints: const .fixed(BoxConstraints(minHeight: _kPanelHeaderCollapsedHeight)),
                 child: headerWidget,
               ),
             ),
@@ -455,7 +455,7 @@ class _ExpansionPanelListState extends State<ExpansionPanelList> {
               AnimatedCrossFade(
                 firstChild: const LimitedBox(
                   maxWidth: 0.0,
-                  child: SizedBox(width: double.infinity, height: 0),
+                  child: SizedBox(width: .fixed(double.infinity), height: .fixed(0)),
                 ),
                 secondChild: child.body,
                 firstCurve: const Interval(0.0, 0.6, curve: Curves.fastOutSlowIn),

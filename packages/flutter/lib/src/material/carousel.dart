@@ -283,7 +283,7 @@ class CarouselView extends StatefulWidget {
   ///   itemCount: 100,
   ///   itemBuilder: (BuildContext context, int index) {
   ///     return ColoredBox(
-  ///       color: Colors.primaries[index % Colors.primaries.length],
+  ///       color: .fixed(Colors.primaries[index % Colors.primaries.length]),
   ///       child: Center(
   ///         child: Text('Item $index'),
   ///       ),
@@ -653,7 +653,7 @@ class _CarouselViewState extends State<CarouselView> {
     }
 
     return Padding(
-      padding: effectivePadding,
+      padding: .fixed(effectivePadding),
       child: Material(
         clipBehavior: effectiveItemClipBehavior,
         color: effectiveBackgroundColor,

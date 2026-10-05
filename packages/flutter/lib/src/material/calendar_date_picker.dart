@@ -362,7 +362,7 @@ class _CalendarDatePickerState extends State<CalendarDatePicker> {
         );
       case DatePickerMode.year:
         return Padding(
-          padding: const EdgeInsets.only(top: _subHeaderHeight),
+          padding: const .fixed(EdgeInsets.only(top: _subHeaderHeight)),
           child: YearPicker(
             key: _yearPickerKey,
             calendarDelegate: widget.calendarDelegate,
@@ -402,7 +402,7 @@ class _CalendarDatePickerState extends State<CalendarDatePicker> {
         ? maxDayPickerHeight + ((_maxDayPickerRowCount + 1) * ((textScaleFactor - 1) * 8))
         : maxDayPickerHeight;
     final picker = SizedBox(
-      height: _subHeaderHeight + scaledMaxDayPickerHeight,
+      height: .fixed(_subHeaderHeight + scaledMaxDayPickerHeight),
       child: _buildPicker(),
     );
     return Stack(
@@ -505,9 +505,9 @@ class _DatePickerModeToggleButtonState extends State<_DatePickerModeToggleButton
         defaults.toggleButtonTextStyle?.color;
 
     return SizedBox(
-      height: _subHeaderHeight,
+      height: const .fixed(_subHeaderHeight),
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(start: 16, end: 4),
+        padding: const .fixed(EdgeInsetsDirectional.only(start: 16, end: 4)),
         child: Row(
           children: <Widget>[
             Flexible(
@@ -516,11 +516,11 @@ class _DatePickerModeToggleButtonState extends State<_DatePickerModeToggleButton
                 button: true,
                 container: true,
                 child: SizedBox(
-                  height: _subHeaderHeight,
+                  height: const .fixed(_subHeaderHeight),
                   child: InkWell(
                     onTap: widget.onTitlePressed,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const .fixed(EdgeInsets.symmetric(horizontal: 8)),
                       child: Row(
                         children: <Widget>[
                           Flexible(
@@ -543,7 +543,7 @@ class _DatePickerModeToggleButtonState extends State<_DatePickerModeToggleButton
             ),
             if (widget.mode == DatePickerMode.day)
               // Give space for the prev/next month buttons that are underneath this row
-              const SizedBox(width: _monthNavButtonsWidth),
+              const SizedBox(width: .fixed(_monthNavButtonsWidth)),
           ],
         ),
       ),
@@ -903,9 +903,9 @@ class _MonthPickerState extends State<_MonthPicker> {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: _subHeaderHeight,
+            height: const .fixed(_subHeaderHeight),
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 16, end: 4),
+              padding: const .fixed(EdgeInsetsDirectional.only(start: 16, end: 4)),
               child: Row(
                 children: <Widget>[
                   const Spacer(),
@@ -1167,7 +1167,7 @@ class _DayPickerState extends State<_DayPicker> {
         ? _monthPickerHorizontalPaddingPortraitM3
         : _monthPickerHorizontalPaddingOther;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: monthPickerHorizontalPadding),
+      padding: .fixed(EdgeInsets.symmetric(horizontal: monthPickerHorizontalPadding)),
       child: MediaQuery.withClampedTextScaling(
         maxScaleFactor: isLandscapeOrientation
             ? _kDayPickerGridLandscapeMaxScaleFactor
@@ -1283,7 +1283,7 @@ class _DayState extends State<_Day> {
     // mode currently due to unclear specifications.
     final Orientation orientation = MediaQuery.orientationOf(context);
     if (Theme.of(context).useMaterial3 && orientation == Orientation.portrait) {
-      dayWidget = Padding(padding: const EdgeInsets.all(4.0), child: dayWidget);
+      dayWidget = Padding(padding: const .fixed(EdgeInsets.all(4.0)), child: dayWidget);
     }
     dayWidget = Semantics(
       // We want the day of month to be spoken first irrespective of the

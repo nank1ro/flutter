@@ -988,7 +988,7 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
         final double horizontalPadding =
             padding + _kDefaultHorizontalPadding + effectiveInputStartGap;
         label = ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: widget.width! - horizontalPadding),
+          constraints: .fixed(BoxConstraints(maxWidth: widget.width! - horizontalPadding)),
           child: label,
         );
       }
@@ -1035,7 +1035,7 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
             // field content should be aligned. The text field has a horizontal padding of 16 pixels.
             // To conform with the 16 pixels padding, a 4 pixels padding is added in front of the item label.
             child: Padding(
-              padding: EdgeInsetsDirectional.only(start: effectiveInputStartGap),
+              padding: .fixed(EdgeInsetsDirectional.only(start: effectiveInputStartGap)),
               child: label,
             ),
           ),
@@ -1345,7 +1345,7 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
                     ExcludeSemantics(
                       child: Padding(
                         // See RenderEditable.floatingCursorAddedMargin for the default horizontal padding.
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        padding: const .fixed(EdgeInsets.symmetric(horizontal: 4.0)),
                         child: DefaultTextStyle(style: effectiveTextStyle!, child: effectiveLabel),
                       ),
                     ),
@@ -1354,7 +1354,7 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
                     // TODO(bleroux): find a more accurate way to get the correct width.
                     // This padding is used to mimic default input decorator padding.
                     // It won't be correct if non default values are used.
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const .fixed(EdgeInsets.all(8.0)),
                     child: effectiveDecoration.prefixIcon ?? const SizedBox.shrink(),
                   ),
                 ],
@@ -1370,12 +1370,14 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
     if (widget.expandedInsets case final EdgeInsetsGeometry padding) {
       menuAnchor = Padding(
         // Clamp the top and bottom padding to 0.
-        padding: padding.clamp(
-          EdgeInsets.zero,
-          const EdgeInsets.only(
-            left: double.infinity,
-            right: double.infinity,
-          ).add(const EdgeInsetsDirectional.only(end: double.infinity, start: double.infinity)),
+        padding: .fixed(
+          padding.clamp(
+            EdgeInsets.zero,
+            const EdgeInsets.only(
+              left: double.infinity,
+              right: double.infinity,
+            ).add(const EdgeInsetsDirectional.only(end: double.infinity, start: double.infinity)),
+          ),
         ),
         child: menuAnchor,
       );
@@ -1436,7 +1438,7 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
     final bool isCollapsed = widget.inputDecorationTheme?.isCollapsed ?? false;
     return widget.showTrailingIcon
         ? Padding(
-            padding: isCollapsed ? EdgeInsets.zero : const EdgeInsets.all(4.0),
+            padding: .fixed(isCollapsed ? EdgeInsets.zero : const EdgeInsets.all(4.0)),
             child: ExcludeSemantics(
               // When the text field is treated as a button (i.e., it can
               // not be focused), the trailing button should become part of

@@ -446,7 +446,7 @@ class ReorderableList extends StatefulWidget {
 /// Widget build(BuildContext context) {
 ///   return ReorderableList(
 ///     key: listKey,
-///     itemBuilder: (BuildContext context, int index) => const SizedBox(height: 10.0),
+///     itemBuilder: (BuildContext context, int index) => const SizedBox(height: .fixed(10.0)),
 ///     itemCount: 5,
 ///     onReorderItem: (int oldIndex, int newIndex) {
 ///        // ...
@@ -738,7 +738,7 @@ class SliverReorderableList extends StatefulWidget {
 /// Widget build(BuildContext context) {
 ///   return SliverReorderableList(
 ///     key: listKey,
-///     itemBuilder: (BuildContext context, int index) => const SizedBox(height: 10.0),
+///     itemBuilder: (BuildContext context, int index) => const SizedBox(height: .fixed(10.0)),
 ///     itemCount: 5,
 ///     onReorderItem: (int oldIndex, int newIndex) {
 ///        // ...
@@ -1139,8 +1139,8 @@ class SliverReorderableListState extends State<SliverReorderableList>
   Widget _itemBuilder(BuildContext context, int index) {
     if (_dragInfo != null && index >= widget.itemCount) {
       return switch (_scrollDirection) {
-        Axis.horizontal => SizedBox(width: _dragInfo!.itemExtent),
-        Axis.vertical => SizedBox(height: _dragInfo!.itemExtent),
+        Axis.horizontal => SizedBox(width: .fixed(_dragInfo!.itemExtent)),
+        Axis.vertical => SizedBox(height: .fixed(_dragInfo!.itemExtent)),
       };
     }
     final Widget child = widget.itemBuilder(context, index);
@@ -1292,10 +1292,10 @@ class _ReorderableItemState extends State<_ReorderableItem> {
   Widget build(BuildContext context) {
     if (_dragging) {
       final Size size = _extentSize(_listState._dragInfo!.itemExtent, _listState._scrollDirection);
-      return SizedBox.fromSize(size: size);
+      return SizedBox.fromSize(size: .fixed(size));
     }
     _listState._registerItem(this);
-    return Transform.translate(offset: offset, child: widget.child);
+    return Transform.translate(offset: .fixed(offset), child: widget.child);
   }
 
   @override
@@ -1672,8 +1672,8 @@ class _DragItemProxy extends StatelessWidget {
             left: effectivePosition.dx,
             top: effectivePosition.dy,
             child: SizedBox(
-              width: size.width,
-              height: size.height,
+              width: .fixed(size.width),
+              height: .fixed(size.height),
               child: OverflowBox(
                 minWidth: constraints.minWidth,
                 minHeight: constraints.minHeight,

@@ -114,7 +114,13 @@ final class _PropBinding<T> {
 /// currently reactive may change freely: that is a property of the value, not
 /// of the slot.
 final class PropBinder {
-  PropBinder._(this.context, this._owner);
+  /// Creates the binder for one element.
+  ///
+  /// [RenderObjectElement] creates one the first time its widget is a
+  /// [ReactiveRenderObjectWidget] with a reactive property; nothing else needs
+  /// to.
+  @internal
+  PropBinder(this.context, this._owner);
 
   /// The element whose properties are being bound.
   ///
@@ -157,6 +163,24 @@ final class PropBinder {
     _cursor += 1;
     binding._set(_owner, value);
   }
+
+  /// Binds every property of [widget] to [renderObject].
+  ///
+  /// Called by [RenderObjectElement] when it mounts, when its widget is
+  /// updated, and when an inherited widget it depends on changes.
+  @internal
+  void bindAll(ReactiveRenderObjectWidget widget, RenderObject renderObject) {
+    // Zero on the first pass, when there is nothing to compare against.
+    final int expected = _bindings.length;
+    _cursor = 0;
+    widget.bindProps(this, renderObject);
+    assert(
+      expected == 0 || _cursor == expected,
+      '${widget.runtimeType}.bindProps bound $_cursor properties, but bound $expected when this '
+      'element mounted. bindProps must bind the same properties in the same order every time it '
+      'is called.',
+    );
+  }
 }
 
 /// A render-object widget whose properties may be bound to reactive values
@@ -174,8 +198,9 @@ final class PropBinder {
 /// effect are allocated, and the values reach the render object through
 /// [RenderObjectWidget.updateRenderObject] exactly as they always have.
 ///
-/// This is a mixin rather than a base class because the element shapes (leaf,
-/// single-child) already have their own base classes.
+/// This is a mixin so that any render-object widget can opt in, whatever its
+/// shape. The widget keeps its usual element: [RenderObjectElement] binds any
+/// widget that mixes this in.
 ///
 /// A reactive property is read twice when the element mounts: once by
 /// [RenderObjectWidget.createRenderObject], which seeds the render object with
@@ -217,83 +242,4 @@ mixin ReactiveRenderObjectWidget on RenderObjectWidget {
   /// [PropBinder.bind] for the same properties, of the same types, in the same
   /// order, every time.
   void bindProps(PropBinder binder, covariant RenderObject renderObject);
-}
-
-mixin _ReactivePropsElement on RenderObjectElement {
-  PropBinder? _binder;
-
-  @override
-  void mount(Element? parent, Object? newSlot) {
-    super.mount(parent, newSlot);
-    _bindProps();
-  }
-
-  @override
-  void update(covariant RenderObjectWidget newWidget) {
-    super.update(newWidget);
-    _bindProps();
-  }
-
-  @override
-  void performRebuild() {
-    super.performRebuild(); // calls updateRenderObject, clears the dirty flag
-    // An inherited widget this element depends on changed, so anything
-    // bindProps read from the element's context has to be read again.
-    _bindProps();
-  }
-
-  void _bindProps() {
-    final reactiveWidget = widget as ReactiveRenderObjectWidget;
-    if (_binder == null && !reactiveWidget.hasReactiveProps) {
-      // Nothing reactive now, and nothing was ever bound: no binder, no
-      // bindings, no effects. This is the whole cost of making a widget whose
-      // properties are usually fixed values bindable.
-      return;
-    }
-    final PropBinder binder = _binder ??= PropBinder._(this, reactiveOwner);
-    // Zero on the first pass, when there is nothing to compare against.
-    final int expected = binder._bindings.length;
-    binder._cursor = 0;
-    reactiveWidget.bindProps(binder, renderObject);
-    assert(
-      expected == 0 || binder._cursor == expected,
-      '${widget.runtimeType}.bindProps bound ${binder._cursor} properties, but bound $expected '
-      'when this element mounted. bindProps must bind the same properties in the same order '
-      'every time it is called.',
-    );
-  }
-}
-
-/// The element of a [ReactiveLeafRenderObjectWidget].
-class ReactiveLeafRenderObjectElement extends LeafRenderObjectElement with _ReactivePropsElement {
-  /// Creates an element that uses the given widget as its configuration.
-  ReactiveLeafRenderObjectElement(super.widget);
-}
-
-/// The element of a [ReactiveSingleChildRenderObjectWidget].
-class ReactiveSingleChildRenderObjectElement extends SingleChildRenderObjectElement
-    with _ReactivePropsElement {
-  /// Creates an element that uses the given widget as its configuration.
-  ReactiveSingleChildRenderObjectElement(super.widget);
-}
-
-/// A [LeafRenderObjectWidget] with reactive properties.
-abstract class ReactiveLeafRenderObjectWidget extends LeafRenderObjectWidget
-    with ReactiveRenderObjectWidget {
-  /// Abstract const constructor.
-  const ReactiveLeafRenderObjectWidget({super.key});
-
-  @override
-  ReactiveLeafRenderObjectElement createElement() => ReactiveLeafRenderObjectElement(this);
-}
-
-/// A [SingleChildRenderObjectWidget] with reactive properties.
-abstract class ReactiveSingleChildRenderObjectWidget extends SingleChildRenderObjectWidget
-    with ReactiveRenderObjectWidget {
-  /// Abstract const constructor.
-  const ReactiveSingleChildRenderObjectWidget({super.key, super.child});
-
-  @override
-  ReactiveSingleChildRenderObjectElement createElement() =>
-      ReactiveSingleChildRenderObjectElement(this);
 }

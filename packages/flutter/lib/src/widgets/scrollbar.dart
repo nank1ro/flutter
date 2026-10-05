@@ -1059,7 +1059,7 @@ class RawScrollbar extends StatefulWidget {
   ///   return Column(
   ///     children: <Widget>[
   ///       SizedBox(
-  ///        height: 200,
+  ///        height: .fixed(200),
   ///        child: CupertinoScrollbar(
   ///          controller: controllerOne,
   ///          child: ListView.builder(
@@ -1070,7 +1070,7 @@ class RawScrollbar extends StatefulWidget {
   ///        ),
   ///      ),
   ///      SizedBox(
-  ///        height: 200,
+  ///        height: .fixed(200),
   ///        child: CupertinoScrollbar(
   ///          controller: controllerTwo,
   ///          child: ListView.builder(
@@ -1123,7 +1123,7 @@ class RawScrollbar extends StatefulWidget {
   /// return Column(
   ///   children: <Widget>[
   ///     SizedBox(
-  ///        height: 200,
+  ///        height: .fixed(200),
   ///        child: Scrollbar(
   ///          thumbVisibility: true,
   ///          controller: controllerOne,
@@ -1137,15 +1137,15 @@ class RawScrollbar extends StatefulWidget {
   ///        ),
   ///      ),
   ///      SizedBox(
-  ///        height: 200,
+  ///        height: .fixed(200),
   ///        child: CupertinoScrollbar(
   ///          thumbVisibility: true,
   ///          controller: controllerTwo,
   ///          child: SingleChildScrollView(
   ///            controller: controllerTwo,
   ///            child: const SizedBox(
-  ///              height: 2000,
-  ///              width: 500,
+  ///              height: .fixed(2000),
+  ///              width: .fixed(500),
   ///              child: Placeholder(),
   ///            ),
   ///          ),

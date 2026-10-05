@@ -131,16 +131,16 @@ class AnimatedList extends _AnimatedScrollView {
   ///       },
   ///       separatorBuilder: (BuildContext context, int index, Animation<double> animation) {
   ///         return const SizedBox(
-  ///           height: 1.0,
-  ///           width: double.infinity,
-  ///           child: ColoredBox(color: Color(0xFF000000)),
+  ///           height: .fixed(1.0),
+  ///           width: .fixed(double.infinity),
+  ///           child: ColoredBox(color: .fixed(Color(0xFF000000))),
   ///         );
   ///       },
   ///       removedSeparatorBuilder: (BuildContext context, int index, Animation<double> animation) {
   ///         return const SizedBox(
-  ///           height: 1.0,
-  ///           width: double.infinity,
-  ///           child: ColoredBox(color: Color(0xFF000000)),
+  ///           height: .fixed(1.0),
+  ///           width: .fixed(double.infinity),
+  ///           child: ColoredBox(color: .fixed(Color(0xFF000000))),
   ///         );
   ///       }
   ///     ),

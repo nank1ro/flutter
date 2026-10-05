@@ -327,7 +327,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   ///   home: Scaffold(
   ///     appBar: AppBar(
   ///       title: SizedBox(
-  ///         height: _myToolbarHeight,
+  ///         height: .fixed(_myToolbarHeight),
   ///         child: Image.asset(_logoAsset),
   ///       ),
   ///       toolbarHeight: _myToolbarHeight,
@@ -1049,15 +1049,19 @@ class _AppBarState extends State<AppBar> {
         // a size of 48x48, and a highlight size of 40x40. Users can also put other
         // type of widgets on leading with the original config.
         leading = ConstrainedBox(
-          constraints: BoxConstraints.tightFor(
-            width: widget.leadingWidth ?? appBarTheme.leadingWidth ?? _kLeadingWidth,
+          constraints: .fixed(
+            BoxConstraints.tightFor(
+              width: widget.leadingWidth ?? appBarTheme.leadingWidth ?? _kLeadingWidth,
+            ),
           ),
           child: leading,
         );
       } else {
         leading = ConstrainedBox(
-          constraints: BoxConstraints.tightFor(
-            width: widget.leadingWidth ?? appBarTheme.leadingWidth ?? _kLeadingWidth,
+          constraints: .fixed(
+            BoxConstraints.tightFor(
+              width: widget.leadingWidth ?? appBarTheme.leadingWidth ?? _kLeadingWidth,
+            ),
           ),
           child: leading,
         );
@@ -1101,7 +1105,7 @@ class _AppBarState extends State<AppBar> {
     Widget? actions;
     if (widget.actions != null && widget.actions!.isNotEmpty) {
       actions = Padding(
-        padding: actionsPadding,
+        padding: .fixed(actionsPadding),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: theme.useMaterial3
@@ -1167,7 +1171,7 @@ class _AppBarState extends State<AppBar> {
         children: <Widget>[
           Flexible(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: toolbarHeight),
+              constraints: .fixed(BoxConstraints(maxHeight: toolbarHeight)),
               child: appBar,
             ),
           ),
@@ -2303,7 +2307,7 @@ class _ScrollUnderFlexibleSpace extends StatelessWidget {
       // This column will assume the full height of the parent Stack.
       child: Column(
         children: <Widget>[
-          Padding(padding: EdgeInsets.only(top: settings.minExtent - bottomHeight)),
+          Padding(padding: .fixed(EdgeInsets.only(top: settings.minExtent - bottomHeight))),
           Flexible(
             child: ClipRect(
               child: _ExpandedTitleWithPadding(
@@ -2315,7 +2319,7 @@ class _ScrollUnderFlexibleSpace extends StatelessWidget {
           ),
           // Reserve space for AppBar.bottom, which is a sibling of this widget,
           // on the parent Stack.
-          if (bottomHeight > 0) Padding(padding: EdgeInsets.only(bottom: bottomHeight)),
+          if (bottomHeight > 0) Padding(padding: .fixed(EdgeInsets.only(bottom: bottomHeight))),
         ],
       ),
     );

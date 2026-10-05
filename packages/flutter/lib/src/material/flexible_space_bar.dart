@@ -282,7 +282,7 @@ class _FlexibleSpaceBarState extends State<FlexibleSpaceBar> {
               Positioned.fill(
                 child: BackdropFilter(
                   filter: ui.ImageFilter.blur(sigmaX: blurAmount, sigmaY: blurAmount),
-                  child: const ColoredBox(color: Colors.transparent),
+                  child: const ColoredBox(color: .fixed(Colors.transparent)),
                 ),
               ),
             );
@@ -336,10 +336,10 @@ class _FlexibleSpaceBarState extends State<FlexibleSpaceBar> {
             final Alignment titleAlignment = _getTitleAlignment(effectiveCenterTitle);
             children.add(
               Padding(
-                padding: padding,
+                padding: .fixed(padding),
                 child: Transform(
                   alignment: titleAlignment,
-                  transform: scaleTransform,
+                  transform: .fixed(scaleTransform),
                   child: Align(
                     alignment: titleAlignment,
                     child: DefaultTextStyle(
@@ -347,7 +347,7 @@ class _FlexibleSpaceBarState extends State<FlexibleSpaceBar> {
                       child: LayoutBuilder(
                         builder: (BuildContext context, BoxConstraints constraints) {
                           return SizedBox(
-                            width: constraints.maxWidth / scaleValue,
+                            width: .fixed(constraints.maxWidth / scaleValue),
                             child: Align(alignment: titleAlignment, child: title),
                           );
                         },

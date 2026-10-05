@@ -319,7 +319,7 @@ class MatrixTransition extends AnimatedWidget {
     // but leaving it in the layer tree before the animation has started or after
     // it has finished significantly hurts performance.
     return Transform(
-      transform: onTransform(animation.value),
+      transform: .fixed(onTransform(animation.value)),
       alignment: alignment,
       filterQuality: animation.isAnimating ? filterQuality : null,
       child: child,
@@ -929,7 +929,7 @@ class DecoratedBoxTransition extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(decoration: decoration.value, position: position, child: child);
+    return DecoratedBox(decoration: .fixed(decoration.value), position: position, child: child);
   }
 }
 

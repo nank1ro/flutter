@@ -358,9 +358,9 @@ class _MaterialBannerState extends State<MaterialBanner> {
         const EdgeInsetsDirectional.only(end: 16.0);
 
     final Widget actionsBar = ConstrainedBox(
-      constraints: BoxConstraints(minHeight: widget.minActionBarHeight),
+      constraints: .fixed(BoxConstraints(minHeight: widget.minActionBarHeight)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const .fixed(EdgeInsets.symmetric(horizontal: 8)),
         child: Align(
           alignment: AlignmentDirectional.centerEnd,
           child: OverflowBar(
@@ -386,7 +386,7 @@ class _MaterialBannerState extends State<MaterialBanner> {
         widget.contentTextStyle ?? bannerTheme.contentTextStyle ?? defaults.contentTextStyle;
 
     Widget materialBanner = Padding(
-      padding: margin,
+      padding: .fixed(margin),
       child: Material(
         elevation: elevation,
         color: backgroundColor,
@@ -396,11 +396,11 @@ class _MaterialBannerState extends State<MaterialBanner> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Padding(
-              padding: padding,
+              padding: .fixed(padding),
               child: Row(
                 children: <Widget>[
                   if (widget.leading != null)
-                    Padding(padding: leadingPadding, child: widget.leading),
+                    Padding(padding: .fixed(leadingPadding), child: widget.leading),
                   MediaQuery.withClampedTextScaling(
                     // Set maximum text scale factor to _kMaxContentTextScaleFactor for the
                     // content to keep the visual hierarchy the same even with larger font

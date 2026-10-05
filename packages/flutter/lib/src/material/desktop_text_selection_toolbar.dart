@@ -51,7 +51,7 @@ class DesktopTextSelectionToolbar extends StatelessWidget {
   // Builds a desktop toolbar in the Material style.
   static Widget _defaultToolbarBuilder(BuildContext context, Widget child) {
     return SizedBox(
-      width: _kToolbarWidth,
+      width: const .fixed(_kToolbarWidth),
       child: Material(
         borderRadius: const BorderRadius.all(Radius.circular(7.0)),
         clipBehavior: Clip.antiAlias,
@@ -70,11 +70,13 @@ class DesktopTextSelectionToolbar extends StatelessWidget {
     final localAdjustment = Offset(_kToolbarScreenPadding, paddingAbove);
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        _kToolbarScreenPadding,
-        paddingAbove,
-        _kToolbarScreenPadding,
-        _kToolbarScreenPadding,
+      padding: .fixed(
+        EdgeInsets.fromLTRB(
+          _kToolbarScreenPadding,
+          paddingAbove,
+          _kToolbarScreenPadding,
+          _kToolbarScreenPadding,
+        ),
       ),
       child: CustomSingleChildLayout(
         delegate: DesktopTextSelectionToolbarLayoutDelegate(anchor: anchor - localAdjustment),

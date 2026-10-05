@@ -25,6 +25,7 @@ import 'debug.dart';
 import 'focus_manager.dart';
 import 'inherited_model.dart';
 import 'notification_listener.dart';
+import 'reactive_props.dart';
 import 'widget_inspector.dart';
 
 export 'package:flutter/foundation.dart'
@@ -508,7 +509,7 @@ abstract class Widget extends DiagnosticableTree {
 ///
 ///   @override
 ///   Widget build(BuildContext context) {
-///     return ColoredBox(color: color, child: child);
+///     return ColoredBox(color: .fixed(color), child: child);
 ///   }
 /// }
 /// ```
@@ -7074,6 +7075,7 @@ abstract class RenderObjectElement extends Element {
     assert(slot == newSlot);
     attachRenderObject(newSlot);
     super.performRebuild(); // clears the "dirty" flag
+    _bindReactiveProps();
   }
 
   @override
@@ -7114,6 +7116,25 @@ abstract class RenderObjectElement extends Element {
       return true;
     }());
     super.performRebuild(); // clears the "dirty" flag
+    // Also covers an inherited widget changing: anything bindProps read from
+    // this element's context has to be read again.
+    _bindReactiveProps();
+  }
+
+  /// The binder for this element's reactive properties. Created the first
+  /// time the widget is a [ReactiveRenderObjectWidget] with a reactive
+  /// property, so an element whose properties are all fixed never has one.
+  PropBinder? _propBinder;
+
+  void _bindReactiveProps() {
+    final Widget widget = this.widget;
+    if (widget is! ReactiveRenderObjectWidget) {
+      return;
+    }
+    if (_propBinder == null && !widget.hasReactiveProps) {
+      return;
+    }
+    (_propBinder ??= PropBinder(this, reactiveOwner)).bindAll(widget, renderObject);
   }
 
   @override

@@ -205,8 +205,8 @@ class RComponent extends RNode {
 
 /// Fills its bounds with a reactive colour, then paints its child.
 ///
-/// The collapsed-model twin of `ReactiveColoredBox`, and it reuses that
-/// widget's render object.
+/// The collapsed-model counterpart of a [ColoredBox] bound to a signal. It
+/// paints with [RenderReactiveColoredBox].
 class RBox extends RSingleChildNode {
   /// Creates a node that fills its bounds with [color].
   RBox({required this.color, super.child}) {
