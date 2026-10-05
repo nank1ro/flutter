@@ -23,7 +23,6 @@
 // because a node has no BuildContext to read a DefaultTextStyle from; the
 // other three variants merge the same ambient style.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/reactive_nodes.dart';
 import 'package:flutter/rendering.dart';

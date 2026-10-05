@@ -22,7 +22,6 @@
 //   classic  Positioned > RepaintBoundary > (Reactive)ColoredBox
 //   collapsed  RPositioned > RRepaintBoundary > RBox
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/reactive_nodes.dart';
 import 'package:flutter_test/flutter_test.dart';

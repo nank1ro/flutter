@@ -866,7 +866,7 @@ void _flushOrSchedule() {
 ///
 /// ```dart
 /// final Signal<double> fade = Signal<double>(1);
-/// final Computed<double> half = Computed<double>((double? previous) => fade.value / 2);
+/// final Computed<double> half = Computed<double>(() => fade.value / 2);
 ///
 /// const ReadonlySignal<double> fixed = .fixed(0.5);
 /// final ReadonlySignal<double> bound = fade;
@@ -1017,18 +1017,33 @@ final class Signal<T> extends ReactiveNode implements ReadonlySignal<T> {
 /// One created outside any scope, and reading a signal that outlives it, must
 /// be released with [dispose].
 ///
-/// If [compute] throws, the exception propagates to the reader and the value
-/// is left dirty, so the next read tries again rather than caching a
+/// If the computation throws, the exception propagates to the reader and the
+/// value is left dirty, so the next read tries again rather than caching a
 /// half-built result.
 ///
 /// ```dart
 /// final Signal<int> count = Signal<int>(2);
-/// final Computed<int> doubled = Computed<int>((int? _) => count.value * 2);
+/// final Computed<int> doubled = Computed<int>(() => count.value * 2);
 /// print(doubled.value); // 4
 /// ```
 final class Computed<T> extends ReactiveNode implements ReadonlySignal<T> {
   /// Creates a computed value from [compute].
-  Computed(T Function(T? previous) compute) : _compute = compute, super(flags: _Flags.none) {
+  Computed(T Function() compute) : this.withPrevious((T? previous) => compute());
+
+  /// Creates a computed value from [compute], which is passed the value it
+  /// returned last time, or null on the first run.
+  ///
+  /// This is for a value that accumulates, such as a running maximum:
+  ///
+  /// ```dart
+  /// final Signal<int> level = Signal<int>(0);
+  /// final Computed<int> peak = Computed<int>.withPrevious(
+  ///   (int? previous) => math.max(previous ?? 0, level.value),
+  /// );
+  /// ```
+  Computed.withPrevious(T Function(T? previous) compute)
+    : _compute = compute,
+      super(flags: _Flags.none) {
     final ReactiveNode? scope = _currentScope;
     if (scope != null) {
       _nextOwnedComputed = scope._ownedComputeds;

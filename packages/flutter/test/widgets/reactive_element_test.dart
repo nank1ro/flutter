@@ -72,7 +72,7 @@ void main() {
     final a = Signal<int>(1);
     final b = Signal<int>(10);
     var computations = 0;
-    final sum = Computed<int>((int? _) {
+    final sum = Computed<int>(() {
       computations += 1;
       return a.value + b.value;
     });
@@ -539,8 +539,8 @@ void main() {
 
   testWidgets('a computed chain reaches two elements independently', (WidgetTester tester) async {
     final source = Signal<int>(0);
-    final isEven = Computed<bool>((bool? _) => source.value.isEven);
-    final doubled = Computed<int>((int? _) => source.value * 2);
+    final isEven = Computed<bool>(() => source.value.isEven);
+    final doubled = Computed<int>(() => source.value * 2);
     addTearDown(isEven.dispose);
     addTearDown(doubled.dispose);
 
@@ -854,7 +854,7 @@ void main() {
       Builder(
         builder: (BuildContext context) {
           rebuild.value;
-          captured = Computed<int>((int? _) => base.value * 2);
+          captured = Computed<int>(() => base.value * 2);
           return Text('${captured.value}', textDirection: TextDirection.ltr);
         },
       ),

@@ -7,7 +7,6 @@
 // tests assert both halves of that — the property really did change, and the
 // build counters really are zero.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 // `Link` is intentionally not exported from `foundation.dart`; the graph
 // internals these tests inspect come from the source file directly.

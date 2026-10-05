@@ -6,7 +6,6 @@
 // prototype: `opacity` takes a Signal, a Computed, or a const `.fixed(value)`,
 // and only the reactive forms create a binding.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 // The graph internals these tests inspect are not exported from
 // `foundation.dart`; they come from the source file directly.
@@ -90,7 +89,7 @@ void main() {
 
   testWidgets('a computed works the same way', (WidgetTester tester) async {
     final fade = Signal<double>(1);
-    final half = Computed<double>((double? previous) => fade.value / 2);
+    final half = Computed<double>(() => fade.value / 2);
 
     await tester.pumpWidget(Opacity(opacity: half, child: const SizedBox(width: 10)));
     expect(_opacityOf(tester), 0.5);

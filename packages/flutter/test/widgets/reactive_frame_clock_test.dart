@@ -6,7 +6,6 @@
 // runs, that pausing stops them, and that a frame's worth of writes produces
 // exactly one effect flush.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 

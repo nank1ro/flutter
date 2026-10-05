@@ -29,7 +29,7 @@ void main() {
   test('computed derives and caches', () {
     final count = Signal<int>(2);
     var computations = 0;
-    final doubled = Computed<int>((int? previous) {
+    final doubled = Computed<int>(() {
       computations += 1;
       return count.value * 2;
     });
@@ -44,7 +44,7 @@ void main() {
   test('computed receives the previous value', () {
     final count = Signal<int>(1);
     final seen = <int?>[];
-    final sum = Computed<int>((int? previous) {
+    final sum = Computed<int>.withPrevious((int? previous) {
       seen.add(previous);
       return (previous ?? 0) + count.value;
     });
@@ -81,8 +81,8 @@ void main() {
 
   test('diamond dependency is glitch-free', () {
     final source = Signal<int>(1);
-    final left = Computed<int>((int? _) => source.value * 2);
-    final right = Computed<int>((int? _) => source.value + 10);
+    final left = Computed<int>(() => source.value * 2);
+    final right = Computed<int>(() => source.value + 10);
     final seen = <int>[];
     Effect(() => seen.add(left.value + right.value));
     expect(seen, <int>[13]);
@@ -95,7 +95,7 @@ void main() {
 
   test('an unchanged computed does not re-run its subscribers', () {
     final count = Signal<int>(1);
-    final isPositive = Computed<bool>((bool? _) => count.value > 0);
+    final isPositive = Computed<bool>(() => count.value > 0);
     var runs = 0;
     Effect(() {
       isPositive.value;
@@ -150,7 +150,7 @@ void main() {
   test('peek does not subscribe', () {
     final tracked = Signal<int>(0);
     final hidden = Signal<int>(0);
-    final hiddenPlusOne = Computed<int>((int? _) => hidden.value + 1);
+    final hiddenPlusOne = Computed<int>(() => hidden.value + 1);
     var runs = 0;
     Effect(() {
       tracked.value;
@@ -278,7 +278,7 @@ void main() {
   test('a computed is not recomputed while nothing observes it', () {
     final count = Signal<int>(0);
     var computations = 0;
-    final doubled = Computed<int>((int? _) {
+    final doubled = Computed<int>(() {
       computations += 1;
       return count.value * 2;
     });
@@ -405,7 +405,7 @@ void main() {
     final source = Signal<int>(1);
     var fail = true;
     var computations = 0;
-    final derived = Computed<int>((int? _) {
+    final derived = Computed<int>(() {
       computations += 1;
       if (fail) {
         throw StateError('compute failed');
@@ -546,7 +546,7 @@ void main() {
     late final Computed<int> doubled;
     final seen = <int>[];
     owner.run(() {
-      doubled = Computed<int>((int? _) => count.value * 2);
+      doubled = Computed<int>(() => count.value * 2);
       Effect(() => seen.add(doubled.value));
     });
     expect(seen, <int>[0]);
@@ -561,7 +561,7 @@ void main() {
 
   test('disposing a computed releases the long-lived signal it reads', () {
     final count = Signal<int>(0);
-    final doubled = Computed<int>((int? _) => count.value * 2);
+    final doubled = Computed<int>(() => count.value * 2);
     expect(doubled.peek, 0);
     expect(count.subs, isNotNull);
 
@@ -643,7 +643,7 @@ void main() {
   test('a disposed computed still reads the current value, uncached', () {
     final count = Signal<int>(1);
     var computations = 0;
-    final doubled = Computed<int>((int? _) {
+    final doubled = Computed<int>(() {
       computations += 1;
       return count.value * 2;
     });
@@ -757,7 +757,7 @@ void main() {
   test('a computed that recomputes to an equal value does not propagate', () {
     final count = Signal<int>(1);
     // Interpolation builds a new string every run, equal but never identical.
-    final label = Computed<String>((String? _) => 'positive=${count.value > 0}');
+    final label = Computed<String>(() => 'positive=${count.value > 0}');
     var runs = 0;
     final effect = Effect(() {
       label.value;

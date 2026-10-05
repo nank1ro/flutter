@@ -29,7 +29,6 @@
 // the shape: the best-practice baseline adds a StatefulElement per sprite,
 // Phase 2 a StatelessElement, Phase 3 and Phase 5 none.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/reactive_nodes.dart';
 import 'package:flutter_test/flutter_test.dart';

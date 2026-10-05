@@ -17,7 +17,6 @@
 // that model has. Element counts therefore differ between the models by
 // design: the point of the collapsed model is that there are none.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/reactive_nodes.dart';
 import 'package:flutter/rendering.dart';

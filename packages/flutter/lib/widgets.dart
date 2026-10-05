@@ -15,7 +15,17 @@ library widgets;
 export 'package:characters/characters.dart';
 export 'package:vector_math/vector_math_64.dart' show Matrix4;
 
-export 'foundation.dart' show Brightness, UniqueKey;
+export 'foundation.dart'
+    show
+        Brightness,
+        Computed,
+        Effect,
+        FixedSignal,
+        ReadonlySignal,
+        Signal,
+        UniqueKey,
+        batch,
+        untracked;
 export 'rendering.dart' show TextSelectionHandleType;
 export 'src/widgets/actions.dart';
 export 'src/widgets/adapter.dart';
