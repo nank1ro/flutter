@@ -528,7 +528,7 @@ class _PredictiveBackSharedElementPageTransitionState
               ),
             },
             child: Opacity(
-              opacity: _opacityTween.evaluate(_commitAnimation),
+              opacity: .fixed(_opacityTween.evaluate(_commitAnimation)),
               child: ClipRRect(
                 borderRadius:
                     MediaQuery.displayCornerRadiiOf(context) ??
@@ -668,9 +668,11 @@ class _PredictiveBackFullscreenPageTransitionState
             ? _secondaryScaleTweenCurrent.evaluate(widget.secondaryAnimation)
             : _secondaryTweenScale.evaluate(widget.secondaryAnimation),
         child: Opacity(
-          opacity: isCurrent
-              ? _secondaryOpacityTweenCurrent.evaluate(widget.secondaryAnimation)
-              : _secondaryOpacityTween.evaluate(widget.secondaryAnimation),
+          opacity: .fixed(
+            isCurrent
+                ? _secondaryOpacityTweenCurrent.evaluate(widget.secondaryAnimation)
+                : _secondaryOpacityTween.evaluate(widget.secondaryAnimation),
+          ),
           child: child,
         ),
       ),
@@ -684,7 +686,7 @@ class _PredictiveBackFullscreenPageTransitionState
         scale: _primaryScaleTween.evaluate(widget.animation),
         // A slight change in opacity before reaching the commit point.
         child: Opacity(
-          opacity: _primaryOpacityTween.evaluate(widget.animation),
+          opacity: .fixed(_primaryOpacityTween.evaluate(widget.animation)),
           // A sudden fadeout at the commit point, driven by time and not the
           // gesture.
           child: AnimatedOpacity(

@@ -15,9 +15,11 @@ library;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 
-import '../widgets/reactive_widgets.dart' show Prop, RenderReactiveColoredBox, RenderReactiveOffset;
+import '../widgets/reactive_props.dart' show Prop;
+import '../widgets/reactive_widgets.dart' show RenderReactiveColoredBox, RenderReactiveOffset;
 
-export '../widgets/reactive_widgets.dart' show Prop, RenderReactiveColoredBox, RenderReactiveOffset;
+export '../widgets/reactive_props.dart' show Prop;
+export '../widgets/reactive_widgets.dart' show RenderReactiveColoredBox, RenderReactiveOffset;
 
 /// A component: a function that builds a node tree, run exactly once.
 ///

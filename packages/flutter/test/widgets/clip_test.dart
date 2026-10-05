@@ -200,7 +200,7 @@ void main() {
   testWidgets('Transparent ClipOval hit test', (WidgetTester tester) async {
     await tester.pumpWidget(
       Opacity(
-        opacity: 0.0,
+        opacity: const .fixed(0.0),
         child: ClipOval(
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,

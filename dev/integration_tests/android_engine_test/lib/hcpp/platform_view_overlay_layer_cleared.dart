@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
                         child: SizedBox.square(
                           dimension: 275,
                           child: Opacity(
-                            opacity: 0.5,
+                            opacity: .fixed(0.5),
                             child: Texture(
                               // Intentionally use an unknown texture ID: this
                               // results a black rectangle which is good enough

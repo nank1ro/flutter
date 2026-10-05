@@ -114,7 +114,7 @@ class ExampleDragSource extends StatelessWidget {
       ),
     );
 
-    Widget feedback = Opacity(opacity: 0.75, child: contents);
+    Widget feedback = Opacity(opacity: const .fixed(0.75), child: contents);
 
     Offset feedbackOffset;
     DragAnchorStrategy dragAnchorStrategy;

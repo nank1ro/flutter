@@ -90,7 +90,7 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         home: Scaffold(
           body: Opacity(
-            opacity: 0.9,
+            opacity: const .fixed(0.9),
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
@@ -142,7 +142,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: Opacity(
-            opacity: 0.9,
+            opacity: const .fixed(0.9),
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[

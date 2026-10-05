@@ -676,7 +676,7 @@ void main() {
     );
 
     expect(find.byType(Opacity), findsOneWidget);
-    expect(tester.widget<Opacity>(find.byType(Opacity).first).opacity, 0.5);
+    expect(tester.widget<Opacity>(find.byType(Opacity).first).opacity.value, 0.5);
   });
 
   testWidgets('Switch is using track color when set', (WidgetTester tester) async {
@@ -814,7 +814,7 @@ void main() {
     );
 
     expect(find.byType(Opacity), findsOneWidget);
-    expect(tester.widget<Opacity>(find.byType(Opacity).first).opacity, 1.0);
+    expect(tester.widget<Opacity>(find.byType(Opacity).first).opacity.value, 1.0);
   });
 
   testWidgets('Switch turns translucent after becoming disabled', (WidgetTester tester) async {
@@ -845,7 +845,7 @@ void main() {
     );
 
     expect(find.byType(Opacity), findsOneWidget);
-    expect(tester.widget<Opacity>(find.byType(Opacity).first).opacity, 0.5);
+    expect(tester.widget<Opacity>(find.byType(Opacity).first).opacity.value, 0.5);
   });
 
   testWidgets('Switch turns opaque after becoming enabled', (WidgetTester tester) async {
@@ -876,7 +876,7 @@ void main() {
     );
 
     expect(find.byType(Opacity), findsOneWidget);
-    expect(tester.widget<Opacity>(find.byType(Opacity).first).opacity, 1.0);
+    expect(tester.widget<Opacity>(find.byType(Opacity).first).opacity.value, 1.0);
   });
 
   testWidgets('Switch renders correctly before, during, and after being tapped', (

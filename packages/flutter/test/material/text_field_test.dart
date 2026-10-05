@@ -1209,7 +1209,7 @@ void main() {
               child: SizedBox.square(
                 dimension: 100.0,
                 child: Opacity(
-                  opacity: 0.5,
+                  opacity: .fixed(0.5),
                   child: TextField(decoration: InputDecoration(hintText: 'Placeholder')),
                 ),
               ),
@@ -18011,7 +18011,7 @@ void main() {
               child: SizedBox.square(
                 dimension: 100.0,
                 child: Opacity(
-                  opacity: 0.5,
+                  opacity: const .fixed(0.5),
                   child: TextField(
                     autofocus: true,
                     focusNode: focusNode,
@@ -18045,7 +18045,7 @@ void main() {
               child: SizedBox.square(
                 dimension: 100.0,
                 child: Opacity(
-                  opacity: 0.5,
+                  opacity: const .fixed(0.5),
                   child: TextField(
                     autofocus: true,
                     focusNode: focusNode,
@@ -18083,7 +18083,7 @@ void main() {
                 child: SizedBox.square(
                   dimension: 100.0,
                   child: Opacity(
-                    opacity: 0.5,
+                    opacity: const .fixed(0.5),
                     child: TextField(
                       controller: controller,
                       focusNode: focusNode,
@@ -18139,7 +18139,7 @@ void main() {
               child: SizedBox.square(
                 dimension: 100.0,
                 child: Opacity(
-                  opacity: 0.5,
+                  opacity: const .fixed(0.5),
                   child: TextField(
                     autofocus: true,
                     focusNode: focusNode,

@@ -2422,7 +2422,7 @@ class _CancelButton extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Opacity(
-          opacity: opacity,
+          opacity: .fixed(opacity),
           child: CupertinoButton(
             padding: EdgeInsets.zero,
             onPressed: onPressed,

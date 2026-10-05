@@ -1468,7 +1468,7 @@ class _RefreshProgressIndicatorState extends _CircularProgressIndicatorState {
             child: Padding(
               padding: widget.indicatorPadding,
               child: Opacity(
-                opacity: opacity,
+                opacity: .fixed(opacity),
                 child: Transform.rotate(
                   angle: rotation,
                   child: CustomPaint(

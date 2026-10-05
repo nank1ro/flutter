@@ -856,6 +856,55 @@ void _flushOrSchedule() {
 // Public API.
 // ---------------------------------------------------------------------------
 
+/// A reactive value that can be read: a [Signal], a [Computed], or a fixed
+/// value.
+///
+/// This is the type a widget property declares when it can follow a reactive
+/// value. A plain value is passed as a const [ReadonlySignal.fixed], which
+/// reads naturally through a dot shorthand and keeps the enclosing widget
+/// `const`:
+///
+/// ```dart
+/// final Signal<double> fade = Signal<double>(1);
+/// final Computed<double> half = Computed<double>((double? previous) => fade.value / 2);
+///
+/// const ReadonlySignal<double> fixed = .fixed(0.5);
+/// final ReadonlySignal<double> bound = fade;
+/// final ReadonlySignal<double> derived = half;
+/// ```
+abstract interface class ReadonlySignal<T> {
+  /// A value that never changes, and so is never subscribed to.
+  const factory ReadonlySignal.fixed(T value) = FixedSignal<T>;
+
+  /// The current value, subscribing the enclosing tracked scope.
+  T get value;
+
+  /// The current value, without subscribing.
+  T get peek;
+
+  /// Identical to reading [value].
+  T call();
+}
+
+/// A [ReadonlySignal] whose value never changes.
+///
+/// It is not part of the reactive graph: reading it subscribes nothing, so a
+/// consumer that sees one can skip setting up a subscription altogether.
+/// Usually written as `.fixed(value)` where a [ReadonlySignal] is expected.
+final class FixedSignal<T> implements ReadonlySignal<T> {
+  /// Creates a fixed value.
+  const FixedSignal(this.value);
+
+  @override
+  final T value;
+
+  @override
+  T get peek => value;
+
+  @override
+  T call() => value;
+}
+
 /// A mutable reactive value.
 ///
 /// Reading [value] inside a tracked scope, such as an [Effect] callback or a
@@ -873,7 +922,7 @@ void _flushOrSchedule() {
 /// Effect(() => print('count is ${count.value}'));
 /// count.value += 1; // prints 'count is 1'
 /// ```
-final class Signal<T> extends ReactiveNode {
+final class Signal<T> extends ReactiveNode implements ReadonlySignal<T> {
   /// Creates a signal holding [initialValue].
   Signal(T initialValue)
     : _currentValue = initialValue,
@@ -885,6 +934,7 @@ final class Signal<T> extends ReactiveNode {
 
   /// The current value, subscribing the enclosing tracked scope if there is
   /// one.
+  @override
   T get value {
     if ((flags & _Flags.dirty) != _Flags.none) {
       if (_update()) {
@@ -920,6 +970,7 @@ final class Signal<T> extends ReactiveNode {
   }
 
   /// The current value, without subscribing.
+  @override
   T get peek {
     if ((flags & _Flags.dirty) != _Flags.none) {
       if (_update()) {
@@ -937,6 +988,7 @@ final class Signal<T> extends ReactiveNode {
   /// Identical to reading [value]. It exists so that a signal can be passed
   /// straight to anything that expects a reactive property of type
   /// `T Function()`, instead of `() => signal.value`.
+  @override
   T call() => value;
 
   @override
@@ -974,7 +1026,7 @@ final class Signal<T> extends ReactiveNode {
 /// final Computed<int> doubled = Computed<int>((int? _) => count.value * 2);
 /// print(doubled.value); // 4
 /// ```
-final class Computed<T> extends ReactiveNode {
+final class Computed<T> extends ReactiveNode implements ReadonlySignal<T> {
   /// Creates a computed value from [compute].
   Computed(T Function(T? previous) compute) : _compute = compute, super(flags: _Flags.none) {
     final ReactiveNode? scope = _currentScope;
@@ -996,6 +1048,7 @@ final class Computed<T> extends ReactiveNode {
 
   /// The current value, recomputing first if a dependency changed, and
   /// subscribing the enclosing tracked scope if there is one.
+  @override
   T get value {
     final T result = _evaluate();
     final ReactiveNode? sub = _activeSub;
@@ -1010,11 +1063,13 @@ final class Computed<T> extends ReactiveNode {
   }
 
   /// The current value, without subscribing.
+  @override
   T get peek => _evaluate();
 
   /// The current value, subscribing the enclosing tracked scope.
   ///
   /// Identical to reading [value]; see [Signal.call].
+  @override
   T call() => value;
 
   T _evaluate() {

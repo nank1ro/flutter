@@ -422,7 +422,7 @@ double _labelOpacity(WidgetTester tester, String text) {
   final Opacity opacityWidget = tester.widget<Opacity>(
     find.ancestor(of: find.text(text), matching: find.byType(Opacity)),
   );
-  return opacityWidget.opacity;
+  return opacityWidget.opacity.value;
 }
 
 EdgeInsetsGeometry _getLabelPadding(WidgetTester tester, String text) {

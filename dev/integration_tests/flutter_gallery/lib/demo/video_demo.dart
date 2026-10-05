@@ -232,7 +232,7 @@ class _FadeAnimationState extends State<FadeAnimation> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return animationController.isAnimating
-        ? Opacity(opacity: 1.0 - animationController.value, child: widget.child)
+        ? Opacity(opacity: .fixed(1.0 - animationController.value), child: widget.child)
         : Container();
   }
 }

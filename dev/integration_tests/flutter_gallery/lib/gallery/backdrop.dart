@@ -100,11 +100,11 @@ class _CrossFadeTransition extends AnimatedWidget {
       alignment: alignment,
       children: <Widget>[
         Opacity(
-          opacity: opacity1,
+          opacity: .fixed(opacity1),
           child: Semantics(scopesRoute: true, explicitChildNodes: true, child: child1),
         ),
         Opacity(
-          opacity: opacity2,
+          opacity: .fixed(opacity2),
           child: Semantics(scopesRoute: true, explicitChildNodes: true, child: child0),
         ),
       ],

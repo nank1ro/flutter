@@ -276,7 +276,7 @@ class _NavigationRailHeader extends StatelessWidget {
                             alignment: AlignmentDirectional.centerStart,
                             widthFactor: animation.value,
                             child: Opacity(
-                              opacity: animation.value,
+                              opacity: .fixed(animation.value),
                               child: Text(
                                 'REPLY',
                                 style: textTheme.bodyLarge!.copyWith(color: ReplyColors.white50),
@@ -289,7 +289,7 @@ class _NavigationRailHeader extends StatelessWidget {
                     ),
                     if (animation.value > 0)
                       Opacity(
-                        opacity: animation.value,
+                        opacity: .fixed(animation.value),
                         child: const Row(
                           children: <Widget>[
                             SizedBox(width: 18),
@@ -336,7 +336,7 @@ class _NavigationRailFolderSection extends StatelessWidget {
           maintainState: true,
           visible: animation.value > 0,
           child: Opacity(
-            opacity: animation.value,
+            opacity: .fixed(animation.value),
             child: Align(
               widthFactor: animation.value,
               alignment: AlignmentDirectional.centerStart,

@@ -55,7 +55,7 @@ class _RasterCacheUseMemoryState extends State<RasterCacheUseMemory> with Ticker
             },
             blendMode: BlendMode.srcATop,
             child: Opacity(
-              opacity: 0.5,
+              opacity: const .fixed(0.5),
               child: Column(
                 children: <Widget>[
                   ImageFiltered(

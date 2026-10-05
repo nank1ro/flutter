@@ -820,7 +820,7 @@ void main() {
           child: Builder(
             builder: (BuildContext context) {
               return Opacity(
-                opacity: .5,
+                opacity: const .fixed(.5),
                 child: Builder(
                   builder: (BuildContext context) {
                     assert(false);

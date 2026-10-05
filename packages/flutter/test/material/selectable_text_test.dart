@@ -529,7 +529,7 @@ void main() {
           body: Center(
             child: SizedBox.square(
               dimension: 100.0,
-              child: Opacity(opacity: 0.5, child: SelectableText('selectable text')),
+              child: Opacity(opacity: .fixed(0.5), child: SelectableText('selectable text')),
             ),
           ),
         ),

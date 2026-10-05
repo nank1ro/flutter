@@ -525,7 +525,7 @@ class RawMagnifier extends StatelessWidget {
         ClipPath.shape(
           shape: decoration.shape,
           child: Opacity(
-            opacity: decoration.opacity,
+            opacity: .fixed(decoration.opacity),
             child: _Magnifier(
               focalPointOffset: focalPointOffset,
               magnificationScale: magnificationScale,
@@ -538,7 +538,7 @@ class RawMagnifier extends StatelessWidget {
         // from seeing its own styling.
         IgnorePointer(
           child: Opacity(
-            opacity: decoration.opacity,
+            opacity: .fixed(decoration.opacity),
             child: ClipPath(
               clipBehavior: clipBehavior,
               clipper: _NegativeClip(shape: decoration.shape),

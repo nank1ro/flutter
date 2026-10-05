@@ -122,7 +122,7 @@ class Background extends StatelessWidget {
       child: FractionalTranslation(
         translation: const Offset(-0.5, -0.5),
         child: Opacity(
-          opacity: opacity,
+          opacity: .fixed(opacity),
           child: Container(
             height: radius * 2,
             width: radius * 2,
@@ -193,7 +193,7 @@ class Content extends StatelessWidget {
       width: position.right - position.left,
       top: position.top,
       child: Opacity(
-        opacity: opacity,
+        opacity: .fixed(opacity),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -249,7 +249,7 @@ class Ripple extends StatelessWidget {
       child: FractionalTranslation(
         translation: const Offset(-0.5, -0.5),
         child: Opacity(
-          opacity: opacity,
+          opacity: .fixed(opacity),
           child: Container(
             height: radius * 2,
             width: radius * 2,
@@ -301,7 +301,7 @@ class TapTarget extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: Opacity(
-            opacity: opacity,
+            opacity: .fixed(opacity),
             child: Container(
               height: radius * 2,
               width: radius * 2,

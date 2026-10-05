@@ -202,7 +202,7 @@ class _CategoryHeader extends StatelessWidget {
                   ),
                 ),
                 Opacity(
-                  opacity: chevronOpacity,
+                  opacity: .fixed(chevronOpacity),
                   child: chevronOpacity != 0
                       ? Padding(
                           padding: const EdgeInsetsDirectional.only(start: 8, end: 32),

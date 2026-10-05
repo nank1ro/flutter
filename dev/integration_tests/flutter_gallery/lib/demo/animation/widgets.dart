@@ -62,7 +62,7 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return IgnorePointer(
       child: Opacity(
-        opacity: opacity,
+        opacity: .fixed(opacity),
         child: Transform(
           transform: Matrix4.identity()..scale(scale),
           alignment: Alignment.center,

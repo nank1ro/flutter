@@ -1760,7 +1760,7 @@ class _SearchBarState extends State<SearchBar> {
     return ConstrainedBox(
       constraints: widget.constraints ?? searchBarTheme.constraints ?? defaults.constraints!,
       child: Opacity(
-        opacity: widget.enabled ? 1 : _kDisableSearchBarOpacity,
+        opacity: .fixed(widget.enabled ? 1 : _kDisableSearchBarOpacity),
         child: Material(
           elevation: effectiveElevation!,
           shadowColor: effectiveShadowColor,

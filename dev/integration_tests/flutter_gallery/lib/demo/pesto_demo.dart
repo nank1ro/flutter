@@ -239,7 +239,7 @@ class _PestoLogoState extends State<PestoLogo> {
               Positioned.fromRect(
                 rect: _textRectTween.lerp(widget.t!)!,
                 child: Opacity(
-                  opacity: _textOpacity.transform(widget.t!),
+                  opacity: .fixed(_textOpacity.transform(widget.t!)),
                   child: Text('PESTO', style: titleStyle, textAlign: TextAlign.center),
                 ),
               ),

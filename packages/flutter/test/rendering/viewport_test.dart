@@ -2028,7 +2028,7 @@ void main() {
                 // make it easily discernible if the viewport is not being
                 // clipped properly.
                 Opacity(
-                  opacity: 0.5,
+                  opacity: const .fixed(0.5),
                   child: Container(height: 100, color: const Color(0xFF00B0FF)),
                 ),
                 Container(
@@ -2043,7 +2043,7 @@ void main() {
                   ),
                 ),
                 Opacity(
-                  opacity: 0.5,
+                  opacity: const .fixed(0.5),
                   child: Container(height: 100, color: const Color(0xFF00B0FF)),
                 ),
               ],

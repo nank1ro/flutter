@@ -49,8 +49,8 @@ void main() {
             segments: const <ButtonSegment<int>>[
               ButtonSegment<int>(
                 value: 0,
-                label: Opacity(opacity: 0.5, child: Text('option')),
-                icon: Opacity(opacity: 0.5, child: Icon(Icons.add)),
+                label: Opacity(opacity: .fixed(0.5), child: Text('option')),
+                icon: Opacity(opacity: .fixed(0.5), child: Icon(Icons.add)),
               ),
             ],
             selected: const <int>{0},

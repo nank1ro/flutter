@@ -25,6 +25,7 @@ import 'framework.dart';
 import 'indexed_stack.dart';
 import 'localizations.dart';
 import 'media_query.dart';
+import 'reactive_props.dart';
 import 'view.dart';
 import 'widget_span.dart';
 
@@ -257,7 +258,7 @@ class Directionality extends _UbiquitousInheritedWidget {
 ///
 /// ```dart
 /// Opacity(
-///   opacity: _visible ? 1.0 : 0.0,
+///   opacity: .fixed(_visible ? 1.0 : 0.0),
 ///   child: const Text("Now you see me, now you don't!"),
 /// )
 /// ```
@@ -333,16 +334,16 @@ class Directionality extends _UbiquitousInheritedWidget {
 ///  * [Transform], which applies an arbitrary transform to its child widget at
 ///    paint time.
 ///  * [SliverOpacity], the sliver version of this widget.
-class Opacity extends SingleChildRenderObjectWidget {
+class Opacity extends SingleChildRenderObjectWidget with ReactiveRenderObjectWidget {
   /// Creates a widget that makes its child partially transparent.
   ///
-  /// The [opacity] argument must be between zero and one, inclusive.
+  /// The [opacity] must stay between zero and one, inclusive.
   const Opacity({
     super.key,
     required this.opacity,
     this.alwaysIncludeSemantics = false,
     super.child,
-  }) : assert(opacity >= 0.0 && opacity <= 1.0);
+  });
 
   /// The fraction to scale the child's alpha value.
   ///
@@ -351,7 +352,28 @@ class Opacity extends SingleChildRenderObjectWidget {
   ///
   /// Values one and zero are painted with a fast path. Other values require
   /// painting the child into an intermediate buffer, which is expensive.
-  final double opacity;
+  ///
+  /// A fixed value keeps the widget `const` and costs no subscription. A
+  /// [Signal] or [Computed] binds the render object to that value, so a write
+  /// to it repaints without rebuilding this widget or marking any element
+  /// dirty:
+  ///
+  /// ```dart
+  /// final Signal<double> fade = Signal<double>(1);
+  ///
+  /// Widget build(BuildContext context) {
+  ///   return Column(
+  ///     children: <Widget>[
+  ///       const Opacity(opacity: .fixed(0.5), child: Text('Fixed')),
+  ///       Opacity(opacity: fade, child: const Text('Bound')),
+  ///     ],
+  ///   );
+  /// }
+  /// ```
+  ///
+  /// After `fade.value = 0.25` the second child repaints, and nothing
+  /// rebuilds.
+  final ReadonlySignal<double> opacity;
 
   /// Whether the semantic information of the children is always included.
   ///
@@ -364,21 +386,35 @@ class Opacity extends SingleChildRenderObjectWidget {
   final bool alwaysIncludeSemantics;
 
   @override
+  bool get hasReactiveProps => opacity is! FixedSignal<double>;
+
+  @override
+  ReactiveSingleChildRenderObjectElement createElement() =>
+      ReactiveSingleChildRenderObjectElement(this);
+
+  @override
   RenderOpacity createRenderObject(BuildContext context) {
-    return RenderOpacity(opacity: opacity, alwaysIncludeSemantics: alwaysIncludeSemantics);
+    return RenderOpacity(opacity: opacity.peek, alwaysIncludeSemantics: alwaysIncludeSemantics);
   }
 
   @override
   void updateRenderObject(BuildContext context, RenderOpacity renderObject) {
-    renderObject
-      ..opacity = opacity
-      ..alwaysIncludeSemantics = alwaysIncludeSemantics;
+    renderObject.alwaysIncludeSemantics = alwaysIncludeSemantics;
+    if (opacity case FixedSignal<double>(:final double value)) {
+      // A reactive value is written by its binding instead, in [bindProps].
+      renderObject.opacity = value;
+    }
+  }
+
+  @override
+  void bindProps(PropBinder binder, RenderOpacity renderObject) {
+    binder.bind<double>(opacity, (double value) => renderObject.opacity = value);
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DoubleProperty('opacity', opacity));
+    properties.add(DoubleProperty('opacity', opacity.peek));
     properties.add(
       FlagProperty(
         'alwaysIncludeSemantics',

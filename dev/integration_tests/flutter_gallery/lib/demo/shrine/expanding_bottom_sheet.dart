@@ -249,7 +249,7 @@ class ExpandingBottomSheetState extends State<ExpandingBottomSheet> with TickerP
   Widget _buildThumbnails(int numProducts) {
     return ExcludeSemantics(
       child: Opacity(
-        opacity: _thumbnailOpacityAnimation.value,
+        opacity: .fixed(_thumbnailOpacityAnimation.value),
         child: Column(
           children: <Widget>[
             Row(
@@ -276,7 +276,7 @@ class ExpandingBottomSheetState extends State<ExpandingBottomSheet> with TickerP
   }
 
   Widget _buildShoppingCartPage() {
-    return Opacity(opacity: _cartOpacityAnimation.value, child: const ShoppingCartPage());
+    return Opacity(opacity: .fixed(_cartOpacityAnimation.value), child: const ShoppingCartPage());
   }
 
   Widget _buildCart(BuildContext context, Widget? child) {

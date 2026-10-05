@@ -283,7 +283,7 @@ void main() {
                 colorFilter: ColorFilter.mode(Color(0xFFFF0000), BlendMode.color),
                 child: Placeholder(),
               ),
-              const Opacity(opacity: 0.9, child: Placeholder()),
+              const Opacity(opacity: .fixed(0.9), child: Placeholder()),
               ImageFiltered(
                 imageFilter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                 child: const Placeholder(),

@@ -408,12 +408,12 @@ class ExpandingBottomSheetState extends State<ExpandingBottomSheet> {
     }
 
     return ExcludeSemantics(
-      child: Opacity(opacity: _thumbnailOpacityAnimation.value, child: thumbnails),
+      child: Opacity(opacity: .fixed(_thumbnailOpacityAnimation.value), child: thumbnails),
     );
   }
 
   Widget _buildShoppingCartPage() {
-    return Opacity(opacity: _cartOpacityAnimation.value, child: const ShoppingCartPage());
+    return Opacity(opacity: .fixed(_cartOpacityAnimation.value), child: const ShoppingCartPage());
   }
 
   Widget _buildCart(BuildContext context) {

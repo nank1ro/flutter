@@ -3382,7 +3382,7 @@ void main() {
     );
     expect(opacityFinder, findsOneWidget);
     final Opacity opacityWidget = tester.widget<Opacity>(opacityFinder);
-    expect(opacityWidget.opacity, 0.38);
+    expect(opacityWidget.opacity.value, 0.38);
   });
 
   testWidgets('Check SearchAnchor opacity when disabled', (WidgetTester tester) async {

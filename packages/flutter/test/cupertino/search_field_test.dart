@@ -639,13 +639,15 @@ void main() {
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       equals(1.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: suffixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       equals(1.0),
     );
     // The default placeholder color is semi-transparent.
@@ -664,25 +666,29 @@ void main() {
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       greaterThan(0.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       lessThan(1.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: suffixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       greaterThan(0.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: suffixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       lessThan(1.0),
     );
     expect(tester.widget<Text>(placeholderFinder).style?.color?.a, greaterThan(0.0));
@@ -699,13 +705,15 @@ void main() {
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       equals(0.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: suffixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       equals(0.0),
     );
     expect(tester.widget<Text>(placeholderFinder).style?.color?.a, equals(0.0));
@@ -820,7 +828,8 @@ void main() {
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       lessThan(1.0),
     );
   });

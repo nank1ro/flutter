@@ -113,12 +113,12 @@ void main() {
     Opacity opacityWidget = tester.widget<Opacity>(
       find.ancestor(of: find.text('Title'), matching: find.byType(Opacity)).first,
     );
-    expect(opacityWidget.opacity.round(), equals(1));
+    expect(opacityWidget.opacity.value.round(), equals(1));
     await slowDrag(tester, blockKey, const Offset(0.0, 100.0));
     opacityWidget = tester.widget<Opacity>(
       find.ancestor(of: find.text('Title'), matching: find.byType(Opacity)).first,
     );
-    expect(opacityWidget.opacity, equals(0.0));
+    expect(opacityWidget.opacity.value, equals(0.0));
   });
 
   testWidgets('FlexibleSpaceBar stretch mode ignored for non-overscroll physics', (

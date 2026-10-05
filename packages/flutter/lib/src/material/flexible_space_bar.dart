@@ -310,7 +310,7 @@ class _FlexibleSpaceBarState extends State<FlexibleSpaceBar> {
               constraints.maxHeight > settings.maxExtent) {
             final double stretchOpacity =
                 1 - clampDouble((constraints.maxHeight - settings.maxExtent) / 100, 0.0, 1.0);
-            title = Opacity(opacity: stretchOpacity, child: title);
+            title = Opacity(opacity: .fixed(stretchOpacity), child: title);
           }
 
           final double opacity = settings.toolbarOpacity;

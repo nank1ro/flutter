@@ -56,7 +56,7 @@ class _OpacityWrappedMainAppState extends State<_OpacityWrappedMainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Opacity(
-        opacity: opacity,
+        opacity: .fixed(opacity),
         child: ColoredBox(
           color: Colors.white,
           child: Stack(

@@ -29,7 +29,7 @@ class _PlaceholderDigit extends StatelessWidget {
         });
 
     return Opacity(
-      opacity: 0,
+      opacity: .fixed(0),
       child: Stack(children: placeholderDigits.toList()),
     );
   }

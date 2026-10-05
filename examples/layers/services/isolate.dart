@@ -225,7 +225,7 @@ class IsolateExampleState extends State<StatefulWidget> with SingleTickerProvide
             child: Container(width: 120.0, height: 120.0, color: const Color(0xFF882222)),
           ),
           Opacity(
-            opacity: _calculationManager.isRunning ? 1.0 : 0.0,
+            opacity: .fixed(_calculationManager.isRunning ? 1.0 : 0.0),
             child: CircularProgressIndicator(value: _progress),
           ),
           Text(_status),

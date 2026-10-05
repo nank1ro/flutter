@@ -1427,7 +1427,7 @@ void main() {
                   },
                 ),
               ),
-              Opacity(opacity: 0.5, child: Container(color: const Color(0xD0FF0000), height: 100)),
+              Opacity(opacity: const .fixed(0.5), child: Container(color: const Color(0xD0FF0000), height: 100)),
             ],
           ),
         );

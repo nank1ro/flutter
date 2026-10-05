@@ -1742,7 +1742,7 @@ void main() {
     // Regression test for https://github.com/flutter/flutter/issues/85108.
     await tester.pumpWidget(
       const Opacity(
-        opacity: 1.0,
+        opacity: .fixed(1.0),
         child: Text(
           'Hello World',
           textDirection: TextDirection.ltr,
@@ -1759,7 +1759,7 @@ void main() {
     //  case, for hit-testing.
     await tester.pumpWidget(
       const Opacity(
-        opacity: 0.0,
+        opacity: .fixed(0.0),
         child: Text(
           'Hello World',
           textDirection: TextDirection.ltr,

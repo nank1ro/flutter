@@ -22,7 +22,10 @@ void main() {
 
     // Opacity 1.0: Semantics and painting
     await tester.pumpWidget(
-      const Opacity(opacity: 1.0, child: Text('a', textDirection: TextDirection.rtl)),
+      const Opacity(
+        opacity: .fixed(1.0),
+        child: Text('a', textDirection: TextDirection.rtl),
+      ),
     );
     expect(
       semantics,
@@ -43,7 +46,10 @@ void main() {
 
     // Opacity 0.0: Nothing
     await tester.pumpWidget(
-      const Opacity(opacity: 0.0, child: Text('a', textDirection: TextDirection.rtl)),
+      const Opacity(
+        opacity: .fixed(0.0),
+        child: Text('a', textDirection: TextDirection.rtl),
+      ),
     );
     expect(semantics, hasSemantics(TestSemantics.root()));
     expect(find.byType(Opacity), paintsNothing);
@@ -51,7 +57,7 @@ void main() {
     // Opacity 0.0 with semantics: Just semantics
     await tester.pumpWidget(
       const Opacity(
-        opacity: 0.0,
+        opacity: .fixed(0.0),
         alwaysIncludeSemantics: true,
         child: Text('a', textDirection: TextDirection.rtl),
       ),
@@ -75,14 +81,20 @@ void main() {
 
     // Opacity 0.0 without semantics: Nothing
     await tester.pumpWidget(
-      const Opacity(opacity: 0.0, child: Text('a', textDirection: TextDirection.rtl)),
+      const Opacity(
+        opacity: .fixed(0.0),
+        child: Text('a', textDirection: TextDirection.rtl),
+      ),
     );
     expect(semantics, hasSemantics(TestSemantics.root()));
     expect(find.byType(Opacity), paintsNothing);
 
     // Opacity 0.1: Semantics and painting
     await tester.pumpWidget(
-      const Opacity(opacity: 0.1, child: Text('a', textDirection: TextDirection.rtl)),
+      const Opacity(
+        opacity: .fixed(0.1),
+        child: Text('a', textDirection: TextDirection.rtl),
+      ),
     );
     expect(
       semantics,
@@ -103,7 +115,10 @@ void main() {
 
     // Opacity 0.1 without semantics: Still has semantics and painting
     await tester.pumpWidget(
-      const Opacity(opacity: 0.1, child: Text('a', textDirection: TextDirection.rtl)),
+      const Opacity(
+        opacity: .fixed(0.1),
+        child: Text('a', textDirection: TextDirection.rtl),
+      ),
     );
     expect(
       semantics,
@@ -125,7 +140,7 @@ void main() {
     // Opacity 0.1 with semantics: Semantics and painting
     await tester.pumpWidget(
       const Opacity(
-        opacity: 0.1,
+        opacity: .fixed(0.1),
         alwaysIncludeSemantics: true,
         child: Text('a', textDirection: TextDirection.rtl),
       ),
@@ -159,7 +174,7 @@ void main() {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: List<Widget>.generate(10, (int index) {
                 return const Opacity(
-                  opacity: 0.5,
+                  opacity: .fixed(0.5),
                   child: Padding(
                     padding: EdgeInsets.all(5.0),
                     child: ColoredBox(color: Color(0xFF0000FF), child: SizedBox(height: 50)),
@@ -178,7 +193,11 @@ void main() {
   });
 
   testWidgets('empty opacity does not crash', (WidgetTester tester) async {
-    await tester.pumpWidget(RepaintBoundary(child: Opacity(opacity: 0.5, child: Container())));
+    await tester.pumpWidget(
+      RepaintBoundary(
+        child: Opacity(opacity: const .fixed(0.5), child: Container()),
+      ),
+    );
     final Element element = find.byType(RepaintBoundary).first.evaluate().single;
     // The following line will send the layer to engine and cause crash if an
     // empty opacity layer is sent.
@@ -203,7 +222,7 @@ void main() {
                 top: 40,
                 left: 140,
                 child: Opacity(
-                  opacity: .5,
+                  opacity: .fixed(.5),
                   child: ColoredBox(
                     color: Color(0xFFFF0000),
                     child: SizedBox(height: 100, width: 100),

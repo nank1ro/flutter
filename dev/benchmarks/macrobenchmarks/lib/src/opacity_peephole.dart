@@ -79,7 +79,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'One Big Rectangle',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: Container(
           width: 300,
           height: 400,
@@ -98,7 +98,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
         children: <Widget>[
           for (int i = 0; i < 10; i++, v = 1 - v)
             Opacity(
-              opacity: _opacity(v),
+              opacity: .fixed(_opacity(v)),
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: Container(
@@ -120,7 +120,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
       // ChildV starts as a constant so the same color pattern always appears and the child will be cached
       double childV = 0;
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: RepaintBoundary(
           child: SizedBox(
             width: 300,
@@ -147,7 +147,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'Opacity of Column',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -184,7 +184,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
               children: <Widget>[
                 for (int j = 0; j < 7; j++, colV = 1 - colV)
                   Opacity(
-                    opacity: _opacity(colV),
+                    opacity: .fixed(_opacity(colV)),
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Container(
@@ -209,7 +209,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
       var rowV = v;
       var colV = rowV;
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: SizedBox(
           width: 300,
           height: 400,
@@ -241,7 +241,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
       var rowV = v;
       var colV = v;
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -293,7 +293,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'Grid of Rectangles with alpha',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: SizedBox.expand(
           child: CustomPaint(
             painter: RectGridPainter((Canvas canvas, Size size) {
@@ -328,7 +328,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'Grid of alpha SaveLayers of Rectangles',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: SizedBox.expand(
           child: CustomPaint(
             painter: RectGridPainter((Canvas canvas, Size size) {
@@ -367,7 +367,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'Grid with alpha SaveLayer on Rows',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: SizedBox.expand(
           child: CustomPaint(
             painter: RectGridPainter((Canvas canvas, Size size) {

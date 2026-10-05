@@ -760,7 +760,7 @@ class _CupertinoSwitchState extends State<CupertinoSwitch>
         onHorizontalDragEnd: _handleDragEnd,
         dragStartBehavior: widget.dragStartBehavior,
         child: Opacity(
-          opacity: onChanged == null ? _kDisabledOpacity : 1,
+          opacity: .fixed(onChanged == null ? _kDisabledOpacity : 1),
           child: buildToggleable(
             mouseCursor: effectiveMouseCursor,
             focusNode: widget.focusNode,

@@ -209,7 +209,7 @@ class _CupertinoExpansionTileState extends State<CupertinoExpansionTile> {
       children: <Widget>[
         header,
         if (animation.isAnimating && widget.transitionMode == ExpansionTileTransitionMode.fade)
-          Opacity(opacity: 0.0, child: body)
+          Opacity(opacity: const .fixed(0.0), child: body)
         else
           body,
       ],
