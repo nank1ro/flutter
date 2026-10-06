@@ -49,7 +49,7 @@ class MotionEventsBodyState extends State<MotionEventsBody> {
     return Column(
       children: <Widget>[
         SizedBox(
-          height: 300.0,
+          height: const FixedSignal(300.0),
           child: AndroidPlatformView(
             key: const ValueKey<String>('PlatformView'),
             viewType: 'simple_view',

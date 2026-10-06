@@ -1312,7 +1312,7 @@ class _CupertinoTextFieldState extends State<CupertinoTextField>
         key: _clearGlobalKey,
         onTap: widget.enabled ? _onClearButtonTapped : null,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6.0),
+          padding: const .fixed(EdgeInsets.symmetric(horizontal: 6.0)),
           child: Icon(
             CupertinoIcons.clear_thick_circled,
             size: 18.0,
@@ -1350,9 +1350,9 @@ class _CupertinoTextFieldState extends State<CupertinoTextField>
                 maintainState: true,
                 visible: !hasText,
                 child: SizedBox(
-                  width: double.infinity,
+                  width: const .fixed(double.infinity),
                   child: Padding(
-                    padding: widget.padding,
+                    padding: .fixed(widget.padding),
                     child: Text(
                       placeholderText,
                       // This is to make sure the text field is always tall enough
@@ -1561,7 +1561,7 @@ class _CupertinoTextFieldState extends State<CupertinoTextField>
         CupertinoTextField.inferIOSSpellCheckConfiguration(widget.spellCheckConfiguration);
 
     final Widget paddedEditable = Padding(
-      padding: widget.padding,
+      padding: .fixed(widget.padding),
       child: RepaintBoundary(
         child: UnmanagedRestorationScope(
           bucket: bucket,

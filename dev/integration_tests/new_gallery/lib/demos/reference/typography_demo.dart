@@ -18,10 +18,13 @@ class _TextStyleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      padding: const .fixed(EdgeInsets.symmetric(horizontal: 8, vertical: 16)),
       child: Row(
         children: <Widget>[
-          SizedBox(width: 72, child: Text(name, style: Theme.of(context).textTheme.bodySmall)),
+          SizedBox(
+            width: const .fixed(72),
+            child: Text(name, style: Theme.of(context).textTheme.bodySmall),
+          ),
           Expanded(child: Text(text, style: style)),
         ],
       ),

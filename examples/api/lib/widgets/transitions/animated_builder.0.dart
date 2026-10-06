@@ -53,7 +53,7 @@ class _AnimatedBuilderExampleState extends State<AnimatedBuilderExample>
       ),
       builder: (BuildContext context, Widget? child) {
         return Transform.rotate(
-          angle: _controller.value * 2.0 * math.pi,
+          angle: .fixed(_controller.value * 2.0 * math.pi),
           child: child,
         );
       },

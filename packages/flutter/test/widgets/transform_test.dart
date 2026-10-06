@@ -32,9 +32,9 @@ void main() {
               top: 100.0,
               left: 100.0,
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform(
-                  transform: Matrix4.diagonal3Values(0.5, 0.5, 1.0),
+                  transform: .fixed(Matrix4.diagonal3Values(0.5, 0.5, 1.0)),
                   origin: const Offset(100.0, 50.0),
                   child: GestureDetector(
                     onTap: () {
@@ -73,9 +73,9 @@ void main() {
               top: 100.0,
               left: 100.0,
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform(
-                  transform: Matrix4.diagonal3Values(0.5, 0.5, 1.0),
+                  transform: .fixed(Matrix4.diagonal3Values(0.5, 0.5, 1.0)),
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
                     onTap: () {
@@ -115,9 +115,9 @@ void main() {
               top: 100.0,
               left: 100.0,
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform(
-                  transform: Matrix4.diagonal3Values(0.5, 0.5, 1.0),
+                  transform: .fixed(Matrix4.diagonal3Values(0.5, 0.5, 1.0)),
                   alignment: alignment,
                   child: GestureDetector(
                     onTap: () {
@@ -178,9 +178,9 @@ void main() {
               top: 100.0,
               left: 100.0,
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform(
-                  transform: Matrix4.diagonal3Values(0.5, 0.5, 1.0),
+                  transform: .fixed(Matrix4.diagonal3Values(0.5, 0.5, 1.0)),
                   origin: const Offset(100.0, 0.0),
                   alignment: Alignment.centerLeft,
                   child: GestureDetector(
@@ -208,11 +208,11 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox(
-          width: 400.0,
-          height: 300.0,
+          width: const .fixed(400.0),
+          height: const .fixed(300.0),
           child: ClipRect(
             child: Transform(
-              transform: Matrix4.diagonal3Values(0.5, 0.5, 1.0),
+              transform: .fixed(Matrix4.diagonal3Values(0.5, 0.5, 1.0)),
               child: RepaintBoundary(child: Container(color: const Color(0xFF00FF00))),
             ),
           ),
@@ -231,7 +231,7 @@ void main() {
   testWidgets('Transform.rotate', (WidgetTester tester) async {
     await tester.pumpWidget(
       Transform.rotate(
-        angle: math.pi / 2.0,
+        angle: const .fixed(math.pi / 2.0),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -264,9 +264,9 @@ void main() {
   testWidgets('applyPaintTransform of Transform in Padding', (WidgetTester tester) async {
     await tester.pumpWidget(
       Padding(
-        padding: const EdgeInsets.only(left: 30.0, top: 20.0, right: 50.0, bottom: 70.0),
+        padding: const .fixed(EdgeInsets.only(left: 30.0, top: 20.0, right: 50.0, bottom: 70.0)),
         child: Transform(
-          transform: Matrix4.diagonal3Values(2.0, 2.0, 2.0),
+          transform: .fixed(Matrix4.diagonal3Values(2.0, 2.0, 2.0)),
           child: const Placeholder(),
         ),
       ),
@@ -277,7 +277,7 @@ void main() {
   testWidgets('Transform.translate', (WidgetTester tester) async {
     await tester.pumpWidget(
       Transform.translate(
-        offset: const Offset(100.0, 50.0),
+        offset: const .fixed(Offset(100.0, 50.0)),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -290,7 +290,10 @@ void main() {
 
   testWidgets('Transform.scale', (WidgetTester tester) async {
     await tester.pumpWidget(
-      Transform.scale(scale: 2.0, child: RepaintBoundary(child: Container())),
+      Transform.scale(
+        scale: const .fixed(2.0),
+        child: RepaintBoundary(child: Container()),
+      ),
     );
 
     final List<Layer> layers = tester.layers..retainWhere((Layer layer) => layer is TransformLayer);
@@ -310,7 +313,7 @@ void main() {
   testWidgets('Transform with nan value short-circuits rendering', (WidgetTester tester) async {
     await tester.pumpWidget(
       Transform(
-        transform: Matrix4.identity()..storage[0] = double.nan,
+        transform: .fixed(Matrix4.identity()..storage[0] = double.nan),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -321,7 +324,7 @@ void main() {
   testWidgets('Transform with inf value short-circuits rendering', (WidgetTester tester) async {
     await tester.pumpWidget(
       Transform(
-        transform: Matrix4.identity()..storage[0] = double.infinity,
+        transform: .fixed(Matrix4.identity()..storage[0] = double.infinity),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -332,7 +335,7 @@ void main() {
   testWidgets('Transform with -inf value short-circuits rendering', (WidgetTester tester) async {
     await tester.pumpWidget(
       Transform(
-        transform: Matrix4.identity()..storage[0] = double.negativeInfinity,
+        transform: .fixed(Matrix4.identity()..storage[0] = double.negativeInfinity),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -345,7 +348,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.rotate(
-        angle: math.pi / 2,
+        angle: const .fixed(math.pi / 2),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -358,7 +361,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.rotate(
-        angle: math.pi / 2,
+        angle: const .fixed(math.pi / 2),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -393,7 +396,7 @@ void main() {
 
     await tester.pumpWidget(
       Transform.rotate(
-        angle: math.pi,
+        angle: const .fixed(math.pi),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -428,7 +431,7 @@ void main() {
 
     await tester.pumpWidget(
       Transform.rotate(
-        angle: 3 * math.pi / 2,
+        angle: const .fixed(3 * math.pi / 2),
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -461,7 +464,12 @@ void main() {
       ),
     );
 
-    await tester.pumpWidget(Transform.rotate(angle: 0, child: RepaintBoundary(child: Container())));
+    await tester.pumpWidget(
+      Transform.rotate(
+        angle: const .fixed(0),
+        child: RepaintBoundary(child: Container()),
+      ),
+    );
 
     // No transform layer created
     expect(tester.layers[1], isA<OffsetLayer>());
@@ -470,26 +478,35 @@ void main() {
 
   testWidgets('Transform.scale with 0.0 does not paint child layers', (WidgetTester tester) async {
     await tester.pumpWidget(
-      Transform.scale(scale: 0.0, child: RepaintBoundary(child: Container())),
+      Transform.scale(
+        scale: const .fixed(0.0),
+        child: RepaintBoundary(child: Container()),
+      ),
     );
 
     expect(tester.layers, hasLength(1)); // root transform layer
 
     await tester.pumpWidget(
-      Transform.scale(scaleX: 0.0, child: RepaintBoundary(child: Container())),
-    );
-
-    expect(tester.layers, hasLength(1));
-
-    await tester.pumpWidget(
-      Transform.scale(scaleY: 0.0, child: RepaintBoundary(child: Container())),
+      Transform.scale(
+        scaleX: const .fixed(0.0),
+        child: RepaintBoundary(child: Container()),
+      ),
     );
 
     expect(tester.layers, hasLength(1));
 
     await tester.pumpWidget(
       Transform.scale(
-        scale: 0.01, // small but non-zero
+        scaleY: const .fixed(0.0),
+        child: RepaintBoundary(child: Container()),
+      ),
+    );
+
+    expect(tester.layers, hasLength(1));
+
+    await tester.pumpWidget(
+      Transform.scale(
+        scale: const .fixed(0.01), // small but non-zero
         child: RepaintBoundary(child: Container()),
       ),
     );
@@ -502,9 +519,9 @@ void main() {
     var pointerDown = false;
     await tester.pumpWidget(
       Transform.translate(
-        offset: const Offset(100.0, 50.0),
+        offset: const .fixed(Offset(100.0, 50.0)),
         child: Transform.translate(
-          offset: const Offset(1000.0, 1000.0),
+          offset: const .fixed(Offset(1000.0, 1000.0)),
           child: Listener(
             onPointerDown: (PointerDownEvent event) {
               pointerDown = true;
@@ -522,10 +539,12 @@ void main() {
   Widget generateTransform(bool needsCompositing, double angle) {
     final Widget customPaint = CustomPaint(painter: TestRectPainter());
     return Transform(
-      transform: MatrixUtils.createCylindricalProjectionTransform(
-        radius: 100,
-        angle: angle,
-        perspective: 0.003,
+      transform: .fixed(
+        MatrixUtils.createCylindricalProjectionTransform(
+          radius: 100,
+          angle: angle,
+          perspective: 0.003,
+        ),
       ),
       // A RepaintBoundary child forces the Transform to needsCompositing
       child: needsCompositing ? RepaintBoundary(child: customPaint) : customPaint,
@@ -562,9 +581,9 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.translate(
-        offset: const Offset(25.0, 25.0),
+        offset: const .fixed(Offset(25.0, 25.0)),
         filterQuality: FilterQuality.low,
-        child: const SizedBox(width: 100, height: 100),
+        child: const SizedBox(width: .fixed(100), height: .fixed(100)),
       ),
     );
     expect(tester.layers.whereType<ImageFilterLayer>().length, 1);
@@ -594,9 +613,9 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.scale(
-        scale: 3.14159,
+        scale: const .fixed(3.14159),
         filterQuality: FilterQuality.low,
-        child: const SizedBox(width: 100, height: 100),
+        child: const SizedBox(width: .fixed(100), height: .fixed(100)),
       ),
     );
     expect(tester.layers.whereType<ImageFilterLayer>().length, 1);
@@ -626,9 +645,9 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.rotate(
-        angle: math.pi / 4,
+        angle: const .fixed(math.pi / 4),
         filterQuality: FilterQuality.low,
-        child: const SizedBox(width: 100, height: 100),
+        child: const SizedBox(width: .fixed(100), height: .fixed(100)),
       ),
     );
     expect(tester.layers.whereType<ImageFilterLayer>().length, 1);
@@ -658,12 +677,12 @@ void main() {
   ) async {
     await tester.pumpWidget(
       SizedBox.square(
-        dimension: 400,
+        dimension: const .fixed(400),
         child: Center(
           child: Transform.rotate(
-            angle: math.pi / 4,
+            angle: const .fixed(math.pi / 4),
             filterQuality: FilterQuality.low,
-            child: const SizedBox.square(dimension: 100),
+            child: const SizedBox.square(dimension: .fixed(100)),
           ),
         ),
       ),
@@ -695,26 +714,31 @@ void main() {
   ) async {
     await tester.pumpWidget(
       Transform.rotate(
-        angle: math.pi / 4,
+        angle: const .fixed(math.pi / 4),
         filterQuality: FilterQuality.low,
-        child: const SizedBox(width: 100, height: 100),
+        child: const SizedBox(width: .fixed(100), height: .fixed(100)),
       ),
     );
     expect(tester.layers.whereType<ImageFilterLayer>(), hasLength(1));
 
     await tester.pumpWidget(
-      Transform.rotate(angle: math.pi / 4, child: const SizedBox(width: 100, height: 100)),
+      Transform.rotate(
+        angle: const .fixed(math.pi / 4),
+        child: const SizedBox(width: .fixed(100), height: .fixed(100)),
+      ),
     );
     expect(tester.layers.whereType<ImageFilterLayer>(), isEmpty);
 
-    await tester.pumpWidget(Transform.rotate(angle: math.pi / 4, filterQuality: FilterQuality.low));
+    await tester.pumpWidget(
+      Transform.rotate(angle: const .fixed(math.pi / 4), filterQuality: FilterQuality.low),
+    );
     expect(tester.layers.whereType<ImageFilterLayer>(), isEmpty);
 
     await tester.pumpWidget(
       Transform.rotate(
-        angle: math.pi / 4,
+        angle: const .fixed(math.pi / 4),
         filterQuality: FilterQuality.low,
-        child: const SizedBox(width: 100, height: 100),
+        child: const SizedBox(width: .fixed(100), height: .fixed(100)),
       ),
     );
     expect(tester.layers.whereType<ImageFilterLayer>(), hasLength(1));
@@ -728,39 +752,39 @@ void main() {
           crossAxisCount: 3,
           children: <Widget>[
             Transform.rotate(
-              angle: math.pi / 6,
+              angle: const .fixed(math.pi / 6),
               child: Center(
                 child: Container(width: 100, height: 20, color: const Color(0xffffff00)),
               ),
             ),
             Transform.scale(
-              scale: 1.5,
+              scale: const .fixed(1.5),
               child: Center(
                 child: Container(width: 100, height: 20, color: const Color(0xffffff00)),
               ),
             ),
             Transform.translate(
-              offset: const Offset(20.0, 60.0),
+              offset: const .fixed(Offset(20.0, 60.0)),
               child: Center(
                 child: Container(width: 100, height: 20, color: const Color(0xffffff00)),
               ),
             ),
             Transform.rotate(
-              angle: math.pi / 6,
+              angle: const .fixed(math.pi / 6),
               filterQuality: FilterQuality.low,
               child: Center(
                 child: Container(width: 100, height: 20, color: const Color(0xff00ff00)),
               ),
             ),
             Transform.scale(
-              scale: 1.5,
+              scale: const .fixed(1.5),
               filterQuality: FilterQuality.low,
               child: Center(
                 child: Container(width: 100, height: 20, color: const Color(0xff00ff00)),
               ),
             ),
             Transform.translate(
-              offset: const Offset(20.0, 60.0),
+              offset: const .fixed(Offset(20.0, 60.0)),
               filterQuality: FilterQuality.low,
               child: Center(
                 child: Container(width: 100, height: 20, color: const Color(0xff00ff00)),
@@ -785,10 +809,10 @@ void main() {
             textDirection: TextDirection.ltr,
             child: Center(
               child: Transform.scale(
-                scale: 1.0,
-                scaleX: 1.0,
-                scaleY: 1.0,
-                child: const SizedBox(height: 100, width: 100),
+                scale: const .fixed(1.0),
+                scaleX: const .fixed(1.0),
+                scaleY: const .fixed(1.0),
+                child: const SizedBox(height: .fixed(100), width: .fixed(100)),
               ),
             ),
           ),
@@ -804,7 +828,11 @@ void main() {
         tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
-            child: Center(child: Transform.scale(child: const SizedBox(height: 100, width: 100))),
+            child: Center(
+              child: Transform.scale(
+                child: const SizedBox(height: .fixed(100), width: .fixed(100)),
+              ),
+            ),
           ),
         );
       }, throwsAssertionError);
@@ -821,10 +849,10 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox.square(
-          dimension: 400,
+          dimension: const .fixed(400),
           child: Center(
             child: Transform.scale(
-              scale: scale,
+              scale: const .fixed(scale),
               child: Container(height: height, width: width, decoration: const BoxDecoration()),
             ),
           ),
@@ -851,11 +879,11 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox.square(
-          dimension: 400,
+          dimension: const .fixed(400),
           child: Center(
             child: Transform.scale(
-              scaleX: scaleX,
-              scaleY: scaleY,
+              scaleX: const .fixed(scaleX),
+              scaleY: const .fixed(scaleY),
               child: Container(height: height, width: width, decoration: const BoxDecoration()),
             ),
           ),
@@ -878,7 +906,7 @@ void main() {
 
     var tappedRed = false;
 
-    const Widget square = SizedBox.square(dimension: 40);
+    const Widget square = SizedBox.square(dimension: .fixed(40));
     final Widget child = Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -887,16 +915,16 @@ void main() {
           children: <Widget>[
             GestureDetector(
               onTap: () => tappedRed = true,
-              child: const ColoredBox(color: Color(0xffff0000), child: square),
+              child: const ColoredBox(color: .fixed(Color(0xffff0000)), child: square),
             ),
-            const ColoredBox(color: Color(0xff00ff00), child: square),
+            const ColoredBox(color: .fixed(Color(0xff00ff00)), child: square),
           ],
         ),
         const Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ColoredBox(color: Color(0xff0000ff), child: square),
-            ColoredBox(color: Color(0xffeeff00), child: square),
+            ColoredBox(color: .fixed(Color(0xff0000ff)), child: square),
+            ColoredBox(color: .fixed(Color(0xffeeff00)), child: square),
           ],
         ),
       ],
@@ -907,7 +935,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Align(
           alignment: Alignment.topLeft,
-          child: Transform.flip(flipX: true, child: child),
+          child: Transform.flip(flipX: const .fixed(true), child: child),
         ),
       ),
     );
@@ -925,7 +953,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Align(
           alignment: Alignment.topLeft,
-          child: Transform.flip(flipY: true, child: child),
+          child: Transform.flip(flipY: const .fixed(true), child: child),
         ),
       ),
     );
@@ -943,7 +971,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Align(
           alignment: Alignment.topLeft,
-          child: Transform.flip(flipX: true, flipY: true, child: child),
+          child: Transform.flip(flipX: const .fixed(true), flipY: const .fixed(true), child: child),
         ),
       ),
     );
@@ -961,7 +989,9 @@ void main() {
     await tester.pumpWidget(
       Directionality(
         textDirection: TextDirection.ltr,
-        child: Center(child: Transform.flip(flipY: true, child: const Placeholder())),
+        child: Center(
+          child: Transform.flip(flipY: const .fixed(true), child: const Placeholder()),
+        ),
       ),
     );
     expect(tester.getSize(find.byType(Transform)), Size.zero);

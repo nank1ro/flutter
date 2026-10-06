@@ -183,7 +183,7 @@ class RootPage extends StatelessWidget {
               },
               child: const Text('Push /list'),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             ElevatedButton(
               style: buttonStyle,
               onPressed: () {
@@ -195,7 +195,7 @@ class RootPage extends StatelessWidget {
               },
               child: const Text('Local Dialog'),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             ElevatedButton(
               style: buttonStyle,
               onPressed: () {
@@ -208,7 +208,7 @@ class RootPage extends StatelessWidget {
               },
               child: const Text('Root Dialog'),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             Builder(
               builder: (BuildContext context) {
                 return ElevatedButton(
@@ -272,7 +272,7 @@ class ListPage extends StatelessWidget {
           itemCount: itemCount,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const .symmetric(vertical: 4, horizontal: 8),
+              padding: const .fixed(.symmetric(vertical: 4, horizontal: 8)),
               child: OutlinedButton(
                 style: buttonStyle.copyWith(
                   backgroundColor: WidgetStatePropertyAll<Color>(

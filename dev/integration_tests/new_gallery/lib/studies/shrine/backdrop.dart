@@ -83,7 +83,7 @@ class _BackdropTitle extends AnimatedWidget {
         ? slantedMenuIcon
         : Transform(
             alignment: Alignment.center,
-            transform: Matrix4.rotationY(pi),
+            transform: .fixed(Matrix4.rotationY(pi)),
             child: slantedMenuIcon,
           );
 
@@ -101,7 +101,7 @@ class _BackdropTitle extends AnimatedWidget {
         children: <Widget>[
           // branded icon
           SizedBox(
-            width: 72,
+            width: const .fixed(72),
             child: Semantics(
               container: true,
               child: IconButton(
@@ -110,7 +110,7 @@ class _BackdropTitle extends AnimatedWidget {
                 tooltip: menuButtonTooltip,
                 icon: Stack(
                   children: <Widget>[
-                    Opacity(opacity: animation.value, child: directionalSlantedMenuIcon),
+                    Opacity(opacity: .fixed(animation.value), child: directionalSlantedMenuIcon),
                     FractionalTranslation(
                       translation: Tween<Offset>(
                         begin: Offset.zero,
@@ -128,10 +128,12 @@ class _BackdropTitle extends AnimatedWidget {
           Stack(
             children: <Widget>[
               Opacity(
-                opacity: CurvedAnimation(
-                  parent: ReverseAnimation(animation),
-                  curve: const Interval(0.5, 1),
-                ).value,
+                opacity: .fixed(
+                  CurvedAnimation(
+                    parent: ReverseAnimation(animation),
+                    curve: const Interval(0.5, 1),
+                  ).value,
+                ),
                 child: FractionalTranslation(
                   translation: Tween<Offset>(
                     begin: Offset.zero,
@@ -141,7 +143,9 @@ class _BackdropTitle extends AnimatedWidget {
                 ),
               ),
               Opacity(
-                opacity: CurvedAnimation(parent: animation, curve: const Interval(0.5, 1)).value,
+                opacity: .fixed(
+                  CurvedAnimation(parent: animation, curve: const Interval(0.5, 1)).value,
+                ),
                 child: FractionalTranslation(
                   translation: Tween<Offset>(
                     begin: Offset(-0.25 * textDirectionScalar, 0),
@@ -342,8 +346,8 @@ class DesktopBackdrop extends StatelessWidget {
       children: <Widget>[
         backLayer,
         Padding(
-          padding: EdgeInsetsDirectional.only(
-            start: desktopCategoryMenuPageWidth(context: context),
+          padding: .fixed(
+            EdgeInsetsDirectional.only(start: desktopCategoryMenuPageWidth(context: context)),
           ),
           child: Material(elevation: 16, color: Colors.white, child: frontLayer),
         ),

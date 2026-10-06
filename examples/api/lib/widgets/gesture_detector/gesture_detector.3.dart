@@ -24,7 +24,7 @@ class DragBoundaryExampleAppState extends State<DragBoundaryExampleApp> {
     return MaterialApp(
       home: Scaffold(
         body: Padding(
-          padding: const .all(100),
+          padding: const .fixed(.all(100)),
           child: DragBoundary(
             child: Builder(
               builder: (BuildContext context) {

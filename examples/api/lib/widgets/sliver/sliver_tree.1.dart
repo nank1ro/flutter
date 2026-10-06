@@ -80,21 +80,23 @@ class _TreeSliverExampleState extends State<TreeSliverExample> {
       child: Row(
         children: <Widget>[
           // Custom indentation
-          SizedBox(width: 10.0 * node.depth! + 8.0),
+          SizedBox(width: .fixed(10.0 * node.depth! + 8.0)),
           DecoratedBox(
-            decoration: BoxDecoration(
-              border: node.parent != null
-                  ? Border(left: border, bottom: border)
-                  : null,
+            decoration: .fixed(
+              BoxDecoration(
+                border: node.parent != null
+                    ? Border(left: border, bottom: border)
+                    : null,
+              ),
             ),
-            child: const SizedBox(height: 50.0, width: 20.0),
+            child: const SizedBox(height: .fixed(50.0), width: .fixed(20.0)),
           ),
           // Leading icon for parent nodes
           if (isParentNode)
             DecoratedBox(
-              decoration: BoxDecoration(border: .all()),
+              decoration: .fixed(BoxDecoration(border: .all())),
               child: SizedBox.square(
-                dimension: 20.0,
+                dimension: .fixed(20.0),
                 child: Icon(
                   node.isExpanded ? Icons.remove : Icons.add,
                   size: 14,
@@ -102,7 +104,7 @@ class _TreeSliverExampleState extends State<TreeSliverExample> {
               ),
             ),
           // Spacer
-          const SizedBox(width: 8.0),
+          const SizedBox(width: .fixed(8.0)),
           // Content
           Text(node.content.toString()),
         ],
@@ -149,7 +151,7 @@ class _TreeSliverExampleState extends State<TreeSliverExample> {
               ? Icons.file_open_outlined
               : Icons.folder_outlined,
         ),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: .fixed(16.0)),
         Text(_selectedNode!.content),
         const Spacer(),
       ]);
@@ -158,15 +160,15 @@ class _TreeSliverExampleState extends State<TreeSliverExample> {
       body: Row(
         children: <Widget>[
           SizedBox(
-            width: screenWidth / 2,
-            height: double.infinity,
+            width: .fixed(screenWidth / 2),
+            height: .fixed(double.infinity),
             child: CustomScrollView(slivers: <Widget>[_getTree()]),
           ),
           DecoratedBox(
-            decoration: BoxDecoration(border: .all()),
+            decoration: .fixed(BoxDecoration(border: .all())),
             child: SizedBox(
-              width: screenWidth / 2,
-              height: double.infinity,
+              width: .fixed(screenWidth / 2),
+              height: .fixed(double.infinity),
               child: Center(child: Column(children: selectedChildren)),
             ),
           ),

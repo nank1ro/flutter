@@ -75,10 +75,10 @@ class _FadeTransitionExampleState extends State<FadeTransitionExample>
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.white,
+      color: .fixed(Colors.white),
       child: FadeTransition(
         opacity: _animation,
-        child: const Padding(padding: .all(8), child: FlutterLogo()),
+        child: const Padding(padding: .fixed(.all(8)), child: FlutterLogo()),
       ),
     );
   }

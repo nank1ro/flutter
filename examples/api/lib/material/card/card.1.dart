@@ -40,8 +40,8 @@ class CardExample extends StatelessWidget {
             debugPrint('Card tapped.');
           },
           child: const SizedBox(
-            width: 300,
-            height: 100,
+            width: .fixed(300),
+            height: .fixed(100),
             child: Text('A card that can be tapped'),
           ),
         ),

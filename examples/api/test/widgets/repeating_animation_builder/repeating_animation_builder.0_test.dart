@@ -20,7 +20,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 500));
     final Transform after = tester.widget(find.byType(Transform).first);
 
-    expect(initial.transform, isNot(equals(after.transform)));
+    expect(initial.transform.value, isNot(equals(after.transform.value)));
   });
 
   testWidgets('Play/pause button controls animation', (
@@ -42,7 +42,7 @@ void main() {
     final Transform paused = tester.widget(find.byType(Transform).first);
     await tester.pump(const Duration(milliseconds: 500));
     final Transform stillPaused = tester.widget(find.byType(Transform).first);
-    expect(paused.transform, equals(stillPaused.transform));
+    expect(paused.transform.value, equals(stillPaused.transform.value));
 
     // Resume animation
     await tester.tap(find.byType(InkWell).first);

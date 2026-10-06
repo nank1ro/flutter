@@ -36,7 +36,11 @@ class PlatformViewAppState extends State<PlatformViewApp> {
     return Align(
       alignment: Alignment.bottomCenter,
       // Use 320x50 Admob standard banner size.
-      child: SizedBox(width: 320, height: 50, child: AdWidget(ad: bannerAd)),
+      child: SizedBox(
+        width: const .fixed(320),
+        height: const .fixed(50),
+        child: AdWidget(ad: bannerAd),
+      ),
     );
   }
 

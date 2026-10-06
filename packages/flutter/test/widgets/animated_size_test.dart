@@ -24,7 +24,7 @@ void main() {
         const Center(
           child: AnimatedSize(
             duration: Duration(milliseconds: 200),
-            child: SizedBox(width: 100.0, height: 100.0),
+            child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -37,7 +37,7 @@ void main() {
         const Center(
           child: AnimatedSize(
             duration: Duration(milliseconds: 200),
-            child: SizedBox(width: 200.0, height: 200.0),
+            child: SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -60,7 +60,7 @@ void main() {
         const Center(
           child: AnimatedSize(
             duration: Duration(milliseconds: 200),
-            child: SizedBox(width: 100.0, height: 100.0),
+            child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -91,7 +91,7 @@ void main() {
           child: AnimatedSize(
             onEnd: handleEnd,
             duration: const Duration(milliseconds: 200),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -103,7 +103,7 @@ void main() {
           child: AnimatedSize(
             onEnd: handleEnd,
             duration: const Duration(milliseconds: 200),
-            child: const SizedBox(width: 200.0, height: 200.0),
+            child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
           ),
         ),
       );
@@ -117,7 +117,7 @@ void main() {
           child: AnimatedSize(
             onEnd: handleEnd,
             duration: const Duration(milliseconds: 200),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -130,10 +130,10 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox.square(
-            dimension: 100.0,
+            dimension: .fixed(100.0),
             child: AnimatedSize(
               duration: Duration(milliseconds: 200),
-              child: SizedBox.square(dimension: 100.0),
+              child: SizedBox.square(dimension: .fixed(100.0)),
             ),
           ),
         ),
@@ -147,10 +147,10 @@ void main() {
       await tester.pumpWidget(
         const Center(
           child: SizedBox.square(
-            dimension: 100.0,
+            dimension: .fixed(100.0),
             child: AnimatedSize(
               duration: Duration(milliseconds: 200),
-              child: SizedBox.square(dimension: 200.0),
+              child: SizedBox.square(dimension: .fixed(200.0)),
             ),
           ),
         ),
@@ -253,7 +253,7 @@ void main() {
         const Center(
           child: AnimatedSize(
             duration: Duration(milliseconds: 200),
-            child: SizedBox(width: 100.0, height: 100.0),
+            child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -262,7 +262,7 @@ void main() {
         const Center(
           child: AnimatedSize(
             duration: Duration(milliseconds: 200),
-            child: SizedBox(width: 200.0, height: 100.0),
+            child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -278,7 +278,7 @@ void main() {
         const Center(
           child: AnimatedSize(
             duration: Duration(milliseconds: 200),
-            child: SizedBox(width: 100.0, height: 100.0),
+            child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -298,7 +298,7 @@ void main() {
         const Center(
           child: AnimatedSize(
             duration: Duration(milliseconds: 200),
-            child: SizedBox(width: 100.0, height: 100.0),
+            child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -313,7 +313,7 @@ void main() {
             child: AnimatedSize(
               duration: const Duration(milliseconds: 200),
               clipBehavior: clip,
-              child: const SizedBox(width: 100.0, height: 100.0),
+              child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
             ),
           ),
         );
@@ -332,7 +332,7 @@ void main() {
                   AnimatedSize(
                     duration: const Duration(milliseconds: 200),
                     curve: Curves.easeInOutBack,
-                    child: SizedBox(width: size.width, height: size.height),
+                    child: SizedBox(width: .fixed(size.width), height: .fixed(size.height)),
                   ),
                 ],
               ),
@@ -394,14 +394,14 @@ void main() {
         // does not mark the descendant render objects below the relayout boundary
         // dirty.
         child: SizedBox.fromSize(
-          size: const Size.square(200),
+          size: const .fixed(Size.square(200)),
           child: Center(
             child: AnimatedSize(
               duration: const Duration(seconds: 1),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter stateSetter) {
                   setState = stateSetter;
-                  return SizedBox.fromSize(size: childSize);
+                  return SizedBox.fromSize(size: .fixed(childSize));
                 },
               ),
             ),
@@ -414,8 +414,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Row(
             children: <Widget>[
-              SizedBox(key: key1, height: 200, child: animatedSize),
-              const SizedBox(key: key2, height: 200),
+              SizedBox(key: key1, height: const .fixed(200), child: animatedSize),
+              const SizedBox(key: key2, height: .fixed(200)),
             ],
           ),
         ),
@@ -434,8 +434,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Row(
             children: <Widget>[
-              const SizedBox(key: key1, height: 200),
-              SizedBox(key: key2, height: 200, child: animatedSize),
+              const SizedBox(key: key1, height: .fixed(200)),
+              SizedBox(key: key2, height: const .fixed(200), child: animatedSize),
             ],
           ),
         ),
@@ -458,7 +458,7 @@ void main() {
         const Center(
           child: AnimatedSize(
             duration: Duration(milliseconds: 200),
-            child: SizedBox(width: 100.0, height: 100.0),
+            child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );

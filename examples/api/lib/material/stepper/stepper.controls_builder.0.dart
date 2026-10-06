@@ -43,8 +43,14 @@ class ControlsBuilderExample extends StatelessWidget {
         );
       },
       steps: const <Step>[
-        Step(title: Text('A'), content: SizedBox(width: 100.0, height: 100.0)),
-        Step(title: Text('B'), content: SizedBox(width: 100.0, height: 100.0)),
+        Step(
+          title: Text('A'),
+          content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+        ),
+        Step(
+          title: Text('B'),
+          content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+        ),
       ],
     );
   }

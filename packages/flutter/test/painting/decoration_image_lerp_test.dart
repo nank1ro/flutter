@@ -205,7 +205,7 @@ void main() {
 
       await tester.pumpWidget(
         ColoredBox(
-          color: _white,
+          color: const .fixed(_white),
           child: Align(
             alignment: Alignment.topLeft,
             child: RepaintBoundary(
@@ -595,7 +595,7 @@ void main() {
 
       await tester.pumpWidget(
         ColoredBox(
-          color: _white,
+          color: const .fixed(_white),
           child: Align(
             alignment: Alignment.topLeft,
             child: RepaintBoundary(
@@ -1119,7 +1119,7 @@ void main() {
 
       await tester.pumpWidget(
         ColoredBox(
-          color: _pink,
+          color: const .fixed(_pink),
           child: Align(
             alignment: Alignment.topLeft,
             child: Wrap(
@@ -1403,10 +1403,10 @@ class _TestImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const .fixed(EdgeInsets.all(2.0)),
       child: SizedBox.square(
-        dimension: 20.0,
-        child: DecoratedBox(decoration: BoxDecoration(image: image)),
+        dimension: const .fixed(20.0),
+        child: DecoratedBox(decoration: .fixed(BoxDecoration(image: image))),
       ),
     );
   }

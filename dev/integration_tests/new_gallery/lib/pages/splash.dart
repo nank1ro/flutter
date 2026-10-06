@@ -121,7 +121,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
 
             if (isDisplayDesktop(context)) {
               frontLayer = Padding(
-                padding: const EdgeInsets.only(top: 136),
+                padding: const .fixed(EdgeInsets.only(top: 136)),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
                   child: frontLayer,
@@ -165,7 +165,7 @@ class _SplashBackLayer extends StatelessWidget {
     if (isSplashCollapsed) {
       if (isDisplayDesktop(context)) {
         child = Padding(
-          padding: const EdgeInsets.only(top: 50),
+          padding: const .fixed(EdgeInsets.only(top: 50)),
           child: Align(
             alignment: Alignment.topCenter,
             child: MouseRegion(
@@ -189,8 +189,8 @@ class _SplashBackLayer extends StatelessWidget {
         // This is the background color of the gifs.
         color: const Color(0xFF030303),
         child: Padding(
-          padding: EdgeInsets.only(
-            bottom: isDisplayDesktop(context) ? homePeekDesktop : homePeekMobile,
+          padding: .fixed(
+            EdgeInsets.only(bottom: isDisplayDesktop(context) ? homePeekDesktop : homePeekMobile),
           ),
           child: child,
         ),

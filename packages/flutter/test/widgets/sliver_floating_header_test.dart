@@ -17,16 +17,16 @@ void main() {
           slivers: <Widget>[
             SliverFloatingHeader(
               child: switch (axis) {
-                Axis.vertical => const SizedBox(height: 200, child: Text('header')),
-                Axis.horizontal => const SizedBox(width: 200, child: Text('header')),
+                Axis.vertical => const SizedBox(height: .fixed(200), child: Text('header')),
+                Axis.horizontal => const SizedBox(width: .fixed(200), child: Text('header')),
               },
             ),
             SliverList.builder(
               itemCount: 100,
               itemBuilder: (BuildContext context, int index) {
                 return switch (axis) {
-                  Axis.vertical => SizedBox(height: 100, child: Text('item $index')),
-                  Axis.horizontal => SizedBox(width: 100, child: Text('item $index')),
+                  Axis.vertical => SizedBox(height: const .fixed(100), child: Text('item $index')),
+                  Axis.horizontal => SizedBox(width: const .fixed(100), child: Text('item $index')),
                 };
               },
             ),
@@ -185,12 +185,12 @@ void main() {
                 duration: Duration(seconds: 1),
                 reverseDuration: Duration(seconds: 1),
               ),
-              child: SizedBox(height: 200, child: Text('header')),
+              child: SizedBox(height: .fixed(200), child: Text('header')),
             ),
             SliverList.builder(
               itemCount: 100,
               itemBuilder: (BuildContext context, int index) {
-                return SizedBox(height: 100, child: Text('item $index'));
+                return SizedBox(height: const .fixed(100), child: Text('item $index'));
               },
             ),
           ],
@@ -243,12 +243,12 @@ void main() {
           slivers: <Widget>[
             SliverFloatingHeader(
               snapMode: snapMode,
-              child: const SizedBox(height: 200, child: Text('header')),
+              child: const SizedBox(height: .fixed(200), child: Text('header')),
             ),
             SliverList.builder(
               itemCount: 100,
               itemBuilder: (BuildContext context, int index) {
-                return SizedBox(height: 100, child: Text('item $index'));
+                return SizedBox(height: const .fixed(100), child: Text('item $index'));
               },
             ),
           ],

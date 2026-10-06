@@ -49,8 +49,8 @@ class TestRadioState<T> extends State<TestRadio<T>> {
       enabled: widget.enabled,
       builder: (BuildContext context, ToggleableStateMixin state) {
         return SizedBox(
-          width: 18,
-          height: 18,
+          width: const .fixed(18),
+          height: const .fixed(18),
           child: Center(
             child: Container(
               width: 10,

@@ -22,7 +22,7 @@ void main() {
             key: key2,
             label: label,
             container: true,
-            child: const SizedBox(width: 100, height: 100),
+            child: const SizedBox(width: .fixed(100), height: .fixed(100)),
           ),
         ),
       ),
@@ -38,7 +38,11 @@ void main() {
         child: Semantics(
           key: key1,
           container: true,
-          child: Semantics(key: key2, label: label, child: const SizedBox(width: 100, height: 100)),
+          child: Semantics(
+            key: key2,
+            label: label,
+            child: const SizedBox(width: .fixed(100), height: .fixed(100)),
+          ),
         ),
       ),
     );

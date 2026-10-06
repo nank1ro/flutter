@@ -27,7 +27,10 @@ void main() {
         const MaterialApp(
           home: TooltipVisibility(
             visible: false,
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       );
@@ -60,7 +63,7 @@ void main() {
             child: Tooltip(
               message: tooltipText,
               waitDuration: waitDuration,
-              child: SizedBox(width: 100.0, height: 100.0),
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
             ),
           ),
         ),
@@ -100,7 +103,7 @@ void main() {
             child: Tooltip(
               message: tooltipText,
               waitDuration: waitDuration,
-              child: SizedBox(width: 100.0, height: 100.0),
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
             ),
           ),
         ),
@@ -157,7 +160,7 @@ void main() {
           child: Tooltip(
             key: tooltipKey,
             message: tooltipText,
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -179,7 +182,7 @@ void main() {
           child: Tooltip(
             key: tooltipKey,
             message: tooltipText,
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -203,7 +206,7 @@ Future<void> setWidgetForTooltipMode(
         child: Tooltip(
           message: tooltipText,
           triggerMode: triggerMode,
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       ),
     ),

@@ -771,7 +771,7 @@ void main() {
               DropdownMenuEntry<int>(
                 value: 0,
                 label: 'Flutter',
-                labelWidget: SizedBox(width: entryLabelWidth),
+                labelWidget: SizedBox(width: .fixed(entryLabelWidth)),
               ),
             ],
           ),
@@ -801,12 +801,12 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           body: DropdownMenu<int>(
-            label: SizedBox(width: labelWidth),
+            label: SizedBox(width: .fixed(labelWidth)),
             dropdownMenuEntries: <DropdownMenuEntry<int>>[
               DropdownMenuEntry<int>(
                 value: 0,
                 label: 'Flutter',
-                labelWidget: SizedBox(width: entryLabelWidth),
+                labelWidget: SizedBox(width: .fixed(entryLabelWidth)),
               ),
             ],
           ),
@@ -835,7 +835,7 @@ void main() {
       return MaterialApp(
         home: Scaffold(
           body: SizedBox.square(
-            dimension: parentWidth,
+            dimension: const .fixed(parentWidth),
             child: DropdownMenu<ShortMenu>(
               expandedInsets: expandedInsets,
               dropdownMenuEntries: shortMenuItems,
@@ -902,7 +902,7 @@ void main() {
       return MaterialApp(
         home: Scaffold(
           body: SizedBox.square(
-            dimension: parentWidth,
+            dimension: const .fixed(parentWidth),
             child: DropdownMenu<ShortMenu>(
               expandedInsets: expandedInsets,
               dropdownMenuEntries: shortMenuItems,
@@ -1143,7 +1143,7 @@ void main() {
       buildTest(
         themeData,
         menuChildren,
-        leadingIcon: const SizedBox(width: 75.0, child: Icon(Icons.search)),
+        leadingIcon: const SizedBox(width: .fixed(75.0), child: Icon(Icons.search)),
         label: const Text('label'),
       ),
     );
@@ -1236,7 +1236,7 @@ void main() {
           body: Directionality(
             textDirection: TextDirection.rtl,
             child: DropdownMenu<TestMenu>(
-              leadingIcon: const SizedBox(width: 75.0, child: Icon(Icons.search)),
+              leadingIcon: const SizedBox(width: .fixed(75.0), child: Icon(Icons.search)),
               label: const Text('label'),
               dropdownMenuEntries: menuChildren,
             ),
@@ -3523,7 +3523,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: 300,
+            width: const .fixed(300),
             child: DropdownMenu<int>(
               dropdownMenuEntries: <DropdownMenuEntry<int>>[
                 DropdownMenuEntry<int>(
@@ -3772,7 +3772,7 @@ void main() {
                   ),
                 ],
               ),
-              const SizedBox(height: 1000.0),
+              const SizedBox(height: .fixed(1000.0)),
             ],
           ),
         ),
@@ -3944,8 +3944,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: 200,
-              height: 300,
+              width: const .fixed(200),
+              height: const .fixed(300),
               child: DropdownMenu<TestMenu>(
                 expandedInsets: EdgeInsets.zero,
                 initialSelection: TestMenu.mainMenu3,
@@ -3993,8 +3993,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: 200,
-              height: 300,
+              width: const .fixed(200),
+              height: const .fixed(300),
               child: DropdownMenu<TestMenu>(
                 initialSelection: TestMenu.mainMenu3,
                 dropdownMenuEntries: menuChildrenWithIcons,
@@ -4055,47 +4055,45 @@ void main() {
   }, variant: TargetPlatformVariant.all());
 
   // Regression test for https://github.com/flutter/flutter/issues/143505.
-  testWidgets(
-    'Using keyboard navigation to select and without setting the FocusNode parameter',
-    (WidgetTester tester) async {
-      TestMenu? selectedMenu;
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Material(
-            child: Center(
-              child: DropdownMenu<TestMenu>(
-                dropdownMenuEntries: menuChildren,
-                onSelected: (TestMenu? menu) {
-                  selectedMenu = menu;
-                },
-              ),
+  testWidgets('Using keyboard navigation to select and without setting the FocusNode parameter', (
+    WidgetTester tester,
+  ) async {
+    TestMenu? selectedMenu;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Material(
+          child: Center(
+            child: DropdownMenu<TestMenu>(
+              dropdownMenuEntries: menuChildren,
+              onSelected: (TestMenu? menu) {
+                selectedMenu = menu;
+              },
             ),
           ),
         ),
-      );
+      ),
+    );
 
-      // Adding FocusNode to IconButton causes the IconButton to receive focus.
-      // Thus it does not matter if the TextField has a FocusNode or not.
-      await tester.sendKeyEvent(LogicalKeyboardKey.tab);
-      await tester.pump();
+    // Adding FocusNode to IconButton causes the IconButton to receive focus.
+    // Thus it does not matter if the TextField has a FocusNode or not.
+    await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+    await tester.pump();
 
-      // Now the focus is on the icon button.
-      final Element iconButton = tester.firstElement(find.byIcon(Icons.arrow_drop_down));
-      expect(Focus.of(iconButton).hasPrimaryFocus, isTrue);
+    // Now the focus is on the icon button.
+    final Element iconButton = tester.firstElement(find.byIcon(Icons.arrow_drop_down));
+    expect(Focus.of(iconButton).hasPrimaryFocus, isTrue);
 
-      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
-      await tester.pump();
+    await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+    await tester.pump();
 
-      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
-      await tester.pump();
+    await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+    await tester.pump();
 
-      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
-      await tester.pump();
+    await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+    await tester.pump();
 
-      expect(selectedMenu, TestMenu.mainMenu0);
-    },
-    variant: TargetPlatformVariant.all(),
-  );
+    expect(selectedMenu, TestMenu.mainMenu0);
+  }, variant: TargetPlatformVariant.all());
 
   // Regression test for https://github.com/flutter/flutter/issues/177993.
   testWidgets('Pressing ESC key closes the menu when requestFocusOnTap is false', (
@@ -4152,41 +4150,39 @@ void main() {
     expect(findMenuPanel(), findsNothing);
   });
 
-  testWidgets(
-    'Pressing ESC key after changing the selected item closes the menu',
-    (WidgetTester tester) async {
-      final themeData = ThemeData();
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: themeData,
-          home: Material(
-            child: Center(
-              child: DropdownMenu<TestMenu>(
-                dropdownMenuEntries: menuChildren,
-                initialSelection: menuChildren[2].value,
-              ),
+  testWidgets('Pressing ESC key after changing the selected item closes the menu', (
+    WidgetTester tester,
+  ) async {
+    final themeData = ThemeData();
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: themeData,
+        home: Material(
+          child: Center(
+            child: DropdownMenu<TestMenu>(
+              dropdownMenuEntries: menuChildren,
+              initialSelection: menuChildren[2].value,
             ),
           ),
         ),
-      );
+      ),
+    );
 
-      // Move focus to the TextField and open the menu.
-      await tester.tap(find.byType(TextField));
-      await tester.pump();
-      expect(findMenuPanel(), findsOne);
+    // Move focus to the TextField and open the menu.
+    await tester.tap(find.byType(TextField));
+    await tester.pump();
+    expect(findMenuPanel(), findsOne);
 
-      // Move the selection.
-      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
-      await tester.pump();
-      expect(isItemHighlighted(tester, themeData, menuChildren[3].label), isTrue);
+    // Move the selection.
+    await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+    await tester.pump();
+    expect(isItemHighlighted(tester, themeData, menuChildren[3].label), isTrue);
 
-      // Press ESC to close the menu.
-      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
-      await tester.pump();
-      expect(findMenuPanel(), findsNothing);
-    },
-    variant: TargetPlatformVariant.all(),
-  );
+    // Press ESC to close the menu.
+    await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+    await tester.pump();
+    expect(findMenuPanel(), findsNothing);
+  }, variant: TargetPlatformVariant.all());
 
   testWidgets('DropdownMenu passes maxLines to TextField', (WidgetTester tester) async {
     await tester.pumpWidget(
@@ -4357,7 +4353,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: SizedBox(
-              width: double.infinity,
+              width: .fixed(double.infinity),
               child: DropdownMenu<int>(
                 expandedInsets: EdgeInsets.symmetric(horizontal: 20),
                 dropdownMenuEntries: <DropdownMenuEntry<int>>[
@@ -4991,7 +4987,7 @@ void main() {
             body: DropdownMenu<TestMenu>(
               dropdownMenuEntries: menuChildren,
               decorationBuilder: (BuildContext context, MenuController controller) {
-                return const InputDecoration(label: SizedBox(width: 200));
+                return const InputDecoration(label: SizedBox(width: .fixed(200)));
               },
             ),
           ),

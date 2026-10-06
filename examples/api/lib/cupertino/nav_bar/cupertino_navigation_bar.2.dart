@@ -50,7 +50,7 @@ class _NavBarExampleState extends State<NavBarExample> {
               ),
               const Spacer(),
               Padding(
-                padding: const .all(15.0),
+                padding: const .fixed(.all(15.0)),
                 child: CupertinoButton.filled(
                   onPressed: () => setState(() => _count++),
                   child: const Text('Increment'),

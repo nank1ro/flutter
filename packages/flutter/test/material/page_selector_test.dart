@@ -28,7 +28,7 @@ Widget buildFrame(
         child: SizedBox.expand(
           child: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: Column(
                 children: <Widget>[
                   TabPageSelector(
@@ -336,7 +336,7 @@ void main() {
               child: const SizedBox.expand(
                 child: Center(
                   child: SizedBox.square(
-                    dimension: 400.0,
+                    dimension: .fixed(400.0),
                     child: DefaultTabController(
                       length: 3,
                       child: Column(

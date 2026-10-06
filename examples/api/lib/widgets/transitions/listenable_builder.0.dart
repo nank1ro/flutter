@@ -127,14 +127,14 @@ class ListenableBuilderExample extends StatelessWidget {
         appBar: AppBar(title: const Text('ListenableBuilder Example')),
         body: Center(
           child: SizedBox(
-            width: 300,
+            width: .fixed(300),
             child: Padding(
-              padding: const .all(8.0),
+              padding: const .fixed(.all(8.0)),
               child: Column(
                 mainAxisAlignment: .center,
                 children: <Widget>[
                   const Padding(
-                    padding: .only(bottom: 8),
+                    padding: .fixed(.only(bottom: 8)),
                     child: MyField(label: 'Company'),
                   ),
                   FocusListenerContainer(

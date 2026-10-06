@@ -462,9 +462,9 @@ void main() {
                 width: 400.0,
                 height: 200.0,
                 decoration: const BoxDecoration(color: Color(0xff00ff00)),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
-                  child: const Text.rich(
+                child: const ConstrainedBox(
+                  constraints: .fixed(BoxConstraints(maxWidth: 200, maxHeight: 100)),
+                  child: Text.rich(
                     TextSpan(
                       text: 'C ',
                       style: TextStyle(fontSize: 16),
@@ -474,16 +474,16 @@ void main() {
                         TextSpan(text: 'He ', style: TextStyle(fontSize: 20)),
                         WidgetSpan(
                           child: SizedBox(
-                            width: 50.0,
-                            height: 55.0,
+                            width: .fixed(50.0),
+                            height: .fixed(55.0),
                             child: DecoratedBox(
-                              decoration: BoxDecoration(color: Color(0xffffff00)),
+                              decoration: .fixed(BoxDecoration(color: Color(0xffffff00))),
                               child: Center(
                                 child: SizedBox(
-                                  width: 10.0,
-                                  height: 15.0,
+                                  width: .fixed(10.0),
+                                  height: .fixed(15.0),
                                   child: DecoratedBox(
-                                    decoration: BoxDecoration(color: Color(0xffff0000)),
+                                    decoration: .fixed(BoxDecoration(color: Color(0xffff0000))),
                                   ),
                                 ),
                               ),
@@ -494,7 +494,7 @@ void main() {
                         WidgetSpan(child: TestCheckbox(value: false, onChanged: null)),
                         WidgetSpan(
                           child: SizedBox.square(
-                            dimension: 20.0,
+                            dimension: .fixed(20.0),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -505,7 +505,7 @@ void main() {
                         ),
                         WidgetSpan(
                           child: SizedBox.square(
-                            dimension: 20.0,
+                            dimension: .fixed(20.0),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -537,16 +537,28 @@ void main() {
               width: 400.0,
               height: 200.0,
               decoration: const BoxDecoration(color: Color(0xff00ff00)),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
-                child: const Text.rich(
+              child: const ConstrainedBox(
+                constraints: .fixed(BoxConstraints(maxWidth: 200, maxHeight: 100)),
+                child: Text.rich(
                   TextSpan(
                     text: 'My name is: ',
                     style: TextStyle(fontSize: 20),
                     children: <InlineSpan>[
-                      WidgetSpan(child: SizedBox(width: 70, height: 25, child: TestTextField())),
+                      WidgetSpan(
+                        child: SizedBox(
+                          width: .fixed(70),
+                          height: .fixed(25),
+                          child: TestTextField(),
+                        ),
+                      ),
                       TextSpan(text: ', and my favorite city is: ', style: TextStyle(fontSize: 20)),
-                      WidgetSpan(child: SizedBox(width: 70, height: 25, child: TestTextField())),
+                      WidgetSpan(
+                        child: SizedBox(
+                          width: .fixed(70),
+                          height: .fixed(25),
+                          child: TestTextField(),
+                        ),
+                      ),
                     ],
                   ),
                   textDirection: TextDirection.ltr,
@@ -574,9 +586,9 @@ void main() {
               width: 400.0,
               height: 200.0,
               decoration: const BoxDecoration(color: Color(0xff00ff00)),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
-                child: const Text.rich(
+              child: const ConstrainedBox(
+                constraints: .fixed(BoxConstraints(maxWidth: 200, maxHeight: 100)),
+                child: Text.rich(
                   TextSpan(
                     text: 'outer',
                     style: TextStyle(fontSize: 20),
@@ -595,17 +607,19 @@ void main() {
                                     children: <InlineSpan>[
                                       WidgetSpan(
                                         child: SizedBox(
-                                          width: 50.0,
-                                          height: 55.0,
+                                          width: .fixed(50.0),
+                                          height: .fixed(55.0),
                                           child: DecoratedBox(
-                                            decoration: BoxDecoration(color: Color(0xffffff30)),
+                                            decoration: .fixed(
+                                              BoxDecoration(color: Color(0xffffff30)),
+                                            ),
                                             child: Center(
                                               child: SizedBox(
-                                                width: 10.0,
-                                                height: 15.0,
+                                                width: .fixed(10.0),
+                                                height: .fixed(15.0),
                                                 child: DecoratedBox(
-                                                  decoration: BoxDecoration(
-                                                    color: Color(0xff5f00f0),
+                                                  decoration: .fixed(
+                                                    BoxDecoration(color: Color(0xff5f00f0)),
                                                   ),
                                                 ),
                                               ),
@@ -619,16 +633,18 @@ void main() {
                               ),
                               WidgetSpan(
                                 child: SizedBox(
-                                  width: 50.0,
-                                  height: 55.0,
+                                  width: .fixed(50.0),
+                                  height: .fixed(55.0),
                                   child: DecoratedBox(
-                                    decoration: BoxDecoration(color: Color(0xff5fff00)),
+                                    decoration: .fixed(BoxDecoration(color: Color(0xff5fff00))),
                                     child: Center(
                                       child: SizedBox(
-                                        width: 10.0,
-                                        height: 15.0,
+                                        width: .fixed(10.0),
+                                        height: .fixed(15.0),
                                         child: DecoratedBox(
-                                          decoration: BoxDecoration(color: Color(0xff5f0000)),
+                                          decoration: .fixed(
+                                            BoxDecoration(color: Color(0xff5f0000)),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -640,19 +656,25 @@ void main() {
                         ),
                       ),
                       TextSpan(text: 'outer', style: TextStyle(fontSize: 20)),
-                      WidgetSpan(child: SizedBox(width: 70, height: 25, child: TestTextField())),
                       WidgetSpan(
                         child: SizedBox(
-                          width: 50.0,
-                          height: 55.0,
+                          width: .fixed(70),
+                          height: .fixed(25),
+                          child: TestTextField(),
+                        ),
+                      ),
+                      WidgetSpan(
+                        child: SizedBox(
+                          width: .fixed(50.0),
+                          height: .fixed(55.0),
                           child: DecoratedBox(
-                            decoration: BoxDecoration(color: Color(0xffff00ff)),
+                            decoration: .fixed(BoxDecoration(color: Color(0xffff00ff))),
                             child: Center(
                               child: SizedBox(
-                                width: 10.0,
-                                height: 15.0,
+                                width: .fixed(10.0),
+                                height: .fixed(15.0),
                                 child: DecoratedBox(
-                                  decoration: BoxDecoration(color: Color(0xff0000ff)),
+                                  decoration: .fixed(BoxDecoration(color: Color(0xff0000ff))),
                                 ),
                               ),
                             ),
@@ -687,9 +709,9 @@ void main() {
                 width: 400.0,
                 height: 200.0,
                 decoration: const BoxDecoration(color: Color(0xff00ff00)),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
-                  child: const Text.rich(
+                child: const ConstrainedBox(
+                  constraints: .fixed(BoxConstraints(maxWidth: 200, maxHeight: 100)),
+                  child: Text.rich(
                     TextSpan(
                       text: 'C ',
                       style: TextStyle(fontSize: 16),
@@ -705,16 +727,16 @@ void main() {
                           alignment: PlaceholderAlignment.baseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox(
-                            width: 50.0,
-                            height: 55.0,
+                            width: .fixed(50.0),
+                            height: .fixed(55.0),
                             child: DecoratedBox(
-                              decoration: BoxDecoration(color: Color(0xffffff00)),
+                              decoration: .fixed(BoxDecoration(color: Color(0xffffff00))),
                               child: Center(
                                 child: SizedBox(
-                                  width: 10.0,
-                                  height: 15.0,
+                                  width: .fixed(10.0),
+                                  height: .fixed(15.0),
                                   child: DecoratedBox(
-                                    decoration: BoxDecoration(color: Color(0xffff0000)),
+                                    decoration: .fixed(BoxDecoration(color: Color(0xffff0000))),
                                   ),
                                 ),
                               ),
@@ -731,7 +753,7 @@ void main() {
                           alignment: PlaceholderAlignment.baseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -744,7 +766,7 @@ void main() {
                           alignment: PlaceholderAlignment.baseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -783,9 +805,9 @@ void main() {
                 width: 400.0,
                 height: 200.0,
                 decoration: const BoxDecoration(color: Color(0xff00ff00)),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
-                  child: const Text.rich(
+                child: const ConstrainedBox(
+                  constraints: .fixed(BoxConstraints(maxWidth: 200, maxHeight: 100)),
+                  child: Text.rich(
                     TextSpan(
                       text: 'C ',
                       style: TextStyle(fontSize: 16),
@@ -801,16 +823,16 @@ void main() {
                           alignment: PlaceholderAlignment.aboveBaseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox(
-                            width: 50.0,
-                            height: 55.0,
+                            width: .fixed(50.0),
+                            height: .fixed(55.0),
                             child: DecoratedBox(
-                              decoration: BoxDecoration(color: Color(0xffffff00)),
+                              decoration: .fixed(BoxDecoration(color: Color(0xffffff00))),
                               child: Center(
                                 child: SizedBox(
-                                  width: 10.0,
-                                  height: 15.0,
+                                  width: .fixed(10.0),
+                                  height: .fixed(15.0),
                                   child: DecoratedBox(
-                                    decoration: BoxDecoration(color: Color(0xffff0000)),
+                                    decoration: .fixed(BoxDecoration(color: Color(0xffff0000))),
                                   ),
                                 ),
                               ),
@@ -827,7 +849,7 @@ void main() {
                           alignment: PlaceholderAlignment.aboveBaseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -840,7 +862,7 @@ void main() {
                           alignment: PlaceholderAlignment.aboveBaseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -879,9 +901,9 @@ void main() {
                 width: 400.0,
                 height: 200.0,
                 decoration: const BoxDecoration(color: Color(0xff00ff00)),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
-                  child: const Text.rich(
+                child: const ConstrainedBox(
+                  constraints: .fixed(BoxConstraints(maxWidth: 200, maxHeight: 100)),
+                  child: Text.rich(
                     TextSpan(
                       text: 'C ',
                       style: TextStyle(fontSize: 16),
@@ -897,16 +919,16 @@ void main() {
                           alignment: PlaceholderAlignment.belowBaseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox(
-                            width: 50.0,
-                            height: 55.0,
+                            width: .fixed(50.0),
+                            height: .fixed(55.0),
                             child: DecoratedBox(
-                              decoration: BoxDecoration(color: Color(0xffffff00)),
+                              decoration: .fixed(BoxDecoration(color: Color(0xffffff00))),
                               child: Center(
                                 child: SizedBox(
-                                  width: 10.0,
-                                  height: 15.0,
+                                  width: .fixed(10.0),
+                                  height: .fixed(15.0),
                                   child: DecoratedBox(
-                                    decoration: BoxDecoration(color: Color(0xffff0000)),
+                                    decoration: .fixed(BoxDecoration(color: Color(0xffff0000))),
                                   ),
                                 ),
                               ),
@@ -923,7 +945,7 @@ void main() {
                           alignment: PlaceholderAlignment.belowBaseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -936,7 +958,7 @@ void main() {
                           alignment: PlaceholderAlignment.belowBaseline,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -975,9 +997,9 @@ void main() {
                 width: 400.0,
                 height: 200.0,
                 decoration: const BoxDecoration(color: Color(0xff00ff00)),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
-                  child: const Text.rich(
+                child: const ConstrainedBox(
+                  constraints: .fixed(BoxConstraints(maxWidth: 200, maxHeight: 100)),
+                  child: Text.rich(
                     TextSpan(
                       text: 'C ',
                       style: TextStyle(fontSize: 16),
@@ -993,16 +1015,16 @@ void main() {
                           alignment: PlaceholderAlignment.top,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox(
-                            width: 50.0,
-                            height: 55.0,
+                            width: .fixed(50.0),
+                            height: .fixed(55.0),
                             child: DecoratedBox(
-                              decoration: BoxDecoration(color: Color(0xffffff00)),
+                              decoration: .fixed(BoxDecoration(color: Color(0xffffff00))),
                               child: Center(
                                 child: SizedBox(
-                                  width: 10.0,
-                                  height: 15.0,
+                                  width: .fixed(10.0),
+                                  height: .fixed(15.0),
                                   child: DecoratedBox(
-                                    decoration: BoxDecoration(color: Color(0xffff0000)),
+                                    decoration: .fixed(BoxDecoration(color: Color(0xffff0000))),
                                   ),
                                 ),
                               ),
@@ -1019,7 +1041,7 @@ void main() {
                           alignment: PlaceholderAlignment.top,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -1032,7 +1054,7 @@ void main() {
                           alignment: PlaceholderAlignment.top,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -1071,9 +1093,9 @@ void main() {
                 width: 400.0,
                 height: 200.0,
                 decoration: const BoxDecoration(color: Color(0xff00ff00)),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
-                  child: const Text.rich(
+                child: const ConstrainedBox(
+                  constraints: .fixed(BoxConstraints(maxWidth: 200, maxHeight: 100)),
+                  child: Text.rich(
                     TextSpan(
                       text: 'C ',
                       style: TextStyle(fontSize: 16),
@@ -1089,16 +1111,16 @@ void main() {
                           alignment: PlaceholderAlignment.middle,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox(
-                            width: 50.0,
-                            height: 55.0,
+                            width: .fixed(50.0),
+                            height: .fixed(55.0),
                             child: DecoratedBox(
-                              decoration: BoxDecoration(color: Color(0xffffff00)),
+                              decoration: .fixed(BoxDecoration(color: Color(0xffffff00))),
                               child: Center(
                                 child: SizedBox(
-                                  width: 10.0,
-                                  height: 15.0,
+                                  width: .fixed(10.0),
+                                  height: .fixed(15.0),
                                   child: DecoratedBox(
-                                    decoration: BoxDecoration(color: Color(0xffff0000)),
+                                    decoration: .fixed(BoxDecoration(color: Color(0xffff0000))),
                                   ),
                                 ),
                               ),
@@ -1115,7 +1137,7 @@ void main() {
                           alignment: PlaceholderAlignment.middle,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),
@@ -1128,7 +1150,7 @@ void main() {
                           alignment: PlaceholderAlignment.middle,
                           baseline: TextBaseline.alphabetic,
                           child: SizedBox.square(
-                            dimension: 20,
+                            dimension: .fixed(20),
                             child: TestCheckbox(value: true, onChanged: null),
                           ),
                         ),

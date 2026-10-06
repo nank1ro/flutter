@@ -39,8 +39,8 @@ class ScrollMetricsDemoState extends State<ScrollMetricsDemo> {
           child: Scrollbar(
             thumbVisibility: true,
             child: SizedBox(
-              height: windowSize,
-              width: double.infinity,
+              height: .fixed(windowSize),
+              width: .fixed(double.infinity),
               child: const SingleChildScrollView(
                 primary: true,
                 child: FlutterLogo(size: 300.0),

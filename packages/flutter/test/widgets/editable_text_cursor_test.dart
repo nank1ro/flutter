@@ -898,7 +898,7 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: Padding(
-            padding: const EdgeInsets.only(top: 0.25),
+            padding: const .fixed(EdgeInsets.only(top: 0.25)),
             child: EditableText(
               controller: controller,
               focusNode: focusNode,
@@ -1002,7 +1002,7 @@ void main() {
           key: const ValueKey<int>(1),
           child: Column(
             children: <Widget>[
-              const SizedBox(width: 10, height: 10),
+              const SizedBox(width: .fixed(10), height: .fixed(10)),
               EditableText(
                 backgroundCursorColor: _grey,
                 key: editableTextKey,
@@ -1073,7 +1073,7 @@ void main() {
           key: const ValueKey<int>(1),
           child: Column(
             children: <Widget>[
-              const SizedBox(width: 10, height: 10),
+              const SizedBox(width: .fixed(10), height: .fixed(10)),
               EditableText(
                 backgroundCursorColor: _grey,
                 key: editableTextKey,

@@ -41,7 +41,7 @@ class LabeledRadio extends StatelessWidget {
         RadioGroup.maybeOf<bool>(context)?.onChanged(value);
       },
       child: Padding(
-        padding: padding,
+        padding: .fixed(padding),
         child: Row(
           children: <Widget>[
             Radio<bool>(value: value),

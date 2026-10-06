@@ -53,7 +53,8 @@ class _CustomCupertinoTextSelectionControls extends CupertinoTextSelectionContro
 }
 
 class TestBox extends SizedBox {
-  const TestBox({super.key}) : super(width: itemWidth, height: itemHeight);
+  const TestBox({super.key})
+    : super(width: const .fixed(itemWidth), height: const .fixed(itemHeight));
 
   static const double itemHeight = 44.0;
   static const double itemWidth = 100.0;
@@ -246,7 +247,7 @@ void main() {
       CupertinoApp(
         home: Center(
           child: SizedBox(
-            width: width,
+            width: .fixed(width),
             child: CupertinoTextSelectionToolbar(
               anchorAbove: const Offset(50.0, 100.0),
               anchorBelow: const Offset(50.0, 200.0),
@@ -273,15 +274,15 @@ void main() {
       CupertinoApp(
         home: Center(
           child: SizedBox(
-            width: 420,
+            width: const .fixed(420),
             child: CupertinoTextSelectionToolbar(
               anchorAbove: const Offset(50.0, 100.0),
               anchorBelow: const Offset(50.0, 200.0),
               children: <Widget>[
-                SizedBox(key: firstBoxKey, width: 100),
-                SizedBox(key: secondBoxKey, width: 300),
-                SizedBox(key: thirdBoxKey, width: 100),
-                SizedBox(key: fourthBoxKey, width: 100),
+                SizedBox(key: firstBoxKey, width: const .fixed(100)),
+                SizedBox(key: secondBoxKey, width: const .fixed(300)),
+                SizedBox(key: thirdBoxKey, width: const .fixed(100)),
+                SizedBox(key: fourthBoxKey, width: const .fixed(100)),
               ],
             ),
           ),
@@ -392,11 +393,11 @@ void main() {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(padding: const EdgeInsets.only(top: 59.0)),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 51.0),
+                padding: const .fixed(EdgeInsets.symmetric(vertical: 51.0)),
                 child: CupertinoTextSelectionToolbar(
                   anchorAbove: const Offset(15.0, 117.0),
                   anchorBelow: const Offset(15.0, 140.0),
-                  children: const <Widget>[SizedBox(height: 56.0)],
+                  children: const <Widget>[SizedBox(height: .fixed(56.0))],
                 ),
               ),
             );
@@ -603,7 +604,7 @@ void main() {
         theme: CupertinoThemeData(brightness: brightness),
         home: Center(
           child: SizedBox(
-            height: 200,
+            height: const .fixed(200),
             child: RepaintBoundary(key: key, child: toolbar),
           ),
         ),

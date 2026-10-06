@@ -29,7 +29,7 @@ void main() {
     );
 
     Transform transformBox = tester.widget(transformFinder);
-    Matrix4 actualTransform = transformBox.transform;
+    Matrix4 actualTransform = transformBox.transform.value;
 
     // Check initial transform.
     expect(
@@ -57,7 +57,7 @@ void main() {
     // Animate half way.
     await tester.pump(const Duration(seconds: 1));
     transformBox = tester.widget(transformFinder);
-    actualTransform = transformBox.transform;
+    actualTransform = transformBox.transform.value;
 
     // The transform should be updated.
     expect(

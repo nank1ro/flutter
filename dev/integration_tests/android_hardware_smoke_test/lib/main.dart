@@ -210,7 +210,11 @@ class _MyState extends State<MyWidget> {
         children: <Widget>[
           RepaintBoundary(
             key: targetKey,
-            child: SizedBox(width: 150, height: 150, child: testContent),
+            child: SizedBox(
+              width: const .fixed(150),
+              height: const .fixed(150),
+              child: testContent,
+            ),
           ),
           Align(child: Text(_message)),
         ],

@@ -1796,7 +1796,7 @@ void main() {
     final Padding padding = tester.widget<Padding>(
       find.descendant(of: findViewContent(), matching: find.byType(Padding)).first,
     );
-    expect(padding.padding, const EdgeInsets.all(16.0));
+    expect(padding.padding.value, const EdgeInsets.all(16.0));
   });
 
   testWidgets('SearchAnchor ignores viewPadding property if full screen', (
@@ -1830,7 +1830,7 @@ void main() {
     final Padding padding = tester.widget<Padding>(
       find.descendant(of: findViewContent(), matching: find.byType(Padding)).first,
     );
-    expect(padding.padding, EdgeInsets.zero);
+    expect(padding.padding.value, EdgeInsets.zero);
   });
 
   testWidgets('SearchAnchor respects shrinkWrap property', (WidgetTester tester) async {
@@ -1987,7 +1987,7 @@ void main() {
     final Padding padding = tester.widget<Padding>(
       find.descendant(of: findSearchBar, matching: find.byType(Padding)).first,
     );
-    expect(padding.padding, const EdgeInsets.symmetric(horizontal: 16.0));
+    expect(padding.padding.value, const EdgeInsets.symmetric(horizontal: 16.0));
   });
 
   testWidgets('SearchAnchor respects builder property - LTR', (WidgetTester tester) async {
@@ -2626,7 +2626,7 @@ void main() {
       MaterialApp(
         builder: (BuildContext context, Widget? child) {
           return Scaffold(
-            body: Padding(padding: const EdgeInsets.all(rootSpacing), child: child),
+            body: Padding(padding: const .fixed(EdgeInsets.all(rootSpacing)), child: child),
           );
         },
         home: Material(
@@ -2670,7 +2670,7 @@ void main() {
       MaterialApp(
         builder: (BuildContext context, Widget? child) {
           return Scaffold(
-            body: Padding(padding: const EdgeInsets.all(rootSpacing), child: child),
+            body: Padding(padding: const .fixed(EdgeInsets.all(rootSpacing)), child: child),
           );
         },
         home: Material(
@@ -3382,7 +3382,7 @@ void main() {
     );
     expect(opacityFinder, findsOneWidget);
     final Opacity opacityWidget = tester.widget<Opacity>(opacityFinder);
-    expect(opacityWidget.opacity, 0.38);
+    expect(opacityWidget.opacity.value, 0.38);
   });
 
   testWidgets('Check SearchAnchor opacity when disabled', (WidgetTester tester) async {
@@ -3495,51 +3495,49 @@ void main() {
     expect(box.size.height, 32);
   });
 
-  testWidgets(
-    'Tapping outside searchbar should unfocus the searchbar on mobile',
-    (WidgetTester tester) async {
-      final focusNode = FocusNode(debugLabel: 'Test Node');
-      addTearDown(focusNode.dispose);
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: SearchAnchor(
-              builder: (BuildContext context, SearchController controller) {
-                return SearchBar(
-                  controller: controller,
-                  onTap: () {
-                    controller.openView();
-                  },
-                  onTapOutside: (PointerDownEvent event) {
-                    focusNode.unfocus();
-                  },
-                  onChanged: (_) {
-                    controller.openView();
-                  },
-                  autoFocus: true,
-                  focusNode: focusNode,
-                );
-              },
-              suggestionsBuilder: (BuildContext context, SearchController controller) {
-                return List<ListTile>.generate(5, (int index) {
-                  final item = 'item $index';
-                  return ListTile(title: Text(item));
-                });
-              },
-            ),
+  testWidgets('Tapping outside searchbar should unfocus the searchbar on mobile', (
+    WidgetTester tester,
+  ) async {
+    final focusNode = FocusNode(debugLabel: 'Test Node');
+    addTearDown(focusNode.dispose);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SearchAnchor(
+            builder: (BuildContext context, SearchController controller) {
+              return SearchBar(
+                controller: controller,
+                onTap: () {
+                  controller.openView();
+                },
+                onTapOutside: (PointerDownEvent event) {
+                  focusNode.unfocus();
+                },
+                onChanged: (_) {
+                  controller.openView();
+                },
+                autoFocus: true,
+                focusNode: focusNode,
+              );
+            },
+            suggestionsBuilder: (BuildContext context, SearchController controller) {
+              return List<ListTile>.generate(5, (int index) {
+                final item = 'item $index';
+                return ListTile(title: Text(item));
+              });
+            },
           ),
         ),
-      );
-      await tester.pump();
-      expect(focusNode.hasPrimaryFocus, isTrue);
+      ),
+    );
+    await tester.pump();
+    expect(focusNode.hasPrimaryFocus, isTrue);
 
-      await tester.tapAt(const Offset(50, 50));
-      await tester.pump();
+    await tester.tapAt(const Offset(50, 50));
+    await tester.pump();
 
-      expect(focusNode.hasPrimaryFocus, isFalse);
-    },
-    variant: TargetPlatformVariant.mobile(),
-  );
+    expect(focusNode.hasPrimaryFocus, isFalse);
+  }, variant: TargetPlatformVariant.mobile());
 
   testWidgets('The default clear button only shows when text input is not empty '
       'on the search view', (WidgetTester tester) async {

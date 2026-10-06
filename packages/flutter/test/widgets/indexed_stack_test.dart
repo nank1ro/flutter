@@ -150,7 +150,7 @@ void main() {
                 onTap: () {
                   tapped = true;
                 },
-                child: const SizedBox(width: 200.0, height: 200.0),
+                child: const SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
               ),
             ],
           ),
@@ -277,7 +277,7 @@ void main() {
               height: 40.0,
               child: SizedBox(key: positionedKey),
             ),
-            SizedBox(key: siblingKey, width: 50.0, height: 50.0),
+            SizedBox(key: siblingKey, width: .fixed(50.0), height: .fixed(50.0)),
           ],
         ),
       ),
@@ -329,11 +329,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minWidth: 2.0,
-              maxWidth: 3.0,
-              minHeight: 5.0,
-              maxHeight: 7.0,
+            constraints: const .fixed(
+              BoxConstraints(minWidth: 2.0, maxWidth: 3.0, minHeight: 5.0, maxHeight: 7.0),
             ),
             child: IndexedStack(
               sizing: sizing,

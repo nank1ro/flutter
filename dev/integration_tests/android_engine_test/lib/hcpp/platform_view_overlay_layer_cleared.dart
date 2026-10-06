@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const .fixed(EdgeInsets.all(16.0)),
               child: ElevatedButton(
                 key: const ValueKey<String>('ToggleTexture'),
                 onPressed: _toggleTexture,
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
                   children: <Widget>[
                     Center(
                       child: SizedBox.square(
-                        dimension: 300,
+                        dimension: const .fixed(300),
                         child: PlatformViewLink(
                           viewType: 'changing_color_button_platform_view',
                           surfaceFactory:
@@ -94,9 +94,9 @@ class _MyAppState extends State<MyApp> {
                     if (_showTexture)
                       const Center(
                         child: SizedBox.square(
-                          dimension: 275,
+                          dimension: .fixed(275),
                           child: Opacity(
-                            opacity: 0.5,
+                            opacity: .fixed(0.5),
                             child: Texture(
                               // Intentionally use an unknown texture ID: this
                               // results a black rectangle which is good enough

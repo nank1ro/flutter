@@ -57,7 +57,7 @@ class MainWidgetState extends State<MainWidget> {
               decoration: const InputDecoration(labelText: fieldLabel),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: const .fixed(EdgeInsets.symmetric(vertical: 16)),
               child: ElevatedButton(
                 onPressed: () {
                   // Validate returns true if the form is valid, or false otherwise.

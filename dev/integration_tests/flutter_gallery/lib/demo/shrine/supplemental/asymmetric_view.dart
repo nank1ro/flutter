@@ -41,8 +41,11 @@ class AsymmetricView extends StatelessWidget {
         column = OneProductCardColumn(product: products![_oddCasesIndex(index)]);
       }
       return SizedBox(
-        width: width,
-        child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16.0), child: column),
+        width: .fixed(width),
+        child: Padding(
+          padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0)),
+          child: column,
+        ),
       );
     }).toList();
   }

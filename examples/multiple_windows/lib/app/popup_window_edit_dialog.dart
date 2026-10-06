@@ -119,7 +119,7 @@ class _PopupWindowEditDialogState extends State<_PopupWindowEditDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Anchor Rectangle', style: Theme.of(context).textTheme.titleSmall),
-            const SizedBox(height: 8),
+            const SizedBox(height: .fixed(8)),
             TextField(
               controller: leftController,
               keyboardType: TextInputType.number,
@@ -140,9 +140,9 @@ class _PopupWindowEditDialogState extends State<_PopupWindowEditDialog> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(labelText: 'Anchor Height'),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             Text('Positioner', style: Theme.of(context).textTheme.titleSmall),
-            const SizedBox(height: 8),
+            const SizedBox(height: .fixed(8)),
             DropdownButtonFormField<WindowPositionerAnchor>(
               initialValue: parentAnchor,
               decoration: const InputDecoration(labelText: 'Parent Anchor'),
@@ -155,7 +155,7 @@ class _PopupWindowEditDialogState extends State<_PopupWindowEditDialog> {
                 });
               },
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: .fixed(8)),
             DropdownButtonFormField<WindowPositionerAnchor>(
               initialValue: childAnchor,
               decoration: const InputDecoration(labelText: 'Child Anchor'),
@@ -168,7 +168,7 @@ class _PopupWindowEditDialogState extends State<_PopupWindowEditDialog> {
                 });
               },
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: .fixed(8)),
             Row(
               children: [
                 Expanded(
@@ -178,7 +178,7 @@ class _PopupWindowEditDialogState extends State<_PopupWindowEditDialog> {
                     decoration: const InputDecoration(labelText: 'Offset X'),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: .fixed(8)),
                 Expanded(
                   child: TextField(
                     controller: offsetYController,

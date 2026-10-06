@@ -87,7 +87,7 @@ class _BottomAppBarDemoState extends State<BottomAppBarDemo> with RestorationMix
             onChanged: _onShowNotchChanged,
           ),
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const .fixed(EdgeInsets.all(16)),
             child: Text(localizations.bottomAppBarPosition),
           ),
           RadioListTile<int>(

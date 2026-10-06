@@ -104,8 +104,8 @@ void main() {
     expect(find.text('Page 2'), findsOneWidget);
     final Finder dragHandleFinder = find.byWidgetPredicate((Widget widget) {
       return widget is DecoratedBox &&
-          widget.decoration is ShapeDecoration &&
-          (widget.decoration as ShapeDecoration).color == CupertinoColors.tertiaryLabel;
+          widget.decoration.value is ShapeDecoration &&
+          (widget.decoration.value as ShapeDecoration).color == CupertinoColors.tertiaryLabel;
     });
     expect(dragHandleFinder, findsOneWidget);
   });
@@ -155,8 +155,8 @@ void main() {
     expect(find.text('Page 2'), findsOneWidget);
     final Finder dragHandleFinder = find.byWidgetPredicate((Widget widget) {
       return widget is DecoratedBox &&
-          widget.decoration is ShapeDecoration &&
-          (widget.decoration as ShapeDecoration).color == CupertinoColors.tertiaryLabel;
+          widget.decoration.value is ShapeDecoration &&
+          (widget.decoration.value as ShapeDecoration).color == CupertinoColors.tertiaryLabel;
     });
 
     final Offset dragHandleOffset = tester.getTopLeft(dragHandleFinder);
@@ -1246,9 +1246,9 @@ void main() {
         return ListView(
           children: const <Widget>[
             Text('Top of Scroll'),
-            SizedBox(width: double.infinity, height: 100),
+            SizedBox(width: .fixed(double.infinity), height: .fixed(100)),
             Text('Middle of Scroll'),
-            SizedBox(width: double.infinity, height: 100),
+            SizedBox(width: .fixed(double.infinity), height: .fixed(100)),
           ],
         );
       }
@@ -1796,8 +1796,16 @@ void main() {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              SizedBox(height: 80, width: double.infinity, child: Text('Top container')),
-              SizedBox(height: 80, width: double.infinity, child: Text('Bottom container')),
+              SizedBox(
+                height: .fixed(80),
+                width: .fixed(double.infinity),
+                child: Text('Top container'),
+              ),
+              SizedBox(
+                height: .fixed(80),
+                width: .fixed(double.infinity),
+                child: Text('Bottom container'),
+              ),
             ],
           ),
         );
@@ -2229,7 +2237,7 @@ void main() {
         primaryRouteAnimation: animation,
         secondaryRouteAnimation: secondaryAnimation,
         linearTransition: false,
-        child: const SizedBox(height: 100, width: 100),
+        child: const SizedBox(height: .fixed(100), width: .fixed(100)),
       ),
     );
 
@@ -2241,7 +2249,7 @@ void main() {
         primaryRouteAnimation: newAnimation,
         secondaryRouteAnimation: secondaryAnimation,
         linearTransition: false,
-        child: const SizedBox(height: 100, width: 100),
+        child: const SizedBox(height: .fixed(100), width: .fixed(100)),
       ),
     );
 

@@ -10,7 +10,7 @@ Future<Size> _getSize(WidgetTester tester, BoxConstraints constraints, double as
   await tester.pumpWidget(
     Center(
       child: ConstrainedBox(
-        constraints: constraints,
+        constraints: .fixed(constraints),
         child: AspectRatio(
           aspectRatio: aspectRatio,
           child: Container(key: childKey),

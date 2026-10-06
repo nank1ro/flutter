@@ -350,7 +350,7 @@ class CupertinoSheetTransition extends StatefulWidget {
               child,
               FadeTransition(
                 opacity: opacityAnimation,
-                child: ColoredBox(color: overlayColor, child: const SizedBox.expand()),
+                child: ColoredBox(color: .fixed(overlayColor), child: const SizedBox.expand()),
               ),
             ],
           )
@@ -365,7 +365,7 @@ class CupertinoSheetTransition extends StatefulWidget {
             statusBarBrightness: Brightness.dark,
             statusBarIconBrightness: Brightness.light,
           ),
-          child: SizedBox(height: topGapHeight, width: double.infinity),
+          child: SizedBox(height: .fixed(topGapHeight), width: const .fixed(double.infinity)),
         ),
         SlideTransition(
           position: slideAnimation,
@@ -547,8 +547,8 @@ class _CupertinoSheetTransitionState extends State<CupertinoSheetTransition>
           animation: _stretchDragAnimation,
           builder: (BuildContext context, Widget? child) {
             return Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.heightOf(context) * _stretchDragAnimation.value,
+              padding: .fixed(
+                EdgeInsets.only(top: MediaQuery.heightOf(context) * _stretchDragAnimation.value),
               ),
               child: _coverSheetSecondaryTransition(
                 widget.secondaryRouteAnimation,
@@ -719,15 +719,17 @@ class CupertinoSheetRoute<T> extends PageRoute<T> with _CupertinoSheetRouteTrans
         const Align(
           alignment: Alignment.topCenter,
           child: Padding(
-            padding: EdgeInsetsGeometry.only(top: dragHandleTopPadding),
+            padding: .fixed(EdgeInsetsGeometry.only(top: dragHandleTopPadding)),
             child: DecoratedBox(
-              decoration: ShapeDecoration(
-                shape: RoundedSuperellipseBorder(
-                  borderRadius: BorderRadiusGeometry.all(Radius.circular(dragHandleWidth / 2)),
+              decoration: .fixed(
+                ShapeDecoration(
+                  shape: RoundedSuperellipseBorder(
+                    borderRadius: BorderRadiusGeometry.all(Radius.circular(dragHandleWidth / 2)),
+                  ),
+                  color: CupertinoColors.tertiaryLabel,
                 ),
-                color: CupertinoColors.tertiaryLabel,
               ),
-              child: SizedBox(height: dragHandleHeight, width: dragHandleWidth),
+              child: SizedBox(height: .fixed(dragHandleHeight), width: .fixed(dragHandleWidth)),
             ),
           ),
         ),

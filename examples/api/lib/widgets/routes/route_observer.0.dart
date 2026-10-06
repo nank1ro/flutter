@@ -73,7 +73,7 @@ class _RouteObserverExampleState extends State<RouteObserverExample>
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: 300.0),
+                constraints: .fixed(const BoxConstraints(maxHeight: 300.0)),
                 child: ListView.builder(
                   itemCount: log.length,
                   itemBuilder: (BuildContext context, int index) {

@@ -159,7 +159,11 @@ void main() {
                         },
                       ),
                 },
-                child: SizedBox(key: tapTargetKey, width: 100, height: 100),
+                child: SizedBox(
+                  key: tapTargetKey,
+                  width: const .fixed(100),
+                  height: const .fixed(100),
+                ),
               ),
             ),
           ],

@@ -238,13 +238,15 @@ void main() {
 
   testWidgets('expanding page views', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const Padding(padding: EdgeInsets.only(right: 200.0), child: _PageViewDemo()),
+      const Padding(padding: .fixed(EdgeInsets.only(right: 200.0)), child: _PageViewDemo()),
     );
     await tester.tap(find.text('bike'));
     await tester.pump();
     await tester.pump(const Duration(seconds: 1));
     final Rect bike1 = tester.getRect(find.text('bike-icon'));
-    await tester.pumpWidget(const Padding(padding: EdgeInsets.zero, child: _PageViewDemo()));
+    await tester.pumpWidget(
+      const Padding(padding: .fixed(EdgeInsets.zero), child: _PageViewDemo()),
+    );
     final Rect bike2 = tester.getRect(find.text('bike-icon'));
     expect(bike2.center, bike1.shift(const Offset(100.0, 0.0)).center);
   });
@@ -258,10 +260,10 @@ void main() {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              height: height,
-              width: 100.0,
+              height: .fixed(height),
+              width: const .fixed(100.0),
               child: ListView(
-                children: const <Widget>[SizedBox(height: 100.0, child: Placeholder())],
+                children: const <Widget>[SizedBox(height: .fixed(100.0), child: Placeholder())],
               ),
             ),
           ),
@@ -302,14 +304,14 @@ void main() {
           behavior: const RangeMaintainingTestScrollBehavior(),
           child: Align(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: ListView(
                 children: <Widget>[
                   SizedBox(
-                    height: itemExtent,
+                    height: const .fixed(itemExtent),
                     child: Placeholder(key: key),
                   ),
-                  if (twoItems) const SizedBox(height: itemExtent, child: Placeholder()),
+                  if (twoItems) const SizedBox(height: .fixed(itemExtent), child: Placeholder()),
                 ],
               ),
             ),

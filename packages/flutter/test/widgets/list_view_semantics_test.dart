@@ -26,7 +26,7 @@ void main() {
             controller: controller,
             itemCount: itemCount,
             itemBuilder: (BuildContext context, int index) {
-              return SizedBox(height: itemHeight, child: Text('Tile $index'));
+              return SizedBox(height: const .fixed(itemHeight), child: Text('Tile $index'));
             },
           ),
         ),
@@ -65,7 +65,7 @@ void main() {
             controller: controller,
             itemCount: itemCount,
             itemBuilder: (BuildContext context, int index) {
-              return SizedBox(height: itemHeight, child: Text('Tile $index'));
+              return SizedBox(height: const .fixed(itemHeight), child: Text('Tile $index'));
             },
           ),
         ),
@@ -104,7 +104,7 @@ void main() {
             controller: controller,
             itemCount: itemCount,
             itemBuilder: (BuildContext context, int index) {
-              return SizedBox(height: itemHeight, child: Text('Tile $index'));
+              return SizedBox(height: const .fixed(itemHeight), child: Text('Tile $index'));
             },
           ),
         ),
@@ -144,7 +144,7 @@ void main() {
             controller: controller,
             itemCount: itemCount,
             itemBuilder: (BuildContext context, int index) {
-              return SizedBox(height: itemHeight, child: Text('Tile $index'));
+              return SizedBox(height: const .fixed(itemHeight), child: Text('Tile $index'));
             },
           ),
         ),

@@ -50,7 +50,7 @@ class _SensitiveContentExampleState extends State<SensitiveContentExample> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: .fixed(const EdgeInsets.all(16.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -58,16 +58,16 @@ class _SensitiveContentExampleState extends State<SensitiveContentExample> {
               'SensitiveContent Sample',
               style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 12.0),
+            const SizedBox(height: .fixed(12.0)),
             const Text(
               'Choose how this screen should be treated during screen sharing.',
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: .fixed(8.0)),
             Text(
               'Selected sensitivity: ${_sensitivity.name}',
               style: const TextStyle(fontSize: 15.0),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: .fixed(16.0)),
             FutureBuilder<bool>(
               future: _isSupported,
               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -88,7 +88,7 @@ class _SensitiveContentExampleState extends State<SensitiveContentExample> {
                 );
               },
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: .fixed(16.0)),
             Wrap(
               spacing: 8.0,
               children: _availableSensitivities.map((ContentSensitivity value) {
@@ -100,7 +100,7 @@ class _SensitiveContentExampleState extends State<SensitiveContentExample> {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 24.0),
+            const SizedBox(height: .fixed(24.0)),
             Expanded(
               child: SensitiveContent(
                 sensitivity: _sensitivity,
@@ -189,7 +189,7 @@ class _AccountDetailsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return const _OutlinedPanel(
       child: Padding(
-        padding: EdgeInsets.all(12.0),
+        padding: .fixed(EdgeInsets.all(12.0)),
         child: _AccountDetailsContent(),
       ),
     );
@@ -210,12 +210,12 @@ class _AccountDetailsContent extends StatelessWidget {
             'Checking Account',
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 12.0),
+          SizedBox(height: .fixed(12.0)),
           Text('Account number: 123456789'),
           Text('Routing number: 987654321'),
-          SizedBox(height: 12.0),
+          SizedBox(height: .fixed(12.0)),
           Text('One-time passcode: 246810'),
-          SizedBox(height: 12.0),
+          SizedBox(height: .fixed(12.0)),
           Text(
             'Use ContentSensitivity.sensitive for screens that should be obscured when the app screen is shared.',
           ),

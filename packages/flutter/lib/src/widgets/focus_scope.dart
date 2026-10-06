@@ -933,7 +933,7 @@ class _DebugFocusBorder extends StatelessWidget {
       listenable: node,
       builder: (BuildContext context, _) {
         return DecoratedBox(
-          decoration: BoxDecoration(border: Border.all(color: _borderColor, width: 3.0)),
+          decoration: .fixed(BoxDecoration(border: Border.all(color: _borderColor, width: 3.0))),
           position: DecorationPosition.foreground,
           child: child,
         );

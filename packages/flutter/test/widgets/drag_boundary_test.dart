@@ -12,7 +12,9 @@ void main() {
       Container(
         margin: const EdgeInsets.only(top: 100, left: 100),
         alignment: Alignment.topLeft,
-        child: DragBoundary(child: SizedBox(key: key, width: 100, height: 100)),
+        child: DragBoundary(
+          child: SizedBox(key: key, width: const .fixed(100), height: const .fixed(100)),
+        ),
       ),
     );
     final DragBoundaryDelegate<Rect> boundary = DragBoundary.forRectOf(key.currentContext!);
@@ -35,7 +37,9 @@ void main() {
       Container(
         margin: const EdgeInsets.only(top: 100, left: 100),
         alignment: Alignment.topLeft,
-        child: DragBoundary(child: SizedBox(key: key, width: 100, height: 100)),
+        child: DragBoundary(
+          child: SizedBox(key: key, width: const .fixed(100), height: const .fixed(100)),
+        ),
       ),
     );
     final DragBoundaryDelegate<Rect> boundary = DragBoundary.forRectOf(
@@ -63,7 +67,7 @@ void main() {
       Container(
         margin: const EdgeInsets.only(top: 100, left: 100),
         alignment: Alignment.topLeft,
-        child: SizedBox(key: key, width: 100, height: 100),
+        child: SizedBox(key: key, width: const .fixed(100), height: const .fixed(100)),
       ),
     );
     final DragBoundaryDelegate<Rect> boundary = DragBoundary.forRectOf(key.currentContext!);

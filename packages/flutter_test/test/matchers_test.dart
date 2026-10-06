@@ -901,12 +901,12 @@ void main() {
               Semantics(
                 label: 'Bar',
                 textDirection: TextDirection.ltr,
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
               Semantics(
                 label: 'Baz',
                 textDirection: TextDirection.ltr,
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
             ],
           ),
@@ -1854,12 +1854,12 @@ void main() {
               Semantics(
                 label: 'Bar',
                 textDirection: TextDirection.ltr,
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
               Semantics(
                 label: 'Baz',
                 textDirection: TextDirection.ltr,
-                child: const SizedBox(width: 10, height: 10),
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
               ),
             ],
           ),

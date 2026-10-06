@@ -42,7 +42,7 @@ class NestedScrollViewExample extends StatelessWidget {
           itemCount: 30,
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
-              height: 50,
+              height: .fixed(50),
               child: Center(child: Text('Item $index')),
             );
           },

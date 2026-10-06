@@ -27,7 +27,11 @@ void main() {
           left: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               callbackTracker.add(index);
-              return SizedBox(key: ValueKey<int>(index), height: 100.0, child: Text('$index'));
+              return SizedBox(
+                key: ValueKey<int>(index),
+                height: const .fixed(100.0),
+                child: Text('$index'),
+              );
             },
           ),
           right: const Text('Not Today'),
@@ -77,8 +81,8 @@ void main() {
       callbackTracker.add(index);
       return SizedBox(
         key: ValueKey<int>(index),
-        width: 500.0, // this should be ignored
-        height: 200.0,
+        width: const .fixed(500.0), // this should be ignored
+        height: const .fixed(200.0),
         child: Text('$index', textDirection: TextDirection.ltr),
       );
     }
@@ -149,8 +153,8 @@ void main() {
       callbackTracker.add(index);
       return SizedBox(
         key: ValueKey<int>(index),
-        height: 500.0, // this should be ignored
-        width: 200.0,
+        height: const .fixed(500.0), // this should be ignored
+        width: const .fixed(200.0),
         child: Text('$index', textDirection: TextDirection.ltr),
       );
     }
@@ -203,8 +207,8 @@ void main() {
       callbackTracker.add(index);
       return SizedBox(
         key: ValueKey<int>(index),
-        width: 500.0, // this should be ignored
-        height: 220.0,
+        width: const .fixed(500.0), // this should be ignored
+        height: const .fixed(220.0),
         child: Text('$index', textDirection: TextDirection.ltr),
       );
     }
@@ -462,17 +466,17 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
+            height: const .fixed(200.0),
             child: ListView(
               cacheExtent: 500.0,
               controller: controller,
               children: const <Widget>[
-                SizedBox(height: 140.0, child: text),
-                SizedBox(height: 160.0, child: text),
-                SizedBox(height: 90.0, child: text),
-                SizedBox(height: 110.0, child: text),
-                SizedBox(height: 80.0, child: text),
-                SizedBox(height: 70.0, child: text),
+                SizedBox(height: .fixed(140.0), child: text),
+                SizedBox(height: .fixed(160.0), child: text),
+                SizedBox(height: .fixed(90.0), child: text),
+                SizedBox(height: .fixed(110.0), child: text),
+                SizedBox(height: .fixed(80.0), child: text),
+                SizedBox(height: .fixed(70.0), child: text),
               ],
             ),
           ),
@@ -492,16 +496,16 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox(
-            height: 500.0,
+            height: const .fixed(500.0),
             child: CustomScrollView(
               controller: controller,
               slivers: <Widget>[
-                const SliverToBoxAdapter(child: SizedBox(height: 250.0)),
+                const SliverToBoxAdapter(child: SizedBox(height: .fixed(250.0))),
                 SliverList(
                   delegate: ListView.builder(
                     itemExtent: 100.0,
                     itemCount: 100,
-                    itemBuilder: (_, _) => const SizedBox(height: 40.0, child: Text('hey')),
+                    itemBuilder: (_, _) => const SizedBox(height: .fixed(40.0), child: Text('hey')),
                   ).childrenDelegate,
                 ),
               ],
@@ -520,7 +524,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.rtl,
         child: SizedBox(
-          height: 200.0,
+          height: const .fixed(200.0),
           child: ListView.builder(
             padding: EdgeInsets.zero,
             scrollDirection: Axis.horizontal,

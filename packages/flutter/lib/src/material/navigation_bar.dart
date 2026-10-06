@@ -295,7 +295,7 @@ class NavigationBar extends StatelessWidget {
           explicitChildNodes: true,
           container: true,
           child: SizedBox(
-            height: effectiveHeight,
+            height: .fixed(effectiveHeight),
             child: Row(
               children: <Widget>[
                 for (int i = 0; i < destinations.length; i++)
@@ -502,7 +502,7 @@ class NavigationDestination extends StatelessWidget {
             : effectiveDisabledLabelTextStyle;
 
         return Padding(
-          padding: labelPadding,
+          padding: .fixed(labelPadding),
           child: MediaQuery.withClampedTextScaling(
             // Set maximum text scale factor to _kMaxLabelTextScaleFactor for the
             // label to keep the visual hierarchy the same even with larger font
@@ -851,7 +851,7 @@ class NavigationIndicator extends StatelessWidget {
         return Transform(
           alignment: Alignment.center,
           // Scale in the X direction only.
-          transform: Matrix4.diagonal3Values(scale, 1.0, 1.0),
+          transform: .fixed(Matrix4.diagonal3Values(scale, 1.0, 1.0)),
           child: child,
         );
       },

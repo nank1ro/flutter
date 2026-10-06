@@ -43,7 +43,7 @@ class ToggleSetting extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const .fixed(EdgeInsets.all(16)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +57,7 @@ class ToggleSetting extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.only(end: 8),
+                padding: const .fixed(EdgeInsetsDirectional.only(end: 8)),
                 child: Switch(activeColor: colorScheme.primary, value: value, onChanged: onChanged),
               ),
             ],
@@ -172,7 +172,7 @@ class _SettingsListItemState<T> extends State<SettingsListItem<T?>>
           onTap: () => widget.onTapSetting(),
         ),
         Padding(
-          padding: _childrenPadding.value,
+          padding: .fixed(_childrenPadding.value),
           child: ClipRect(
             child: Align(heightFactor: _childrenHeightFactor.value, child: child),
           ),
@@ -273,7 +273,7 @@ class _CategoryHeader extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: padding,
+                  padding: .fixed(padding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -296,7 +296,7 @@ class _CategoryHeader extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.only(start: 8, end: 24),
+                padding: const .fixed(EdgeInsetsDirectional.only(start: 8, end: 24)),
                 child: RotationTransition(
                   turns: chevronRotation,
                   child: const Icon(Icons.arrow_drop_down),

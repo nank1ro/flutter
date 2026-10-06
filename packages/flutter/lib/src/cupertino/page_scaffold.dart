@@ -173,7 +173,7 @@ class _CupertinoPageScaffoldState extends State<CupertinoPageScaffold> with Widg
               .removePadding(removeTop: true)
               .copyWith(viewInsets: newViewInsets),
           child: Padding(
-            padding: EdgeInsets.only(top: topPadding, bottom: bottomPadding),
+            padding: .fixed(EdgeInsets.only(top: topPadding, bottom: bottomPadding)),
             child: paddedContent,
           ),
         );
@@ -184,7 +184,7 @@ class _CupertinoPageScaffoldState extends State<CupertinoPageScaffold> with Widg
             viewInsets: newViewInsets,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: bottomPadding),
+            padding: .fixed(EdgeInsets.only(bottom: bottomPadding)),
             child: paddedContent,
           ),
         );
@@ -197,7 +197,7 @@ class _CupertinoPageScaffoldState extends State<CupertinoPageScaffold> with Widg
           viewInsets: existingMediaQuery.viewInsets.copyWith(bottom: 0),
         ),
         child: Padding(
-          padding: EdgeInsets.only(bottom: existingMediaQuery.viewInsets.bottom),
+          padding: .fixed(EdgeInsets.only(bottom: existingMediaQuery.viewInsets.bottom)),
           child: paddedContent,
         ),
       );
@@ -205,7 +205,7 @@ class _CupertinoPageScaffoldState extends State<CupertinoPageScaffold> with Widg
 
     return ScrollNotificationObserver(
       child: DecoratedBox(
-        decoration: BoxDecoration(color: backgroundColor),
+        decoration: .fixed(BoxDecoration(color: backgroundColor)),
         child: CupertinoPageScaffoldBackgroundColor(
           color: backgroundColor,
           child: Stack(

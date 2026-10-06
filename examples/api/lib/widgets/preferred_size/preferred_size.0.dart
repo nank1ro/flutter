@@ -26,7 +26,7 @@ class AppBarContent extends StatelessWidget {
       mainAxisAlignment: .end,
       children: <Widget>[
         Padding(
-          padding: const .symmetric(horizontal: 10),
+          padding: const .fixed(.symmetric(horizontal: 10)),
           child: Row(
             children: <Widget>[
               const Text(

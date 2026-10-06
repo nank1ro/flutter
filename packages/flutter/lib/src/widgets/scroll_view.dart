@@ -1078,9 +1078,9 @@ abstract class BoxScrollView extends ScrollView {
 ///     },
 ///     separatorBuilder: (BuildContext context, int index) {
 ///       return const SizedBox(
-///         height: 1.0,
-///         width: double.infinity,
-///         child: ColoredBox(color: Color(0xFF000000)),
+///         height: .fixed(1.0),
+///         width: .fixed(double.infinity),
+///         child: ColoredBox(color: .fixed(Color(0xFF000000))),
 ///       );
 ///     },
 ///   );
@@ -1491,9 +1491,9 @@ class ListView extends BoxScrollView {
   ///   itemCount: 25,
   ///   separatorBuilder: (BuildContext context, int index) {
   ///     return const SizedBox(
-  ///       height: 1.0,
-  ///       width: double.infinity,
-  ///       child: ColoredBox(color: Color(0xFF000000)),
+  ///       height: .fixed(1.0),
+  ///       width: .fixed(double.infinity),
+  ///       child: ColoredBox(color: .fixed(Color(0xFF000000))),
   ///     );
   ///   },
   ///   itemBuilder: (BuildContext context, int index) {

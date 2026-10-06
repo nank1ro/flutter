@@ -377,7 +377,7 @@ class _RawMaterialButtonState extends State<RawMaterialButton> with MaterialStat
         .clamp(EdgeInsets.zero, EdgeInsetsGeometry.infinity);
 
     final Widget result = ConstrainedBox(
-      constraints: effectiveConstraints,
+      constraints: .fixed(effectiveConstraints),
       child: Material(
         elevation: _effectiveElevation,
         textStyle: widget.textStyle?.copyWith(color: effectiveTextColor),
@@ -410,7 +410,7 @@ class _RawMaterialButtonState extends State<RawMaterialButton> with MaterialStat
           child: IconTheme.merge(
             data: IconThemeData(color: effectiveTextColor),
             child: Padding(
-              padding: padding,
+              padding: .fixed(padding),
               child: Center(widthFactor: 1.0, heightFactor: 1.0, child: widget.child),
             ),
           ),

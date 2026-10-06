@@ -22,7 +22,7 @@ Future<void> main() async {
         itemCount: numItems,
         itemBuilder: (BuildContext context, int position) {
           return SizedBox.square(
-            dimension: 200.0,
+            dimension: const .fixed(200.0),
             child: Center(
               child: Image.asset(
                 'monochrome/red-square-1024x1024.png',

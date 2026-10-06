@@ -102,7 +102,7 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              width: 400,
+              width: const .fixed(400),
               child: EditableText(
                 controller: controller,
                 backgroundCursorColor: const Color(0xff00ffff),

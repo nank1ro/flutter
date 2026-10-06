@@ -714,8 +714,8 @@ class _CupertinoInspectorButton extends InspectorButton {
 
     return Padding(
       key: buttonKey,
-      padding: const EdgeInsets.all(
-        (kMinInteractiveDimensionCupertino - InspectorButton.buttonSize) / 2,
+      padding: const .fixed(
+        EdgeInsets.all((kMinInteractiveDimensionCupertino - InspectorButton.buttonSize) / 2),
       ),
       child: variant == InspectorButtonVariant.toggle && !toggledOn!
           ? CupertinoButton.tinted(

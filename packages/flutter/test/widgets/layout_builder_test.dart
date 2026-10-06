@@ -15,15 +15,15 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 100.0, maxHeight: 200.0),
+          constraints: const .fixed(BoxConstraints(maxWidth: 100.0, maxHeight: 200.0)),
           child: LayoutBuilder(
             key: parentKey,
             builder: (BuildContext context, BoxConstraints constraints) {
               layoutBuilderSize = constraints.biggest;
               return SizedBox(
                 key: childKey,
-                width: layoutBuilderSize.width / 2.0,
-                height: layoutBuilderSize.height / 2.0,
+                width: .fixed(layoutBuilderSize.width / 2.0),
+                height: .fixed(layoutBuilderSize.height / 2.0),
               );
             },
           ),
@@ -123,7 +123,11 @@ void main() {
             return StatefulBuilder(
               builder: (BuildContext context, StateSetter setter) {
                 setState = setter;
-                return SizedBox(key: childKey, width: childWidth, height: childHeight);
+                return SizedBox(
+                  key: childKey,
+                  width: .fixed(childWidth),
+                  height: .fixed(childHeight),
+                );
               },
             );
           },
@@ -167,7 +171,11 @@ void main() {
                   child: StatefulBuilder(
                     builder: (BuildContext context, StateSetter setter) {
                       setState = setter;
-                      return SizedBox(key: childKey, width: childWidth, height: childHeight);
+                      return SizedBox(
+                        key: childKey,
+                        width: .fixed(childWidth),
+                        height: .fixed(childHeight),
+                      );
                     },
                   ),
                 );
@@ -226,15 +234,15 @@ void main() {
           builder: (BuildContext context, StateSetter setter) {
             setState = setter;
             return SizedBox(
-              width: childWidth,
-              height: childHeight,
+              width: .fixed(childWidth),
+              height: .fixed(childHeight),
               child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   layoutBuilderSize = constraints.biggest;
                   return SizedBox(
                     key: childKey,
-                    width: layoutBuilderSize.width,
-                    height: layoutBuilderSize.height,
+                    width: .fixed(layoutBuilderSize.width),
+                    height: .fixed(layoutBuilderSize.height),
                   );
                 },
               ),
@@ -335,7 +343,9 @@ void main() {
     await tester.pumpWidget(
       MediaQuery(
         data: const MediaQueryData(size: Size(400.0, 300.0)),
-        child: Center(child: SizedBox(width: 400.0, child: target)),
+        child: Center(
+          child: SizedBox(width: const .fixed(400.0), child: target),
+        ),
       ),
     );
     expect(built, 1);
@@ -343,7 +353,9 @@ void main() {
     await tester.pumpWidget(
       MediaQuery(
         data: const MediaQueryData(size: Size(300.0, 400.0)),
-        child: Center(child: SizedBox(width: 300.0, child: target)),
+        child: Center(
+          child: SizedBox(width: const .fixed(300.0), child: target),
+        ),
       ),
     );
     expect(built, 2);
@@ -547,12 +559,15 @@ void main() {
         child: CustomScrollView(
           controller: scrollController,
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(height: 300)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(300))),
             SliverLayoutBuilder(
-              builder: (BuildContext context, SliverConstraints constraint) =>
-                  SliverToBoxAdapter(child: SizedBox(key: childKey1, height: 200)),
+              builder: (BuildContext context, SliverConstraints constraint) => SliverToBoxAdapter(
+                child: SizedBox(key: childKey1, height: const .fixed(200)),
+              ),
             ),
-            SliverToBoxAdapter(child: SizedBox(key: childKey2, height: 100)),
+            SliverToBoxAdapter(
+              child: SizedBox(key: childKey2, height: const .fixed(100)),
+            ),
           ],
         ),
       ),
@@ -593,20 +608,29 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: Padding(
-          padding: const EdgeInsets.all(50),
+          padding: const .fixed(EdgeInsets.all(50)),
           child: CustomScrollView(
             controller: scrollController,
             slivers: <Widget>[
               SliverToBoxAdapter(
-                child: SizedBox(height: 200, child: GestureDetector(onTap: () => hitCounts[0]++)),
+                child: SizedBox(
+                  height: const .fixed(200),
+                  child: GestureDetector(onTap: () => hitCounts[0]++),
+                ),
               ),
               SliverLayoutBuilder(
                 builder: (BuildContext context, SliverConstraints constraint) => SliverToBoxAdapter(
-                  child: SizedBox(height: 200, child: GestureDetector(onTap: () => hitCounts[1]++)),
+                  child: SizedBox(
+                    height: const .fixed(200),
+                    child: GestureDetector(onTap: () => hitCounts[1]++),
+                  ),
                 ),
               ),
               SliverToBoxAdapter(
-                child: SizedBox(height: 200, child: GestureDetector(onTap: () => hitCounts[2]++)),
+                child: SizedBox(
+                  height: const .fixed(200),
+                  child: GestureDetector(onTap: () => hitCounts[2]++),
+                ),
               ),
             ],
           ),
@@ -675,15 +699,24 @@ void main() {
           controller: scrollController,
           slivers: <Widget>[
             SliverToBoxAdapter(
-              child: SizedBox(height: 100, child: GestureDetector(onTap: () => hitCounts[0]++)),
+              child: SizedBox(
+                height: const .fixed(100),
+                child: GestureDetector(onTap: () => hitCounts[0]++),
+              ),
             ),
             SliverLayoutBuilder(
               builder: (BuildContext context, SliverConstraints constraint) => SliverToBoxAdapter(
-                child: SizedBox(height: 100, child: GestureDetector(onTap: () => hitCounts[1]++)),
+                child: SizedBox(
+                  height: const .fixed(100),
+                  child: GestureDetector(onTap: () => hitCounts[1]++),
+                ),
               ),
             ),
             SliverToBoxAdapter(
-              child: SizedBox(height: 100, child: GestureDetector(onTap: () => hitCounts[2]++)),
+              child: SizedBox(
+                height: const .fixed(100),
+                child: GestureDetector(onTap: () => hitCounts[2]++),
+              ),
             ),
           ],
         ),
@@ -705,7 +738,7 @@ void main() {
           // Center is used to give the SizedBox the power to determine constraints for LayoutBuilder
           Center(
             child: SizedBox.fromSize(
-              size: size,
+              size: .fixed(size),
               child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   builderInvocationCount += 1;
@@ -787,7 +820,7 @@ void main() {
           // Center is used to give the SizedBox the power to determine constraints for LayoutBuilder
           Center(
             child: SizedBox.fromSize(
-              size: size,
+              size: .fixed(size),
               child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   buildCount++;
@@ -795,7 +828,7 @@ void main() {
                     final _RenderLayoutSpy spy = tester.renderObject(find.byType(_LayoutSpy));
                     childSize = spy.size;
                   }
-                  return const ColoredBox(color: Color(0xffffffff), child: _LayoutSpy());
+                  return const ColoredBox(color: .fixed(Color(0xffffffff)), child: _LayoutSpy());
                 },
               ),
             ),
@@ -827,7 +860,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: _SmartLayoutBuilder(
                 text: text,
                 offsetPercentage: offsetPercentage,
@@ -1035,7 +1068,10 @@ void main() {
             SliverList.list(
               addRepaintBoundaries: false,
               addSemanticIndexes: false,
-              children: <Widget>[const SizedBox(height: 60), layoutBuilderWithParent],
+              children: <Widget>[
+                const SizedBox(height: .fixed(60)),
+                layoutBuilderWithParent,
+              ],
             ),
           ],
         ),
@@ -1050,7 +1086,10 @@ void main() {
             SliverList.list(
               addRepaintBoundaries: false,
               addSemanticIndexes: false,
-              children: <Widget>[const SizedBox(height: 6000), layoutBuilderWithParent],
+              children: <Widget>[
+                const SizedBox(height: .fixed(6000)),
+                layoutBuilderWithParent,
+              ],
             ),
           ],
         ),

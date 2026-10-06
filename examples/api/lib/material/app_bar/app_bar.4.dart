@@ -32,7 +32,7 @@ class AppBarExample extends StatelessWidget {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(64.0),
           child: Padding(
-            padding: const .symmetric(horizontal: 16.0),
+            padding: const .fixed(.symmetric(horizontal: 16.0)),
             child: TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(

@@ -194,8 +194,8 @@ class CupertinoContextMenu extends StatefulWidget {
   ///         child: ClipRSuperellipse(
   ///           borderRadius: borderRadiusAnimation.value ?? BorderRadius.zero,
   ///           child: SizedBox(
-  ///             height: 150,
-  ///             width: 150,
+  ///             height: .fixed(150),
+  ///             width: .fixed(150),
   ///             child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
   ///           ),
   ///         ),
@@ -303,8 +303,8 @@ class CupertinoContextMenu extends StatefulWidget {
   ///         child: ClipRSuperellipse(
   ///           borderRadius: borderRadiusAnimation.value ?? BorderRadius.zero,
   ///           child: SizedBox(
-  ///             height: 150,
-  ///             width: 150,
+  ///             height: .fixed(150),
+  ///             width: .fixed(150),
   ///             child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
   ///           ),
   ///         ),
@@ -1012,7 +1012,7 @@ class _ContextMenuRoute<T> extends PopupRoute<T> {
                   opacity: _sheetOpacity,
                   child: Transform.scale(
                     alignment: getSheetAlignment(_contextMenuLocation, orientation),
-                    scale: sheetScale,
+                    scale: .fixed(sheetScale),
                     child: _ContextMenuSheet(
                       key: _sheetGlobalKey,
                       actions: _actions,
@@ -1251,7 +1251,7 @@ class _ContextMenuRouteStaticState extends State<_ContextMenuRouteStatic>
         widget.contextMenuLocation,
         widget.orientation,
       ),
-      scale: _sheetScaleAnimation.value,
+      scale: .fixed(_sheetScaleAnimation.value),
       child: FadeTransition(opacity: _sheetOpacityAnimation, child: child),
     );
   }
@@ -1263,12 +1263,12 @@ class _ContextMenuRouteStaticState extends State<_ContextMenuRouteStatic>
       MediaQuery.heightOf(context),
       _moveAnimation.value.dy,
     );
-    return Transform.scale(key: widget.childGlobalKey, scale: _lastScale, child: child);
+    return Transform.scale(key: widget.childGlobalKey, scale: .fixed(_lastScale), child: child);
   }
 
   // Build the animation for the overall draggable dismissible content.
   Widget _buildAnimation(BuildContext context, Widget? child) {
-    return Transform.translate(offset: _moveAnimation.value, child: child);
+    return Transform.translate(offset: .fixed(_moveAnimation.value), child: child);
   }
 
   @override
@@ -1368,12 +1368,14 @@ class _ContextMenuSheetState extends State<_ContextMenuSheet> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: _kMenuWidth,
+      width: const .fixed(_kMenuWidth),
       child: IntrinsicHeight(
         child: ClipRSuperellipse(
           borderRadius: const BorderRadius.all(Radius.circular(13.0)),
           child: ColoredBox(
-            color: CupertinoDynamicColor.resolve(CupertinoContextMenu.kBackgroundColor, context),
+            color: .fixed(
+              CupertinoDynamicColor.resolve(CupertinoContextMenu.kBackgroundColor, context),
+            ),
             child: ScrollConfiguration(
               behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
               child: CupertinoScrollbar(
@@ -1387,11 +1389,13 @@ class _ContextMenuSheetState extends State<_ContextMenuSheet> {
                       widget.actions.first,
                       for (final Widget action in widget.actions.skip(1))
                         DecoratedBox(
-                          decoration: BoxDecoration(
-                            border: Border(
-                              top: BorderSide(
-                                color: CupertinoDynamicColor.resolve(_borderColor, context),
-                                width: 0.4,
+                          decoration: .fixed(
+                            BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  color: CupertinoDynamicColor.resolve(_borderColor, context),
+                                  width: 0.4,
+                                ),
                               ),
                             ),
                           ),

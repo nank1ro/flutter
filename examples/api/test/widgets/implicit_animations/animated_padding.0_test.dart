@@ -19,7 +19,7 @@ void main() {
         matching: find.byType(Padding),
       ),
     );
-    expect(padding.padding, equals(EdgeInsets.zero));
+    expect(padding.padding.value, equals(EdgeInsets.zero));
 
     await tester.tap(find.byType(ElevatedButton));
     await tester.pump();
@@ -30,7 +30,7 @@ void main() {
         matching: find.byType(Padding),
       ),
     );
-    expect(padding.padding, equals(EdgeInsets.zero));
+    expect(padding.padding.value, equals(EdgeInsets.zero));
 
     // Advance animation to the end by the 2-second duration specified in
     // the example app.
@@ -42,6 +42,6 @@ void main() {
         matching: find.byType(Padding),
       ),
     );
-    expect(padding.padding, equals(const EdgeInsets.all(100.0)));
+    expect(padding.padding.value, equals(const EdgeInsets.all(100.0)));
   });
 }

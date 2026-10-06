@@ -115,11 +115,15 @@ Future<void> testConstrainedLabel(
     wrapForChip(
       child: Center(
         child: SizedBox(
-          width: chipParentWidth,
-          height: chipParentHeight,
+          width: const .fixed(chipParentWidth),
+          height: const .fixed(chipParentHeight),
           child: Chip(
             avatar: avatar,
-            label: SizedBox(key: labelKey, width: labelWidth, height: labelHeight),
+            label: SizedBox(
+              key: labelKey,
+              width: const .fixed(labelWidth),
+              height: const .fixed(labelHeight),
+            ),
             onDeleted: onDeleted,
           ),
         ),
@@ -358,11 +362,15 @@ void main() {
       wrapForChip(
         child: Center(
           child: SizedBox.square(
-            dimension: 500.0,
+            dimension: const .fixed(500.0),
             child: Column(
               children: <Widget>[
                 Chip(
-                  label: SizedBox(key: labelKey, width: labelWidth, height: labelHeight),
+                  label: SizedBox(
+                    key: labelKey,
+                    width: const .fixed(labelWidth),
+                    height: const .fixed(labelHeight),
+                  ),
                 ),
               ],
             ),
@@ -407,7 +415,7 @@ void main() {
       return MaterialApp(
         home: Scaffold(
           body: SizedBox(
-            width: 150,
+            width: const .fixed(150),
             child: Column(
               children: <Widget>[Chip(avatar: avatar, label: Text(text), onDeleted: onDeleted)],
             ),
@@ -850,7 +858,7 @@ void main() {
             ),
             Chip(
               avatar: const CircleAvatar(child: Text('B')),
-              label: SizedBox(key: keyB, width: 10.0, height: 10.0),
+              label: SizedBox(key: keyB, width: const .fixed(10.0), height: const .fixed(10.0)),
             ),
           ],
         ),
@@ -876,7 +884,7 @@ void main() {
             ),
             Chip(
               avatar: const CircleAvatar(child: Text('B')),
-              label: SizedBox(key: keyB, width: 10.0, height: 10.0),
+              label: SizedBox(key: keyB, width: const .fixed(10.0), height: const .fixed(10.0)),
             ),
           ],
         ),
@@ -898,7 +906,7 @@ void main() {
         child: Column(
           children: <Widget>[
             Chip(
-              avatar: SizedBox(key: keyA, width: 20.0, height: 20.0),
+              avatar: SizedBox(key: keyA, width: const .fixed(20.0), height: const .fixed(20.0)),
               label: const Text('Chip A'),
             ),
           ],
@@ -916,7 +924,11 @@ void main() {
         child: Column(
           children: <Widget>[
             Chip(
-              deleteIcon: SizedBox(key: keyA, width: 20.0, height: 20.0),
+              deleteIcon: SizedBox(
+                key: keyA,
+                width: const .fixed(20.0),
+                height: const .fixed(20.0),
+              ),
               label: const Text('Chip A'),
               onDeleted: () {},
             ),
@@ -948,7 +960,11 @@ void main() {
                   child: Center(
                     child: Chip(
                       avatar: Placeholder(key: keyA),
-                      label: SizedBox(key: keyB, width: 40.0, height: 40.0),
+                      label: SizedBox(
+                        key: keyB,
+                        width: const .fixed(40.0),
+                        height: const .fixed(40.0),
+                      ),
                       onDeleted: () {},
                     ),
                   ),
@@ -989,7 +1005,11 @@ void main() {
                   child: Center(
                     child: Chip(
                       avatar: Placeholder(key: keyA),
-                      label: SizedBox(key: keyB, width: 40.0, height: 40.0),
+                      label: SizedBox(
+                        key: keyB,
+                        width: const .fixed(40.0),
+                        height: const .fixed(40.0),
+                      ),
                       onDeleted: () {},
                     ),
                   ),
@@ -2101,11 +2121,16 @@ void main() {
 
     // With avatar, but not selectable.
     final avatarKey = UniqueKey();
-    await pushChip(avatar: SizedBox(width: 40.0, height: 40.0, key: avatarKey));
+    await pushChip(
+      avatar: SizedBox(width: const .fixed(40.0), height: const .fixed(40.0), key: avatarKey),
+    );
     expect(tester.getSize(find.byType(RawChip)), equals(const Size(258.0, 48.0)));
 
     // Turn on selection.
-    await pushChip(avatar: SizedBox(width: 40.0, height: 40.0, key: avatarKey), selectable: true);
+    await pushChip(
+      avatar: SizedBox(width: const .fixed(40.0), height: const .fixed(40.0), key: avatarKey),
+      selectable: true,
+    );
     await tester.pumpAndSettle();
 
     expect(SchedulerBinding.instance.transientCallbackCount, equals(0));
@@ -2183,11 +2208,16 @@ void main() {
 
     // With avatar, but not selectable.
     final avatarKey = UniqueKey();
-    await pushChip(avatar: SizedBox(width: 40.0, height: 40.0, key: avatarKey));
+    await pushChip(
+      avatar: SizedBox(width: const .fixed(40.0), height: const .fixed(40.0), key: avatarKey),
+    );
     expect(tester.getSize(find.byType(RawChip)), equals(const Size(265.5, 48.0)));
 
     // Turn on selection.
-    await pushChip(avatar: SizedBox(width: 40.0, height: 40.0, key: avatarKey), selectable: true);
+    await pushChip(
+      avatar: SizedBox(width: const .fixed(40.0), height: const .fixed(40.0), key: avatarKey),
+      selectable: true,
+    );
     await tester.pumpAndSettle();
 
     expect(SchedulerBinding.instance.transientCallbackCount, equals(0));
@@ -2425,7 +2455,10 @@ void main() {
     }
 
     final avatarKey = UniqueKey();
-    await pushChip(avatar: SizedBox(width: 40.0, height: 40.0, key: avatarKey), selectable: true);
+    await pushChip(
+      avatar: SizedBox(width: const .fixed(40.0), height: const .fixed(40.0), key: avatarKey),
+      selectable: true,
+    );
     await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(labelKey));
@@ -2480,7 +2513,10 @@ void main() {
     }
 
     final avatarKey = UniqueKey();
-    await pushChip(avatar: SizedBox(width: 40.0, height: 40.0, key: avatarKey), selectable: true);
+    await pushChip(
+      avatar: SizedBox(width: const .fixed(40.0), height: const .fixed(40.0), key: avatarKey),
+      selectable: true,
+    );
     await tester.pumpAndSettle();
 
     expect(SchedulerBinding.instance.transientCallbackCount, equals(0));
@@ -5148,7 +5184,7 @@ void main() {
               child: RawChip(
                 iconTheme: iconTheme,
                 avatar: const Icon(Icons.add),
-                label: const SizedBox(width: 100, height: 100),
+                label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                 onSelected: (bool newValue) {},
               ),
             ),
@@ -5836,7 +5872,7 @@ void main() {
               avatar: const Icon(Icons.favorite),
               deleteIcon: const Icon(Icons.delete),
               onDeleted: () {},
-              label: const SizedBox(height: 100),
+              label: const SizedBox(height: .fixed(100)),
             ),
           ),
         ),
@@ -5868,7 +5904,7 @@ void main() {
               iconTheme: IconThemeData(color: iconColor),
               deleteIcon: const Icon(Icons.delete),
               onDeleted: () {},
-              label: const SizedBox(height: 100),
+              label: const SizedBox(height: .fixed(100)),
             ),
           ),
         ),

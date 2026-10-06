@@ -45,7 +45,7 @@ void showGalleryAboutDialog(BuildContext context) {
     applicationLegalese: '© 2014 The Flutter Authors',
     children: <Widget>[
       Padding(
-        padding: const EdgeInsets.only(top: 24.0),
+        padding: const .fixed(EdgeInsets.only(top: 24.0)),
         child: RichText(
           text: TextSpan(
             children: <TextSpan>[

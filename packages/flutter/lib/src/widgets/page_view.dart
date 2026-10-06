@@ -75,7 +75,7 @@ import 'viewport.dart';
 ///           controller: _pageController,
 ///           children: <Widget>[
 ///             ColoredBox(
-///               color: Colors.red,
+///               color: .fixed(Colors.red),
 ///               child: Center(
 ///                 child: ElevatedButton(
 ///                   onPressed: () {
@@ -92,7 +92,7 @@ import 'viewport.dart';
 ///               ),
 ///             ),
 ///             ColoredBox(
-///               color: Colors.blue,
+///               color: .fixed(Colors.blue),
 ///               child: Center(
 ///                 child: ElevatedButton(
 ///                   onPressed: () {

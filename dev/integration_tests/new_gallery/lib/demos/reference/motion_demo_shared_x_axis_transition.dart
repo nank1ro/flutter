@@ -64,7 +64,7 @@ class _SharedXAxisTransitionDemoState extends State<SharedXAxisTransitionDemo> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 15, vertical: 20)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -95,15 +95,15 @@ class _CoursePage extends StatelessWidget {
 
     return ListView(
       children: <Widget>[
-        const SizedBox(height: 16),
+        const SizedBox(height: .fixed(16)),
         Text(
           localizations.demoSharedXAxisCoursePageTitle,
           style: Theme.of(context).textTheme.headlineSmall,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: .fixed(10)),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const .fixed(EdgeInsets.symmetric(horizontal: 10)),
           child: Text(
             localizations.demoSharedXAxisCoursePageSubtitle,
             style: const TextStyle(fontSize: 12, color: Colors.grey),
@@ -162,13 +162,13 @@ class _SignInPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final double maxHeight = constraints.maxHeight;
-        const spacing = SizedBox(height: 10);
+        const spacing = SizedBox(height: .fixed(10));
 
         return Container(
           constraints: const BoxConstraints(maxWidth: 400),
           child: Column(
             children: <Widget>[
-              SizedBox(height: maxHeight / 10),
+              SizedBox(height: .fixed(maxHeight / 10)),
               Image.asset(
                 'placeholders/avatar_logo.png',
                 package: 'flutter_gallery_assets',
@@ -189,11 +189,8 @@ class _SignInPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                      top: 40,
-                      start: 10,
-                      end: 10,
-                      bottom: 10,
+                    padding: const .fixed(
+                      EdgeInsetsDirectional.only(top: 40, start: 10, end: 10, bottom: 10),
                     ),
                     child: TextField(
                       decoration: InputDecoration(

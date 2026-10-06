@@ -408,7 +408,9 @@ void main() {
           physics: const BouncingScrollPhysics(),
           slivers: <Widget>[
             SliverPersistentHeader(delegate: TestDelegate(), floating: true),
-            SliverList.list(children: const <Widget>[SizedBox(height: 300.0, child: Text('X'))]),
+            SliverList.list(
+              children: const <Widget>[SizedBox(height: .fixed(300.0), child: Text('X'))],
+            ),
           ],
         ),
       ),
@@ -728,7 +730,9 @@ void main() {
           physics: const BouncingScrollPhysics(),
           slivers: <Widget>[
             SliverPersistentHeader(delegate: TestDelegate2(), pinned: true),
-            SliverList.list(children: const <Widget>[SizedBox(height: 300.0, child: Text('X'))]),
+            SliverList.list(
+              children: const <Widget>[SizedBox(height: .fixed(300.0), child: Text('X'))],
+            ),
           ],
         ),
       ),
@@ -891,7 +895,9 @@ void main() {
           physics: const BouncingScrollPhysics(),
           slivers: <Widget>[
             SliverPersistentHeader(delegate: TestDelegate()),
-            SliverList.list(children: const <Widget>[SizedBox(height: 300.0, child: Text('X'))]),
+            SliverList.list(
+              children: const <Widget>[SizedBox(height: .fixed(300.0), child: Text('X'))],
+            ),
           ],
         ),
       ),
@@ -920,7 +926,7 @@ void main() {
               SliverPersistentHeader(delegate: TestDelegate()),
               const SliverList(
                 delegate: SliverChildListDelegate.fixed(<Widget>[
-                  SizedBox(height: 300.0, child: Text('X')),
+                  SizedBox(height: .fixed(300.0), child: Text('X')),
                 ]),
               ),
             ],
@@ -957,7 +963,7 @@ void main() {
               SliverPersistentHeader(delegate: TestDelegate()),
               const SliverList(
                 delegate: SliverChildListDelegate.fixed(<Widget>[
-                  SizedBox(height: 300.0, child: Text('X')),
+                  SizedBox(height: .fixed(300.0), child: Text('X')),
                 ]),
               ),
             ],
@@ -1097,7 +1103,7 @@ class TestDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox(height: maxExtent, child: const Text('Sliver Persistent Header'));
+    return SizedBox(height: .fixed(maxExtent), child: const Text('Sliver Persistent Header'));
   }
 
   @override

@@ -32,16 +32,16 @@ Future<void> test(
         axisDirection: axisDirection,
         slivers: <Widget>[
           const SliverToBoxAdapter(
-            child: SizedBox(width: 400.0, height: 400.0, child: Text('before')),
+            child: SizedBox(width: .fixed(400.0), height: .fixed(400.0), child: Text('before')),
           ),
           SliverPadding(
             padding: padding,
             sliver: const SliverToBoxAdapter(
-              child: SizedBox(width: 400.0, height: 400.0, child: Text('padded')),
+              child: SizedBox(width: .fixed(400.0), height: .fixed(400.0), child: Text('padded')),
             ),
           ),
           const SliverToBoxAdapter(
-            child: SizedBox(width: 400.0, height: 400.0, child: Text('after')),
+            child: SizedBox(width: .fixed(400.0), height: .fixed(400.0), child: Text('after')),
           ),
         ],
       ),
@@ -300,7 +300,9 @@ void main() {
           offset: offset,
           slivers: const <Widget>[
             SliverPadding(padding: EdgeInsets.all(100.0)),
-            SliverToBoxAdapter(child: SizedBox(width: 400.0, height: 400.0, child: Text('x'))),
+            SliverToBoxAdapter(
+              child: SizedBox(width: .fixed(400.0), height: .fixed(400.0), child: Text('x')),
+            ),
           ],
         ),
       ),
@@ -324,7 +326,9 @@ void main() {
           controller: controller,
           slivers: const <Widget>[
             SliverPadding(padding: EdgeInsets.all(100.0)),
-            SliverToBoxAdapter(child: SizedBox(width: 400.0, height: 400.0, child: Text('x'))),
+            SliverToBoxAdapter(
+              child: SizedBox(width: .fixed(400.0), height: .fixed(400.0), child: Text('x')),
+            ),
           ],
         ),
       ),
@@ -357,7 +361,9 @@ void main() {
           offset: offset1,
           slivers: const <Widget>[
             SliverPadding(padding: EdgeInsets.fromLTRB(90.0, 1.0, 110.0, 2.0)),
-            SliverToBoxAdapter(child: SizedBox(width: 201.0, child: Text('x'))),
+            SliverToBoxAdapter(
+              child: SizedBox(width: .fixed(201.0), child: Text('x')),
+            ),
           ],
         ),
       ),
@@ -379,7 +385,9 @@ void main() {
           offset: offset2,
           slivers: const <Widget>[
             SliverPadding(padding: EdgeInsets.fromLTRB(110.0, 1.0, 80.0, 2.0)),
-            SliverToBoxAdapter(child: SizedBox(width: 201.0, child: Text('x'))),
+            SliverToBoxAdapter(
+              child: SizedBox(width: .fixed(201.0), child: Text('x')),
+            ),
           ],
         ),
       ),
@@ -522,7 +530,10 @@ void main() {
 
     await tester.pumpWidget(
       listBuilder((BuildContext context, int index) {
-        return SizedBox(height: 200.0, child: Center(child: Text(index.toString())));
+        return SizedBox(
+          height: const .fixed(200.0),
+          child: Center(child: Text(index.toString())),
+        );
       }),
     );
 
@@ -538,7 +549,7 @@ void main() {
     await tester.pumpWidget(
       listBuilder((BuildContext context, int index) {
         return SizedBox(
-          height: index == 0 ? 400.0 : 200.0,
+          height: .fixed(index == 0 ? 400.0 : 200.0),
           child: Center(child: Text(index.toString())),
         );
       }),

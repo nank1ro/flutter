@@ -66,7 +66,7 @@ class IconsDemoState extends State<IconsDemo> {
               padding: const EdgeInsets.all(24.0),
               children: <Widget>[
                 _IconsDemoCard(handleIconButtonPress, Icons.face), // direction-agnostic icon
-                const SizedBox(height: 24.0),
+                const SizedBox(height: .fixed(24.0)),
                 _IconsDemoCard(
                   handleIconButtonPress,
                   Icons.battery_unknown,
@@ -97,7 +97,7 @@ class _IconsDemoCard extends StatelessWidget {
 
   Widget _centeredText(String label) => Padding(
     // Match the default padding of IconButton.
-    padding: const EdgeInsets.all(8.0),
+    padding: const .fixed(EdgeInsets.all(8.0)),
     child: Text(label, textAlign: TextAlign.center),
   );
 

@@ -49,8 +49,8 @@ void main() {
             segments: const <ButtonSegment<int>>[
               ButtonSegment<int>(
                 value: 0,
-                label: Opacity(opacity: 0.5, child: Text('option')),
-                icon: Opacity(opacity: 0.5, child: Icon(Icons.add)),
+                label: Opacity(opacity: .fixed(0.5), child: Text('option')),
+                icon: Opacity(opacity: .fixed(0.5), child: Icon(Icons.add)),
               ),
             ],
             selected: const <int>{0},
@@ -1601,7 +1601,7 @@ void main() {
         home: Scaffold(
           body: Center(
             child: SizedBox(
-              width: double.infinity,
+              width: const .fixed(double.infinity),
               child: SegmentedButton<String>(
                 direction: Axis.vertical,
                 segments: const [

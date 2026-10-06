@@ -135,7 +135,7 @@ class PageIndicator extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Padding(
-      padding: const .all(8.0),
+      padding: const .fixed(.all(8.0)),
       child: Row(
         mainAxisAlignment: .center,
         children: <Widget>[

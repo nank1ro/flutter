@@ -268,9 +268,9 @@ void main() {
               children: const <Widget>[
                 Text('C'),
                 Text('D'),
-                SizedBox(height: 500.0),
+                SizedBox(height: .fixed(500.0)),
                 Text('E'),
-                SizedBox(height: 500.0),
+                SizedBox(height: .fixed(500.0)),
               ],
             ),
           ],
@@ -336,7 +336,7 @@ void main() {
                   SliverList.builder(
                     itemCount: 20,
                     itemBuilder: (BuildContext context, int index) {
-                      return SizedBox(height: 100.0, child: Text('Tile $index'));
+                      return SizedBox(height: const .fixed(100.0), child: Text('Tile $index'));
                     },
                   ),
                 ],

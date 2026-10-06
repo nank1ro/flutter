@@ -167,7 +167,7 @@ class HomePage extends StatelessWidget {
             _DesktopCarousel(height: _carouselHeight(0.7, context), children: carouselCards),
             _DesktopHomeItem(child: _CategoriesHeader()),
             SizedBox(
-              height: 585,
+              height: const .fixed(585),
               child: _DesktopHomeItem(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -175,7 +175,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 81),
+            const SizedBox(height: .fixed(81)),
             _DesktopHomeItem(
               child: Row(
                 children: <Widget>[
@@ -218,7 +218,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 109),
+            const SizedBox(height: .fixed(109)),
           ],
         ),
       );
@@ -238,7 +238,7 @@ class HomePage extends StatelessWidget {
     return <Widget>[
       for (int index = 0; index < children.length; index++) ...<Widget>[
         Flexible(child: children[index]),
-        if (index < children.length - 1) SizedBox(width: paddingBetween),
+        if (index < children.length - 1) SizedBox(width: .fixed(paddingBetween)),
       ],
     ];
   }
@@ -275,9 +275,11 @@ class Header extends StatelessWidget {
     return Align(
       alignment: AlignmentDirectional.centerStart,
       child: Padding(
-        padding: EdgeInsets.only(
-          top: isDisplayDesktop(context) ? 63 : 15,
-          bottom: isDisplayDesktop(context) ? 21 : 11,
+        padding: .fixed(
+          EdgeInsets.only(
+            top: isDisplayDesktop(context) ? 63 : 15,
+            bottom: isDisplayDesktop(context) ? 21 : 11,
+          ),
         ),
         child: SelectableText(
           text,
@@ -368,7 +370,7 @@ class _AnimatedHomePageState extends State<_AnimatedHomePage>
           primary: true,
           restorationId: 'home_list_view',
           children: <Widget>[
-            const SizedBox(height: 8),
+            const SizedBox(height: .fixed(8)),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
               child: _GalleryHeader(),
@@ -524,7 +526,7 @@ class _DesktopCategoryHeader extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const .fixed(EdgeInsets.all(10)),
             child: FadeInImage(
               image: asset,
               placeholder: MemoryImage(kTransparentImage),
@@ -536,7 +538,7 @@ class _DesktopCategoryHeader extends StatelessWidget {
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 8),
+              padding: const .fixed(EdgeInsetsDirectional.only(start: 8)),
               child: Semantics(
                 header: true,
                 child: SelectableText(
@@ -583,7 +585,7 @@ class _AnimatedCategoryItem extends StatelessWidget {
       animation: controller,
       builder: (BuildContext context, Widget? child) {
         return Padding(
-          padding: EdgeInsets.only(top: topPaddingAnimation.value),
+          padding: .fixed(EdgeInsets.only(top: topPaddingAnimation.value)),
           child: child,
         );
       },
@@ -612,7 +614,7 @@ class _AnimatedCarousel extends StatelessWidget {
       builder: (BuildContext context, BoxConstraints constraints) {
         return Stack(
           children: <Widget>[
-            SizedBox(height: _carouselHeight(.4, context)),
+            SizedBox(height: .fixed(_carouselHeight(.4, context))),
             AnimatedBuilder(
               animation: controller,
               builder: (BuildContext context, Widget? child) {
@@ -622,8 +624,8 @@ class _AnimatedCarousel extends StatelessWidget {
                 );
               },
               child: SizedBox(
-                height: _carouselHeight(.4, context),
-                width: constraints.maxWidth,
+                height: .fixed(_carouselHeight(.4, context)),
+                width: .fixed(constraints.maxWidth),
                 child: child,
               ),
             ),
@@ -654,7 +656,7 @@ class _AnimatedCarouselCard extends StatelessWidget {
       animation: controller,
       builder: (BuildContext context, Widget? child) {
         return Padding(
-          padding: EdgeInsetsDirectional.only(start: startPaddingAnimation.value),
+          padding: .fixed(EdgeInsetsDirectional.only(start: startPaddingAnimation.value)),
           child: child,
         );
       },
@@ -727,7 +729,7 @@ class _MobileCarouselState extends State<_MobileCarousel>
         value = (1 - (value.abs() * .3)).clamp(0, 1).toDouble();
         value = Curves.easeOut.transform(value);
 
-        return Transform.scale(scale: value, child: child);
+        return Transform.scale(scale: .fixed(value), child: child);
       },
       child: widget.children[index],
     );
@@ -827,7 +829,7 @@ class _DesktopCarouselState extends State<_DesktopCarousel> {
               itemExtent: _carouselItemWidth,
               itemCount: widget.children.length,
               itemBuilder: (BuildContext context, int index) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: const .fixed(EdgeInsets.symmetric(vertical: 8.0)),
                 child: widget.children[index],
               ),
             ),
@@ -997,7 +999,7 @@ class _CarouselCard extends StatelessWidget {
                 fadeInDuration: entranceAnimationDuration,
               ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
+              padding: const .fixed(EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -1076,9 +1078,11 @@ class _StudyWrapperState extends State<StudyWrapper> {
             child: Align(
               alignment: widget.alignment,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: widget.hasBottomNavBar ? kBottomNavigationBarHeight + 16.0 : 16.0,
+                padding: .fixed(
+                  EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: widget.hasBottomNavBar ? kBottomNavigationBarHeight + 16.0 : 16.0,
+                  ),
                 ),
                 child: Semantics(
                   sortKey: const OrdinalSortKey(0),

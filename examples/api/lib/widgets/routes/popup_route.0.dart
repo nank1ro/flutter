@@ -77,7 +77,7 @@ class DismissibleDialog<T> extends PopupRoute<T> {
                   'Dismissible Dialog',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: .fixed(20)),
                 const Text('Tap in the scrim or press escape key to dismiss.'),
               ],
             ),

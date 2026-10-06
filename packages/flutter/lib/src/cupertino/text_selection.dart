@@ -132,22 +132,24 @@ class CupertinoTextSelectionControls extends TextSelectionControls {
     switch (type) {
       case TextSelectionHandleType.left:
         desiredSize = getHandleSize(textLineHeight);
-        handle = SizedBox.fromSize(size: desiredSize, child: customPaint);
+        handle = SizedBox.fromSize(size: .fixed(desiredSize), child: customPaint);
         return handle;
       case TextSelectionHandleType.right:
         desiredSize = getHandleSize(textLineHeight);
-        handle = SizedBox.fromSize(size: desiredSize, child: customPaint);
+        handle = SizedBox.fromSize(size: .fixed(desiredSize), child: customPaint);
         return Transform(
-          transform: Matrix4.identity()
-            ..translateByDouble(desiredSize.width / 2, desiredSize.height / 2, 0, 1)
-            ..rotateZ(math.pi)
-            ..translateByDouble(-desiredSize.width / 2, -desiredSize.height / 2, 0, 1),
+          transform: .fixed(
+            Matrix4.identity()
+              ..translateByDouble(desiredSize.width / 2, desiredSize.height / 2, 0, 1)
+              ..rotateZ(math.pi)
+              ..translateByDouble(-desiredSize.width / 2, -desiredSize.height / 2, 0, 1),
+          ),
           child: handle,
         );
       // iOS should draw an invisible box so the handle can still receive gestures
       // on collapsed selections.
       case TextSelectionHandleType.collapsed:
-        return SizedBox.fromSize(size: getHandleSize(textLineHeight));
+        return SizedBox.fromSize(size: .fixed(getHandleSize(textLineHeight)));
     }
   }
 
@@ -285,7 +287,7 @@ class _CupertinoTextSelectionControlsToolbarState
     final items = <Widget>[];
     final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
     final Widget onePhysicalPixelVerticalDivider = SizedBox(
-      width: 1.0 / MediaQuery.devicePixelRatioOf(context),
+      width: .fixed(1.0 / MediaQuery.devicePixelRatioOf(context)),
     );
 
     void addToolbarButton(String text, VoidCallback onPressed) {

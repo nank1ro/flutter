@@ -28,7 +28,7 @@ class PrefixIconConstraintsExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: .symmetric(horizontal: 8.0),
+      padding: .fixed(.symmetric(horizontal: 8.0)),
       child: Column(
         mainAxisAlignment: .center,
         children: <Widget>[
@@ -38,7 +38,7 @@ class PrefixIconConstraintsExample extends StatelessWidget {
               prefixIcon: Icon(Icons.search),
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: .fixed(10)),
           TextField(
             decoration: InputDecoration(
               isDense: true,

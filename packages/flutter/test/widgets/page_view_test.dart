@@ -73,7 +73,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.fromSize(
-            size: size,
+            size: .fixed(size),
             child: PageView(
               controller: controller,
               onPageChanged: (int page) {},
@@ -120,7 +120,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.fromSize(
-            size: size,
+            size: .fixed(size),
             child: PageView(
               controller: controller,
               onPageChanged: (int page) {},
@@ -315,8 +315,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 600.0,
-            height: 400.0,
+            width: const .fixed(600.0),
+            height: const .fixed(400.0),
             child: PageView(
               controller: controller,
               children: kStates.map<Widget>((String state) => Text(state)).toList(),
@@ -338,8 +338,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 300.0,
-            height: 400.0,
+            width: const .fixed(300.0),
+            height: const .fixed(400.0),
             child: PageView(
               controller: controller,
               children: kStates.map<Widget>((String state) => Text(state)).toList(),
@@ -363,8 +363,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 600.0,
-            height: 400.0,
+            width: const .fixed(600.0),
+            height: const .fixed(400.0),
             child: PageView(children: kStates.map<Widget>((String state) => Text(state)).toList()),
           ),
         ),
@@ -383,8 +383,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 250.0,
-            height: 100.0,
+            width: const .fixed(250.0),
+            height: const .fixed(100.0),
             child: PageView(children: kStates.map<Widget>((String state) => Text(state)).toList()),
           ),
         ),
@@ -398,8 +398,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 450.0,
-            height: 400.0,
+            width: const .fixed(450.0),
+            height: const .fixed(400.0),
             child: PageView(children: kStates.map<Widget>((String state) => Text(state)).toList()),
           ),
         ),
@@ -467,7 +467,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 200.0,
+            dimension: const .fixed(200.0),
             child: PageView(children: kStates.map<Widget>((String state) => Text(state)).toList()),
           ),
         ),
@@ -890,7 +890,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.fromSize(
-            size: size,
+            size: .fixed(size),
             child: PageView(
               controller: controller,
               children: kStates.map<Widget>((String state) => Text(state)).toList(),
@@ -1225,7 +1225,7 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox(
-          width: 392.72727272727275,
+          width: const .fixed(392.72727272727275),
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: PageView.builder(
@@ -1271,7 +1271,7 @@ void main() {
           behavior: const ScrollBehavior().copyWith(overscroll: false),
           child: Center(
             child: SizedBox(
-              width: pixel6EmulatorWidth,
+              width: const .fixed(pixel6EmulatorWidth),
               child: PageView(
                 controller: controller,
                 physics: const PageScrollPhysics().applyTo(const ClampingScrollPhysics()),

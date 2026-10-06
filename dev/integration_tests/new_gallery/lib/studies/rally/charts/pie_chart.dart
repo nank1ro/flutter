@@ -141,10 +141,12 @@ class _AnimatedRallyPieChart extends AnimatedWidget {
         }
 
         return DecoratedBox(
-          decoration: _RallyPieChartOutlineDecoration(
-            maxFraction: animation.value,
-            total: total,
-            segments: segments,
+          decoration: .fixed(
+            _RallyPieChartOutlineDecoration(
+              maxFraction: animation.value,
+              total: total,
+              segments: segments,
+            ),
           ),
           child: Container(
             height: constraints.maxHeight,

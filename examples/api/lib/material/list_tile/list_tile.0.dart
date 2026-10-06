@@ -127,7 +127,7 @@ class _ListTileExampleState extends State<ListTileExample>
             ),
           ),
           SizedBox(
-            height: 100,
+            height: .fixed(100),
             child: Center(
               child: SizeTransition(
                 sizeFactor: _sizeAnimation,

@@ -90,7 +90,7 @@ class TestWidgetState extends State<TestWidget> with RestorationMixin {
     return Material(
       child: Align(
         child: SizedBox(
-          width: 50,
+          width: const .fixed(50),
           child: TextField(
             restorationId: 'text',
             maxLines: 3,

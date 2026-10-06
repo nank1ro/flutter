@@ -103,7 +103,10 @@ class _InfiniteScrollPlatformViewsState extends State<_InfiniteScrollPlatformVie
       controller: scrollController,
       itemExtent: 100.0,
       itemBuilder: (BuildContext context, int index) {
-        return const SizedBox(height: 100.0, child: HtmlElementView(viewType: benchmarkViewType));
+        return const SizedBox(
+          height: .fixed(100.0),
+          child: HtmlElementView(viewType: benchmarkViewType),
+        );
       },
     );
   }

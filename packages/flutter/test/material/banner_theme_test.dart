@@ -145,7 +145,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -241,7 +241,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -357,7 +357,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -430,7 +430,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -521,7 +521,7 @@ void main() {
                       );
                     },
                     behavior: HitTestBehavior.opaque,
-                    child: const SizedBox(height: 100.0, width: 100.0),
+                    child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                   );
                 },
               ),

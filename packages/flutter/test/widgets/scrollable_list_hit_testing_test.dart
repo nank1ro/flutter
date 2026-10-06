@@ -16,7 +16,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 50.0,
+            height: const .fixed(50.0),
             child: ListView(
               dragStartBehavior: DragStartBehavior.down,
               itemExtent: 290.0,
@@ -60,7 +60,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 50.0,
+            width: const .fixed(50.0),
             child: ListView(
               dragStartBehavior: DragStartBehavior.down,
               itemExtent: 290.0,

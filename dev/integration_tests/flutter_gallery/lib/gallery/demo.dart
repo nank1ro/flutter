@@ -90,7 +90,10 @@ class _TabbedComponentDemoScaffoldState extends State<TabbedComponentDemoScaffol
           return SimpleDialog(
             title: const Text("Couldn't display URL:"),
             children: <Widget>[
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 16.0), child: Text(url)),
+              Padding(
+                padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0)),
+                child: Text(url),
+              ),
             ],
           );
         },
@@ -141,7 +144,7 @@ class _TabbedComponentDemoScaffoldState extends State<TabbedComponentDemoScaffol
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const .fixed(EdgeInsets.all(16.0)),
                     child: Text(demo.description!, style: Theme.of(context).textTheme.titleMedium),
                   ),
                   Expanded(child: demo.demoWidget!),
@@ -191,7 +194,7 @@ class FullScreenCodeDialogState extends State<FullScreenCodeDialog> {
     } else {
       body = SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const .fixed(EdgeInsets.all(16.0)),
           child: RichText(
             text: TextSpan(
               style: const TextStyle(fontFamily: 'monospace', fontSize: 10.0),

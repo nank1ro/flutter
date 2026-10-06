@@ -180,7 +180,7 @@ class _CupertinoTextSelectionToolbarButtonState extends State<CupertinoTextSelec
         return textWidget;
       case ContextMenuButtonType.liveTextInput:
         return SizedBox.square(
-          dimension: 13.0,
+          dimension: const .fixed(13.0),
           child: CustomPaint(
             painter: _LiveTextIconPainter(color: _kToolbarTextColor.resolveFrom(context)),
           ),

@@ -740,7 +740,7 @@ class _RailDestinationState extends State<_RailDestination> {
       case NavigationRailLabelType.none:
         // Split the destination spacing across the top and bottom to keep the icon centered.
         final Widget? spacing = material3
-            ? const SizedBox(height: _verticalDestinationSpacingM3 / 2)
+            ? const SizedBox(height: .fixed(_verticalDestinationSpacingM3 / 2))
             : null;
         indicatorOffset = Offset(
           widget.minWidth / 2 + destinationPadding.left,
@@ -750,8 +750,8 @@ class _RailDestinationState extends State<_RailDestination> {
           children: <Widget>[
             ?spacing,
             SizedBox(
-              width: widget.minWidth,
-              height: material3 ? null : widget.minWidth,
+              width: .fixed(widget.minWidth),
+              height: .fixed(material3 ? null : widget.minWidth),
               child: Center(
                 child: _AddIndicator(
                   addIndicator: widget.useIndicator,
@@ -768,7 +768,7 @@ class _RailDestinationState extends State<_RailDestination> {
         );
         if (widget.extendedTransitionAnimation.value == 0) {
           content = Padding(
-            padding: widget.padding ?? EdgeInsets.zero,
+            padding: .fixed(widget.padding ?? EdgeInsets.zero),
             child: Stack(
               children: <Widget>[
                 iconPart,
@@ -783,14 +783,16 @@ class _RailDestinationState extends State<_RailDestination> {
           );
           applyXOffset = true;
           content = Padding(
-            padding: widget.padding ?? EdgeInsets.zero,
+            padding: .fixed(widget.padding ?? EdgeInsets.zero),
             child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minWidth: lerpDouble(
-                  widget.minWidth,
-                  widget.minExtendedWidth,
-                  widget.extendedTransitionAnimation.value,
-                )!,
+              constraints: .fixed(
+                BoxConstraints(
+                  minWidth: lerpDouble(
+                    widget.minWidth,
+                    widget.minExtendedWidth,
+                    widget.extendedTransitionAnimation.value,
+                  )!,
+                ),
               ),
               child: ClipRect(
                 child: Row(
@@ -810,8 +812,9 @@ class _RailDestinationState extends State<_RailDestination> {
                       ),
                     ),
                     SizedBox(
-                      width:
-                          _horizontalDestinationPadding * widget.extendedTransitionAnimation.value,
+                      width: .fixed(
+                        _horizontalDestinationPadding * widget.extendedTransitionAnimation.value,
+                      ),
                     ),
                   ],
                 ),
@@ -831,14 +834,14 @@ class _RailDestinationState extends State<_RailDestination> {
           CurveTween(curve: interval),
         );
         final double minHeight = material3 ? 0 : widget.minWidth;
-        final Widget topSpacing = SizedBox(height: material3 ? 0 : verticalPadding);
+        final Widget topSpacing = SizedBox(height: .fixed(material3 ? 0 : verticalPadding));
         final Widget labelSpacing = SizedBox(
-          height: material3
-              ? lerpDouble(0, _verticalIconLabelSpacingM3, appearingAnimationValue)!
-              : 0,
+          height: .fixed(
+            material3 ? lerpDouble(0, _verticalIconLabelSpacingM3, appearingAnimationValue)! : 0,
+          ),
         );
         final Widget bottomSpacing = SizedBox(
-          height: material3 ? _verticalDestinationSpacingM3 : verticalPadding,
+          height: .fixed(material3 ? _verticalDestinationSpacingM3 : verticalPadding),
         );
         final double indicatorHorizontalPadding =
             (destinationPadding.left / 2) - (destinationPadding.right / 2);
@@ -854,11 +857,12 @@ class _RailDestinationState extends State<_RailDestination> {
           );
         }
         content = ConstrainedBox(
-          constraints: BoxConstraints(minWidth: widget.minWidth, minHeight: minHeight),
+          constraints: .fixed(BoxConstraints(minWidth: widget.minWidth, minHeight: minHeight)),
           child: Padding(
-            padding:
-                widget.padding ??
-                const EdgeInsets.symmetric(horizontal: _horizontalDestinationPadding),
+            padding: .fixed(
+              widget.padding ??
+                  const EdgeInsets.symmetric(horizontal: _horizontalDestinationPadding),
+            ),
             child: ClipRect(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -893,11 +897,15 @@ class _RailDestinationState extends State<_RailDestination> {
       case NavigationRailLabelType.all:
         final double minHeight = material3 ? 0 : widget.minWidth;
         final Widget topSpacing = SizedBox(
-          height: material3 ? 0 : _verticalDestinationPaddingWithLabel,
+          height: .fixed(material3 ? 0 : _verticalDestinationPaddingWithLabel),
         );
-        final Widget labelSpacing = SizedBox(height: material3 ? _verticalIconLabelSpacingM3 : 0);
+        final Widget labelSpacing = SizedBox(
+          height: .fixed(material3 ? _verticalIconLabelSpacingM3 : 0),
+        );
         final Widget bottomSpacing = SizedBox(
-          height: material3 ? _verticalDestinationSpacingM3 : _verticalDestinationPaddingWithLabel,
+          height: .fixed(
+            material3 ? _verticalDestinationSpacingM3 : _verticalDestinationPaddingWithLabel,
+          ),
         );
         final double indicatorHorizontalPadding =
             (destinationPadding.left / 2) - (destinationPadding.right / 2);
@@ -913,11 +921,12 @@ class _RailDestinationState extends State<_RailDestination> {
           );
         }
         content = ConstrainedBox(
-          constraints: BoxConstraints(minWidth: widget.minWidth, minHeight: minHeight),
+          constraints: .fixed(BoxConstraints(minWidth: widget.minWidth, minHeight: minHeight)),
           child: Padding(
-            padding:
-                widget.padding ??
-                const EdgeInsets.symmetric(horizontal: _horizontalDestinationPadding),
+            padding: .fixed(
+              widget.padding ??
+                  const EdgeInsets.symmetric(horizontal: _horizontalDestinationPadding),
+            ),
             child: Column(
               children: <Widget>[
                 topSpacing,
@@ -1176,7 +1185,7 @@ class _ExtendedNavigationRailAnimation extends InheritedWidget {
 const double _horizontalDestinationPadding = 8.0;
 const double _verticalDestinationPaddingNoLabel = 24.0;
 const double _verticalDestinationPaddingWithLabel = 16.0;
-const Widget _verticalSpacer = SizedBox(height: 8.0);
+const Widget _verticalSpacer = SizedBox(height: .fixed(8.0));
 const double _verticalIconLabelSpacingM3 = 4.0;
 const double _verticalDestinationSpacingM3 = 12.0;
 const double _horizontalDestinationSpacingM3 = 12.0;

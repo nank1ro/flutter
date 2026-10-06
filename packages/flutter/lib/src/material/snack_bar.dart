@@ -742,7 +742,7 @@ class _SnackBarState extends State<SnackBar> {
     final maybeActionAndIcon = <Widget>[
       if (widget.action != null)
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: actionHorizontalMargin),
+          padding: .fixed(EdgeInsets.symmetric(horizontal: actionHorizontalMargin)),
           child: TextButtonTheme(
             data: TextButtonThemeData(
               style: TextButton.styleFrom(
@@ -755,32 +755,34 @@ class _SnackBarState extends State<SnackBar> {
         ),
       if (showCloseIcon)
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: iconHorizontalMargin),
+          padding: .fixed(EdgeInsets.symmetric(horizontal: iconHorizontalMargin)),
           child: iconButton,
         ),
     ];
 
     Widget snackBar = Padding(
-      padding: padding,
+      padding: .fixed(padding),
       child: Wrap(
         children: <Widget>[
           Row(
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: widget.padding == null
-                      ? const EdgeInsets.symmetric(vertical: _singleLineVerticalPadding)
-                      : EdgeInsets.zero,
+                  padding: .fixed(
+                    widget.padding == null
+                        ? const EdgeInsets.symmetric(vertical: _singleLineVerticalPadding)
+                        : EdgeInsets.zero,
+                  ),
                   child: DefaultTextStyle(style: contentTextStyle!, child: widget.content),
                 ),
               ),
               if (!willOverflowAction) ...maybeActionAndIcon,
-              if (willOverflowAction) SizedBox(width: snackBarWidth * 0.4),
+              if (willOverflowAction) SizedBox(width: .fixed(snackBarWidth * 0.4)),
             ],
           ),
           if (willOverflowAction)
             Padding(
-              padding: const EdgeInsets.only(bottom: _singleLineVerticalPadding),
+              padding: const .fixed(EdgeInsets.only(bottom: _singleLineVerticalPadding)),
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: maybeActionAndIcon),
             ),
         ],
@@ -816,11 +818,11 @@ class _SnackBarState extends State<SnackBar> {
       // If width is provided, do not include horizontal margins.
       if (width != null) {
         snackBar = Padding(
-          padding: EdgeInsets.only(top: margin.top, bottom: margin.bottom),
-          child: SizedBox(width: width, child: snackBar),
+          padding: .fixed(EdgeInsets.only(top: margin.top, bottom: margin.bottom)),
+          child: SizedBox(width: .fixed(width), child: snackBar),
         );
       } else {
-        snackBar = Padding(padding: margin, child: snackBar);
+        snackBar = Padding(padding: .fixed(margin), child: snackBar);
       }
       snackBar = SafeArea(top: false, bottom: false, child: snackBar);
     }

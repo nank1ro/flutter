@@ -790,7 +790,7 @@ void main() {
                   });
                 },
               ),
-              const SizedBox(height: 1000.0),
+              const SizedBox(height: .fixed(1000.0)),
             ],
           ),
         ),

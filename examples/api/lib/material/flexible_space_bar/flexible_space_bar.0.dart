@@ -47,11 +47,16 @@ class FlexibleSpaceBarExampleApp extends StatelessWidget {
                       fit: .cover,
                     ),
                     const DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(0.0, 0.5),
-                          end: .center,
-                          colors: <Color>[Color(0x60000000), Color(0x00000000)],
+                      decoration: .fixed(
+                        BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(0.0, 0.5),
+                            end: .center,
+                            colors: <Color>[
+                              Color(0x60000000),
+                              Color(0x00000000),
+                            ],
+                          ),
                         ),
                       ),
                     ),

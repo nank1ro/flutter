@@ -14,8 +14,14 @@ void main() {
           child: Stepper(
             onStepTapped: (int i) {},
             steps: const <Step>[
-              Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
-              Step(title: Text('Step 2'), content: SizedBox(width: 100.0, height: 100.0)),
+              Step(
+                title: Text('Step 1'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
+              Step(
+                title: Text('Step 2'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
             ],
           ),
         ),
@@ -36,8 +42,14 @@ void main() {
               index = i;
             },
             steps: const <Step>[
-              Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
-              Step(title: Text('Step 2'), content: SizedBox(width: 100.0, height: 100.0)),
+              Step(
+                title: Text('Step 1'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
+              Step(
+                title: Text('Step 2'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
             ],
           ),
         ),
@@ -54,8 +66,14 @@ void main() {
           child: Material(
             child: Stepper(
               steps: const <Step>[
-                Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
-                Step(title: Text('Step 2'), content: SizedBox(width: 200.0, height: 200.0)),
+                Step(
+                  title: Text('Step 1'),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+                ),
+                Step(
+                  title: Text('Step 2'),
+                  content: SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
+                ),
               ],
             ),
           ),
@@ -73,8 +91,14 @@ void main() {
             child: Stepper(
               currentStep: 1,
               steps: const <Step>[
-                Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
-                Step(title: Text('Step 2'), content: SizedBox(width: 200.0, height: 200.0)),
+                Step(
+                  title: Text('Step 1'),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+                ),
+                Step(
+                  title: Text('Step 2'),
+                  content: SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
+                ),
               ],
             ),
           ),
@@ -98,7 +122,10 @@ void main() {
             child: Stepper(
               type: StepperType.horizontal,
               steps: const <Step>[
-                Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
+                Step(
+                  title: Text('Step 1'),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+                ),
               ],
             ),
           ),
@@ -164,8 +191,14 @@ void main() {
               cancelPressed = true;
             },
             steps: const <Step>[
-              Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
-              Step(title: Text('Step 2'), content: SizedBox(width: 200.0, height: 200.0)),
+              Step(
+                title: Text('Step 1'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
+              Step(
+                title: Text('Step 2'),
+                content: SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
+              ),
             ],
           ),
         ),
@@ -195,8 +228,14 @@ void main() {
               cancelPressed = true;
             },
             steps: const <Step>[
-              Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
-              Step(title: Text('Step 2'), content: SizedBox(width: 200.0, height: 200.0)),
+              Step(
+                title: Text('Step 1'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
+              Step(
+                title: Text('Step 2'),
+                content: SizedBox(width: .fixed(200.0), height: .fixed(200.0)),
+              ),
             ],
           ),
         ),
@@ -221,11 +260,14 @@ void main() {
               index = i;
             },
             steps: const <Step>[
-              Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
+              Step(
+                title: Text('Step 1'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
               Step(
                 title: Text('Step 2'),
                 state: StepState.disabled,
-                content: SizedBox(width: 100.0, height: 100.0),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
               ),
             ],
           ),
@@ -243,9 +285,18 @@ void main() {
         home: Material(
           child: Stepper(
             steps: const <Step>[
-              Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 300.0)),
-              Step(title: Text('Step 2'), content: SizedBox(width: 100.0, height: 300.0)),
-              Step(title: Text('Step 3'), content: SizedBox(width: 100.0, height: 100.0)),
+              Step(
+                title: Text('Step 1'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(300.0)),
+              ),
+              Step(
+                title: Text('Step 2'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(300.0)),
+              ),
+              Step(
+                title: Text('Step 3'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
             ],
           ),
         ),
@@ -262,9 +313,18 @@ void main() {
           child: Stepper(
             currentStep: 2,
             steps: const <Step>[
-              Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 300.0)),
-              Step(title: Text('Step 2'), content: SizedBox(width: 100.0, height: 300.0)),
-              Step(title: Text('Step 3'), content: SizedBox(width: 100.0, height: 100.0)),
+              Step(
+                title: Text('Step 1'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(300.0)),
+              ),
+              Step(
+                title: Text('Step 2'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(300.0)),
+              ),
+              Step(
+                title: Text('Step 3'),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+              ),
             ],
           ),
         ),
@@ -285,9 +345,12 @@ void main() {
                 Step(
                   title: Text('A'),
                   state: StepState.complete,
-                  content: SizedBox(width: 100.0, height: 100.0),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
                 ),
-                Step(title: Text('B'), content: SizedBox(width: 100.0, height: 100.0)),
+                Step(
+                  title: Text('B'),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+                ),
               ],
             ),
           ),
@@ -314,7 +377,7 @@ void main() {
       return Container(
         margin: const EdgeInsets.only(top: 16.0),
         child: ConstrainedBox(
-          constraints: const BoxConstraints.tightFor(height: 48.0),
+          constraints: const .fixed(BoxConstraints.tightFor(height: 48.0)),
           child: Row(
             children: <Widget>[
               TextButton(onPressed: details.onStepContinue, child: const Text('Let us continue!')),
@@ -343,9 +406,12 @@ void main() {
                 Step(
                   title: Text('A'),
                   state: StepState.complete,
-                  content: SizedBox(width: 100.0, height: 100.0),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
                 ),
-                Step(title: Text('B'), content: SizedBox(width: 100.0, height: 100.0)),
+                Step(
+                  title: Text('B'),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+                ),
               ],
             ),
           ),
@@ -386,7 +452,7 @@ void main() {
       return Container(
         margin: const EdgeInsets.only(top: 16.0),
         child: ConstrainedBox(
-          constraints: const BoxConstraints.tightFor(height: 48.0),
+          constraints: const .fixed(BoxConstraints.tightFor(height: 48.0)),
           child: Row(
             children: <Widget>[
               TextButton(
@@ -421,9 +487,12 @@ void main() {
                     Step(
                       title: Text('A'),
                       state: StepState.complete,
-                      content: SizedBox(width: 100.0, height: 100.0),
+                      content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
                     ),
-                    Step(title: Text('C'), content: SizedBox(width: 100.0, height: 100.0)),
+                    Step(
+                      title: Text('C'),
+                      content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+                    ),
                   ],
                 );
               },
@@ -461,7 +530,7 @@ void main() {
                 Step(
                   title: Text('A'),
                   state: StepState.error,
-                  content: SizedBox(width: 100.0, height: 100.0),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
                 ),
               ],
             ),
@@ -544,12 +613,12 @@ void main() {
               Step(
                 title: Text('A'),
                 state: StepState.editing,
-                content: SizedBox(width: 100.0, height: 100.0),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
               ),
               Step(
                 title: Text('B'),
                 state: StepState.complete,
-                content: SizedBox(width: 100.0, height: 100.0),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
               ),
             ],
           ),
@@ -694,7 +763,10 @@ void main() {
             onStepCancel: () {},
             onStepContinue: () {},
             steps: const <Step>[
-              Step(title: Text('step1'), content: SizedBox(width: 100, height: 100)),
+              Step(
+                title: Text('step1'),
+                content: SizedBox(width: .fixed(100), height: .fixed(100)),
+              ),
             ],
           ),
         ),
@@ -756,7 +828,10 @@ void main() {
             onStepCancel: () {},
             onStepContinue: () {},
             steps: const <Step>[
-              Step(title: Text('step1'), content: SizedBox(width: 100, height: 100)),
+              Step(
+                title: Text('step1'),
+                content: SizedBox(width: .fixed(100), height: .fixed(100)),
+              ),
             ],
           ),
         ),
@@ -831,7 +906,10 @@ void main() {
           child: Stepper(
             type: StepperType.horizontal,
             steps: const <Step>[
-              Step(title: Text('step1'), content: SizedBox(width: 100, height: 100)),
+              Step(
+                title: Text('step1'),
+                content: SizedBox(width: .fixed(100), height: .fixed(100)),
+              ),
             ],
           ),
         ),
@@ -877,7 +955,10 @@ void main() {
           child: Stepper(
             type: StepperType.horizontal,
             steps: const <Step>[
-              Step(title: Text('step1'), content: SizedBox(width: 100, height: 100)),
+              Step(
+                title: Text('step1'),
+                content: SizedBox(width: .fixed(100), height: .fixed(100)),
+              ),
             ],
           ),
         ),
@@ -940,7 +1021,10 @@ void main() {
               physics: physics,
               type: type,
               steps: const <Step>[
-                Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
+                Step(
+                  title: Text('Step 1'),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+                ),
               ],
             ),
           ),
@@ -965,7 +1049,10 @@ void main() {
               controller: controller,
               type: type,
               steps: const <Step>[
-                Step(title: Text('Step 1'), content: SizedBox(width: 100.0, height: 100.0)),
+                Step(
+                  title: Text('Step 1'),
+                  content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+                ),
               ],
             ),
           ),
@@ -1027,8 +1114,8 @@ void main() {
       MaterialApp(
         home: Material(
           child: SizedBox(
-            width: 200,
-            height: 75,
+            width: const .fixed(200),
+            height: const .fixed(75),
             child: Stepper(
               type: StepperType.horizontal,
               elevation: elevation,
@@ -1053,8 +1140,8 @@ void main() {
       MaterialApp(
         home: Material(
           child: SizedBox(
-            width: 200,
-            height: 75,
+            width: const .fixed(200),
+            height: const .fixed(75),
             child: Stepper(
               type: StepperType.horizontal,
               steps: const <Step>[
@@ -1119,7 +1206,8 @@ void main() {
             matching: find.byType(ColoredBox),
           ),
         )
-        .color;
+        .color
+        .value;
 
     // We are on step 1
     expect(find.text('Step 2 Content'), findsNothing);
@@ -1153,8 +1241,8 @@ void main() {
       MaterialApp(
         home: Material(
           child: SizedBox(
-            width: 200,
-            height: 75,
+            width: const .fixed(200),
+            height: const .fixed(75),
             child: Stepper(
               margin: margin,
               steps: const <Step>[
@@ -1302,7 +1390,8 @@ void main() {
           .widget<ColoredBox>(
             find.descendant(of: find.byType(Stepper), matching: find.byType(ColoredBox)),
           )
-          .color;
+          .color
+          .value;
     }
 
     // Step 1
@@ -1344,17 +1433,17 @@ void main() {
               Step(
                 title: Text('A'),
                 state: StepState.complete,
-                content: SizedBox(width: 100.0, height: 100.0),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
               ),
               Step(
                 title: Text('B'),
                 state: StepState.editing,
-                content: SizedBox(width: 100.0, height: 100.0),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
               ),
               Step(
                 title: Text('C'),
                 state: StepState.error,
-                content: SizedBox(width: 100.0, height: 100.0),
+                content: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
               ),
             ],
           ),
@@ -1497,7 +1586,7 @@ void main() {
                 .child!
             as SizedBox;
 
-    expect(lastConnector.width, equals(0.0));
+    expect(lastConnector.width?.value, equals(0.0));
   });
 
   // This is a regression test for https://github.com/flutter/flutter/issues/66007.
@@ -1609,7 +1698,7 @@ void main() {
         of: find.byType(PositionedDirectional),
         matching: find.byElementPredicate((BuildContext context) {
           if (context case BuildContext(
-            widget: ColoredBox(color: connectorColor),
+            widget: ColoredBox(color: ReadonlySignal<Color>(peek: connectorColor)),
             size: Size(width: 1.0, height: > 0),
           )) {
             return true;
@@ -1671,13 +1760,13 @@ void main() {
       (Widget widget) =>
           widget is ColoredBox &&
           widget.child is SizedBox &&
-          (widget.child! as SizedBox).width == 3.0,
+          (widget.child! as SizedBox).width?.value == 3.0,
     );
 
     expect(connectorLines, findsWidgets);
 
     final List<ColoredBox> lineWidgets = tester.widgetList<ColoredBox>(connectorLines).toList();
-    final List<Color> colors = lineWidgets.map((ColoredBox box) => box.color).toList();
+    final List<Color> colors = lineWidgets.map((ColoredBox box) => box.color.value).toList();
     // Both top and bottom box should be colored.
     expect(colors.where((Color c) => c == activeColor).length, equals(2));
     expect(colors.first, equals(activeColor));
@@ -1836,7 +1925,10 @@ void main() {
       find.ancestor(of: find.text('Content 1'), matching: find.byType(Padding)),
     );
 
-    expect(paddings.any((Padding p) => p.padding.resolve(TextDirection.ltr) == expected), isTrue);
+    expect(
+      paddings.any((Padding p) => p.padding.value.resolve(TextDirection.ltr) == expected),
+      isTrue,
+    );
   });
 
   testWidgets('Stepper default contentPadding for horizontal stepper', (WidgetTester tester) async {
@@ -1886,7 +1978,7 @@ void main() {
     );
 
     final Padding paddingWidget = tester.widget<Padding>(contentPadding.first);
-    final EdgeInsetsGeometry resolvedPadding = paddingWidget.padding;
+    final EdgeInsetsGeometry resolvedPadding = paddingWidget.padding.value;
 
     // The effective padding should be customContentPadding + stepIconMargin.left
     // start: 40.0 + 16.0 = 56.0
@@ -1922,7 +2014,7 @@ void main() {
     );
 
     final Padding paddingWidget = tester.widget<Padding>(contentPadding.first);
-    final EdgeInsetsGeometry resolvedPadding = paddingWidget.padding;
+    final EdgeInsetsGeometry resolvedPadding = paddingWidget.padding.value;
 
     // Default padding is start: 60.0, end: 24.0, bottom: 24.0
     // Plus stepIconMargin.left: 10.0
@@ -1956,7 +2048,7 @@ void main() {
     );
 
     final Padding paddingWidget = tester.widget<Padding>(contentPadding.first);
-    final EdgeInsetsGeometry resolvedPadding = paddingWidget.padding;
+    final EdgeInsetsGeometry resolvedPadding = paddingWidget.padding.value;
 
     // Default padding without stepIconMargin
     const expectedPadding = EdgeInsets.only(left: 60.0, right: 24.0, bottom: 24.0);

@@ -36,6 +36,9 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import '../foundation/_features.dart';
+// `ReactiveNode` is not exported by `foundation.dart`; the signal write hook
+// is handed the signal being written.
+import '../foundation/signals.dart' show ReactiveNode;
 import '_accessibility_evaluations.dart';
 import '_window.dart';
 import 'app.dart';
@@ -475,6 +478,16 @@ mixin WidgetsBinding
     // properly setup the [defaultBinaryMessenger] instance.
     _buildOwner = BuildOwner();
     buildOwner!.onBuildScheduled = _handleBuildScheduled;
+    // A signal write outside a frame now schedules one through the same path a
+    // setState does; the queued effects are drained in drawFrame, just before
+    // the build. See [drawFrame].
+    signalFlushScheduler = ensureVisualUpdate;
+    assert(() {
+      debugAssertSignalWriteAllowed = (ReactiveNode signal) =>
+          buildOwner?.debugCheckSignalWriteAllowed(signal) ?? true;
+      debugSignalReadOutsideTracking = _debugReportSignalReadOutsideTracking;
+      return true;
+    }());
     platformDispatcher.onLocaleChanged = handleLocaleChanged;
     SystemChannels.navigation.setMethodCallHandler(_handleNavigationInvocation);
     SystemChannels.backGesture.setMethodCallHandler(_handleBackGestureInvocation);
@@ -1532,9 +1545,68 @@ mixin WidgetsBinding
   /// with [addPostFrameCallback]).
   //
   // When editing the above, also update rendering/binding.dart's copy.
+  /// Whether a signal read outside any tracking scope has already been
+  /// reported this frame, so that one bad painter does not report once per
+  /// pixel.
+  bool _debugReportedUntrackedSignalRead = false;
+
+  /// Installed as [debugSignalReadOutsideTracking].
+  ///
+  /// A read that nothing is tracking is normal outside a frame: an event
+  /// handler, a timer or an effect reading a value to act on it subscribes
+  /// nothing, and is meant to. During a frame it is almost always the trap
+  /// this fork exists to close: a callback that runs as part of building,
+  /// laying out or painting, reads a signal, and is never told when it
+  /// changes, because the callback is not itself tracked. A
+  /// [CustomPainter.paint], a `createRenderObject`, or a builder invoked from
+  /// a [RenderObject] that has no tracking node of its own.
+  bool _debugReportSignalReadOutsideTracking() {
+    if (schedulerPhase != SchedulerPhase.persistentCallbacks || _debugReportedUntrackedSignalRead) {
+      return true;
+    }
+    _debugReportedUntrackedSignalRead = true;
+    FlutterError.reportError(
+      FlutterErrorDetails(
+        exception: FlutterError.fromParts(<DiagnosticsNode>[
+          ErrorSummary('A signal was read during a frame, outside any tracked scope.'),
+          ErrorDescription(
+            'Nothing was tracking this read, so nothing will be rebuilt, repainted or re-run '
+            'when the value changes. The frame it produced is correct once, and stale from then '
+            'on.',
+          ),
+          ErrorHint(
+            'Read the signal from a widget build, which is tracked, and pass the value down; or '
+            'drive the callback from something that does listen, such as an Effect that writes '
+            'to a ValueNotifier the painter repaints on. Reading with `peek` says the staleness '
+            'is deliberate and suppresses this message.',
+          ),
+        ]),
+        stack: StackTrace.current,
+        library: 'widgets library',
+        context: ErrorDescription('while producing a frame'),
+      ),
+    );
+    return true;
+  }
+
+  @override
+  void handleBeginFrame(Duration? rawTimeStamp) {
+    assert(() {
+      _debugReportedUntrackedSignalRead = false;
+      return true;
+    }());
+    super.handleBeginFrame(rawTimeStamp);
+  }
+
   @override
   void drawFrame() {
     assert(!debugBuildingDirtyElements);
+    // Run the effects queued by signal writes made since the last frame,
+    // before anything is built. Effects may write signals and mark elements
+    // dirty; both land in this frame's build. This is deliberately outside
+    // debugBuildingDirtyElements, because marking an element dirty here is
+    // scheduling a build for this frame, not for the next one.
+    flushSignals();
     assert(() {
       debugBuildingDirtyElements = true;
       return true;
@@ -1576,6 +1648,13 @@ mixin WidgetsBinding
         return true;
       }());
       buildOwner!.finalizeTree();
+      if (hasPendingSignalEffects) {
+        // A signal was written after this frame's flush, during build, layout
+        // or paint. Those effects run in the next frame, which nothing else
+        // has asked for: ensureVisualUpdate does not schedule one while a
+        // frame is being rendered.
+        scheduleFrame();
+      }
     } finally {
       assert(() {
         debugBuildingDirtyElements = false;

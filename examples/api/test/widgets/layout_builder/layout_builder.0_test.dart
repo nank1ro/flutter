@@ -17,7 +17,7 @@ void main() {
   testWidgets('has one container when narrow', (WidgetTester tester) async {
     await tester.pumpWidget(
       ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 400),
+        constraints: .fixed(const BoxConstraints(maxWidth: 400)),
         child: const example.LayoutBuilderExampleApp(),
       ),
     );

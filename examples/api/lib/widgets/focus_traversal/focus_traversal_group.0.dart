@@ -77,7 +77,7 @@ class _OrderedButtonState<T> extends State<OrderedButton<T>> {
     return FocusTraversalOrder(
       order: order,
       child: Padding(
-        padding: const .all(8.0),
+        padding: const .fixed(.all(8.0)),
         child: OutlinedButton(
           focusNode: focusNode,
           autofocus: widget.autofocus,
@@ -114,7 +114,7 @@ class FocusTraversalGroupExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.white,
+      color: .fixed(Colors.white),
       child: FocusTraversalGroup(
         policy: OrderedTraversalPolicy(),
         child: Column(

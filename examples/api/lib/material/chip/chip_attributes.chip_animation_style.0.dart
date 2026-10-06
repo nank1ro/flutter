@@ -56,7 +56,7 @@ class _ChipAnimationStyleExampleState extends State<ChipAnimationStyleExample> {
                   backgroundColor: Colors.amber,
                   label: Text(enabled ? 'Enabled' : 'Disabled'),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
@@ -84,7 +84,7 @@ class _ChipAnimationStyleExampleState extends State<ChipAnimationStyleExample> {
                   onSelected: (bool value) {},
                   label: Text(selected ? 'Selected' : 'Unselected'),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
@@ -114,7 +114,7 @@ class _ChipAnimationStyleExampleState extends State<ChipAnimationStyleExample> {
                   onSelected: (bool value) {},
                   label: Text(showCheckmark ? 'Checked' : 'Unchecked'),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
@@ -141,7 +141,7 @@ class _ChipAnimationStyleExampleState extends State<ChipAnimationStyleExample> {
                   onSelected: (bool value) {},
                   label: Text(showDeleteIcon ? 'Deletable' : 'Undeletable'),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {

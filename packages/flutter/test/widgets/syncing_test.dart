@@ -50,9 +50,9 @@ void main() {
   testWidgets('no change', (WidgetTester tester) async {
     await tester.pumpWidget(
       ColoredBox(
-        color: const Color(0xFF0000FF),
+        color: const .fixed(Color(0xFF0000FF)),
         child: ColoredBox(
-          color: const Color(0xFF0000FF),
+          color: const .fixed(Color(0xFF0000FF)),
           child: TestWidget(persistentState: 1, syncedState: 0, child: Container()),
         ),
       ),
@@ -65,9 +65,9 @@ void main() {
 
     await tester.pumpWidget(
       ColoredBox(
-        color: const Color(0xFF0000FF),
+        color: const .fixed(Color(0xFF0000FF)),
         child: ColoredBox(
-          color: const Color(0xFF0000FF),
+          color: const .fixed(Color(0xFF0000FF)),
           child: TestWidget(persistentState: 2, syncedState: 0, child: Container()),
         ),
       ),
@@ -82,9 +82,9 @@ void main() {
   testWidgets('remove one', (WidgetTester tester) async {
     await tester.pumpWidget(
       ColoredBox(
-        color: const Color(0xFF0000FF),
+        color: const .fixed(Color(0xFF0000FF)),
         child: ColoredBox(
-          color: const Color(0xFF0000FF),
+          color: const .fixed(Color(0xFF0000FF)),
           child: TestWidget(persistentState: 10, syncedState: 0, child: Container()),
         ),
       ),
@@ -97,7 +97,7 @@ void main() {
 
     await tester.pumpWidget(
       ColoredBox(
-        color: const Color(0xFF00FF00),
+        color: const .fixed(Color(0xFF00FF00)),
         child: TestWidget(persistentState: 11, syncedState: 0, child: Container()),
       ),
     );

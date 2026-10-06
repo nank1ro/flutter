@@ -15,7 +15,17 @@ library widgets;
 export 'package:characters/characters.dart';
 export 'package:vector_math/vector_math_64.dart' show Matrix4;
 
-export 'foundation.dart' show Brightness, UniqueKey;
+export 'foundation.dart'
+    show
+        Brightness,
+        Computed,
+        Effect,
+        FixedSignal,
+        ReadonlySignal,
+        Signal,
+        UniqueKey,
+        batch,
+        untracked;
 export 'rendering.dart' show TextSelectionHandleType;
 export 'src/widgets/actions.dart';
 export 'src/widgets/adapter.dart';
@@ -61,6 +71,7 @@ export 'src/widgets/focus_manager.dart';
 export 'src/widgets/focus_scope.dart';
 export 'src/widgets/focus_traversal.dart';
 export 'src/widgets/form.dart';
+export 'src/widgets/frame_clock.dart';
 export 'src/widgets/framework.dart';
 export 'src/widgets/gesture_detector.dart';
 export 'src/widgets/grid_paper.dart';
@@ -113,6 +124,8 @@ export 'src/widgets/raw_keyboard_listener.dart';
 export 'src/widgets/raw_menu_anchor.dart';
 export 'src/widgets/raw_radio.dart';
 export 'src/widgets/raw_tooltip.dart';
+export 'src/widgets/reactive_props.dart';
+export 'src/widgets/reactive_widgets.dart';
 export 'src/widgets/reorderable_list.dart';
 export 'src/widgets/repeating_animation_builder.dart';
 export 'src/widgets/restoration.dart';

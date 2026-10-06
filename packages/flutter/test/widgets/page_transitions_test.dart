@@ -106,7 +106,7 @@ void main() {
         '/': (_) => SizedBox(
           key: containerKey1,
           child: const ColoredBox(
-            color: Color(0xff00ffff),
+            color: .fixed(Color(0xff00ffff)),
             child: Hero(tag: kHeroTag, child: Text('Home')),
           ),
         ),

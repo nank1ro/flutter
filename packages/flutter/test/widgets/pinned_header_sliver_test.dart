@@ -257,7 +257,9 @@ void main() {
         TestWidgetsApp(
           home: CustomScrollView(
             slivers: <Widget>[
-              const SliverToBoxAdapter(child: SizedBox(height: 100, child: Text('First child'))),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: .fixed(100), child: Text('First child')),
+              ),
               const PinnedHeaderSliver(child: Text('PinnedHeaderSliver')),
               SliverList.builder(
                 itemCount: 50,

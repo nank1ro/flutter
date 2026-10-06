@@ -58,7 +58,7 @@ class _RegularWindowContentState extends State<RegularWindowContent> {
             children: [
               AppBar(title: const Text('Regular Window')),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const .fixed(EdgeInsets.all(16.0)),
                 child: Row(
                   mainAxisSize: .min,
                   children: [
@@ -66,18 +66,18 @@ class _RegularWindowContentState extends State<RegularWindowContent> {
                       mainAxisSize: .min,
                       children: [RotatedWireCube(cubeColor: cubeColor)],
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width: .fixed(16)),
                     Column(
                       mainAxisSize: .min,
                       children: [
                         _WindowCreationButtons(
                           regularWindowController: widget.regularWindowController,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: .fixed(20)),
                         TooltipButton(parentController: widget.regularWindowController),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: .fixed(20)),
                         PopupButton(parentController: widget.regularWindowController),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: .fixed(20)),
                         Text(
                           'View #${widget.regularWindowController.rootView.viewId}\n'
                           'Size: ${windowSize.width.toStringAsFixed(1)}\u00D7${windowSize.height.toStringAsFixed(1)}\n'
@@ -133,7 +133,7 @@ class _WindowCreationButtons extends StatelessWidget {
           },
           child: const Text('Create Regular Window'),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: .fixed(20)),
         ElevatedButton(
           onPressed: () {
             late final WindowEntry entry;

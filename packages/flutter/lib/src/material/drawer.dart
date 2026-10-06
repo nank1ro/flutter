@@ -273,7 +273,7 @@ class Drawer extends StatelessWidget {
       explicitChildNodes: true,
       label: label,
       child: ConstrainedBox(
-        constraints: BoxConstraints.expand(width: width ?? drawerTheme.width ?? _kWidth),
+        constraints: .fixed(BoxConstraints.expand(width: width ?? drawerTheme.width ?? _kWidth)),
         child: Material(
           color: backgroundColor ?? drawerTheme.backgroundColor ?? defaults.backgroundColor,
           elevation: elevation ?? drawerTheme.elevation ?? defaults.elevation!,
@@ -673,7 +673,7 @@ class DrawerControllerState extends State<DrawerController> with SingleTickerPro
             dragStartBehavior: widget.dragStartBehavior,
             child: LimitedBox(
               maxHeight: 0.0,
-              child: SizedBox(width: dragAreaWidth, height: double.infinity),
+              child: SizedBox(width: .fixed(dragAreaWidth), height: const .fixed(double.infinity)),
             ),
           ),
         );
@@ -696,7 +696,7 @@ class DrawerControllerState extends State<DrawerController> with SingleTickerPro
         alpha: scrimColor.a * _controller.value,
       );
       final Widget drawerScrim = ColoredBox(
-        color: effectiveScrimColor,
+        color: .fixed(effectiveScrimColor),
         child: const LimitedBox(maxWidth: 0.0, maxHeight: 0.0, child: SizedBox.expand()),
       );
 

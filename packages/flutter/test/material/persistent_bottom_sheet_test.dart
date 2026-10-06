@@ -140,9 +140,9 @@ void main() {
                 controller: controller,
                 shrinkWrap: true,
                 children: const <Widget>[
-                  SizedBox(height: 100.0, child: Text('One')),
-                  SizedBox(height: 100.0, child: Text('Two')),
-                  SizedBox(height: 100.0, child: Text('Three')),
+                  SizedBox(height: .fixed(100.0), child: Text('One')),
+                  SizedBox(height: .fixed(100.0), child: Text('Two')),
+                  SizedBox(height: .fixed(100.0), child: Text('Three')),
                 ],
               );
             },
@@ -178,9 +178,9 @@ void main() {
         shrinkWrap: true,
         primary: false,
         children: const <Widget>[
-          SizedBox(height: 100.0, child: Text('One')),
-          SizedBox(height: 100.0, child: Text('Two')),
-          SizedBox(height: 100.0, child: Text('Three')),
+          SizedBox(height: .fixed(100.0), child: Text('One')),
+          SizedBox(height: .fixed(100.0), child: Text('Two')),
+          SizedBox(height: .fixed(100.0), child: Text('Three')),
         ],
       );
     });
@@ -218,9 +218,9 @@ void main() {
               controller: controller,
               shrinkWrap: true,
               children: const <Widget>[
-                SizedBox(height: 100.0, child: Text('One')),
-                SizedBox(height: 100.0, child: Text('Two')),
-                SizedBox(height: 100.0, child: Text('Three')),
+                SizedBox(height: .fixed(100.0), child: Text('One')),
+                SizedBox(height: .fixed(100.0), child: Text('Two')),
+                SizedBox(height: .fixed(100.0), child: Text('Three')),
               ],
             );
           },
@@ -255,9 +255,9 @@ void main() {
         shrinkWrap: true,
         primary: false,
         children: const <Widget>[
-          SizedBox(height: 100.0, child: Text('One')),
-          SizedBox(height: 100.0, child: Text('Two')),
-          SizedBox(height: 100.0, child: Text('Three')),
+          SizedBox(height: .fixed(100.0), child: Text('One')),
+          SizedBox(height: .fixed(100.0), child: Text('Two')),
+          SizedBox(height: .fixed(100.0), child: Text('Three')),
         ],
       );
     });
@@ -297,9 +297,9 @@ void main() {
             shrinkWrap: true,
             controller: controller,
             children: const <Widget>[
-              SizedBox(height: 100.0, child: Text('One')),
-              SizedBox(height: 100.0, child: Text('Two')),
-              SizedBox(height: 100.0, child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('One')),
+              SizedBox(height: .fixed(100.0), child: Text('Two')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
             ],
           );
         },
@@ -448,17 +448,17 @@ void main() {
             controller: controller,
             shrinkWrap: true,
             children: const <Widget>[
-              SizedBox(height: 100.0, child: Text('One')),
-              SizedBox(height: 100.0, child: Text('Two')),
-              SizedBox(height: 100.0, child: Text('Three')),
-              SizedBox(height: 100.0, child: Text('Three')),
-              SizedBox(height: 100.0, child: Text('Three')),
-              SizedBox(height: 100.0, child: Text('Three')),
-              SizedBox(height: 100.0, child: Text('Three')),
-              SizedBox(height: 100.0, child: Text('Three')),
-              SizedBox(height: 100.0, child: Text('Three')),
-              SizedBox(height: 100.0, child: Text('Three')),
-              SizedBox(height: 100.0, child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('One')),
+              SizedBox(height: .fixed(100.0), child: Text('Two')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
+              SizedBox(height: .fixed(100.0), child: Text('Three')),
             ],
           );
         },
@@ -638,9 +638,9 @@ void main() {
           shrinkWrap: true,
           primary: false,
           children: const <Widget>[
-            SizedBox(height: 100.0, child: Text('One')),
-            SizedBox(height: 100.0, child: Text('Two')),
-            SizedBox(height: 100.0, child: Text('Three')),
+            SizedBox(height: .fixed(100.0), child: Text('One')),
+            SizedBox(height: .fixed(100.0), child: Text('Two')),
+            SizedBox(height: .fixed(100.0), child: Text('Three')),
           ],
         );
       },

@@ -30,7 +30,7 @@ class CupertinoIndicatorExample extends StatelessWidget {
         middle: Text('CupertinoLinearActivityIndicator Sample'),
       ),
       child: Padding(
-        padding: .all(8.0),
+        padding: .fixed(.all(8.0)),
         child: Column(
           mainAxisAlignment: .spaceEvenly,
           children: <Widget>[
@@ -38,7 +38,7 @@ class CupertinoIndicatorExample extends StatelessWidget {
               mainAxisAlignment: .center,
               children: <Widget>[
                 CupertinoLinearActivityIndicator(progress: 0),
-                SizedBox(height: 10),
+                SizedBox(height: .fixed(10)),
                 Text('Progress: 0'),
               ],
             ),
@@ -46,7 +46,7 @@ class CupertinoIndicatorExample extends StatelessWidget {
               mainAxisAlignment: .center,
               children: <Widget>[
                 CupertinoLinearActivityIndicator(progress: 0.2),
-                SizedBox(height: 10),
+                SizedBox(height: .fixed(10)),
                 Text('Progress: 0.2', textAlign: .center),
               ],
             ),
@@ -54,7 +54,7 @@ class CupertinoIndicatorExample extends StatelessWidget {
               mainAxisAlignment: .center,
               children: <Widget>[
                 CupertinoLinearActivityIndicator(progress: 0.4, height: 10),
-                SizedBox(height: 10),
+                SizedBox(height: .fixed(10)),
                 Text('Height: 10', textAlign: .center),
               ],
             ),
@@ -65,7 +65,7 @@ class CupertinoIndicatorExample extends StatelessWidget {
                   progress: 0.6,
                   color: CupertinoColors.activeGreen,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: .fixed(10)),
                 Text('Color: green', textAlign: .center),
               ],
             ),

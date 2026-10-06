@@ -114,17 +114,17 @@ void main() {
               },
             ),
             ColoredBox(
-              color: green,
+              color: const .fixed(green),
               child: ColoredBox(
-                color: green,
+                color: const .fixed(green),
                 child: ColoredBox(
-                  color: green,
+                  color: const .fixed(green),
                   child: ColoredBox(
-                    color: green,
+                    color: const .fixed(green),
                     child: ColoredBox(
-                      color: green,
+                      color: const .fixed(green),
                       child: ColoredBox(
-                        color: green,
+                        color: const .fixed(green),
                         child: StatefulBuilder(
                           builder: (BuildContext context, StateSetter setState) {
                             childSetState = setState;

@@ -40,10 +40,10 @@ class _TextFieldTapRegionExampleState extends State<TextFieldTapRegionExample> {
       children: <Widget>[
         Center(
           child: Padding(
-            padding: const .all(20.0),
+            padding: const .fixed(.all(20.0)),
             child: SizedBox(
-              width: 150,
-              height: 80,
+              width: .fixed(150),
+              height: .fixed(80),
               child: IntegerSpinnerField(
                 value: value,
                 autofocus: true,
@@ -227,7 +227,7 @@ class _SpinnerFieldState<T> extends State<SpinnerField<T>> {
               textAlign: .center,
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: .fixed(12)),
           // Without this TextFieldTapRegion, tapping on the buttons below would
           // increment the value, but it would cause the text field to be
           // unfocused, since tapping outside of a text field should unfocus it

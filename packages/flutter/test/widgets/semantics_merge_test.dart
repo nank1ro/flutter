@@ -222,9 +222,18 @@ void main() {
               delegate: delegate,
               child: Column(
                 children: <Widget>[
-                  Semantics(label: 'height', child: const SizedBox(width: 100, height: 100)),
-                  Semantics(value: '123', child: const SizedBox(width: 100, height: 100)),
-                  Semantics(label: 'feet', child: const SizedBox(width: 100, height: 100)),
+                  Semantics(
+                    label: 'height',
+                    child: const SizedBox(width: .fixed(100), height: .fixed(100)),
+                  ),
+                  Semantics(
+                    value: '123',
+                    child: const SizedBox(width: .fixed(100), height: .fixed(100)),
+                  ),
+                  Semantics(
+                    label: 'feet',
+                    child: const SizedBox(width: .fixed(100), height: .fixed(100)),
+                  ),
                 ],
               ),
             ),

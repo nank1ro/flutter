@@ -18,7 +18,7 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: Transform.scale(
-          scale: 2.0,
+          scale: const .fixed(2.0),
           child: GestureDetector(
             onDoubleTap: () {
               doubleTapCount++;
@@ -59,7 +59,7 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: Transform.scale(
-          scale: 0.5,
+          scale: const .fixed(0.5),
           child: GestureDetector(
             onDoubleTap: () {
               doubleTapCount++;

@@ -954,7 +954,7 @@ void main() {
             child: ConstrainedBox(
               // Constrain the dialog to a tiny size and ensure it respects
               // these exact constraints.
-              constraints: BoxConstraints.tight(const Size(200.0, 100.0)),
+              constraints: .fixed(BoxConstraints.tight(const Size(200.0, 100.0))),
               child: CupertinoAlertDialog(
                 title: const Text('The Title'),
                 content: const Text('The message'),
@@ -1501,31 +1501,31 @@ void main() {
     // Enter animation.
     await tester.pump();
     Transform transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.3, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.3, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.205, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.205, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.100, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.100, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.043, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.043, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.017, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.017, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.006, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.006, epsilon: 0.001));
 
     await tester.pump(const Duration(milliseconds: 50));
     transform = tester.widget(find.byType(Transform));
-    expect(transform.transform[0], moreOrLessEquals(1.002, epsilon: 0.001));
+    expect(transform.transform.value[0], moreOrLessEquals(1.002, epsilon: 0.001));
 
     await tester.tap(find.text('Delete'));
 
@@ -1821,42 +1821,40 @@ void main() {
     expect(find.byType(CupertinoAlertDialog), findsOneWidget);
   }, skip: isBrowser); // https://github.com/flutter/flutter/issues/33615
 
-  testWidgets(
-    'Conflicting scrollbars are not applied by ScrollBehavior to CupertinoAlertDialog',
-    (WidgetTester tester) async {
-      // Regression test for https://github.com/flutter/flutter/issues/83819
-      final actionScrollController = ScrollController();
-      addTearDown(actionScrollController.dispose);
-      await tester.pumpWidget(
-        createAppWithButtonThatLaunchesDialog(
-          dialogBuilder: (BuildContext context) {
-            return MediaQuery.withNoTextScaling(
-              child: CupertinoAlertDialog(
-                title: const Text('Test Title'),
-                content: const Text('Test Content'),
-                actions: const <Widget>[
-                  CupertinoDialogAction(child: Text('One')),
-                  CupertinoDialogAction(child: Text('Two')),
-                ],
-                actionScrollController: actionScrollController,
-              ),
-            );
-          },
-        ),
-      );
+  testWidgets('Conflicting scrollbars are not applied by ScrollBehavior to CupertinoAlertDialog', (
+    WidgetTester tester,
+  ) async {
+    // Regression test for https://github.com/flutter/flutter/issues/83819
+    final actionScrollController = ScrollController();
+    addTearDown(actionScrollController.dispose);
+    await tester.pumpWidget(
+      createAppWithButtonThatLaunchesDialog(
+        dialogBuilder: (BuildContext context) {
+          return MediaQuery.withNoTextScaling(
+            child: CupertinoAlertDialog(
+              title: const Text('Test Title'),
+              content: const Text('Test Content'),
+              actions: const <Widget>[
+                CupertinoDialogAction(child: Text('One')),
+                CupertinoDialogAction(child: Text('Two')),
+              ],
+              actionScrollController: actionScrollController,
+            ),
+          );
+        },
+      ),
+    );
 
-      await tester.tap(find.text('Go'));
-      await tester.pump();
+    await tester.tap(find.text('Go'));
+    await tester.pump();
 
-      // The inherited ScrollBehavior should not apply scrollbars since they are
-      // already built in to the widget.
-      expect(find.byType(RawScrollbar), findsNothing);
-      // Built in CupertinoScrollbars should only number 2: one for the actions,
-      // one for the content.
-      expect(find.byType(CupertinoScrollbar), findsNWidgets(2));
-    },
-    variant: TargetPlatformVariant.all(),
-  );
+    // The inherited ScrollBehavior should not apply scrollbars since they are
+    // already built in to the widget.
+    expect(find.byType(RawScrollbar), findsNothing);
+    // Built in CupertinoScrollbars should only number 2: one for the actions,
+    // one for the content.
+    expect(find.byType(CupertinoScrollbar), findsNWidgets(2));
+  }, variant: TargetPlatformVariant.all());
 
   testWidgets('CupertinoAlertDialog scrollbars controllers should be different', (
     WidgetTester tester,
@@ -2083,8 +2081,8 @@ void main() {
       Element decoratedBoxElement,
     ) {
       final decoratedBox = decoratedBoxElement.widget as DecoratedBox;
-      return (decoratedBox.decoration is BoxDecoration?) &&
-          (decoratedBox.decoration as BoxDecoration?)?.color ==
+      return (decoratedBox.decoration.value is BoxDecoration?) &&
+          (decoratedBox.decoration.value as BoxDecoration?)?.color ==
               CupertinoDynamicColor.resolve(CupertinoColors.separator, decoratedBoxElement) &&
           tester.getSize(find.byWidget(decoratedBox)) == expectedSize;
     });
@@ -2361,7 +2359,7 @@ class LegacyAction extends StatelessWidget {
       onTap: onPressed,
       behavior: HitTestBehavior.opaque,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 45),
+        constraints: const .fixed(BoxConstraints(minHeight: 45)),
         child: Container(
           alignment: AlignmentDirectional.center,
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0),

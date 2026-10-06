@@ -32,7 +32,7 @@ class _SnackBarExampleState extends State<SnackBarExample> {
     return Scaffold(
       appBar: AppBar(title: const Text('SnackBar Sample')),
       body: Padding(
-        padding: const .all(8.0),
+        padding: const .fixed(.all(8.0)),
         child: Column(
           children: <Widget>[
             ElevatedButton(
@@ -45,7 +45,7 @@ class _SnackBarExampleState extends State<SnackBarExample> {
               },
               child: const Text('Show SnackBar'),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: .fixed(8.0)),
             ElevatedButton(
               onPressed: () {
                 setState(() => _largeLogo = !_largeLogo);

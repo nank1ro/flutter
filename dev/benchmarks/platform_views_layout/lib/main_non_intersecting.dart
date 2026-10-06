@@ -36,7 +36,7 @@ class PlatformViewLayout extends StatelessWidget {
         itemCount: 200,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const .fixed(EdgeInsets.all(5.0)),
             child: Material(
               elevation: (index % 5 + 1).toDouble(),
               color: Colors.white,

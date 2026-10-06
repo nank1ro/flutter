@@ -39,7 +39,7 @@ class _PopupSurfaceExampleState extends State<PopupSurfaceExample> {
               mainAxisAlignment: .spaceBetween,
               children: <Widget>[
                 const Text('Paint surface'),
-                const SizedBox(width: 16.0),
+                const SizedBox(width: .fixed(16.0)),
                 CupertinoSwitch(
                   value: _shouldPaintSurface,
                   onChanged: (bool value) =>
@@ -82,9 +82,9 @@ class _PopupSurfaceExampleState extends State<PopupSurfaceExample> {
                     child: const Text('This is a popup surface.'),
                   ),
                 ),
-                const SizedBox(height: 8.0),
+                const SizedBox(height: .fixed(8.0)),
                 SizedBox(
-                  width: double.infinity,
+                  width: .fixed(double.infinity),
                   child: CupertinoButton(
                     color: _shouldPaintSurface
                         ? null

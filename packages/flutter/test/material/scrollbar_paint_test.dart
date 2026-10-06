@@ -25,7 +25,7 @@ void main() {
   testWidgets('Viewport basic test (LTR)', (WidgetTester tester) async {
     await tester.pumpWidget(
       _buildSingleChildScrollViewWithScrollbar(
-        child: const SizedBox(width: 4000.0, height: 4000.0),
+        child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
       ),
     );
     expect(find.byType(Scrollbar), isNot(paints..rect()));
@@ -48,7 +48,7 @@ void main() {
     await tester.pumpWidget(
       _buildSingleChildScrollViewWithScrollbar(
         textDirection: TextDirection.rtl,
-        child: const SizedBox(width: 4000.0, height: 4000.0),
+        child: const SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
       ),
     );
     expect(find.byType(Scrollbar), isNot(paints..rect()));
@@ -75,7 +75,9 @@ void main() {
           child: Scaffold(
             appBar: AppBar(title: const Text('Title')),
             body: Scrollbar(
-              child: ListView(children: const <Widget>[SizedBox(width: 4000, height: 4000)]),
+              child: ListView(
+                children: const <Widget>[SizedBox(width: .fixed(4000), height: .fixed(4000))],
+              ),
             ),
           ),
         ),
@@ -119,7 +121,9 @@ void main() {
           child: Scaffold(
             appBar: AppBar(title: const Text('Title')),
             body: Scrollbar(
-              child: ListView(children: const <Widget>[SizedBox(width: 40, height: 40)]),
+              child: ListView(
+                children: const <Widget>[SizedBox(width: .fixed(40), height: .fixed(40))],
+              ),
             ),
           ),
         ),

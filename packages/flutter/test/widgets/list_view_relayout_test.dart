@@ -30,7 +30,9 @@ void main() {
     await tester.pumpWidget(
       Directionality(
         textDirection: TextDirection.ltr,
-        child: ListView(children: const <Widget>[SizedBox(height: 100.0, child: Text('100'))]),
+        child: ListView(
+          children: const <Widget>[SizedBox(height: .fixed(100.0), child: Text('100'))],
+        ),
       ),
     );
 
@@ -39,8 +41,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: const <Widget>[
-            SizedBox(height: 100.0, child: Text('100')),
-            SizedBox(height: 200.0, child: Text('200')),
+            SizedBox(height: .fixed(100.0), child: Text('100')),
+            SizedBox(height: .fixed(200.0), child: Text('200')),
           ],
         ),
       ),
@@ -55,7 +57,9 @@ void main() {
     await tester.pumpWidget(
       Directionality(
         textDirection: TextDirection.ltr,
-        child: ListView(children: const <Widget>[SizedBox(height: 100.0, child: Text('100'))]),
+        child: ListView(
+          children: const <Widget>[SizedBox(height: .fixed(100.0), child: Text('100'))],
+        ),
       ),
     );
 
@@ -67,8 +71,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: const <Widget>[
-            SizedBox(height: 100.0, child: Text('100')),
-            SizedBox(height: 200.0, child: Text('200')),
+            SizedBox(height: .fixed(100.0), child: Text('100')),
+            SizedBox(height: .fixed(200.0), child: Text('200')),
           ],
         ),
       ),
@@ -87,8 +91,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: const <Widget>[
-            SizedBox(height: 300.0, child: Text('300')),
-            SizedBox(height: 400.0, child: Text('400')),
+            SizedBox(height: .fixed(300.0), child: Text('300')),
+            SizedBox(height: .fixed(400.0), child: Text('400')),
           ],
         ),
       ),
@@ -100,7 +104,9 @@ void main() {
     await tester.pumpWidget(
       Directionality(
         textDirection: TextDirection.ltr,
-        child: ListView(children: const <Widget>[SizedBox(height: 300.0, child: Text('300'))]),
+        child: ListView(
+          children: const <Widget>[SizedBox(height: .fixed(300.0), child: Text('300'))],
+        ),
       ),
     );
 
@@ -121,8 +127,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: const <Widget>[
-            SizedBox(height: 300.0, child: Text('300')),
-            SizedBox(height: 400.0, child: Text('400')),
+            SizedBox(height: .fixed(300.0), child: Text('300')),
+            SizedBox(height: .fixed(400.0), child: Text('400')),
           ],
         ),
       ),
@@ -136,9 +142,9 @@ void main() {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: const <Widget>[
-            SizedBox(height: 300.0, child: Text('300')),
-            SizedBox(height: 400.0, child: Text('400')),
-            SizedBox(height: 100.0, child: Text('100')),
+            SizedBox(height: .fixed(300.0), child: Text('300')),
+            SizedBox(height: .fixed(400.0), child: Text('400')),
+            SizedBox(height: .fixed(100.0), child: Text('100')),
           ],
         ),
       ),
@@ -158,7 +164,9 @@ void main() {
     await tester.pumpWidget(
       Directionality(
         textDirection: TextDirection.ltr,
-        child: ListView(children: const <Widget>[SizedBox(height: 100.0, child: Text('100'))]),
+        child: ListView(
+          children: const <Widget>[SizedBox(height: .fixed(100.0), child: Text('100'))],
+        ),
       ),
     );
 
@@ -170,9 +178,9 @@ void main() {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: const <Widget>[
-            SizedBox(height: 100.0, child: Text('100')),
-            SizedBox(height: 200.0, child: Text('200')),
-            SizedBox(height: 400.0, child: Text('400')),
+            SizedBox(height: .fixed(100.0), child: Text('100')),
+            SizedBox(height: .fixed(200.0), child: Text('200')),
+            SizedBox(height: .fixed(400.0), child: Text('400')),
           ],
         ),
       ),

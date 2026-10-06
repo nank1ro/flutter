@@ -21,7 +21,7 @@ void main() {
     final scrollController = ScrollController();
     addTearDown(scrollController.dispose);
     final listChildren = List<Widget>.generate(30, (int i) {
-      return SizedBox(height: appBarExpandedHeight, child: Text('Item $i'));
+      return SizedBox(height: const .fixed(appBarExpandedHeight), child: Text('Item $i'));
     });
     await tester.pumpWidget(
       Semantics(
@@ -253,7 +253,7 @@ void main() {
     final slivers = List<Widget>.generate(30, (int i) {
       return SliverToBoxAdapter(
         child: SizedBox(
-          height: containerHeight,
+          height: const .fixed(containerHeight),
           child: Text('Item $i', textDirection: TextDirection.ltr),
         ),
       );
@@ -268,7 +268,7 @@ void main() {
             textDirection: TextDirection.ltr,
             child: Center(
               child: SizedBox(
-                height: containerHeight,
+                height: const .fixed(containerHeight),
                 child: CustomScrollView(controller: scrollController, slivers: slivers),
               ),
             ),
@@ -332,7 +332,9 @@ void main() {
     final semantics = SemanticsTester(tester);
 
     final slivers = List<Widget>.generate(5, (int i) {
-      return SliverToBoxAdapter(child: SizedBox(height: 20.0, child: Text('Item $i')));
+      return SliverToBoxAdapter(
+        child: SizedBox(height: const .fixed(20.0), child: Text('Item $i')),
+      );
     });
     await tester.pumpWidget(
       Semantics(
@@ -394,7 +396,10 @@ void main() {
       final semantics = SemanticsTester(tester);
 
       final listChildren = List<Widget>.generate(10, (int i) {
-        return SizedBox(height: 200.0, child: Text('Item $i', textDirection: TextDirection.ltr));
+        return SizedBox(
+          height: const .fixed(200.0),
+          child: Text('Item $i', textDirection: TextDirection.ltr),
+        );
       });
       final controller = ScrollController(initialScrollOffset: 280.0);
       addTearDown(controller.dispose);
@@ -504,7 +509,10 @@ void main() {
     addTearDown(controller.dispose);
     final slivers = List<Widget>.generate(10, (int i) {
       return SliverToBoxAdapter(
-        child: SizedBox(height: 200.0, child: Text('Item $i', textDirection: TextDirection.ltr)),
+        child: SizedBox(
+          height: const .fixed(200.0),
+          child: Text('Item $i', textDirection: TextDirection.ltr),
+        ),
       );
     });
     await tester.pumpWidget(
@@ -609,7 +617,10 @@ void main() {
       final semantics = SemanticsTester(tester);
 
       final listChildren = List<Widget>.generate(10, (int i) {
-        return SizedBox(height: 200.0, child: Text('Item $i', textDirection: TextDirection.ltr));
+        return SizedBox(
+          height: const .fixed(200.0),
+          child: Text('Item $i', textDirection: TextDirection.ltr),
+        );
       });
       final controller = ScrollController(initialScrollOffset: 280.0);
       addTearDown(controller.dispose);
@@ -720,7 +731,10 @@ void main() {
     addTearDown(controller.dispose);
     final slivers = List<Widget>.generate(10, (int i) {
       return SliverToBoxAdapter(
-        child: SizedBox(height: 200.0, child: Text('Item $i', textDirection: TextDirection.ltr)),
+        child: SizedBox(
+          height: const .fixed(200.0),
+          child: Text('Item $i', textDirection: TextDirection.ltr),
+        ),
       );
     });
     await tester.pumpWidget(
@@ -830,13 +844,13 @@ void main() {
       final GlobalKey forwardAppBarKey = GlobalKey(debugLabel: 'forward app bar');
       final forwardChildren = List<Widget>.generate(10, (int i) {
         return SizedBox(
-          height: 200.0,
+          height: const .fixed(200.0),
           child: Text('Forward Item $i', textDirection: TextDirection.ltr),
         );
       });
       final backwardChildren = List<Widget>.generate(10, (int i) {
         return SizedBox(
-          height: 200.0,
+          height: const .fixed(200.0),
           child: Text('Backward Item $i', textDirection: TextDirection.ltr),
         );
       });

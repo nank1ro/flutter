@@ -59,13 +59,13 @@ class _ListenerExampleState extends State<ListenerExample> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints.tight(const Size(300.0, 200.0)),
+      constraints: .fixed(BoxConstraints.tight(const Size(300.0, 200.0))),
       child: Listener(
         onPointerDown: _incrementDown,
         onPointerMove: _updateLocation,
         onPointerUp: _incrementUp,
         child: ColoredBox(
-          color: Colors.lightBlueAccent,
+          color: .fixed(Colors.lightBlueAccent),
           child: Column(
             mainAxisAlignment: .center,
             children: <Widget>[

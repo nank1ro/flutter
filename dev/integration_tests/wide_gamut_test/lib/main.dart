@@ -307,7 +307,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case Setup.codecImage:
         imageWidget = _image != null
             ? RawImage(image: _image, width: 100, height: 100)
-            : const SizedBox(width: 100, height: 100);
+            : const SizedBox(width: .fixed(100), height: .fixed(100));
       case Setup.drawnImage:
         imageWidget = CustomPaint(painter: _SaveLayerDrawer(_image));
       case Setup.canvasSaveLayer:
@@ -315,7 +315,10 @@ class _MyHomePageState extends State<MyHomePage> {
       case Setup.blur:
         imageWidget = Stack(
           children: <Widget>[
-            const ColoredBox(color: Color(0xff00ff00), child: SizedBox(width: 100, height: 100)),
+            const ColoredBox(
+              color: .fixed(Color(0xff00ff00)),
+              child: SizedBox(width: .fixed(100), height: .fixed(100)),
+            ),
             ImageFiltered(
               imageFilter: ui.ImageFilter.blur(sigmaX: 6, sigmaY: 6),
               child: Image.memory(base64Decode(displayP3Logo)),

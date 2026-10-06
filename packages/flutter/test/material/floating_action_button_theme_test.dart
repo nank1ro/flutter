@@ -56,8 +56,8 @@ void main() {
         _getRawMaterialButton(tester).constraints,
         const BoxConstraints.tightFor(width: 56.0, height: 56.0),
       );
-      expect(_getIconSize(tester).width, 24.0);
-      expect(_getIconSize(tester).height, 24.0);
+      expect(_getIconSize(tester).width?.value, 24.0);
+      expect(_getIconSize(tester).height?.value, 24.0);
     },
   );
 
@@ -89,8 +89,8 @@ void main() {
         _getRawMaterialButton(tester).constraints,
         const BoxConstraints.tightFor(width: 56.0, height: 56.0),
       );
-      expect(_getIconSize(tester).width, 24.0);
-      expect(_getIconSize(tester).height, 24.0);
+      expect(_getIconSize(tester).width?.value, 24.0);
+      expect(_getIconSize(tester).height?.value, 24.0);
     },
   );
 
@@ -323,8 +323,8 @@ void main() {
     );
 
     expect(_getRawMaterialButton(tester).constraints, constraints);
-    expect(_getIconSize(tester).width, iconSize);
-    expect(_getIconSize(tester).height, iconSize);
+    expect(_getIconSize(tester).width?.value, iconSize);
+    expect(_getIconSize(tester).height?.value, iconSize);
   });
 
   testWidgets('FloatingActionButton.large uses custom constraints when specified in the theme', (
@@ -350,8 +350,8 @@ void main() {
     );
 
     expect(_getRawMaterialButton(tester).constraints, constraints);
-    expect(_getIconSize(tester).width, iconSize);
-    expect(_getIconSize(tester).height, iconSize);
+    expect(_getIconSize(tester).width?.value, iconSize);
+    expect(_getIconSize(tester).height?.value, iconSize);
   });
 
   testWidgets(

@@ -111,7 +111,7 @@ void main() {
 
     scaffoldKey.currentState!
         .showBottomSheet((BuildContext context) {
-          return const SizedBox(height: 200.0, child: Text('BottomSheet'));
+          return const SizedBox(height: .fixed(200.0), child: Text('BottomSheet'));
         })
         .closed
         .whenComplete(() {
@@ -150,7 +150,7 @@ void main() {
 
     scaffoldKey.currentState!
         .showBottomSheet((BuildContext context) {
-          return const SizedBox(height: 200.0, child: Text('BottomSheet'));
+          return const SizedBox(height: .fixed(200.0), child: Text('BottomSheet'));
         }, enableDrag: false)
         .closed
         .whenComplete(() {
@@ -189,7 +189,7 @@ void main() {
 
     scaffoldKey.currentState!
         .showBottomSheet((BuildContext context) {
-          return const SizedBox(height: 200.0, child: Text('BottomSheet'));
+          return const SizedBox(height: .fixed(200.0), child: Text('BottomSheet'));
         }, enableDrag: true)
         .closed
         .whenComplete(() {
@@ -229,7 +229,7 @@ void main() {
 
     scaffoldKey.currentState!.showBottomSheet((BuildContext context) {
       buildCount++;
-      return const SizedBox(height: 200.0, child: Text('BottomSheet'));
+      return const SizedBox(height: .fixed(200.0), child: Text('BottomSheet'));
     }, enableDrag: true);
 
     await tester.pumpAndSettle();
@@ -1381,7 +1381,7 @@ void main() {
     scaffoldKey.currentState!.showBottomSheet((_) {
       return Builder(
         builder: (BuildContext context) {
-          return const SizedBox(height: 200.0, child: Text('Bottom Sheet'));
+          return const SizedBox(height: .fixed(200.0), child: Text('Bottom Sheet'));
         },
       );
     }, showDragHandle: true);
@@ -1576,7 +1576,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -1636,7 +1636,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -1705,7 +1705,7 @@ void main() {
                   );
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -1863,7 +1863,7 @@ void main() {
                     );
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -1914,7 +1914,7 @@ void main() {
       expect(controller.isListening, isFalse);
 
       scaffoldKey.currentState!.showBottomSheet((BuildContext context) {
-        return const SizedBox(height: 200.0, child: Text('BottomSheet'));
+        return const SizedBox(height: .fixed(200.0), child: Text('BottomSheet'));
       }, transitionAnimationController: controller);
 
       await tester.pumpAndSettle();
@@ -2574,7 +2574,7 @@ void main() {
                       return SizedBox.expand(
                         child: ColoredBox(
                           key: sheetKey,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: .fixed(Theme.of(context).colorScheme.primary),
                           child: FilledButton(
                             onPressed: () {
                               Navigator.pop(context);
@@ -2666,7 +2666,7 @@ void main() {
                       return SizedBox.expand(
                         child: ColoredBox(
                           key: sheetKey,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: .fixed(Theme.of(context).colorScheme.primary),
                           child: FilledButton(
                             onPressed: () {
                               Navigator.pop(context);
@@ -2734,7 +2734,7 @@ void main() {
                       return SizedBox.expand(
                         child: ColoredBox(
                           key: sheetKey,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: .fixed(Theme.of(context).colorScheme.primary),
                           child: FilledButton(
                             onPressed: () {
                               Navigator.pop(context);

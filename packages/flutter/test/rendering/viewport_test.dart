@@ -56,11 +56,15 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 100.0,
+            dimension: const .fixed(100.0),
             child: SingleChildScrollView(
               controller: controller,
               scrollDirection: axis,
-              child: const SizedBox(width: 200, height: 200, child: SizedBox.shrink()),
+              child: const SizedBox(
+                width: .fixed(200),
+                height: .fixed(200),
+                child: SizedBox.shrink(),
+              ),
             ),
           ),
         ),
@@ -97,12 +101,16 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: const .fixed(200.0),
+            width: const .fixed(300.0),
             child: ListView(
               controller: controller,
               children: children = List<Widget>.generate(20, (int i) {
-                return SizedBox(height: 100.0, width: 300.0, child: Text('Tile $i'));
+                return SizedBox(
+                  height: const .fixed(100.0),
+                  width: const .fixed(300.0),
+                  child: Text('Tile $i'),
+                );
               }),
             ),
           ),
@@ -152,13 +160,17 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 300.0,
-            width: 200.0,
+            height: const .fixed(300.0),
+            width: const .fixed(200.0),
             child: ListView(
               scrollDirection: Axis.horizontal,
               controller: controller,
               children: children = List<Widget>.generate(20, (int i) {
-                return SizedBox(height: 300.0, width: 100.0, child: Text('Tile $i'));
+                return SizedBox(
+                  height: const .fixed(300.0),
+                  width: const .fixed(100.0),
+                  child: Text('Tile $i'),
+                );
               }),
             ),
           ),
@@ -208,13 +220,17 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: const .fixed(200.0),
+            width: const .fixed(300.0),
             child: ListView(
               controller: controller,
               reverse: true,
               children: children = List<Widget>.generate(20, (int i) {
-                return SizedBox(height: 100.0, width: 300.0, child: Text('Tile $i'));
+                return SizedBox(
+                  height: const .fixed(100.0),
+                  width: const .fixed(300.0),
+                  child: Text('Tile $i'),
+                );
               }),
             ),
           ),
@@ -264,14 +280,18 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 300.0,
-            width: 200.0,
+            height: const .fixed(300.0),
+            width: const .fixed(200.0),
             child: ListView(
               scrollDirection: Axis.horizontal,
               reverse: true,
               controller: controller,
               children: children = List<Widget>.generate(20, (int i) {
-                return SizedBox(height: 300.0, width: 100.0, child: Text('Tile $i'));
+                return SizedBox(
+                  height: const .fixed(300.0),
+                  width: const .fixed(100.0),
+                  child: Text('Tile $i'),
+                );
               }),
             ),
           ),
@@ -320,13 +340,13 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: const .fixed(200.0),
+            width: const .fixed(300.0),
             child: CustomScrollView(
               controller: controller,
               slivers: List<Widget>.generate(20, (int i) {
                 final Widget sliver = SliverToBoxAdapter(
-                  child: SizedBox(height: 100.0, child: Text('Tile $i')),
+                  child: SizedBox(height: const .fixed(100.0), child: Text('Tile $i')),
                 );
                 children.add(sliver);
                 return SliverPadding(
@@ -369,14 +389,14 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 300.0,
-            width: 200.0,
+            height: const .fixed(300.0),
+            width: const .fixed(200.0),
             child: CustomScrollView(
               scrollDirection: Axis.horizontal,
               controller: controller,
               slivers: List<Widget>.generate(20, (int i) {
                 final Widget sliver = SliverToBoxAdapter(
-                  child: SizedBox(width: 100.0, child: Text('Tile $i')),
+                  child: SizedBox(width: const .fixed(100.0), child: Text('Tile $i')),
                 );
                 children.add(sliver);
                 return SliverPadding(
@@ -419,14 +439,14 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: const .fixed(200.0),
+            width: const .fixed(300.0),
             child: CustomScrollView(
               controller: controller,
               reverse: true,
               slivers: List<Widget>.generate(20, (int i) {
                 final Widget sliver = SliverToBoxAdapter(
-                  child: SizedBox(height: 100.0, child: Text('Tile $i')),
+                  child: SizedBox(height: const .fixed(100.0), child: Text('Tile $i')),
                 );
                 children.add(sliver);
                 return SliverPadding(
@@ -469,9 +489,11 @@ void main() {
     const Widget centerSliver = SliverPadding(
       key: centerKey,
       padding: padding,
-      sliver: SliverToBoxAdapter(child: SizedBox(height: 100.0, child: Text('Tile center'))),
+      sliver: SliverToBoxAdapter(
+        child: SizedBox(height: .fixed(100.0), child: Text('Tile center')),
+      ),
     );
-    const Widget lowerItem = SizedBox(height: 100.0, child: Text('Tile lower'));
+    const Widget lowerItem = SizedBox(height: .fixed(100.0), child: Text('Tile lower'));
     const Widget lowerSliver = SliverPadding(
       padding: padding,
       sliver: SliverToBoxAdapter(child: lowerItem),
@@ -482,8 +504,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: .fixed(200.0),
+            width: .fixed(300.0),
             child: CustomScrollView(
               center: centerKey,
               reverse: true,
@@ -520,9 +542,11 @@ void main() {
     const Widget centerSliver = SliverPadding(
       key: centerKey,
       padding: padding,
-      sliver: SliverToBoxAdapter(child: SizedBox(width: 100.0, child: Text('Tile center'))),
+      sliver: SliverToBoxAdapter(
+        child: SizedBox(width: .fixed(100.0), child: Text('Tile center')),
+      ),
     );
-    const Widget lowerItem = SizedBox(width: 100.0, child: Text('Tile lower'));
+    const Widget lowerItem = SizedBox(width: .fixed(100.0), child: Text('Tile lower'));
     const Widget lowerSliver = SliverPadding(
       padding: padding,
       sliver: SliverToBoxAdapter(child: lowerItem),
@@ -533,8 +557,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: .fixed(200.0),
+            width: .fixed(300.0),
             child: CustomScrollView(
               scrollDirection: Axis.horizontal,
               center: centerKey,
@@ -573,15 +597,15 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 300.0,
-            width: 200.0,
+            height: const .fixed(300.0),
+            width: const .fixed(200.0),
             child: CustomScrollView(
               scrollDirection: Axis.horizontal,
               reverse: true,
               controller: controller,
               slivers: List<Widget>.generate(20, (int i) {
                 final Widget sliver = SliverToBoxAdapter(
-                  child: SizedBox(width: 100.0, child: Text('Tile $i')),
+                  child: SizedBox(width: const .fixed(100.0), child: Text('Tile $i')),
                 );
                 children.add(sliver);
                 return SliverPadding(
@@ -631,7 +655,11 @@ void main() {
 
     final children = List<List<Widget>>.generate(10, (int y) {
       return List<Widget>.generate(10, (int x) {
-        return SizedBox(height: 100.0, width: 100.0, child: Text('$x,$y'));
+        return SizedBox(
+          height: const .fixed(100.0),
+          width: const .fixed(100.0),
+          child: Text('$x,$y'),
+        );
       });
     });
 
@@ -658,12 +686,12 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 200.0,
+            dimension: const .fixed(200.0),
             child: ListView(
               controller: controllerY,
               children: List<Widget>.generate(10, (int y) {
                 return SizedBox(
-                  height: 100.0,
+                  height: const .fixed(100.0),
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     controller: controllersX[y],
@@ -785,7 +813,7 @@ void main() {
 
   group('Nested viewports (same orientation) showOnScreen', () {
     final children = List<Widget>.generate(10, (int i) {
-      return SizedBox(height: 100.0, width: 300.0, child: Text('$i'));
+      return SizedBox(height: const .fixed(100.0), width: const .fixed(300.0), child: Text('$i'));
     });
 
     Future<void> buildNestedScroller({
@@ -798,18 +826,18 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              height: 200.0,
-              width: 300.0,
+              height: const .fixed(200.0),
+              width: const .fixed(300.0),
               child: ListView(
                 controller: outer,
                 children: <Widget>[
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
                   SizedBox(
-                    height: 200.0,
-                    width: 300.0,
+                    height: const .fixed(200.0),
+                    width: const .fixed(300.0),
                     child: ListView(controller: inner, children: children),
                   ),
-                  const SizedBox(height: 200.0),
+                  const SizedBox(height: .fixed(200.0)),
                 ],
               ),
             ),
@@ -838,17 +866,25 @@ void main() {
               SliverList.builder(
                 itemCount: 10,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: itemHeight, child: Text('Item ${-index - 1}'));
+                  return SizedBox(
+                    height: const .fixed(itemHeight),
+                    child: Text('Item ${-index - 1}'),
+                  );
                 },
               ),
               SliverList.list(
                 key: centerKey,
-                children: const <Widget>[SizedBox(height: itemHeight, child: Text('Item 0'))],
+                children: const <Widget>[
+                  SizedBox(height: .fixed(itemHeight), child: Text('Item 0')),
+                ],
               ),
               SliverList.builder(
                 itemCount: 10,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: itemHeight, child: Text('Item ${index + 1}'));
+                  return SizedBox(
+                    height: const .fixed(itemHeight),
+                    child: Text('Item ${index + 1}'),
+                  );
                 },
               ),
             ],
@@ -965,13 +1001,13 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 200.0,
+              dimension: const .fixed(200.0),
               child: ListView(
                 controller: controllerY,
                 children: <Widget>[
-                  const SizedBox(height: 150.0),
+                  const SizedBox(height: .fixed(150.0)),
                   SizedBox(
-                    height: 100.0,
+                    height: const .fixed(100.0),
                     child: ListView(
                       physics: const PageScrollPhysics(), // Turns off `allowImplicitScrolling`
                       scrollDirection: Axis.horizontal,
@@ -982,7 +1018,7 @@ void main() {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 150.0),
+                  const SizedBox(height: .fixed(150.0)),
                 ],
               ),
             ),
@@ -1011,13 +1047,13 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox.square(
-              dimension: 200.0,
+              dimension: const .fixed(200.0),
               child: ListView(
                 controller: controllerY,
                 children: <Widget>[
-                  const SizedBox(height: 150.0),
+                  const SizedBox(height: .fixed(150.0)),
                   SizedBox(
-                    height: 100.0,
+                    height: const .fixed(100.0),
                     child: CustomScrollView(
                       physics: const PageScrollPhysics(), // Turns off `allowImplicitScrolling`
                       scrollDirection: Axis.horizontal,
@@ -1034,7 +1070,7 @@ void main() {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 150.0),
+                  const SizedBox(height: .fixed(150.0)),
                 ],
               ),
             ),
@@ -1061,11 +1097,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
+            height: const .fixed(200.0),
             child: ListView(
               controller: controller,
               children: children = List<Widget>.generate(20, (int i) {
-                return SizedBox(height: 300.0, child: Text('Tile $i'));
+                return SizedBox(height: const .fixed(300.0), child: Text('Tile $i'));
               }),
             ),
           ),
@@ -1122,7 +1158,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              height: 600.0,
+              height: const .fixed(600.0),
               child: CustomScrollView(
                 controller: controller,
                 slivers: children = List<Widget>.generate(20, (int i) {
@@ -1135,7 +1171,9 @@ void main() {
                             key: headerKey,
                           ),
                         )
-                      : SliverToBoxAdapter(child: SizedBox(height: 300.0, child: Text('Tile $i')));
+                      : SliverToBoxAdapter(
+                          child: SizedBox(height: const .fixed(300.0), child: Text('Tile $i')),
+                        );
                 }),
               ),
             ),
@@ -1186,7 +1224,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 400.0,
+            dimension: const .fixed(400.0),
             child: CustomScrollView(
               scrollDirection: axis,
               center: reversed ? const Key('19') : null,
@@ -1196,7 +1234,11 @@ void main() {
                     ? floatingHeader
                     : SliverToBoxAdapter(
                         key: (i == 19) ? const Key('19') : null,
-                        child: SizedBox(height: 300.0, width: 300, child: Text('Tile $i')),
+                        child: SizedBox(
+                          height: const .fixed(300.0),
+                          width: const .fixed(300),
+                          child: Text('Tile $i'),
+                        ),
                       );
               }),
             ),
@@ -1567,7 +1609,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 400.0,
+            dimension: const .fixed(400.0),
             child: CustomScrollView(
               scrollDirection: axis,
               reverse: reverse,
@@ -1704,25 +1746,27 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 300.0,
+            height: const .fixed(300.0),
             child: CustomScrollView(
               cacheExtent: 0,
               controller: outerController,
               slivers: <Widget>[
                 SliverToBoxAdapter(
                   child: SizedBox(
-                    height: 300,
+                    height: const .fixed(300),
                     child: CustomScrollView(
                       controller: innerController,
                       slivers: List<Widget>.generate(5, (int i) {
                         return SliverToBoxAdapter(
-                          child: SizedBox(height: 300.0, child: Text('Tile $i')),
+                          child: SizedBox(height: const .fixed(300.0), child: Text('Tile $i')),
                         );
                       }),
                     ),
                   ),
                 ),
-                const SliverToBoxAdapter(child: SizedBox(height: 300.0, child: Text('hidden'))),
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: .fixed(300.0), child: Text('hidden')),
+                ),
               ],
             ),
           ),
@@ -2006,8 +2050,11 @@ void main() {
             physics: physics,
             scrollDirection: scrollDirection,
             shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) =>
-                SizedBox(height: 50, width: 50, child: Text('Item $index')),
+            itemBuilder: (BuildContext context, int index) => SizedBox(
+              height: const .fixed(50),
+              width: const .fixed(50),
+              child: Text('Item $index'),
+            ),
             itemCount: 20,
             itemExtent: 50,
           ),
@@ -2021,14 +2068,14 @@ void main() {
         child: MediaQuery(
           data: const MediaQueryData(),
           child: ColoredBox(
-            color: const Color(0xFF000000),
+            color: const .fixed(Color(0xFF000000)),
             child: Column(
               children: <Widget>[
                 // Translucent boxes above and below the shrinkwrapped viewport
                 // make it easily discernible if the viewport is not being
                 // clipped properly.
                 Opacity(
-                  opacity: 0.5,
+                  opacity: const .fixed(0.5),
                   child: Container(height: 100, color: const Color(0xFF00B0FF)),
                 ),
                 Container(
@@ -2043,7 +2090,7 @@ void main() {
                   ),
                 ),
                 Opacity(
-                  opacity: 0.5,
+                  opacity: const .fixed(0.5),
                   child: Container(height: 100, color: const Color(0xFF00B0FF)),
                 ),
               ],
@@ -2347,7 +2394,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
           clipBehavior: Clip.none,
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(width: 20, height: 20))],
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: SizedBox(width: .fixed(20), height: .fixed(20)),
+            ),
+          ],
         ),
       ),
     );
@@ -2364,7 +2415,11 @@ void main() {
       const Directionality(
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(width: 20, height: 20))],
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: SizedBox(width: .fixed(20), height: .fixed(20)),
+            ),
+          ],
         ),
       ),
     );
@@ -2391,7 +2446,10 @@ void main() {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-            ListView(shrinkWrap: true, children: const <Widget>[SizedBox.square(dimension: 500)]),
+            ListView(
+              shrinkWrap: true,
+              children: const <Widget>[SizedBox.square(dimension: .fixed(500))],
+            ),
           ],
         ),
       ),
@@ -2415,7 +2473,7 @@ void main() {
             ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              children: const <Widget>[SizedBox.square(dimension: 500)],
+              children: const <Widget>[SizedBox.square(dimension: .fixed(500))],
             ),
           ],
         ),

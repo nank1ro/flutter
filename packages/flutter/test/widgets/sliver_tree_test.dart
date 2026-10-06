@@ -425,12 +425,12 @@ void main() {
                     return TreeSliver.wrapChildToToggleNode(
                       node: node,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const .fixed(EdgeInsets.all(8.0)),
                         child: Row(
                           children: <Widget>[
                             // Icon for parent nodes
                             SizedBox.square(
-                              dimension: 30.0,
+                              dimension: const .fixed(30.0),
                               child: node.children.isNotEmpty
                                   ? AnimatedRotation(
                                       turns: node.isExpanded ? 0.25 : 0.0,
@@ -441,7 +441,7 @@ void main() {
                                   : null,
                             ),
                             // Spacer
-                            const SizedBox(width: 8.0),
+                            const SizedBox(width: .fixed(8.0)),
                             // Content
                             Text(node.content.toString()),
                           ],
@@ -906,10 +906,10 @@ void main() {
           child: RepaintBoundary(
             key: key,
             child: SizedBox.square(
-              dimension: 20,
+              dimension: const .fixed(20),
               child: CustomScrollView(
                 slivers: <Widget>[
-                  const PinnedHeaderSliver(child: SizedBox(height: 10)),
+                  const PinnedHeaderSliver(child: SizedBox(height: .fixed(10))),
                   TreeSliver<Object>(
                     tree: <TreeSliverNode<Object>>[TreeSliverNode<Object>(Object())],
                     treeRowExtentBuilder: (_, _) => 10,
@@ -919,7 +919,7 @@ void main() {
                           TreeSliverNode<Object?> node,
                           AnimationStyle animationStyle,
                         ) {
-                          return const ColoredBox(color: Color(0xFFF44336));
+                          return const ColoredBox(color: .fixed(Color(0xFFF44336)));
                         },
                   ),
                 ],
@@ -977,7 +977,7 @@ void main() {
           child: RepaintBoundary(
             key: key,
             child: SizedBox.square(
-              dimension: 20,
+              dimension: const .fixed(20),
               child: CustomScrollView(
                 controller: scrollController,
                 slivers: <Widget>[
@@ -990,10 +990,10 @@ void main() {
                           TreeSliverNode<Object?> node,
                           AnimationStyle animationStyle,
                         ) {
-                          return const ColoredBox(color: Color(0xFFF44336));
+                          return const ColoredBox(color: .fixed(Color(0xFFF44336)));
                         },
                   ),
-                  const SliverToBoxAdapter(child: SizedBox(height: 20)),
+                  const SliverToBoxAdapter(child: SizedBox(height: .fixed(20))),
                 ],
               ),
             ),

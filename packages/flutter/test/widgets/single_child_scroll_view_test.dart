@@ -202,7 +202,7 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox(
-          width: 750.0,
+          width: const .fixed(750.0),
           child: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               return SingleChildScrollView(
@@ -217,7 +217,7 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: SizedBox(
-          width: 700.0,
+          width: const .fixed(700.0),
           child: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               return SingleChildScrollView(
@@ -254,21 +254,19 @@ void main() {
     expect(view.primary, isNull);
   });
 
-  testWidgets(
-    'Vertical SingleChildScrollViews use PrimaryScrollController by default on mobile',
-    (WidgetTester tester) async {
-      final controller = ScrollController();
-      addTearDown(controller.dispose);
-      await tester.pumpWidget(
-        primaryScrollControllerBoilerplate(
-          child: const SingleChildScrollView(),
-          controller: controller,
-        ),
-      );
-      expect(controller.hasClients, isTrue);
-    },
-    variant: TargetPlatformVariant.mobile(),
-  );
+  testWidgets('Vertical SingleChildScrollViews use PrimaryScrollController by default on mobile', (
+    WidgetTester tester,
+  ) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      primaryScrollControllerBoilerplate(
+        child: const SingleChildScrollView(),
+        controller: controller,
+      ),
+    );
+    expect(controller.hasClients, isTrue);
+  }, variant: TargetPlatformVariant.mobile());
 
   testWidgets(
     "Vertical SingleChildScrollViews don't use PrimaryScrollController by default on desktop",
@@ -326,7 +324,7 @@ void main() {
           controller: controller,
           child: Column(
             children: List<Widget>.generate(30, (int i) {
-              return SizedBox(height: 200.0, child: Text('Tile $i'));
+              return SizedBox(height: const .fixed(200.0), child: Text('Tile $i'));
             }),
           ),
         ),
@@ -432,7 +430,7 @@ void main() {
         child: SingleChildScrollView(
           key: scrollView,
           controller: controller,
-          child: SizedBox(key: childBox, height: length),
+          child: SizedBox(key: childBox, height: const .fixed(length)),
         ),
       ),
     );
@@ -476,7 +474,7 @@ void main() {
           key: scrollView,
           scrollDirection: Axis.horizontal,
           controller: controller,
-          child: SizedBox(key: childBox, width: length),
+          child: SizedBox(key: childBox, width: const .fixed(length)),
         ),
       ),
     );
@@ -516,13 +514,17 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: const .fixed(200.0),
+            width: const .fixed(300.0),
             child: SingleChildScrollView(
               controller: controller,
               child: Column(
                 children: children = List<Widget>.generate(20, (int i) {
-                  return SizedBox(height: 100.0, width: 300.0, child: Text('Tile $i'));
+                  return SizedBox(
+                    height: const .fixed(100.0),
+                    width: const .fixed(300.0),
+                    child: Text('Tile $i'),
+                  );
                 }),
               ),
             ),
@@ -548,13 +550,17 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: const .fixed(200.0),
+            width: const .fixed(300.0),
             child: SingleChildScrollView(
               controller: controller,
               child: Column(
                 children: children = List<Widget>.generate(20, (int i) {
-                  return SizedBox(height: 100.0, width: 300.0, child: Text('Tile $i'));
+                  return SizedBox(
+                    height: const .fixed(100.0),
+                    width: const .fixed(300.0),
+                    child: Text('Tile $i'),
+                  );
                 }),
               ),
             ),
@@ -597,15 +603,19 @@ void main() {
     final controller = ScrollController(initialScrollOffset: 300.0);
     addTearDown(controller.dispose);
     final children = List<Widget>.generate(20, (int i) {
-      return SizedBox(height: 100.0, width: 300.0, child: Text('Tile $i'));
+      return SizedBox(
+        height: const .fixed(100.0),
+        width: const .fixed(300.0),
+        child: Text('Tile $i'),
+      );
     });
     await tester.pumpWidget(
       Directionality(
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
-            width: 300.0,
+            height: const .fixed(200.0),
+            width: const .fixed(300.0),
             child: SingleChildScrollView(
               controller: controller,
               reverse: true,
@@ -656,14 +666,18 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 300.0,
-            width: 200.0,
+            height: const .fixed(300.0),
+            width: const .fixed(200.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               controller: controller,
               child: Row(
                 children: children = List<Widget>.generate(20, (int i) {
-                  return SizedBox(height: 300.0, width: 100.0, child: Text('Tile $i'));
+                  return SizedBox(
+                    height: const .fixed(300.0),
+                    width: const .fixed(100.0),
+                    child: Text('Tile $i'),
+                  );
                 }),
               ),
             ),
@@ -706,7 +720,11 @@ void main() {
     final controller = ScrollController(initialScrollOffset: 300.0);
     addTearDown(controller.dispose);
     final children = List<Widget>.generate(20, (int i) {
-      return SizedBox(height: 300.0, width: 100.0, child: Text('Tile $i'));
+      return SizedBox(
+        height: const .fixed(300.0),
+        width: const .fixed(100.0),
+        child: Text('Tile $i'),
+      );
     });
 
     await tester.pumpWidget(
@@ -714,8 +732,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 300.0,
-            width: 200.0,
+            height: const .fixed(300.0),
+            width: const .fixed(200.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               reverse: true,
@@ -760,7 +778,7 @@ void main() {
   testWidgets('Nested SingleChildScrollView showOnScreen', (WidgetTester tester) async {
     final children = List<List<Widget>>.generate(10, (int x) {
       return List<Widget>.generate(10, (int y) {
-        return SizedBox(key: UniqueKey(), height: 100.0, width: 100.0);
+        return SizedBox(key: UniqueKey(), height: const .fixed(100.0), width: const .fixed(100.0));
       });
     });
     late ScrollController controllerX;
@@ -791,7 +809,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 200.0,
+            dimension: const .fixed(200.0),
             child: SingleChildScrollView(
               controller: controllerY = ScrollController(initialScrollOffset: 400.0),
               child: SingleChildScrollView(
@@ -931,26 +949,30 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Center(
             child: SizedBox(
-              height: 200.0,
-              width: 300.0,
+              height: const .fixed(200.0),
+              width: const .fixed(300.0),
               child: SingleChildScrollView(
                 controller: outer,
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(height: 200.0),
+                    const SizedBox(height: .fixed(200.0)),
                     SizedBox(
-                      height: 200.0,
-                      width: 300.0,
+                      height: const .fixed(200.0),
+                      width: const .fixed(300.0),
                       child: SingleChildScrollView(
                         controller: inner,
                         child: Column(
                           children: children = List<Widget>.generate(10, (int i) {
-                            return SizedBox(height: 100.0, width: 300.0, child: Text('$i'));
+                            return SizedBox(
+                              height: const .fixed(100.0),
+                              width: const .fixed(300.0),
+                              child: Text('$i'),
+                            );
                           }),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 200.0),
+                    const SizedBox(height: .fixed(200.0)),
                   ],
                 ),
               ),
@@ -1054,7 +1076,10 @@ void main() {
             keyboardDismissBehavior: behavior,
             child: Column(
               children: focusNodes.map((FocusNode focusNode) {
-                return SizedBox(height: 50, child: TestTextField(focusNode: focusNode));
+                return SizedBox(
+                  height: const .fixed(50),
+                  child: TestTextField(focusNode: focusNode),
+                );
               }).toList(),
             ),
           ),

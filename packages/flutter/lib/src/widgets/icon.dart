@@ -286,7 +286,7 @@ class Icon extends StatelessWidget {
     if (icon == null) {
       return Semantics(
         label: semanticLabel,
-        child: SizedBox(width: iconSize, height: iconSize),
+        child: SizedBox(width: .fixed(iconSize), height: .fixed(iconSize)),
       );
     }
 
@@ -335,7 +335,7 @@ class Icon extends StatelessWidget {
       switch (textDirection) {
         case TextDirection.rtl:
           iconWidget = Transform(
-            transform: Matrix4.identity()..scaleByDouble(-1.0, 1.0, 1.0, 1),
+            transform: .fixed(Matrix4.identity()..scaleByDouble(-1.0, 1.0, 1.0, 1)),
             alignment: Alignment.center,
             transformHitTests: false,
             child: iconWidget,
@@ -349,8 +349,8 @@ class Icon extends StatelessWidget {
       label: semanticLabel,
       child: ExcludeSemantics(
         child: SizedBox(
-          width: iconSize,
-          height: iconSize,
+          width: .fixed(iconSize),
+          height: .fixed(iconSize),
           child: Center(child: iconWidget),
         ),
       ),

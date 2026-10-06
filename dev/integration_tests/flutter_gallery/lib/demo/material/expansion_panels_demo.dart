@@ -197,7 +197,7 @@ class _ExpansionPanelsDemoState extends State<ExpansionPanelsDemo> {
                     close();
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0)),
                     child: TextFormField(
                       controller: item.textController,
                       decoration: InputDecoration(hintText: item.hint, labelText: item.name),

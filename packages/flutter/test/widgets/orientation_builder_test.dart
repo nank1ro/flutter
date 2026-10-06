@@ -21,8 +21,8 @@ void main() {
           child: Center(
             child: SizedBox(
               // Widget constraints are portrait (100 wide, 200 tall).
-              width: 100.0,
-              height: 200.0,
+              width: const .fixed(100.0),
+              height: const .fixed(200.0),
               child: OrientationBuilder(
                 builder: (BuildContext context, Orientation o) {
                   orientation = o;
@@ -49,8 +49,8 @@ void main() {
           child: Center(
             child: SizedBox(
               // Widget constraints are landscape (200 wide, 100 tall).
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: OrientationBuilder(
                 builder: (BuildContext context, Orientation o) {
                   orientation = o;
@@ -74,8 +74,8 @@ void main() {
           data: const MediaQueryData(size: Size(800.0, 600.0)),
           child: Center(
             child: SizedBox(
-              width: width,
-              height: height,
+              width: .fixed(width),
+              height: .fixed(height),
               child: OrientationBuilder(
                 builder: (BuildContext context, Orientation o) {
                   orientation = o;
@@ -140,8 +140,8 @@ void main() {
           child: Center(
             child: SizedBox(
               // Widget constraints are portrait, but device is landscape
-              width: 100.0,
-              height: 200.0,
+              width: const .fixed(100.0),
+              height: const .fixed(200.0),
               child: DeviceOrientationBuilder(
                 builder: (BuildContext context, Orientation o) {
                   deviceOrientation = o;
@@ -172,8 +172,8 @@ void main() {
           child: Center(
             child: SizedBox(
               // Widget constraints are landscape, but device is portrait.
-              width: 200.0,
-              height: 100.0,
+              width: const .fixed(200.0),
+              height: const .fixed(100.0),
               child: DeviceOrientationBuilder(
                 builder: (BuildContext context, Orientation o) {
                   deviceOrientation = o;
@@ -231,8 +231,8 @@ void main() {
           child: Center(
             child: SizedBox(
               // Widget constraints are portrait.
-              width: 100.0,
-              height: 200.0,
+              width: const .fixed(100.0),
+              height: const .fixed(200.0),
               child: Column(
                 children: <Widget>[
                   Expanded(

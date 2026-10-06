@@ -38,7 +38,7 @@ class CupertinoIndicatorExample extends StatelessWidget {
               children: <Widget>[
                 // Cupertino activity indicator with default properties.
                 CupertinoActivityIndicator(),
-                SizedBox(height: 10),
+                SizedBox(height: .fixed(10)),
                 Text('Default'),
               ],
             ),
@@ -50,7 +50,7 @@ class CupertinoIndicatorExample extends StatelessWidget {
                   radius: 20.0,
                   color: CupertinoColors.activeBlue,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: .fixed(10)),
                 Text(
                   'radius: 20.0\ncolor: CupertinoColors.activeBlue',
                   textAlign: .center,
@@ -63,7 +63,7 @@ class CupertinoIndicatorExample extends StatelessWidget {
                 // Cupertino activity indicator with custom radius and disabled
                 // animation.
                 CupertinoActivityIndicator(radius: 20.0, animating: false),
-                SizedBox(height: 10),
+                SizedBox(height: .fixed(10)),
                 Text('radius: 20.0\nanimating: false', textAlign: .center),
               ],
             ),

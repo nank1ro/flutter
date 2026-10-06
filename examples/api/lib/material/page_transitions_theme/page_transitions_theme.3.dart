@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
           Text('Messages', style: Theme.of(context).textTheme.headlineLarge),
           Expanded(
             child: Padding(
-              padding: const .all(20.0),
+              padding: const .fixed(.all(20.0)),
               child: Card(
                 clipBehavior: .antiAlias,
                 elevation: 0,
@@ -118,13 +118,13 @@ class SecondPage extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const .all(20.0),
+        padding: const .fixed(.all(20.0)),
         child: IntrinsicHeight(
           child: Row(
             children: <Widget>[
               avatar,
               ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: 50),
+                constraints: .fixed(const BoxConstraints(minHeight: 50)),
                 child: Card(
                   elevation: 0.0,
                   shape: const RoundedRectangleBorder(
@@ -138,7 +138,7 @@ class SecondPage extends StatelessWidget {
                   color: Theme.of(context).colorScheme.surfaceContainerLowest,
                   child: Center(
                     child: Padding(
-                      padding: const .symmetric(horizontal: 15.0),
+                      padding: const .fixed(.symmetric(horizontal: 15.0)),
                       child: Text(message),
                     ),
                   ),

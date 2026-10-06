@@ -462,20 +462,21 @@ class CupertinoListSection extends StatelessWidget {
       };
 
       decoratedChildrenGroup = DecoratedBox(
-        decoration:
-            decoration ??
-            ShapeDecoration(
-              color: CupertinoDynamicColor.resolve(
-                decoration?.color ?? CupertinoColors.secondarySystemGroupedBackground,
-                context,
+        decoration: .fixed(
+          decoration ??
+              ShapeDecoration(
+                color: CupertinoDynamicColor.resolve(
+                  decoration?.color ?? CupertinoColors.secondarySystemGroupedBackground,
+                  context,
+                ),
+                shape: RoundedSuperellipseBorder(borderRadius: childrenGroupBorderRadius),
               ),
-              shape: RoundedSuperellipseBorder(borderRadius: childrenGroupBorderRadius),
-            ),
+        ),
         child: Column(children: childrenWithDividers),
       );
 
       decoratedChildrenGroup = Padding(
-        padding: margin,
+        padding: .fixed(margin),
         child: clipBehavior == Clip.none
             ? decoratedChildrenGroup
             : ClipRSuperellipse(
@@ -487,17 +488,21 @@ class CupertinoListSection extends StatelessWidget {
     }
 
     return DecoratedBox(
-      decoration: BoxDecoration(color: CupertinoDynamicColor.resolve(backgroundColor, context)),
+      decoration: .fixed(
+        BoxDecoration(color: CupertinoDynamicColor.resolve(backgroundColor, context)),
+      ),
       child: Column(
         children: <Widget>[
-          if (type == CupertinoListSectionType.base) SizedBox(height: topMargin),
+          if (type == CupertinoListSectionType.base) SizedBox(height: .fixed(topMargin)),
           if (headerWidget != null)
             Align(
               alignment: AlignmentDirectional.centerStart,
               child: Padding(
-                padding: type == CupertinoListSectionType.base
-                    ? _kDefaultHeaderMargin
-                    : _kInsetGroupedDefaultHeaderMargin,
+                padding: .fixed(
+                  type == CupertinoListSectionType.base
+                      ? _kDefaultHeaderMargin
+                      : _kInsetGroupedDefaultHeaderMargin,
+                ),
                 child: headerWidget,
               ),
             ),
@@ -506,9 +511,11 @@ class CupertinoListSection extends StatelessWidget {
             Align(
               alignment: AlignmentDirectional.centerStart,
               child: Padding(
-                padding: type == CupertinoListSectionType.base
-                    ? _kDefaultFooterMargin
-                    : _kInsetGroupedDefaultFooterMargin,
+                padding: .fixed(
+                  type == CupertinoListSectionType.base
+                      ? _kDefaultFooterMargin
+                      : _kInsetGroupedDefaultFooterMargin,
+                ),
                 child: footerWidget,
               ),
             ),

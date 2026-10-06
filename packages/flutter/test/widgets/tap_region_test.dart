@@ -396,7 +396,7 @@ void main() {
               child: Row(
                 children: <Widget>[
                   ConstrainedBox(
-                    constraints: const BoxConstraints.tightFor(width: 100, height: 100),
+                    constraints: const .fixed(BoxConstraints.tightFor(width: 100, height: 100)),
                     child: TapRegion(
                       onTapInside: (PointerEvent event) {
                         tappedInside.add(noGroupKey.value);
@@ -405,7 +405,7 @@ void main() {
                     ),
                   ),
                   ConstrainedBox(
-                    constraints: const BoxConstraints.tightFor(width: 100, height: 100),
+                    constraints: const .fixed(BoxConstraints.tightFor(width: 100, height: 100)),
                     child: TapRegion(
                       groupId: 1,
                       behavior: HitTestBehavior.opaque,
@@ -416,7 +416,7 @@ void main() {
                     ),
                   ),
                   ConstrainedBox(
-                    constraints: const BoxConstraints.tightFor(width: 100, height: 100),
+                    constraints: const .fixed(BoxConstraints.tightFor(width: 100, height: 100)),
                     child: TapRegion(
                       groupId: 1,
                       behavior: HitTestBehavior.translucent,
@@ -1042,7 +1042,7 @@ void main() {
         count1 += 1;
       },
       behavior: HitTestBehavior.opaque,
-      child: const SizedBox.square(dimension: 100),
+      child: const SizedBox.square(dimension: .fixed(100)),
     );
 
     final tapRegion2 = TapRegion(
@@ -1051,7 +1051,7 @@ void main() {
         count2 += 1;
       },
       behavior: HitTestBehavior.opaque,
-      child: const SizedBox.square(dimension: 100),
+      child: const SizedBox.square(dimension: .fixed(100)),
     );
 
     Future<void> tapOutside(WidgetTester tester) async {
@@ -1079,7 +1079,7 @@ void main() {
                     ).createRoute(tester.element(find.byKey(fabKey))),
                   );
                 },
-                child: const SizedBox(width: 56, height: 56),
+                child: const SizedBox(width: .fixed(56), height: .fixed(56)),
               ),
             ),
           ],
@@ -1128,7 +1128,7 @@ void main() {
         count1 += 1;
       },
       behavior: HitTestBehavior.opaque,
-      child: const SizedBox.square(dimension: 100),
+      child: const SizedBox.square(dimension: .fixed(100)),
     );
 
     final tapRegion2 = TapRegion(
@@ -1137,7 +1137,7 @@ void main() {
         count2 += 1;
       },
       behavior: HitTestBehavior.opaque,
-      child: const SizedBox.square(dimension: 100),
+      child: const SizedBox.square(dimension: .fixed(100)),
     );
 
     Future<void> tapOutside(WidgetTester tester) async {
@@ -1206,8 +1206,8 @@ void main() {
                           buttonTapped = true;
                         },
                         child: const SizedBox(
-                          width: 120,
-                          height: 48,
+                          width: .fixed(120),
+                          height: .fixed(48),
                           child: Center(child: Text('Test Button')),
                         ),
                       ),
@@ -1215,7 +1215,7 @@ void main() {
                   ).createRoute(context),
                 );
               },
-              child: const SizedBox(width: 250.0, height: 250.0),
+              child: const SizedBox(width: .fixed(250.0), height: .fixed(250.0)),
             ),
           ),
         ),
@@ -1260,10 +1260,14 @@ void main() {
           child: Row(
             children: <Widget>[
               // Button outside the TapRegion.
-              const SizedBox(width: 100, height: 50, child: Text('Outside Button')),
+              const SizedBox(width: .fixed(100), height: .fixed(50), child: Text('Outside Button')),
               TapRegion(
                 onTapOutside: (_) => outsideCalls.add('region'),
-                child: const SizedBox(width: 100, height: 50, child: Text('Inside')),
+                child: const SizedBox(
+                  width: .fixed(100),
+                  height: .fixed(50),
+                  child: Text('Inside'),
+                ),
               ),
             ],
           ),
@@ -1310,10 +1314,14 @@ void main() {
         child: TapRegionSurface(
           child: Row(
             children: <Widget>[
-              const SizedBox(width: 100, height: 50, child: Text('Outside')),
+              const SizedBox(width: .fixed(100), height: .fixed(50), child: Text('Outside')),
               TapRegion(
                 onTapOutside: (_) => outsideCalls.add('region'),
-                child: const SizedBox(width: 100, height: 50, child: Text('Inside Button')),
+                child: const SizedBox(
+                  width: .fixed(100),
+                  height: .fixed(50),
+                  child: Text('Inside Button'),
+                ),
               ),
             ],
           ),
@@ -1355,10 +1363,18 @@ void main() {
         child: TapRegionSurface(
           child: Row(
             children: <Widget>[
-              const SizedBox(width: 100, height: 50, child: Text('Outside LongPress')),
+              const SizedBox(
+                width: .fixed(100),
+                height: .fixed(50),
+                child: Text('Outside LongPress'),
+              ),
               TapRegion(
                 onTapOutside: (_) => outsideCalls.add('region'),
-                child: const SizedBox(width: 100, height: 50, child: Text('Inside')),
+                child: const SizedBox(
+                  width: .fixed(100),
+                  height: .fixed(50),
+                  child: Text('Inside'),
+                ),
               ),
             ],
           ),

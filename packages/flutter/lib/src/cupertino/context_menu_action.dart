@@ -110,15 +110,17 @@ class _CupertinoContextMenuActionState extends State<CupertinoContextMenuAction>
         onTap: widget.onPressed,
         behavior: HitTestBehavior.opaque,
         child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: _kButtonHeight),
+          constraints: const .fixed(BoxConstraints(minHeight: _kButtonHeight)),
           child: Semantics(
             button: true,
             child: ColoredBox(
-              color: _isPressed
-                  ? CupertinoDynamicColor.resolve(_kBackgroundColorPressed, context)
-                  : CupertinoDynamicColor.resolve(CupertinoContextMenu.kBackgroundColor, context),
+              color: .fixed(
+                _isPressed
+                    ? CupertinoDynamicColor.resolve(_kBackgroundColorPressed, context)
+                    : CupertinoDynamicColor.resolve(CupertinoContextMenu.kBackgroundColor, context),
+              ),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(15.5, 8.0, 17.5, 8.0),
+                padding: const .fixed(EdgeInsets.fromLTRB(15.5, 8.0, 17.5, 8.0)),
                 child: DefaultTextStyle(
                   style: _textStyle,
                   child: Row(

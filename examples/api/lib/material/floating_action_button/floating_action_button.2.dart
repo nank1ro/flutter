@@ -26,12 +26,14 @@ class FloatingActionButtonExample extends StatelessWidget {
 
     Widget titleBox(String title) {
       return DecoratedBox(
-        decoration: BoxDecoration(
-          color: colorScheme.inverseSurface,
-          borderRadius: .circular(4),
+        decoration: .fixed(
+          BoxDecoration(
+            color: colorScheme.inverseSurface,
+            borderRadius: .circular(4),
+          ),
         ),
         child: Padding(
-          padding: const .symmetric(horizontal: 8, vertical: 4),
+          padding: const .fixed(.symmetric(horizontal: 8, vertical: 4)),
           child: Text(
             title,
             style: TextStyle(color: colorScheme.onInverseSurface),
@@ -58,7 +60,7 @@ class FloatingActionButtonExample extends StatelessWidget {
                   },
                   child: const Icon(Icons.edit_outlined),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: .fixed(20)),
                 titleBox('Surface'),
               ],
             ),
@@ -74,7 +76,7 @@ class FloatingActionButtonExample extends StatelessWidget {
                   },
                   child: const Icon(Icons.edit_outlined),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: .fixed(20)),
                 titleBox('Secondary'),
               ],
             ),
@@ -90,7 +92,7 @@ class FloatingActionButtonExample extends StatelessWidget {
                   },
                   child: const Icon(Icons.edit_outlined),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: .fixed(20)),
                 titleBox('Tertiary'),
               ],
             ),

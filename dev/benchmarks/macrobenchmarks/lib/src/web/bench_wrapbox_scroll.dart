@@ -101,7 +101,7 @@ class ProductPreview extends StatelessWidget {
             child: Image.network('assets/assets/Icon-192.png', width: 100, height: 100),
           ),
           const Text('title'),
-          const SizedBox(height: 14),
+          const SizedBox(height: .fixed(14)),
           Wrap(
             alignment: WrapAlignment.center,
             children: <Widget>[

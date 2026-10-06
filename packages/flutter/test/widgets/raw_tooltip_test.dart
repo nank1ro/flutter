@@ -104,8 +104,8 @@ void main() {
                         tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                             const Placeholder(
                               child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 5.0),
-                                child: SizedBox(height: 20, child: Text(tooltipText)),
+                                padding: .fixed(EdgeInsets.symmetric(vertical: 5.0)),
+                                child: SizedBox(height: .fixed(20), child: Text(tooltipText)),
                               ),
                             ),
                         child: const SizedBox.shrink(),
@@ -163,7 +163,7 @@ void main() {
                         semanticsTooltip: tooltipText,
                         tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                             const Placeholder(
-                              child: SizedBox(height: 100, child: Text(tooltipText)),
+                              child: SizedBox(height: .fixed(100), child: Text(tooltipText)),
                             ),
                         positionDelegate: (TooltipPositionContext context) => positionDependentBox(
                           size: context.overlaySize,
@@ -228,7 +228,7 @@ void main() {
                         semanticsTooltip: tooltipText,
                         tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                             const Placeholder(
-                              child: SizedBox(height: 190, child: Text(tooltipText)),
+                              child: SizedBox(height: .fixed(190), child: Text(tooltipText)),
                             ),
                         positionDelegate: (TooltipPositionContext context) => positionDependentBox(
                           size: context.overlaySize,
@@ -303,7 +303,7 @@ void main() {
                         semanticsTooltip: tooltipText,
                         tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                             const Placeholder(
-                              child: SizedBox(height: 190, child: Text(tooltipText)),
+                              child: SizedBox(height: .fixed(190), child: Text(tooltipText)),
                             ),
                         child: const SizedBox.shrink(),
                       ),
@@ -362,8 +362,8 @@ void main() {
                         tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                             const Placeholder(
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: 10.0),
-                                child: SizedBox(height: 10, child: Text(tooltipText)),
+                                padding: .fixed(EdgeInsets.only(bottom: 10.0)),
+                                child: SizedBox(height: .fixed(10), child: Text(tooltipText)),
                               ),
                             ),
                         child: const SizedBox.shrink(),
@@ -425,8 +425,8 @@ void main() {
                         tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                             const Placeholder(
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: 10.0),
-                                child: SizedBox(height: 10, child: Text(tooltipText)),
+                                padding: .fixed(EdgeInsets.only(bottom: 10.0)),
+                                child: SizedBox(height: .fixed(10), child: Text(tooltipText)),
                               ),
                             ),
                         child: const SizedBox.shrink(),
@@ -534,7 +534,7 @@ void main() {
               preferBelow: context.preferBelow,
               verticalOffset: 24.0,
             ),
-            child: const SizedBox(height: 100, width: 100),
+            child: const SizedBox(height: .fixed(100), width: .fixed(100)),
           ),
         ),
       ),
@@ -710,7 +710,7 @@ void main() {
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                   const Text(tooltipText),
               touchDelay: touchDelay,
-              child: const SizedBox(width: 100.0, height: 100.0),
+              child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
             ),
           ),
         ),
@@ -761,7 +761,7 @@ void main() {
             semanticsTooltip: tooltipText,
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text(tooltipText),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -810,7 +810,7 @@ void main() {
             semanticsTooltip: tooltipText,
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text(tooltipText),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -860,7 +860,7 @@ void main() {
             semanticsTooltip: tooltipText,
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text(tooltipText),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -925,14 +925,14 @@ void main() {
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                   const Text('first tooltip'),
               hoverDelay: hoverDelay,
-              child: const SizedBox(width: 100.0, height: 100.0),
+              child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
             ),
             RawTooltip(
               semanticsTooltip: 'last tooltip',
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                   const Text('last tooltip'),
               hoverDelay: hoverDelay,
-              child: const SizedBox(width: 100.0, height: 100.0),
+              child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
             ),
           ],
         ),
@@ -987,7 +987,7 @@ void main() {
                   const Text(tooltipText),
               hoverDelay: hoverDelay,
               dismissDelay: hoverDelay,
-              child: const SizedBox(width: 100.0, height: 100.0),
+              child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
             ),
           ),
         ),
@@ -1149,7 +1149,7 @@ void main() {
                 semanticsTooltip: 'Inner',
                 tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                     const Text('Inner'),
-                child: SizedBox(key: innerKey, width: 25, height: 100),
+                child: SizedBox(key: innerKey, width: const .fixed(25), height: const .fixed(100)),
               ),
             ),
           ),
@@ -1222,7 +1222,8 @@ void main() {
         home: Center(
           child: RawTooltip(
             semanticsTooltip: tooltipText,
-            tooltipBuilder: (context, animation) => const ColoredBox(color: Color(0xff0000ff)),
+            tooltipBuilder: (context, animation) =>
+                const ColoredBox(color: .fixed(Color(0xff0000ff))),
             child: const Text('I am tool tip'),
           ),
         ),
@@ -1332,7 +1333,7 @@ void main() {
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text(tooltipText),
             hoverDelay: hoverDelay,
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -1393,7 +1394,7 @@ void main() {
                         semanticsTooltip: tooltipText,
                         tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                             FadeTransition(opacity: animation, child: const Text(tooltipText)),
-                        child: const SizedBox(width: 10.0, height: 10.0),
+                        child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
                       ),
                     ),
                   ],
@@ -1538,7 +1539,7 @@ void main() {
             semanticsTooltip: 'Foo',
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text('Foo'),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -1690,7 +1691,7 @@ void main() {
             semanticsTooltip: 'Foo',
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text('Foo'),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -1868,7 +1869,7 @@ void main() {
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text(tooltipText),
             onTriggered: onTriggered,
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -1913,7 +1914,7 @@ void main() {
               preferBelow: context.preferBelow,
               verticalOffset: 24.0,
             ),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -1958,7 +1959,7 @@ void main() {
             semanticsTooltip: tooltipText,
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text(tooltipText),
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -2015,7 +2016,7 @@ void main() {
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text(tooltipText),
             touchDelay: touchDelay,
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       ),
@@ -2058,7 +2059,7 @@ void main() {
         },
         home: Center(
           child: SizedBox.square(
-            dimension: 10.0,
+            dimension: const .fixed(10.0),
             child: RawTooltip(
               semanticsTooltip: tooltipText,
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
@@ -2109,7 +2110,7 @@ void main() {
         },
         home: Center(
           child: SizedBox.square(
-            dimension: 10.0,
+            dimension: const .fixed(10.0),
             child: RawTooltip(
               semanticsTooltip: tooltipText,
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
@@ -2350,7 +2351,7 @@ void main() {
         },
         home: Center(
           child: SizedBox.square(
-            dimension: 10.0,
+            dimension: const .fixed(10.0),
             child: RawTooltip(
               semanticsTooltip: tooltipText,
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
@@ -2411,7 +2412,7 @@ void main() {
         },
         home: Center(
           child: SizedBox.square(
-            dimension: 10.0,
+            dimension: const .fixed(10.0),
             child: RawTooltip(
               semanticsTooltip: tooltipText,
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
@@ -2488,7 +2489,7 @@ void main() {
         },
         home: Center(
           child: SizedBox.square(
-            dimension: 10.0,
+            dimension: const .fixed(10.0),
             child: RawTooltip(
               semanticsTooltip: tooltipText,
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
@@ -2536,7 +2537,7 @@ void main() {
         },
         home: Center(
           child: SizedBox.square(
-            dimension: 10.0,
+            dimension: const .fixed(10.0),
             child: RawTooltip(
               semanticsTooltip: tooltipText,
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
@@ -2583,7 +2584,7 @@ void main() {
         },
         home: Center(
           child: SizedBox.square(
-            dimension: 10.0,
+            dimension: const .fixed(10.0),
             child: RawTooltip(
               semanticsTooltip: tooltipText,
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
@@ -2634,7 +2635,7 @@ void main() {
             tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text(tooltipText),
             hoverDelay: const Duration(seconds: 1),
-            child: const SizedBox.square(dimension: 50),
+            child: const SizedBox.square(dimension: .fixed(50)),
           ),
         ),
       ),
@@ -2673,7 +2674,7 @@ void main() {
               tooltipBuilder: (BuildContext context, Animation<double> animation) =>
                   const Text(tooltipText),
               hoverDelay: const Duration(seconds: 1),
-              child: const SizedBox.square(dimension: 50),
+              child: const SizedBox.square(dimension: .fixed(50)),
             ),
           ),
         ),
@@ -2721,7 +2722,7 @@ void main() {
                 context.target.dy - (context.targetSize.height / 2) - context.tooltipSize.height,
               );
             },
-            child: const SizedBox(width: 50, height: 50),
+            child: const SizedBox(width: .fixed(50), height: .fixed(50)),
           ),
         ),
       ),
@@ -2834,7 +2835,7 @@ Future<void> setWidgetForTooltipMode(
             preferBelow: context.preferBelow,
             verticalOffset: 24.0,
           ),
-          child: const SizedBox(width: 100.0, height: 100.0),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       ),
     ),

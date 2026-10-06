@@ -504,7 +504,7 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
         widget.actions!.map<Widget>((Widget action) {
           return Padding(
             // 8.0 is the default padding of an icon button
-            padding: const EdgeInsetsDirectional.only(start: 24.0 - 8.0 * 2.0),
+            padding: const .fixed(EdgeInsetsDirectional.only(start: 24.0 - 8.0 * 2.0)),
             child: action,
           );
         }).toList(),
@@ -523,10 +523,12 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
           .toList();
       footerWidgets.addAll(<Widget>[
         // Match trailing padding, in case we overflow and end up scrolling.
-        const SizedBox(width: 14.0),
+        const SizedBox(width: .fixed(14.0)),
         Text(localizations.rowsPerPageTitle),
         ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 64.0), // 40.0 for the text, 24.0 for the icon
+          constraints: const .fixed(
+            BoxConstraints(minWidth: 64.0),
+          ), // 40.0 for the text, 24.0 for the icon
           child: Align(
             alignment: AlignmentDirectional.centerEnd,
             child: DropdownButtonHideUnderline(
@@ -542,7 +544,7 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
       ]);
     }
     footerWidgets.addAll(<Widget>[
-      const SizedBox(width: 32.0),
+      const SizedBox(width: .fixed(32.0)),
       Text(
         localizations.pageRowsInfoTitle(
           _firstRowIndex + 1,
@@ -551,7 +553,7 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
           _rowCountApproximate,
         ),
       ),
-      const SizedBox(width: 32.0),
+      const SizedBox(width: .fixed(32.0)),
       if (widget.showFirstLastButtons)
         IconButton(
           icon: const Icon(Icons.skip_previous),
@@ -567,7 +569,7 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
         tooltip: localizations.previousPageTooltip,
         onPressed: _firstRowIndex <= 0 ? null : _handlePrevious,
       ),
-      const SizedBox(width: 24.0),
+      const SizedBox(width: .fixed(24.0)),
       IconButton(
         icon: const Icon(Icons.chevron_right),
         padding: EdgeInsets.zero,
@@ -583,7 +585,7 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
           tooltip: localizations.lastPageTooltip,
           onPressed: _isNextPageUnavailable() ? null : _handleLast,
         ),
-      const SizedBox(width: 14.0),
+      const SizedBox(width: .fixed(14.0)),
     ]);
 
     // CARD
@@ -612,7 +614,7 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
                         height: 64.0,
                         color: _selectedRowCount > 0 ? themeData.secondaryHeaderColor : null,
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.only(start: 24, end: 14.0),
+                          padding: const .fixed(EdgeInsetsDirectional.only(start: 24, end: 14.0)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: headerWidgets,
@@ -628,7 +630,7 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
                 controller: widget.controller,
                 dragStartBehavior: widget.dragStartBehavior,
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(minWidth: constraints.minWidth),
+                  constraints: .fixed(BoxConstraints(minWidth: constraints.minWidth)),
                   child: DataTable(
                     key: _tableKey,
                     columns: widget.columns,
@@ -654,12 +656,13 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
               ),
               if (!widget.showEmptyRows)
                 SizedBox(
-                  height:
-                      (widget.dataRowMaxHeight ?? kMinInteractiveDimension) *
-                      (widget.rowsPerPage - _rowCount + _firstRowIndex).clamp(
-                        0,
-                        widget.rowsPerPage,
-                      ),
+                  height: .fixed(
+                    (widget.dataRowMaxHeight ?? kMinInteractiveDimension) *
+                        (widget.rowsPerPage - _rowCount + _firstRowIndex).clamp(
+                          0,
+                          widget.rowsPerPage,
+                        ),
+                  ),
                 ),
               DefaultTextStyle(
                 style: footerTextStyle!,
@@ -668,7 +671,7 @@ class PaginatedDataTableState extends State<PaginatedDataTable> {
                   child: SizedBox(
                     // TODO(bkonyi): this won't handle text zoom correctly,
                     //  https://github.com/flutter/flutter/issues/48522
-                    height: 56.0,
+                    height: const .fixed(56.0),
                     child: SingleChildScrollView(
                       dragStartBehavior: widget.dragStartBehavior,
                       scrollDirection: Axis.horizontal,

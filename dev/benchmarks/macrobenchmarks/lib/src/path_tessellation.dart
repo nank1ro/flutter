@@ -31,7 +31,7 @@ class _PathTessellationPageState extends State<PathTessellationPage>
     final double scale = _controller.value;
     return SafeArea(
       child: ColoredBox(
-        color: Colors.black,
+        color: const .fixed(Colors.black),
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
@@ -65,12 +65,12 @@ class _PathTessellationPageState extends State<PathTessellationPage>
               left: 0,
               right: 0,
               child: ColoredBox(
-                color: Colors.black.withOpacity(0.7),
+                color: .fixed(Colors.black.withOpacity(0.7)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     SizedBox(
-                      height: 100,
+                      height: const .fixed(100),
                       child: IconRow(iconSize: 55.0 * scale, paintStyle: widget.paintStyle),
                     ),
                     MaterialButton(
@@ -108,23 +108,23 @@ class IconRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         SizedBox.square(
-          dimension: iconSize,
+          dimension: .fixed(iconSize),
           child: CustomPaint(painter: _SettingsIconPainter(paintStyle), willChange: true),
         ),
         SizedBox.square(
-          dimension: iconSize,
+          dimension: .fixed(iconSize),
           child: CustomPaint(painter: _CameraIconPainter(paintStyle), willChange: true),
         ),
         SizedBox.square(
-          dimension: iconSize,
+          dimension: .fixed(iconSize),
           child: CustomPaint(painter: _CalendarIconPainter(paintStyle), willChange: true),
         ),
         SizedBox.square(
-          dimension: iconSize,
+          dimension: .fixed(iconSize),
           child: CustomPaint(painter: _ConversationIconPainter(paintStyle), willChange: true),
         ),
         SizedBox.square(
-          dimension: iconSize,
+          dimension: .fixed(iconSize),
           child: CustomPaint(painter: _GeometryIconPainter(paintStyle), willChange: true),
         ),
       ],

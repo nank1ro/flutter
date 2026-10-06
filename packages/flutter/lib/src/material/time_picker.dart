@@ -266,10 +266,12 @@ class _DialTimePickerHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsetsDirectional.only(
-              bottom:
-                  (_TimePickerModel.useMaterial3Of(context) ? 20 : 24) -
-                  minInteractiveVerticalPadding / 2,
+            padding: .fixed(
+              EdgeInsetsDirectional.only(
+                bottom:
+                    (_TimePickerModel.useMaterial3Of(context) ? 20 : 24) -
+                    minInteractiveVerticalPadding / 2,
+              ),
             ),
             child: Text(
               helpText,
@@ -299,7 +301,7 @@ class _DialTimePickerHeader extends StatelessWidget {
         ],
       ),
       Orientation.landscape => SizedBox(
-        width: _kTimePickerHeaderLandscapeWidth,
+        width: const .fixed(_kTimePickerHeaderLandscapeWidth),
         child: Stack(
           children: <Widget>[
             Text(
@@ -375,7 +377,7 @@ class _DialTimeSelectorControl extends StatelessWidget {
     ).copyWith(color: effectiveTextColor);
 
     return SizedBox(
-      height: defaultTheme.hourMinuteSize.height,
+      height: .fixed(defaultTheme.hourMinuteSize.height),
       child: Material(
         color: WidgetStateProperty.resolveAs(backgroundColor, states),
         clipBehavior: Clip.antiAlias,
@@ -511,8 +513,8 @@ class _TimeSelectorSeparator extends StatelessWidget {
 
     return ExcludeSemantics(
       child: SizedBox(
-        width: timeOfDayFormat == TimeOfDayFormat.frenchCanadian ? 36 : 24,
-        height: height,
+        width: .fixed(timeOfDayFormat == TimeOfDayFormat.frenchCanadian ? 36 : 24),
+        height: .fixed(height),
         child: Center(
           child: Text(
             _timeSelectorSeparatorValue(timeOfDayFormat),
@@ -691,7 +693,7 @@ class _DayPeriodControl extends StatelessWidget {
           minSize: minInteractiveSize,
           orientation: orientation,
           child: SizedBox.fromSize(
-            size: minInteractiveSize,
+            size: .fixed(minInteractiveSize),
             child: Column(
               children: <Widget>[
                 Expanded(child: amButton),
@@ -746,7 +748,7 @@ class _DayPeriodControl extends StatelessWidget {
           minSize: minInteractiveSize,
           orientation: orientation,
           child: SizedBox(
-            height: minInteractiveSize.height,
+            height: .fixed(minInteractiveSize.height),
             child: Row(
               children: <Widget>[
                 Expanded(child: amButton),
@@ -800,7 +802,7 @@ class _AmPmButton extends StatelessWidget {
       inMutuallyExclusiveGroup: true,
       button: true,
       child: Padding(
-        padding: padding,
+        padding: .fixed(padding),
         child: Material(
           clipBehavior: Clip.antiAlias,
           color: resolvedBackgroundColor,
@@ -1886,17 +1888,21 @@ class _TimePickerInputState extends State<_TimePickerInput> with RestorationMixi
     );
 
     return Padding(
-      padding: _TimePickerModel.useMaterial3Of(context)
-          ? EdgeInsets.zero
-          : const EdgeInsets.symmetric(horizontal: 16),
+      padding: .fixed(
+        _TimePickerModel.useMaterial3Of(context)
+            ? EdgeInsets.zero
+            : const EdgeInsets.symmetric(horizontal: 16),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsetsDirectional.only(
-              bottom:
-                  (_TimePickerModel.useMaterial3Of(context) ? 20 : 24) -
-                  minInteractiveVerticalPadding / 2,
+            padding: .fixed(
+              EdgeInsetsDirectional.only(
+                bottom:
+                    (_TimePickerModel.useMaterial3Of(context) ? 20 : 24) -
+                    minInteractiveVerticalPadding / 2,
+              ),
             ),
             child: Text(
               widget.helpText,
@@ -1911,13 +1917,15 @@ class _TimePickerInputState extends State<_TimePickerInput> with RestorationMixi
               if (!use24HourDials &&
                   timeOfDayFormat == TimeOfDayFormat.a_space_h_colon_mm) ...<Widget>[
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 12),
+                  padding: const .fixed(EdgeInsetsDirectional.only(end: 12)),
                   child: _DayPeriodControl(onPeriodChanged: _handleDayPeriodChanged),
                 ),
               ],
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.only(top: minInteractiveVerticalPadding / 2),
+                  padding: .fixed(
+                    EdgeInsetsDirectional.only(top: minInteractiveVerticalPadding / 2),
+                  ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     // Hour/minutes should not change positions in RTL locales.
@@ -1928,7 +1936,7 @@ class _TimePickerInputState extends State<_TimePickerInput> with RestorationMixi
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
+                              padding: const .fixed(EdgeInsets.only(bottom: 10)),
                               child: _HourTextField(
                                 restorationId: 'hour_text_field',
                                 selectedTime: _selectedTime.value,
@@ -1961,7 +1969,7 @@ class _TimePickerInputState extends State<_TimePickerInput> with RestorationMixi
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
+                              padding: const .fixed(EdgeInsets.only(bottom: 10)),
                               child: _MinuteTextField(
                                 restorationId: 'minute_text_field',
                                 selectedTime: _selectedTime.value,
@@ -1994,7 +2002,7 @@ class _TimePickerInputState extends State<_TimePickerInput> with RestorationMixi
               if (!use24HourDials &&
                   timeOfDayFormat != TimeOfDayFormat.a_space_h_colon_mm) ...<Widget>[
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 12),
+                  padding: const .fixed(EdgeInsetsDirectional.only(start: 12)),
                   child: _DayPeriodControl(onPeriodChanged: _handleDayPeriodChanged),
                 ),
               ],
@@ -2006,7 +2014,7 @@ class _TimePickerInputState extends State<_TimePickerInput> with RestorationMixi
               style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.error),
             )
           else
-            const SizedBox(height: 2),
+            const SizedBox(height: .fixed(2)),
         ],
       ),
     );
@@ -2251,9 +2259,11 @@ class _HourMinuteTextFieldState extends State<_HourMinuteTextField> with Restora
     ).copyWith(color: effectiveTextColor);
 
     return SizedBox.fromSize(
-      size: alwaysUse24HourFormat
-          ? defaultTheme.hourMinuteInputSize24Hour
-          : defaultTheme.hourMinuteInputSize,
+      size: .fixed(
+        alwaysUse24HourFormat
+            ? defaultTheme.hourMinuteInputSize24Hour
+            : defaultTheme.hourMinuteInputSize,
+      ),
       child: MediaQuery.withNoTextScaling(
         child: UnmanagedRestorationScope(
           bucket: bucket,
@@ -2597,7 +2607,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> with RestorationMix
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
 
     final Widget actions = Padding(
-      padding: EdgeInsetsDirectional.only(start: theme.useMaterial3 ? 0 : 4),
+      padding: .fixed(EdgeInsetsDirectional.only(start: theme.useMaterial3 ? 0 : 4)),
       child: Row(
         children: <Widget>[
           if (_entryMode.value == TimePickerEntryMode.dial ||
@@ -2621,7 +2631,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> with RestorationMix
             ),
           Expanded(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 36),
+              constraints: const .fixed(BoxConstraints(minHeight: 36)),
               child: Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: OverflowBar(
@@ -2674,7 +2684,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> with RestorationMix
             : 24,
       ),
       child: Padding(
-        padding: pickerTheme.padding ?? defaultTheme.padding,
+        padding: .fixed(pickerTheme.padding ?? defaultTheme.padding),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             final Size constrainedSize = constraints.constrain(dialogSize);
@@ -3031,10 +3041,10 @@ class _TimePickerState extends State<_TimePicker> with RestorationMixin {
         };
 
         final Widget dial = Padding(
-          padding: dialPadding,
+          padding: .fixed(dialPadding),
           child: ExcludeSemantics(
             child: SizedBox.fromSize(
-              size: defaultTheme.dialSize,
+              size: .fixed(defaultTheme.dialSize),
               child: AspectRatio(
                 aspectRatio: 1,
                 child: _Dial(
@@ -3056,7 +3066,7 @@ class _TimePickerState extends State<_TimePicker> with RestorationMixin {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: theme.useMaterial3 ? 0 : 16),
+                  padding: .fixed(EdgeInsets.symmetric(horizontal: theme.useMaterial3 ? 0 : 16)),
                   child: _DialTimePickerHeader(helpText: helpText),
                 ),
                 Expanded(
@@ -3066,7 +3076,9 @@ class _TimePickerState extends State<_TimePicker> with RestorationMixin {
                       // Dial grows and shrinks with the available space.
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: theme.useMaterial3 ? 0 : 16),
+                          padding: .fixed(
+                            EdgeInsets.symmetric(horizontal: theme.useMaterial3 ? 0 : 16),
+                          ),
                           child: dial,
                         ),
                       ),
@@ -3080,7 +3092,7 @@ class _TimePickerState extends State<_TimePicker> with RestorationMixin {
               children: <Widget>[
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: theme.useMaterial3 ? 0 : 16),
+                    padding: .fixed(EdgeInsets.symmetric(horizontal: theme.useMaterial3 ? 0 : 16)),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[

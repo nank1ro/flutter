@@ -10,9 +10,9 @@ void main() {
     await tester.pumpWidget(
       const Column(
         children: <Widget>[
-          SizedBox(width: 10.0, height: 10.0),
+          SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           Spacer(),
-          SizedBox(width: 10.0, height: 10.0),
+          SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
         ],
       ),
     );
@@ -30,15 +30,15 @@ void main() {
       const Row(
         textDirection: TextDirection.rtl,
         children: <Widget>[
-          SizedBox(width: 10.0, height: 10.0),
+          SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           spacer1,
-          SizedBox(width: 10.0, height: 10.0),
+          SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           spacer2,
-          SizedBox(width: 10.0, height: 10.0),
+          SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           spacer3,
-          SizedBox(width: 10.0, height: 10.0),
+          SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           spacer4,
-          SizedBox(width: 10.0, height: 10.0),
+          SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
         ],
       ),
     );
@@ -63,9 +63,9 @@ void main() {
         constrainedAxis: Axis.vertical,
         child: Column(
           children: <Widget>[
-            SizedBox(width: 20.0, height: 10.0),
+            SizedBox(width: .fixed(20.0), height: .fixed(10.0)),
             Spacer(),
-            SizedBox(width: 10.0, height: 10.0),
+            SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ],
         ),
       ),

@@ -82,7 +82,7 @@ void main() {
           child: DefaultTextStyle(
             style: TextStyle(color: _debugText, fontFamily: 'Roboto'),
             child: Padding(
-              padding: EdgeInsets.all(50),
+              padding: .fixed(EdgeInsets.all(50)),
               child: Row(
                 children: <Widget>[
                   PhysicalModel(

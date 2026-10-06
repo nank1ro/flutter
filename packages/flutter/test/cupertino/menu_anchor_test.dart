@@ -2407,7 +2407,9 @@ void main() {
               ),
             ],
             child: const Stack(
-              children: <Widget>[ColoredBox(color: Color(0xFF00FF00), child: SizedBox.expand())],
+              children: <Widget>[
+                ColoredBox(color: .fixed(Color(0xFF00FF00)), child: SizedBox.expand()),
+              ],
             ),
           ),
         );
@@ -2466,7 +2468,9 @@ void main() {
               ),
             ],
             child: const Stack(
-              children: <Widget>[ColoredBox(color: Color(0xFF00FF00), child: SizedBox.expand())],
+              children: <Widget>[
+                ColoredBox(color: .fixed(Color(0xFF00FF00)), child: SizedBox.expand()),
+              ],
             ),
           ),
         );
@@ -2657,7 +2661,7 @@ void main() {
         App(
           alignment: Alignment.topLeft,
           ConstrainedBox(
-            constraints: const BoxConstraints.tightFor(width: 60, height: 60),
+            constraints: const .fixed(BoxConstraints.tightFor(width: 60, height: 60)),
             child: CupertinoMenuAnchor(
               overlayPadding: EdgeInsets.zero,
               menuChildren: <Widget>[Container(color: const Color(0xFFFF0000), height: 100)],
@@ -2685,7 +2689,10 @@ void main() {
             constrainCrossAxis: true,
             constraints: BoxConstraints.tight(const Size(200, 200)),
             menuChildren: const <Widget>[SizedBox()],
-            child: const ColoredBox(color: CupertinoColors.systemOrange, child: SizedBox.expand()),
+            child: const ColoredBox(
+              color: .fixed(CupertinoColors.systemOrange),
+              child: SizedBox.expand(),
+            ),
           ),
         ),
       );
@@ -2858,7 +2865,7 @@ void main() {
                   constrainCrossAxis: true,
                   overlayPadding: EdgeInsets.zero,
                   constraints: BoxConstraints.tightFor(width: 250, height: 250),
-                  menuChildren: <Widget>[SizedBox.square(dimension: 250)],
+                  menuChildren: <Widget>[SizedBox.square(dimension: .fixed(250))],
                   child: AnchorButton(
                     Tag.anchor,
                     constraints: BoxConstraints.tightFor(width: 125, height: 50),
@@ -2899,20 +2906,20 @@ void main() {
               displayFeatures: <ui.DisplayFeature>[displayFeature],
             ),
             child: ColoredBox(
-              color: const Color(0xFF004CFF),
+              color: const .fixed(Color(0xFF004CFF)),
               child: Stack(
                 children: <Widget>[
                   // Pink box for visualizing the display feature.
                   Positioned.fromRect(
                     rect: displayFeature.bounds,
-                    child: const ColoredBox(color: Color(0xF7FF2190)),
+                    child: const ColoredBox(color: .fixed(Color(0xF7FF2190))),
                   ),
                   const Positioned(
                     left: 400,
                     top: 0,
                     child: CupertinoMenuAnchor(
                       overlayPadding: EdgeInsets.zero,
-                      menuChildren: <Widget>[SizedBox(width: 100, height: 50)],
+                      menuChildren: <Widget>[SizedBox(width: .fixed(100), height: .fixed(50))],
                       child: AnchorButton(Tag.anchor),
                     ),
                   ),
@@ -2942,7 +2949,9 @@ void main() {
           CupertinoMenuAnchor(
             overlayPadding: EdgeInsets.zero,
             constraints: const BoxConstraints(minWidth: 75, maxHeight: 100),
-            menuChildren: <Widget>[SizedBox(key: Tag.a.key, height: 150, width: 50)],
+            menuChildren: <Widget>[
+              SizedBox(key: Tag.a.key, height: const .fixed(150), width: const .fixed(50)),
+            ],
             child: const AnchorButton(Tag.anchor),
           ),
         ),
@@ -2976,7 +2985,7 @@ void main() {
             child: CupertinoMenuAnchor(
               overlayPadding: EdgeInsets.zero,
               useRootOverlay: true,
-              menuChildren: <Widget>[SizedBox(height: 100)],
+              menuChildren: <Widget>[SizedBox(height: .fixed(100))],
               child: AnchorButton(Tag.anchor),
             ),
           );
@@ -2997,7 +3006,7 @@ void main() {
                 height: 200,
                 width: 200,
                 child: ColoredBox(
-                  color: const Color(0xFFFF0000),
+                  color: const .fixed(Color(0xFFFF0000)),
                   child: Overlay(initialEntries: <OverlayEntry>[entry]),
                 ),
               ),
@@ -3030,7 +3039,7 @@ void main() {
               bottom: 0,
               child: CupertinoMenuAnchor(
                 overlayPadding: EdgeInsets.zero,
-                menuChildren: <Widget>[SizedBox(height: 100)],
+                menuChildren: <Widget>[SizedBox(height: .fixed(100))],
                 child: AnchorButton(Tag.anchor),
               ),
             );
@@ -3051,7 +3060,7 @@ void main() {
                   height: 200,
                   width: 200,
                   child: ColoredBox(
-                    color: const Color(0xFFFF0000),
+                    color: const .fixed(Color(0xFFFF0000)),
                     child: Overlay(initialEntries: <OverlayEntry>[entry]),
                   ),
                 ),
@@ -3263,7 +3272,7 @@ void main() {
       );
 
       expect(
-        tester.widget<ColoredBox>(coloredBoxFinder).color,
+        tester.widget<ColoredBox>(coloredBoxFinder).color.value,
         isSameColorAs(const Color.fromRGBO(0, 0, 0, 0.08)),
       );
 
@@ -3275,7 +3284,7 @@ void main() {
       );
 
       expect(
-        tester.widget<ColoredBox>(coloredBoxFinder).color,
+        tester.widget<ColoredBox>(coloredBoxFinder).color.value,
         isSameColorAs(const Color.fromRGBO(0, 0, 0, 0.16)),
       );
     });
@@ -3744,6 +3753,7 @@ void main() {
                     ),
                   )
                   .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -3834,6 +3844,7 @@ void main() {
                     ),
                   )
                   .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -3923,6 +3934,7 @@ void main() {
                     ),
                   )
                   .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -4025,6 +4037,7 @@ void main() {
                     ),
                   )
                   .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -4105,12 +4118,11 @@ void main() {
           darkColor: Color.fromRGBO(150, 0, 0, 1),
         );
 
-        const decoration = WidgetStateProperty<BoxDecoration>.fromMap(
-          <WidgetStatesConstraint, BoxDecoration>{
-            WidgetState.dragged: BoxDecoration(color: customSwipedColor),
-            WidgetState.any: BoxDecoration(),
-          },
-        );
+        const decoration =
+            WidgetStateProperty<BoxDecoration>.fromMap(<WidgetStatesConstraint, BoxDecoration>{
+              WidgetState.dragged: BoxDecoration(color: customSwipedColor),
+              WidgetState.any: BoxDecoration(),
+            });
 
         BoxDecoration getItemDecoration(Tag tag) {
           return tester
@@ -4121,6 +4133,7 @@ void main() {
                     ),
                   )
                   .decoration
+                  .value
               as BoxDecoration;
         }
 
@@ -6719,7 +6732,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       home: ColoredBox(
-        color: const Color(0xff000000),
+        color: const .fixed(Color(0xff000000)),
         child: Directionality(
           textDirection: textDirection ?? Directionality.maybeOf(context) ?? TextDirection.ltr,
           child: Align(alignment: alignment, child: child),

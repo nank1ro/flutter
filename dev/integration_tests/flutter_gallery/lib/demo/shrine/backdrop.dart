@@ -117,14 +117,14 @@ class _BackdropTitle extends AnimatedWidget {
         children: <Widget>[
           // branded icon
           SizedBox(
-            width: 72.0,
+            width: const .fixed(72.0),
             child: IconButton(
               padding: const EdgeInsets.only(right: 8.0),
               onPressed: onPress,
               icon: Stack(
                 children: <Widget>[
                   Opacity(
-                    opacity: animation.value,
+                    opacity: .fixed(animation.value),
                     child: const ImageIcon(AssetImage('packages/shrine_images/slanted_menu.png')),
                   ),
                   FractionalTranslation(
@@ -143,10 +143,12 @@ class _BackdropTitle extends AnimatedWidget {
           Stack(
             children: <Widget>[
               Opacity(
-                opacity: CurvedAnimation(
-                  parent: ReverseAnimation(animation),
-                  curve: const Interval(0.5, 1.0),
-                ).value,
+                opacity: .fixed(
+                  CurvedAnimation(
+                    parent: ReverseAnimation(animation),
+                    curve: const Interval(0.5, 1.0),
+                  ).value,
+                ),
                 child: FractionalTranslation(
                   translation: Tween<Offset>(
                     begin: Offset.zero,
@@ -156,7 +158,9 @@ class _BackdropTitle extends AnimatedWidget {
                 ),
               ),
               Opacity(
-                opacity: CurvedAnimation(parent: animation, curve: const Interval(0.5, 1.0)).value,
+                opacity: .fixed(
+                  CurvedAnimation(parent: animation, curve: const Interval(0.5, 1.0)).value,
+                ),
                 child: FractionalTranslation(
                   translation: Tween<Offset>(
                     begin: const Offset(-0.25, 0.0),

@@ -26,7 +26,10 @@ class TabWithSidebar extends StatelessWidget {
           Flexible(
             flex: 2,
             child: SingleChildScrollView(
-              child: Padding(padding: const EdgeInsets.symmetric(vertical: 24), child: mainView),
+              child: Padding(
+                padding: const .fixed(EdgeInsets.symmetric(vertical: 24)),
+                child: mainView,
+              ),
             ),
           ),
           Expanded(
@@ -58,14 +61,14 @@ class SidebarItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 8),
+        const SizedBox(height: .fixed(8)),
         SelectableText(
           title,
           style: textTheme.bodyMedium!.copyWith(fontSize: 16, color: RallyColors.gray60),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: .fixed(8)),
         SelectableText(value, style: textTheme.bodyLarge!.copyWith(fontSize: 20)),
-        const SizedBox(height: 8),
+        const SizedBox(height: .fixed(8)),
         Container(color: RallyColors.primaryBackground, height: 1),
       ],
     );

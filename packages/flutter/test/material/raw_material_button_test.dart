@@ -250,10 +250,12 @@ void main() {
               materialTapTargetSize: MaterialTapTargetSize.padded,
               onPressed: () {},
               child: const SizedBox.square(
-                dimension: 400.0,
+                dimension: .fixed(400.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[SizedBox(height: 50.0, width: 400.0, child: Text('Material'))],
+                  children: <Widget>[
+                    SizedBox(height: .fixed(50.0), width: .fixed(400.0), child: Text('Material')),
+                  ],
                 ),
               ),
             ),
@@ -275,8 +277,8 @@ void main() {
               onPressed: () {},
               child: SizedBox(
                 key: key,
-                width: 8.0,
-                height: 8.0,
+                width: const .fixed(8.0),
+                height: const .fixed(8.0),
                 child: Container(color: const Color(0xFFAABBCC)),
               ),
             ),

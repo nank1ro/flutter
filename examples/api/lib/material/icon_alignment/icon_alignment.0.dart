@@ -91,7 +91,7 @@ class _IconAlignmentExampleState extends State<IconAlignmentExample> {
                   Column(
                     children: <Widget>[
                       const Text('Icon alignment'),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: .fixed(10)),
                       SegmentedButton<IconAlignment>(
                         onSelectionChanged: (Set<IconAlignment> value) {
                           setState(() {
@@ -113,7 +113,7 @@ class _IconAlignmentExampleState extends State<IconAlignmentExample> {
                   Column(
                     children: <Widget>[
                       const Text('Text direction'),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: .fixed(10)),
                       SegmentedButton<TextDirection>(
                         onSelectionChanged: (Set<TextDirection> value) {
                           setState(() {

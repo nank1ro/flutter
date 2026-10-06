@@ -15,16 +15,16 @@ class VerticalFractionBar extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return SizedBox(
-          height: constraints.maxHeight,
-          width: 4,
+          height: .fixed(constraints.maxHeight),
+          width: const .fixed(4),
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: (1 - fraction) * constraints.maxHeight,
+                height: .fixed((1 - fraction) * constraints.maxHeight),
                 child: Container(color: Colors.black),
               ),
               SizedBox(
-                height: fraction * constraints.maxHeight,
+                height: .fixed(fraction * constraints.maxHeight),
                 child: Container(color: color),
               ),
             ],

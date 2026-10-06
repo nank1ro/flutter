@@ -53,7 +53,7 @@ class _MyWidgetState extends State<MyWidget> {
     'Y',
     'Z',
   ];
-  final Widget _spacer = const SizedBox.square(dimension: 10);
+  final Widget _spacer = const SizedBox.square(dimension: .fixed(10));
   AxisDirection _axisDirection = .down;
 
   Widget _getArrows() {
@@ -106,7 +106,7 @@ class _MyWidgetState extends State<MyWidget> {
           fillColor: WidgetStateProperty.all<Color>(Colors.white),
         ),
         child: Padding(
-          padding: const .all(8.0),
+          padding: const .fixed(.all(8.0)),
           child: RadioGroup<AxisDirection>(
             groupValue: _axisDirection,
             onChanged: _onAxisDirectionChanged,
@@ -140,7 +140,10 @@ class _MyWidgetState extends State<MyWidget> {
         title: const Text('AxisDirections'),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
-          child: Padding(padding: const .all(8.0), child: _getRadioRow()),
+          child: Padding(
+            padding: const .fixed(.all(8.0)),
+            child: _getRadioRow(),
+          ),
         ),
       ),
       // Also works for ListView.builder, which creates a SliverList for itself.
@@ -166,7 +169,7 @@ class _MyWidgetState extends State<MyWidget> {
                   child: Center(child: Text(_alphabet[index - 1])),
                 );
               }
-              return Padding(padding: const .all(8.0), child: child);
+              return Padding(padding: const .fixed(.all(8.0)), child: child);
             },
           ),
         ],

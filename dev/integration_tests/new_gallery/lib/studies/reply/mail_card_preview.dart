@@ -180,9 +180,9 @@ class _MailPreview extends StatelessWidget {
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: constraints.maxHeight),
+            constraints: .fixed(BoxConstraints(maxHeight: constraints.maxHeight)),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const .fixed(EdgeInsets.all(20)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
@@ -196,9 +196,9 @@ class _MailPreview extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Text('${email.sender} - ${email.time}', style: textTheme.bodySmall),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: .fixed(4)),
                             Text(email.subject, style: textTheme.headlineSmall),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: .fixed(16)),
                           ],
                         ),
                       ),
@@ -211,7 +211,7 @@ class _MailPreview extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.only(end: 20),
+                    padding: const .fixed(EdgeInsetsDirectional.only(end: 20)),
                     child: Text(
                       email.message,
                       overflow: TextOverflow.ellipsis,
@@ -221,7 +221,12 @@ class _MailPreview extends StatelessWidget {
                   ),
                   if (email.containsPictures) ...<Widget>[
                     const Flexible(
-                      child: Column(children: <Widget>[SizedBox(height: 20), _PicturePreview()]),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: .fixed(20)),
+                          _PicturePreview(),
+                        ],
+                      ),
                     ),
                   ],
                 ],
@@ -253,13 +258,13 @@ class _PicturePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 96,
+      height: const .fixed(96),
       child: ListView.builder(
         itemCount: 4,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsetsDirectional.only(end: 4),
+            padding: const .fixed(EdgeInsetsDirectional.only(end: 4)),
             child: Image.asset(
               'reply/attachments/paris_${index + 1}.jpg',
               gaplessPlayback: true,
@@ -314,7 +319,7 @@ class _MailPreviewActionBar extends StatelessWidget {
             icon: Icon(Icons.more_vert, color: color),
             onPressed: () {},
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: .fixed(12)),
         ],
         ProfileAvatar(avatar: avatar),
       ],

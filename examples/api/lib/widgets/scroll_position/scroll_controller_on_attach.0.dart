@@ -73,24 +73,25 @@ class _ScrollControllerDemoState extends State<ScrollControllerDemo> {
               itemCount: 50,
               itemBuilder: (_, int index) {
                 return Padding(
-                  padding: const .all(8.0),
+                  padding: const .fixed(.all(8.0)),
                   child: Center(
                     child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey[50],
-                        boxShadow: const <BoxShadow>[
-                          BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(5, 5),
-                            blurRadius: 5,
-                          ),
-                        ],
-                        borderRadius: const .all(Radius.circular(10)),
+                      decoration: .fixed(
+                        BoxDecoration(
+                          color: Colors.blueGrey[50],
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(5, 5),
+                              blurRadius: 5,
+                            ),
+                          ],
+                          borderRadius: const .all(Radius.circular(10)),
+                        ),
                       ),
                       child: Padding(
-                        padding: const .symmetric(
-                          vertical: 12.0,
-                          horizontal: 20.0,
+                        padding: const .fixed(
+                          .symmetric(vertical: 12.0, horizontal: 20.0),
                         ),
                         child: Text('Item $index'),
                       ),

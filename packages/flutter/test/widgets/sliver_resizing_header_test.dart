@@ -13,8 +13,8 @@ void main() {
   testWidgets('SliverResizingHeader basics', (WidgetTester tester) async {
     Widget buildFrame({required Axis axis, required bool reverse}) {
       final (Widget minPrototype, Widget maxPrototype) = switch (axis) {
-        Axis.vertical => (const SizedBox(height: 100), const SizedBox(height: 300)),
-        Axis.horizontal => (const SizedBox(width: 100), const SizedBox(width: 300)),
+        Axis.vertical => (const SizedBox(height: .fixed(100)), const SizedBox(height: .fixed(300))),
+        Axis.horizontal => (const SizedBox(width: .fixed(100)), const SizedBox(width: .fixed(300))),
       };
       return TestWidgetsApp(
         home: CustomScrollView(
@@ -177,7 +177,7 @@ void main() {
         home: CustomScrollView(
           slivers: <Widget>[
             const SliverResizingHeader(
-              maxExtentPrototype: SizedBox(height: 300),
+              maxExtentPrototype: SizedBox(height: .fixed(300)),
               child: SizedBox.expand(child: Text('header')),
             ),
             SliverList.builder(
@@ -210,8 +210,8 @@ void main() {
           home: CustomScrollView(
             slivers: <Widget>[
               const SliverResizingHeader(
-                minExtentPrototype: SizedBox(height: 100),
-                maxExtentPrototype: SizedBox(height: 100),
+                minExtentPrototype: SizedBox(height: .fixed(100)),
+                maxExtentPrototype: SizedBox(height: .fixed(100)),
                 child: SizedBox.expand(child: Text('header')),
               ),
               SliverList.builder(
@@ -250,7 +250,9 @@ void main() {
       TestWidgetsApp(
         home: CustomScrollView(
           slivers: <Widget>[
-            SliverResizingHeader(child: SizedBox(key: headerKey, height: 300)),
+            SliverResizingHeader(
+              child: SizedBox(key: headerKey, height: const .fixed(300)),
+            ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) => Text('item $index'),
@@ -283,9 +285,9 @@ void main() {
         home: CustomScrollView(
           slivers: <Widget>[
             SliverResizingHeader(
-              minExtentPrototype: const SizedBox(height: 100),
-              maxExtentPrototype: const SizedBox(height: 300),
-              child: SizedBox(height: childHeight, child: const Text('header')),
+              minExtentPrototype: const SizedBox(height: .fixed(100)),
+              maxExtentPrototype: const SizedBox(height: .fixed(300)),
+              child: SizedBox(height: .fixed(childHeight), child: const Text('header')),
             ),
           ],
         ),
@@ -305,13 +307,14 @@ void main() {
         home: CustomScrollView(
           slivers: <Widget>[
             SliverResizingHeader(
-              minExtentPrototype: SizedBox(height: minHeight),
-              maxExtentPrototype: SizedBox(height: maxHeight),
-              child: const SizedBox(height: 300, child: Text('header')),
+              minExtentPrototype: SizedBox(height: .fixed(minHeight)),
+              maxExtentPrototype: SizedBox(height: .fixed(maxHeight)),
+              child: const SizedBox(height: .fixed(300), child: Text('header')),
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) => SizedBox(height: 50, child: Text('$index')),
+                (BuildContext context, int index) =>
+                    SizedBox(height: const .fixed(50), child: Text('$index')),
                 childCount: 100,
               ),
             ),
@@ -357,8 +360,8 @@ void main() {
             SliverOverlapAbsorber(
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               sliver: const SliverResizingHeader(
-                minExtentPrototype: SizedBox(height: 100),
-                maxExtentPrototype: SizedBox(height: 300),
+                minExtentPrototype: SizedBox(height: .fixed(100)),
+                maxExtentPrototype: SizedBox(height: .fixed(300)),
                 child: SizedBox.expand(child: Text('header')),
               ),
             ),
@@ -372,7 +375,7 @@ void main() {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) =>
-                        SizedBox(height: 50, child: Text('$index')),
+                        SizedBox(height: const .fixed(50), child: Text('$index')),
                     childCount: 100,
                   ),
                 ),
@@ -408,10 +411,12 @@ void main() {
         TestWidgetsApp(
           home: CustomScrollView(
             slivers: <Widget>[
-              const SliverToBoxAdapter(child: SizedBox(height: 100, child: Text('First child'))),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: .fixed(100), child: Text('First child')),
+              ),
               const SliverResizingHeader(
-                minExtentPrototype: SizedBox(height: 300),
-                child: SizedBox(height: 300, child: Text('header')),
+                minExtentPrototype: SizedBox(height: .fixed(300)),
+                child: SizedBox(height: .fixed(300), child: Text('header')),
               ),
               SliverList.builder(
                 itemCount: 50,

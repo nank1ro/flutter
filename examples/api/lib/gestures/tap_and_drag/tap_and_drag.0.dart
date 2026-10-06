@@ -124,7 +124,7 @@ class _TapAndDragToZoomWidgetState extends State<TapAndDragToZoomWidget> {
               },
             ),
       },
-      child: Transform.scale(scale: _currentScale, child: widget.child),
+      child: Transform.scale(scale: .fixed(_currentScale), child: widget.child),
     );
   }
 }

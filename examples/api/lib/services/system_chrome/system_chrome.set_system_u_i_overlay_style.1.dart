@@ -56,7 +56,7 @@ class _SystemOverlayStyleExampleState extends State<SystemOverlayStyleExample> {
           crossAxisAlignment: .start,
           children: <Widget>[
             Padding(
-              padding: const .all(16.0),
+              padding: const .fixed(.all(16.0)),
               child: Text(
                 'SystemUiOverlayStyle Sample',
                 style: Theme.of(context).textTheme.titleLarge,

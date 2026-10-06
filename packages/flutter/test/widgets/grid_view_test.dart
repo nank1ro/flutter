@@ -70,7 +70,7 @@ void main() {
               onTap: () {
                 log.add(state);
               },
-              child: ColoredBox(color: const Color(0xFF0000FF), child: Text(state)),
+              child: ColoredBox(color: const .fixed(Color(0xFF0000FF)), child: Text(state)),
             );
           }).toList(),
         ),
@@ -140,7 +140,7 @@ void main() {
               onTap: () {
                 log.add(state);
               },
-              child: ColoredBox(color: const Color(0xFF0000FF), child: Text(state)),
+              child: ColoredBox(color: const .fixed(Color(0xFF0000FF)), child: Text(state)),
             );
           }).toList(),
         ),
@@ -452,7 +452,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 200.0,
+            height: const .fixed(200.0),
             child: GridView.count(
               cacheExtent: 0.0,
               crossAxisCount: 2,
@@ -618,7 +618,11 @@ void main() {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
           itemBuilder: (BuildContext context, int index) {
             counters[index] = (counters[index] ?? 0) + 1;
-            return SizedBox(key: ValueKey<int>(index), width: 200, height: 200);
+            return SizedBox(
+              key: ValueKey<int>(index),
+              width: const .fixed(200),
+              height: const .fixed(200),
+            );
           },
         ),
       ),

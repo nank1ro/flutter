@@ -283,7 +283,7 @@ void main() {
                 colorFilter: ColorFilter.mode(Color(0xFFFF0000), BlendMode.color),
                 child: Placeholder(),
               ),
-              const Opacity(opacity: 0.9, child: Placeholder()),
+              const Opacity(opacity: .fixed(0.9), child: Placeholder()),
               ImageFiltered(
                 imageFilter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                 child: const Placeholder(),
@@ -331,12 +331,11 @@ void main() {
   group('debugPaintFocusBoxes', () {
     const kPrimaryFocusColor = Color(0xF000FF00);
     const kAncestorOfPrimaryFocusColor = Color(0xF00000FF);
-    const kFocusableColor =  Color(0xF000FFFF);
-    const kSkipTraversalColor =  Color(0xF0FFFF00);
+    const kFocusableColor = Color(0xF000FFFF);
+    const kSkipTraversalColor = Color(0xF0FFFF00);
     const kNotFocusableColor = Color(0xF0FF0000);
 
-    testWidgets('adds a border on each Focus widget if enabled',
-        (WidgetTester tester) async {
+    testWidgets('adds a border on each Focus widget if enabled', (WidgetTester tester) async {
       debugPaintFocusBoxes = true;
 
       final nodePrimary = FocusNode(debugLabel: 'primary');
@@ -360,12 +359,21 @@ void main() {
                 focusNode: nodeParent,
                 child: Focus(
                   focusNode: nodePrimary,
-                  child: const SizedBox(width: 10, height: 10),
+                  child: const SizedBox(width: .fixed(10), height: .fixed(10)),
                 ),
               ),
-              Focus(focusNode: nodeFocusable, child: const SizedBox(width: 10, height: 10)),
-              Focus(focusNode: nodeSkipTraversal, child: const SizedBox(width: 10, height: 10)),
-              Focus(focusNode: nodeNotFocusable, child: const SizedBox(width: 10, height: 10)),
+              Focus(
+                focusNode: nodeFocusable,
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+              ),
+              Focus(
+                focusNode: nodeSkipTraversal,
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+              ),
+              Focus(
+                focusNode: nodeNotFocusable,
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+              ),
             ],
           ),
         ),
@@ -380,7 +388,7 @@ void main() {
           matching: find.byType(DecoratedBox),
         );
         final DecoratedBox box = tester.widget<DecoratedBox>(finder.first);
-        return ((box.decoration as BoxDecoration).border! as Border).top.color;
+        return ((box.decoration.value as BoxDecoration).border! as Border).top.color;
       }
 
       expect(borderColorOf(nodePrimary), kPrimaryFocusColor);
@@ -392,8 +400,7 @@ void main() {
       debugPaintFocusBoxes = false;
     });
 
-    testWidgets('does not add a border if disabled',
-        (WidgetTester tester) async {
+    testWidgets('does not add a border if disabled', (WidgetTester tester) async {
       final focusNode = FocusNode();
       addTearDown(focusNode.dispose);
 
@@ -402,7 +409,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Focus(
             focusNode: focusNode,
-            child: const SizedBox(width: 100, height: 100),
+            child: const SizedBox(width: .fixed(100), height: .fixed(100)),
           ),
         ),
       );
@@ -420,7 +427,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Focus(
             focusNode: focusNode,
-            child: const SizedBox(width: 100, height: 100),
+            child: const SizedBox(width: .fixed(100), height: .fixed(100)),
           ),
         ),
       );
@@ -431,7 +438,7 @@ void main() {
           matching: find.byType(DecoratedBox),
         );
         final DecoratedBox box = tester.widget<DecoratedBox>(finder.first);
-        return ((box.decoration as BoxDecoration).border! as Border).top.color;
+        return ((box.decoration.value as BoxDecoration).border! as Border).top.color;
       }
 
       // Start unfocused: cyan.
@@ -474,9 +481,18 @@ void main() {
           textDirection: TextDirection.ltr,
           child: Column(
             children: <Widget>[
-              Focus(focusNode: primary, child: const SizedBox(width: 10, height: 10)),
-              Focus(focusNode: unfocusable, child: const SizedBox(width: 10, height: 10)),
-              Focus(focusNode: skipTraversalNode, child: const SizedBox(width: 10, height: 10)),
+              Focus(
+                focusNode: primary,
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+              ),
+              Focus(
+                focusNode: unfocusable,
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+              ),
+              Focus(
+                focusNode: skipTraversalNode,
+                child: const SizedBox(width: .fixed(10), height: .fixed(10)),
+              ),
             ],
           ),
         ),

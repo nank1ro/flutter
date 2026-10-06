@@ -38,7 +38,7 @@ class PlatformViewLayout extends StatelessWidget {
         itemCount: 200,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const .fixed(EdgeInsets.all(5.0)),
             child: Material(
               elevation: (index % 5 + 1).toDouble(),
               color: Colors.white,
@@ -59,8 +59,8 @@ final class _AndroidPlatformView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400,
-      height: 200,
+      width: const .fixed(400),
+      height: const .fixed(200),
       child: PlatformViewLink(
         viewType: viewType,
         surfaceFactory: (BuildContext context, PlatformViewController controller) {

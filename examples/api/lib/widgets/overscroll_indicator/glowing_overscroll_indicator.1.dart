@@ -72,10 +72,10 @@ class GlowingOverscrollIndicatorExample extends StatelessWidget {
                 fontWeight: .w600,
               ),
               child: ColoredBox(
-                color: Colors.grey,
+                color: .fixed(Colors.grey),
                 child: SizedBox(
-                  width: double.infinity,
-                  height: 80,
+                  width: .fixed(double.infinity),
+                  height: .fixed(80),
                   child: Center(child: Text('Glow all day!')),
                 ),
               ),

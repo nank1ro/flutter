@@ -451,7 +451,7 @@ void main() {
           selectionControls: materialTextSelectionControls,
           child: Scaffold(
             body: SizedBox(
-              height: 10,
+              height: const .fixed(10),
               child: ListView.builder(
                 controller: controller,
                 itemCount: 100,
@@ -1398,7 +1398,7 @@ void main() {
         home: SelectableRegion(
           selectionControls: emptyTextSelectionControls,
           child: SizedBox(
-            height: 200.0,
+            height: const .fixed(200.0),
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(top: 50.0),
               child: Text(text),
@@ -1512,7 +1512,7 @@ void main() {
               children: <Widget>[
                 const Text('Item 0'),
                 SizedBox(
-                  height: 400,
+                  height: const .fixed(400),
                   child: ListView.builder(
                     controller: controller,
                     itemCount: 100,
@@ -1572,7 +1572,7 @@ void main() {
               itemBuilder: (BuildContext context, int index) {
                 if (index == 2) {
                   return SizedBox(
-                    height: 700,
+                    height: const .fixed(700),
                     child: ListView.builder(
                       controller: innerController,
                       itemCount: 100,

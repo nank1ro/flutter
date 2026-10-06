@@ -34,7 +34,7 @@ class CustomListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .symmetric(vertical: 5.0),
+      padding: const .fixed(.symmetric(vertical: 5.0)),
       child: Row(
         crossAxisAlignment: .start,
         children: <Widget>[
@@ -68,7 +68,7 @@ class _VideoDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .fromLTRB(5.0, 0.0, 0.0, 0.0),
+      padding: const .fixed(.fromLTRB(5.0, 0.0, 0.0, 0.0)),
       child: Column(
         crossAxisAlignment: .start,
         children: <Widget>[
@@ -76,9 +76,9 @@ class _VideoDescription extends StatelessWidget {
             title,
             style: const TextStyle(fontWeight: .w500, fontSize: 14.0),
           ),
-          const Padding(padding: .symmetric(vertical: 2.0)),
+          const Padding(padding: .fixed(.symmetric(vertical: 2.0))),
           Text(user, style: const TextStyle(fontSize: 10.0)),
-          const Padding(padding: .symmetric(vertical: 1.0)),
+          const Padding(padding: .fixed(.symmetric(vertical: 1.0))),
           Text('$viewCount views', style: const TextStyle(fontSize: 10.0)),
         ],
       ),

@@ -45,7 +45,7 @@ class _SliverEnsureSemanticsExampleState
                   index: 0,
                   child: Card(
                     child: Padding(
-                      padding: const .all(8.0),
+                      padding: const .fixed(.all(8.0)),
                       child: Column(
                         crossAxisAlignment: .start,
                         children: <Widget>[
@@ -111,7 +111,7 @@ class _SliverEnsureSemanticsExampleState
                 (BuildContext context, int index) {
                   return Card(
                     child: Padding(
-                      padding: const .all(8.0),
+                      padding: const .fixed(.all(8.0)),
                       child: Text('Item $index'),
                     ),
                   );
@@ -126,7 +126,7 @@ class _SliverEnsureSemanticsExampleState
                   index: 51,
                   child: Card(
                     child: Padding(
-                      padding: const .all(8.0),
+                      padding: const .fixed(.all(8.0)),
                       child: Semantics(
                         header: true,
                         child: const Text('Footer 1'),
@@ -142,7 +142,7 @@ class _SliverEnsureSemanticsExampleState
                   index: 52,
                   child: Card(
                     child: Padding(
-                      padding: const .all(8.0),
+                      padding: const .fixed(.all(8.0)),
                       child: Semantics(
                         header: true,
                         child: const Text('Footer 2'),
@@ -198,7 +198,7 @@ class _SliverEnsureSemanticsExampleState
                         role: .listItem,
                         child: Card(
                           child: Padding(
-                            padding: const .all(8.0),
+                            padding: const .fixed(.all(8.0)),
                             child: Text('Second List Item $index'),
                           ),
                         ),

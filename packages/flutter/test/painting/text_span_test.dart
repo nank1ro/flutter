@@ -115,7 +115,9 @@ void main() {
       text: 'a',
       children: <InlineSpan>[
         TextSpan(text: 'b'),
-        WidgetSpan(child: SizedBox(width: 10, height: 10)),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(10), height: .fixed(10)),
+        ),
         TextSpan(text: 'c'),
       ],
     );
@@ -139,7 +141,9 @@ void main() {
       text: 'a',
       children: <InlineSpan>[
         TextSpan(text: 'b'),
-        WidgetSpan(child: SizedBox(width: 10, height: 10)),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(10), height: .fixed(10)),
+        ),
         TextSpan(text: 'c'),
       ],
     );
@@ -148,7 +152,9 @@ void main() {
       text: 'a',
       children: <InlineSpan>[
         TextSpan(text: 'b'),
-        WidgetSpan(child: SizedBox(width: 10, height: 10)),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(10), height: .fixed(10)),
+        ),
         TextSpan(text: 'c'),
       ],
     );
@@ -157,7 +163,9 @@ void main() {
       text: 'a',
       children: <InlineSpan>[
         TextSpan(text: 'b'),
-        WidgetSpan(child: SizedBox(width: 11, height: 10)),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(11), height: .fixed(10)),
+        ),
         TextSpan(text: 'c'),
       ],
     );
@@ -184,7 +192,10 @@ void main() {
       text: 'a',
       children: <InlineSpan>[
         TextSpan(text: 'b'),
-        WidgetSpan(child: SizedBox(width: 10, height: 10), alignment: PlaceholderAlignment.top),
+        WidgetSpan(
+          child: SizedBox(width: .fixed(10), height: .fixed(10)),
+          alignment: PlaceholderAlignment.top,
+        ),
         TextSpan(text: 'c'),
       ],
     );
@@ -211,7 +222,9 @@ void main() {
           child: Text.rich(
             TextSpan(
               children: <InlineSpan>[
-                WidgetSpan(child: SizedBox(width: 10, height: 10)),
+                WidgetSpan(
+                  child: SizedBox(width: .fixed(10), height: .fixed(10)),
+                ),
                 TextSpan(text: 'The sky is falling :)'),
               ],
             ),
@@ -229,7 +242,9 @@ void main() {
           child: Text.rich(
             TextSpan(
               children: <InlineSpan>[
-                WidgetSpan(child: SizedBox(width: 10, height: 11)),
+                WidgetSpan(
+                  child: SizedBox(width: .fixed(10), height: .fixed(11)),
+                ),
                 TextSpan(text: 'The sky is falling :)'),
               ],
             ),
@@ -272,7 +287,9 @@ void main() {
           child: Text.rich(
             TextSpan(
               children: <InlineSpan>[
-                WidgetSpan(child: SizedBox(width: 10, height: 10)),
+                WidgetSpan(
+                  child: SizedBox(width: .fixed(10), height: .fixed(10)),
+                ),
                 TextSpan(text: 'The sky is falling :)'),
               ],
             ),

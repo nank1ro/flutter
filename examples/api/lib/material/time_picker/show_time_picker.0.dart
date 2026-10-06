@@ -193,7 +193,7 @@ class _TimePickerOptionsState extends State<TimePickerOptions> {
               mainAxisAlignment: .center,
               children: <Widget>[
                 Padding(
-                  padding: const .all(12.0),
+                  padding: const .fixed(.all(12.0)),
                   child: ElevatedButton(
                     child: const Text('Open time picker'),
                     onPressed: () async {
@@ -267,14 +267,14 @@ class ChoiceCard<T extends Object?> extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Padding(
-            padding: const .all(8.0),
+            padding: const .fixed(.all(8.0)),
             child: RadioGroup<T>(
               groupValue: value,
               onChanged: onChanged,
               child: Column(
                 crossAxisAlignment: .start,
                 children: <Widget>[
-                  Padding(padding: const .all(8.0), child: Text(title)),
+                  Padding(padding: const .fixed(.all(8.0)), child: Text(title)),
                   for (final T choice in choices)
                     RadioSelection<T>(
                       value: choice,
@@ -332,7 +332,7 @@ class RadioSelection<T extends Object?> extends StatelessWidget {
       mainAxisSize: .min,
       children: <Widget>[
         Padding(
-          padding: const .directional(end: 8),
+          padding: const .fixed(.directional(end: 8)),
           child: Radio<T>(value: value),
         ),
         GestureDetector(

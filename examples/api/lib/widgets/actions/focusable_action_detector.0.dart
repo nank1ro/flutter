@@ -131,14 +131,14 @@ class _FocusableActionDetectorExampleState
           mainAxisAlignment: .center,
           children: <Widget>[
             Padding(
-              padding: const .all(8.0),
+              padding: const .fixed(.all(8.0)),
               child: TextButton(
                 onPressed: () {},
                 child: const Text('Press Me'),
               ),
             ),
             Padding(
-              padding: const .all(8.0),
+              padding: const .fixed(.all(8.0)),
               child: FadButton(onPressed: () {}, child: const Text('And Me')),
             ),
           ],

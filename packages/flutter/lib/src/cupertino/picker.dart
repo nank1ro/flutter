@@ -328,7 +328,7 @@ class _CupertinoPickerState extends State<CupertinoPicker> {
     return IgnorePointer(
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints.expand(height: height),
+          constraints: .fixed(BoxConstraints.expand(height: height)),
           child: selectionOverlay,
         ),
       ),
@@ -379,7 +379,7 @@ class _CupertinoPickerState extends State<CupertinoPicker> {
     );
 
     return DecoratedBox(
-      decoration: BoxDecoration(color: resolvedBackgroundColor),
+      decoration: .fixed(BoxDecoration(color: resolvedBackgroundColor)),
       child: result,
     );
   }

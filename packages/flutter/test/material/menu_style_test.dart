@@ -231,7 +231,7 @@ void main() {
         menuBarMaterial.shape,
         equals(const StadiumBorder(side: BorderSide(color: Colors.redAccent))),
       );
-      expect(menuBarPadding.padding, equals(const EdgeInsets.all(10)));
+      expect(menuBarPadding.padding.value, equals(const EdgeInsets.all(10)));
 
       // MenuBarTheme affects menus.
       expect(panelMaterial.color, equals(Colors.cyan));
@@ -241,7 +241,7 @@ void main() {
         panelMaterial.shape,
         equals(const StarBorder(side: BorderSide(color: Colors.cyanAccent))),
       );
-      expect(panelPadding.padding, equals(const EdgeInsets.all(20)));
+      expect(panelPadding.padding.value, equals(const EdgeInsets.all(20)));
     });
 
     testWidgets('visual density', (WidgetTester tester) async {

@@ -48,7 +48,7 @@ class _TestAppState extends State<TestApp> {
       home: Scaffold(
         appBar: AppBar(title: const Text('Platform Interaction Test')),
         body: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const .fixed(EdgeInsets.all(20.0)),
           child: FutureBuilder<TestStepResult>(future: _result, builder: _buildTestResultWidget),
         ),
         floatingActionButton: FloatingActionButton(

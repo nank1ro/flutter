@@ -206,7 +206,7 @@ enum ListTileTitleAlignment {
 /// {@tool snippet}
 /// ```dart
 /// const ColoredBox(
-///   color: Colors.green,
+///   color: .fixed(Colors.green),
 ///   child: Material(
 ///     child: ListTile(
 ///       title: Text('ListTile with red background'),
@@ -794,8 +794,10 @@ class ListTile extends StatelessWidget {
     Widget wrapTile(Widget tile) {
       return DecoratedBox(
         position: DecorationPosition.foreground,
-        decoration: BoxDecoration(
-          border: Border(bottom: Divider.createBorderSide(context, color: color)),
+        decoration: .fixed(
+          BoxDecoration(
+            border: Border(bottom: Divider.createBorderSide(context, color: color)),
+          ),
         ),
         child: tile,
       );
@@ -1185,10 +1187,15 @@ class ListTile extends StatelessWidget {
         return false;
       }
       final Widget widget = ancestor.widget;
+      // Peeked, not read: this debug check must not subscribe the list tile
+      // to an ancestor's colour.
       final Color? color = switch (widget) {
-        ColoredBox(:final Color color) => color,
-        DecoratedBox(decoration: BoxDecoration(:final Color? color)) => color,
-        DecoratedBox(decoration: ShapeDecoration(:final Color? color)) => color,
+        ColoredBox(:final color) => color.peek,
+        DecoratedBox(:final decoration) => switch (decoration.peek) {
+          BoxDecoration(:final Color? color) => color,
+          ShapeDecoration(:final Color? color) => color,
+          _ => null,
+        },
         _ => null,
       };
       if (color != null && color.a > 0) {

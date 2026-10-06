@@ -52,7 +52,7 @@ class RawMenuAnchorSubmenuAnimationExample extends StatelessWidget {
                 Menu(
                   panelBuilder: (BuildContext context, AnimationStatus status) {
                     return SizedBox.square(
-                      dimension: 120,
+                      dimension: .fixed(120),
                       child: Center(
                         child: Text(
                           'Panel $i:\n${status.name}',

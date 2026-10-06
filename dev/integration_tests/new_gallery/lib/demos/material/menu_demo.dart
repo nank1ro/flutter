@@ -46,7 +46,7 @@ class _MenuDemoState extends State<MenuDemo> {
         automaticallyImplyLeading: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const .fixed(EdgeInsets.symmetric(horizontal: 20)),
         child: Center(child: demo),
       ),
     );

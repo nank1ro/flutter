@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('Padding RTL', (WidgetTester tester) async {
     const Widget child = Padding(
-      padding: EdgeInsetsDirectional.only(start: 10.0),
+      padding: .fixed(EdgeInsetsDirectional.only(start: 10.0)),
       child: Placeholder(),
     );
     await tester.pumpWidget(const Directionality(textDirection: TextDirection.ltr, child: child));
@@ -19,7 +19,7 @@ void main() {
     await tester.pumpWidget(
       const Padding(
         key: GlobalObjectKey<State<StatefulWidget>>(Object()),
-        padding: EdgeInsets.only(left: 1.0),
+        padding: .fixed(EdgeInsets.only(left: 1.0)),
       ),
     );
     await tester.pumpWidget(
@@ -27,14 +27,14 @@ void main() {
         textDirection: TextDirection.rtl,
         child: Padding(
           key: GlobalObjectKey<State<StatefulWidget>>(Object()),
-          padding: EdgeInsetsDirectional.only(start: 1.0),
+          padding: .fixed(EdgeInsetsDirectional.only(start: 1.0)),
         ),
       ),
     );
     await tester.pumpWidget(
       const Padding(
         key: GlobalObjectKey<State<StatefulWidget>>(Object()),
-        padding: EdgeInsets.only(left: 1.0),
+        padding: .fixed(EdgeInsets.only(left: 1.0)),
       ),
     );
   });
@@ -68,7 +68,7 @@ void main() {
   });
 
   testWidgets('EdgeInsetsDirectional without Directionality', (WidgetTester tester) async {
-    await tester.pumpWidget(const Padding(padding: EdgeInsetsDirectional.zero));
+    await tester.pumpWidget(const Padding(padding: .fixed(EdgeInsetsDirectional.zero)));
     expect(tester.takeException(), isAssertionError);
   });
 }

@@ -97,7 +97,7 @@ class _EditableTextTapUpOutsideIntentExampleState
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const .all(20),
+        padding: const .fixed(.all(20)),
         child: Actions(
           actions: <Type, Action<Intent>>{
             EditableTextTapOutsideIntent:

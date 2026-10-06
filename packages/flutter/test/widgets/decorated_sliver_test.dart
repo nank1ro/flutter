@@ -24,7 +24,9 @@ void main() {
           slivers: <Widget>[
             DecoratedSliver(
               decoration: decoration,
-              sliver: const SliverToBoxAdapter(child: SizedBox(width: 100, height: 100)),
+              sliver: const SliverToBoxAdapter(
+                child: SizedBox(width: .fixed(100), height: .fixed(100)),
+              ),
             ),
           ],
         ),
@@ -57,7 +59,9 @@ void main() {
               slivers: <Widget>[
                 DecoratedSliver(
                   decoration: activateDecoration,
-                  sliver: const SliverToBoxAdapter(child: SizedBox(width: 100, height: 100)),
+                  sliver: const SliverToBoxAdapter(
+                    child: SizedBox(width: .fixed(100), height: .fixed(100)),
+                  ),
                 ),
               ],
             );
@@ -95,7 +99,9 @@ void main() {
                 DecoratedSliver(
                   decoration: decoration,
                   position: activePosition,
-                  sliver: const SliverToBoxAdapter(child: SizedBox(width: 100, height: 100)),
+                  sliver: const SliverToBoxAdapter(
+                    child: SizedBox(width: .fixed(100), height: .fixed(100)),
+                  ),
                 ),
               ],
             );
@@ -198,15 +204,17 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            height: 300,
-            width: 100,
+            height: const .fixed(300),
+            width: const .fixed(100),
             child: CustomScrollView(
               controller: controller,
               slivers: <Widget>[
                 DecoratedSliver(
                   key: key,
                   decoration: BoxDecoration(border: Border.all()),
-                  sliver: const SliverToBoxAdapter(child: SizedBox(width: 100, height: 500)),
+                  sliver: const SliverToBoxAdapter(
+                    child: SizedBox(width: .fixed(100), height: .fixed(500)),
+                  ),
                 ),
               ],
             ),
@@ -240,8 +248,8 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            height: 300,
-            width: 100,
+            height: const .fixed(300),
+            width: const .fixed(100),
             child: CustomScrollView(
               controller: controller,
               reverse: true,
@@ -249,7 +257,9 @@ void main() {
                 DecoratedSliver(
                   key: key,
                   decoration: BoxDecoration(border: Border.all()),
-                  sliver: const SliverToBoxAdapter(child: SizedBox(width: 100, height: 500)),
+                  sliver: const SliverToBoxAdapter(
+                    child: SizedBox(width: .fixed(100), height: .fixed(500)),
+                  ),
                 ),
               ],
             ),
@@ -283,8 +293,8 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            height: 100,
-            width: 300,
+            height: const .fixed(100),
+            width: const .fixed(300),
             child: CustomScrollView(
               scrollDirection: Axis.horizontal,
               controller: controller,
@@ -292,7 +302,9 @@ void main() {
                 DecoratedSliver(
                   key: key,
                   decoration: BoxDecoration(border: Border.all()),
-                  sliver: const SliverToBoxAdapter(child: SizedBox(width: 500, height: 100)),
+                  sliver: const SliverToBoxAdapter(
+                    child: SizedBox(width: .fixed(500), height: .fixed(100)),
+                  ),
                 ),
               ],
             ),
@@ -326,8 +338,8 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            height: 100,
-            width: 300,
+            height: const .fixed(100),
+            width: const .fixed(300),
             child: CustomScrollView(
               scrollDirection: Axis.horizontal,
               reverse: true,
@@ -336,7 +348,9 @@ void main() {
                 DecoratedSliver(
                   key: key,
                   decoration: BoxDecoration(border: Border.all()),
-                  sliver: const SliverToBoxAdapter(child: SizedBox(width: 500, height: 100)),
+                  sliver: const SliverToBoxAdapter(
+                    child: SizedBox(width: .fixed(500), height: .fixed(100)),
+                  ),
                 ),
               ],
             ),
@@ -368,8 +382,8 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            height: 100,
-            width: 300,
+            height: const .fixed(100),
+            width: const .fixed(300),
             child: CustomScrollView(
               controller: controller,
               slivers: <Widget>[
@@ -378,8 +392,8 @@ void main() {
                   decoration: BoxDecoration(border: Border.all()),
                   sliver: const SliverMainAxisGroup(
                     slivers: <Widget>[
-                      SliverToBoxAdapter(child: SizedBox(height: 100)),
-                      SliverToBoxAdapter(child: SizedBox(height: 100)),
+                      SliverToBoxAdapter(child: SizedBox(height: .fixed(100))),
+                      SliverToBoxAdapter(child: SizedBox(height: .fixed(100))),
                     ],
                   ),
                 ),
@@ -412,8 +426,8 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            height: 100,
-            width: 300,
+            height: const .fixed(100),
+            width: const .fixed(300),
             child: CustomScrollView(
               controller: controller,
               slivers: <Widget>[
@@ -422,8 +436,8 @@ void main() {
                   decoration: BoxDecoration(border: Border.all()),
                   sliver: const SliverCrossAxisGroup(
                     slivers: <Widget>[
-                      SliverToBoxAdapter(child: SizedBox(height: 100)),
-                      SliverToBoxAdapter(child: SizedBox(height: 100)),
+                      SliverToBoxAdapter(child: SizedBox(height: .fixed(100))),
+                      SliverToBoxAdapter(child: SizedBox(height: .fixed(100))),
                     ],
                   ),
                 ),
@@ -458,8 +472,8 @@ void main() {
           child: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              height: 100,
-              width: 300,
+              height: const .fixed(100),
+              width: const .fixed(300),
               child: CustomScrollView(
                 controller: controller,
                 slivers: <Widget>[
@@ -467,7 +481,8 @@ void main() {
                     key: key,
                     decoration: BoxDecoration(border: Border.all()),
                     sliver: SliverList.builder(
-                      itemBuilder: (BuildContext context, int index) => const SizedBox(height: 100),
+                      itemBuilder: (BuildContext context, int index) =>
+                          const SizedBox(height: .fixed(100)),
                     ),
                   ),
                 ],
@@ -515,17 +530,19 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            height: 100,
-            width: 300,
+            height: const .fixed(100),
+            width: const .fixed(300),
             child: CustomScrollView(
               controller: controller,
               slivers: <Widget>[
                 DecoratedSliver(
                   key: key,
                   decoration: BoxDecoration(border: Border.all()),
-                  sliver: const PinnedHeaderSliver(child: SizedBox(height: 50, width: 300)),
+                  sliver: const PinnedHeaderSliver(
+                    child: SizedBox(height: .fixed(50), width: .fixed(300)),
+                  ),
                 ),
-                const SliverToBoxAdapter(child: SizedBox(height: 1000)),
+                const SliverToBoxAdapter(child: SizedBox(height: .fixed(1000))),
               ],
             ),
           ),
@@ -567,8 +584,8 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            height: 500,
-            width: 300,
+            height: const .fixed(500),
+            width: const .fixed(300),
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: <Widget>[
@@ -584,7 +601,7 @@ void main() {
                     ),
                   ),
                 ),
-                const SliverToBoxAdapter(child: SizedBox(height: 1000)),
+                const SliverToBoxAdapter(child: SizedBox(height: .fixed(1000))),
               ],
             ),
           ),
@@ -654,7 +671,7 @@ class TestDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox(height: maxExtent, width: 300);
+    return SizedBox(height: .fixed(maxExtent), width: const .fixed(300));
   }
 
   @override

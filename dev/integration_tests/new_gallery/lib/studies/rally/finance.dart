@@ -44,11 +44,13 @@ class FinancialEntityView extends StatelessWidget {
         return Column(
           children: <Widget>[
             ConstrainedBox(
-              constraints: BoxConstraints(
-                // We decrease the max height to ensure the [RallyPieChart] does
-                // not take up the full height when it is smaller than
-                // [kPieChartMaxSize].
-                maxHeight: math.min(constraints.biggest.shortestSide * 0.9, maxWidth),
+              constraints: .fixed(
+                BoxConstraints(
+                  // We decrease the max height to ensure the [RallyPieChart] does
+                  // not take up the full height when it is smaller than
+                  // [kPieChartMaxSize].
+                  maxHeight: math.min(constraints.biggest.shortestSide * 0.9, maxWidth),
+                ),
               ),
               child: RallyPieChart(
                 heroLabel: heroLabel,
@@ -57,7 +59,7 @@ class FinancialEntityView extends StatelessWidget {
                 segments: segments,
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: .fixed(24)),
             Container(
               height: 1,
               constraints: BoxConstraints(maxWidth: maxWidth),
@@ -314,13 +316,13 @@ class FinancialEntityCategoryDetailsPage extends StatelessWidget {
         body: Column(
           children: <Widget>[
             SizedBox(
-              height: 200,
-              width: double.infinity,
+              height: const .fixed(200),
+              width: const .fixed(double.infinity),
               child: RallyLineChart(events: items),
             ),
             Expanded(
               child: Padding(
-                padding: isDesktop ? const EdgeInsets.all(40) : EdgeInsets.zero,
+                padding: .fixed(isDesktop ? const EdgeInsets.all(40) : EdgeInsets.zero),
                 child: ListView(
                   shrinkWrap: true,
                   children: <Widget>[
@@ -390,7 +392,10 @@ class _DetailedEventCard extends StatelessWidget {
                     ],
                   ),
           ),
-          SizedBox(height: 1, child: Container(color: RallyColors.dividerColor)),
+          SizedBox(
+            height: const .fixed(1),
+            child: Container(color: RallyColors.dividerColor),
+          ),
         ],
       ),
     );

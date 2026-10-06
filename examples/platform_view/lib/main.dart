@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: const TextStyle(fontSize: 17.0),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(18.0),
+                  padding: const .fixed(EdgeInsets.all(18.0)),
                   child: ElevatedButton(onPressed: _launchPlatformCount, child: _buttonText),
                 ),
               ],

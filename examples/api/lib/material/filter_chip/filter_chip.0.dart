@@ -43,7 +43,7 @@ class _FilterChipExampleState extends State<FilterChipExample> {
         mainAxisAlignment: .center,
         children: <Widget>[
           Text('Choose an exercise', style: textTheme.labelLarge),
-          const SizedBox(height: 5.0),
+          const SizedBox(height: .fixed(5.0)),
           Wrap(
             spacing: 5.0,
             children: ExerciseFilter.values.map((ExerciseFilter exercise) {
@@ -62,7 +62,7 @@ class _FilterChipExampleState extends State<FilterChipExample> {
               );
             }).toList(),
           ),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: .fixed(10.0)),
           Text(
             'Looking for: ${filters.map((ExerciseFilter e) => e.name).join(', ')}',
             style: textTheme.labelLarge,

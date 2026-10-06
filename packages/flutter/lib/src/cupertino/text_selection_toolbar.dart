@@ -140,7 +140,7 @@ class CupertinoTextSelectionToolbar extends StatelessWidget {
       shadowColor: CupertinoTheme.brightnessOf(context) == Brightness.light
           ? CupertinoColors.black.withOpacity(0.2)
           : null,
-      child: ColoredBox(color: _kToolbarBackgroundColor.resolveFrom(context), child: child),
+      child: ColoredBox(color: .fixed(_kToolbarBackgroundColor.resolveFrom(context)), child: child),
     );
   }
 
@@ -167,11 +167,13 @@ class CupertinoTextSelectionToolbar extends StatelessWidget {
     );
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        kToolbarScreenPadding,
-        paddingAbove,
-        kToolbarScreenPadding,
-        kToolbarScreenPadding,
+      padding: .fixed(
+        EdgeInsets.fromLTRB(
+          kToolbarScreenPadding,
+          paddingAbove,
+          kToolbarScreenPadding,
+          kToolbarScreenPadding,
+        ),
       ),
       child: CustomSingleChildLayout(
         delegate: TextSelectionToolbarLayoutDelegate(

@@ -200,7 +200,7 @@ class _PointDemoState extends State<_PointDemo> {
           // they do overlap this child, which is as big as the CustomPaint.
           child: IgnorePointer(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const .fixed(EdgeInsets.all(16.0)),
               child: Text(
                 'Tap the refresh button to run the animation. Drag the green '
                 "and red points to change the animation's path.",
@@ -369,7 +369,7 @@ class _RectangleDemoState extends State<_RectangleDemo> {
           // they do overlap this child, which is as big as the CustomPaint.
           child: IgnorePointer(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const .fixed(EdgeInsets.all(16.0)),
               child: Text(
                 'Tap the refresh button to run the animation. Drag the rectangles '
                 "to change the animation's path.",

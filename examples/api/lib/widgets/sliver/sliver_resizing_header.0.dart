@@ -44,7 +44,7 @@ class _ResizingHeaderExampleState extends State<ResizingHeaderExample> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const .all(4),
+          padding: const .fixed(.all(4)),
           child: Scrollbar(
             controller: scrollController,
             child: CustomScrollView(

@@ -93,9 +93,9 @@ class _NavRailExampleState extends State<NavRailExample> {
                 mainAxisAlignment: .center,
                 children: <Widget>[
                   Text('selectedIndex: $_selectedIndex'),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: .fixed(20)),
                   Text('Label type: ${labelType.name}'),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: .fixed(10)),
                   SegmentedButton<NavigationRailLabelType>(
                     segments: const <ButtonSegment<NavigationRailLabelType>>[
                       ButtonSegment<NavigationRailLabelType>(
@@ -119,9 +119,9 @@ class _NavRailExampleState extends State<NavRailExample> {
                           });
                         },
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: .fixed(20)),
                   Text('Group alignment: $groupAlignment'),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: .fixed(10)),
                   SegmentedButton<double>(
                     segments: const <ButtonSegment<double>>[
                       ButtonSegment<double>(value: -1.0, label: Text('Top')),
@@ -135,9 +135,9 @@ class _NavRailExampleState extends State<NavRailExample> {
                       });
                     },
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: .fixed(20)),
                   const Text('Main Axis Alignment:'),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: .fixed(10)),
                   SegmentedButton<MainAxisAlignment?>(
                     segments: const <ButtonSegment<MainAxisAlignment?>>[
                       ButtonSegment<MainAxisAlignment?>(
@@ -176,7 +176,7 @@ class _NavRailExampleState extends State<NavRailExample> {
                       });
                     },
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: .fixed(20)),
                   SwitchListTile(
                     title: Text(showLeading ? 'Hide Leading' : 'Show Leading'),
                     value: showLeading,

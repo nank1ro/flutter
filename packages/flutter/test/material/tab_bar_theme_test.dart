@@ -29,8 +29,8 @@ const List<Tab> _tabs = <Tab>[
 ];
 
 final List<SizedBox> _sizedTabs = <SizedBox>[
-  SizedBox(key: UniqueKey(), width: 100.0, height: 50.0),
-  SizedBox(key: UniqueKey(), width: 100.0, height: 50.0),
+  SizedBox(key: UniqueKey(), width: const .fixed(100.0), height: const .fixed(50.0)),
+  SizedBox(key: UniqueKey(), width: const .fixed(100.0), height: const .fixed(50.0)),
 ];
 
 Widget buildTabBar({
@@ -1650,7 +1650,7 @@ void main() {
     final tabs = List<Widget>.generate(4, (int index) {
       return Tab(
         key: ValueKey<int>(index),
-        child: const SizedBox(width: indicatorWidth),
+        child: const SizedBox(width: .fixed(indicatorWidth)),
       );
     });
 

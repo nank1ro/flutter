@@ -60,9 +60,9 @@ class _AnimatedFractionallySizedBoxExampleState
       },
       child: Center(
         child: SizedBox.square(
-          dimension: 200,
+          dimension: .fixed(200),
           child: ColoredBox(
-            color: Colors.red,
+            color: .fixed(Colors.red),
             child: AnimatedFractionallySizedBox(
               widthFactor: selected ? 0.25 : 0.75,
               heightFactor: selected ? 0.75 : 0.25,
@@ -70,7 +70,7 @@ class _AnimatedFractionallySizedBoxExampleState
               duration: widget.duration,
               curve: widget.curve,
               child: const ColoredBox(
-                color: Colors.blue,
+                color: .fixed(Colors.blue),
                 child: FlutterLogo(size: 75),
               ),
             ),

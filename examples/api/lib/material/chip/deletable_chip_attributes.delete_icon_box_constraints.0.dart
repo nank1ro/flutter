@@ -31,16 +31,16 @@ class DeleteIconBoxConstraintsExample extends StatelessWidget {
           deleteIconBoxConstraints: const BoxConstraints.tightForFinite(),
           onDeleted: () {},
           label: const SizedBox(
-            width: 150,
+            width: .fixed(150),
             child: Text('One line text.', maxLines: 3, overflow: .ellipsis),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: .fixed(10)),
         RawChip(
           deleteIconBoxConstraints: const BoxConstraints.tightForFinite(),
           onDeleted: () {},
           label: const SizedBox(
-            width: 150,
+            width: .fixed(150),
             child: Text(
               'This text will wrap into two lines.',
               maxLines: 3,
@@ -48,12 +48,12 @@ class DeleteIconBoxConstraintsExample extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: .fixed(10)),
         RawChip(
           deleteIconBoxConstraints: const BoxConstraints.tightForFinite(),
           onDeleted: () {},
           label: const SizedBox(
-            width: 150,
+            width: .fixed(150),
             child: Text(
               'This is a very long text that will wrap into three lines.',
               maxLines: 3,

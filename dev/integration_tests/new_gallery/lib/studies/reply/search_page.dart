@@ -19,7 +19,7 @@ class SearchPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const .fixed(EdgeInsets.all(8)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -78,7 +78,7 @@ class _SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16),
+      padding: const .fixed(EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16)),
       child: Text(title, style: Theme.of(context).textTheme.labelLarge),
     );
   }

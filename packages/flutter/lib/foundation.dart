@@ -50,6 +50,11 @@ export 'src/foundation/platform.dart';
 export 'src/foundation/print.dart';
 export 'src/foundation/serialization.dart';
 export 'src/foundation/service_extensions.dart';
+// `Link` and `ReactiveNode` are graph internals. `Link` in particular would
+// collide with `dart:io`'s and `package:file`'s `Link` for every importer of
+// `foundation.dart`. Code that needs them imports
+// `src/foundation/signals.dart` directly.
+export 'src/foundation/signals.dart' hide Link, ReactiveNode;
 export 'src/foundation/stack_frame.dart';
 export 'src/foundation/synchronous_future.dart';
 export 'src/foundation/timeline.dart';

@@ -24,7 +24,7 @@ class CupertinoTextFieldDemo extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .fixed(EdgeInsets.symmetric(vertical: 8)),
               child: CupertinoTextField(
                 textInputAction: TextInputAction.next,
                 restorationId: 'email_address_text_field',
@@ -35,7 +35,7 @@ class CupertinoTextFieldDemo extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .fixed(EdgeInsets.symmetric(vertical: 8)),
               child: CupertinoTextField(
                 textInputAction: TextInputAction.next,
                 restorationId: 'login_password_text_field',
@@ -47,7 +47,7 @@ class CupertinoTextFieldDemo extends StatelessWidget {
             ),
             // Disabled text field
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .fixed(EdgeInsets.symmetric(vertical: 8)),
               child: CupertinoTextField(
                 enabled: false,
                 textInputAction: TextInputAction.next,

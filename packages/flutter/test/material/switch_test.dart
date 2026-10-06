@@ -128,13 +128,13 @@ void main() {
           body: Directionality(
             textDirection: TextDirection.ltr,
             child: SizedBox(
-              width: maxWidth,
-              height: maxHeight,
+              width: const .fixed(maxWidth),
+              height: const .fixed(maxHeight),
               child: RepaintBoundary(
                 key: boundaryKey,
                 child: SizedBox(
-                  width: width,
-                  height: height,
+                  width: .fixed(width),
+                  height: .fixed(height),
                   child: Switch(
                     dragStartBehavior: DragStartBehavior.down,
                     value: true,
@@ -169,13 +169,13 @@ void main() {
           body: Directionality(
             textDirection: TextDirection.ltr,
             child: SizedBox(
-              width: maxWidth,
-              height: maxHeight,
+              width: const .fixed(maxWidth),
+              height: const .fixed(maxHeight),
               child: RepaintBoundary(
                 key: boundaryKey,
                 child: SizedBox(
-                  width: width,
-                  height: height,
+                  width: .fixed(width),
+                  height: .fixed(height),
                   child: Switch(
                     dragStartBehavior: DragStartBehavior.down,
                     value: true,
@@ -1290,7 +1290,7 @@ void main() {
         reason: 'Inactive enabled switch should have default track and thumb color',
       );
       expect(find.byType(Opacity), findsOneWidget);
-      expect(tester.widget<Opacity>(find.byType(Opacity)).opacity, 1.0);
+      expect(tester.widget<Opacity>(find.byType(Opacity)).opacity.value, 1.0);
 
       await tester.pumpWidget(Container());
       await tester.pumpWidget(buildAdaptiveSwitch(platform: platform));
@@ -1310,7 +1310,7 @@ void main() {
         reason: 'Active enabled switch should have default track and thumb color',
       );
       expect(find.byType(Opacity), findsOneWidget);
-      expect(tester.widget<Opacity>(find.byType(Opacity)).opacity, 1.0);
+      expect(tester.widget<Opacity>(find.byType(Opacity)).opacity.value, 1.0);
 
       // Test disabled switch.
       await tester.pumpWidget(Container());
@@ -1333,7 +1333,7 @@ void main() {
         reason: 'Inactive disabled switch should have default track and thumb color',
       );
       expect(find.byType(Opacity), findsOneWidget);
-      expect(tester.widget<Opacity>(find.byType(Opacity)).opacity, 0.5);
+      expect(tester.widget<Opacity>(find.byType(Opacity)).opacity.value, 0.5);
 
       await tester.pumpWidget(Container());
       await tester.pumpWidget(buildAdaptiveSwitch(platform: platform, enabled: false));
@@ -1353,7 +1353,7 @@ void main() {
         reason: 'Active disabled switch should have default track and thumb color',
       );
       expect(find.byType(Opacity), findsOneWidget);
-      expect(tester.widget<Opacity>(find.byType(Opacity)).opacity, 0.5);
+      expect(tester.widget<Opacity>(find.byType(Opacity)).opacity.value, 0.5);
     }
   });
 

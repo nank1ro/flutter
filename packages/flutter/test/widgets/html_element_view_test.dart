@@ -64,7 +64,11 @@ void main() {
 
       await tester.pumpWidget(
         const Center(
-          child: SizedBox(width: 200.0, height: 100.0, child: HtmlElementView(viewType: 'webview')),
+          child: SizedBox(
+            width: .fixed(200.0),
+            height: .fixed(100.0),
+            child: HtmlElementView(viewType: 'webview'),
+          ),
         ),
       );
 
@@ -88,8 +92,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: HtmlElementView(
               viewType: 'webview',
               onPlatformViewCreated: onPlatformViewCreatedCallBack,
@@ -116,13 +120,13 @@ void main() {
         const Column(
           children: <Widget>[
             SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: HtmlElementView(viewType: 'webview', creationParams: 'foobar'),
             ),
             SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: HtmlElementView(viewType: 'webview', creationParams: 123),
             ),
           ],
@@ -148,7 +152,11 @@ void main() {
       fakePlatformViewRegistry.registerViewFactory('webview', _mockViewFactory);
       await tester.pumpWidget(
         const Center(
-          child: SizedBox(width: 200.0, height: 100.0, child: HtmlElementView(viewType: 'webview')),
+          child: SizedBox(
+            width: .fixed(200.0),
+            height: .fixed(100.0),
+            child: HtmlElementView(viewType: 'webview'),
+          ),
         ),
       );
 
@@ -156,7 +164,11 @@ void main() {
 
       await tester.pumpWidget(
         const Center(
-          child: SizedBox(width: 100.0, height: 50.0, child: HtmlElementView(viewType: 'webview')),
+          child: SizedBox(
+            width: .fixed(100.0),
+            height: .fixed(50.0),
+            child: HtmlElementView(viewType: 'webview'),
+          ),
         ),
       );
 
@@ -177,13 +189,21 @@ void main() {
       fakePlatformViewRegistry.registerViewFactory('maps', _mockViewFactory);
       await tester.pumpWidget(
         const Center(
-          child: SizedBox(width: 200.0, height: 100.0, child: HtmlElementView(viewType: 'webview')),
+          child: SizedBox(
+            width: .fixed(200.0),
+            height: .fixed(100.0),
+            child: HtmlElementView(viewType: 'webview'),
+          ),
         ),
       );
 
       await tester.pumpWidget(
         const Center(
-          child: SizedBox(width: 200.0, height: 100.0, child: HtmlElementView(viewType: 'maps')),
+          child: SizedBox(
+            width: .fixed(200.0),
+            height: .fixed(100.0),
+            child: HtmlElementView(viewType: 'maps'),
+          ),
         ),
       );
 
@@ -199,11 +219,19 @@ void main() {
       fakePlatformViewRegistry.registerViewFactory('webview', _mockViewFactory);
       await tester.pumpWidget(
         const Center(
-          child: SizedBox(width: 200.0, height: 100.0, child: HtmlElementView(viewType: 'webview')),
+          child: SizedBox(
+            width: .fixed(200.0),
+            height: .fixed(100.0),
+            child: HtmlElementView(viewType: 'webview'),
+          ),
         ),
       );
 
-      await tester.pumpWidget(const Center(child: SizedBox(width: 200.0, height: 100.0)));
+      await tester.pumpWidget(
+        const Center(
+          child: SizedBox(width: .fixed(200.0), height: .fixed(100.0)),
+        ),
+      );
 
       expect(fakePlatformViewRegistry.views, isEmpty);
     });
@@ -215,8 +243,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: HtmlElementView(viewType: 'webview', key: key),
           ),
         ),
@@ -225,8 +253,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: HtmlElementView(viewType: 'webview', key: key),
           ),
         ),
@@ -252,8 +280,8 @@ void main() {
           child: const Align(
             alignment: Alignment.bottomRight,
             child: SizedBox(
-              width: 200.0,
-              height: 100.0,
+              width: .fixed(200.0),
+              height: .fixed(100.0),
               child: HtmlElementView(viewType: 'webview'),
             ),
           ),
@@ -291,8 +319,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: HtmlElementView.fromTagName(tagName: 'div'),
           ),
         ),
@@ -316,8 +344,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: HtmlElementView.fromTagName(tagName: 'script', isVisible: false),
           ),
         ),
@@ -345,8 +373,8 @@ void main() {
       await tester.pumpWidget(
         Center(
           child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+            width: const .fixed(200.0),
+            height: const .fixed(100.0),
             child: HtmlElementView.fromTagName(
               tagName: 'table',
               onElementCreated: onElementCreated,

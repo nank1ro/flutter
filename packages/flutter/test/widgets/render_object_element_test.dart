@@ -246,8 +246,8 @@ void main() {
     const Key blueKey = ValueKey<String>('blue');
     Widget widget() {
       return SwapperWithProperOverrides(
-        stable: ColoredBox(key: redKey, color: Color(nonconst(0xffff0000))),
-        swapper: ColoredBox(key: blueKey, color: Color(nonconst(0xff0000ff))),
+        stable: ColoredBox(key: redKey, color: .fixed(Color(nonconst(0xffff0000)))),
+        swapper: ColoredBox(key: blueKey, color: .fixed(Color(nonconst(0xff0000ff)))),
       );
     }
 

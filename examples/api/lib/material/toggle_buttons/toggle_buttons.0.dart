@@ -66,7 +66,7 @@ class _ToggleButtonsSampleState extends State<ToggleButtonsSample> {
             children: <Widget>[
               // ToggleButtons with a single selection.
               Text('Single-select', style: theme.textTheme.titleSmall),
-              const SizedBox(height: 5),
+              const SizedBox(height: .fixed(5)),
               ToggleButtons(
                 direction: vertical ? Axis.vertical : Axis.horizontal,
                 onPressed: (int index) {
@@ -89,10 +89,10 @@ class _ToggleButtonsSampleState extends State<ToggleButtonsSample> {
                 isSelected: _selectedFruits,
                 children: fruits,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: .fixed(20)),
               // ToggleButtons with a multiple selection.
               Text('Multi-select', style: theme.textTheme.titleSmall),
-              const SizedBox(height: 5),
+              const SizedBox(height: .fixed(5)),
               ToggleButtons(
                 direction: vertical ? Axis.vertical : Axis.horizontal,
                 onPressed: (int index) {
@@ -113,10 +113,10 @@ class _ToggleButtonsSampleState extends State<ToggleButtonsSample> {
                 isSelected: _selectedVegetables,
                 children: vegetables,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: .fixed(20)),
               // ToggleButtons with icons only.
               Text('Icon-only', style: theme.textTheme.titleSmall),
-              const SizedBox(height: 5),
+              const SizedBox(height: .fixed(5)),
               ToggleButtons(
                 direction: vertical ? Axis.vertical : Axis.horizontal,
                 onPressed: (int index) {

@@ -274,7 +274,7 @@ void main() {
         TestWidgetsApp(
           home: Column(
             children: <Widget>[
-              const SizedBox(height: 200),
+              const SizedBox(height: .fixed(200)),
               RawAutocomplete<String>(
                 optionsViewOpenDirection: openDirection,
                 optionsBuilder: (TextEditingValue textEditingValue) {
@@ -358,7 +358,7 @@ void main() {
             builder: (BuildContext context, StateSetter setter) {
               setState = setter;
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: padding),
+                padding: const .fixed(EdgeInsets.symmetric(horizontal: padding)),
                 child: Align(
                   alignment: alignment,
                   child: RawAutocomplete<String>(
@@ -386,7 +386,7 @@ void main() {
                                   onSelected(option);
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
+                                  padding: const .fixed(EdgeInsets.all(16.0)),
                                   child: Text(option),
                                 ),
                               );
@@ -511,7 +511,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 32.0)),
               child: RawAutocomplete<String>(
                 optionsViewOpenDirection: openDirection,
                 optionsBuilder: (TextEditingValue textEditingValue) {
@@ -538,7 +538,7 @@ void main() {
                       AutocompleteOnSelected<String> onSelected,
                       Iterable<String> options,
                     ) {
-                      return SizedBox(width: kOptionsWidth, key: optionsKey);
+                      return SizedBox(width: const .fixed(kOptionsWidth), key: optionsKey);
                     },
               ),
             ),
@@ -572,7 +572,7 @@ void main() {
       await tester.pumpWidget(
         TestWidgetsApp(
           home: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 32.0)),
             child: Center(
               child: RawAutocomplete<String>(
                 optionsViewOpenDirection: openDirection,
@@ -2233,12 +2233,12 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 32.0)),
             child: StatefulBuilder(
               builder: (BuildContext context, StateSetter localStateSetter) {
                 setState = localStateSetter;
                 return SizedBox(
-                  width: width,
+                  width: .fixed(width),
                   child: RawAutocomplete<String>(
                     optionsBuilder: (TextEditingValue textEditingValue) {
                       return kOptions.where((String option) {
@@ -2331,7 +2331,7 @@ void main() {
               builder: (BuildContext context, StateSetter localStateSetter) {
                 setState = localStateSetter;
                 return SizedBox(
-                  width: width,
+                  width: .fixed(width),
                   child: TestTextField(
                     key: fieldKey,
                     focusNode: focusNode,
@@ -2348,7 +2348,7 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 32.0)),
             child: autocomplete,
           ),
         ),
@@ -2392,7 +2392,7 @@ void main() {
       return tester.pumpWidget(
         TestWidgetsApp(
           home: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 32.0)),
             child: Align(
               alignment: alignment,
               child: RawAutocomplete<String>(
@@ -2420,7 +2420,7 @@ void main() {
                               onSelected(option);
                             },
                             child: Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: const .fixed(EdgeInsets.all(16.0)),
                               child: Text(option),
                             ),
                           );
@@ -2790,7 +2790,7 @@ void main() {
           home: ListView(
             controller: scrollController,
             children: <Widget>[
-              const SizedBox(height: 1000.0),
+              const SizedBox(height: .fixed(1000.0)),
               RawAutocomplete<String>(
                 optionsBuilder: (TextEditingValue textEditingValue) {
                   return kOptions.where((String option) {
@@ -2815,7 +2815,7 @@ void main() {
                               onSelected(option);
                             },
                             child: Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: const .fixed(EdgeInsets.all(16.0)),
                               child: Text(option),
                             ),
                           );
@@ -2836,7 +2836,7 @@ void main() {
                       );
                     },
               ),
-              const SizedBox(height: 1000.0),
+              const SizedBox(height: .fixed(1000.0)),
             ],
           ),
         ),
@@ -2896,7 +2896,7 @@ void main() {
           home: ListView(
             controller: scrollController,
             children: <Widget>[
-              const SizedBox(height: 1000.0),
+              const SizedBox(height: .fixed(1000.0)),
               RawAutocomplete<String>(
                 optionsBuilder: (TextEditingValue textEditingValue) {
                   return kOptions.where((String option) {
@@ -2921,7 +2921,7 @@ void main() {
                               onSelected(option);
                             },
                             child: Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: const .fixed(EdgeInsets.all(16.0)),
                               child: Text(option),
                             ),
                           );
@@ -2942,7 +2942,7 @@ void main() {
                       );
                     },
               ),
-              const SizedBox(height: 1000.0),
+              const SizedBox(height: .fixed(1000.0)),
             ],
           ),
         ),
@@ -3719,7 +3719,7 @@ void main() {
       TestWidgetsApp(
         home: Column(
           children: <Widget>[
-            const SizedBox(height: 200),
+            const SizedBox(height: .fixed(200)),
             RawAutocomplete<String>(
               optionsBuilder: (TextEditingValue textEditingValue) => <String>['abcd'],
               fieldViewBuilder:
@@ -3738,7 +3738,7 @@ void main() {
                     Iterable<String> options,
                   ) => const Placeholder(),
             ),
-            const SizedBox(height: 200),
+            const SizedBox(height: .fixed(200)),
           ],
         ),
       ),
@@ -3782,7 +3782,7 @@ void main() {
       TestWidgetsApp(
         home: Column(
           children: <Widget>[
-            const SizedBox(height: 200),
+            const SizedBox(height: .fixed(200)),
             RawAutocomplete<String>(
               optionsViewOpenDirection: OptionsViewOpenDirection.up,
               optionsBuilder: (TextEditingValue textEditingValue) => <String>['abcd'],
@@ -3802,7 +3802,7 @@ void main() {
                     Iterable<String> options,
                   ) => const Placeholder(),
             ),
-            const SizedBox(height: 200),
+            const SizedBox(height: .fixed(200)),
           ],
         ),
       ),
@@ -4023,7 +4023,10 @@ class _OptionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: ConstrainedBox(constraints: const BoxConstraints(minHeight: 48.0), child: child),
+      child: ConstrainedBox(
+        constraints: const .fixed(BoxConstraints(minHeight: 48.0)),
+        child: child,
+      ),
     );
   }
 }

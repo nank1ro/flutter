@@ -120,7 +120,7 @@ class _SearchBarAppState extends State<SearchBarApp> {
   }
 }
 
-SizedBox cardSize = const SizedBox(width: 80, height: 30);
+SizedBox cardSize = const SizedBox(width: .fixed(80), height: .fixed(30));
 
 enum ColorLabel {
   red('red', Colors.red),

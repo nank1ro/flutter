@@ -169,9 +169,9 @@ void main() {
                 builder: (BuildContext context, BoxConstraints constraints) {
                   return Center(
                     child: SizedBox.square(
-                      dimension: 20,
+                      dimension: const .fixed(20),
                       child: Center(
-                        child: SizedBox.square(dimension: updated ? 10 : 20, child: widget),
+                        child: SizedBox.square(dimension: .fixed(updated ? 10 : 20), child: widget),
                       ),
                     ),
                   );

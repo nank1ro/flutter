@@ -34,7 +34,7 @@ class AutocompleteExampleApp extends StatelessWidget {
               Text(
                 'Type below to autocomplete the following possible results: ${_FakeAPI._kOptions}.',
               ),
-              const SizedBox(height: 32.0),
+              const SizedBox(height: .fixed(32.0)),
               const _AsyncAutocomplete(),
             ],
           ),
@@ -117,7 +117,7 @@ class _AsyncAutocompleteState extends State<_AsyncAutocomplete> {
             });
           },
         ),
-        const SizedBox(height: 32.0),
+        const SizedBox(height: .fixed(32.0)),
         Autocomplete<String>(
           fieldViewBuilder:
               (

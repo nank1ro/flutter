@@ -233,7 +233,7 @@ class _CupertinoPickerDemoState extends State<CupertinoPickerDemo> {
         style: CupertinoTheme.of(context).textTheme.textStyle,
         child: ListView(
           children: <Widget>[
-            const SizedBox(height: 32),
+            const SizedBox(height: .fixed(32)),
             _buildDatePicker(context),
             _buildTimePicker(context),
             _buildDateAndTimePicker(context),
@@ -286,7 +286,7 @@ class _Menu extends StatelessWidget {
       ),
       height: 44,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const .fixed(EdgeInsets.symmetric(horizontal: 16)),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: children),
       ),
     );

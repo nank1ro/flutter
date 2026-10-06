@@ -40,7 +40,7 @@ import 'package:flutter/widgets.dart';
 ///     return InkWell(
 ///       onFocusChange: updateMaterialState(WidgetState.focused),
 ///       child: ColoredBox(
-///         color: widget.color.resolve(materialStates),
+///         color: .fixed(widget.color.resolve(materialStates)),
 ///         child: widget.child,
 ///       ),
 ///     );
@@ -90,7 +90,7 @@ mixin MaterialStateMixin<T extends StatefulWidget> on State<T> {
   ///   @override
   ///   Widget build(BuildContext context) {
   ///     return ColoredBox(
-  ///       color: isPressed ? Colors.black : Colors.white,
+  ///       color: .fixed(isPressed ? Colors.black : Colors.white),
   ///       child: InkWell(
   ///         onHighlightChanged: updateMaterialState(
   ///           WidgetState.pressed,

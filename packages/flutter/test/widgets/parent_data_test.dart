@@ -53,9 +53,13 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          DecoratedBox(decoration: kBoxDecorationA),
-          Positioned(top: 10.0, left: 10.0, child: DecoratedBox(decoration: kBoxDecorationB)),
-          DecoratedBox(decoration: kBoxDecorationC),
+          DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+          Positioned(
+            top: 10.0,
+            left: 10.0,
+            child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
+          ),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -70,9 +74,17 @@ void main() {
       const Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          Positioned(bottom: 5.0, right: 7.0, child: DecoratedBox(decoration: kBoxDecorationA)),
-          Positioned(top: 10.0, left: 10.0, child: DecoratedBox(decoration: kBoxDecorationB)),
-          DecoratedBox(decoration: kBoxDecorationC),
+          Positioned(
+            bottom: 5.0,
+            right: 7.0,
+            child: DecoratedBox(decoration: .fixed(kBoxDecorationA)),
+          ),
+          Positioned(
+            top: 10.0,
+            left: 10.0,
+            child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
+          ),
+          DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ],
       ),
     );
@@ -83,9 +95,9 @@ void main() {
       kNonPositioned,
     ]);
 
-    const kDecoratedBoxA = DecoratedBox(decoration: kBoxDecorationA);
-    const kDecoratedBoxB = DecoratedBox(decoration: kBoxDecorationB);
-    const kDecoratedBoxC = DecoratedBox(decoration: kBoxDecorationC);
+    const kDecoratedBoxA = DecoratedBox(decoration: .fixed(kBoxDecorationA));
+    const kDecoratedBoxB = DecoratedBox(decoration: .fixed(kBoxDecorationB));
+    const kDecoratedBoxC = DecoratedBox(decoration: .fixed(kBoxDecorationC));
 
     await tester.pumpWidget(
       const Stack(
@@ -211,7 +223,7 @@ void main() {
               child: Positioned(
                 top: 6.0,
                 left: 7.0,
-                child: DecoratedBox(decoration: kBoxDecorationB),
+                child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
               ),
             ),
           ],
@@ -254,7 +266,7 @@ void main() {
               child: Positioned(
                 top: 6.0,
                 left: 7.0,
-                child: DecoratedBox(decoration: kBoxDecorationB),
+                child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
               ),
             ),
           ],
@@ -300,7 +312,7 @@ void main() {
               child: Positioned(
                 top: 6.0,
                 left: 7.0,
-                child: DecoratedBox(decoration: kBoxDecorationB),
+                child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
               ),
             ),
           ],
@@ -342,7 +354,11 @@ void main() {
         child: DummyWidget(
           child: Row(
             children: <Widget>[
-              Positioned(top: 6.0, left: 7.0, child: DecoratedBox(decoration: kBoxDecorationB)),
+              Positioned(
+                top: 6.0,
+                left: 7.0,
+                child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
+              ),
             ],
           ),
         ),
@@ -380,7 +396,7 @@ void main() {
           Positioned(
             top: 10.0,
             left: 10.0,
-            child: DecoratedBox(key: key, decoration: kBoxDecorationA),
+            child: DecoratedBox(key: key, decoration: const .fixed(kBoxDecorationA)),
           ),
         ],
       ),
@@ -396,8 +412,8 @@ void main() {
             top: 10.0,
             left: 10.0,
             child: DecoratedBox(
-              decoration: kBoxDecorationB,
-              child: DecoratedBox(key: key, decoration: kBoxDecorationA),
+              decoration: const .fixed(kBoxDecorationB),
+              child: DecoratedBox(key: key, decoration: const .fixed(kBoxDecorationA)),
             ),
           ),
         ],
@@ -413,7 +429,7 @@ void main() {
           Positioned(
             top: 10.0,
             left: 10.0,
-            child: DecoratedBox(key: key, decoration: kBoxDecorationA),
+            child: DecoratedBox(key: key, decoration: const .fixed(kBoxDecorationA)),
           ),
         ],
       ),

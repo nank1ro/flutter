@@ -56,13 +56,13 @@ class _HoverDemoState extends State<HoverDemo> {
                     ],
                   ),
                   const Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: .fixed(EdgeInsets.all(8.0)),
                     child: TextField(
                       decoration: InputDecoration(labelText: 'Enter Text', filled: true),
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: .fixed(EdgeInsets.all(8.0)),
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),

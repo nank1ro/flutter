@@ -84,7 +84,7 @@ class StockSymbolPage extends StatelessWidget {
                 child: AnimatedCrossFade(
                   duration: const Duration(milliseconds: 300),
                   firstChild: const Padding(
-                    padding: EdgeInsets.all(20.0),
+                    padding: .fixed(EdgeInsets.all(20.0)),
                     child: Center(child: CircularProgressIndicator()),
                   ),
                   secondChild: stock != null
@@ -96,7 +96,7 @@ class StockSymbolPage extends StatelessWidget {
                           ),
                         )
                       : Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const .fixed(EdgeInsets.all(20.0)),
                           child: Center(child: Text('$symbol not found')),
                         ),
                   crossFadeState: stock == null && stocks.loading

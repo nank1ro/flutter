@@ -79,7 +79,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'One Big Rectangle',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: Container(
           width: 300,
           height: 400,
@@ -98,9 +98,9 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
         children: <Widget>[
           for (int i = 0; i < 10; i++, v = 1 - v)
             Opacity(
-              opacity: _opacity(v),
+              opacity: .fixed(_opacity(v)),
               child: Padding(
-                padding: const EdgeInsets.all(5),
+                padding: const .fixed(EdgeInsets.all(5)),
                 child: Container(
                   width: 300,
                   height: 30,
@@ -120,11 +120,11 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
       // ChildV starts as a constant so the same color pattern always appears and the child will be cached
       double childV = 0;
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: RepaintBoundary(
           child: SizedBox(
-            width: 300,
-            height: 400,
+            width: const .fixed(300),
+            height: const .fixed(400),
             child: Stack(
               children: <Widget>[
                 for (double i = 0; i < 100; i += 10, childV = 1 - childV)
@@ -147,13 +147,13 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'Opacity of Column',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             for (int i = 0; i < 10; i++, v = 1 - v)
               Padding(
-                padding: const EdgeInsets.all(5),
+                padding: const .fixed(EdgeInsets.all(5)),
                 // RepaintBoundary here to avoid combining children into 1 big Picture
                 child: RepaintBoundary(
                   child: Container(
@@ -184,9 +184,9 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
               children: <Widget>[
                 for (int j = 0; j < 7; j++, colV = 1 - colV)
                   Opacity(
-                    opacity: _opacity(colV),
+                    opacity: .fixed(_opacity(colV)),
                     child: Padding(
-                      padding: const EdgeInsets.all(5),
+                      padding: const .fixed(EdgeInsets.all(5)),
                       child: Container(
                         width: 30,
                         height: 30,
@@ -209,10 +209,10 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
       var rowV = v;
       var colV = rowV;
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: SizedBox(
-          width: 300,
-          height: 400,
+          width: const .fixed(300),
+          height: const .fixed(400),
           child: Stack(
             children: <Widget>[
               for (int i = 0; i < 10; i++, rowV = 1 - rowV, colV = rowV)
@@ -241,13 +241,13 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
       var rowV = v;
       var colV = v;
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             for (int i = 0; i < 10; i++, rowV = 1 - rowV, colV = rowV)
               Padding(
-                padding: const EdgeInsets.only(top: 5, bottom: 5),
+                padding: const .fixed(EdgeInsets.only(top: 5, bottom: 5)),
                 // RepaintBoundary here to separate each row into a separate layer child
                 child: RepaintBoundary(
                   child: Row(
@@ -255,7 +255,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
                     children: <Widget>[
                       for (int j = 0; j < 7; j++, colV = 1 - colV)
                         Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          padding: const .fixed(EdgeInsets.only(left: 5, right: 5)),
                           // RepaintBoundary here to prevent the row children combining into a single Picture
                           child: RepaintBoundary(
                             child: Container(
@@ -281,8 +281,8 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
       return FadeTransition(
         opacity: Tween<double>(begin: 0.25, end: 0.75).animate(animation),
         child: const SizedBox(
-          width: 300,
-          height: 400,
+          width: .fixed(300),
+          height: .fixed(400),
           child: Center(child: Text('Hello, World', style: TextStyle(fontSize: 48))),
         ),
       );
@@ -293,7 +293,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'Grid of Rectangles with alpha',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: SizedBox.expand(
           child: CustomPaint(
             painter: RectGridPainter((Canvas canvas, Size size) {
@@ -328,7 +328,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'Grid of alpha SaveLayers of Rectangles',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: SizedBox.expand(
           child: CustomPaint(
             painter: RectGridPainter((Canvas canvas, Size size) {
@@ -367,7 +367,7 @@ List<OpacityPeepholeCase> allOpacityPeepholeCases = <OpacityPeepholeCase>[
     name: 'Grid with alpha SaveLayer on Rows',
     builder: (double v) {
       return Opacity(
-        opacity: _opacity(v),
+        opacity: .fixed(_opacity(v)),
         child: SizedBox.expand(
           child: CustomPaint(
             painter: RectGridPainter((Canvas canvas, Size size) {

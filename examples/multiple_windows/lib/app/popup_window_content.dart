@@ -69,7 +69,7 @@ class _PopupWindowContentState extends State<PopupWindowContent> {
                         padding: const EdgeInsets.all(8),
                         child: const Icon(Icons.info, color: Color(0xFFFFFFFF), size: 20),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: .fixed(12)),
                       const Text(
                         'Popup Window',
                         style: TextStyle(
@@ -81,7 +81,7 @@ class _PopupWindowContentState extends State<PopupWindowContent> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: .fixed(16)),
                   Container(
                     width: 200,
                     decoration: BoxDecoration(

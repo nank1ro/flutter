@@ -33,7 +33,7 @@ void main() {
                             content: Wrap(
                               children: <Widget>[
                                 SizedBox(
-                                  width: 300,
+                                  width: const .fixed(300),
                                   child: DropdownButtonFormField<String>(
                                     key: const Key('dropdown_button'),
                                     value: selectedValue,

@@ -684,7 +684,9 @@ class _ExpansionTileState extends State<ExpansionTile> {
       alignment:
           widget.expandedAlignment ?? _expansionTileTheme.expandedAlignment ?? Alignment.center,
       child: Padding(
-        padding: widget.childrenPadding ?? _expansionTileTheme.childrenPadding ?? EdgeInsets.zero,
+        padding: .fixed(
+          widget.childrenPadding ?? _expansionTileTheme.childrenPadding ?? EdgeInsets.zero,
+        ),
         child: Column(
           crossAxisAlignment: widget.expandedCrossAxisAlignment ?? CrossAxisAlignment.center,
           children: widget.children,
@@ -718,7 +720,7 @@ class _ExpansionTileState extends State<ExpansionTile> {
     );
 
     Widget tile = Padding(
-      padding: decoration.padding,
+      padding: .fixed(decoration.padding),
       child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[header, body]),
     );
 
@@ -745,7 +747,7 @@ class _ExpansionTileState extends State<ExpansionTile> {
       tile = Material(type: MaterialType.transparency, child: tile);
     }
 
-    return DecoratedBox(decoration: decoration, child: tile);
+    return DecoratedBox(decoration: .fixed(decoration), child: tile);
   }
 
   @override

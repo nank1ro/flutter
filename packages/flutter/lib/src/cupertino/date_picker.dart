@@ -1293,12 +1293,12 @@ class _CupertinoDatePickerDateTimeState extends State<CupertinoDatePicker> {
           id: i,
           child: pickerBuilders[i](offAxisFraction, (BuildContext context, Widget? child) {
             late final Widget constrained = ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: width + _kDatePickerPadSize),
+              constraints: .fixed(BoxConstraints(maxWidth: width + _kDatePickerPadSize)),
               child: child,
             );
 
             return Padding(
-              padding: padding,
+              padding: .fixed(padding),
               child: Align(
                 alignment: lastColumn ? alignCenterLeft : alignCenterRight,
                 child: firstColumn || lastColumn ? constrained : child,
@@ -1735,11 +1735,11 @@ class _CupertinoDatePickerDateState extends State<CupertinoDatePicker> {
           id: i,
           child: pickerBuilders[i](offAxisFraction, (BuildContext context, Widget? child) {
             return Padding(
-              padding: firstColumn ? EdgeInsets.zero : padding,
+              padding: .fixed(firstColumn ? EdgeInsets.zero : padding),
               child: Align(
                 alignment: lastColumn ? alignCenterLeft : alignCenterRight,
                 child: SizedBox(
-                  width: width + _kDatePickerPadSize,
+                  width: .fixed(width + _kDatePickerPadSize),
                   child: Align(
                     alignment: firstColumn ? alignCenterLeft : alignCenterRight,
                     child: child,
@@ -2074,7 +2074,7 @@ class _CupertinoDatePickerMonthYearState extends State<CupertinoDatePicker> {
             final Widget contents = Align(
               alignment: lastColumn ? alignCenterLeft : alignCenterRight,
               child: SizedBox(
-                width: width + _kDatePickerPadSize,
+                width: .fixed(width + _kDatePickerPadSize),
                 child: Align(
                   alignment: firstColumn ? alignCenterLeft : alignCenterRight,
                   child: child,
@@ -2087,7 +2087,7 @@ class _CupertinoDatePickerMonthYearState extends State<CupertinoDatePicker> {
 
             const padding = EdgeInsets.only(right: _kDatePickerPadSize);
             return Padding(
-              padding: textDirectionFactor == -1 ? padding.flipped : padding,
+              padding: .fixed(textDirectionFactor == -1 ? padding.flipped : padding),
               child: contents,
             );
           }, selectionOverlay),
@@ -2468,11 +2468,11 @@ class _CupertinoTimerPickerState extends State<CupertinoTimerPicker> {
 
     return IgnorePointer(
       child: Padding(
-        padding: padding.resolve(textDirection),
+        padding: .fixed(padding.resolve(textDirection)),
         child: Align(
           alignment: AlignmentDirectional.centerStart.resolve(textDirection),
           child: SizedBox(
-            height: numberLabelHeight,
+            height: .fixed(numberLabelHeight),
             child: Baseline(
               baseline: numberLabelBaseline,
               baselineType: TextBaseline.alphabetic,
@@ -2496,13 +2496,13 @@ class _CupertinoTimerPickerState extends State<CupertinoTimerPicker> {
   // are part of the picker.
   Widget _buildPickerNumberLabel(String text, EdgeInsetsDirectional padding) {
     return SizedBox(
-      width: _kTimerPickerColumnIntrinsicWidth + padding.horizontal,
+      width: .fixed(_kTimerPickerColumnIntrinsicWidth + padding.horizontal),
       child: Padding(
-        padding: padding.resolve(textDirection),
+        padding: .fixed(padding.resolve(textDirection)),
         child: Align(
           alignment: AlignmentDirectional.centerStart.resolve(textDirection),
           child: SizedBox(
-            width: numberLabelWidth,
+            width: .fixed(numberLabelWidth),
             child: Align(
               alignment: AlignmentDirectional.centerEnd.resolve(textDirection),
               child: Text(text, softWrap: false, maxLines: 1, overflow: TextOverflow.visible),
@@ -2917,8 +2917,8 @@ class _CupertinoTimerPickerState extends State<CupertinoTimerPicker> {
         }
 
         Widget contents = SizedBox(
-          width: totalWidth,
-          height: _kPickerHeight,
+          width: .fixed(totalWidth),
+          height: const .fixed(_kPickerHeight),
           child: DefaultTextStyle(
             style: _textStyleFrom(context),
             child: Row(
@@ -2930,7 +2930,7 @@ class _CupertinoTimerPickerState extends State<CupertinoTimerPicker> {
         );
         final Color? color = CupertinoDynamicColor.maybeResolve(widget.backgroundColor, context);
         if (color != null) {
-          contents = ColoredBox(color: color, child: contents);
+          contents = ColoredBox(color: .fixed(color), child: contents);
         }
 
         final CupertinoThemeData themeData = CupertinoTheme.of(context);

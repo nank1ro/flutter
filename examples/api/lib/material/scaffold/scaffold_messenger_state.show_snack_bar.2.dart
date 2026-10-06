@@ -73,7 +73,7 @@ class _SnackBarExampleState extends State<SnackBarExample> {
                   })
                   .toList(),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: .fixed(10)),
             Builder(
               builder: (BuildContext context) {
                 return ElevatedButton(

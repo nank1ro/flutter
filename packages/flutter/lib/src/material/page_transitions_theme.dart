@@ -545,9 +545,11 @@ class FadeForwardsPageTransitionsBuilder extends PageTransitionsBuilder {
     }
 
     return ColoredBox(
-      color: secondaryAnimation.isAnimating
-          ? backgroundColor ?? ColorScheme.of(context).surface
-          : Colors.transparent,
+      color: .fixed(
+        secondaryAnimation.isAnimating
+            ? backgroundColor ?? ColorScheme.of(context).surface
+            : Colors.transparent,
+      ),
       child: builder,
     );
   }
@@ -1263,7 +1265,7 @@ class _ZoomEnterTransitionNoCache extends StatelessWidget {
     return AnimatedBuilder(
       animation: animation,
       builder: (BuildContext context, Widget? child) {
-        return ColoredBox(color: Colors.black.withOpacity(opacity), child: child);
+        return ColoredBox(color: .fixed(Colors.black.withOpacity(opacity)), child: child);
       },
       child: FadeTransition(
         opacity: fadeTransition,

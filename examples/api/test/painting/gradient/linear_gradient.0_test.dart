@@ -18,8 +18,8 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: SizedBox(
-          width: 800,
-          height: 600,
+          width: .fixed(800),
+          height: .fixed(600),
           child: RepaintBoundary(child: example.MoodyGradient()),
         ),
       ),

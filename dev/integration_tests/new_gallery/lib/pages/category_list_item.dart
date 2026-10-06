@@ -115,7 +115,7 @@ class _CategoryListItemState extends State<CategoryListItem> with SingleTickerPr
           onTap: _handleTap,
         ),
         Padding(
-          padding: _childrenPadding.value,
+          padding: .fixed(_childrenPadding.value),
           child: ClipRect(
             child: Align(heightFactor: _childrenHeightFactor.value, child: child),
           ),
@@ -167,7 +167,7 @@ class _CategoryHeader extends StatelessWidget {
         color: colorScheme.onBackground,
         clipBehavior: Clip.antiAlias,
         child: SizedBox(
-          width: MediaQuery.widthOf(context),
+          width: .fixed(MediaQuery.widthOf(context)),
           child: InkWell(
             // Makes integration tests possible.
             key: ValueKey<String>('${category.name}CategoryHeader'),
@@ -179,7 +179,7 @@ class _CategoryHeader extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: <Widget>[
                       Padding(
-                        padding: imagePadding,
+                        padding: .fixed(imagePadding),
                         child: FadeInImage(
                           image: AssetImage(imageString, package: 'flutter_gallery_assets'),
                           placeholder: MemoryImage(kTransparentImage),
@@ -190,7 +190,7 @@ class _CategoryHeader extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.only(start: 8),
+                        padding: const .fixed(EdgeInsetsDirectional.only(start: 8)),
                         child: Text(
                           category.displayTitle(GalleryLocalizations.of(context)!)!,
                           style: Theme.of(
@@ -202,10 +202,10 @@ class _CategoryHeader extends StatelessWidget {
                   ),
                 ),
                 Opacity(
-                  opacity: chevronOpacity,
+                  opacity: .fixed(chevronOpacity),
                   child: chevronOpacity != 0
                       ? Padding(
-                          padding: const EdgeInsetsDirectional.only(start: 8, end: 32),
+                          padding: const .fixed(EdgeInsetsDirectional.only(start: 8, end: 32)),
                           child: Icon(Icons.keyboard_arrow_up, color: colorScheme.onSurface),
                         )
                       : null,
@@ -232,7 +232,7 @@ class _ExpandedCategoryDemos extends StatelessWidget {
       key: ValueKey<String>('${category.name}DemoList'),
       children: <Widget>[
         for (final GalleryDemo demo in demos) CategoryDemoItem(demo: demo),
-        const SizedBox(height: 12), // Extra space below.
+        const SizedBox(height: .fixed(12)), // Extra space below.
       ],
     );
   }
@@ -257,16 +257,18 @@ class CategoryDemoItem extends StatelessWidget {
             Navigator.of(context).restorablePushNamed('${DemoPage.baseRoute}/${demo.slug}');
           },
           child: Padding(
-            padding: EdgeInsetsDirectional.only(
-              start: 32,
-              top: 20,
-              end: isDisplayDesktop(context) ? 16 : 8,
+            padding: .fixed(
+              EdgeInsetsDirectional.only(
+                start: 32,
+                top: 20,
+                end: isDisplayDesktop(context) ? 16 : 8,
+              ),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Icon(demo.icon, color: colorScheme.primary),
-                const SizedBox(width: 40),
+                const SizedBox(width: .fixed(40)),
                 Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -281,7 +283,7 @@ class CategoryDemoItem extends StatelessWidget {
                           color: colorScheme.onSurface.withOpacity(0.5),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: .fixed(20)),
                       Divider(
                         thickness: 1,
                         height: 1,

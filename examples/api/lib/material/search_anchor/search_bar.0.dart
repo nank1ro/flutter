@@ -27,7 +27,7 @@ class _SearchBarAppState extends State<SearchBarApp> {
       home: Scaffold(
         appBar: AppBar(title: const Text('Search Bar Sample')),
         body: Padding(
-          padding: const .all(8.0),
+          padding: const .fixed(.all(8.0)),
           child: SearchAnchor(
             builder: (BuildContext context, SearchController controller) {
               return SearchBar(

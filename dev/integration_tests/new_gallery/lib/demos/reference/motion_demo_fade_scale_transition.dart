@@ -90,7 +90,7 @@ class _FadeScaleTransitionDemoState extends State<FadeScaleTransitionDemo>
         children: <Widget>[
           const Divider(height: 0),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            padding: const .fixed(EdgeInsets.symmetric(vertical: 8)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -103,7 +103,7 @@ class _FadeScaleTransitionDemoState extends State<FadeScaleTransitionDemo>
                   },
                   child: Text(localizations.demoFadeScaleShowAlertDialogButton),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: .fixed(10)),
                 ElevatedButton(
                   onPressed: () {
                     if (_isAnimationRunningForwardsOrComplete) {

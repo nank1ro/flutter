@@ -127,7 +127,7 @@ class CategoryView extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 24.0),
+              const SizedBox(height: .fixed(24.0)),
             ],
           );
         }).toList(),
@@ -203,14 +203,18 @@ class BackdropTitle extends AnimatedWidget {
       child: Stack(
         children: <Widget>[
           Opacity(
-            opacity: CurvedAnimation(
-              parent: ReverseAnimation(animation),
-              curve: const Interval(0.5, 1.0),
-            ).value,
+            opacity: .fixed(
+              CurvedAnimation(
+                parent: ReverseAnimation(animation),
+                curve: const Interval(0.5, 1.0),
+              ).value,
+            ),
             child: const Text('Select a Category'),
           ),
           Opacity(
-            opacity: CurvedAnimation(parent: animation, curve: const Interval(0.5, 1.0)).value,
+            opacity: .fixed(
+              CurvedAnimation(parent: animation, curve: const Interval(0.5, 1.0)).value,
+            ),
             child: const Text('Asset Viewer'),
           ),
         ],
@@ -332,7 +336,7 @@ class _BackdropDemoState extends State<BackdropDemo> with SingleTickerProviderSt
 
     return ColoredBox(
       key: _backdropKey,
-      color: theme.primaryColor,
+      color: .fixed(theme.primaryColor),
       child: Stack(
         children: <Widget>[
           ListTileTheme(
@@ -340,7 +344,7 @@ class _BackdropDemoState extends State<BackdropDemo> with SingleTickerProviderSt
             textColor: theme.primaryTextTheme.titleLarge!.color!.withOpacity(0.6),
             selectedColor: theme.primaryTextTheme.titleLarge!.color,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: backdropItems,

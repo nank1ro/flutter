@@ -81,8 +81,11 @@ class MobileAsymmetricView extends StatelessWidget {
           column = OneProductCardColumn(product: products[_oddCasesIndex(index)], reverse: true);
         }
         return SizedBox(
-          width: width,
-          child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: column),
+          width: .fixed(width),
+          child: Padding(
+            padding: const .fixed(EdgeInsets.symmetric(horizontal: 16)),
+            child: column,
+          ),
         );
       }).toList();
     } else {
@@ -91,9 +94,9 @@ class MobileAsymmetricView extends StatelessWidget {
       return <SizedBox>[
         for (final Product product in products)
           SizedBox(
-            width: _cardToScreenWidthRatio * MediaQuery.widthOf(context),
+            width: .fixed(_cardToScreenWidthRatio * MediaQuery.widthOf(context)),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const .fixed(EdgeInsets.symmetric(horizontal: 16)),
               child: OneProductCardColumn(product: product, reverse: false),
             ),
           ),

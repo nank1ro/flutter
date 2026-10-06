@@ -56,9 +56,9 @@ class _CupertinoSegmentedControlDemoState extends State<CupertinoSegmentedContro
         child: SafeArea(
           child: Column(
             children: <Widget>[
-              const Padding(padding: EdgeInsets.all(16.0)),
+              const Padding(padding: .fixed(EdgeInsets.all(16.0))),
               SizedBox(
-                width: 500.0,
+                width: const .fixed(500.0),
                 child: CupertinoSegmentedControl<int>(
                   children: children,
                   onValueChanged: onValueChanged,
@@ -66,9 +66,9 @@ class _CupertinoSegmentedControlDemoState extends State<CupertinoSegmentedContro
                 ),
               ),
               SizedBox(
-                width: 500,
+                width: const .fixed(500),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const .fixed(EdgeInsets.all(16.0)),
                   child: CupertinoSlidingSegmentedControl<int>(
                     children: children,
                     onValueChanged: onValueChanged,
@@ -78,7 +78,7 @@ class _CupertinoSegmentedControlDemoState extends State<CupertinoSegmentedContro
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0),
+                  padding: const .fixed(EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0)),
                   child: CupertinoUserInterfaceLevel(
                     data: CupertinoUserInterfaceLevelData.elevated,
                     child: Builder(

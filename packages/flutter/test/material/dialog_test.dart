@@ -127,7 +127,9 @@ void main() {
         surfaceContainerHigh: Colors.red,
       ),
     );
-    const dialog = Dialog(child: SizedBox(width: 200, height: 200));
+    const dialog = Dialog(
+      child: SizedBox(width: .fixed(200), height: .fixed(200)),
+    );
     await tester.pumpWidget(_buildAppWithDialog(dialog, theme: theme));
 
     await tester.tap(find.text('X'));
@@ -2072,7 +2074,7 @@ void main() {
             dismissedItems.add(item);
           });
         },
-        child: SizedBox(height: 100.0, child: Text(item.toString())),
+        child: SizedBox(height: const .fixed(100.0), child: Text(item.toString())),
       );
     }
 
@@ -2083,7 +2085,7 @@ void main() {
             return Scaffold(
               key: scaffoldKey,
               body: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const .fixed(EdgeInsets.all(16.0)),
                 child: ListView(
                   itemExtent: 100.0,
                   children: <int>[0, 1, 2, 3, 4]
@@ -2663,9 +2665,11 @@ void main() {
         theme: ThemeData(useMaterial3: false),
         home: Scaffold(
           body: AlertDialog(
-            content: const SizedBox(width: 800),
+            content: const SizedBox(width: .fixed(800)),
             actionsAlignment: alignment,
-            actions: <Widget>[SizedBox(key: actionKey, width: 20, height: 20)],
+            actions: <Widget>[
+              SizedBox(key: actionKey, width: const .fixed(20), height: const .fixed(20)),
+            ],
             buttonPadding: EdgeInsets.zero,
             insetPadding: EdgeInsets.zero,
           ),
@@ -3075,7 +3079,7 @@ void main() {
       _buildAppWithDialog(
         const Dialog(
           constraints: BoxConstraints(maxWidth: 560),
-          child: SizedBox(width: 1000, height: 100),
+          child: SizedBox(width: .fixed(1000), height: .fixed(100)),
         ),
       ),
     );
@@ -3102,7 +3106,7 @@ void main() {
       _buildAppWithDialog(
         const AlertDialog(
           constraints: BoxConstraints(maxWidth: 560),
-          content: SizedBox(width: 1000, height: 100),
+          content: SizedBox(width: .fixed(1000), height: .fixed(100)),
           contentPadding: EdgeInsets.zero,
         ),
       ),
@@ -3133,7 +3137,7 @@ void main() {
         const SimpleDialog(
           constraints: BoxConstraints(maxWidth: 560),
           contentPadding: EdgeInsets.zero,
-          children: <Widget>[SizedBox(width: 1000, height: 100)],
+          children: <Widget>[SizedBox(width: .fixed(1000), height: .fixed(100))],
         ),
       ),
     );
@@ -3391,8 +3395,9 @@ void main() {
                 onPressed: () {
                   showDialog<void>(
                     context: context,
-                    builder: (BuildContext context) =>
-                        const Dialog(child: SizedBox(width: 200, height: 200)),
+                    builder: (BuildContext context) => const Dialog(
+                      child: SizedBox(width: .fixed(200), height: .fixed(200)),
+                    ),
                   );
                 },
                 child: const Text('Show Dialog'),
@@ -3431,7 +3436,7 @@ void main() {
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
                       title: const Text('Test Dialog'),
-                      content: const SizedBox(width: 200, height: 100),
+                      content: const SizedBox(width: .fixed(200), height: .fixed(100)),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => Navigator.pop(context),

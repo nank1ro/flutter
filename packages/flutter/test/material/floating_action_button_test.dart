@@ -400,7 +400,7 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           floatingActionButton: FloatingActionButton.extended(
-            label: SizedBox(width: 100.0, child: Text('label')),
+            label: SizedBox(width: .fixed(100.0), child: Text('label')),
             icon: Icon(Icons.android),
             onPressed: null,
           ),
@@ -455,7 +455,7 @@ void main() {
         theme: material3Theme,
         home: const Scaffold(
           floatingActionButton: FloatingActionButton.extended(
-            label: SizedBox(width: 100.0, child: Text('label')),
+            label: SizedBox(width: .fixed(100.0), child: Text('label')),
             onPressed: null,
           ),
         ),
@@ -1238,7 +1238,7 @@ void main() {
           theme: material2Theme,
           home: const Scaffold(
             floatingActionButton: FloatingActionButton.extended(
-              label: SizedBox(width: 100.0, child: Text('label')),
+              label: SizedBox(width: .fixed(100.0), child: Text('label')),
               icon: Icon(Icons.android),
               onPressed: null,
             ),
@@ -1290,7 +1290,7 @@ void main() {
           theme: material2Theme,
           home: const Scaffold(
             floatingActionButton: FloatingActionButton.extended(
-              label: SizedBox(width: 100.0, child: Text('label')),
+              label: SizedBox(width: .fixed(100.0), child: Text('label')),
               onPressed: null,
             ),
           ),

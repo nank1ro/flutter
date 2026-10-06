@@ -40,8 +40,8 @@ class ShortAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 96,
-      height: 50,
+      width: const .fixed(96),
+      height: const .fixed(50),
       child: Material(
         color: Theme.of(context).colorScheme.surface,
         elevation: 4,
@@ -55,7 +55,7 @@ class ShortAppBar extends StatelessWidget {
               tooltip: 'Back',
               onPressed: onBackPressed,
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: .fixed(12)),
             Image.asset(
               'logos/fortnightly/fortnightly_logo.png',
               package: 'flutter_gallery_assets',
@@ -100,7 +100,7 @@ over water meant for the whole central valley of California? The story will shoc
       child: SafeArea(
         top: false,
         child: ColoredBox(
-          color: Theme.of(context).colorScheme.surface,
+          color: .fixed(Theme.of(context).colorScheme.surface),
           child: Column(
             children: <Widget>[
               Container(
@@ -111,9 +111,9 @@ over water meant for the whole central valley of California? The story will shoc
                   fit: BoxFit.fitWidth,
                 ),
               ),
-              const SizedBox(height: 17),
+              const SizedBox(height: .fixed(17)),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: const .fixed(EdgeInsets.symmetric(horizontal: 8)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -128,19 +128,19 @@ over water meant for the whole central valley of California? The story will shoc
                         Text('CULTURE', style: textTheme.labelSmall),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: .fixed(10)),
                     Text(
                       'Quince for Wisdom, Persimmon for Luck, Pomegranate for Love',
                       style: textTheme.headlineMedium,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: .fixed(10)),
                     Text(
                       'How these crazy fruits sweetened our hearts, relationships, '
                       'and puffed pastries',
                       style: textTheme.bodyMedium,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const .fixed(EdgeInsets.symmetric(vertical: 16)),
                       child: Row(
                         children: <Widget>[
                           const CircleAvatar(
@@ -150,9 +150,9 @@ over water meant for the whole central valley of California? The story will shoc
                             ),
                             radius: 20,
                           ),
-                          const SizedBox(width: 12),
+                          const SizedBox(width: .fixed(12)),
                           Text('by', style: textTheme.displayMedium),
-                          const SizedBox(width: 4),
+                          const SizedBox(width: .fixed(4)),
                           const Text(
                             'Connor Eghan',
                             style: TextStyle(

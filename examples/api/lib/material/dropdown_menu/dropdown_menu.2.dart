@@ -74,7 +74,7 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: .fixed(20)),
         ListTile(
           tileColor: colorScheme.primaryContainer,
           title: const Column(
@@ -103,7 +103,7 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: .fixed(20)),
         ListTile(
           tileColor: colorScheme.onInverseSurface,
           title: const Column(
@@ -133,7 +133,7 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: .fixed(20)),
         ListTile(
           tileColor: colorScheme.onInverseSurface,
           title: const Column(

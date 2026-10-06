@@ -121,9 +121,11 @@ class _GridPhotoViewerState extends State<GridPhotoViewer> with SingleTickerProv
       onScaleEnd: _handleOnScaleEnd,
       child: ClipRect(
         child: Transform(
-          transform: Matrix4.identity()
-            ..translate(_offset.dx, _offset.dy)
-            ..scale(_scale),
+          transform: .fixed(
+            Matrix4.identity()
+              ..translate(_offset.dx, _offset.dy)
+              ..scale(_scale),
+          ),
           child: Image.asset(
             widget.photo!.assetName!,
             package: widget.photo!.assetPackage,

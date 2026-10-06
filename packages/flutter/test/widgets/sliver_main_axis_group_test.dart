@@ -451,10 +451,10 @@ void main() {
       _buildSliverMainAxisGroup(
         controller: controller,
         slivers: const <Widget>[
-          SliverToBoxAdapter(child: SizedBox(height: 200)),
-          SliverToBoxAdapter(child: SizedBox(height: 300)),
-          SliverToBoxAdapter(child: SizedBox(height: 500)),
-          SliverToBoxAdapter(child: SizedBox(height: 400)),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(200))),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(300))),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(500))),
+          SliverToBoxAdapter(child: SizedBox(height: .fixed(400))),
         ],
       ),
     );
@@ -487,9 +487,9 @@ void main() {
         controller: controller,
         slivers: <Widget>[
           SliverPersistentHeader(delegate: TestDelegate(), pinned: true),
-          const SliverToBoxAdapter(child: SizedBox(height: 600)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
         ],
-        otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+        otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
       ),
     );
     final renderGroup =
@@ -516,9 +516,9 @@ void main() {
         controller: controller,
         slivers: <Widget>[
           SliverPersistentHeader(delegate: TestDelegate(), floating: true),
-          const SliverToBoxAdapter(child: SizedBox(height: 600)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
         ],
-        otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+        otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
       ),
     );
     await tester.pumpAndSettle();
@@ -548,9 +548,9 @@ void main() {
           controller: controller,
           slivers: <Widget>[
             SliverPersistentHeader(delegate: TestDelegate(minExtent: 40.0), pinned: true),
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       final renderGroup =
@@ -581,9 +581,9 @@ void main() {
           controller: controller,
           slivers: <Widget>[
             SliverPersistentHeader(delegate: TestDelegate(minExtent: 40.0), floating: true),
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -625,9 +625,9 @@ void main() {
               pinned: true,
               floating: true,
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -665,9 +665,9 @@ void main() {
           controller: controller,
           slivers: <Widget>[
             SliverPersistentHeader(delegate: TestDelegate(minExtent: 30)),
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -700,9 +700,9 @@ void main() {
           controller: controller,
           slivers: <Widget>[
             const _SnapPersistentHeader(floating: true),
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -742,9 +742,9 @@ void main() {
           controller: controller,
           slivers: <Widget>[
             const _SnapPersistentHeader(floating: true, pinned: true),
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -835,7 +835,7 @@ void main() {
                     itemCount: 100,
                     itemBuilder: (BuildContext context, int index) {
                       buildsPerGroup[groupIndex] = buildsPerGroup[groupIndex]! + 1;
-                      return const SizedBox.square(dimension: 50);
+                      return const SizedBox.square(dimension: .fixed(50));
                     },
                   ),
                 ],
@@ -854,7 +854,7 @@ void main() {
   });
 
   testWidgets('SliverMainAxisGroup has consistent cacheOrigin', (WidgetTester tester) async {
-    const Widget item = SizedBox.square(dimension: 50);
+    const Widget item = SizedBox.square(dimension: .fixed(50));
 
     await tester.pumpWidget(
       TestWidgetsApp(
@@ -862,7 +862,7 @@ void main() {
           slivers: <Widget>[
             SliverMainAxisGroup(
               slivers: <Widget>[
-                const PinnedHeaderSliver(child: SizedBox(height: 500)),
+                const PinnedHeaderSliver(child: SizedBox(height: .fixed(500))),
                 SliverList.builder(
                   itemCount: 100,
                   itemBuilder: (BuildContext context, int index) => item,
@@ -891,9 +891,11 @@ void main() {
       _buildSliverMainAxisGroup(
         viewportHeight: 300,
         slivers: <Widget>[
-          const SliverToBoxAdapter(child: SizedBox(height: 300)),
-          SliverToBoxAdapter(child: SizedBox(key: key, height: 100)),
-          const SliverToBoxAdapter(child: SizedBox(height: 300)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(300))),
+          SliverToBoxAdapter(
+            child: SizedBox(key: key, height: const .fixed(100)),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(300))),
         ],
       ),
     );
@@ -936,9 +938,9 @@ void main() {
                                 behavior: HitTestBehavior.opaque,
                                 onTap: () => Scrollable.ensureVisible(context),
                                 child: SizedBox(
-                                  height: itemHeight,
+                                  height: const .fixed(itemHeight),
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 8),
+                                    padding: const .fixed(EdgeInsets.symmetric(vertical: 8)),
                                     child: Text(label),
                                   ),
                                 ),
@@ -978,8 +980,10 @@ void main() {
       _buildSliverMainAxisGroup(
         viewportHeight: 300,
         slivers: <Widget>[
-          const SliverToBoxAdapter(child: SizedBox(height: 300)),
-          const SliverToBoxAdapter(child: SizedBox(height: 100, child: Text('1'))),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(300))),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: .fixed(100), child: Text('1')),
+          ),
         ],
       ),
     );
@@ -995,9 +999,11 @@ void main() {
         viewportHeight: 400,
         reverse: true,
         slivers: <Widget>[
-          const SliverToBoxAdapter(child: SizedBox(height: 70)),
-          const SliverToBoxAdapter(child: SizedBox(height: 20, child: Text('1'))),
-          const SliverToBoxAdapter(child: SizedBox(height: 700)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(70))),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: .fixed(20), child: Text('1')),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(700))),
         ],
       ),
     );
@@ -1015,8 +1021,8 @@ void main() {
     Future<void> pumpWidget({Axis scrollDirection = Axis.vertical, bool reverse = false}) async {
       Widget buildExtentBox(double size, {Widget? child}) {
         return switch (scrollDirection) {
-          Axis.vertical => SizedBox(height: size, child: child),
-          Axis.horizontal => SizedBox(width: size, child: child),
+          Axis.vertical => SizedBox(height: .fixed(size), child: child),
+          Axis.horizontal => SizedBox(width: .fixed(size), child: child),
         };
       }
 
@@ -1065,18 +1071,18 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox(
-            height: 201,
+            height: const .fixed(201),
             child: CustomScrollView(
               controller: controller,
               slivers: const <Widget>[
                 SliverMainAxisGroup(
                   slivers: <Widget>[
-                    SliverToBoxAdapter(child: SizedBox(height: 70)),
-                    PinnedHeaderSliver(child: SizedBox(height: 70)),
-                    SliverToBoxAdapter(child: SizedBox(height: 70)),
-                    PinnedHeaderSliver(child: SizedBox(height: 70)),
-                    SliverToBoxAdapter(child: SizedBox(height: 70)),
-                    PinnedHeaderSliver(child: SizedBox(height: 70)),
+                    SliverToBoxAdapter(child: SizedBox(height: .fixed(70))),
+                    PinnedHeaderSliver(child: SizedBox(height: .fixed(70))),
+                    SliverToBoxAdapter(child: SizedBox(height: .fixed(70))),
+                    PinnedHeaderSliver(child: SizedBox(height: .fixed(70))),
+                    SliverToBoxAdapter(child: SizedBox(height: .fixed(70))),
+                    PinnedHeaderSliver(child: SizedBox(height: .fixed(70))),
                   ],
                 ),
               ],
@@ -1103,10 +1109,10 @@ void main() {
               onTap: () {
                 onTapCalled = true;
               },
-              child: const SizedBox(height: 50),
+              child: const SizedBox(height: .fixed(50)),
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 20)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(20))),
         ],
       ),
     );
@@ -1130,15 +1136,23 @@ void main() {
           slivers: const <Widget>[
             SliverMainAxisGroup(
               slivers: <Widget>[
-                SliverToBoxAdapter(child: SizedBox(height: 50, child: Text('-2'))),
-                SliverToBoxAdapter(child: SizedBox(height: 50, child: Text('-1'))),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: .fixed(50), child: Text('-2')),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: .fixed(50), child: Text('-1')),
+                ),
               ],
             ),
             SliverMainAxisGroup(
               key: centerKey,
               slivers: <Widget>[
-                SliverToBoxAdapter(child: SizedBox(height: 50, child: Text('1'))),
-                SliverToBoxAdapter(child: SizedBox(height: 50, child: Text('2'))),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: .fixed(50), child: Text('1')),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: .fixed(50), child: Text('2')),
+                ),
               ],
             ),
           ],
@@ -1163,9 +1177,11 @@ void main() {
         viewportHeight: 100,
         controller: controller,
         slivers: <Widget>[
-          const PinnedHeaderSliver(child: SizedBox(height: 50)),
-          const SliverToBoxAdapter(child: SizedBox(height: 50, child: Text('1'))),
-          const SliverToBoxAdapter(child: SizedBox(height: 400)),
+          const PinnedHeaderSliver(child: SizedBox(height: .fixed(50))),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: .fixed(50), child: Text('1')),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(400))),
         ],
       ),
     );
@@ -1189,22 +1205,24 @@ void main() {
           home: Align(
             alignment: Alignment.topLeft,
             child: SizedBox(
-              height: 100,
+              height: const .fixed(100),
               child: CustomScrollView(
                 controller: controller,
                 slivers: <Widget>[
                   SliverMainAxisGroup(
                     slivers: <Widget>[
-                      const PinnedHeaderSliver(child: SizedBox(height: 20)),
-                      const SliverToBoxAdapter(child: SizedBox(height: 20)),
-                      SliverToBoxAdapter(child: SizedBox(height: 60, key: key)),
+                      const PinnedHeaderSliver(child: SizedBox(height: .fixed(20))),
+                      const SliverToBoxAdapter(child: SizedBox(height: .fixed(20))),
+                      SliverToBoxAdapter(
+                        child: SizedBox(height: const .fixed(60), key: key),
+                      ),
                     ],
                   ),
                   const SliverMainAxisGroup(
                     slivers: <Widget>[
-                      PinnedHeaderSliver(child: SizedBox(height: 20)),
-                      SliverToBoxAdapter(child: SizedBox(height: 20)),
-                      SliverToBoxAdapter(child: SizedBox(height: 60)),
+                      PinnedHeaderSliver(child: SizedBox(height: .fixed(20))),
+                      SliverToBoxAdapter(child: SizedBox(height: .fixed(20))),
+                      SliverToBoxAdapter(child: SizedBox(height: .fixed(60))),
                     ],
                   ),
                 ],
@@ -1234,7 +1252,7 @@ void main() {
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTapDown: (TapDownDetails details) => tapDownLog.add((index: index, details: details)),
-          child: const SizedBox(height: 20),
+          child: const SizedBox(height: .fixed(20)),
         ),
       );
     }
@@ -1364,7 +1382,7 @@ void main() {
       Widget buildItem(BuildContext context, int index) {
         return !skip || index.isEven
             ? Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding: const .fixed(EdgeInsets.all(4.0)),
                 child: TestListTile(
                   title: Text('item$index', style: const TextStyle(fontSize: 80)),
                 ),
@@ -1464,7 +1482,7 @@ void main() {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const .fixed(EdgeInsets.all(8.0)),
                   child: Text('Lorem Ipsum $index'),
                 );
               },
@@ -1495,8 +1513,12 @@ void main() {
         viewportHeight: 300,
         // Default cacheExtent is 250.0
         slivers: <Widget>[
-          const SliverToBoxAdapter(child: SizedBox(height: 300, child: Text('a'))),
-          const SliverToBoxAdapter(child: SizedBox(height: 100, child: Text('b'))),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: .fixed(300), child: Text('a')),
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: .fixed(100), child: Text('b')),
+          ),
         ],
       ),
     );
@@ -1522,20 +1544,28 @@ void main() {
             reverse: reverse,
             viewportHeight: 300,
             precedingSlivers: <Widget>[
-              PinnedHeaderSliver(child: SizedBox(height: 30, key: keys[0])),
+              PinnedHeaderSliver(
+                child: SizedBox(height: const .fixed(30), key: keys[0]),
+              ),
             ],
-            otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 300))],
+            otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(300)))],
             slivers: <Widget>[
-              PinnedHeaderSliver(child: SizedBox(height: 30, key: keys[1])),
+              PinnedHeaderSliver(
+                child: SizedBox(height: const .fixed(30), key: keys[1]),
+              ),
               SliverMainAxisGroup(
                 slivers: [
-                  PinnedHeaderSliver(child: SizedBox(height: 30, key: keys[2])),
-                  const SliverToBoxAdapter(child: SizedBox(height: 30)),
-                  PinnedHeaderSliver(child: SizedBox(height: 30, key: keys[3])),
-                  const SliverToBoxAdapter(child: SizedBox(height: 30)),
+                  PinnedHeaderSliver(
+                    child: SizedBox(height: const .fixed(30), key: keys[2]),
+                  ),
+                  const SliverToBoxAdapter(child: SizedBox(height: .fixed(30))),
+                  PinnedHeaderSliver(
+                    child: SizedBox(height: const .fixed(30), key: keys[3]),
+                  ),
+                  const SliverToBoxAdapter(child: SizedBox(height: .fixed(30))),
                 ],
               ),
-              const SliverToBoxAdapter(child: SizedBox(height: 30)),
+              const SliverToBoxAdapter(child: SizedBox(height: .fixed(30))),
             ],
           ),
         );
@@ -1584,12 +1614,12 @@ Widget _buildSliverList({
         return scrollDirection == Axis.vertical
             ? SizedBox(
                 key: ValueKey<int>(items[i]),
-                height: itemMainAxisExtent,
+                height: .fixed(itemMainAxisExtent),
                 child: label(items[i]),
               )
             : SizedBox(
                 key: ValueKey<int>(items[i]),
-                width: itemMainAxisExtent,
+                width: .fixed(itemMainAxisExtent),
                 child: label(items[i]),
               );
       },
@@ -1617,8 +1647,8 @@ Widget _buildSliverMainAxisGroup({
     home: Align(
       alignment: Alignment.topLeft,
       child: SizedBox(
-        height: viewportHeight,
-        width: viewportWidth,
+        height: .fixed(viewportHeight),
+        width: .fixed(viewportWidth),
         child: CustomScrollView(
           scrollDirection: scrollDirection,
           reverse: reverse,

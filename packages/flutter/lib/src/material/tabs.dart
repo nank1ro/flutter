@@ -211,14 +211,14 @@ class Tab extends StatelessWidget implements PreferredSizeWidget {
       label = Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Padding(padding: effectiveIconMargin, child: icon),
+          Padding(padding: .fixed(effectiveIconMargin), child: icon),
           _buildLabelText(),
         ],
       );
     }
 
     return SizedBox(
-      height: height ?? calculatedHeight,
+      height: .fixed(height ?? calculatedHeight),
       child: Center(widthFactor: 1.0, child: label),
     );
   }
@@ -1962,7 +1962,10 @@ class _TabBarState extends State<TabBar> {
     if (_controller!.length == 0) {
       return LimitedBox(
         maxWidth: 0.0,
-        child: SizedBox(width: double.infinity, height: _kTabHeight + widget.indicatorWeight),
+        child: SizedBox(
+          width: const .fixed(double.infinity),
+          height: .fixed(_kTabHeight + widget.indicatorWeight),
+        ),
       );
     }
 
@@ -1982,7 +1985,7 @@ class _TabBarState extends State<TabBar> {
       return Center(
         heightFactor: 1.0,
         child: Padding(
-          padding: _labelPaddings[index],
+          padding: .fixed(_labelPaddings[index]),
           child: KeyedSubtree(key: _tabKeys[index], child: widget.tabs[index]),
         ),
       );
@@ -2084,7 +2087,7 @@ class _TabBarState extends State<TabBar> {
             tabBarTheme.splashBorderRadius ??
             _defaults.splashBorderRadius,
         child: Padding(
-          padding: EdgeInsets.only(bottom: widget.indicatorWeight),
+          padding: .fixed(EdgeInsets.only(bottom: widget.indicatorWeight)),
           child: Semantics(
             // This has to be wrapped above the Stack to override any role set by the child.
             role: SemanticsRole.tab,
@@ -2181,7 +2184,7 @@ class _TabBarState extends State<TabBar> {
         }
       }
     } else if (widget.padding != null) {
-      tabBar = Padding(padding: widget.padding!, child: tabBar);
+      tabBar = Padding(padding: .fixed(widget.padding!), child: tabBar);
     }
 
     return Material(

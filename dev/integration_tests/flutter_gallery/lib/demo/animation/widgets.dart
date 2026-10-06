@@ -20,8 +20,10 @@ class SectionCard extends StatelessWidget {
       label: section.title,
       button: true,
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: <Color>[section.leftColor!, section.rightColor!]),
+        decoration: .fixed(
+          BoxDecoration(
+            gradient: LinearGradient(colors: <Color>[section.leftColor!, section.rightColor!]),
+          ),
         ),
         child: Image.asset(
           section.backgroundAsset!,
@@ -62,9 +64,9 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return IgnorePointer(
       child: Opacity(
-        opacity: opacity,
+        opacity: .fixed(opacity),
         child: Transform(
-          transform: Matrix4.identity()..scale(scale),
+          transform: .fixed(Matrix4.identity()..scale(scale)),
           alignment: Alignment.center,
           child: Stack(
             children: <Widget>[
@@ -107,11 +109,13 @@ class SectionDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget image = DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.0),
-        image: DecorationImage(
-          image: AssetImage(detail.imageAsset!, package: detail.imageAssetPackage),
-          fit: BoxFit.cover,
+      decoration: .fixed(
+        BoxDecoration(
+          borderRadius: BorderRadius.circular(6.0),
+          image: DecorationImage(
+            image: AssetImage(detail.imageAsset!, package: detail.imageAssetPackage),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -127,12 +131,12 @@ class SectionDetailView extends StatelessWidget {
       item = ListTile(
         title: Text(detail.title!),
         subtitle: Text(detail.subtitle!),
-        leading: SizedBox(width: 32.0, height: 32.0, child: image),
+        leading: SizedBox(width: const .fixed(32.0), height: const .fixed(32.0), child: image),
       );
     }
 
     return DecoratedBox(
-      decoration: BoxDecoration(color: Colors.grey.shade200),
+      decoration: .fixed(BoxDecoration(color: Colors.grey.shade200)),
       child: item,
     );
   }

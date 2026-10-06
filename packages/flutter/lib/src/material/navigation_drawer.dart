@@ -395,9 +395,9 @@ class _NavigationDestinationBuilder extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              const SizedBox(width: 16),
+              const SizedBox(width: .fixed(16)),
               buildIcon(context),
-              const SizedBox(width: 12),
+              const SizedBox(width: .fixed(12)),
               buildLabel(context),
             ],
           ),
@@ -406,10 +406,10 @@ class _NavigationDestinationBuilder extends StatelessWidget {
     );
 
     final Widget destination = Padding(
-      padding: info.tilePadding,
+      padding: .fixed(info.tilePadding),
       child: _NavigationDestinationSemantics(
         child: SizedBox(
-          height: navigationDrawerTheme.tileHeight ?? defaults.tileHeight,
+          height: .fixed(navigationDrawerTheme.tileHeight ?? defaults.tileHeight),
           child: inkWell,
         ),
       ),

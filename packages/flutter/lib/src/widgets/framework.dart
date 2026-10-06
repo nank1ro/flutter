@@ -16,11 +16,16 @@ import 'dart:collection';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 
+// `Link` and `ReactiveNode` are not exported by `foundation.dart`; the signal
+// write check below walks a signal's subscriber list, so it needs both.
+import '../foundation/signals.dart' show Link, ReactiveNode;
+
 import 'binding.dart';
 import 'debug.dart';
 import 'focus_manager.dart';
 import 'inherited_model.dart';
 import 'notification_listener.dart';
+import 'reactive_props.dart';
 import 'widget_inspector.dart';
 
 export 'package:flutter/foundation.dart'
@@ -504,7 +509,7 @@ abstract class Widget extends DiagnosticableTree {
 ///
 ///   @override
 ///   Widget build(BuildContext context) {
-///     return ColoredBox(color: color, child: child);
+///     return ColoredBox(color: .fixed(color), child: child);
 ///   }
 /// }
 /// ```
@@ -3018,6 +3023,85 @@ class BuildOwner {
   bool _debugBuilding = false;
   Element? _debugCurrentBuildTarget;
 
+  /// Whether a [Signal] may be written right now.
+  ///
+  /// Installed as [debugAssertSignalWriteAllowed] by [WidgetsBinding], and
+  /// called from inside an `assert` in the setter of [Signal.value]. Returns
+  /// true when the write is allowed, and throws a [FlutterError] naming the
+  /// widget that would be left stale when it is not.
+  ///
+  /// Writing a signal from a build method is the signal-graph analogue of
+  /// calling [State.setState] during build, and the rule here is the one
+  /// [Element.markNeedsBuild] already applies: dirtying an element during a
+  /// build is fine when that element is at or below the element being built,
+  /// because the framework builds parents before children and will reach it in
+  /// this same build. So the write is allowed when every element that reads
+  /// the signal is the current build target or a descendant of it, and refused
+  /// when one of them is an ancestor or a sibling, which has already built
+  /// with the old value.
+  ///
+  /// A signal the build target itself reads is refused once that target's own
+  /// build is running: the read has already happened, and the invalidation the
+  /// write queues is dropped when the build ends. Before then it is allowed,
+  /// which is what makes the mirror idiom work — assigning a widget field to a
+  /// signal in [State.initState], [State.didUpdateWidget] or
+  /// [State.didChangeDependencies], all of which run before the build that
+  /// reads it.
+  ///
+  /// Subscribers that are not elements, such as a plain [Effect], never stop a
+  /// write: they are queued and run in the next flush.
+  ///
+  /// Writes made during layout and paint are allowed, and are picked up by the
+  /// next frame. A build that runs *from* layout — a [LayoutBuilder] builder,
+  /// a lazy sliver's item builder — counts as layout for this purpose.
+  ///
+  /// Only valid when asserts are enabled.
+  bool debugCheckSignalWriteAllowed(ReactiveNode signal) {
+    assert(() {
+      if (!_debugBuilding || RenderObject.debugActiveLayout != null) {
+        return true;
+      }
+      assert(_debugCurrentBuildTarget != null);
+      final Element target = _debugCurrentBuildTarget!;
+      Element? offender;
+      for (Link? link = signal.subs; link != null && offender == null; link = link.nextSub) {
+        final ReactiveNode sub = link.sub;
+        final Object? subOwner = sub is Subscriber ? sub.debugOwner : null;
+        if (subOwner is! Element) {
+          continue;
+        }
+        final bool reachable = identical(subOwner, target)
+            ? !target.debugDoingBuild
+            : subOwner._debugIsDescendantOf(target);
+        if (!reachable) {
+          offender = subOwner;
+        }
+      }
+      if (offender == null) {
+        return true;
+      }
+      throw FlutterError.fromParts(<DiagnosticsNode>[
+        ErrorSummary('A signal was written during build.'),
+        ErrorDescription(
+          'A Signal cannot be written while the framework is building widgets, unless every '
+          'widget that reads it is the one being built or below it. This signal is read by a '
+          'widget that this build will not reach, so that widget has already been built with '
+          'the old value and would be left stale.',
+        ),
+        ErrorHint(
+          'Signals are meant to be written from event handlers, effects and frame callbacks, not '
+          'from build. If the value is derived from other signals, use a Computed instead of '
+          'writing a Signal during build.',
+        ),
+        offender.describeWidget('The widget that reads the signal, and would be left stale, is'),
+        target.describeWidget(
+          'The widget which was currently being built when the signal was written was',
+        ),
+      ]);
+    }());
+    return true;
+  }
+
   /// Establishes a scope in which calls to [State.setState] are forbidden, and
   /// calls the given `callback`.
   ///
@@ -4779,6 +4863,12 @@ abstract class Element extends DiagnosticableTree implements BuildContext {
     if (_dirty) {
       owner!.scheduleBuildFor(this);
     }
+    if (_pendingReactiveBuild) {
+      // A signal this element reads was written while it was inactive. See
+      // [_invalidateFromSignal].
+      _pendingReactiveBuild = false;
+      markNeedsBuild();
+    }
     if (hadDependencies) {
       didChangeDependencies();
     }
@@ -4871,6 +4961,15 @@ abstract class Element extends DiagnosticableTree implements BuildContext {
     if (key is GlobalKey) {
       owner!._unregisterGlobalKey(key, this);
     }
+    // Unsubscribe from the signal graph, so that a long-lived signal does not
+    // retain a defunct element, and dispose everything the element owns.
+    // StatefulElement nulls out _reactiveOwner before calling this and
+    // disposes it after State.dispose, so that a State disposing itself can
+    // still touch what it owns.
+    _reactiveTrackingNode?.dispose();
+    _reactiveTrackingNode = null;
+    _reactiveOwner?.dispose();
+    _reactiveOwner = null;
     // Release resources to reduce the severity of memory leaks caused by
     // defunct, but accidentally retained Elements.
     _widget = null;
@@ -5342,6 +5441,116 @@ abstract class Element extends DiagnosticableTree implements BuildContext {
   // Whether we've already built or not. Set in [rebuild].
   bool _debugBuiltOnce = false;
 
+  Owner? _reactiveOwner;
+  TrackingNode? _reactiveTrackingNode;
+
+  /// Whether a signal this element read changed while it was inactive, so that
+  /// the [markNeedsBuild] the invalidation wanted was a no-op.
+  ///
+  /// Replayed by [activate]. Without this, an element invalidated between
+  /// [deactivate] and [activate] — a [GlobalKey] moving between parents in the
+  /// same frame — would come back with a stale build and an unwatched node
+  /// that no later write can re-arm.
+  bool _pendingReactiveBuild = false;
+
+  /// The reactive ownership scope tied to this element's lifetime.
+  ///
+  /// [Effect]s, [Computed]s and nested [Owner]s created while this owner is
+  /// active are disposed when the element is unmounted, and *not* when it
+  /// rebuilds. It is deliberately detached from whatever scope happens to be
+  /// running when it is first read, which for an element is normally the
+  /// tracked scope of its own build: an [Owner] created there would be
+  /// disposed by the very next rebuild.
+  ///
+  /// The framework exposes this scope through [State.initState], which runs
+  /// once per element, so that an [Effect] created there is created once per
+  /// [State] instance and disposed when the element unmounts. That is the
+  /// place for reactive state that must survive rebuilds; anything created
+  /// during [ComponentElement.build] belongs to the build's own scope and is
+  /// disposed and re-created on every rebuild.
+  Owner get _reactiveElementOwner {
+    assert(
+      _lifecycleState != _ElementLifecycle.defunct,
+      'Cannot create a reactive scope on a defunct $runtimeType.',
+    );
+    return _reactiveOwner ??= Owner.detached();
+  }
+
+  /// The reactive ownership scope tied to this element's lifetime.
+  ///
+  /// [Effect]s, [Computed]s and nested [Owner]s created while this owner is
+  /// active are disposed when the element is unmounted, and *not* when it
+  /// rebuilds.
+  ///
+  /// Exposed for the reactive render-object elements in `reactive_widgets.dart`,
+  /// which create one [Effect] per reactive property here so that the effect
+  /// lives exactly as long as the element and survives every rebuild. The
+  /// framework also exposes this scope through [State.initState], which runs
+  /// once per element, so that an [Effect] created there is created once per
+  /// [State] instance. Anything created during [ComponentElement.build], by
+  /// contrast, belongs to the build's own scope and is disposed and re-created
+  /// on every rebuild.
+  @protected
+  Owner get reactiveOwner => _reactiveElementOwner;
+
+  /// The subscriber that signal reads made during [ComponentElement.build]
+  /// attach to. Invalidating it marks this element as needing to build.
+  ///
+  /// One node is allocated per element on its first build, whether or not that
+  /// build reads anything reactive: the node is what a read would attach to,
+  /// so it has to exist before the build runs. An element that reads nothing
+  /// keeps a node with no dependencies, which costs one object and no work per
+  /// build.
+  ///
+  /// Created outside any other scope, so that it belongs to this element
+  /// alone, and disposed by [unmount].
+  TrackingNode get _trackingNode {
+    assert(
+      _lifecycleState != _ElementLifecycle.defunct,
+      'Cannot track a build of a defunct $runtimeType.',
+    );
+    if (_reactiveTrackingNode == null) {
+      final node = TrackingNode(_invalidateFromSignal);
+      assert(() {
+        // Lets [BuildOwner.debugCheckSignalWriteAllowed] tell which element a
+        // subscriber of a signal belongs to.
+        node.debugOwner = this;
+        return true;
+      }());
+      _reactiveTrackingNode = node;
+    }
+    return _reactiveTrackingNode!;
+  }
+
+  /// Runs [body] with this element's tracking node as the active subscriber,
+  /// so that every [Signal] and [Computed] it reads marks this element as
+  /// needing to build when it changes.
+  ///
+  /// [ComponentElement] does this for `build` already. This is for the
+  /// [RenderObjectElement]s that call a user callback of their own, from
+  /// layout rather than from a rebuild: [LayoutBuilder] and the lazy slivers.
+  /// Without it, a signal read by one of those builders is silently untracked.
+  ///
+  /// Dependencies read by the previous call are dropped, unless [retainDeps]
+  /// is set; see [Subscriber.track]. An element that builds its children one
+  /// at a time, in separate calls, retains and clears them itself by tracking
+  /// an empty body when the run starts over.
+  @protected
+  T trackSignalReads<T>(T Function() body, {bool retainDeps = false}) {
+    return _trackingNode.track(body, retainDeps: retainDeps);
+  }
+
+  /// Called when a signal read by this element's tracked build changes.
+  void _invalidateFromSignal() {
+    if (_lifecycleState != _ElementLifecycle.active) {
+      // markNeedsBuild would be a no-op, and the node has just been unarmed,
+      // so nothing would ever ask for the rebuild again. Remember it instead.
+      _pendingReactiveBuild = true;
+      return;
+    }
+    markNeedsBuild();
+  }
+
   /// Marks the element as dirty and adds it to the global list of widgets to
   /// rebuild in the next frame.
   ///
@@ -5779,6 +5988,19 @@ typedef NullableIndexedWidgetBuilder = Widget? Function(BuildContext context, in
 /// * [ValueWidgetBuilder], which is similar but takes a value and a child.
 typedef TransitionBuilder = Widget Function(BuildContext context, Widget? child);
 
+/// Whether [ComponentElement.performRebuild] runs `build` inside the element's
+/// tracking scope, so that the signals it reads subscribe the element.
+///
+/// Defaults to true, and only read when asserts are enabled: turning it off
+/// makes builds untracked in a debug build, which is how the cost of tracking
+/// a build that reads nothing is measured (benchmark B7). Nothing in a release
+/// build looks at it, so the A/B is a debug-mode measurement of a debug-mode
+/// baseline.
+///
+/// Turning this off leaves already-subscribed elements subscribed, so change
+/// it before building anything.
+bool debugTrackSignalReadsInBuild = true;
+
 /// An [Element] that composes other [Element]s.
 ///
 /// Rather than creating a [RenderObject] directly, a [ComponentElement] creates
@@ -5818,16 +6040,33 @@ abstract class ComponentElement extends Element {
   ///
   /// Called automatically during [mount] to generate the first build, and by
   /// [rebuild] when the element needs updating.
+  ///
+  /// The call to [build] is tracked: every [Signal] and [Computed] read while
+  /// it runs subscribes this element, and writing one of them marks the
+  /// element as needing to build. There is no opt-in and no wrapper widget. A
+  /// build that reads nothing reactive subscribes to nothing and pays for one
+  /// scope swap.
+  ///
+  /// Effects and computeds created during [build] belong to the build, not to
+  /// the element: they are disposed and re-created on the next rebuild, and
+  /// disposed for good when the element unmounts. Reactive state that must
+  /// survive a rebuild is created in [State.initState] instead, which runs in
+  /// a scope tied to the element's lifetime.
   @override
   @pragma('vm:notify-debugger-on-exception')
   void performRebuild() {
     Widget built;
+    var trackSignalReads = true;
+    assert(() {
+      trackSignalReads = debugTrackSignalReadsInBuild;
+      return true;
+    }());
     try {
       assert(() {
         _debugDoingBuild = true;
         return true;
       }());
-      built = build();
+      built = trackSignalReads ? _trackingNode.track(build) : build();
       assert(() {
         _debugDoingBuild = false;
         return true;
@@ -5960,7 +6199,15 @@ class StatefulElement extends ComponentElement {
   @override
   void _firstBuild() {
     assert(state._debugLifecycleState == _StateLifecycle.created);
-    final Object? debugCheckForReturnedFuture = state.initState() as dynamic;
+    // initState runs once per State instance, in a scope that lives as long as
+    // this element. An Effect or Computed created here is therefore created
+    // once per instance and disposed on unmount, which is what `build` cannot
+    // offer: build re-runs, and everything it creates is disposed with it.
+    // Reads here are untracked, like every read in an Owner scope: initState
+    // is not a build, and nothing would re-run it.
+    final Object? debugCheckForReturnedFuture = _reactiveElementOwner.run<Object?>(
+      () => state.initState() as dynamic,
+    );
     assert(() {
       if (debugCheckForReturnedFuture is Future) {
         throw FlutterError.fromParts(<DiagnosticsNode>[
@@ -5978,7 +6225,10 @@ class StatefulElement extends ComponentElement {
       state._debugLifecycleState = _StateLifecycle.initialized;
       return true;
     }());
-    state.didChangeDependencies();
+    // Untracked for the same reason as in performRebuild below: this callback
+    // is the inherited-widget protocol, not a build, and the build that
+    // follows it reads the same values reactively.
+    untracked(state.didChangeDependencies);
     assert(() {
       state._debugLifecycleState = _StateLifecycle.ready;
       return true;
@@ -5989,7 +6239,13 @@ class StatefulElement extends ComponentElement {
   @override
   void performRebuild() {
     if (_didChangeDependencies) {
-      state.didChangeDependencies();
+      // Deliberately outside the tracked build scope that super.performRebuild
+      // installs: this callback is the inherited-widget protocol, it runs
+      // before build and reports errors as its own, and it is always followed
+      // by a build in which the same values can be read reactively. Reads here
+      // are untracked on purpose, and marked as such so that the debug check
+      // for untracked reads during a frame does not report them.
+      untracked(state.didChangeDependencies);
       _didChangeDependencies = false;
     }
     super.performRebuild();
@@ -6039,8 +6295,14 @@ class StatefulElement extends ComponentElement {
 
   @override
   void unmount() {
+    // Hold the element's reactive scope back from Element.unmount, so that it
+    // outlives State.dispose: a State disposing itself may still read or
+    // dispose what it created in initState.
+    final Owner? reactiveOwner = _reactiveOwner;
+    _reactiveOwner = null;
     super.unmount();
     state.dispose();
+    reactiveOwner?.dispose();
     assert(() {
       if (state._debugLifecycleState == _StateLifecycle.defunct) {
         return true;
@@ -6813,6 +7075,7 @@ abstract class RenderObjectElement extends Element {
     assert(slot == newSlot);
     attachRenderObject(newSlot);
     super.performRebuild(); // clears the "dirty" flag
+    _bindReactiveProps();
   }
 
   @override
@@ -6853,6 +7116,25 @@ abstract class RenderObjectElement extends Element {
       return true;
     }());
     super.performRebuild(); // clears the "dirty" flag
+    // Also covers an inherited widget changing: anything bindProps read from
+    // this element's context has to be read again.
+    _bindReactiveProps();
+  }
+
+  /// The binder for this element's reactive properties. Created the first
+  /// time the widget is a [ReactiveRenderObjectWidget] with a reactive
+  /// property, so an element whose properties are all fixed never has one.
+  PropBinder? _propBinder;
+
+  void _bindReactiveProps() {
+    final Widget widget = this.widget;
+    if (widget is! ReactiveRenderObjectWidget) {
+      return;
+    }
+    if (_propBinder == null && !widget.hasReactiveProps) {
+      return;
+    }
+    (_propBinder ??= PropBinder(this, reactiveOwner)).bindAll(widget, renderObject);
   }
 
   @override

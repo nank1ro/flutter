@@ -532,8 +532,8 @@ void main() {
           textDirection: TextDirection.ltr,
           child: ListView(
             children: const <Widget>[
-              SizedBox(width: 100.0, height: 100.0, child: Text('hello')),
-              SizedBox(width: 100.0, height: 100.0, child: Text('hello')),
+              SizedBox(width: .fixed(100.0), height: .fixed(100.0), child: Text('hello')),
+              SizedBox(width: .fixed(100.0), height: .fixed(100.0), child: Text('hello')),
             ],
           ),
         ),
@@ -567,8 +567,8 @@ void main() {
       Align(
         alignment: Alignment.topLeft,
         child: Transform.translate(
-          offset: const Offset(40, 30),
-          child: const SizedBox(key: ValueKey<int>(1), width: 100, height: 120),
+          offset: const .fixed(Offset(40, 30)),
+          child: const SizedBox(key: ValueKey<int>(1), width: .fixed(100), height: .fixed(120)),
         ),
       ),
     );
@@ -604,14 +604,14 @@ void main() {
               children: <Widget>[
                 const Text('Hello1', key: ValueKey<String>('text1')),
                 SizedBox(
-                  height: 25.0,
+                  height: const .fixed(25.0),
                   child: RichText(
                     key: const ValueKey<String>('text2'),
                     text: const TextSpan(text: 'Hello2'),
                   ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: const .fixed(25.0),
                   child: EditableText(
                     key: const ValueKey<String>('text3'),
                     controller: TextEditingController(text: 'Hello3'),
@@ -622,21 +622,21 @@ void main() {
                   ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: const .fixed(25.0),
                   child: TextField(
                     key: const ValueKey<String>('text4'),
                     controller: TextEditingController(text: 'Hello4'),
                   ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: const .fixed(25.0),
                   child: TextFormField(
                     key: const ValueKey<String>('text5'),
                     controller: TextEditingController(text: 'Hello5'),
                   ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: const .fixed(25.0),
                   child: RichText(
                     key: const ValueKey<String>('text6'),
                     text: const TextSpan(
@@ -783,13 +783,21 @@ void main() {
           home: Center(
             child: SizedBox(
               key: ValueKey<String>('parent'),
-              height: 100,
-              width: 100,
+              height: .fixed(100),
+              width: .fixed(100),
               child: Center(
                 child: Row(
                   children: <Widget>[
-                    SizedBox(key: ValueKey<String>('leftchild'), width: 25, height: 25),
-                    SizedBox(key: ValueKey<String>('rightchild'), width: 25, height: 25),
+                    SizedBox(
+                      key: ValueKey<String>('leftchild'),
+                      width: .fixed(25),
+                      height: .fixed(25),
+                    ),
+                    SizedBox(
+                      key: ValueKey<String>('rightchild'),
+                      width: .fixed(25),
+                      height: .fixed(25),
+                    ),
                   ],
                 ),
               ),
@@ -850,12 +858,16 @@ void main() {
         const MaterialApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 200,
+              dimension: .fixed(200),
               child: Center(
                 child: SizedBox.square(
-                  dimension: 100,
+                  dimension: .fixed(100),
                   child: Center(
-                    child: SizedBox(key: ValueKey<String>('leaf'), height: 50, width: 50),
+                    child: SizedBox(
+                      key: ValueKey<String>('leaf'),
+                      height: .fixed(50),
+                      width: .fixed(50),
+                    ),
                   ),
                 ),
               ),

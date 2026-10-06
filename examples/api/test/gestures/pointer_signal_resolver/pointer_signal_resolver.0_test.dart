@@ -15,8 +15,8 @@ void main() {
     );
     final DecoratedBox innerBox = tester.widget(find.byType(DecoratedBox).last);
     return (
-      outer: (outerBox.decoration as BoxDecoration).color!,
-      inner: (innerBox.decoration as BoxDecoration).color!,
+      outer: (outerBox.decoration.value as BoxDecoration).color!,
+      inner: (innerBox.decoration.value as BoxDecoration).color!,
     );
   }
 

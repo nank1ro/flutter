@@ -72,7 +72,7 @@ void main() {
         child: ClipRect(
           child: FittedBox(
             child: SizedBox.fromSize(
-              size: Size.zero,
+              size: const .fixed(Size.zero),
               child: Semantics(image: true, label: 'Image'),
             ),
           ),
@@ -200,7 +200,7 @@ void main() {
   testWidgets('Transparent ClipOval hit test', (WidgetTester tester) async {
     await tester.pumpWidget(
       Opacity(
-        opacity: 0.0,
+        opacity: const .fixed(0.0),
         child: ClipOval(
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -227,7 +227,7 @@ void main() {
       Align(
         alignment: Alignment.topLeft,
         child: SizedBox.square(
-          dimension: 100.0,
+          dimension: const .fixed(100.0),
           child: ClipRect(
             clipper: ValueClipper<Rect>('a', const Rect.fromLTWH(5.0, 5.0, 10.0, 10.0)),
             child: GestureDetector(
@@ -252,7 +252,7 @@ void main() {
       Align(
         alignment: Alignment.topLeft,
         child: SizedBox.square(
-          dimension: 100.0,
+          dimension: const .fixed(100.0),
           child: ClipRect(
             clipper: ValueClipper<Rect>('a', const Rect.fromLTWH(5.0, 5.0, 10.0, 10.0)),
             child: GestureDetector(
@@ -271,7 +271,7 @@ void main() {
       Align(
         alignment: Alignment.topLeft,
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: const .fixed(200.0),
           child: ClipRect(
             clipper: ValueClipper<Rect>('a', const Rect.fromLTWH(5.0, 5.0, 10.0, 10.0)),
             child: GestureDetector(
@@ -290,7 +290,7 @@ void main() {
       Align(
         alignment: Alignment.topLeft,
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: const .fixed(200.0),
           child: ClipRect(
             clipper: ValueClipper<Rect>('a', const Rect.fromLTWH(5.0, 5.0, 10.0, 10.0)),
             child: GestureDetector(
@@ -309,7 +309,7 @@ void main() {
       Align(
         alignment: Alignment.topLeft,
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: const .fixed(200.0),
           child: ClipRect(
             clipper: ValueClipper<Rect>('b', const Rect.fromLTWH(5.0, 5.0, 10.0, 10.0)),
             child: GestureDetector(
@@ -328,7 +328,7 @@ void main() {
       Align(
         alignment: Alignment.topLeft,
         child: SizedBox.square(
-          dimension: 200.0,
+          dimension: const .fixed(200.0),
           child: ClipRect(
             clipper: ValueClipper<Rect>('c', const Rect.fromLTWH(25.0, 25.0, 10.0, 10.0)),
             child: GestureDetector(
@@ -378,18 +378,18 @@ void main() {
       Center(
         child: RepaintBoundary(
           child: ColoredBox(
-            color: white,
+            color: const .fixed(white),
             child: Padding(
-              padding: const EdgeInsets.all(100.0),
+              padding: const .fixed(EdgeInsets.all(100.0)),
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform.rotate(
-                  angle: 1.0, // radians
+                  angle: const .fixed(1.0), // radians
                   child: ClipRect(
                     child: ColoredBox(
-                      color: red,
+                      color: const .fixed(red),
                       child: ColoredBox(
-                        color: white,
+                        color: const .fixed(white),
                         child: RepaintBoundary(
                           child: Center(child: Container(color: black, height: 10.0, width: 10.0)),
                         ),
@@ -424,7 +424,10 @@ void main() {
               left: 50.0,
               width: 100.0,
               height: 100.0,
-              child: Transform.rotate(angle: 1.0, child: Container(color: red)),
+              child: Transform.rotate(
+                angle: const .fixed(1.0),
+                child: Container(color: red),
+              ),
             ),
           ],
         ),
@@ -441,13 +444,13 @@ void main() {
       Center(
         child: RepaintBoundary(
           child: ColoredBox(
-            color: white,
+            color: const .fixed(white),
             child: Padding(
-              padding: const EdgeInsets.all(100.0),
+              padding: const .fixed(EdgeInsets.all(100.0)),
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform.rotate(
-                  angle: 1.0, // radians
+                  angle: const .fixed(1.0), // radians
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.elliptical(10.0, 20.0),
@@ -456,9 +459,9 @@ void main() {
                       bottomRight: Radius.elliptical(15.0, 6.0),
                     ),
                     child: ColoredBox(
-                      color: red,
+                      color: const .fixed(red),
                       child: ColoredBox(
-                        color: white,
+                        color: const .fixed(white),
                         child: RepaintBoundary(
                           child: Center(child: Container(color: black, height: 10.0, width: 10.0)),
                         ),
@@ -480,18 +483,18 @@ void main() {
       Center(
         child: RepaintBoundary(
           child: ColoredBox(
-            color: white,
+            color: const .fixed(white),
             child: Padding(
-              padding: const EdgeInsets.all(100.0),
+              padding: const .fixed(EdgeInsets.all(100.0)),
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform.rotate(
-                  angle: 1.0, // radians
+                  angle: const .fixed(1.0), // radians
                   child: ClipOval(
                     child: ColoredBox(
-                      color: red,
+                      color: const .fixed(red),
                       child: ColoredBox(
-                        color: white,
+                        color: const .fixed(white),
                         child: RepaintBoundary(
                           child: Center(child: Container(color: black, height: 10.0, width: 10.0)),
                         ),
@@ -513,13 +516,13 @@ void main() {
       Center(
         child: RepaintBoundary(
           child: ColoredBox(
-            color: white,
+            color: const .fixed(white),
             child: Padding(
-              padding: const EdgeInsets.all(100.0),
+              padding: const .fixed(EdgeInsets.all(100.0)),
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform.rotate(
-                  angle: 1.0, // radians
+                  angle: const .fixed(1.0), // radians
                   child: ClipPath(
                     clipper: const ShapeBorderClipper(
                       shape: BeveledRectangleBorder(
@@ -527,9 +530,9 @@ void main() {
                       ),
                     ),
                     child: ColoredBox(
-                      color: red,
+                      color: const .fixed(red),
                       child: ColoredBox(
-                        color: white,
+                        color: const .fixed(white),
                         child: RepaintBoundary(
                           child: Center(child: Container(color: black, height: 10.0, width: 10.0)),
                         ),
@@ -550,19 +553,19 @@ void main() {
     return Center(
       child: RepaintBoundary(
         child: ColoredBox(
-          color: white,
+          color: const .fixed(white),
           child: Padding(
-            padding: const EdgeInsets.all(100.0),
+            padding: const .fixed(EdgeInsets.all(100.0)),
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: Transform.rotate(
-                angle: 1.0, // radians
+                angle: const .fixed(1.0), // radians
                 child: PhysicalModel(
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   color: red,
                   clipBehavior: clipBehavior,
                   child: ColoredBox(
-                    color: white,
+                    color: const .fixed(white),
                     child: RepaintBoundary(
                       child: Center(child: Container(color: black, height: 10.0, width: 10.0)),
                     ),
@@ -609,18 +612,18 @@ void main() {
       Center(
         child: RepaintBoundary(
           child: ColoredBox(
-            color: white,
+            color: const .fixed(white),
             child: Padding(
-              padding: const EdgeInsets.all(100.0),
+              padding: const .fixed(EdgeInsets.all(100.0)),
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform.rotate(
-                  angle: 1.0, // radians
+                  angle: const .fixed(1.0), // radians
                   child: PhysicalModel(
                     borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                     color: red,
                     child: ColoredBox(
-                      color: white,
+                      color: const .fixed(white),
                       child: RepaintBoundary(
                         child: Center(child: Container(color: black, height: 10.0, width: 10.0)),
                       ),
@@ -643,13 +646,13 @@ void main() {
     return Center(
       child: RepaintBoundary(
         child: ColoredBox(
-          color: white,
+          color: const .fixed(white),
           child: Padding(
-            padding: const EdgeInsets.all(100.0),
+            padding: const .fixed(EdgeInsets.all(100.0)),
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: Transform.rotate(
-                angle: 1.0, // radians
+                angle: const .fixed(1.0), // radians
                 child: PhysicalShape(
                   clipper: const ShapeBorderClipper(
                     shape: BeveledRectangleBorder(
@@ -659,7 +662,7 @@ void main() {
                   clipBehavior: clipBehavior,
                   color: red,
                   child: ColoredBox(
-                    color: white,
+                    color: const .fixed(white),
                     child: RepaintBoundary(
                       child: Center(child: Container(color: black, height: 10.0, width: 10.0)),
                     ),
@@ -704,13 +707,13 @@ void main() {
       Center(
         child: RepaintBoundary(
           child: ColoredBox(
-            color: white,
+            color: const .fixed(white),
             child: Padding(
-              padding: const EdgeInsets.all(100.0),
+              padding: const .fixed(EdgeInsets.all(100.0)),
               child: SizedBox.square(
-                dimension: 100.0,
+                dimension: const .fixed(100.0),
                 child: Transform.rotate(
-                  angle: 1.0, // radians
+                  angle: const .fixed(1.0), // radians
                   child: PhysicalShape(
                     clipper: const ShapeBorderClipper(
                       shape: BeveledRectangleBorder(
@@ -719,7 +722,7 @@ void main() {
                     ),
                     color: red,
                     child: ColoredBox(
-                      color: white,
+                      color: const .fixed(white),
                       child: RepaintBoundary(
                         child: Center(child: Container(color: black, height: 10.0, width: 10.0)),
                       ),
@@ -744,7 +747,10 @@ void main() {
       logs.add(message);
     });
     Widget buildClipPath() {
-      return ClipPath.shape(shape: shape, child: const SizedBox(width: 100.0, height: 100.0));
+      return ClipPath.shape(
+        shape: shape,
+        child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+      );
     }
 
     final Widget clipPath = buildClipPath();
@@ -879,7 +885,7 @@ void main() {
           return Directionality(
             textDirection: textDirection,
             child: SizedBox.square(
-              dimension: 100.0,
+              dimension: const .fixed(100.0),
               child: ClipRRect(
                 borderRadius: const BorderRadiusDirectional.horizontal(
                   start: startRadius,

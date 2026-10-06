@@ -621,7 +621,7 @@ class _LinearProgressIndicatorState extends State<LinearProgressIndicator>
         : null;
 
     Widget result = ConstrainedBox(
-      constraints: BoxConstraints(minWidth: double.infinity, minHeight: minHeight),
+      constraints: .fixed(BoxConstraints(minWidth: double.infinity, minHeight: minHeight)),
       child: CustomPaint(
         painter: _LinearProgressIndicatorPainter(
           trackColor: trackColor,
@@ -1160,7 +1160,7 @@ class _CircularProgressIndicatorState extends State<CircularProgressIndicator>
         widget.padding ?? indicatorTheme.circularTrackPadding ?? defaults.circularTrackPadding;
 
     Widget result = ConstrainedBox(
-      constraints: constraints,
+      constraints: .fixed(constraints),
       child: CustomPaint(
         painter: _CircularProgressIndicatorPainter(
           trackColor: trackColor,
@@ -1181,7 +1181,7 @@ class _CircularProgressIndicatorState extends State<CircularProgressIndicator>
     );
 
     if (effectivePadding != null) {
-      result = Padding(padding: effectivePadding, child: result);
+      result = Padding(padding: .fixed(effectivePadding), child: result);
     }
 
     return widget._buildSemanticsWrapper(context: context, child: result);
@@ -1458,19 +1458,19 @@ class _RefreshProgressIndicatorState extends _CircularProgressIndicatorState {
     return widget._buildSemanticsWrapper(
       context: context,
       child: Padding(
-        padding: widget.indicatorMargin,
+        padding: .fixed(widget.indicatorMargin),
         child: SizedBox.fromSize(
-          size: const Size.square(_indicatorSize),
+          size: const .fixed(Size.square(_indicatorSize)),
           child: Material(
             type: MaterialType.circle,
             color: backgroundColor,
             elevation: widget.elevation,
             child: Padding(
-              padding: widget.indicatorPadding,
+              padding: .fixed(widget.indicatorPadding),
               child: Opacity(
-                opacity: opacity,
+                opacity: .fixed(opacity),
                 child: Transform.rotate(
-                  angle: rotation,
+                  angle: .fixed(rotation),
                   child: CustomPaint(
                     painter: _RefreshProgressIndicatorPainter(
                       valueColor: valueColor,

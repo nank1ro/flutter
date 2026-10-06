@@ -49,7 +49,10 @@ void main() {
 
   testWidgets('AnimatedList', (WidgetTester tester) async {
     Widget builder(BuildContext context, int index, Animation<double> animation) {
-      return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+      return SizedBox(
+        height: const .fixed(100.0),
+        child: Center(child: Text('item $index')),
+      );
     }
 
     final listKey = GlobalKey<AnimatedListState>();
@@ -75,7 +78,10 @@ void main() {
     expect(find.text('item 2'), findsOneWidget);
 
     listKey.currentState!.removeItem(2, (BuildContext context, Animation<double> animation) {
-      return const SizedBox(height: 100.0, child: Center(child: Text('removing item')));
+      return const SizedBox(
+        height: .fixed(100.0),
+        child: Center(child: Text('removing item')),
+      );
     }, duration: const Duration(milliseconds: 100));
 
     await tester.pump();
@@ -93,7 +99,10 @@ void main() {
 
     // Test for removeAllItems
     listKey.currentState!.removeAllItems((BuildContext context, Animation<double> animation) {
-      return const SizedBox(height: 100.0, child: Center(child: Text('removing item')));
+      return const SizedBox(
+        height: .fixed(100.0),
+        child: Center(child: Text('removing item')),
+      );
     }, duration: const Duration(milliseconds: 100));
 
     await tester.pump();
@@ -111,7 +120,10 @@ void main() {
     WidgetTester tester,
   ) async {
     Widget builder(BuildContext context, int index, Animation<double> animation) {
-      return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+      return SizedBox(
+        height: const .fixed(100.0),
+        child: Center(child: Text('item $index')),
+      );
     }
 
     final listKey = GlobalKey<AnimatedListState>();
@@ -146,7 +158,10 @@ void main() {
 
     // Removing item 2 and check state (item 0, item 1, removing item 2).
     listKey.currentState!.removeItem(2, (BuildContext context, Animation<double> animation) {
-      return const SizedBox(height: 100.0, child: Center(child: Text('removing item 2')));
+      return const SizedBox(
+        height: .fixed(100.0),
+        child: Center(child: Text('removing item 2')),
+      );
     }, duration: const Duration(milliseconds: 200));
     await tester.pump(const Duration(milliseconds: 50));
     expect(find.byType(Text), findsExactly(3));
@@ -157,7 +172,10 @@ void main() {
 
     // Call removeAllItems and check state (removing all items, removing all items, removing item 2).
     listKey.currentState!.removeAllItems((BuildContext context, Animation<double> animation) {
-      return const SizedBox(height: 100.0, child: Center(child: Text('removing all items')));
+      return const SizedBox(
+        height: .fixed(100.0),
+        child: Center(child: Text('removing all items')),
+      );
     }, duration: const Duration(milliseconds: 100));
     await tester.pump(const Duration(milliseconds: 50));
     expect(find.byType(Text), findsExactly(3));
@@ -187,7 +205,10 @@ void main() {
                 initialItemCount: 2,
                 itemBuilder: (BuildContext context, int index, Animation<double> animation) {
                   animations[index] = animation;
-                  return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+                  return SizedBox(
+                    height: const .fixed(100.0),
+                    child: Center(child: Text('item $index')),
+                  );
                 },
               ),
             ],
@@ -217,7 +238,10 @@ void main() {
                   return SizeTransition(
                     key: ValueKey<int>(index),
                     sizeFactor: animation,
-                    child: SizedBox(height: 100.0, child: Center(child: Text('item $index'))),
+                    child: SizedBox(
+                      height: const .fixed(100.0),
+                      child: Center(child: Text('item $index')),
+                    ),
                   );
                 },
               ),
@@ -294,7 +318,10 @@ void main() {
                   return SizeTransition(
                     key: ValueKey<int>(index),
                     sizeFactor: animation,
-                    child: SizedBox(height: 100.0, child: Center(child: Text('item $index'))),
+                    child: SizedBox(
+                      height: const .fixed(100.0),
+                      child: Center(child: Text('item $index')),
+                    ),
                   );
                 },
               ),
@@ -342,7 +369,7 @@ void main() {
           key: ValueKey<int>(item),
           sizeFactor: animation,
           child: SizedBox(
-            height: 100.0,
+            height: const .fixed(100.0),
             child: Center(child: Text('item $item', textDirection: TextDirection.ltr)),
           ),
         );
@@ -417,7 +444,7 @@ void main() {
           key: ValueKey<int>(item),
           sizeFactor: animation,
           child: SizedBox(
-            height: 100.0,
+            height: const .fixed(100.0),
             child: Center(child: Text('item $item', textDirection: TextDirection.ltr)),
           ),
         );
@@ -466,13 +493,16 @@ void main() {
           child: CustomScrollView(
             slivers: <Widget>[
               SliverList.list(
-                children: const <Widget>[SizedBox(height: 100), SizedBox(height: 100)],
+                children: const <Widget>[
+                  SizedBox(height: .fixed(100)),
+                  SizedBox(height: .fixed(100)),
+                ],
               ),
               SliverAnimatedList(
                 key: listKey,
                 initialItemCount: 3,
                 itemBuilder: (BuildContext context, int index, Animation<double> animation) {
-                  return SizedBox(height: 100, child: Text('item $index'));
+                  return SizedBox(height: const .fixed(100), child: Text('item $index'));
                 },
               ),
             ],
@@ -491,7 +521,7 @@ void main() {
         return SizeTransition(
           sizeFactor: animation,
           key: const ObjectKey('removing'),
-          child: const SizedBox(height: 100, child: Text('removing')),
+          child: const SizedBox(height: .fixed(100), child: Text('removing')),
         );
       }, duration: const Duration(seconds: 1));
 
@@ -633,7 +663,10 @@ void main() {
           initialItemCount: 2,
           clipBehavior: clipBehavior,
           itemBuilder: (BuildContext context, int index, Animation<double> _) {
-            return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+            return SizedBox(
+              height: const .fixed(100.0),
+              child: Center(child: Text('item $index')),
+            );
           },
         ),
       ),
@@ -661,7 +694,10 @@ void main() {
           initialItemCount: 2,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index, Animation<double> _) {
-            return SizedBox(height: 100.0, child: Center(child: Text('Item $index')));
+            return SizedBox(
+              height: const .fixed(100.0),
+              child: Center(child: Text('Item $index')),
+            );
           },
         ),
       ),
@@ -682,7 +718,10 @@ void main() {
           initialItemCount: 2,
           scrollCacheExtent: scrollCacheExtent,
           itemBuilder: (BuildContext context, int index, Animation<double> _) {
-            return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+            return SizedBox(
+              height: const .fixed(100.0),
+              child: Center(child: Text('item $index')),
+            );
           },
         ),
       ),
@@ -701,7 +740,10 @@ void main() {
         child: AnimatedList(
           initialItemCount: 2,
           itemBuilder: (BuildContext context, int index, Animation<double> _) {
-            return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+            return SizedBox(
+              height: const .fixed(100.0),
+              child: Center(child: Text('item $index')),
+            );
           },
         ),
       ),
@@ -753,16 +795,25 @@ void main() {
     addTearDown(tester.view.reset);
 
     Widget builder(BuildContext context, int index, Animation<double> animation) {
-      return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+      return SizedBox(
+        height: const .fixed(100.0),
+        child: Center(child: Text('item $index')),
+      );
     }
 
     Widget separatorBuilder(BuildContext context, int index, Animation<double> animation) {
-      return SizedBox(height: 100.0, child: Center(child: Text('separator after item $index')));
+      return SizedBox(
+        height: const .fixed(100.0),
+        child: Center(child: Text('separator after item $index')),
+      );
     }
 
     Widget itemRemovalBuilder(BuildContext context, int? index, Animation<double> animation) {
       final text = index != null ? 'removing item $index' : 'removing item';
-      return SizedBox(height: 100.0, child: Center(child: Text(text)));
+      return SizedBox(
+        height: const .fixed(100.0),
+        child: Center(child: Text(text)),
+      );
     }
 
     // Helper function to wrap itemRemovalBuilder with index
@@ -776,7 +827,7 @@ void main() {
 
     Widget separatorRemovalBuilder(BuildContext context, int index, Animation<double> animation) {
       return SizedBox(
-        height: 100.0,
+        height: const .fixed(100.0),
         child: Center(child: Text('removing separator after item $index')),
       );
     }
@@ -1209,20 +1260,32 @@ void main() {
     'AnimatedList.separated can remove the last item while another item is still animating out',
     (WidgetTester tester) async {
       Widget itemBuilder(BuildContext context, int index, Animation<double> animation) {
-        return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+        return SizedBox(
+          height: const .fixed(100.0),
+          child: Center(child: Text('item $index')),
+        );
       }
 
       Widget separatorBuilder(BuildContext context, int index, Animation<double> animation) {
-        return SizedBox(height: 10.0, child: Center(child: Text('separator $index')));
+        return SizedBox(
+          height: const .fixed(10.0),
+          child: Center(child: Text('separator $index')),
+        );
       }
 
       Widget removedSeparatorBuilder(BuildContext context, int index, Animation<double> animation) {
-        return SizedBox(height: 10.0, child: Center(child: Text('removing separator $index')));
+        return SizedBox(
+          height: const .fixed(10.0),
+          child: Center(child: Text('removing separator $index')),
+        );
       }
 
       AnimatedRemovedItemBuilder removedItemBuilder(int index) {
         return (BuildContext context, Animation<double> animation) {
-          return SizedBox(height: 100.0, child: Center(child: Text('removing item $index')));
+          return SizedBox(
+            height: const .fixed(100.0),
+            child: Center(child: Text('removing item $index')),
+          );
         };
       }
 

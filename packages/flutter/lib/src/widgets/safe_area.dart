@@ -119,11 +119,13 @@ class SafeArea extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.only(
-        left: math.max(left ? padding.left : 0.0, minimum.left),
-        top: math.max(top ? padding.top : 0.0, minimum.top),
-        right: math.max(right ? padding.right : 0.0, minimum.right),
-        bottom: math.max(bottom ? padding.bottom : 0.0, minimum.bottom),
+      padding: .fixed(
+        EdgeInsets.only(
+          left: math.max(left ? padding.left : 0.0, minimum.left),
+          top: math.max(top ? padding.top : 0.0, minimum.top),
+          right: math.max(right ? padding.right : 0.0, minimum.right),
+          bottom: math.max(bottom ? padding.bottom : 0.0, minimum.bottom),
+        ),
       ),
       child: MediaQuery.removePadding(
         context: context,

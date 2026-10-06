@@ -28,7 +28,7 @@ class _TextButtonExampleAppState extends State<TextButtonExampleApp> {
       darkTheme: ThemeData(brightness: .dark),
       home: Scaffold(
         body: Padding(
-          padding: const .all(16),
+          padding: const .fixed(.all(16)),
           child: TextButtonExample(
             darkMode: darkMode,
             updateDarkMode: (bool value) {
@@ -63,8 +63,8 @@ class _TextButtonExampleState extends State<TextButtonExample> {
   late final ScrollController scrollController;
   Future<void>? currentAction;
 
-  static const Widget verticalSpacer = SizedBox(height: 16);
-  static const Widget horizontalSpacer = SizedBox(width: 32);
+  static const Widget verticalSpacer = SizedBox(height: .fixed(16));
+  static const Widget horizontalSpacer = SizedBox(width: .fixed(32));
 
   static const ImageProvider grassImage = NetworkImage(
     'https://flutter.github.io/assets-for-api-docs/assets/material/text_button_grass.jpeg',
@@ -253,10 +253,14 @@ class _TextButtonExampleState extends State<TextButtonExample> {
           foregroundBuilder:
               (BuildContext context, Set<WidgetState> states, Widget? child) {
                 return DecoratedBox(
-                  decoration: BoxDecoration(
-                    border: states.contains(WidgetState.hovered)
-                        ? Border(bottom: BorderSide(color: colorScheme.primary))
-                        : const Border(), // essentially "no border"
+                  decoration: .fixed(
+                    BoxDecoration(
+                      border: states.contains(WidgetState.hovered)
+                          ? Border(
+                              bottom: BorderSide(color: colorScheme.primary),
+                            )
+                          : const Border(), // essentially "no border"
+                    ),
                   ),
                   child: child,
                 );
@@ -467,22 +471,22 @@ class TextButtonExampleSwitches extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const .all(16),
+        padding: const .fixed(.all(16)),
         child: IntrinsicWidth(
           child: Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
                   const Expanded(child: Text('Dark Mode')),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: .fixed(4)),
                   Switch(value: darkMode, onChanged: updateDarkMode),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: .fixed(16)),
               Row(
                 children: <Widget>[
                   const Expanded(child: Text('RTL Text')),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: .fixed(4)),
                   Switch(value: textDirection == .rtl, onChanged: updateRTL),
                 ],
               ),

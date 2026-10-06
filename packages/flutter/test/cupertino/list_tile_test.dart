@@ -100,7 +100,7 @@ void main() {
     final ColoredBox coloredBox = tester.widget<ColoredBox>(
       find.descendant(of: find.byType(CupertinoListTile), matching: find.byType(ColoredBox)),
     );
-    expect(coloredBox.color, backgroundColor);
+    expect(coloredBox.color.value, backgroundColor);
   });
 
   testWidgets('does not change backgroundColor when tapped if onTap is not provided', (
@@ -133,7 +133,7 @@ void main() {
     final ColoredBox coloredBox = tester.widget<ColoredBox>(
       find.descendant(of: find.byType(CupertinoListTile), matching: find.byType(ColoredBox)),
     );
-    expect(coloredBox.color, backgroundColor);
+    expect(coloredBox.color.value, backgroundColor);
   });
 
   testWidgets('changes backgroundColor when tapped if onTap is provided', (
@@ -166,7 +166,7 @@ void main() {
     ColoredBox coloredBox = tester.widget<ColoredBox>(
       find.descendant(of: find.byType(CupertinoListTile), matching: find.byType(ColoredBox)),
     );
-    expect(coloredBox.color, backgroundColor);
+    expect(coloredBox.color.value, backgroundColor);
 
     // Pump only one frame so the color change persists.
     await tester.tap(find.byType(CupertinoListTile));
@@ -175,7 +175,7 @@ void main() {
     coloredBox = tester.widget<ColoredBox>(
       find.descendant(of: find.byType(CupertinoListTile), matching: find.byType(ColoredBox)),
     );
-    expect(coloredBox.color, backgroundColorActivated);
+    expect(coloredBox.color.value, backgroundColorActivated);
 
     // Pump the rest of the frames to complete the test.
     await tester.pumpAndSettle();
@@ -263,7 +263,7 @@ void main() {
     final ColoredBox coloredBox = tester.widget<ColoredBox>(
       find.descendant(of: find.byType(CupertinoListTile), matching: find.byType(ColoredBox)),
     );
-    expect(coloredBox.color, backgroundColor);
+    expect(coloredBox.color.value, backgroundColor);
   });
 
   group('alignment of widgets for left-to-right', () {

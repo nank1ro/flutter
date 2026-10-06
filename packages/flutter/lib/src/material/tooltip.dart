@@ -582,7 +582,7 @@ class _TooltipBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: constraints,
+      constraints: .fixed(constraints),
       child: DefaultTextStyle(
         style: textStyle,
         textAlign: textAlign,

@@ -41,29 +41,29 @@ class FooState extends State<Foo> {
                   );
                 },
                 child: const DecoratedBox(
-                  decoration: BoxDecoration(color: Color(0x00000000)),
-                  child: SizedBox(height: 200.0),
+                  decoration: .fixed(BoxDecoration(color: Color(0x00000000))),
+                  child: SizedBox(height: .fixed(200.0)),
                 ),
               ),
               const DecoratedBox(
-                decoration: BoxDecoration(color: Color(0x00000000)),
-                child: SizedBox(height: 200.0),
+                decoration: .fixed(BoxDecoration(color: Color(0x00000000))),
+                child: SizedBox(height: .fixed(200.0)),
               ),
               const DecoratedBox(
-                decoration: BoxDecoration(color: Color(0x00000000)),
-                child: SizedBox(height: 200.0),
+                decoration: .fixed(BoxDecoration(color: Color(0x00000000))),
+                child: SizedBox(height: .fixed(200.0)),
               ),
               const DecoratedBox(
-                decoration: BoxDecoration(color: Color(0x00000000)),
-                child: SizedBox(height: 200.0),
+                decoration: .fixed(BoxDecoration(color: Color(0x00000000))),
+                child: SizedBox(height: .fixed(200.0)),
               ),
               const DecoratedBox(
-                decoration: BoxDecoration(color: Color(0x00000000)),
-                child: SizedBox(height: 200.0),
+                decoration: .fixed(BoxDecoration(color: Color(0x00000000))),
+                child: SizedBox(height: .fixed(200.0)),
               ),
               const DecoratedBox(
-                decoration: BoxDecoration(color: Color(0x00000000)),
-                child: SizedBox(height: 200.0),
+                decoration: .fixed(BoxDecoration(color: Color(0x00000000))),
+                child: SizedBox(height: .fixed(200.0)),
               ),
             ],
           ),

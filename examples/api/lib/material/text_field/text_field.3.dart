@@ -95,7 +95,7 @@ class _TextFieldShiftEnterExampleState
                   ),
             },
             child: Padding(
-              padding: const .all(12),
+              padding: const .fixed(.all(12)),
               child: TextField(
                 focusNode: _focusNode,
                 autofocus: true,

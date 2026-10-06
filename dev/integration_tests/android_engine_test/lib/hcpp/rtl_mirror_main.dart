@@ -85,8 +85,8 @@ class _RTLMirrorReproState extends State<RTLMirrorRepro> {
         // Red Box (Platform View 2)
         // This second child will be on the LEFT.
         SizedBox(
-          width: 150,
-          height: 150,
+          width: const .fixed(150),
+          height: const .fixed(150),
           child: Stack(
             children: [
               const Positioned.fill(
@@ -94,8 +94,8 @@ class _RTLMirrorReproState extends State<RTLMirrorRepro> {
               ),
               Center(
                 child: SizedBox(
-                  width: 125,
-                  height: 125,
+                  width: const .fixed(125),
+                  height: const .fixed(125),
                   child: InkWell(
                     key: const ValueKey('red_box_overlay'),
                     onTap: () {

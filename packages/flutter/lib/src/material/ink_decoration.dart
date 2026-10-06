@@ -90,7 +90,7 @@ import 'material.dart';
 ///         child: const Align(
 ///           alignment: Alignment.topLeft,
 ///           child: Padding(
-///             padding: EdgeInsets.all(10.0),
+///             padding: .fixed(EdgeInsets.all(10.0)),
 ///             child: Text(
 ///               'KITTEN',
 ///               style: TextStyle(
@@ -291,7 +291,7 @@ class _InkState extends State<Ink> {
       _ink!.isVisible = Visibility.of(context);
       _ink!.configuration = createLocalImageConfiguration(context);
     }
-    return widget.child ?? ConstrainedBox(constraints: const BoxConstraints.expand());
+    return widget.child ?? const ConstrainedBox(constraints: .fixed(BoxConstraints.expand()));
   }
 
   @override
@@ -299,11 +299,11 @@ class _InkState extends State<Ink> {
     assert(debugCheckHasMaterial(context));
     Widget result = Padding(
       key: _boxKey,
-      padding: widget._paddingIncludingDecoration,
+      padding: .fixed(widget._paddingIncludingDecoration),
       child: Builder(builder: _build),
     );
     if (widget.width != null || widget.height != null) {
-      result = SizedBox(width: widget.width, height: widget.height, child: result);
+      result = SizedBox(width: .fixed(widget.width), height: .fixed(widget.height), child: result);
     }
     return result;
   }

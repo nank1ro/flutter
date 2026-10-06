@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(infoText, key: const Key('text')),
             const Padding(
-              padding: EdgeInsets.all(12.0),
+              padding: .fixed(EdgeInsets.all(12.0)),
               child: SelectableText(
                 'Lorem ipsum dolor sit amet',
                 key: Key('selectable'),

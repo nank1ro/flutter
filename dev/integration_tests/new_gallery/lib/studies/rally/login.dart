@@ -74,7 +74,7 @@ class _MainView extends StatelessWidget {
       final double desktopMaxWidth = 400.0 + 100.0 * (cappedTextScale(context) - 1);
       listViewChildren = <Widget>[
         _UsernameInput(maxWidth: desktopMaxWidth, usernameController: usernameController),
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
         _PasswordInput(maxWidth: desktopMaxWidth, passwordController: passwordController),
         _LoginButton(
           maxWidth: desktopMaxWidth,
@@ -87,7 +87,7 @@ class _MainView extends StatelessWidget {
       listViewChildren = <Widget>[
         const _SmallLogo(),
         _UsernameInput(usernameController: usernameController),
-        const SizedBox(height: 12),
+        const SizedBox(height: .fixed(12)),
         _PasswordInput(passwordController: passwordController),
         _ThumbButton(
           onTap: () {
@@ -121,7 +121,7 @@ class _TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const spacing = SizedBox(width: 30);
+    const spacing = SizedBox(width: .fixed(30));
     final GalleryLocalizations localizations = GalleryLocalizations.of(context)!;
     return Container(
       width: double.infinity,
@@ -135,12 +135,12 @@ class _TopBar extends StatelessWidget {
             children: <Widget>[
               ExcludeSemantics(
                 child: SizedBox(
-                  height: 80,
+                  height: const .fixed(80),
                   child: FadeInImagePlaceholder(
                     image: const AssetImage('logo.png', package: 'rally_assets'),
                     placeholder: LayoutBuilder(
                       builder: (BuildContext context, BoxConstraints constraints) {
-                        return SizedBox.square(dimension: constraints.maxHeight);
+                        return SizedBox.square(dimension: .fixed(constraints.maxHeight));
                       },
                     ),
                   ),
@@ -179,9 +179,9 @@ class _SmallLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 64),
+      padding: .fixed(EdgeInsets.symmetric(vertical: 64)),
       child: SizedBox(
-        height: 160,
+        height: .fixed(160),
         child: ExcludeSemantics(
           child: FadeInImagePlaceholder(
             image: AssetImage('logo.png', package: 'rally_assets'),
@@ -313,7 +313,7 @@ class _LoginButton extends StatelessWidget {
         child: Row(
           children: <Widget>[
             const Icon(Icons.check_circle_outline, color: RallyColors.buttonColor),
-            const SizedBox(width: 12),
+            const SizedBox(width: .fixed(12)),
             Text(GalleryLocalizations.of(context)!.rallyLoginRememberMe),
             const Expanded(child: SizedBox.shrink()),
             _FilledButton(
@@ -365,7 +365,13 @@ class _FilledButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       onPressed: onTap,
-      child: Row(children: <Widget>[const Icon(Icons.lock), const SizedBox(width: 6), Text(text)]),
+      child: Row(
+        children: <Widget>[
+          const Icon(Icons.lock),
+          const SizedBox(width: .fixed(6)),
+          Text(text),
+        ],
+      ),
     );
   }
 }

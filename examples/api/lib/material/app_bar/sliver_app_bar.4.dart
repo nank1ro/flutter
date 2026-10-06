@@ -60,7 +60,7 @@ class _StretchableSliverAppBarState extends State<StretchableSliverAppBar> {
         ),
         bottomNavigationBar: BottomAppBar(
           child: Padding(
-            padding: const .all(8),
+            padding: const .fixed(.all(8)),
             child: OverflowBar(
               overflowAlignment: .center,
               alignment: .center,

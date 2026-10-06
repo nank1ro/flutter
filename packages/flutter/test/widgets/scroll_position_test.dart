@@ -260,7 +260,7 @@ void main() {
               if (Scrollable.recommendDeferredLoadingForContext(context)) {
                 loadedWithDeferral += 1;
               }
-              return const SizedBox(height: height);
+              return const SizedBox(height: .fixed(height));
             },
           ),
         ),

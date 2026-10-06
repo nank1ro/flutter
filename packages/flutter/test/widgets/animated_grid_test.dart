@@ -54,7 +54,10 @@ void main() {
 
   testWidgets('AnimatedGrid', (WidgetTester tester) async {
     Widget builder(BuildContext context, int index, Animation<double> animation) {
-      return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+      return SizedBox(
+        height: const .fixed(100.0),
+        child: Center(child: Text('item $index')),
+      );
     }
 
     final listKey = GlobalKey<AnimatedGridState>();
@@ -89,7 +92,10 @@ void main() {
     expect(find.text('item 2'), findsOneWidget);
 
     listKey.currentState!.removeItem(2, (BuildContext context, Animation<double> animation) {
-      return const SizedBox(height: 100.0, child: Center(child: Text('removing item')));
+      return const SizedBox(
+        height: .fixed(100.0),
+        child: Center(child: Text('removing item')),
+      );
     }, duration: const Duration(milliseconds: 100));
 
     await tester.pump();
@@ -106,7 +112,10 @@ void main() {
 
     // Test for removeAllItems.
     listKey.currentState!.removeAllItems((BuildContext context, Animation<double> animation) {
-      return const SizedBox(height: 100.0, child: Center(child: Text('removing item')));
+      return const SizedBox(
+        height: .fixed(100.0),
+        child: Center(child: Text('removing item')),
+      );
     }, duration: const Duration(milliseconds: 100));
 
     await tester.pump();
@@ -133,7 +142,10 @@ void main() {
                 initialItemCount: 2,
                 itemBuilder: (BuildContext context, int index, Animation<double> animation) {
                   animations[index] = animation;
-                  return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+                  return SizedBox(
+                    height: const .fixed(100.0),
+                    child: Center(child: Text('item $index')),
+                  );
                 },
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 100.0,
@@ -168,7 +180,10 @@ void main() {
                   return ScaleTransition(
                     key: ValueKey<int>(index),
                     scale: animation,
-                    child: SizedBox(height: 100.0, child: Center(child: Text('item $index'))),
+                    child: SizedBox(
+                      height: const .fixed(100.0),
+                      child: Center(child: Text('item $index')),
+                    ),
                   );
                 },
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -249,7 +264,10 @@ void main() {
                   return ScaleTransition(
                     key: ValueKey<int>(index),
                     scale: animation,
-                    child: SizedBox(height: 100.0, child: Center(child: Text('item $index'))),
+                    child: SizedBox(
+                      height: const .fixed(100.0),
+                      child: Center(child: Text('item $index')),
+                    ),
                   );
                 },
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -301,7 +319,7 @@ void main() {
           key: ValueKey<int>(item),
           scale: animation,
           child: SizedBox(
-            height: 100.0,
+            height: const .fixed(100.0),
             child: Center(child: Text('item $item', textDirection: TextDirection.ltr)),
           ),
         );
@@ -381,7 +399,7 @@ void main() {
           key: ValueKey<int>(item),
           scale: animation,
           child: SizedBox(
-            height: 100.0,
+            height: const .fixed(100.0),
             child: Center(child: Text('item $item', textDirection: TextDirection.ltr)),
           ),
         );
@@ -432,13 +450,16 @@ void main() {
           child: CustomScrollView(
             slivers: <Widget>[
               SliverList.list(
-                children: const <Widget>[SizedBox(height: 100), SizedBox(height: 100)],
+                children: const <Widget>[
+                  SizedBox(height: .fixed(100)),
+                  SizedBox(height: .fixed(100)),
+                ],
               ),
               SliverAnimatedGrid(
                 key: listKey,
                 initialItemCount: 3,
                 itemBuilder: (BuildContext context, int index, Animation<double> animation) {
-                  return SizedBox(height: 100, child: Text('item $index'));
+                  return SizedBox(height: const .fixed(100), child: Text('item $index'));
                 },
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 100.0,
@@ -460,7 +481,7 @@ void main() {
         return ScaleTransition(
           scale: animation,
           key: const ObjectKey('removing'),
-          child: const SizedBox(height: 100, child: Text('removing')),
+          child: const SizedBox(height: .fixed(100), child: Text('removing')),
         );
       }, duration: const Duration(seconds: 1));
 
@@ -613,7 +634,10 @@ void main() {
           initialItemCount: 2,
           clipBehavior: clipBehavior,
           itemBuilder: (BuildContext context, int index, Animation<double> _) {
-            return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+            return SizedBox(
+              height: const .fixed(100.0),
+              child: Center(child: Text('item $index')),
+            );
           },
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 100.0,
@@ -642,7 +666,10 @@ void main() {
           initialItemCount: 2,
           scrollCacheExtent: scrollCacheExtent,
           itemBuilder: (BuildContext context, int index, Animation<double> _) {
-            return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+            return SizedBox(
+              height: const .fixed(100.0),
+              child: Center(child: Text('item $index')),
+            );
           },
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 100.0,
@@ -666,7 +693,10 @@ void main() {
         child: AnimatedGrid(
           initialItemCount: 2,
           itemBuilder: (BuildContext context, int index, Animation<double> _) {
-            return SizedBox(height: 100.0, child: Center(child: Text('item $index')));
+            return SizedBox(
+              height: const .fixed(100.0),
+              child: Center(child: Text('item $index')),
+            );
           },
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 100.0,

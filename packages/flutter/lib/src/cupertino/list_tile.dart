@@ -321,21 +321,21 @@ class _CupertinoListTileState extends State<CupertinoListTile> {
     };
 
     final Widget child = ConstrainedBox(
-      constraints: BoxConstraints(minWidth: double.infinity, minHeight: minHeight),
+      constraints: .fixed(BoxConstraints(minWidth: double.infinity, minHeight: minHeight)),
       child: ColoredBox(
-        color: backgroundColor,
+        color: .fixed(backgroundColor),
         child: Padding(
-          padding: padding,
+          padding: .fixed(padding),
           child: Row(
             children: <Widget>[
               if (widget.leading case final Widget leading) ...<Widget>[
                 SizedBox.square(
-                  dimension: widget.leadingSize,
+                  dimension: .fixed(widget.leadingSize),
                   child: Center(child: leading),
                 ),
-                SizedBox(width: widget.leadingToTitle),
+                SizedBox(width: .fixed(widget.leadingToTitle)),
               ] else
-                SizedBox(height: widget.leadingSize),
+                SizedBox(height: .fixed(widget.leadingSize)),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -343,7 +343,7 @@ class _CupertinoListTileState extends State<CupertinoListTile> {
                   children: <Widget>[
                     title,
                     if (widget.subtitle case final Widget subtitle) ...<Widget>[
-                      const SizedBox(height: _kNotchedTitleToSubtitle),
+                      const SizedBox(height: .fixed(_kNotchedTitleToSubtitle)),
                       DefaultTextStyle(
                         style: coloredStyle.copyWith(
                           fontSize: baseType ? _kSubtitleFontSize : _kNotchedSubtitleFontSize,
@@ -358,7 +358,8 @@ class _CupertinoListTileState extends State<CupertinoListTile> {
               ),
               if (widget.additionalInfo case final Widget additionalInfo) ...<Widget>[
                 DefaultTextStyle(style: coloredStyle, maxLines: 1, child: additionalInfo),
-                if (widget.trailing != null) const SizedBox(width: _kAdditionalInfoToTrailing),
+                if (widget.trailing != null)
+                  const SizedBox(width: .fixed(_kAdditionalInfoToTrailing)),
               ],
               ?widget.trailing,
             ],

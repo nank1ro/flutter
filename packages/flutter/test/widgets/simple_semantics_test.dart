@@ -40,7 +40,10 @@ void main() {
     await tester.pumpWidget(
       TestWidgetsApp(
         home: Center(
-          child: Semantics(label: 'Hello!', child: const SizedBox(width: 10.0, height: 10.0)),
+          child: Semantics(
+            label: 'Hello!',
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
+          ),
         ),
       ),
     );

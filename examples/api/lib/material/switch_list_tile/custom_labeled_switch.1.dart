@@ -43,7 +43,7 @@ class LabeledSwitch extends StatelessWidget {
         onChanged(!value);
       },
       child: Padding(
-        padding: padding,
+        padding: .fixed(padding),
         child: Row(
           children: <Widget>[
             Expanded(child: Text(label)),

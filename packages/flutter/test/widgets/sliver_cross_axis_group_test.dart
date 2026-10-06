@@ -698,10 +698,10 @@ void main() {
       _buildSliverCrossAxisGroup(
         controller: controller,
         slivers: <Widget>[
-          const SliverToBoxAdapter(child: SizedBox(height: 600)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
           SliverPersistentHeader(delegate: TestDelegate(), pinned: true),
         ],
-        otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+        otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
       ),
     );
     final renderGroup =
@@ -725,10 +725,10 @@ void main() {
       _buildSliverCrossAxisGroup(
         controller: controller,
         slivers: <Widget>[
-          const SliverToBoxAdapter(child: SizedBox(height: 600)),
+          const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
           SliverPersistentHeader(delegate: TestDelegate(), floating: true),
         ],
-        otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+        otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
       ),
     );
     await tester.pumpAndSettle();
@@ -756,10 +756,10 @@ void main() {
         _buildSliverCrossAxisGroup(
           controller: controller,
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
             SliverPersistentHeader(delegate: TestDelegate(minExtent: 40.0), pinned: true),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       final renderGroup =
@@ -789,10 +789,10 @@ void main() {
         _buildSliverCrossAxisGroup(
           controller: controller,
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
             SliverPersistentHeader(delegate: TestDelegate(minExtent: 40.0), floating: true),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -828,14 +828,14 @@ void main() {
         _buildSliverCrossAxisGroup(
           controller: controller,
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
             SliverPersistentHeader(
               delegate: TestDelegate(minExtent: 40.0),
               pinned: true,
               floating: true,
             ),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -871,10 +871,10 @@ void main() {
         _buildSliverCrossAxisGroup(
           controller: controller,
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
             SliverPersistentHeader(delegate: TestDelegate(minExtent: 30.0)),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -903,10 +903,10 @@ void main() {
         _buildSliverCrossAxisGroup(
           controller: controller,
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
             SliverPersistentHeader(delegate: TestDelegate(minExtent: 30.0), floating: true),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -944,14 +944,14 @@ void main() {
         _buildSliverCrossAxisGroup(
           controller: controller,
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
             SliverPersistentHeader(
               delegate: TestDelegate(minExtent: 30.0),
               floating: true,
               pinned: true,
             ),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -988,10 +988,10 @@ void main() {
         _buildSliverCrossAxisGroup(
           controller: controller,
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(height: 600)),
+            const SliverToBoxAdapter(child: SizedBox(height: .fixed(600))),
             SliverPersistentHeader(delegate: TestDelegate(), floating: true),
           ],
-          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: 2400))],
+          otherSlivers: <Widget>[const SliverToBoxAdapter(child: SizedBox(height: .fixed(2400)))],
         ),
       );
       await tester.pumpAndSettle();
@@ -1065,7 +1065,7 @@ void main() {
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTapDown: (TapDownDetails details) => tapDownLog.add((index: index, details: details)),
-          child: const SizedBox.square(dimension: 20),
+          child: const SizedBox.square(dimension: .fixed(20)),
         ),
       );
     }
@@ -1164,12 +1164,12 @@ Widget _buildSliverList({
         return scrollDirection == Axis.vertical
             ? SizedBox(
                 key: ValueKey<int>(items[i]),
-                height: itemMainAxisExtent,
+                height: .fixed(itemMainAxisExtent),
                 child: label(items[i]),
               )
             : SizedBox(
                 key: ValueKey<int>(items[i]),
-                width: itemMainAxisExtent,
+                width: .fixed(itemMainAxisExtent),
                 child: label(items[i]),
               );
       },
@@ -1196,8 +1196,8 @@ Widget _buildSliverCrossAxisGroup({
     home: Align(
       alignment: Alignment.topLeft,
       child: SizedBox(
-        height: viewportHeight,
-        width: viewportWidth,
+        height: .fixed(viewportHeight),
+        width: .fixed(viewportWidth),
         child: CustomScrollView(
           scrollDirection: scrollDirection,
           reverse: reverse,

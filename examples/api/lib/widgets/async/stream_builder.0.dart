@@ -86,11 +86,11 @@ class BidsStatus extends StatelessWidget {
           children = <Widget>[
             const Icon(Icons.error_outline, color: Colors.red, size: 60),
             Padding(
-              padding: const .only(top: 16),
+              padding: const .fixed(.only(top: 16)),
               child: Text('Error: ${snapshot.error}'),
             ),
             Padding(
-              padding: const .only(top: 8),
+              padding: const .fixed(.only(top: 8)),
               child: Text(
                 'Stack trace: ${snapshot.stackTrace}',
                 maxLines: 1,
@@ -103,16 +103,19 @@ class BidsStatus extends StatelessWidget {
             case ConnectionState.none:
               children = const <Widget>[
                 Icon(Icons.info, color: Colors.blue, size: 60),
-                Padding(padding: .only(top: 16), child: Text('Select a lot')),
+                Padding(
+                  padding: .fixed(.only(top: 16)),
+                  child: Text('Select a lot'),
+                ),
               ];
             case ConnectionState.waiting:
               children = const <Widget>[
                 SizedBox.square(
-                  dimension: 60,
+                  dimension: .fixed(60),
                   child: CircularProgressIndicator(),
                 ),
                 Padding(
-                  padding: .only(top: 16),
+                  padding: .fixed(.only(top: 16)),
                   child: Text('Awaiting bids...'),
                 ),
               ];
@@ -124,7 +127,7 @@ class BidsStatus extends StatelessWidget {
                   size: 60,
                 ),
                 Padding(
-                  padding: const .only(top: 16),
+                  padding: const .fixed(.only(top: 16)),
                   child: Text('\$${snapshot.data}'),
                 ),
               ];
@@ -132,7 +135,7 @@ class BidsStatus extends StatelessWidget {
               children = <Widget>[
                 const Icon(Icons.info, color: Colors.blue, size: 60),
                 Padding(
-                  padding: const .only(top: 16),
+                  padding: const .fixed(.only(top: 16)),
                   child: Text(
                     snapshot.hasData
                         ? '\$${snapshot.data} (closed)'

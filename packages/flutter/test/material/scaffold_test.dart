@@ -468,7 +468,10 @@ void main() {
             return AnimatedBuilder(
               animation: animation,
               builder: (BuildContext context, Widget? child) {
-                return ColoredBox(key: scrimKey, color: Colors.black.withOpacity(animation.value));
+                return ColoredBox(
+                  key: scrimKey,
+                  color: .fixed(Colors.black.withOpacity(animation.value)),
+                );
               },
             );
           },
@@ -485,7 +488,7 @@ void main() {
     Finder findScrim() => find.byKey(scrimKey);
     Finder findModalBarrier() =>
         find.descendant(of: find.byType(Scaffold), matching: find.byType(ModalBarrier));
-    double getOpacity() => tester.firstWidget<ColoredBox>(findScrim()).color.opacity;
+    double getOpacity() => tester.firstWidget<ColoredBox>(findScrim()).color.value.opacity;
 
     for (double i = 0, extent = i / 10; i <= 10; i++, extent = i / 10) {
       draggableController.jumpTo(extent);
@@ -612,7 +615,7 @@ void main() {
               controller: scrollOffset,
               children: List<Widget>.generate(
                 10,
-                (int index) => SizedBox(height: 100.0, child: Text('D$index')),
+                (int index) => SizedBox(height: const .fixed(100.0), child: Text('D$index')),
               ),
             ),
           ),
@@ -629,7 +632,7 @@ void main() {
                 sliver: SliverList.builder(
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: 100.0, child: Text('B$index'));
+                    return SizedBox(height: const .fixed(100.0), child: Text('B$index'));
                   },
                 ),
               ),
@@ -669,7 +672,7 @@ void main() {
               SliverList.builder(
                 itemCount: 20,
                 itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 100.0, child: Text('$index'));
+                  return SizedBox(height: const .fixed(100.0), child: Text('$index'));
                 },
               ),
             ],
@@ -696,7 +699,7 @@ void main() {
                   SliverList.builder(
                     itemCount: 20,
                     itemBuilder: (BuildContext context, int index) {
-                      return SizedBox(height: 100.0, child: Text('$index'));
+                      return SizedBox(height: const .fixed(100.0), child: Text('$index'));
                     },
                   ),
                 ],
@@ -757,73 +760,69 @@ void main() {
     }),
   );
 
-  testWidgets(
-    'Tapping the status bar scrolls to top with ease out curve animation',
-    (WidgetTester tester) async {
-      const duration = 1000;
-      final stops = <double>[0.842, 0.959, 0.993, 1.0];
-      const double scrollOffset = 1000;
+  testWidgets('Tapping the status bar scrolls to top with ease out curve animation', (
+    WidgetTester tester,
+  ) async {
+    const duration = 1000;
+    final stops = <double>[0.842, 0.959, 0.993, 1.0];
+    const double scrollOffset = 1000;
 
-      await tester.pumpWidget(buildStatusBarTestApp());
-      final ScrollableState scrollable = tester.state(find.byType(Scrollable));
-      scrollable.position.jumpTo(scrollOffset);
+    await tester.pumpWidget(buildStatusBarTestApp());
+    final ScrollableState scrollable = tester.state(find.byType(Scrollable));
+    scrollable.position.jumpTo(scrollOffset);
 
-      tester.simulateStatusBarTap();
-      await tester.pump(Duration.zero);
-      expect(scrollable.position.pixels, equals(scrollOffset));
+    tester.simulateStatusBarTap();
+    await tester.pump(Duration.zero);
+    expect(scrollable.position.pixels, equals(scrollOffset));
 
-      for (var i = 0; i < stops.length; i++) {
-        await tester.pump(Duration(milliseconds: duration ~/ stops.length));
-        // Scroll pixel position is very long double, compare with floored int
-        // pixel position
-        expect(
-          scrollable.position.pixels.toInt(),
-          equals((scrollOffset * (1 - stops[i])).toInt()),
-          reason: 'stop $i',
-        );
-      }
-
-      // Finally stops at the top.
-      expect(scrollable.position.pixels, equals(0.0));
-    },
-    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
-  );
-
-  testWidgets(
-    'status bar tap only scrolls the foregrounded primary controller',
-    (WidgetTester tester) async {
-      final app = MaterialApp(
-        initialRoute: 'a',
-        onGenerateInitialRoutes: (initialRoute) {
-          return [
-            MaterialPageRoute(builder: (context) => _ScaffoldWithPrimaryScrollView()),
-            MaterialPageRoute(builder: (context) => _ScaffoldWithPrimaryScrollView()),
-          ];
-        },
-        onGenerateRoute: (_) => throw UnimplementedError(),
+    for (var i = 0; i < stops.length; i++) {
+      await tester.pump(Duration(milliseconds: duration ~/ stops.length));
+      // Scroll pixel position is very long double, compare with floored int
+      // pixel position
+      expect(
+        scrollable.position.pixels.toInt(),
+        equals((scrollOffset * (1 - stops[i])).toInt()),
+        reason: 'stop $i',
       );
-      await tester.pumpWidget(app);
+    }
 
-      final Iterable<ScrollableState> scrollables = tester.stateList<ScrollableState>(
-        find.descendant(
-          of: find.byType(_ScaffoldWithPrimaryScrollView, skipOffstage: false),
-          matching: find.byType(Scrollable, skipOffstage: false),
-          skipOffstage: false,
-        ),
-      );
+    // Finally stops at the top.
+    expect(scrollable.position.pixels, equals(0.0));
+  }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
-      final [ScrollableState scrollable1, ScrollableState scrollable2] = scrollables.toList();
-      expect(scrollable1.position.pixels, 1000);
-      expect(scrollable2.position.pixels, 1000);
+  testWidgets('status bar tap only scrolls the foregrounded primary controller', (
+    WidgetTester tester,
+  ) async {
+    final app = MaterialApp(
+      initialRoute: 'a',
+      onGenerateInitialRoutes: (initialRoute) {
+        return [
+          MaterialPageRoute(builder: (context) => _ScaffoldWithPrimaryScrollView()),
+          MaterialPageRoute(builder: (context) => _ScaffoldWithPrimaryScrollView()),
+        ];
+      },
+      onGenerateRoute: (_) => throw UnimplementedError(),
+    );
+    await tester.pumpWidget(app);
 
-      tester.simulateStatusBarTap();
-      await tester.pumpAndSettle();
+    final Iterable<ScrollableState> scrollables = tester.stateList<ScrollableState>(
+      find.descendant(
+        of: find.byType(_ScaffoldWithPrimaryScrollView, skipOffstage: false),
+        matching: find.byType(Scrollable, skipOffstage: false),
+        skipOffstage: false,
+      ),
+    );
 
-      expect(scrollable1.position.pixels, 1000);
-      expect(scrollable2.position.pixels, 0);
-    },
-    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
-  );
+    final [ScrollableState scrollable1, ScrollableState scrollable2] = scrollables.toList();
+    expect(scrollable1.position.pixels, 1000);
+    expect(scrollable2.position.pixels, 1000);
+
+    tester.simulateStatusBarTap();
+    await tester.pumpAndSettle();
+
+    expect(scrollable1.position.pixels, 1000);
+    expect(scrollable2.position.pixels, 0);
+  }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
   testWidgets('Bottom sheet cannot overlap app bar', (WidgetTester tester) async {
     final Key sheetKey = UniqueKey();
@@ -1284,7 +1283,7 @@ void main() {
                   return Container(key: bodyKey);
                 },
               ),
-              bottomNavigationBar: const BottomAppBar(child: SizedBox(height: 48.0)),
+              bottomNavigationBar: const BottomAppBar(child: SizedBox(height: .fixed(48.0))),
             ),
           ),
         );
@@ -1518,26 +1517,26 @@ void main() {
               ),
               floatingActionButton: SizedBox(
                 key: floatingActionButton,
-                width: 77.0,
-                height: 77.0,
+                width: const .fixed(77.0),
+                height: const .fixed(77.0),
                 child: SafeArea(child: Placeholder(key: insideFloatingActionButton)),
               ),
               persistentFooterButtons: <Widget>[
                 SizedBox(
                   key: persistentFooterButton,
-                  width: 100.0,
-                  height: 90.0,
+                  width: const .fixed(100.0),
+                  height: const .fixed(90.0),
                   child: SafeArea(child: Placeholder(key: insidePersistentFooterButton)),
                 ),
               ],
               drawer: SizedBox(
                 key: drawer,
-                width: 204.0,
+                width: const .fixed(204.0),
                 child: SafeArea(child: Placeholder(key: insideDrawer)),
               ),
               bottomNavigationBar: SizedBox(
                 key: bottomNavigationBar,
-                height: 85.0,
+                height: const .fixed(85.0),
                 child: SafeArea(child: Placeholder(key: insideBottomNavigationBar)),
               ),
             ),
@@ -1626,21 +1625,21 @@ void main() {
               ),
               floatingActionButton: SizedBox(
                 key: floatingActionButton,
-                width: 77.0,
-                height: 77.0,
+                width: const .fixed(77.0),
+                height: const .fixed(77.0),
                 child: SafeArea(child: Placeholder(key: insideFloatingActionButton)),
               ),
               persistentFooterButtons: <Widget>[
                 SizedBox(
                   key: persistentFooterButton,
-                  width: 100.0,
-                  height: 90.0,
+                  width: const .fixed(100.0),
+                  height: const .fixed(90.0),
                   child: SafeArea(child: Placeholder(key: insidePersistentFooterButton)),
                 ),
               ],
               drawer: SizedBox(
                 key: drawer,
-                width: 204.0,
+                width: const .fixed(204.0),
                 child: SafeArea(child: Placeholder(key: insideDrawer)),
               ),
             ),
@@ -1689,7 +1688,7 @@ void main() {
             body: Container(),
             bottomNavigationBar: ConstrainedBox(
               key: key,
-              constraints: const BoxConstraints.expand(height: 80.0),
+              constraints: const .fixed(BoxConstraints.expand(height: 80.0)),
               child: const _GeometryListener(),
             ),
           ),
@@ -1706,11 +1705,11 @@ void main() {
 
     testWidgets('no bottomNavigationBar', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 80.0),
-              child: const _GeometryListener(),
+              constraints: .fixed(BoxConstraints.expand(height: 80.0)),
+              child: _GeometryListener(),
             ),
           ),
         ),
@@ -1805,11 +1804,11 @@ void main() {
 
     testWidgets('no floatingActionButton', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 80.0),
-              child: const _GeometryListener(),
+              constraints: .fixed(BoxConstraints.expand(height: 80.0)),
+              child: _GeometryListener(),
             ),
           ),
         ),
@@ -1824,11 +1823,11 @@ void main() {
     testWidgets('floatingActionButton entrance/exit animation', (WidgetTester tester) async {
       final GlobalKey key = GlobalKey();
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 80.0),
-              child: const _GeometryListener(),
+              constraints: .fixed(BoxConstraints.expand(height: 80.0)),
+              child: _GeometryListener(),
             ),
           ),
         ),
@@ -1886,11 +1885,11 @@ void main() {
       final GlobalKey key = GlobalKey();
       var numNotificationsAtLastFrame = 0;
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 80.0),
-              child: const _GeometryListener(),
+              constraints: .fixed(BoxConstraints.expand(height: 80.0)),
+              child: _GeometryListener(),
             ),
           ),
         ),
@@ -2189,63 +2188,61 @@ void main() {
     expect(scaffoldState.isDrawerOpen, true);
   });
 
-  testWidgets(
-    'Drawer does not open with a drag gesture when it is disabled on mobile',
-    (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            drawer: const Drawer(child: Text('Drawer')),
-            body: const Text('Scaffold Body'),
-            appBar: AppBar(centerTitle: true, title: const Text('Title')),
-          ),
+  testWidgets('Drawer does not open with a drag gesture when it is disabled on mobile', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          drawer: const Drawer(child: Text('Drawer')),
+          body: const Text('Scaffold Body'),
+          appBar: AppBar(centerTitle: true, title: const Text('Title')),
         ),
-      );
-      ScaffoldState scaffoldState = tester.state(find.byType(Scaffold));
-      expect(scaffoldState.isDrawerOpen, false);
+      ),
+    );
+    ScaffoldState scaffoldState = tester.state(find.byType(Scaffold));
+    expect(scaffoldState.isDrawerOpen, false);
 
-      // Test that we can open the drawer with a drag gesture when
-      // `Scaffold.drawerEnableDragGesture` is true.
-      await tester.dragFrom(const Offset(0, 100), const Offset(300, 0));
-      await tester.pumpAndSettle();
-      expect(scaffoldState.isDrawerOpen, true);
+    // Test that we can open the drawer with a drag gesture when
+    // `Scaffold.drawerEnableDragGesture` is true.
+    await tester.dragFrom(const Offset(0, 100), const Offset(300, 0));
+    await tester.pumpAndSettle();
+    expect(scaffoldState.isDrawerOpen, true);
 
-      await tester.dragFrom(const Offset(300, 100), const Offset(-300, 0));
-      await tester.pumpAndSettle();
-      expect(scaffoldState.isDrawerOpen, false);
+    await tester.dragFrom(const Offset(300, 100), const Offset(-300, 0));
+    await tester.pumpAndSettle();
+    expect(scaffoldState.isDrawerOpen, false);
 
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            drawer: const Drawer(child: Text('Drawer')),
-            drawerEnableOpenDragGesture: false,
-            body: const Text('Scaffold body'),
-            appBar: AppBar(centerTitle: true, title: const Text('Title')),
-          ),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          drawer: const Drawer(child: Text('Drawer')),
+          drawerEnableOpenDragGesture: false,
+          body: const Text('Scaffold body'),
+          appBar: AppBar(centerTitle: true, title: const Text('Title')),
         ),
-      );
-      scaffoldState = tester.state(find.byType(Scaffold));
-      expect(scaffoldState.isDrawerOpen, false);
+      ),
+    );
+    scaffoldState = tester.state(find.byType(Scaffold));
+    expect(scaffoldState.isDrawerOpen, false);
 
-      // Test that we cannot open the drawer with a drag gesture when
-      // `Scaffold.drawerEnableDragGesture` is false.
-      await tester.dragFrom(const Offset(0, 100), const Offset(300, 0));
-      await tester.pumpAndSettle();
-      expect(scaffoldState.isDrawerOpen, false);
+    // Test that we cannot open the drawer with a drag gesture when
+    // `Scaffold.drawerEnableDragGesture` is false.
+    await tester.dragFrom(const Offset(0, 100), const Offset(300, 0));
+    await tester.pumpAndSettle();
+    expect(scaffoldState.isDrawerOpen, false);
 
-      // Test that we can close drawer with a drag gesture when
-      // `Scaffold.drawerEnableDragGesture` is false.
-      final Finder drawerOpenButton = find.byType(IconButton).first;
-      await tester.tap(drawerOpenButton);
-      await tester.pumpAndSettle();
-      expect(scaffoldState.isDrawerOpen, true);
+    // Test that we can close drawer with a drag gesture when
+    // `Scaffold.drawerEnableDragGesture` is false.
+    final Finder drawerOpenButton = find.byType(IconButton).first;
+    await tester.tap(drawerOpenButton);
+    await tester.pumpAndSettle();
+    expect(scaffoldState.isDrawerOpen, true);
 
-      await tester.dragFrom(const Offset(300, 100), const Offset(-300, 0));
-      await tester.pumpAndSettle();
-      expect(scaffoldState.isDrawerOpen, false);
-    },
-    variant: TargetPlatformVariant.mobile(),
-  );
+    await tester.dragFrom(const Offset(300, 100), const Offset(-300, 0));
+    await tester.pumpAndSettle();
+    expect(scaffoldState.isDrawerOpen, false);
+  }, variant: TargetPlatformVariant.mobile());
 
   testWidgets('Drawer does not open with a drag gesture on desktop', (WidgetTester tester) async {
     await tester.pumpWidget(
@@ -2416,7 +2413,7 @@ void main() {
               border: Border(top: BorderSide(color: themeData.disabledColor)),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: const .fixed(EdgeInsets.all(32.0)),
               child: Text(
                 'This is a Material persistent bottom sheet. Drag downwards to dismiss it.',
                 textAlign: TextAlign.center,
@@ -2694,7 +2691,7 @@ void main() {
                     scaffoldMessenger = ScaffoldMessenger.maybeOf(context);
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: const SizedBox(height: 100.0, width: 100.0),
+                  child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
                 );
               },
             ),
@@ -2728,7 +2725,7 @@ void main() {
                   ScaffoldMessenger.of(context);
                 },
                 behavior: HitTestBehavior.opaque,
-                child: const SizedBox(height: 100.0, width: 100.0),
+                child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
               );
             },
           ),
@@ -3409,7 +3406,7 @@ void main() {
                     return SizedBox.expand(
                       child: ColoredBox(
                         key: sheetKey,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: .fixed(Theme.of(context).colorScheme.primary),
                         child: FilledButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -3475,7 +3472,7 @@ void main() {
                     return SizedBox.expand(
                       child: ColoredBox(
                         key: sheetKey,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: .fixed(Theme.of(context).colorScheme.primary),
                         child: FilledButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -3770,7 +3767,7 @@ void main() {
                 child: Scaffold(
                   extendBody: true,
                   body: SizedBox.expand(key: bodyKey),
-                  bottomNavigationBar: const SizedBox(height: 100),
+                  bottomNavigationBar: const SizedBox(height: .fixed(100)),
                 ),
               );
             },
@@ -3937,7 +3934,7 @@ class _ScaffoldWithPrimaryScrollViewState extends State<_ScaffoldWithPrimaryScro
       child: PrimaryScrollController(
         controller: controller,
         child: const Scaffold(
-          body: SingleChildScrollView(primary: true, child: SizedBox(height: 2000)),
+          body: SingleChildScrollView(primary: true, child: SizedBox(height: .fixed(2000))),
         ),
       ),
     );

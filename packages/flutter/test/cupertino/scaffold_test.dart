@@ -244,7 +244,7 @@ void main() {
   testWidgets('Contents have automatic sliver padding between translucent bars', (
     WidgetTester tester,
   ) async {
-    const content = SizedBox(height: 600.0, width: 600.0);
+    const content = SizedBox(height: .fixed(600.0), width: .fixed(600.0));
 
     await tester.pumpWidget(
       CupertinoApp(
@@ -404,9 +404,9 @@ void main() {
     await tester.pumpWidget(const CupertinoApp(home: CupertinoPageScaffold(child: Center())));
 
     final decoratedBox = tester.widgetList(find.byType(DecoratedBox)).elementAt(1) as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
     expect(decoration.color, isSameColorAs(CupertinoColors.white));
   });
 
@@ -418,9 +418,9 @@ void main() {
     );
 
     final decoratedBox = tester.widgetList(find.byType(DecoratedBox)).elementAt(1) as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
     expect(decoration.color, const Color(0xFF010203));
   });
 
@@ -542,7 +542,10 @@ void main() {
               return PrimaryScrollController(
                 controller: scrollController,
                 child: const CupertinoPageScaffold(
-                  child: SingleChildScrollView(primary: true, child: SizedBox(height: 12345)),
+                  child: SingleChildScrollView(
+                    primary: true,
+                    child: SizedBox(height: .fixed(12345)),
+                  ),
                 ),
               );
             },
@@ -617,7 +620,7 @@ class _ScaffoldWithPrimaryScrollViewState extends State<_ScaffoldWithPrimaryScro
       child: PrimaryScrollController(
         controller: controller,
         child: const CupertinoPageScaffold(
-          child: SingleChildScrollView(primary: true, child: SizedBox(height: 2000)),
+          child: SingleChildScrollView(primary: true, child: SizedBox(height: .fixed(2000))),
         ),
       ),
     );

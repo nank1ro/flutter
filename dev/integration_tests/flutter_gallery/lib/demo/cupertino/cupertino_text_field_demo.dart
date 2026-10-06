@@ -37,9 +37,9 @@ class _CupertinoTextFieldDemoState extends State<CupertinoTextFieldDemo> {
       ),
       maxLines: null,
       keyboardType: TextInputType.multiline,
-      prefix: const Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
+      prefix: const Padding(padding: .fixed(EdgeInsets.symmetric(horizontal: 4.0))),
       suffix: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+        padding: const .fixed(EdgeInsets.symmetric(horizontal: 2.0)),
         child: CupertinoButton(
           minSize: 0.0,
           padding: const EdgeInsets.only(bottom: 4),
@@ -168,7 +168,7 @@ class _CupertinoTextFieldDemoState extends State<CupertinoTextFieldDemo> {
             primary: true,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0),
+                padding: const .fixed(EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0)),
                 child: Column(
                   children: <Widget>[
                     _buildNameField(),
@@ -180,7 +180,7 @@ class _CupertinoTextFieldDemoState extends State<CupertinoTextFieldDemo> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0),
+                padding: const .fixed(EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0)),
                 child: _buildChatTextField(),
               ),
             ],

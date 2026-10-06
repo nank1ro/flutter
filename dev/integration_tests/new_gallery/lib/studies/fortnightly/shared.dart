@@ -45,7 +45,7 @@ class HorizontalArticlePreview extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SelectableText(data.category, style: textTheme.titleMedium),
-              const SizedBox(height: 12),
+              const SizedBox(height: .fixed(12)),
               SelectableText(data.title, style: textTheme.headlineSmall!.copyWith(fontSize: 16)),
             ],
           ),
@@ -55,7 +55,7 @@ class HorizontalArticlePreview extends StatelessWidget {
             GalleryLocalizations.of(context)!.craneMinutes(minutes!),
             style: textTheme.bodyLarge,
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: .fixed(8)),
         ],
         FadeInImagePlaceholder(
           image: AssetImage(data.imageUrl, package: 'flutter_gallery_assets'),
@@ -91,12 +91,12 @@ class VerticalArticlePreview extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return SizedBox(
-      width: width ?? double.infinity,
+      width: .fixed(width ?? double.infinity),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            width: double.infinity,
+            width: const .fixed(double.infinity),
             child: FadeInImagePlaceholder(
               image: AssetImage(data.imageUrl, package: 'flutter_gallery_assets'),
               placeholder: LayoutBuilder(
@@ -113,12 +113,12 @@ class VerticalArticlePreview extends StatelessWidget {
               excludeFromSemantics: true,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           SelectableText(data.category, style: textTheme.titleMedium),
-          const SizedBox(height: 12),
+          const SizedBox(height: .fixed(12)),
           SelectableText(data.title, style: headlineTextStyle ?? textTheme.headlineSmall),
           if (showSnippet) ...<Widget>[
-            const SizedBox(height: 4),
+            const SizedBox(height: .fixed(4)),
             SelectableText(data.snippet!, style: textTheme.bodyMedium),
           ],
         ],
@@ -221,12 +221,12 @@ class HashtagBar extends StatelessWidget {
     final GalleryLocalizations localizations = GalleryLocalizations.of(context)!;
 
     return SizedBox(
-      height: height,
+      height: .fixed(height),
       child: ListView(
         restorationId: 'hashtag_bar_list_view',
         scrollDirection: Axis.horizontal,
         children: <Widget>[
-          const SizedBox(width: 16),
+          const SizedBox(width: .fixed(16)),
           Center(
             child: SelectableText(
               '#${localizations.fortnightlyTrendingTechDesign}',
@@ -294,7 +294,7 @@ class NavigationMenu extends StatelessWidget {
               ),
             ],
           ),
-        const SizedBox(height: 32),
+        const SizedBox(height: .fixed(32)),
         MenuItem(localizations.fortnightlyMenuFrontPage, header: true),
         MenuItem(localizations.fortnightlyMenuWorld),
         MenuItem(localizations.fortnightlyMenuUS),
@@ -319,7 +319,7 @@ class MenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const .fixed(EdgeInsets.symmetric(vertical: 8)),
       child: Row(
         children: <Widget>[
           Container(
@@ -361,7 +361,7 @@ class StockItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SelectableText(ticker, style: textTheme.titleMedium),
-        const SizedBox(height: 2),
+        const SizedBox(height: .fixed(2)),
         Row(
           children: <Widget>[
             Expanded(
@@ -379,7 +379,7 @@ class StockItem extends StatelessWidget {
                 color: percent > 0 ? const Color(0xff20CF63) : const Color(0xff661FFF),
               ),
             ),
-            const SizedBox(width: 4),
+            const SizedBox(width: .fixed(4)),
             SelectableText(
               percentFormat.format(percent.abs() / 100),
               style: textTheme.bodySmall!.copyWith(
@@ -404,7 +404,7 @@ List<Widget> buildStockItems(BuildContext context) {
 
   return <Widget>[
     SizedBox(
-      width: double.infinity,
+      width: const .fixed(double.infinity),
       child: FadeInImagePlaceholder(
         image: const AssetImage(
           'fortnightly/fortnightly_chart.png',
@@ -452,7 +452,7 @@ class VideoPreview extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(
-          width: double.infinity,
+          width: const .fixed(double.infinity),
           child: FadeInImagePlaceholder(
             image: AssetImage(data.imageUrl, package: 'flutter_gallery_assets'),
             placeholder: LayoutBuilder(
@@ -469,14 +469,14 @@ class VideoPreview extends StatelessWidget {
             excludeFromSemantics: true,
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: .fixed(4)),
         Row(
           children: <Widget>[
             Expanded(child: SelectableText(data.category, style: textTheme.titleMedium)),
             SelectableText(time, style: textTheme.bodyLarge),
           ],
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: .fixed(4)),
         SelectableText(data.title, style: textTheme.headlineSmall!.copyWith(fontSize: 16)),
       ],
     );
@@ -495,7 +495,7 @@ List<Widget> buildVideoPreviewItems(BuildContext context) {
       ),
       time: '2:31',
     ),
-    const SizedBox(height: 32),
+    const SizedBox(height: .fixed(32)),
     VideoPreview(
       data: ArticleData(
         imageUrl: 'fortnightly/fortnightly_bees.jpg',

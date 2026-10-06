@@ -71,7 +71,7 @@ class _ExpansionTileAnimationStyleAppState
                     })
                     .toList(),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: .fixed(20)),
               ExpansionTile(
                 expansionAnimationStyle: _animationStyle,
                 title: const Text('ExpansionTile'),

@@ -18,8 +18,16 @@ void main() {
     await pumpViews(
       tester: tester,
       viewContents: <Widget>[
-        SizedBox(width: 47.0, height: 47.0, child: GestureDetector(onTap: () {})),
-        SizedBox(width: 46.0, height: 46.0, child: GestureDetector(onTap: () {})),
+        SizedBox(
+          width: const .fixed(47.0),
+          height: const .fixed(47.0),
+          child: GestureDetector(onTap: () {}),
+        ),
+        SizedBox(
+          width: const .fixed(46.0),
+          height: const .fixed(46.0),
+          child: GestureDetector(onTap: () {}),
+        ),
       ],
     );
     final Evaluation result = await androidTapTargetGuideline.evaluate(tester);
@@ -40,8 +48,16 @@ void main() {
     await pumpViews(
       tester: tester,
       viewContents: <Widget>[
-        SizedBox(width: 47.0, height: 47.0, child: GestureDetector(onTap: () {})),
-        SizedBox(width: 46.0, height: 46.0, child: GestureDetector(onTap: () {})),
+        SizedBox(
+          width: const .fixed(47.0),
+          height: const .fixed(47.0),
+          child: GestureDetector(onTap: () {}),
+        ),
+        SizedBox(
+          width: const .fixed(46.0),
+          height: const .fixed(46.0),
+          child: GestureDetector(onTap: () {}),
+        ),
       ],
     );
     final Evaluation result = await labeledTapTargetGuideline.evaluate(tester);

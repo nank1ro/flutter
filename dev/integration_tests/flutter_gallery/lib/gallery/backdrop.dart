@@ -100,11 +100,11 @@ class _CrossFadeTransition extends AnimatedWidget {
       alignment: alignment,
       children: <Widget>[
         Opacity(
-          opacity: opacity1,
+          opacity: .fixed(opacity1),
           child: Semantics(scopesRoute: true, explicitChildNodes: true, child: child1),
         ),
         Opacity(
-          opacity: opacity2,
+          opacity: .fixed(opacity2),
           child: Semantics(scopesRoute: true, explicitChildNodes: true, child: child0),
         ),
       ],
@@ -114,7 +114,7 @@ class _CrossFadeTransition extends AnimatedWidget {
 
 class _BackAppBar extends StatelessWidget {
   const _BackAppBar({
-    this.leading = const SizedBox(width: 56.0),
+    this.leading = const SizedBox(width: .fixed(56.0)),
     required this.title,
     this.trailing,
   });
@@ -131,7 +131,7 @@ class _BackAppBar extends StatelessWidget {
       child: DefaultTextStyle(
         style: theme.primaryTextTheme.titleLarge!,
         child: SizedBox(
-          height: _kBackAppBarHeight,
+          height: const .fixed(_kBackAppBarHeight),
           child: Row(
             children: <Widget>[
               Container(alignment: Alignment.center, width: 56.0, child: leading),

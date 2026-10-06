@@ -421,7 +421,7 @@ class CupertinoSliverRefreshControl extends StatefulWidget {
         // Xcode through inspecting a native app running on iOS 13.5.
         const Curve opacityCurve = Interval(0.0, 0.35, curve: Curves.easeInOut);
         return Opacity(
-          opacity: opacityCurve.transform(percentageComplete),
+          opacity: .fixed(opacityCurve.transform(percentageComplete)),
           child: CupertinoActivityIndicator.partiallyRevealed(
             radius: radius,
             progress: percentageComplete,

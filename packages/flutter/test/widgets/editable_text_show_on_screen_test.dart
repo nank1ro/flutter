@@ -71,7 +71,7 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox(
-            height: 300.0,
+            height: const .fixed(300.0),
             child: ListView(
               controller: scrollController,
               children: <Widget>[
@@ -82,7 +82,7 @@ void main() {
                   style: textStyle,
                   cursorColor: cursorColor,
                 ),
-                const SizedBox(height: 350.0),
+                const SizedBox(height: .fixed(350.0)),
               ],
             ),
           ),
@@ -111,11 +111,11 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox(
-            height: 300.0,
+            height: const .fixed(300.0),
             child: ListView(
               controller: scrollController,
               children: <Widget>[
-                const SizedBox(height: 200.0),
+                const SizedBox(height: .fixed(200.0)),
                 EditableText(
                   backgroundCursorColor: kGreyColor,
                   scrollPadding: const EdgeInsets.all(50.0),
@@ -124,7 +124,7 @@ void main() {
                   style: textStyle,
                   cursorColor: cursorColor,
                 ),
-                const SizedBox(height: 850.0),
+                const SizedBox(height: .fixed(850.0)),
               ],
             ),
           ),
@@ -156,11 +156,11 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox(
-            height: 300.0,
+            height: const .fixed(300.0),
             child: ListView(
               controller: scrollController,
               children: <Widget>[
-                const SizedBox(height: 350.0),
+                const SizedBox(height: .fixed(350.0)),
                 EditableText(
                   backgroundCursorColor: kGreyColor,
                   controller: controller,
@@ -168,7 +168,7 @@ void main() {
                   style: textStyle,
                   cursorColor: cursorColor,
                 ),
-                const SizedBox(height: 350.0),
+                const SizedBox(height: .fixed(350.0)),
               ],
             ),
           ),
@@ -203,12 +203,12 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox(
-            height: 300.0,
+            height: const .fixed(300.0),
             child: ListView(
               physics: const NoImplicitScrollPhysics(),
               controller: scrollController,
               children: <Widget>[
-                const SizedBox(height: 350.0),
+                const SizedBox(height: .fixed(350.0)),
                 EditableText(
                   backgroundCursorColor: kGreyColor,
                   controller: controller,
@@ -216,7 +216,7 @@ void main() {
                   style: textStyle,
                   cursorColor: cursorColor,
                 ),
-                const SizedBox(height: 350.0),
+                const SizedBox(height: .fixed(350.0)),
               ],
             ),
           ),
@@ -256,7 +256,7 @@ void main() {
               children: <Widget>[
                 Container(color: kRedColor),
                 ColoredBox(
-                  color: kGreenColor,
+                  color: const .fixed(kGreenColor),
                   child: TestTextField(controller: controller),
                 ),
                 Container(color: kRedColor),
@@ -291,7 +291,7 @@ void main() {
       TestWidgetsApp(
         home: Center(
           child: SizedBox(
-            height: 300.0,
+            height: const .fixed(300.0),
             child: ListView(
               controller: scrollController,
               children: <Widget>[
@@ -350,7 +350,7 @@ void main() {
         TestWidgetsApp(
           home: Center(
             child: SizedBox(
-              height: 300.0,
+              height: const .fixed(300.0),
               child: ListView(
                 controller: scrollController,
                 children: <Widget>[
@@ -408,11 +408,11 @@ void main() {
         home: Align(
           alignment: Alignment.bottomCenter,
           child: SizedBox(
-            height: 300.0,
+            height: const .fixed(300.0),
             child: ListView(
               controller: scrollController,
               children: <Widget>[
-                const SizedBox(key: container, height: 200.0),
+                const SizedBox(key: container, height: .fixed(200.0)),
                 EditableText(
                   backgroundCursorColor: kGreyColor,
                   scrollPadding: const EdgeInsets.only(bottom: 300.0),
@@ -421,7 +421,7 @@ void main() {
                   style: textStyle,
                   cursorColor: cursorColor,
                 ),
-                const SizedBox(height: 400.0),
+                const SizedBox(height: .fixed(400.0)),
               ],
             ),
           ),
@@ -449,7 +449,7 @@ void main() {
         TestWidgetsApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 600.0,
+              dimension: const .fixed(600.0),
               child: CustomScrollView(
                 controller: scrollController,
                 slivers: List<Widget>.generate(50, (int i) {
@@ -472,7 +472,9 @@ void main() {
                             ),
                           ),
                         )
-                      : SliverToBoxAdapter(child: SizedBox(height: 100.0, child: Text('Tile $i')));
+                      : SliverToBoxAdapter(
+                          child: SizedBox(height: const .fixed(100.0), child: Text('Tile $i')),
+                        );
                 }),
               ),
             ),
@@ -504,7 +506,7 @@ void main() {
         TestWidgetsApp(
           home: Center(
             child: SizedBox.square(
-              dimension: 600.0,
+              dimension: const .fixed(600.0),
               child: CustomScrollView(
                 controller: scrollController,
                 slivers: List<Widget>.generate(50, (int i) {
@@ -528,7 +530,9 @@ void main() {
                             ),
                           ),
                         )
-                      : SliverToBoxAdapter(child: SizedBox(height: 100.0, child: Text('Tile $i')));
+                      : SliverToBoxAdapter(
+                          child: SizedBox(height: const .fixed(100.0), child: Text('Tile $i')),
+                        );
                 }),
               ),
             ),
@@ -578,7 +582,7 @@ void main() {
             cacheExtent: 1000,
             children: <Widget>[
               // The text field is not fully visible.
-              const SizedBox(height: 599),
+              const SizedBox(height: .fixed(599)),
               EditableText(
                 backgroundCursorColor: kGreyColor,
                 controller: controller,

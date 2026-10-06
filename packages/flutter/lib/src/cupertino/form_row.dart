@@ -119,7 +119,7 @@ class CupertinoFormRow extends StatelessWidget {
     );
 
     return Padding(
-      padding: padding ?? _kDefaultPadding,
+      padding: .fixed(padding ?? _kDefaultPadding),
       child: Column(
         children: <Widget>[
           Row(

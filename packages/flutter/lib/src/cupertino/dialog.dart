@@ -343,7 +343,10 @@ class _CupertinoAlertDialogState extends State<CupertinoAlertDialog> {
       ),
     );
 
-    return ColoredBox(color: CupertinoDynamicColor.resolve(_kDialogColor, context), child: child);
+    return ColoredBox(
+      color: .fixed(CupertinoDynamicColor.resolve(_kDialogColor, context)),
+      child: child,
+    );
   }
 
   void _onPressedUpdate(int actionIndex, bool isPressed) {
@@ -391,7 +394,10 @@ class _CupertinoAlertDialogState extends State<CupertinoAlertDialog> {
           final Widget? actionsSection = _buildActions();
           if (actionsSection == null) {
             return contentSection ??
-                const LimitedBox(maxWidth: 0, child: SizedBox(width: double.infinity, height: 0));
+                const LimitedBox(
+                  maxWidth: 0,
+                  child: SizedBox(width: .fixed(double.infinity), height: .fixed(0)),
+                );
           }
           final Widget scrolledActionsSection = _OverscrollBackground(
             color: backgroundColor,
@@ -410,7 +416,7 @@ class _CupertinoAlertDialogState extends State<CupertinoAlertDialog> {
             bottom: Column(
               children: <Widget>[
                 SizedBox(
-                  width: double.infinity,
+                  width: const .fixed(double.infinity),
                   child: _Divider(
                     dividerColor: dividerColor,
                     hiddenColor: backgroundColor,
@@ -455,11 +461,13 @@ class _CupertinoAlertDialogState extends State<CupertinoAlertDialog> {
                   context: context,
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: _kDialogEdgePadding),
+                      padding: const .fixed(EdgeInsets.symmetric(vertical: _kDialogEdgePadding)),
                       child: SizedBox(
-                        width: isInAccessibilityMode
-                            ? _kAccessibilityCupertinoDialogWidth
-                            : _kCupertinoDialogWidth,
+                        width: .fixed(
+                          isInAccessibilityMode
+                              ? _kAccessibilityCupertinoDialogWidth
+                              : _kCupertinoDialogWidth,
+                        ),
                         child: _ActionSheetGestureDetector(
                           child: CupertinoPopupSurface(
                             isSurfacePainted: false,
@@ -716,7 +724,7 @@ class CupertinoPopupSurface extends StatelessWidget {
 
     if (isSurfacePainted) {
       contents = ColoredBox(
-        color: CupertinoDynamicColor.resolve(_kDialogColor, context),
+        color: .fixed(CupertinoDynamicColor.resolve(_kDialogColor, context)),
         child: contents,
       );
     }
@@ -1158,7 +1166,7 @@ class _CupertinoActionSheetState extends State<CupertinoActionSheet> {
       color: CupertinoDynamicColor.resolve(_kActionSheetContentTextColor, context),
     );
     return ColoredBox(
-      color: CupertinoDynamicColor.resolve(_kActionSheetBackgroundColor, context),
+      color: .fixed(CupertinoDynamicColor.resolve(_kActionSheetBackgroundColor, context)),
       child: _CupertinoAlertContentSection(
         title: widget.title,
         message: widget.message,
@@ -1208,7 +1216,7 @@ class _CupertinoActionSheetState extends State<CupertinoActionSheet> {
         : 0.0;
 
     return Padding(
-      padding: EdgeInsets.only(top: cancelPadding),
+      padding: .fixed(EdgeInsets.only(top: cancelPadding)),
       child: CupertinoFocusHalo.withRRect(
         borderRadius: kCupertinoButtonSizeBorderRadius[CupertinoButtonSize.large]!,
         child: _ActionSheetButtonBackground(
@@ -1347,15 +1355,17 @@ class _CupertinoActionSheetState extends State<CupertinoActionSheet> {
           child: CupertinoUserInterfaceLevel(
             data: CupertinoUserInterfaceLevelData.elevated,
             child: Padding(
-              padding: EdgeInsets.only(
-                left: _kActionSheetEdgePadding,
-                right: _kActionSheetEdgePadding,
-                top: _topPadding(context),
-                // The bottom padding is set on SafeArea.minimum, allowing it to
-                // be consumed by bottom view padding.
+              padding: .fixed(
+                EdgeInsets.only(
+                  left: _kActionSheetEdgePadding,
+                  right: _kActionSheetEdgePadding,
+                  top: _topPadding(context),
+                  // The bottom padding is set on SafeArea.minimum, allowing it to
+                  // be consumed by bottom view padding.
+                ),
               ),
               child: SizedBox(
-                width: actionSheetWidth - _kActionSheetEdgePadding * 2,
+                width: .fixed(actionSheetWidth - _kActionSheetEdgePadding * 2),
                 child: _ActionSheetGestureDetector(
                   child: Semantics(
                     explicitChildNodes: true,
@@ -1493,7 +1503,7 @@ class _CupertinoActionSheetActionState extends State<CupertinoActionSheetAction>
         metaData: this,
         behavior: HitTestBehavior.opaque,
         child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: _kActionSheetButtonMinHeight),
+          constraints: const .fixed(BoxConstraints(minHeight: _kActionSheetButtonMinHeight)),
           child: FocusableActionDetector(
             actions: _actionMap,
             focusNode: widget.focusNode,
@@ -1503,7 +1513,7 @@ class _CupertinoActionSheetActionState extends State<CupertinoActionSheetAction>
               onTap: widget.onPressed,
               child: _showHighlight
                   ? DecoratedBox(
-                      decoration: BoxDecoration(color: effectiveFocusBackgroundColor),
+                      decoration: .fixed(BoxDecoration(color: effectiveFocusBackgroundColor)),
                       child: _ActionSheetActionContent(
                         isDestructiveAction: widget.isDestructiveAction,
                         isDefaultAction: widget.isDefaultAction,
@@ -1585,11 +1595,13 @@ class _ActionSheetActionContent extends StatelessWidget {
         fontSize * _kActionSheetButtonVerticalPaddingFactor;
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        _kActionSheetButtonHorizontalPadding,
-        verticalPadding,
-        _kActionSheetButtonHorizontalPadding,
-        verticalPadding,
+      padding: .fixed(
+        EdgeInsets.fromLTRB(
+          _kActionSheetButtonHorizontalPadding,
+          verticalPadding,
+          _kActionSheetButtonHorizontalPadding,
+          verticalPadding,
+        ),
       ),
       child: DefaultTextStyle(
         style: style,
@@ -1678,9 +1690,11 @@ class _ActionSheetButtonBackgroundState extends State<_ActionSheetButtonBackgrou
     late final Widget child;
     if (!widget.isCancel) {
       child = ColoredBox(
-        color: CupertinoDynamicColor.resolve(
-          widget.pressed ? _kActionSheetPressedColor : _kActionSheetBackgroundColor,
-          context,
+        color: .fixed(
+          CupertinoDynamicColor.resolve(
+            widget.pressed ? _kActionSheetPressedColor : _kActionSheetBackgroundColor,
+            context,
+          ),
         ),
         child: widget.child,
       );
@@ -1690,10 +1704,12 @@ class _ActionSheetButtonBackgroundState extends State<_ActionSheetButtonBackgrou
       child = ClipRSuperellipse(
         borderRadius: borderRadius,
         child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: CupertinoDynamicColor.resolve(
-              widget.pressed ? _kActionSheetCancelPressedColor : _kActionSheetCancelColor,
-              context,
+          decoration: .fixed(
+            BoxDecoration(
+              color: CupertinoDynamicColor.resolve(
+                widget.pressed ? _kActionSheetCancelPressedColor : _kActionSheetCancelColor,
+                context,
+              ),
             ),
           ),
           child: widget.child,
@@ -1735,13 +1751,14 @@ class _Divider extends StatelessWidget {
       maxWidth: _kDividerThickness,
       // The constrained box prevents the divider from collapsing to nothing.
       child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          minHeight: _kDividerThickness,
-          minWidth: _kDividerThickness,
+        constraints: const .fixed(
+          BoxConstraints(minHeight: _kDividerThickness, minWidth: _kDividerThickness),
         ),
         child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: hidden ? CupertinoDynamicColor.resolve(hiddenColor, context) : dividerColor,
+          decoration: .fixed(
+            BoxDecoration(
+              color: hidden ? CupertinoDynamicColor.resolve(hiddenColor, context) : dividerColor,
+            ),
           ),
         ),
       ),
@@ -1798,12 +1815,12 @@ class _OverscrollBackgroundState extends State<_OverscrollBackground> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         DecoratedBox(
-          decoration: BoxDecoration(color: widget.color),
-          child: SizedBox(height: _topOverscroll),
+          decoration: .fixed(BoxDecoration(color: widget.color)),
+          child: SizedBox(height: .fixed(_topOverscroll)),
         ),
         DecoratedBox(
-          decoration: BoxDecoration(color: widget.color),
-          child: SizedBox(height: _bottomOverscroll),
+          decoration: .fixed(BoxDecoration(color: widget.color)),
+          child: SizedBox(height: .fixed(_bottomOverscroll)),
         ),
       ],
     );
@@ -1844,7 +1861,10 @@ class _ActionSheetActionSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (actions == null || actions!.isEmpty) {
-      return const LimitedBox(maxWidth: 0, child: SizedBox(width: double.infinity, height: 0));
+      return const LimitedBox(
+        maxWidth: 0,
+        child: SizedBox(width: .fixed(double.infinity), height: .fixed(0)),
+      );
     }
     final column = <Widget>[];
     for (var actionIndex = 0; actionIndex < actions!.length; actionIndex += 1) {
@@ -1953,7 +1973,7 @@ class _ActionSheetMainSheet extends StatelessWidget {
 
   static const Widget _empty = LimitedBox(
     maxWidth: 0,
-    child: SizedBox(width: double.infinity, height: 0),
+    child: SizedBox(width: .fixed(double.infinity), height: .fixed(0)),
   );
 }
 
@@ -2014,7 +2034,7 @@ class _CupertinoAlertContentSection extends StatelessWidget {
     final titleContentGroup = <Widget>[
       if (title != null)
         Padding(
-          padding: titlePadding!,
+          padding: .fixed(titlePadding!),
           child: DefaultTextStyle(
             style: titleTextStyle!,
             textAlign: TextAlign.center,
@@ -2023,7 +2043,7 @@ class _CupertinoAlertContentSection extends StatelessWidget {
         ),
       if (message != null)
         Padding(
-          padding: messagePadding!,
+          padding: .fixed(messagePadding!),
           child: DefaultTextStyle(
             style: messageTextStyle!,
             textAlign: TextAlign.center,
@@ -2034,7 +2054,10 @@ class _CupertinoAlertContentSection extends StatelessWidget {
 
     // Add padding between the widgets if necessary.
     if (additionalPaddingBetweenTitleAndMessage != null && titleContentGroup.length > 1) {
-      titleContentGroup.insert(1, Padding(padding: additionalPaddingBetweenTitleAndMessage!));
+      titleContentGroup.insert(
+        1,
+        Padding(padding: .fixed(additionalPaddingBetweenTitleAndMessage!)),
+      );
     }
 
     return CupertinoScrollbar(
@@ -2302,7 +2325,9 @@ class _CupertinoDialogActionState extends State<CupertinoDialogAction> implement
     return FittedBox(
       fit: BoxFit.scaleDown,
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: fontSizeRatio * (dialogWidth - (2 * padding))),
+        constraints: .fixed(
+          BoxConstraints(maxWidth: fontSizeRatio * (dialogWidth - (2 * padding))),
+        ),
         child: Semantics(
           button: true,
           onTap: widget.onPressed,
@@ -2375,9 +2400,9 @@ class _CupertinoDialogActionState extends State<CupertinoDialogAction> implement
         metaData: this,
         behavior: HitTestBehavior.opaque,
         child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: _kDialogMinButtonHeight),
+          constraints: const .fixed(BoxConstraints(minHeight: _kDialogMinButtonHeight)),
           child: Padding(
-            padding: EdgeInsets.all(padding),
+            padding: .fixed(EdgeInsets.all(padding)),
             child: Center(child: sizedContent),
           ),
         ),

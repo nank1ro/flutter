@@ -189,12 +189,12 @@ class _RecipePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 8),
+        const SizedBox(height: .fixed(8)),
         Padding(
-          padding: const EdgeInsetsDirectional.only(start: 8.0),
+          padding: const .fixed(EdgeInsetsDirectional.only(start: 8.0)),
           child: Text(localizations.demoSharedZAxisSavedRecipesListTitle),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: .fixed(4)),
         Expanded(
           child: ListView(
             padding: const EdgeInsets.all(8),
@@ -227,8 +227,8 @@ class _RecipeTile extends StatelessWidget {
     return Row(
       children: <Widget>[
         SizedBox(
-          height: 70,
-          width: 100,
+          height: const .fixed(70),
+          width: const .fixed(100),
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(4)),
             child: Image.asset(
@@ -238,7 +238,7 @@ class _RecipeTile extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 24),
+        const SizedBox(width: .fixed(24)),
         Expanded(
           child: Column(
             children: <Widget>[

@@ -114,8 +114,8 @@ class ZoomControls extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 100,
-                height: defaultButtonHeight,
+                width: .fixed(100),
+                height: .fixed(defaultButtonHeight),
                 child: Slider(
                   min: _minScale,
                   max: _maxScale,
@@ -144,7 +144,7 @@ class ZoomControls extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 36,
+                width: .fixed(36),
                 child: Text(
                   scalePercentage,
                   textAlign: TextAlign.end,
@@ -435,7 +435,7 @@ class _PreviewSearchControlsState extends State<PreviewSearchControls> {
         children: [
           Expanded(
             child: SizedBox(
-              height: defaultButtonHeight,
+              height: .fixed(defaultButtonHeight),
               child: TextField(
                 controller: _searchController,
                 style: theme.regularTextStyleWithColor(Colors.black),

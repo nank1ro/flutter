@@ -37,7 +37,7 @@ void main() {
       RepaintBoundary(
         key: key,
         child: Transform.translate(
-          offset: const Offset(50, 50),
+          offset: const .fixed(Offset(50, 50)),
           child: ImageFiltered(
             imageFilter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
             child: const Placeholder(),
@@ -77,10 +77,10 @@ void main() {
     home: Column(
       children: <Widget>[
         ColoredBox(
-          color: debugBlue,
+          color: .fixed(debugBlue),
           child: SizedBox(
-            height: 56,
-            width: double.infinity,
+            height: .fixed(56),
+            width: .fixed(double.infinity),
             child: Center(child: Text('Matrix ImageFilter Test')),
           ),
         ),
@@ -88,12 +88,12 @@ void main() {
         Align(
           alignment: Alignment.bottomRight,
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: .fixed(EdgeInsets.all(16.0)),
             child: SizedBox(
-              width: 56,
-              height: 56,
+              width: .fixed(56),
+              height: .fixed(56),
               child: DecoratedBox(
-                decoration: BoxDecoration(color: debugBlue, shape: BoxShape.circle),
+                decoration: .fixed(BoxDecoration(color: debugBlue, shape: BoxShape.circle)),
                 child: Center(child: Text('+')),
               ),
             ),
@@ -128,7 +128,7 @@ void main() {
       RepaintBoundary(
         key: key,
         child: Transform.translate(
-          offset: const Offset(50, 50),
+          offset: const .fixed(Offset(50, 50)),
           child: ImageFiltered(imageFilter: matrixFilter, child: matrixTestHome),
         ),
       ),

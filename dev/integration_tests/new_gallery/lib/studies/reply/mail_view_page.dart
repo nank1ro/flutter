@@ -22,7 +22,7 @@ class MailViewPage extends StatelessWidget {
       body: SafeArea(
         bottom: false,
         child: SizedBox(
-          height: double.infinity,
+          height: const .fixed(double.infinity),
           child: Material(
             color: Theme.of(context).cardColor,
             child: SingleChildScrollView(
@@ -31,13 +31,13 @@ class MailViewPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   _MailViewHeader(email: email),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: .fixed(32)),
                   _MailViewBody(message: email.message),
                   if (email.containsPictures) ...<Widget>[
-                    const SizedBox(height: 28),
+                    const SizedBox(height: .fixed(28)),
                     const _PictureGrid(),
                   ],
-                  const SizedBox(height: kToolbarHeight),
+                  const SizedBox(height: .fixed(kToolbarHeight)),
                 ],
               ),
             ),
@@ -79,7 +79,7 @@ class _MailViewHeader extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: .fixed(16)),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -89,7 +89,7 @@ class _MailViewHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 SelectableText('${email.sender} - ${email.time}'),
-                const SizedBox(height: 4),
+                const SizedBox(height: .fixed(4)),
                 SelectableText(
                   'To ${email.recipients},',
                   style: textTheme.bodySmall!.copyWith(
@@ -99,7 +99,7 @@ class _MailViewHeader extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.only(end: 4),
+              padding: const .fixed(EdgeInsetsDirectional.only(end: 4)),
               child: ProfileAvatar(avatar: email.avatar),
             ),
           ],

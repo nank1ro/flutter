@@ -37,13 +37,13 @@ class BottomDrawer extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           physics: const NeverScrollableScrollPhysics(),
           children: <Widget>[
-            const SizedBox(height: 28),
+            const SizedBox(height: .fixed(28)),
             leading,
-            const SizedBox(height: 8),
+            const SizedBox(height: .fixed(8)),
             const Divider(color: ReplyColors.blue200, thickness: 0.25, indent: 18, endIndent: 160),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             Padding(
-              padding: const EdgeInsetsDirectional.only(start: 18),
+              padding: const .fixed(EdgeInsetsDirectional.only(start: 18)),
               child: Text(
                 'FOLDERS',
                 style: theme.textTheme.bodySmall!.copyWith(
@@ -51,7 +51,7 @@ class BottomDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: .fixed(4)),
             trailing,
           ],
         ),

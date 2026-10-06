@@ -87,7 +87,7 @@ class _TreeSliverExampleState extends State<TreeSliverExample> {
                   );
                   if (_selectedNode == node as TreeSliverNode<String>) {
                     child = ColoredBox(
-                      color: Colors.purple[100]!,
+                      color: .fixed(Colors.purple[100]!),
                       child: child,
                     );
                   }

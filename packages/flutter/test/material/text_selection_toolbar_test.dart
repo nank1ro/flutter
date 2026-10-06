@@ -56,7 +56,8 @@ class _CustomMaterialTextSelectionControls extends MaterialTextSelectionControls
 }
 
 class TestBox extends SizedBox {
-  const TestBox({super.key, super.child}) : super(width: itemWidth, height: itemHeight);
+  const TestBox({super.key, super.child})
+    : super(width: const .fixed(itemWidth), height: const .fixed(itemHeight));
 
   static const double itemHeight = 44.0;
   static const double itemWidth = 100.0;

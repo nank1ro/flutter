@@ -97,7 +97,7 @@ class AutocompleteCustomTypeExample extends StatelessWidget {
               child: Material(
                 elevation: 4.0,
                 child: SizedBox(
-                  height: 200.0,
+                  height: .fixed(200.0),
                   child: ListView.builder(
                     padding: const .all(8.0),
                     itemCount: options.length,

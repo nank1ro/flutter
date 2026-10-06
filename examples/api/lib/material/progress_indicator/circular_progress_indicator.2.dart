@@ -60,7 +60,7 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
               : null,
         ),
         child: Padding(
-          padding: const .all(20.0),
+          padding: const .fixed(.all(20.0)),
           child: Column(
             spacing: 8.0,
             children: <Widget>[

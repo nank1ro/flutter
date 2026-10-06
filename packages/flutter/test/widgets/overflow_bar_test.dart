@@ -24,7 +24,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: ConstrainedBox(
-            constraints: BoxConstraints.tight(size),
+            constraints: .fixed(BoxConstraints.tight(size)),
             child: const OverflowBar(),
           ),
         ),
@@ -56,9 +56,9 @@ void main() {
           child: OverflowBar(
             spacing: spacing,
             children: <Widget>[
-              SizedBox(width: 48, height: 48, key: child1Key),
-              SizedBox(width: 64, height: 64, key: child2Key),
-              SizedBox(width: 32, height: 32, key: child3Key),
+              SizedBox(width: const .fixed(48), height: const .fixed(48), key: child1Key),
+              SizedBox(width: const .fixed(64), height: const .fixed(64), key: child2Key),
+              SizedBox(width: const .fixed(32), height: const .fixed(32), key: child3Key),
             ],
           ),
         ),
@@ -115,15 +115,15 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: ConstrainedBox(
-            constraints: BoxConstraints.loose(const Size(100, double.infinity)),
+            constraints: .fixed(BoxConstraints.loose(const Size(100, double.infinity))),
             child: OverflowBar(
               overflowSpacing: overflowSpacing,
               overflowAlignment: overflowAlignment,
               overflowDirection: overflowDirection,
               children: <Widget>[
-                SizedBox(width: 48, height: 48, key: child1Key),
-                SizedBox(width: 64, height: 64, key: child2Key),
-                SizedBox(width: 32, height: 32, key: child3Key),
+                SizedBox(width: const .fixed(48), height: const .fixed(48), key: child1Key),
+                SizedBox(width: const .fixed(64), height: const .fixed(64), key: child2Key),
+                SizedBox(width: const .fixed(32), height: const .fixed(32), key: child3Key),
               ],
             ),
           ),
@@ -215,9 +215,9 @@ void main() {
                 spacing: 4,
                 overflowSpacing: 8,
                 children: <Widget>[
-                  SizedBox(width: 48, height: 50),
-                  SizedBox(width: 64, height: 25),
-                  SizedBox(width: 32, height: 75),
+                  SizedBox(width: .fixed(48), height: .fixed(50)),
+                  SizedBox(width: .fixed(64), height: .fixed(25)),
+                  SizedBox(width: .fixed(32), height: .fixed(75)),
                 ],
               ),
             ),
@@ -246,9 +246,9 @@ void main() {
                 spacing: 4,
                 overflowSpacing: 8,
                 children: <Widget>[
-                  SizedBox(width: 48, height: 50),
-                  SizedBox(width: 64, height: 25),
-                  SizedBox(width: 32, height: 75),
+                  SizedBox(width: .fixed(48), height: .fixed(50)),
+                  SizedBox(width: .fixed(64), height: .fixed(25)),
+                  SizedBox(width: .fixed(32), height: .fixed(75)),
                 ],
               ),
             ),
@@ -273,14 +273,14 @@ void main() {
       return Directionality(
         textDirection: textDirection,
         child: SizedBox(
-          width: 800,
+          width: const .fixed(800),
           // intrinsic width = 50 + 10 + 60 + 10 + 70 = 200
           child: OverflowBar(
             spacing: 10,
             children: <Widget>[
-              SizedBox(key: key0, width: 50, height: 50),
-              SizedBox(key: key1, width: 60, height: 50),
-              SizedBox(key: key2, width: 70, height: 50),
+              SizedBox(key: key0, width: const .fixed(50), height: const .fixed(50)),
+              SizedBox(key: key1, width: const .fixed(60), height: const .fixed(50)),
+              SizedBox(key: key2, width: const .fixed(70), height: const .fixed(50)),
             ],
           ),
         ),
@@ -310,9 +310,9 @@ void main() {
     // This list of children appears in a Row and an OverflowBar, so each
     // find.byKey() for key0, key1, key2 returns two widgets.
     final children = <Widget>[
-      SizedBox(key: key0, width: 50, height: 50),
-      SizedBox(key: key1, width: 70, height: 50),
-      SizedBox(key: key2, width: 80, height: 50),
+      SizedBox(key: key0, width: const .fixed(50), height: const .fixed(50)),
+      SizedBox(key: key1, width: const .fixed(70), height: const .fixed(50)),
+      SizedBox(key: key2, width: const .fixed(80), height: const .fixed(50)),
     ];
 
     const allAlignments = <MainAxisAlignment>[

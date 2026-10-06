@@ -111,7 +111,7 @@ class _NavigationDrawerExampleState extends State<NavigationDrawerExample> {
         child: Row(
           children: <Widget>[
             Padding(
-              padding: const .symmetric(horizontal: 5),
+              padding: const .fixed(.symmetric(horizontal: 5)),
               child: NavigationRail(
                 minWidth: 50,
                 destinations: destinations.map((
@@ -153,7 +153,7 @@ class _NavigationDrawerExampleState extends State<NavigationDrawerExample> {
         selectedIndex: screenIndex,
         children: <Widget>[
           Padding(
-            padding: const .fromLTRB(28, 16, 16, 10),
+            padding: const .fixed(.fromLTRB(28, 16, 16, 10)),
             child: Text(
               'Header',
               style: Theme.of(context).textTheme.titleSmall,
@@ -166,7 +166,10 @@ class _NavigationDrawerExampleState extends State<NavigationDrawerExample> {
               selectedIcon: destination.selectedIcon,
             );
           }),
-          const Padding(padding: .fromLTRB(28, 16, 28, 10), child: Divider()),
+          const Padding(
+            padding: .fixed(.fromLTRB(28, 16, 28, 10)),
+            child: Divider(),
+          ),
         ],
       ),
     );

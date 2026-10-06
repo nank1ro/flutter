@@ -91,7 +91,7 @@ class TestWidgetState extends State<TestWidget> with RestorationMixin {
   Widget build(BuildContext context) {
     return Align(
       child: SizedBox(
-        width: 50,
+        width: const .fixed(50),
         child: CupertinoTextField(
           restorationId: 'text',
           maxLines: 3,

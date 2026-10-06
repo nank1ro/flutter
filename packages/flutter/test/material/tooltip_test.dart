@@ -91,7 +91,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const .fixed(EdgeInsets.all(20)),
           child: Overlay(
             initialEntries: <OverlayEntry>[
               entry = OverlayEntry(
@@ -1491,7 +1491,7 @@ void main() {
       const MaterialApp(
         home: Center(
           child: SizedBox.square(
-            dimension: 10.0,
+            dimension: .fixed(10.0),
             child: Tooltip(
               message: tooltipText,
               waitDuration: Duration(seconds: 1),
@@ -1536,7 +1536,7 @@ void main() {
                   message: tooltipText,
                   waitDuration: Duration(seconds: 1),
                   triggerMode: TooltipTriggerMode.longPress,
-                  child: SizedBox.square(dimension: 50),
+                  child: SizedBox.square(dimension: .fixed(50)),
                 ),
               ],
             ),
@@ -1585,7 +1585,7 @@ void main() {
           child: Tooltip(
             message: tooltipText,
             mouseCursor: customCursor,
-            child: SizedBox.square(dimension: 50),
+            child: SizedBox.square(dimension: .fixed(50)),
           ),
         ),
       ),
@@ -1849,7 +1849,7 @@ void main() {
           message: tooltipText,
           constraints: tooltipConstraints,
           padding: EdgeInsets.zero,
-          child: const ColoredBox(color: Colors.green),
+          child: const ColoredBox(color: .fixed(Colors.green)),
         ),
       ),
     );
@@ -2022,7 +2022,7 @@ void main() {
                   context.target.dy - (context.targetSize.height / 2) - context.tooltipSize.height,
                 );
               },
-              child: const SizedBox(width: 50, height: 50),
+              child: const SizedBox(width: .fixed(50), height: .fixed(50)),
             ),
           ),
         ),

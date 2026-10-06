@@ -1019,7 +1019,7 @@ void main() {
           child: ListView(
             controller: controller,
             children: kStates.map<Widget>((String state) {
-              return SizedBox(height: 200.0, child: Text(state));
+              return SizedBox(height: const .fixed(200.0), child: Text(state));
             }).toList(),
           ),
         ),
@@ -1082,18 +1082,16 @@ void main() {
     expect(view.primary, isNull);
   });
 
-  testWidgets(
-    'Vertical CustomScrollViews use PrimaryScrollController by default on mobile',
-    (WidgetTester tester) async {
-      final controller = ScrollController();
-      addTearDown(controller.dispose);
-      await tester.pumpWidget(
-        primaryScrollControllerBoilerplate(child: const CustomScrollView(), controller: controller),
-      );
-      expect(controller.hasClients, isTrue);
-    },
-    variant: TargetPlatformVariant.mobile(),
-  );
+  testWidgets('Vertical CustomScrollViews use PrimaryScrollController by default on mobile', (
+    WidgetTester tester,
+  ) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      primaryScrollControllerBoilerplate(child: const CustomScrollView(), controller: controller),
+    );
+    expect(controller.hasClients, isTrue);
+  }, variant: TargetPlatformVariant.mobile());
 
   testWidgets(
     "Vertical CustomScrollViews don't use PrimaryScrollController by default on desktop",
@@ -1113,68 +1111,60 @@ void main() {
     expect(view.primary, isNull);
   });
 
-  testWidgets(
-    'Vertical ListViews use PrimaryScrollController by default on mobile',
-    (WidgetTester tester) async {
-      final controller = ScrollController();
-      addTearDown(controller.dispose);
-      await tester.pumpWidget(
-        primaryScrollControllerBoilerplate(child: ListView(), controller: controller),
-      );
-      expect(controller.hasClients, isTrue);
-    },
-    variant: TargetPlatformVariant.mobile(),
-  );
+  testWidgets('Vertical ListViews use PrimaryScrollController by default on mobile', (
+    WidgetTester tester,
+  ) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      primaryScrollControllerBoilerplate(child: ListView(), controller: controller),
+    );
+    expect(controller.hasClients, isTrue);
+  }, variant: TargetPlatformVariant.mobile());
 
-  testWidgets(
-    "Vertical ListViews don't use PrimaryScrollController by default on desktop",
-    (WidgetTester tester) async {
-      final controller = ScrollController();
-      addTearDown(controller.dispose);
-      await tester.pumpWidget(
-        primaryScrollControllerBoilerplate(child: ListView(), controller: controller),
-      );
-      expect(controller.hasClients, isFalse);
-    },
-    variant: TargetPlatformVariant.desktop(),
-  );
+  testWidgets("Vertical ListViews don't use PrimaryScrollController by default on desktop", (
+    WidgetTester tester,
+  ) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      primaryScrollControllerBoilerplate(child: ListView(), controller: controller),
+    );
+    expect(controller.hasClients, isFalse);
+  }, variant: TargetPlatformVariant.desktop());
 
   testWidgets('Vertical GridViews are not primary by default', (WidgetTester tester) async {
     final view = GridView.count(crossAxisCount: 1);
     expect(view.primary, isNull);
   });
 
-  testWidgets(
-    'Vertical GridViews use PrimaryScrollController by default on mobile',
-    (WidgetTester tester) async {
-      final controller = ScrollController();
-      addTearDown(controller.dispose);
-      await tester.pumpWidget(
-        primaryScrollControllerBoilerplate(
-          child: GridView.count(crossAxisCount: 1),
-          controller: controller,
-        ),
-      );
-      expect(controller.hasClients, isTrue);
-    },
-    variant: TargetPlatformVariant.mobile(),
-  );
+  testWidgets('Vertical GridViews use PrimaryScrollController by default on mobile', (
+    WidgetTester tester,
+  ) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      primaryScrollControllerBoilerplate(
+        child: GridView.count(crossAxisCount: 1),
+        controller: controller,
+      ),
+    );
+    expect(controller.hasClients, isTrue);
+  }, variant: TargetPlatformVariant.mobile());
 
-  testWidgets(
-    "Vertical GridViews don't use PrimaryScrollController by default on desktop",
-    (WidgetTester tester) async {
-      final controller = ScrollController();
-      addTearDown(controller.dispose);
-      await tester.pumpWidget(
-        primaryScrollControllerBoilerplate(
-          child: GridView.count(crossAxisCount: 1),
-          controller: controller,
-        ),
-      );
-      expect(controller.hasClients, isFalse);
-    },
-    variant: TargetPlatformVariant.desktop(),
-  );
+  testWidgets("Vertical GridViews don't use PrimaryScrollController by default on desktop", (
+    WidgetTester tester,
+  ) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      primaryScrollControllerBoilerplate(
+        child: GridView.count(crossAxisCount: 1),
+        controller: controller,
+      ),
+    );
+    expect(controller.hasClients, isFalse);
+  }, variant: TargetPlatformVariant.desktop());
 
   testWidgets('Horizontal CustomScrollViews are non-primary by default', (
     WidgetTester tester,
@@ -1452,10 +1442,10 @@ void main() {
 
     Widget buildDivider() {
       return const Padding(
-        padding: EdgeInsets.all(4),
+        padding: .fixed(EdgeInsets.all(4)),
         child: ColoredBox(
-          color: Color(0xFF000000),
-          child: SizedBox(height: 4, width: double.infinity),
+          color: .fixed(Color(0xFF000000)),
+          child: SizedBox(height: .fixed(4), width: .fixed(double.infinity)),
         ),
       );
     }
@@ -1631,7 +1621,7 @@ void main() {
             return SliverToBoxAdapter(
               child: Focus(
                 autofocus: index == 0,
-                child: SizedBox(key: ValueKey<String>('Box $index'), height: 50.0),
+                child: SizedBox(key: ValueKey<String>('Box $index'), height: const .fixed(50.0)),
               ),
             );
           }),
@@ -1668,12 +1658,14 @@ void main() {
   ) async {
     Widget getScrollView() {
       return SizedBox(
-        width: 400.0,
+        width: const .fixed(400.0),
         child: CustomScrollView(
           primary: true,
           slivers: List<Widget>.generate(20, (int index) {
             return SliverToBoxAdapter(
-              child: Focus(child: SizedBox(key: ValueKey<String>('Box $index'), height: 50.0)),
+              child: Focus(
+                child: SizedBox(key: ValueKey<String>('Box $index'), height: const .fixed(50.0)),
+              ),
             );
           }),
         ),
@@ -1714,7 +1706,7 @@ void main() {
                 return SizedBox(
                   key: ValueKey<int>(numbers[index]),
                   // children with different heights
-                  height: 20 + numbers[index] * 10,
+                  height: .fixed(20 + numbers[index] * 10),
                   child: ReorderableDragStartListener(
                     index: index,
                     child: Text(numbers[index].toString()),
@@ -1752,7 +1744,7 @@ void main() {
                 return SizedBox(
                   key: ValueKey<int>(numbers[index]),
                   // children with different heights
-                  height: 20 + numbers[index] * 10,
+                  height: .fixed(20 + numbers[index] * 10),
                   child: ReorderableDragStartListener(
                     index: index,
                     child: Text(numbers[index].toString()),
@@ -1760,7 +1752,7 @@ void main() {
                 );
               },
               itemCount: numbers.length,
-              prototypeItem: const SizedBox(height: 30, child: Text('3')),
+              prototypeItem: const SizedBox(height: .fixed(30), child: Text('3')),
             );
           },
         ),

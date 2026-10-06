@@ -162,7 +162,7 @@ void main() {
           groupRegistry: registry,
           enabled: true,
           builder: (BuildContext context, ToggleableStateMixin state) =>
-              const SizedBox(width: 18, height: 18),
+              const SizedBox(width: .fixed(18), height: .fixed(18)),
         ),
       ),
     );

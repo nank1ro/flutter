@@ -74,7 +74,7 @@ class _MaterialAppExampleState extends State<MaterialAppExample> {
                     })
                     .toList(),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: .fixed(10)),
               OutlinedButton.icon(
                 onPressed: () {
                   setState(() {

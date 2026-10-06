@@ -107,7 +107,8 @@ void main() {
     return find.descendant(
       of: findStatic(),
       matching: find.byWidgetPredicate(
-        (Widget widget) => widget is ColoredBox && widget.color != CupertinoColors.activeOrange,
+        (Widget widget) =>
+            widget is ColoredBox && widget.color.value != CupertinoColors.activeOrange,
       ),
     );
   }
@@ -193,8 +194,8 @@ void main() {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: SizedBox(
-                  width: 700,
-                  height: 500,
+                  width: const .fixed(700),
+                  height: const .fixed(500),
                   child: Navigator(
                     onGenerateRoute: (RouteSettings settings) {
                       return CupertinoPageRoute<void>(
@@ -471,7 +472,7 @@ void main() {
             child: MediaQuery(
               data: const MediaQueryData(size: Size(800, 600)),
               child: Transform.scale(
-                scale: 0.5,
+                scale: const .fixed(0.5),
                 child: Align(
                   //alignment: Alignment.bottomRight,
                   child: CupertinoContextMenu(

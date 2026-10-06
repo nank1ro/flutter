@@ -15,12 +15,16 @@ void main() {
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
           slivers: <Widget>[
-            const SliverToBoxAdapter(child: SizedBox(width: double.infinity, height: 150.0)),
-            const SliverToBoxAdapter(child: SizedBox(width: double.infinity, height: 150.0)),
+            const SliverToBoxAdapter(
+              child: SizedBox(width: .fixed(double.infinity), height: .fixed(150.0)),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(width: .fixed(double.infinity), height: .fixed(150.0)),
+            ),
             SliverList.builder(
               itemBuilder: (BuildContext context, int index) {
                 if (index < 100) {
-                  return const SizedBox(width: double.infinity, height: 150.0);
+                  return const SizedBox(width: .fixed(double.infinity), height: .fixed(150.0));
                 } else {
                   return null;
                 }
@@ -28,7 +32,7 @@ void main() {
             ),
             const SliverToBoxAdapter(
               key: Key('final_sliver'),
-              child: SizedBox(width: double.infinity, height: 150.0),
+              child: SizedBox(width: .fixed(double.infinity), height: .fixed(150.0)),
             ),
           ],
         ),

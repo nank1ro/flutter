@@ -143,7 +143,7 @@ abstract class GoldenFileComparator {
 ///     );
 ///     addTearDown(() => goldenFileComparator = previousGoldenFileComparator);
 ///
-///     await tester.pumpWidget(const ColoredBox(color: Color(0xff00ff00)));
+///     await tester.pumpWidget(const ColoredBox(color: .fixed(Color(0xff00ff00))));
 ///
 ///     await expectLater(
 ///       find.byType(ColoredBox),

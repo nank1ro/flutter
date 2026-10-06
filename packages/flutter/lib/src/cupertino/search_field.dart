@@ -539,17 +539,17 @@ class _CupertinoSearchTextFieldState extends State<CupertinoSearchTextField> wit
     );
 
     final Widget prefix = Opacity(
-      opacity: 1.0 - _fadeExtent,
+      opacity: .fixed(1.0 - _fadeExtent),
       child: Padding(
-        padding: _animatedInsets(context, widget.prefixInsets),
+        padding: .fixed(_animatedInsets(context, widget.prefixInsets)),
         child: IconTheme(data: prefixIconThemeData, child: widget.prefixIcon),
       ),
     );
 
     final Widget suffix = Opacity(
-      opacity: 1.0 - _fadeExtent,
+      opacity: .fixed(1.0 - _fadeExtent),
       child: Padding(
-        padding: _animatedInsets(context, widget.suffixInsets),
+        padding: .fixed(_animatedInsets(context, widget.suffixInsets)),
         child: CupertinoButton(
           onPressed: widget.onSuffixTap ?? _defaultOnSuffixTap,
           minSize: 0,

@@ -27,7 +27,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Align(
           alignment: AlignmentDirectional.topStart,
-          child: SizedBox(width: 100.0, height: 80.0),
+          child: SizedBox(width: .fixed(100.0), height: .fixed(80.0)),
         ),
       ),
     );
@@ -38,7 +38,10 @@ void main() {
     await tester.pumpWidget(
       const Directionality(
         textDirection: TextDirection.ltr,
-        child: Align(alignment: Alignment.topLeft, child: SizedBox(width: 100.0, height: 80.0)),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: SizedBox(width: .fixed(100.0), height: .fixed(80.0)),
+        ),
       ),
     );
 
@@ -52,7 +55,7 @@ void main() {
         textDirection: TextDirection.rtl,
         child: Align(
           alignment: AlignmentDirectional.topStart,
-          child: SizedBox(width: 100.0, height: 80.0),
+          child: SizedBox(width: .fixed(100.0), height: .fixed(80.0)),
         ),
       ),
     );
@@ -63,7 +66,10 @@ void main() {
     await tester.pumpWidget(
       const Directionality(
         textDirection: TextDirection.ltr,
-        child: Align(alignment: Alignment.topLeft, child: SizedBox(width: 100.0, height: 80.0)),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: SizedBox(width: .fixed(100.0), height: .fixed(80.0)),
+        ),
       ),
     );
 
@@ -75,7 +81,10 @@ void main() {
     final GlobalKey alignKey = GlobalKey();
     await tester.pumpWidget(
       SingleChildScrollView(
-        child: Align(key: alignKey, child: const SizedBox(width: 10.0, height: 10.0)),
+        child: Align(
+          key: alignKey,
+          child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
+        ),
       ),
     );
 
@@ -91,7 +100,12 @@ void main() {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Align(widthFactor: 0.5, child: SizedBox(height: 100.0, width: 100.0))],
+          children: <Widget>[
+            Align(
+              widthFactor: 0.5,
+              child: SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
+            ),
+          ],
         ),
       ),
     );
@@ -107,7 +121,10 @@ void main() {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Align(heightFactor: 0.5, child: SizedBox(height: 100.0, width: 100.0)),
+            Align(
+              heightFactor: 0.5,
+              child: SizedBox(height: .fixed(100.0), width: .fixed(100.0)),
+            ),
           ],
         ),
       ),

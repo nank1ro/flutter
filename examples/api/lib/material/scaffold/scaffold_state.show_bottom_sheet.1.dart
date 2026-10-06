@@ -76,7 +76,7 @@ class _ShowBottomSheetExampleState extends State<ShowBottomSheetExample> {
                 })
                 .toList(),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: .fixed(10)),
           ElevatedButton(
             child: const Text('showBottomSheet'),
             onPressed: () {
@@ -84,7 +84,7 @@ class _ShowBottomSheetExampleState extends State<ShowBottomSheetExample> {
                 sheetAnimationStyle: _animationStyle,
                 (BuildContext context) {
                   return SizedBox(
-                    height: 200,
+                    height: .fixed(200),
                     child: Center(
                       child: Column(
                         mainAxisAlignment: .center,

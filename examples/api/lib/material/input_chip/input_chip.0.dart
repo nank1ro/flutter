@@ -64,7 +64,7 @@ class _InputChipExampleState extends State<InputChipExample> {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: .fixed(10)),
             ElevatedButton(
               onPressed: () {
                 setState(() {

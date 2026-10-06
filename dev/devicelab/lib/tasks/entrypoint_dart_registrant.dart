@@ -21,13 +21,13 @@ import 'package:flutter/widgets.dart';
 @pragma('vm:entry-point')
 void main() {
   print('$_messagePrefix main');
-  runApp(const ColoredBox(color: Color(0xffcc0000)));
+  runApp(const ColoredBox(color: .fixed(Color(0xffcc0000))));
 }
 
 @pragma('vm:entry-point')
 void $_entrypointName() {
   print('$_messagePrefix $_entrypointName');
-  runApp(const ColoredBox(color: Color(0xff00cc00)));
+  runApp(const ColoredBox(color: .fixed(Color(0xff00cc00))));
 }
 ''';
 

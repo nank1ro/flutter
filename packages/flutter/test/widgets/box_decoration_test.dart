@@ -60,8 +60,8 @@ Future<void> main() async {
       KeyedSubtree(
         key: key,
         child: DecoratedBox(
-          decoration: BoxDecoration(
-            image: DecorationImage(image: TestImageProvider(completer.future)),
+          decoration: .fixed(
+            BoxDecoration(image: DecorationImage(image: TestImageProvider(completer.future))),
           ),
         ),
       ),
@@ -81,8 +81,8 @@ Future<void> main() async {
       key: GlobalKey(),
       child: RepaintBoundary(
         child: DecoratedBox(
-          decoration: BoxDecoration(
-            image: DecorationImage(image: TestImageProvider(completer.future)),
+          decoration: .fixed(
+            BoxDecoration(image: DecorationImage(image: TestImageProvider(completer.future))),
           ),
         ),
       ),
@@ -122,7 +122,7 @@ Future<void> main() async {
         child: Container(
           key: key,
           decoration: BoxDecoration(border: Border.all(width: 10.0)),
-          child: const SizedBox(width: 25.0, height: 25.0),
+          child: const SizedBox(width: .fixed(25.0), height: .fixed(25.0)),
         ),
       ),
     );

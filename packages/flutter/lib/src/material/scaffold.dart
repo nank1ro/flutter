@@ -3053,7 +3053,7 @@ class ScaffoldState extends State<Scaffold>
       _addIfNonNull(
         children,
         ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: _appBarMaxHeight!),
+          constraints: .fixed(BoxConstraints(maxHeight: _appBarMaxHeight!)),
           child: FlexibleSpaceBar.createSettings(
             currentExtent: _appBarMaxHeight!,
             child: widget.appBar!,
@@ -3138,7 +3138,7 @@ class ScaffoldState extends State<Scaffold>
             top: false,
             child: IntrinsicHeight(
               child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const .fixed(EdgeInsets.all(8)),
                 child: Align(
                   alignment: widget.persistentFooterAlignment,
                   child: OverflowBar(

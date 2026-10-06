@@ -422,14 +422,14 @@ void main() {
     );
     // The `tester.widget` ensures that there is exactly one upward arrow.
     Transform transformOfArrow = tester.widget<Transform>(iconFinder);
-    expect(transformOfArrow.transform.getRotation(), equals(Matrix3.identity()));
+    expect(transformOfArrow.transform.value.getRotation(), equals(Matrix3.identity()));
 
     // Check for descending list.
     await tester.pumpWidget(MaterialApp(home: Material(child: buildTable(sortAscending: false))));
     await tester.pumpAndSettle();
     // The `tester.widget` ensures that there is exactly one upward arrow.
     transformOfArrow = tester.widget<Transform>(iconFinder);
-    expect(transformOfArrow.transform.getRotation(), equals(Matrix3.rotationZ(math.pi)));
+    expect(transformOfArrow.transform.value.getRotation(), equals(Matrix3.rotationZ(math.pi)));
   });
 
   testWidgets('DataTable sort indicator orientation does not change on state update', (
@@ -460,7 +460,7 @@ void main() {
     );
     // The `tester.widget` ensures that there is exactly one upward arrow.
     Transform transformOfArrow = tester.widget<Transform>(iconFinder);
-    expect(transformOfArrow.transform.getRotation(), equals(Matrix3.identity()));
+    expect(transformOfArrow.transform.value.getRotation(), equals(Matrix3.identity()));
 
     // Cause a rebuild by updating the widget
     await tester.pumpWidget(
@@ -472,7 +472,7 @@ void main() {
     // The `tester.widget` ensures that there is exactly one upward arrow.
     transformOfArrow = tester.widget<Transform>(iconFinder);
     expect(
-      transformOfArrow.transform.getRotation(),
+      transformOfArrow.transform.value.getRotation(),
       equals(Matrix3.identity()), // Should not have changed
     );
   });
@@ -506,7 +506,7 @@ void main() {
     );
     // The `tester.widget` ensures that there is exactly one upward arrow.
     Transform transformOfArrow = tester.widget<Transform>(iconFinder);
-    expect(transformOfArrow.transform.getRotation(), equals(Matrix3.rotationZ(math.pi)));
+    expect(transformOfArrow.transform.value.getRotation(), equals(Matrix3.rotationZ(math.pi)));
 
     // Cause a rebuild by updating the widget
     await tester.pumpWidget(
@@ -518,7 +518,7 @@ void main() {
     // The `tester.widget` ensures that there is exactly one upward arrow.
     transformOfArrow = tester.widget<Transform>(iconFinder);
     expect(
-      transformOfArrow.transform.getRotation(),
+      transformOfArrow.transform.value.getRotation(),
       equals(Matrix3.rotationZ(math.pi)), // Should not have changed
     );
   });
@@ -1754,7 +1754,7 @@ void main() {
         home: Material(
           child: Center(
             child: SizedBox(
-              width: 117.0,
+              width: const .fixed(117.0),
               child: DataTable(
                 border: TableBorder.all(width: 2, color: Colors.red),
                 columns: columns,
@@ -1899,7 +1899,7 @@ void main() {
                       onSecondaryTapDown: (TapDownDetails details) {
                         secondaryTappedDown = true;
                       },
-                      child: const SizedBox(width: 100.0, height: 100.0),
+                      child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
                     ),
                   ],
                 ),
@@ -2197,7 +2197,7 @@ void main() {
       MaterialApp(
         home: Material(
           child: SizedBox(
-            width: 500,
+            width: const .fixed(500),
             child: DataTable(
               columns: const <DataColumn>[
                 DataColumn(
@@ -2236,7 +2236,7 @@ void main() {
       MaterialApp(
         home: Material(
           child: SizedBox(
-            width: 500,
+            width: const .fixed(500),
             child: DataTable(
               columns: const <DataColumn>[
                 DataColumn(
@@ -2394,8 +2394,12 @@ void main() {
             dataRowMinHeight: 70,
             columns: const <DataColumn>[
               // Set width so the Column width is not determined by text.
-              DataColumn(label: SizedBox(width: 250, child: Text('Column 1'))),
-              DataColumn(label: SizedBox(width: 250, child: Text('Column 2'))),
+              DataColumn(
+                label: SizedBox(width: .fixed(250), child: Text('Column 1')),
+              ),
+              DataColumn(
+                label: SizedBox(width: .fixed(250), child: Text('Column 2')),
+              ),
             ],
             rows: const <DataRow>[
               DataRow(

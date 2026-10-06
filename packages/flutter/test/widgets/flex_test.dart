@@ -16,15 +16,15 @@ void main() {
       textDirection: TextDirection.ltr,
       child: Center(
         child: SizedBox.square(
-          dimension: 300.0,
+          dimension: const .fixed(300.0),
           child: Flex(
             direction: direction,
             mainAxisAlignment: mainAxisAlignment,
             spacing: spacing,
             children: const <Widget>[
-              SizedBox.square(dimension: 50.0),
-              SizedBox.square(dimension: 50.0),
-              SizedBox.square(dimension: 50.0),
+              SizedBox.square(dimension: .fixed(50.0)),
+              SizedBox.square(dimension: .fixed(50.0)),
+              SizedBox.square(dimension: .fixed(50.0)),
             ],
           ),
         ),
@@ -38,7 +38,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: ColoredBox(
-          color: const Color(0xFF00FF00),
+          color: const .fixed(Color(0xFF00FF00)),
           child: Stack(
             children: <Widget>[
               Positioned(
@@ -74,7 +74,11 @@ void main() {
     await tester.pumpWidget(
       const Row(
         textDirection: TextDirection.ltr,
-        children: <Widget>[Flexible(child: SizedBox(width: 100.0, height: 200.0))],
+        children: <Widget>[
+          Flexible(
+            child: SizedBox(width: .fixed(100.0), height: .fixed(200.0)),
+          ),
+        ],
       ),
     );
 
@@ -89,7 +93,7 @@ void main() {
     await tester.pumpWidget(
       const Center(
         child: SizedBox(
-          height: 400.0,
+          height: .fixed(400.0),
           child: Column(
             children: <Widget>[
               Expanded(child: SizedBox()),
@@ -106,7 +110,7 @@ void main() {
     await tester.pumpWidget(
       const Center(
         child: SizedBox(
-          height: 199.0,
+          height: .fixed(199.0),
           child: Column(
             children: <Widget>[
               Expanded(child: SizedBox()),

@@ -1106,7 +1106,7 @@ class _MenuOverlayState extends State<_MenuOverlay>
                         explicitChildNodes: true,
                         scopesRoute: true,
                         child: ConstrainedBox(
-                          constraints: constraints,
+                          constraints: .fixed(constraints),
                           child: SingleChildScrollView(
                             clipBehavior: Clip.none,
                             child: Column(mainAxisSize: MainAxisSize.min, children: _children),
@@ -1135,7 +1135,7 @@ class _MenuOverlayState extends State<_MenuOverlay>
     }
 
     return ConstrainedBox(
-      constraints: BoxConstraints.loose(widget.overlaySize),
+      constraints: .fixed(BoxConstraints.loose(widget.overlaySize)),
       child: ScaleTransition(
         scale: _scaleAnimation,
         alignment: _attachmentPointAlignment,
@@ -1605,8 +1605,8 @@ class CupertinoMenuDivider extends StatelessWidget implements CupertinoMenuEntry
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: CupertinoDynamicColor.resolve(color, context),
-      child: const SizedBox(height: _kDividerHeight, width: double.infinity),
+      color: .fixed(CupertinoDynamicColor.resolve(color, context)),
+      child: const SizedBox(height: .fixed(_kDividerHeight), width: .fixed(double.infinity)),
     );
   }
 }
@@ -2230,9 +2230,9 @@ class _CupertinoMenuItemLabel extends StatelessWidget {
             : _kDefaultHorizontalWidth);
 
     return ConstrainedBox(
-      constraints: constraints,
+      constraints: .fixed(constraints),
       child: Padding(
-        padding: resolvedPadding,
+        padding: .fixed(resolvedPadding),
         child: Stack(
           children: <Widget>[
             if (showLeadingWidget)
@@ -2250,9 +2250,8 @@ class _CupertinoMenuItemLabel extends StatelessWidget {
                 ),
               ),
             Padding(
-              padding: EdgeInsetsDirectional.only(
-                start: resolvedLeadingWidth,
-                end: resolvedTrailingWidth,
+              padding: .fixed(
+                EdgeInsetsDirectional.only(start: resolvedLeadingWidth, end: resolvedTrailingWidth),
               ),
               child: subtitle == null
                   ? Align(alignment: AlignmentDirectional.centerStart, child: child)
@@ -2260,7 +2259,11 @@ class _CupertinoMenuItemLabel extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[child, const SizedBox(height: 1), subtitle!],
+                      children: <Widget>[
+                        child,
+                        const SizedBox(height: .fixed(1)),
+                        subtitle!,
+                      ],
                     ),
             ),
             if (trailing != null)
@@ -2542,13 +2545,15 @@ class _CupertinoMenuItemInteractionHandlerState
       hitTestBehavior: HitTestBehavior.deferToChild,
       cursor: cursor,
       child: DecoratedBox(
-        decoration: decoration.copyWith(
-          color: CupertinoDynamicColor.maybeResolve(decoration.color, context),
-          backgroundBlendMode: kIsWeb || !hasBackground || decoration.backgroundBlendMode != null
-              ? decoration.backgroundBlendMode
-              : CupertinoTheme.maybeBrightnessOf(context) == Brightness.light
-              ? BlendMode.multiply
-              : BlendMode.plus,
+        decoration: .fixed(
+          decoration.copyWith(
+            color: CupertinoDynamicColor.maybeResolve(decoration.color, context),
+            backgroundBlendMode: kIsWeb || !hasBackground || decoration.backgroundBlendMode != null
+                ? decoration.backgroundBlendMode
+                : CupertinoTheme.maybeBrightnessOf(context) == Brightness.light
+                ? BlendMode.multiply
+                : BlendMode.plus,
+          ),
         ),
         child: child,
       ),

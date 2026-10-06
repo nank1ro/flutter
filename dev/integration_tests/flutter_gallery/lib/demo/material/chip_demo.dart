@@ -84,7 +84,7 @@ class _ChipsTile extends StatelessWidget {
           if (children!.isNotEmpty)
             Wrap(
               children: children!.map<Widget>((Widget chip) {
-                return Padding(padding: const EdgeInsets.all(2.0), child: chip);
+                return Padding(padding: const .fixed(EdgeInsets.all(2.0)), child: chip);
               }).toList(),
             )
           else
@@ -277,7 +277,7 @@ class _ChipDemoState extends State<ChipDemo> {
     }).toList();
 
     final tiles = <Widget>[
-      const SizedBox(height: 8.0, width: 0.0),
+      const SizedBox(height: .fixed(8.0), width: .fixed(0.0)),
       _ChipsTile(label: 'Available Materials (Chip)', children: chips),
       _ChipsTile(label: 'Available Tools (InputChip)', children: inputChips),
       _ChipsTile(label: 'Choose a Material (ChoiceChip)', children: choiceChips),
@@ -285,7 +285,7 @@ class _ChipDemoState extends State<ChipDemo> {
       _ChipsTile(label: 'Perform Allowed Action (ActionChip)', children: actionChips),
       const Divider(),
       Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const .fixed(EdgeInsets.all(8.0)),
         child: Center(child: Text(_createResult(), style: theme.textTheme.titleLarge)),
       ),
     ];

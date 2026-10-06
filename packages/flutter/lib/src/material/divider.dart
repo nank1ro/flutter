@@ -153,12 +153,12 @@ class Divider extends StatelessWidget {
   ///
   /// ```dart
   /// DecoratedBox(
-  ///   decoration: BoxDecoration(
+  ///   decoration: .fixed(BoxDecoration(
   ///     border: Border(
   ///       top: Divider.createBorderSide(context),
   ///       bottom: Divider.createBorderSide(context),
   ///     ),
-  ///   ),
+  ///   )),
   ///   // child: ...
   /// )
   /// ```
@@ -194,7 +194,7 @@ class Divider extends StatelessWidget {
     final double endIndent = this.endIndent ?? dividerTheme.endIndent ?? defaults.endIndent!;
 
     return SizedBox(
-      height: height,
+      height: .fixed(height),
       child: Center(
         child: Container(
           height: thickness,
@@ -322,7 +322,7 @@ class VerticalDivider extends StatelessWidget {
     final double endIndent = this.endIndent ?? dividerTheme.endIndent ?? defaults.endIndent!;
 
     return SizedBox(
-      width: width,
+      width: .fixed(width),
       child: Center(
         child: Container(
           width: thickness,

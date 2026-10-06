@@ -93,7 +93,7 @@ class _TestAnimatedThemeWidgetState extends State<_TestAnimatedThemeWidget> {
               toggle = !toggle;
             });
           },
-          child: const SizedBox(width: 48.0, height: 48.0),
+          child: const SizedBox(width: .fixed(48.0), height: .fixed(48.0)),
         ),
       ],
     );

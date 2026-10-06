@@ -163,8 +163,10 @@ class SpellCheckSuggestionsToolbar extends StatelessWidget {
         return button;
       }
       return DecoratedBox(
-        decoration: const BoxDecoration(
-          border: Border(top: BorderSide(color: Colors.grey)),
+        decoration: const .fixed(
+          BoxDecoration(
+            border: Border(top: BorderSide(color: Colors.grey)),
+          ),
         ),
         child: button,
       );
@@ -192,11 +194,13 @@ class SpellCheckSuggestionsToolbar extends StatelessWidget {
     );
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        CupertinoTextSelectionToolbar.kToolbarScreenPadding,
-        paddingAbove,
-        CupertinoTextSelectionToolbar.kToolbarScreenPadding,
-        CupertinoTextSelectionToolbar.kToolbarScreenPadding + softKeyboardViewInsetsBottom,
+      padding: .fixed(
+        EdgeInsets.fromLTRB(
+          CupertinoTextSelectionToolbar.kToolbarScreenPadding,
+          paddingAbove,
+          CupertinoTextSelectionToolbar.kToolbarScreenPadding,
+          CupertinoTextSelectionToolbar.kToolbarScreenPadding + softKeyboardViewInsetsBottom,
+        ),
       ),
       child: CustomSingleChildLayout(
         delegate: SpellCheckSuggestionsToolbarLayoutDelegate(anchor: anchor - localAdjustment),
@@ -232,8 +236,8 @@ class _SpellCheckSuggestionsToolbarContainer extends StatelessWidget {
       child: SizedBox(
         // This width was eyeballed on a Pixel 4 emulator running Android
         // API 31 for the SpellCheckSuggestionsToolbar.
-        width: 165.0,
-        height: height,
+        width: const .fixed(165.0),
+        height: .fixed(height),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,

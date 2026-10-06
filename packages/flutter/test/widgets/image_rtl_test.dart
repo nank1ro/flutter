@@ -462,8 +462,8 @@ void main() {
         textDirection: TextDirection.rtl,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: const .fixed(100.0),
+            height: const .fixed(50.0),
             child: Image(
               image: _TestImageProvider(testImage),
               alignment: AlignmentDirectional.topEnd,
@@ -531,8 +531,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: const .fixed(100.0),
+            height: const .fixed(50.0),
             child: Image(
               image: _TestImageProvider(testImage),
               alignment: AlignmentDirectional.topEnd,
@@ -588,8 +588,8 @@ void main() {
         textDirection: TextDirection.rtl,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: const .fixed(100.0),
+            height: const .fixed(50.0),
             child: Image(
               image: _TestImageProvider(testImage),
               alignment: AlignmentDirectional.topEnd,
@@ -644,8 +644,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: const .fixed(100.0),
+            height: const .fixed(50.0),
             child: Image(
               image: _TestImageProvider(testImage),
               alignment: AlignmentDirectional.topEnd,
@@ -700,8 +700,8 @@ void main() {
         textDirection: TextDirection.rtl,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: const .fixed(100.0),
+            height: const .fixed(50.0),
             child: Image(
               image: _TestImageProvider(testImage),
               alignment: Alignment.centerRight,
@@ -747,8 +747,8 @@ void main() {
         textDirection: TextDirection.rtl,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: const .fixed(100.0),
+            height: const .fixed(50.0),
             child: Image(image: _TestImageProvider(testImage), alignment: Alignment.centerRight),
           ),
         ),
@@ -780,8 +780,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: const .fixed(100.0),
+            height: const .fixed(50.0),
             child: Image(
               image: _TestImageProvider(testImage),
               alignment: Alignment.centerRight,
@@ -817,8 +817,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 50.0,
+            width: const .fixed(100.0),
+            height: const .fixed(50.0),
             child: Image(
               image: _TestImageProvider(testImage),
               alignment: Alignment.centerRight,

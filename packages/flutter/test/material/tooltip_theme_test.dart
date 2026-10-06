@@ -995,7 +995,10 @@ void main() {
         home: Theme(
           data: ThemeData(tooltipTheme: const TooltipThemeData(waitDuration: customWaitDuration)),
           child: const Center(
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       ),
@@ -1034,7 +1037,10 @@ void main() {
         home: TooltipTheme(
           data: TooltipThemeData(waitDuration: customWaitDuration),
           child: Center(
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       ),
@@ -1067,7 +1073,10 @@ void main() {
         home: Theme(
           data: ThemeData(tooltipTheme: const TooltipThemeData(showDuration: customShowDuration)),
           child: const Center(
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       ),
@@ -1094,7 +1103,10 @@ void main() {
         home: TooltipTheme(
           data: TooltipThemeData(showDuration: customShowDuration),
           child: Center(
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       ),
@@ -1127,7 +1139,10 @@ void main() {
         home: Theme(
           data: ThemeData(tooltipTheme: const TooltipThemeData(exitDuration: customExitDuration)),
           child: const Center(
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       ),
@@ -1162,7 +1177,10 @@ void main() {
         home: TooltipTheme(
           data: TooltipThemeData(exitDuration: customExitDuration),
           child: Center(
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       ),
@@ -1191,7 +1209,10 @@ void main() {
         home: Theme(
           data: ThemeData(tooltipTheme: const TooltipThemeData(triggerMode: triggerMode)),
           child: const Center(
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       ),
@@ -1211,7 +1232,10 @@ void main() {
         home: TooltipTheme(
           data: TooltipThemeData(triggerMode: triggerMode),
           child: Center(
-            child: Tooltip(message: tooltipText, child: SizedBox(width: 100.0, height: 100.0)),
+            child: Tooltip(
+              message: tooltipText,
+              child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+            ),
           ),
         ),
       ),
@@ -1525,7 +1549,7 @@ void main() {
           key: tooltipKey,
           message: tooltipText,
           padding: EdgeInsets.zero,
-          child: const ColoredBox(color: Colors.green),
+          child: const ColoredBox(color: .fixed(Colors.green)),
         ),
       ),
     );

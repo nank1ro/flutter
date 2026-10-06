@@ -1080,7 +1080,7 @@ class _MaterialSwitchState extends State<_MaterialSwitch>
         onHorizontalDragEnd: _handleDragEnd,
         dragStartBehavior: widget.dragStartBehavior,
         child: Opacity(
-          opacity: onChanged == null ? disabledOpacity : 1,
+          opacity: .fixed(onChanged == null ? disabledOpacity : 1),
           child: buildToggleable(
             mouseCursor: effectiveMouseCursor,
             focusNode: widget.focusNode,

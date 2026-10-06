@@ -63,7 +63,7 @@ class SafeAreaExample extends StatelessWidget {
 
   static final Widget controls = Column(
     children: <Widget>[
-      const SizedBox(height: 6),
+      const SizedBox(height: .fixed(6)),
       Builder(
         builder: (BuildContext context) => Text(
           Toggle.safeArea.of(context) ? 'safe area!' : 'no safe area',
@@ -232,16 +232,16 @@ class InsetsState extends State<Insets> {
     final Widget topNotch = ClipRRect(
       borderRadius: .vertical(bottom: Radius.circular(insets.top)),
       child: SizedBox(
-        height: insets.top,
+        height: .fixed(insets.top),
         child: const FractionallySizedBox(
           widthFactor: 1 / 2,
-          child: ColoredBox(color: Colors.black),
+          child: ColoredBox(color: .fixed(Colors.black)),
         ),
       ),
     );
     final Widget bottomIndicator = SizedBox(
-      width: double.infinity,
-      height: insets.bottom,
+      width: .fixed(double.infinity),
+      height: .fixed(insets.bottom),
       child: const FractionallySizedBox(
         heightFactor: 0.5,
         widthFactor: 0.5,
@@ -253,9 +253,11 @@ class InsetsState extends State<Insets> {
       ),
     );
     final Widget sideBar = SizedBox(
-      width: insets.left,
-      height: double.infinity,
-      child: const IgnorePointer(child: ColoredBox(color: Colors.black12)),
+      width: .fixed(insets.left),
+      height: .fixed(double.infinity),
+      child: const IgnorePointer(
+        child: ColoredBox(color: .fixed(Colors.black12)),
+      ),
     );
 
     final Widget app = _ToggleModel(

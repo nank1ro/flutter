@@ -552,7 +552,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
     for (var index = 0; index < allSections.length; index++) {
       headings.add(
         ColoredBox(
-          color: _kAppBackgroundColor,
+          color: const .fixed(_kAppBackgroundColor),
           child: ClipRect(
             child: _AllSectionsView(
               sectionIndex: index,
@@ -617,7 +617,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
                 // Details
                 SliverToBoxAdapter(
                   child: SizedBox(
-                    height: 610.0,
+                    height: const .fixed(610.0),
                     child: NotificationListener<ScrollNotification>(
                       onNotification: (ScrollNotification notification) {
                         return _handlePageNotification(

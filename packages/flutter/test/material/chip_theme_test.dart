@@ -174,7 +174,7 @@ void main() {
             child: Center(
               child: RawChip(
                 avatar: const Icon(Icons.add),
-                label: const SizedBox(width: 100, height: 100),
+                label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                 onSelected: (bool newValue) {},
               ),
             ),
@@ -218,7 +218,7 @@ void main() {
             child: Center(
               child: RawChip(
                 avatar: const Icon(Icons.add),
-                label: const SizedBox(width: 100, height: 100),
+                label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                 onSelected: (bool newValue) {},
               ),
             ),
@@ -264,7 +264,7 @@ void main() {
                   child: Center(
                     child: RawChip(
                       avatar: const Icon(Icons.add),
-                      label: const SizedBox(width: 100, height: 100),
+                      label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                       onSelected: (bool newValue) {},
                     ),
                   ),
@@ -315,7 +315,7 @@ void main() {
                   child: Center(
                     child: RawChip(
                       avatar: const Icon(Icons.add),
-                      label: const SizedBox(width: 100, height: 100),
+                      label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                       onSelected: (bool newValue) {},
                     ),
                   ),
@@ -376,7 +376,7 @@ void main() {
                     shape: shape,
                     iconTheme: iconTheme,
                     avatar: const Icon(Icons.add),
-                    label: const SizedBox(width: 100, height: 100),
+                    label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                     onSelected: (bool newValue) {},
                   ),
                 ),
@@ -423,7 +423,7 @@ void main() {
                     shape: shape,
                     iconTheme: iconTheme,
                     avatar: const Icon(Icons.add),
-                    label: const SizedBox(width: 100, height: 100),
+                    label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                     onSelected: (bool newValue) {},
                   ),
                 ),
@@ -471,7 +471,7 @@ void main() {
                     shape: shape,
                     iconTheme: iconTheme,
                     avatar: const Icon(Icons.add),
-                    label: const SizedBox(width: 100, height: 100),
+                    label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                     onSelected: (bool newValue) {},
                   ),
                 ),
@@ -1197,7 +1197,7 @@ void main() {
             child: Center(
               child: RawChip(
                 selected: true,
-                label: const SizedBox(width: 100, height: 100),
+                label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                 onSelected: (bool newValue) {},
               ),
             ),
@@ -1297,7 +1297,7 @@ void main() {
             child: Center(
               child: RawChip(
                 avatar: const Icon(Icons.add),
-                label: const SizedBox(width: 100, height: 100),
+                label: const SizedBox(width: .fixed(100), height: .fixed(100)),
                 onSelected: (bool newValue) {},
               ),
             ),
@@ -1431,7 +1431,7 @@ void main() {
               avatar: const Icon(Icons.favorite),
               deleteIcon: const Icon(Icons.delete),
               onDeleted: () {},
-              label: const SizedBox(height: 100),
+              label: const SizedBox(height: .fixed(100)),
             ),
           ),
         ),
@@ -1469,7 +1469,7 @@ void main() {
             child: RawChip(
               deleteIcon: const Icon(Icons.delete),
               onDeleted: () {},
-              label: const SizedBox(height: 100),
+              label: const SizedBox(height: .fixed(100)),
             ),
           ),
         ),

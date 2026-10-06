@@ -1004,7 +1004,7 @@ class _SliderState extends State<Slider> with TickerProviderStateMixin {
 
     final EdgeInsetsGeometry? padding = widget.padding ?? sliderTheme.padding;
     if (padding != null) {
-      result = Padding(padding: padding, child: result);
+      result = Padding(padding: .fixed(padding), child: result);
     }
     result = OverlayPortal(
       controller: _valueIndicatorOverlayPortalController,
@@ -1033,7 +1033,7 @@ class _SliderState extends State<Slider> with TickerProviderStateMixin {
     // width. Wrapping the [CupertinoSlider] in this manner will help maintain
     // the same size.
     return SizedBox(
-      width: double.infinity,
+      width: const .fixed(double.infinity),
       child: CupertinoSlider(
         value: widget.value,
         onChanged: widget.onChanged,

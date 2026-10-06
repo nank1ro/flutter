@@ -776,7 +776,7 @@ class _RangeSliderState extends State<RangeSlider> with TickerProviderStateMixin
 
     final EdgeInsetsGeometry? padding = widget.padding ?? sliderTheme.padding;
     if (padding != null) {
-      result = Padding(padding: padding, child: result);
+      result = Padding(padding: .fixed(padding), child: result);
     }
 
     return Stack(

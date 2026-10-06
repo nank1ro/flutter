@@ -62,11 +62,11 @@ class _BottomSheetContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final GalleryLocalizations localizations = GalleryLocalizations.of(context)!;
     return SizedBox(
-      height: 300,
+      height: const .fixed(300),
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: 70,
+            height: const .fixed(70),
             child: Center(
               child: Text(localizations.demoBottomSheetHeader, textAlign: TextAlign.center),
             ),

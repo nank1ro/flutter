@@ -44,7 +44,7 @@ class _KeyValueComparisonPageState extends State<KeyValueComparisonPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: .fixed(EdgeInsets.all(8.0)),
               child: Text("Reversing list: Keyed vs Keyless"),
             ),
             ..._colors.map(

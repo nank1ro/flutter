@@ -39,7 +39,7 @@ class BadgeExample extends StatelessWidget {
             ),
             onPressed: () {},
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: .fixed(20)),
           IconButton(
             icon: Badge.count(
               count: 9999,

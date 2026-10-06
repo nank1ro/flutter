@@ -68,7 +68,7 @@ class _CupertinoFormRowExampleState extends State<CupertinoFormRowExample> {
                 mainAxisAlignment: .end,
                 children: <Widget>[
                   Text('Not connected'),
-                  SizedBox(width: 5),
+                  SizedBox(width: .fixed(5)),
                   Icon(CupertinoIcons.forward),
                 ],
               ),
@@ -80,7 +80,7 @@ class _CupertinoFormRowExampleState extends State<CupertinoFormRowExample> {
                 color: CupertinoColors.activeBlue,
               ),
               helper: Padding(
-                padding: .symmetric(vertical: 4.0),
+                padding: .fixed(.symmetric(vertical: 4.0)),
                 child: Row(
                   mainAxisAlignment: .spaceBetween,
                   children: <Widget>[Text('Headphone'), Text('Connected')],
@@ -90,7 +90,7 @@ class _CupertinoFormRowExampleState extends State<CupertinoFormRowExample> {
                 mainAxisAlignment: .end,
                 children: <Widget>[
                   Text('On'),
-                  SizedBox(width: 5),
+                  SizedBox(width: .fixed(5)),
                   Icon(CupertinoIcons.forward),
                 ],
               ),
@@ -131,7 +131,7 @@ class PrefixWidget extends StatelessWidget {
           decoration: BoxDecoration(color: color, borderRadius: .circular(4.0)),
           child: Icon(icon, color: CupertinoColors.white),
         ),
-        const SizedBox(width: 15),
+        const SizedBox(width: .fixed(15)),
         Text(title),
       ],
     );

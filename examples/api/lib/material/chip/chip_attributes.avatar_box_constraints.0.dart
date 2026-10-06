@@ -31,16 +31,16 @@ class AvatarBoxConstraintsExample extends StatelessWidget {
           avatarBoxConstraints: BoxConstraints.tightForFinite(),
           avatar: Icon(Icons.star),
           label: SizedBox(
-            width: 150,
+            width: .fixed(150),
             child: Text('One line text.', maxLines: 3, overflow: .ellipsis),
           ),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: .fixed(10)),
         RawChip(
           avatarBoxConstraints: BoxConstraints.tightForFinite(),
           avatar: Icon(Icons.star),
           label: SizedBox(
-            width: 150,
+            width: .fixed(150),
             child: Text(
               'This text will wrap into two lines.',
               maxLines: 3,
@@ -48,12 +48,12 @@ class AvatarBoxConstraintsExample extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: .fixed(10)),
         RawChip(
           avatarBoxConstraints: BoxConstraints.tightForFinite(),
           avatar: Icon(Icons.star),
           label: SizedBox(
-            width: 150,
+            width: .fixed(150),
             child: Text(
               'This is a very long text that will wrap into three lines.',
               maxLines: 3,

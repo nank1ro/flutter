@@ -37,7 +37,7 @@ void main() {
           child: RepaintBoundary(
             key: key,
             child: const ColoredBox(
-              color: CupertinoColors.white,
+              color: .fixed(CupertinoColors.white),
               child: CupertinoActivityIndicator(animating: false, radius: 35),
             ),
           ),
@@ -54,7 +54,7 @@ void main() {
           child: RepaintBoundary(
             key: key,
             child: const ColoredBox(
-              color: CupertinoColors.black,
+              color: .fixed(CupertinoColors.black),
               child: CupertinoActivityIndicator(animating: false, radius: 35),
             ),
           ),
@@ -72,7 +72,7 @@ void main() {
         child: RepaintBoundary(
           key: key,
           child: const ColoredBox(
-            color: CupertinoColors.white,
+            color: .fixed(CupertinoColors.white),
             child: CupertinoActivityIndicator.partiallyRevealed(progress: 0),
           ),
         ),
@@ -89,7 +89,7 @@ void main() {
         child: RepaintBoundary(
           key: key,
           child: const ColoredBox(
-            color: CupertinoColors.white,
+            color: .fixed(CupertinoColors.white),
             child: CupertinoActivityIndicator.partiallyRevealed(progress: 0.5),
           ),
         ),
@@ -106,7 +106,7 @@ void main() {
         child: RepaintBoundary(
           key: key,
           child: const ColoredBox(
-            color: CupertinoColors.white,
+            color: .fixed(CupertinoColors.white),
             child: CupertinoActivityIndicator.partiallyRevealed(),
           ),
         ),
@@ -138,7 +138,7 @@ void main() {
         child: RepaintBoundary(
           key: key,
           child: const ColoredBox(
-            color: CupertinoColors.white,
+            color: .fixed(CupertinoColors.white),
             child: CupertinoActivityIndicator(animating: false, color: color, radius: 100),
           ),
         ),

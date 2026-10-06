@@ -15,7 +15,11 @@ void main() {
   group('alignment', () {
     testWidgets('default alignment is MainAxisAlignment.end', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(home: ButtonBar(children: <Widget>[SizedBox(width: 10.0, height: 10.0)])),
+        const MaterialApp(
+          home: ButtonBar(
+            children: <Widget>[SizedBox(width: .fixed(10.0), height: .fixed(10.0))],
+          ),
+        ),
       );
 
       final Finder child = find.byType(SizedBox);
@@ -29,7 +33,9 @@ void main() {
         const MaterialApp(
           home: ButtonBarTheme(
             data: ButtonBarThemeData(alignment: MainAxisAlignment.center),
-            child: ButtonBar(children: <Widget>[SizedBox(width: 10.0, height: 10.0)]),
+            child: ButtonBar(
+              children: <Widget>[SizedBox(width: .fixed(10.0), height: .fixed(10.0))],
+            ),
           ),
         ),
       );
@@ -49,7 +55,7 @@ void main() {
             data: ButtonBarThemeData(alignment: MainAxisAlignment.center),
             child: ButtonBar(
               alignment: MainAxisAlignment.start,
-              children: <Widget>[SizedBox(width: 10.0, height: 10.0)],
+              children: <Widget>[SizedBox(width: .fixed(10.0), height: .fixed(10.0))],
             ),
           ),
         ),
@@ -77,9 +83,9 @@ void main() {
               // buttonPadding set to zero to simplify test calculations.
               buttonPadding: EdgeInsets.zero,
               children: <Widget>[
-                SizedBox(key: child0Key, width: 100.0, height: 100.0),
-                SizedBox(key: child1Key, width: 100.0, height: 100.0),
-                SizedBox(key: child2Key, width: 100.0, height: 100.0),
+                SizedBox(key: child0Key, width: .fixed(100.0), height: .fixed(100.0)),
+                SizedBox(key: child1Key, width: .fixed(100.0), height: .fixed(100.0)),
+                SizedBox(key: child2Key, width: .fixed(100.0), height: .fixed(100.0)),
               ],
             ),
           ),
@@ -125,9 +131,9 @@ void main() {
                 // buttonPadding set to zero to simplify test calculations.
                 buttonPadding: EdgeInsets.zero,
                 children: <Widget>[
-                  SizedBox(key: child0Key, width: 100.0, height: 100.0),
-                  SizedBox(key: child1Key, width: 100.0, height: 100.0),
-                  SizedBox(key: child2Key, width: 100.0, height: 100.0),
+                  SizedBox(key: child0Key, width: .fixed(100.0), height: .fixed(100.0)),
+                  SizedBox(key: child1Key, width: .fixed(100.0), height: .fixed(100.0)),
+                  SizedBox(key: child2Key, width: .fixed(100.0), height: .fixed(100.0)),
                 ],
               ),
             ),
@@ -181,9 +187,9 @@ void main() {
                 buttonPadding: EdgeInsets.zero,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  SizedBox(key: child0Key, width: 100.0, height: 100.0),
-                  SizedBox(key: child1Key, width: 100.0, height: 100.0),
-                  SizedBox(key: child2Key, width: 100.0, height: 100.0),
+                  SizedBox(key: child0Key, width: .fixed(100.0), height: .fixed(100.0)),
+                  SizedBox(key: child1Key, width: .fixed(100.0), height: .fixed(100.0)),
+                  SizedBox(key: child2Key, width: .fixed(100.0), height: .fixed(100.0)),
                 ],
               ),
             ),
@@ -338,7 +344,7 @@ void main() {
                 textDirection: TextDirection.ltr,
                 child: ButtonBar(
                   layoutBehavior: ButtonBarLayoutBehavior.constrained,
-                  children: <Widget>[SizedBox(width: 10.0, height: 10.0)],
+                  children: <Widget>[SizedBox(width: .fixed(10.0), height: .fixed(10.0))],
                 ),
               ),
             ],
@@ -361,7 +367,7 @@ void main() {
                 textDirection: TextDirection.ltr,
                 child: ButtonBar(
                   layoutBehavior: ButtonBarLayoutBehavior.padded,
-                  children: <Widget>[SizedBox(width: 10.0, height: 10.0)],
+                  children: <Widget>[SizedBox(width: .fixed(10.0), height: .fixed(10.0))],
                 ),
               ),
             ],
@@ -382,8 +388,8 @@ void main() {
         MaterialApp(
           home: ButtonBar(
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 800.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 800.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(800.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(800.0)),
             ],
           ),
         ),
@@ -408,8 +414,8 @@ void main() {
             // Set padding to zero to align buttons with edge of button bar.
             buttonPadding: EdgeInsets.zero,
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 500.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 500.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(500.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(500.0)),
             ],
           ),
         ),
@@ -437,8 +443,8 @@ void main() {
             // Set padding to zero to align buttons with edge of button bar.
             buttonPadding: EdgeInsets.zero,
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 500.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 500.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(500.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(500.0)),
             ],
           ),
         ),
@@ -466,8 +472,8 @@ void main() {
             // Set padding to zero to align buttons with edge of button bar.
             buttonPadding: EdgeInsets.zero,
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 500.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 500.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(500.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(500.0)),
             ],
           ),
         ),
@@ -495,8 +501,8 @@ void main() {
             // Set padding to zero to align buttons with edge of button bar.
             buttonPadding: EdgeInsets.zero,
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 500.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 500.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(500.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(500.0)),
             ],
           ),
         ),
@@ -518,8 +524,8 @@ void main() {
             // Set padding to zero to align buttons with edge of button bar.
             buttonPadding: EdgeInsets.zero,
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 500.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 500.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(500.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(500.0)),
             ],
           ),
         ),
@@ -550,8 +556,8 @@ void main() {
             // out upwards.
             overflowDirection: VerticalDirection.up,
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 500.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 500.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(500.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(500.0)),
             ],
           ),
         ),
@@ -575,8 +581,8 @@ void main() {
             // Set padding to zero to align buttons with edge of button bar.
             buttonPadding: EdgeInsets.zero,
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 500.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 500.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(500.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(500.0)),
             ],
           ),
         ),
@@ -602,8 +608,8 @@ void main() {
             // buttons in an overflow case.
             overflowButtonSpacing: 10.0,
             children: <Widget>[
-              SizedBox(key: keyOne, height: 50.0, width: 500.0),
-              SizedBox(key: keyTwo, height: 50.0, width: 500.0),
+              SizedBox(key: keyOne, height: const .fixed(50.0), width: const .fixed(500.0)),
+              SizedBox(key: keyTwo, height: const .fixed(50.0), width: const .fixed(500.0)),
             ],
           ),
         ),

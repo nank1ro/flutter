@@ -286,18 +286,20 @@ class _SegmentSeparatorState extends State<_SegmentSeparator>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: separatorOpacityController,
-      child: const SizedBox(width: _kSeparatorWidth),
+      child: const SizedBox(width: .fixed(_kSeparatorWidth)),
       builder: (BuildContext context, Widget? child) {
         return Padding(
-          padding: _kSeparatorInset,
+          padding: const .fixed(_kSeparatorInset),
           child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: _kSeparatorColor.withOpacity(
-                _kSeparatorColor.opacity * separatorOpacityController.value,
+            decoration: .fixed(
+              BoxDecoration(
+                color: _kSeparatorColor.withOpacity(
+                  _kSeparatorColor.opacity * separatorOpacityController.value,
+                ),
+                // Use RRect instead of RSuperellipse here since the radius is too
+                // small to make enough visual difference.
+                borderRadius: const BorderRadius.all(_kSeparatorRadius),
               ),
-              // Use RRect instead of RSuperellipse here since the radius is too
-              // small to make enough visual difference.
-              borderRadius: const BorderRadius.all(_kSeparatorRadius),
             ),
             child: child,
           ),

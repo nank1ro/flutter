@@ -212,14 +212,15 @@ class _BottomAppBarState extends State<BottomAppBar> {
     final Color shadowColor = widget.shadowColor ?? babTheme.shadowColor ?? defaults.shadowColor!;
 
     final Widget child = SizedBox(
-      height: height,
+      height: .fixed(height),
       child: Padding(
-        padding:
-            widget.padding ??
-            babTheme.padding ??
-            (isMaterial3
-                ? const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0)
-                : EdgeInsets.zero),
+        padding: .fixed(
+          widget.padding ??
+              babTheme.padding ??
+              (isMaterial3
+                  ? const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0)
+                  : EdgeInsets.zero),
+        ),
         child: widget.child,
       ),
     );

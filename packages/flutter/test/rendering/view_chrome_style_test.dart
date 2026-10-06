@@ -75,7 +75,10 @@ void main() {
               alignment: Alignment.topCenter,
               child: AnnotatedRegion<SystemUiOverlayStyle>(
                 value: SystemUiOverlayStyle(statusBarColor: _materialBlue500),
-                child: SizedBox(width: 100, height: lessThanHalfOfTheStatusBarHeight),
+                child: SizedBox(
+                  width: .fixed(100),
+                  height: .fixed(lessThanHalfOfTheStatusBarHeight),
+                ),
               ),
             ),
           );
@@ -96,7 +99,10 @@ void main() {
               alignment: Alignment.topCenter,
               child: AnnotatedRegion<SystemUiOverlayStyle>(
                 value: SystemUiOverlayStyle(statusBarColor: _materialBlue500),
-                child: SizedBox(width: 100, height: moreThanHalfOfTheStatusBarHeight),
+                child: SizedBox(
+                  width: .fixed(100),
+                  height: .fixed(moreThanHalfOfTheStatusBarHeight),
+                ),
               ),
             ),
           );
@@ -158,7 +164,10 @@ void main() {
               alignment: Alignment.bottomCenter,
               child: AnnotatedRegion<SystemUiOverlayStyle>(
                 value: SystemUiOverlayStyle(systemNavigationBarColor: _materialBlue500),
-                child: SizedBox(width: 100, height: lessThanHalfOfTheNavigationBarHeight),
+                child: SizedBox(
+                  width: .fixed(100),
+                  height: .fixed(lessThanHalfOfTheNavigationBarHeight),
+                ),
               ),
             ),
           );
@@ -179,7 +188,10 @@ void main() {
               alignment: Alignment.bottomCenter,
               child: AnnotatedRegion<SystemUiOverlayStyle>(
                 value: SystemUiOverlayStyle(systemNavigationBarColor: _materialBlue500),
-                child: SizedBox(width: 100, height: moreThanHalfOfTheNavigationBarHeight),
+                child: SizedBox(
+                  width: .fixed(100),
+                  height: .fixed(moreThanHalfOfTheNavigationBarHeight),
+                ),
               ),
             ),
           );

@@ -30,7 +30,7 @@ class _FloatingHeaderExampleState extends State<FloatingHeaderExample> {
     return const Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: .all(4),
+          padding: .fixed(.all(4)),
           child: CustomScrollView(
             slivers: <Widget>[
               SliverFloatingHeader(

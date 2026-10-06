@@ -172,13 +172,17 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: ColoredBox(
-            color: const Color(0xff00ff00),
+            color: const .fixed(Color(0xff00ff00)),
             child: IntrinsicHeight(
               child: RichText(
                 text: const TextSpan(
                   children: <InlineSpan>[
                     TextSpan(text: 'Start\n', style: TextStyle(height: 1.0, fontSize: 16)),
-                    WidgetSpan(child: Row(children: <Widget>[SizedBox(height: 16, width: 16)])),
+                    WidgetSpan(
+                      child: Row(
+                        children: <Widget>[SizedBox(height: .fixed(16), width: .fixed(16))],
+                      ),
+                    ),
                     TextSpan(text: 'End', style: TextStyle(height: 1.0, fontSize: 16)),
                   ],
                 ),
@@ -288,7 +292,9 @@ void main() {
     expect(paragraph.devicePixelRatio, 4.0);
   });
 
-  testWidgets('RichText defaults to 1.0 devicePixelRatio when no View or MediaQuery is present', (WidgetTester tester) async {
+  testWidgets('RichText defaults to 1.0 devicePixelRatio when no View or MediaQuery is present', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(
       RawView(
         view: tester.view,

@@ -452,7 +452,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
           onPressed: onPressed,
           key: key,
           behavior: HitTestBehavior.opaque,
-          child: const SizedBox(width: 48.0, height: 48.0),
+          child: const SizedBox(width: .fixed(48.0), height: .fixed(48.0)),
         );
       }
 
@@ -510,14 +510,22 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
                     log.add('top');
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: SizedBox(key: topButtonKey, height: 48.0, child: const Text('TOP')),
+                  child: SizedBox(
+                    key: topButtonKey,
+                    height: const .fixed(48.0),
+                    child: const Text('TOP'),
+                  ),
                 ),
                 TestButton(
                   onPressed: () {
                     log.add('bottom');
                   },
                   behavior: HitTestBehavior.opaque,
-                  child: SizedBox(key: bottomButtonKey, height: 48.0, child: const Text('BOTTOM')),
+                  child: SizedBox(
+                    key: bottomButtonKey,
+                    height: const .fixed(48.0),
+                    child: const Text('BOTTOM'),
+                  ),
                 ),
               ],
             ),
@@ -596,7 +604,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
             moveExitWidgetSelectionButtonBuilder: null,
             tapBehaviorButtonBuilder: null,
             child: Transform(
-              transform: Matrix4.identity()..scale(0.0),
+              transform: .fixed(Matrix4.identity()..scale(0.0)),
               child: const Stack(
                 children: <Widget>[
                   Text('a', textDirection: TextDirection.ltr),
@@ -633,7 +641,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
           onPressed: onPressed,
           key: key,
           behavior: HitTestBehavior.opaque,
-          child: const SizedBox(width: 48.0, height: 48.0),
+          child: const SizedBox(width: .fixed(48.0), height: .fixed(48.0)),
         );
       }
 
@@ -824,9 +832,9 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
         RepaintBoundary(
           key: repaintBoundaryKey,
           child: ColoredBox(
-            color: const Color(0xFF9E9E9E),
+            color: const .fixed(Color(0xFF9E9E9E)),
             child: Transform(
-              transform: mainTransform,
+              transform: .fixed(mainTransform),
               child: Directionality(
                 textDirection: TextDirection.ltr,
                 child: WidgetInspector(
@@ -834,7 +842,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
                   moveExitWidgetSelectionButtonBuilder: null,
                   tapBehaviorButtonBuilder: null,
                   child: ColoredBox(
-                    color: const Color(0xFFFFFFFF),
+                    color: const .fixed(Color(0xFFFFFFFF)),
                     child: Center(
                       child: Container(
                         key: childKey,
@@ -887,7 +895,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
             onPressed: onPressed,
             key: key,
             behavior: HitTestBehavior.opaque,
-            child: const SizedBox(width: 48.0, height: 48.0),
+            child: const SizedBox(width: .fixed(48.0), height: .fixed(48.0)),
           );
         };
       }
@@ -3229,18 +3237,12 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
         expect(count, equals(5));
       });
 
-      testWidgets('clearCandidates preserves current selection', (
-        WidgetTester tester,
-      ) async {
+      testWidgets('clearCandidates preserves current selection', (WidgetTester tester) async {
         await pumpWidgetTreeWithABC(tester);
         final selection = InspectorSelection();
         addTearDown(selection.dispose);
-        final RenderParagraph renderObjectA = tester.renderObject<RenderParagraph>(
-          find.text('a'),
-        );
-        final RenderParagraph renderObjectB = tester.renderObject<RenderParagraph>(
-          find.text('b'),
-        );
+        final RenderParagraph renderObjectA = tester.renderObject<RenderParagraph>(find.text('a'));
+        final RenderParagraph renderObjectB = tester.renderObject<RenderParagraph>(find.text('b'));
 
         selection.candidates = <RenderObject>[renderObjectA, renderObjectB];
         expect(selection.current, renderObjectA);
@@ -3318,9 +3320,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
       final List<RenderObject> candidates = WidgetInspectorService.instance.selection.candidates;
       expect(candidates, isNot(contains(behindRender)));
 
-      final RenderObject sheetRender = tester.renderObject<RenderObject>(
-        find.byKey(sheetTextKey),
-      );
+      final RenderObject sheetRender = tester.renderObject<RenderObject>(find.byKey(sheetTextKey));
       expect(candidates, contains(sheetRender));
     });
 
@@ -3356,8 +3356,8 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
                                       Animation<double> b,
                                     ) {
                                       return SizedBox(
-                                        width: 300,
-                                        height: 300,
+                                        width: const .fixed(300),
+                                        height: const .fixed(300),
                                         child: Navigator(
                                           onGenerateRoute: (RouteSettings settings) {
                                             return PageRouteBuilder<void>(
@@ -3403,11 +3403,8 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
       await tester.tap(find.byKey(innerTextKey), warnIfMissed: false);
       await tester.pump();
 
-      final RenderObject innerRender = tester.renderObject<RenderObject>(
-        find.byKey(innerTextKey),
-      );
-      final List<RenderObject> candidates =
-          WidgetInspectorService.instance.selection.candidates;
+      final RenderObject innerRender = tester.renderObject<RenderObject>(find.byKey(innerTextKey));
+      final List<RenderObject> candidates = WidgetInspectorService.instance.selection.candidates;
       expect(candidates, contains(innerRender));
     });
 
@@ -5070,16 +5067,16 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
             child: RepaintBoundaryWithDebugPaint(
               child: ColoredBox(
                 key: outerContainerKey,
-                color: const Color(0xFFFFFFFF),
+                color: const .fixed(Color(0xFFFFFFFF)),
                 child: Padding(
                   key: paddingKey,
-                  padding: const EdgeInsets.all(100.0),
+                  padding: const .fixed(EdgeInsets.all(100.0)),
                   child: SizedBox(
                     key: sizedBoxKey,
-                    height: 100.0,
-                    width: 100.0,
+                    height: const .fixed(100.0),
+                    width: const .fixed(100.0),
                     child: Transform.rotate(
-                      angle: 1.0, // radians
+                      angle: const .fixed(1.0), // radians
                       child: ClipRRect(
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.elliptical(10.0, 20.0),
@@ -5089,10 +5086,10 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
                         ),
                         child: ColoredBox(
                           key: redContainerKey,
-                          color: const Color(0xFFF44336),
+                          color: const .fixed(Color(0xFFF44336)),
                           child: ColoredBox(
                             key: whiteContainerKey,
-                            color: const Color(0xFFFFFFFF),
+                            color: const .fixed(Color(0xFFFFFFFF)),
                             child: RepaintBoundary(
                               child: Center(
                                 child: Container(
@@ -5389,7 +5386,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
               child: Row(
                 children: <Widget>[
                   Flexible(
-                    child: ColoredBox(color: Color(0xFF00FF00), child: Text('a')),
+                    child: ColoredBox(color: .fixed(Color(0xFF00FF00)), child: Text('a')),
                   ),
                   Text('b'),
                 ],
@@ -5485,8 +5482,8 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
                 Align(
                   alignment: Alignment.topLeft,
                   child: ColoredBox(
-                    color: Color(0xFF000000),
-                    child: SizedBox(width: 14, height: 14),
+                    color: .fixed(Color(0xFF000000)),
+                    child: SizedBox(width: .fixed(14), height: .fixed(14)),
                   ),
                 ),
               ],
@@ -5746,7 +5743,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
         const Key leafKey = ValueKey<String>('ColoredBox');
         await tester.pumpWidget(
           const TestWidgetsApp(
-            home: ColoredBox(key: leafKey, color: Color(0xFF0000FF)),
+            home: ColoredBox(key: leafKey, color: .fixed(Color(0xFF0000FF))),
           ),
         );
 
@@ -5773,9 +5770,9 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
                   children: <Widget>[
                     Flexible(
                       child: ColoredBox(
-                        color: Color(0xFF00FF00),
+                        color: .fixed(Color(0xFF00FF00)),
                         child: SizedBox(
-                          child: Padding(padding: EdgeInsets.zero, child: Text('a')),
+                          child: Padding(padding: .fixed(EdgeInsets.zero), child: Text('a')),
                         ),
                       ),
                     ),
@@ -6033,7 +6030,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
                     left: 456.0,
                     child: Transform.rotate(
                       key: rotate1,
-                      angle: 1.0, // radians
+                      angle: const .fixed(1.0), // radians
                       child: CompositedTransformTarget(
                         link: link,
                         child: Container(
@@ -6060,7 +6057,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
                     ),
                     Transform.rotate(
                       key: rotate2,
-                      angle: -0.3, // radians
+                      angle: const .fixed(-0.3), // radians
                       child: CompositedTransformFollower(
                         link: link,
                         child: Container(
@@ -6147,7 +6144,7 @@ class _TestWidgetInspectorService extends TestWidgetInspectorService {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: .fixed(EdgeInsets.all(8.0)),
                   child: Row(children: <Widget>[Text('Hello, World')]),
                 ),
                 Center(child: Text('Hello, World!')),

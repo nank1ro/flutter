@@ -96,7 +96,7 @@ class _NestedGestureDetectorsExampleState
           ),
         ),
         Padding(
-          padding: const .all(8.0),
+          padding: const .fixed(.all(8.0)),
           child: Row(
             children: <Widget>[
               ElevatedButton(
@@ -108,7 +108,7 @@ class _NestedGestureDetectorsExampleState
                   });
                 },
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: .fixed(8)),
               ElevatedButton(
                 child: Text(
                   'Set Yellow behavior to ${_isYellowTranslucent ? 'opaque' : 'translucent'}',

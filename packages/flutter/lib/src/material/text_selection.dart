@@ -82,7 +82,7 @@ class MaterialTextSelectionControls extends TextSelectionControls {
     final Color handleColor =
         TextSelectionTheme.of(context).selectionHandleColor ?? theme.colorScheme.primary;
     final Widget handle = SizedBox.square(
-      dimension: _kHandleSize,
+      dimension: const .fixed(_kHandleSize),
       child: CustomPaint(
         painter: _TextSelectionHandlePainter(color: handleColor),
         child: GestureDetector(onTap: onTap, behavior: HitTestBehavior.translucent),
@@ -94,12 +94,12 @@ class MaterialTextSelectionControls extends TextSelectionControls {
     // straight up or up-right depending on the handle type.
     return switch (type) {
       TextSelectionHandleType.left => Transform.rotate(
-        angle: math.pi / 2.0,
+        angle: const .fixed(math.pi / 2.0),
         child: handle,
       ), // points up-right
       TextSelectionHandleType.right => handle, // points up-left
       TextSelectionHandleType.collapsed => Transform.rotate(
-        angle: math.pi / 4.0,
+        angle: const .fixed(math.pi / 4.0),
         child: handle,
       ), // points up
     };

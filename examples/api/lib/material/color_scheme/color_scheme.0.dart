@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 /// Flutter code sample for [ColorScheme].
 
-const Widget divider = SizedBox(height: 10);
+const Widget divider = SizedBox(height: .fixed(10));
 
 void main() => runApp(const ColorSchemeExample());
 
@@ -57,7 +57,7 @@ class _ColorSchemeExampleState extends State<ColorSchemeExample> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const .only(top: 5),
+            padding: const .fixed(.only(top: 5)),
             child: Column(
               crossAxisAlignment: .start,
               children: <Widget>[
@@ -120,9 +120,9 @@ class _SettingsState extends State<Settings> {
         ),
       ),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxHeight: 200),
+        constraints: .fixed(const BoxConstraints(maxHeight: 200)),
         child: Padding(
-          padding: const .all(20.0),
+          padding: const .fixed(.all(20.0)),
           child: ListView(
             children: <Widget>[
               Center(
@@ -225,11 +225,11 @@ class ColorSchemeVariantColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints.tightFor(width: 250),
+      constraints: .fixed(const BoxConstraints.tightFor(width: 250)),
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const .symmetric(vertical: 15),
+            padding: const .fixed(.symmetric(vertical: 15)),
             child: Text(
               schemeVariant.name == 'tonalSpot'
                   ? '${schemeVariant.name} (Default)'
@@ -238,7 +238,7 @@ class ColorSchemeVariantColumn extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const .symmetric(horizontal: 15),
+            padding: const .fixed(.symmetric(horizontal: 15)),
             child: ColorSchemeView(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: selectedColor,
@@ -523,9 +523,9 @@ class ColorChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color labelColor = onColor ?? contrastColor(color);
     return ColoredBox(
-      color: color,
+      color: .fixed(color),
       child: Padding(
-        padding: const .all(16),
+        padding: const .fixed(.all(16)),
         child: Row(
           children: <Expanded>[
             Expanded(

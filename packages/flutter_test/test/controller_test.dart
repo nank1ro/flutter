@@ -570,7 +570,7 @@ void main() {
             body: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 200,
+                  height: const .fixed(200),
                   child: ListView.builder(
                     key: const Key('listView-a'),
                     itemCount: 50,
@@ -580,10 +580,10 @@ void main() {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(4),
+                  padding: .fixed(EdgeInsets.all(4)),
                   child: ColoredBox(
-                    color: Color(0xFF000000),
-                    child: SizedBox(height: 5, width: double.infinity),
+                    color: .fixed(Color(0xFF000000)),
+                    child: SizedBox(height: .fixed(5), width: .fixed(double.infinity)),
                   ),
                 ),
                 Expanded(
@@ -1107,7 +1107,10 @@ void main() {
             home: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                SizedBox(height: 40, width: tester.binding.window.physicalSize.width * 1.5),
+                SizedBox(
+                  height: const .fixed(40),
+                  width: .fixed(tester.binding.window.physicalSize.width * 1.5),
+                ),
               ],
             ),
           ),
@@ -1161,7 +1164,10 @@ void main() {
           MaterialApp(
             home: ListView(
               children: <Widget>[
-                SizedBox(height: tester.binding.window.physicalSize.height * 1.5, width: 40),
+                SizedBox(
+                  height: .fixed(tester.binding.window.physicalSize.height * 1.5),
+                  width: const .fixed(40),
+                ),
               ],
             ),
           ),
@@ -1270,8 +1276,13 @@ void main() {
             home: ListView(
               controller: controller,
               children: <Widget>[
-                const MergeSemantics(child: SizedBox(height: 40, child: Text('Test'))),
-                SizedBox(width: 40, height: tester.binding.window.physicalSize.height * 1.5),
+                const MergeSemantics(
+                  child: SizedBox(height: .fixed(40), child: Text('Test')),
+                ),
+                SizedBox(
+                  width: const .fixed(40),
+                  height: .fixed(tester.binding.window.physicalSize.height * 1.5),
+                ),
               ],
             ),
           ),
@@ -1507,7 +1518,10 @@ void main() {
         final ScaffoldMessengerState messenger = ScaffoldMessenger.of(key.currentContext!);
         messenger
             .showSnackBar(
-              const SnackBar(content: SizedBox(height: 40, width: 300), duration: duration),
+              const SnackBar(
+                content: SizedBox(height: .fixed(40), width: .fixed(300)),
+                duration: duration,
+              ),
             )
             .closed
             // ignore: unawaited_futures
@@ -1801,7 +1815,7 @@ class _SemanticsTestCard extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(label),
-        trailing: SizedBox(width: 200, child: widget),
+        trailing: SizedBox(width: const .fixed(200), child: widget),
       ),
     );
   }

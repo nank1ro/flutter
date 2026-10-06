@@ -77,7 +77,7 @@ class _AppBarExampleState extends State<AppBarExample> {
       ),
       bottomNavigationBar: BottomAppBar(
         child: Padding(
-          padding: const .all(8),
+          padding: const .fixed(.all(8)),
           child: OverflowBar(
             overflowAlignment: .center,
             alignment: .center,
@@ -94,7 +94,7 @@ class _AppBarExampleState extends State<AppBarExample> {
                 ),
                 label: const Text('shadow color'),
               ),
-              const SizedBox(width: 5),
+              const SizedBox(width: .fixed(5)),
               ElevatedButton(
                 onPressed: () {
                   if (scrolledUnderElevation == null) {

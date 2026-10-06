@@ -48,9 +48,9 @@ void main() {
           const Column(
             children: <Widget>[
               Text('this is a test', style: TextStyle(fontSize: 14.0, color: Colors.black)),
-              SizedBox(height: 50),
+              SizedBox(height: .fixed(50)),
               Text('this is a test', style: TextStyle(fontSize: 14.0, color: Colors.black)),
-              SizedBox(height: 50),
+              SizedBox(height: .fixed(50)),
               ExcludeSemantics(
                 child: Text(
                   'this is a test',
@@ -97,12 +97,12 @@ void main() {
             child: const Column(
               children: <Widget>[
                 Text('this is a white text', style: TextStyle(fontSize: 14.0, color: Colors.white)),
-                SizedBox(height: 50),
+                SizedBox(height: .fixed(50)),
                 Text(
                   'this is a black text test1',
                   style: TextStyle(fontSize: 14.0, color: Colors.black),
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: .fixed(50)),
                 Text(
                   'this is a black text test2',
                   style: TextStyle(fontSize: 14.0, color: Colors.black),
@@ -213,11 +213,11 @@ void main() {
       await tester.pumpWidget(
         _boilerplate(
           Padding(
-            padding: const EdgeInsets.only(left: 100),
+            padding: const .fixed(EdgeInsets.only(left: 100)),
             child: Semantics(
               container: true,
               child: Padding(
-                padding: const EdgeInsets.only(left: 100),
+                padding: const .fixed(EdgeInsets.only(left: 100)),
                 child: Semantics(
                   container: true,
                   child: Container(
@@ -241,7 +241,12 @@ void main() {
       final controller = TextEditingController(text: 'this is a test');
       addTearDown(controller.dispose);
       await tester.pumpWidget(
-        _boilerplate(SizedBox(width: 100, child: TextField(controller: controller))),
+        _boilerplate(
+          SizedBox(
+            width: const .fixed(100),
+            child: TextField(controller: controller),
+          ),
+        ),
       );
       await tester.idle();
       await expectLater(tester, meetsGuideline(textContrastGuideline));
@@ -393,7 +398,11 @@ void main() {
           Semantics(
             label: 'This is not text',
             container: true,
-            child: const SizedBox(width: 200.0, height: 200.0, child: Placeholder()),
+            child: const SizedBox(
+              width: .fixed(200.0),
+              height: .fixed(200.0),
+              child: Placeholder(),
+            ),
           ),
         ),
       );
@@ -687,7 +696,13 @@ void main() {
     testWidgets('Tappable box at 48 by 48', (WidgetTester tester) async {
       final SemanticsHandle handle = tester.ensureSemantics();
       await tester.pumpWidget(
-        _boilerplate(SizedBox(width: 48.0, height: 48.0, child: GestureDetector(onTap: () {}))),
+        _boilerplate(
+          SizedBox(
+            width: const .fixed(48.0),
+            height: const .fixed(48.0),
+            child: GestureDetector(onTap: () {}),
+          ),
+        ),
       );
       await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
       handle.dispose();
@@ -696,7 +711,13 @@ void main() {
     testWidgets('Tappable box at 47 by 48', (WidgetTester tester) async {
       final SemanticsHandle handle = tester.ensureSemantics();
       await tester.pumpWidget(
-        _boilerplate(SizedBox(width: 47.0, height: 48.0, child: GestureDetector(onTap: () {}))),
+        _boilerplate(
+          SizedBox(
+            width: const .fixed(47.0),
+            height: const .fixed(48.0),
+            child: GestureDetector(onTap: () {}),
+          ),
+        ),
       );
       await expectLater(tester, doesNotMeetGuideline(androidTapTargetGuideline));
       handle.dispose();
@@ -705,7 +726,13 @@ void main() {
     testWidgets('Tappable box at 48 by 47', (WidgetTester tester) async {
       final SemanticsHandle handle = tester.ensureSemantics();
       await tester.pumpWidget(
-        _boilerplate(SizedBox(width: 48.0, height: 47.0, child: GestureDetector(onTap: () {}))),
+        _boilerplate(
+          SizedBox(
+            width: const .fixed(48.0),
+            height: const .fixed(47.0),
+            child: GestureDetector(onTap: () {}),
+          ),
+        ),
       );
       await expectLater(tester, doesNotMeetGuideline(androidTapTargetGuideline));
       handle.dispose();
@@ -716,8 +743,12 @@ void main() {
       await tester.pumpWidget(
         _boilerplate(
           Transform.scale(
-            scale: 0.5, // should have new height of 24 by 24.
-            child: SizedBox(width: 48.0, height: 48.0, child: GestureDetector(onTap: () {})),
+            scale: const .fixed(0.5), // should have new height of 24 by 24.
+            child: SizedBox(
+              width: const .fixed(48.0),
+              height: const .fixed(48.0),
+              child: GestureDetector(onTap: () {}),
+            ),
           ),
         ),
       );
@@ -728,7 +759,13 @@ void main() {
     testWidgets('Too small tap target fails with the correct message', (WidgetTester tester) async {
       final SemanticsHandle handle = tester.ensureSemantics();
       await tester.pumpWidget(
-        _boilerplate(SizedBox(width: 48.0, height: 47.0, child: GestureDetector(onTap: () {}))),
+        _boilerplate(
+          SizedBox(
+            width: const .fixed(48.0),
+            height: const .fixed(47.0),
+            child: GestureDetector(onTap: () {}),
+          ),
+        ),
       );
       final Evaluation result = await androidTapTargetGuideline.evaluate(tester);
       expect(result.passed, false);
@@ -746,8 +783,8 @@ void main() {
     testWidgets('Box that overlaps edge of window is skipped', (WidgetTester tester) async {
       final SemanticsHandle handle = tester.ensureSemantics();
       final Widget smallBox = SizedBox(
-        width: 48.0,
-        height: 47.0,
+        width: const .fixed(48.0),
+        height: const .fixed(47.0),
         child: GestureDetector(onTap: () {}),
       );
       await tester.pumpWidget(
@@ -796,12 +833,12 @@ void main() {
             child: Semantics(
               container: true,
               child: SizedBox.square(
-                dimension: 50.0,
+                dimension: const .fixed(50.0),
                 child: Semantics(
                   container: true,
                   child: GestureDetector(
                     onTap: () {},
-                    child: const SizedBox.square(dimension: 4.0),
+                    child: const SizedBox.square(dimension: .fixed(4.0)),
                   ),
                 ),
               ),
@@ -851,9 +888,9 @@ void main() {
               controller: controller,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  padding: const .fixed(EdgeInsets.only(left: 10, right: 10)),
                   child: SizedBox.square(
-                    dimension: 100,
+                    dimension: const .fixed(100),
                     child: Semantics(container: true, onTap: () {}, child: const Text('hello')),
                   ),
                 ),
@@ -878,7 +915,7 @@ void main() {
             container: true,
             onTap: () {},
             label: 'test',
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -894,7 +931,7 @@ void main() {
             container: true,
             onLongPress: () {},
             label: '',
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -911,7 +948,7 @@ void main() {
             container: true,
             onTap: () {},
             label: '',
-            child: const SizedBox(width: 10.0, height: 10.0),
+            child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
           ),
         ),
       );
@@ -928,7 +965,10 @@ void main() {
             container: true,
             onLongPress: () {},
             label: '',
-            child: Semantics(label: 'test', child: const SizedBox(width: 10.0, height: 10.0)),
+            child: Semantics(
+              label: 'test',
+              child: const SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
+            ),
           ),
         ),
       );

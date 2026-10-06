@@ -563,12 +563,12 @@ class FloatingActionButton extends StatelessWidget {
             defaults.extendedPadding!;
         resolvedChild = _ChildOverflowBox(
           child: Padding(
-            padding: padding,
+            padding: .fixed(padding),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ?child,
-                if (child != null && isExtended) SizedBox(width: iconLabelSpacing),
+                if (child != null && isExtended) SizedBox(width: .fixed(iconLabelSpacing)),
                 if (isExtended) _extendedLabel!,
               ],
             ),

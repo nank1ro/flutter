@@ -115,9 +115,8 @@ class _RecipeGridPageState extends State<RecipeGridPage> {
           final double extraPadding = Tween<double>(begin: 10.0, end: 24.0).transform(t);
           final double logoHeight = appBarHeight - 1.5 * extraPadding;
           return Padding(
-            padding: EdgeInsets.only(
-              top: statusBarHeight + 0.5 * extraPadding,
-              bottom: extraPadding,
+            padding: .fixed(
+              EdgeInsets.only(top: statusBarHeight + 0.5 * extraPadding, bottom: extraPadding),
             ),
             child: Center(
               child: PestoLogo(height: logoHeight, t: t.clamp(0.0, 1.0)),
@@ -221,10 +220,10 @@ class _PestoLogoState extends State<PestoLogo> {
     return Semantics(
       namesRoute: true,
       child: Transform(
-        transform: Matrix4.identity()..scale(widget.height! / kLogoHeight),
+        transform: .fixed(Matrix4.identity()..scale(widget.height! / kLogoHeight)),
         alignment: Alignment.topCenter,
         child: SizedBox(
-          width: kLogoWidth,
+          width: const .fixed(kLogoWidth),
           child: Stack(
             clipBehavior: Clip.none,
             children: <Widget>[
@@ -239,7 +238,7 @@ class _PestoLogoState extends State<PestoLogo> {
               Positioned.fromRect(
                 rect: _textRectTween.lerp(widget.t!)!,
                 child: Opacity(
-                  opacity: _textOpacity.transform(widget.t!),
+                  opacity: .fixed(_textOpacity.transform(widget.t!)),
                   child: Text('PESTO', style: titleStyle, textAlign: TextAlign.center),
                 ),
               ),
@@ -285,7 +284,7 @@ class RecipeCard extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const .fixed(EdgeInsets.all(16.0)),
                     child: Image.asset(
                       recipe!.ingredientsImagePath!,
                       package: recipe!.ingredientsImagePackage,
@@ -381,11 +380,13 @@ class _RecipePageState extends State<RecipePage> {
                 ],
                 flexibleSpace: const FlexibleSpaceBar(
                   background: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment(0.0, -0.2),
-                        colors: <Color>[Color(0x60000000), Color(0x00000000)],
+                    decoration: .fixed(
+                      BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment(0.0, -0.2),
+                          colors: <Color>[Color(0x60000000), Color(0x00000000)],
+                        ),
                       ),
                     ),
                   ),
@@ -422,7 +423,7 @@ class _RecipePageState extends State<RecipePage> {
       child: Row(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 24.0),
+            padding: const .fixed(EdgeInsets.only(right: 24.0)),
             child: Icon(icon, color: Colors.black54),
           ),
           Text(label, style: menuItemStyle),
@@ -473,7 +474,7 @@ class RecipeSheet extends StatelessWidget {
         top: false,
         bottom: false,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 40.0),
+          padding: const .fixed(EdgeInsets.symmetric(horizontal: 16.0, vertical: 40.0)),
           child: Table(
             columnWidths: const <int, TableColumnWidth>{0: FixedColumnWidth(64.0)},
             children: <TableRow>[
@@ -500,7 +501,7 @@ class RecipeSheet extends StatelessWidget {
                 children: <Widget>[
                   const SizedBox(),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
+                    padding: const .fixed(EdgeInsets.only(top: 8.0, bottom: 4.0)),
                     child: Text(recipe!.description!, style: descriptionStyle),
                   ),
                 ],
@@ -509,7 +510,7 @@ class RecipeSheet extends StatelessWidget {
                 children: <Widget>[
                   const SizedBox(),
                   Padding(
-                    padding: const EdgeInsets.only(top: 24.0, bottom: 4.0),
+                    padding: const .fixed(EdgeInsets.only(top: 24.0, bottom: 4.0)),
                     child: Text('Ingredients', style: headingStyle),
                   ),
                 ],
@@ -521,7 +522,7 @@ class RecipeSheet extends StatelessWidget {
                 children: <Widget>[
                   const SizedBox(),
                   Padding(
-                    padding: const EdgeInsets.only(top: 24.0, bottom: 4.0),
+                    padding: const .fixed(EdgeInsets.only(top: 24.0, bottom: 4.0)),
                     child: Text('Steps', style: headingStyle),
                   ),
                 ],
@@ -540,11 +541,11 @@ class RecipeSheet extends StatelessWidget {
     return TableRow(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          padding: const .fixed(EdgeInsets.symmetric(vertical: 4.0)),
           child: Text(left, style: itemAmountStyle),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          padding: const .fixed(EdgeInsets.symmetric(vertical: 4.0)),
           child: Text(right, style: itemStyle),
         ),
       ],

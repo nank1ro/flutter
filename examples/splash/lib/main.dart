@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     const DecoratedBox(
-      decoration: BoxDecoration(color: Colors.white),
+      decoration: .fixed(BoxDecoration(color: Colors.white)),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -15,7 +15,7 @@ void main() {
           children: <Widget>[
             FlutterLogo(size: 48),
             Padding(
-              padding: EdgeInsets.all(32),
+              padding: .fixed(EdgeInsets.all(32)),
               child: Text(
                 'This app is only meant to be run under the Flutter debugger',
                 textDirection: TextDirection.ltr,

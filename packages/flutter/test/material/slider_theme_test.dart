@@ -3330,7 +3330,7 @@ void main() {
           theme: theme,
           home: Material(
             child: SizedBox(
-              width: 300,
+              width: const .fixed(300),
               child: Slider(value: value, onChanged: (double value) {}),
             ),
           ),
@@ -3374,7 +3374,7 @@ void main() {
           theme: theme,
           home: Material(
             child: SizedBox(
-              width: 300,
+              width: const .fixed(300),
               child: RangeSlider(
                 values: const RangeValues(0, 1),
                 onChanged: (RangeValues values) {},

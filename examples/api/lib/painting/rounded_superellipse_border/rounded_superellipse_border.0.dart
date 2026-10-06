@@ -54,11 +54,16 @@ class RoundedSuperellipseBorderExampleState
                 // The border is drawn by this DecoratedBox.
                 DecoratedBox(
                   key: RoundedSuperellipseBorderExample.kBorderBoxKey,
-                  decoration: ShapeDecoration(
-                    shape: shape,
-                    color: const Color(0xFFFFC107),
+                  decoration: .fixed(
+                    ShapeDecoration(
+                      shape: shape,
+                      color: const Color(0xFFFFC107),
+                    ),
                   ),
-                  child: const SizedBox(width: 400, height: 200),
+                  child: const SizedBox(
+                    width: .fixed(400),
+                    height: .fixed(200),
+                  ),
                 ),
 
                 Row(
@@ -74,7 +79,7 @@ class RoundedSuperellipseBorderExampleState
                       },
                     ),
                     ConstrainedBox(
-                      constraints: const BoxConstraints(minWidth: 200),
+                      constraints: .fixed(const BoxConstraints(minWidth: 200)),
                       child: Text(
                         _toggle ? 'Rounded Superellipse' : 'Rounded Rect',
                       ),
@@ -138,12 +143,12 @@ class SliderRow extends StatelessWidget {
       mainAxisAlignment: .center,
       children: <Widget>[
         ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 50),
+          constraints: .fixed(const BoxConstraints(minWidth: 50)),
           child: Text(label),
         ),
         Expanded(child: slider),
         ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 50),
+          constraints: .fixed(const BoxConstraints(minWidth: 50)),
           child: Text(valueString),
         ),
       ],

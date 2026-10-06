@@ -21,7 +21,7 @@ Shader createShader(Rect bounds) {
 
 void main() {
   testWidgets('Can be constructed', (WidgetTester tester) async {
-    const Widget child = SizedBox(width: 100.0, height: 100.0);
+    const Widget child = SizedBox(width: .fixed(100.0), height: .fixed(100.0));
     await tester.pumpWidget(const ShaderMask(shaderCallback: createShader, child: child));
   });
 
@@ -34,10 +34,10 @@ void main() {
 
     final Widget widget = Align(
       child: SizedBox.square(
-        dimension: 400.0,
+        dimension: const .fixed(400.0),
         child: ShaderMask(
           shaderCallback: recordShaderBounds,
-          child: const SizedBox.square(dimension: 100.0),
+          child: const SizedBox.square(dimension: .fixed(100.0)),
         ),
       ),
     );

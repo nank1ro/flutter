@@ -19,7 +19,9 @@ Widget _buildScroller({required List<String> log}) {
       }
       return false;
     },
-    child: const SingleChildScrollView(child: SizedBox(width: 1000.0, height: 1000.0)),
+    child: const SingleChildScrollView(
+      child: SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
+    ),
   );
 }
 

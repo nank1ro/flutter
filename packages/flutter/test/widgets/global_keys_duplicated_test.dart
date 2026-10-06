@@ -133,10 +133,10 @@ class DummyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return child ??
-        LimitedBox(
+        const LimitedBox(
           maxWidth: 0.0,
           maxHeight: 0.0,
-          child: ConstrainedBox(constraints: const BoxConstraints.expand()),
+          child: ConstrainedBox(constraints: .fixed(BoxConstraints.expand())),
         );
   }
 }

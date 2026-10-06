@@ -18,7 +18,7 @@ Future<void> pumpTest(WidgetTester tester, TargetPlatform platform) async {
   await tester.pumpWidget(
     TestWidgetsApp(
       home: ColoredBox(
-        color: const Color(0xFF111111),
+        color: const .fixed(Color(0xFF111111)),
         child: ListView.builder(
           dragStartBehavior: DragStartBehavior.down,
           itemBuilder: (BuildContext context, int index) {

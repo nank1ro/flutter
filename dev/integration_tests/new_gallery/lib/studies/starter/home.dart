@@ -20,9 +20,11 @@ class HomePage extends StatelessWidget {
     final GalleryLocalizations localizations = GalleryLocalizations.of(context)!;
     final body = SafeArea(
       child: Padding(
-        padding: isDesktop
-            ? const EdgeInsets.symmetric(horizontal: 72, vertical: 48)
-            : const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        padding: .fixed(
+          isDesktop
+              ? const EdgeInsets.symmetric(horizontal: 72, vertical: 48)
+              : const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -30,9 +32,9 @@ class HomePage extends StatelessWidget {
               localizations.starterAppGenericHeadline,
               style: textTheme.displaySmall!.copyWith(color: colorScheme.onSecondary),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: .fixed(10)),
             SelectableText(localizations.starterAppGenericSubtitle, style: textTheme.titleMedium),
-            const SizedBox(height: 48),
+            const SizedBox(height: .fixed(48)),
             SelectableText(localizations.starterAppGenericBody, style: textTheme.bodyLarge),
           ],
         ),

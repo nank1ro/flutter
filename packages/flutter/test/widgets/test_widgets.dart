@@ -19,7 +19,7 @@ class TestBuildCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     buildCount += 1;
-    return const DecoratedBox(decoration: kBoxDecorationA);
+    return const DecoratedBox(decoration: .fixed(kBoxDecorationA));
   }
 }
 

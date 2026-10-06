@@ -16,8 +16,8 @@ class Scrim extends StatelessWidget {
         animation: controller,
         builder: (BuildContext context, Widget? child) {
           final Widget scrimRectangle = ColoredBox(
-            color: Color.fromRGBO(0xFF, 0xF0, 0xEA, controller.value * 0.87),
-            child: SizedBox.fromSize(size: MediaQuery.sizeOf(context)),
+            color: .fixed(Color.fromRGBO(0xFF, 0xF0, 0xEA, controller.value * 0.87)),
+            child: SizedBox.fromSize(size: .fixed(MediaQuery.sizeOf(context))),
           );
 
           switch (controller.status) {

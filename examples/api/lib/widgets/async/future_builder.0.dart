@@ -47,7 +47,7 @@ class _FutureBuilderExampleState extends State<FutureBuilderExample> {
                 size: 60,
               ),
               Padding(
-                padding: const .only(top: 16),
+                padding: const .fixed(.only(top: 16)),
                 child: Text('Result: ${snapshot.data}'),
               ),
             ];
@@ -55,18 +55,18 @@ class _FutureBuilderExampleState extends State<FutureBuilderExample> {
             children = <Widget>[
               const Icon(Icons.error_outline, color: Colors.red, size: 60),
               Padding(
-                padding: const .only(top: 16),
+                padding: const .fixed(.only(top: 16)),
                 child: Text('Error: ${snapshot.error}'),
               ),
             ];
           } else {
             children = const <Widget>[
               SizedBox.square(
-                dimension: 60,
+                dimension: .fixed(60),
                 child: CircularProgressIndicator(),
               ),
               Padding(
-                padding: .only(top: 16),
+                padding: .fixed(.only(top: 16)),
                 child: Text('Awaiting result...'),
               ),
             ];

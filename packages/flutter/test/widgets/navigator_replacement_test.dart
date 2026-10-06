@@ -161,7 +161,7 @@ void main() {
             '/': (BuildContext context) => const Text('home'),
             '/a': (BuildContext context) => const Hero(tag: kHeroTag, child: Text('a')),
             '/b': (BuildContext context) => const Padding(
-              padding: EdgeInsets.all(100.0),
+              padding: .fixed(EdgeInsets.all(100.0)),
               child: Hero(tag: kHeroTag, child: Text('b')),
             ),
           },
@@ -203,7 +203,7 @@ void main() {
             '/': (BuildContext context) => const Hero(tag: kHeroTag, child: Text('home')),
             '/a': (BuildContext context) => const Text('a'),
             '/b': (BuildContext context) => const Padding(
-              padding: EdgeInsets.all(100.0),
+              padding: .fixed(EdgeInsets.all(100.0)),
               child: Hero(tag: kHeroTag, child: Text('b')),
             ),
           },

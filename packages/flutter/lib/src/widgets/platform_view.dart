@@ -147,8 +147,8 @@ class AndroidView extends StatefulWidget {
   /// GestureDetector(
   ///   onVerticalDragStart: (DragStartDetails details) {},
   ///   child: SizedBox(
-  ///     width: 200.0,
-  ///     height: 100.0,
+  ///     width: .fixed(200.0),
+  ///     height: .fixed(100.0),
   ///     child: AndroidView(
   ///       viewType: 'webview',
   ///       gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -270,8 +270,8 @@ abstract class _DarwinView extends StatefulWidget {
   /// GestureDetector(
   ///   onVerticalDragStart: (DragStartDetails details) {},
   ///   child: SizedBox(
-  ///     width: 200.0,
-  ///     height: 100.0,
+  ///     width: .fixed(200.0),
+  ///     height: .fixed(100.0),
   ///     child: UiKitView(
   ///       viewType: 'webview',
   ///       gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
@@ -1425,8 +1425,8 @@ class PlatformViewSurface extends LeafRenderObjectWidget {
   /// GestureDetector(
   ///   onVerticalDragStart: (DragStartDetails details) { },
   ///   child: SizedBox(
-  ///     width: 200.0,
-  ///     height: 100.0,
+  ///     width: .fixed(200.0),
+  ///     height: .fixed(100.0),
   ///     child: PlatformViewSurface(
   ///       gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
   ///         Factory<OneSequenceGestureRecognizer>(

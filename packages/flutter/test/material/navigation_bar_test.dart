@@ -1019,21 +1019,21 @@ void main() {
     final Finder transformFinder = find
         .descendant(of: find.byType(NavigationIndicator), matching: find.byType(Transform))
         .last;
-    Matrix4 transform = tester.widget<Transform>(transformFinder).transform;
+    Matrix4 transform = tester.widget<Transform>(transformFinder).transform.value;
     expect(transform.getColumn(0)[0], 0.0);
 
     selectedIndex = 1;
     await tester.pumpWidget(buildNavigationBar());
     await tester.pump(const Duration(milliseconds: 100));
-    transform = tester.widget<Transform>(transformFinder).transform;
+    transform = tester.widget<Transform>(transformFinder).transform.value;
     expect(transform.getColumn(0)[0], closeTo(0.7805849514007568, precisionErrorTolerance));
 
     await tester.pump(const Duration(milliseconds: 100));
-    transform = tester.widget<Transform>(transformFinder).transform;
+    transform = tester.widget<Transform>(transformFinder).transform.value;
     expect(transform.getColumn(0)[0], closeTo(0.9473570239543915, precisionErrorTolerance));
 
     await tester.pumpAndSettle();
-    transform = tester.widget<Transform>(transformFinder).transform;
+    transform = tester.widget<Transform>(transformFinder).transform.value;
     expect(transform.getColumn(0)[0], 1.0);
   });
 
@@ -1738,6 +1738,7 @@ void main() {
     final double safeAreaBottomPadding = tester
         .widget<Padding>(find.byType(Padding).first)
         .padding
+        .value
         .resolve(textDirection)
         .bottom;
     expect(safeAreaBottomPadding, equals(0));
@@ -1805,7 +1806,8 @@ bool _sizeAlmostEqual(Size a, Size b, {double maxDiff = 0.05}) {
 EdgeInsetsGeometry _getLabelPadding(WidgetTester tester, String text) {
   return tester
       .widget<Padding>(find.ancestor(of: find.text(text), matching: find.byType(Padding)).first)
-      .padding;
+      .padding
+      .value;
 }
 
 TextStyle _getLabelStyle(WidgetTester tester, String text) {

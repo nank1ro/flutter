@@ -180,7 +180,11 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Center(
-          child: Material(child: Tab(icon: SizedBox(width: 10.0, height: 10.0))),
+          child: Material(
+            child: Tab(
+              icon: SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
+            ),
+          ),
         ),
       ),
     );
@@ -191,7 +195,11 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Center(
-          child: Material(child: Tab(child: SizedBox(width: 10.0, height: 10.0))),
+          child: Material(
+            child: Tab(
+              child: SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
+            ),
+          ),
         ),
       ),
     );
@@ -227,7 +235,10 @@ void main() {
         theme: theme,
         home: const Center(
           child: Material(
-            child: Tab(icon: SizedBox(width: 10.0, height: 10.0), text: 'x'),
+            child: Tab(
+              icon: SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
+              text: 'x',
+            ),
           ),
         ),
       ),
@@ -249,7 +260,7 @@ void main() {
         home: const Center(
           child: Material(
             child: Tab(
-              icon: SizedBox(width: 10.0, height: 10.0),
+              icon: SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
               iconMargin: EdgeInsets.symmetric(horizontal: 100.0),
               text: 'x',
             ),
@@ -272,7 +283,10 @@ void main() {
         theme: theme,
         home: const Center(
           child: Material(
-            child: Tab(icon: SizedBox(width: 10.0, height: 10.0), child: Text('x')),
+            child: Tab(
+              icon: SizedBox(width: .fixed(10.0), height: .fixed(10.0)),
+              child: Text('x'),
+            ),
           ),
         ),
       ),
@@ -1309,8 +1323,8 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 300.0,
-            height: 200.0,
+            width: const .fixed(300.0),
+            height: const .fixed(200.0),
             child: DefaultTabController(
               length: tabs.length,
               child: Scaffold(
@@ -1701,7 +1715,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -1751,7 +1765,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -1814,7 +1828,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 viewportFraction: 0.8,
                 controller: tabController,
@@ -1859,7 +1873,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -1903,7 +1917,7 @@ void main() {
               controller: controller,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 viewportFraction: viewportFraction,
                 controller: controller,
@@ -2093,7 +2107,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -2140,7 +2154,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -2188,7 +2202,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -2240,7 +2254,7 @@ void main() {
                 controller: tabController,
               ),
               SizedBox.square(
-                dimension: 400.0,
+                dimension: const .fixed(400.0),
                 child: TabBarView(
                   controller: tabController,
                   children: const <Widget>[
@@ -2296,7 +2310,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -2493,7 +2507,7 @@ void main() {
         child: SizedBox.expand(
           child: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -2556,7 +2570,7 @@ void main() {
               controller: tabController,
             ),
             SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 children: const <Widget>[
@@ -2624,7 +2638,7 @@ void main() {
             children: <Widget>[
               Container(color: Colors.red),
               ColoredBox(
-                color: Colors.blue,
+                color: const .fixed(Colors.blue),
                 child: Column(
                   children: <Widget>[
                     TabBar(
@@ -2716,7 +2730,7 @@ void main() {
         child: SizedBox.expand(
           child: Center(
             child: SizedBox.square(
-              dimension: 400.0,
+              dimension: const .fixed(400.0),
               child: TabBarView(
                 controller: tabController,
                 physics: const TabBarTestScrollPhysics(),
@@ -3097,7 +3111,7 @@ void main() {
     final tabs = List<Widget>.generate(4, (int index) {
       return Tab(
         key: ValueKey<int>(index),
-        child: const SizedBox(width: indicatorWidth),
+        child: const SizedBox(width: .fixed(indicatorWidth)),
       );
     });
 
@@ -3370,9 +3384,9 @@ void main() {
 
   testWidgets('TabBar with directional indicatorPadding (LTR)', (WidgetTester tester) async {
     final tabs = <Widget>[
-      SizedBox(key: UniqueKey(), width: 130.0, height: 30.0),
-      SizedBox(key: UniqueKey(), width: 140.0, height: 40.0),
-      SizedBox(key: UniqueKey(), width: 150.0, height: 50.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(130.0), height: const .fixed(30.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(140.0), height: const .fixed(40.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(150.0), height: const .fixed(50.0)),
     ];
 
     const indicatorWeight = 2.0; // the default
@@ -3441,9 +3455,9 @@ void main() {
 
   testWidgets('TabBar with directional indicatorPadding (RTL)', (WidgetTester tester) async {
     final tabs = <Widget>[
-      SizedBox(key: UniqueKey(), width: 130.0, height: 30.0),
-      SizedBox(key: UniqueKey(), width: 140.0, height: 40.0),
-      SizedBox(key: UniqueKey(), width: 150.0, height: 50.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(130.0), height: const .fixed(30.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(140.0), height: const .fixed(40.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(150.0), height: const .fixed(50.0)),
     ];
 
     const indicatorWeight = 2.0; // the default
@@ -3650,9 +3664,9 @@ void main() {
     WidgetTester tester,
   ) async {
     final tabs = <Widget>[
-      SizedBox(key: UniqueKey(), width: 130.0, height: 30.0),
-      SizedBox(key: UniqueKey(), width: 140.0, height: 40.0),
-      SizedBox(key: UniqueKey(), width: 150.0, height: 50.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(130.0), height: const .fixed(30.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(140.0), height: const .fixed(40.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(150.0), height: const .fixed(50.0)),
     ];
     const indicatorColor = Color(0xFF00FF00);
     const padTop = 10.0;
@@ -3734,9 +3748,9 @@ void main() {
     WidgetTester tester,
   ) async {
     final tabs = <Widget>[
-      SizedBox(key: UniqueKey(), width: 130.0, height: 30.0),
-      SizedBox(key: UniqueKey(), width: 140.0, height: 40.0),
-      SizedBox(key: UniqueKey(), width: 150.0, height: 50.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(130.0), height: const .fixed(30.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(140.0), height: const .fixed(40.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(150.0), height: const .fixed(50.0)),
     ];
     const indicatorColor = Color(0xFF00FF00);
     const padTop = 10.0;
@@ -3821,8 +3835,8 @@ void main() {
     const padding = EdgeInsets.only(left: 3.0, top: 7.0, right: 5.0, bottom: 3.0);
 
     final tabs = <Widget>[
-      SizedBox(key: UniqueKey(), width: double.infinity, height: 30.0),
-      SizedBox(key: UniqueKey(), width: double.infinity, height: 40.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(double.infinity), height: const .fixed(30.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(double.infinity), height: const .fixed(40.0)),
     ];
 
     final TabController controller = createTabController(
@@ -3877,9 +3891,9 @@ void main() {
     const tabStartOffset = 52.0;
 
     final tabs = <Widget>[
-      SizedBox(key: UniqueKey(), width: 130.0, height: 30.0),
-      SizedBox(key: UniqueKey(), width: 140.0, height: 40.0),
-      SizedBox(key: UniqueKey(), width: 150.0, height: 50.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(130.0), height: const .fixed(30.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(140.0), height: const .fixed(40.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(150.0), height: const .fixed(50.0)),
     ];
 
     final TabController controller = createTabController(
@@ -3944,9 +3958,9 @@ void main() {
     const indicatorPadding = labelPadding;
 
     final tabs = <Widget>[
-      SizedBox(key: UniqueKey(), width: 130.0, height: 30.0),
-      SizedBox(key: UniqueKey(), width: 140.0, height: 40.0),
-      SizedBox(key: UniqueKey(), width: 150.0, height: 50.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(130.0), height: const .fixed(30.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(140.0), height: const .fixed(40.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(150.0), height: const .fixed(50.0)),
     ];
 
     final TabController controller = createTabController(
@@ -4019,9 +4033,9 @@ void main() {
     const indicatorPadding = EdgeInsets.only(left: 3.0, right: 7.0);
 
     final tabs = <Widget>[
-      SizedBox(key: UniqueKey(), width: 130.0, height: 30.0),
-      SizedBox(key: UniqueKey(), width: 140.0, height: 40.0),
-      SizedBox(key: UniqueKey(), width: 150.0, height: 50.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(130.0), height: const .fixed(30.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(140.0), height: const .fixed(40.0)),
+      SizedBox(key: UniqueKey(), width: const .fixed(150.0), height: const .fixed(50.0)),
     ];
 
     final TabController controller = createTabController(
@@ -4094,7 +4108,7 @@ void main() {
       100,
       // For convenience padded width of each tab will equal 100:
       // 68 + kTabLabelPadding.horizontal(32)
-      SizedBox(key: UniqueKey(), width: 68.0, height: 40.0),
+      SizedBox(key: UniqueKey(), width: const .fixed(68.0), height: const .fixed(40.0)),
     );
 
     final TabController controller = createTabController(
@@ -4903,7 +4917,7 @@ void main() {
           isScrollable: true,
           tabs: List<Widget>.generate(length, (int index) {
             return SizedBox(
-              width: 100,
+              width: const .fixed(100),
               child: Tab(key: index == length - 1 ? lastTabKey : null, text: 'Tab $index'),
             );
           }),
@@ -5175,8 +5189,8 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 300.0,
-            height: 200.0,
+            width: const .fixed(300.0),
+            height: const .fixed(200.0),
             child: Scaffold(
               appBar: AppBar(
                 title: const Text('tabs'),
@@ -5220,8 +5234,8 @@ void main() {
         home: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 300.0,
-            height: 200.0,
+            width: const .fixed(300.0),
+            height: const .fixed(200.0),
             child: Scaffold(
               appBar: AppBar(
                 title: const Text('tabs'),
@@ -5270,15 +5284,15 @@ void main() {
         return MaterialApp(
           home: Center(
             child: SizedBox(
-              height: height,
-              width: width,
+              height: .fixed(height),
+              width: .fixed(width),
               child: Scaffold(
                 appBar: AppBar(
                   title: const Text('AppBarBug'),
                   bottom: PreferredSize(
                     preferredSize: const Size.fromHeight(30.0),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      padding: const .fixed(EdgeInsets.symmetric(horizontal: 15.0)),
                       child: Align(
                         alignment: FractionalOffset.center,
                         child: TabBar(controller: controller, isScrollable: true, tabs: tabs),
@@ -5974,7 +5988,7 @@ void main() {
           child: SizedBox.expand(
             child: Center(
               child: SizedBox.square(
-                dimension: 400.0,
+                dimension: const .fixed(400.0),
                 child: TabBarView(
                   controller: tabController,
                   children: const <Widget>[
@@ -6238,9 +6252,9 @@ void main() {
     final Padding tabTwo = tester.widget<Padding>(find.widgetWithText(Padding, 'Tab 2').first);
     final Padding tabThree = tester.widget<Padding>(find.widgetWithText(Padding, 'Tab 3').first);
 
-    expect(tabOne.padding, expectedPaddingDefault);
-    expect(tabTwo.padding, expectedPaddingAdjusted);
-    expect(tabThree.padding, expectedPaddingAdjusted);
+    expect(tabOne.padding.value, expectedPaddingDefault);
+    expect(tabTwo.padding.value, expectedPaddingAdjusted);
+    expect(tabThree.padding.value, expectedPaddingAdjusted);
   });
 
   testWidgets('Tabs are given uniform padding when labelPadding is given', (
@@ -6278,9 +6292,9 @@ void main() {
     final Padding tabTwo = tester.widget<Padding>(find.widgetWithText(Padding, 'Tab 2').first);
     final Padding tabThree = tester.widget<Padding>(find.widgetWithText(Padding, 'Tab 3').first);
 
-    expect(tabOne.padding, expectedPaddingDefault);
-    expect(tabTwo.padding, expectedPaddingAdjusted);
-    expect(tabThree.padding, expectedPaddingAdjusted);
+    expect(tabOne.padding.value, expectedPaddingDefault);
+    expect(tabTwo.padding.value, expectedPaddingAdjusted);
+    expect(tabThree.padding.value, expectedPaddingAdjusted);
   });
 
   testWidgets('Tabs are given uniform padding TabBarTheme.labelPadding is given', (
@@ -6318,9 +6332,9 @@ void main() {
     final Padding tabTwo = tester.widget<Padding>(find.widgetWithText(Padding, 'Tab 2').first);
     final Padding tabThree = tester.widget<Padding>(find.widgetWithText(Padding, 'Tab 3').first);
 
-    expect(tabOne.padding, expectedPaddingDefault);
-    expect(tabTwo.padding, expectedPaddingAdjusted);
-    expect(tabThree.padding, expectedPaddingAdjusted);
+    expect(tabOne.padding.value, expectedPaddingDefault);
+    expect(tabTwo.padding.value, expectedPaddingAdjusted);
+    expect(tabThree.padding.value, expectedPaddingAdjusted);
   });
 
   testWidgets('Change tab bar height', (WidgetTester tester) async {
@@ -7320,9 +7334,9 @@ void main() {
             length: 2,
             child: Center(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 360),
+                constraints: const .fixed(BoxConstraints(maxWidth: 360)),
                 child: ColoredBox(
-                  color: Colors.grey[200]!,
+                  color: .fixed(Colors.grey[200]!),
                   child: const TabBar.secondary(
                     tabAlignment: TabAlignment.start,
                     isScrollable: true,
@@ -7724,9 +7738,9 @@ void main() {
       const padding = EdgeInsets.only(left: 3.0, top: 7.0, right: 5.0, bottom: 3.0);
 
       final tabs = <Widget>[
-        SizedBox(key: UniqueKey(), width: 130.0, height: 30.0),
-        SizedBox(key: UniqueKey(), width: 140.0, height: 40.0),
-        SizedBox(key: UniqueKey(), width: 150.0, height: 50.0),
+        SizedBox(key: UniqueKey(), width: const .fixed(130.0), height: const .fixed(30.0)),
+        SizedBox(key: UniqueKey(), width: const .fixed(140.0), height: const .fixed(40.0)),
+        SizedBox(key: UniqueKey(), width: const .fixed(150.0), height: const .fixed(50.0)),
       ];
 
       final TabController controller = createTabController(
@@ -8098,7 +8112,7 @@ void main() {
     final tabs = List<Widget>.generate(4, (int index) {
       return Tab(
         key: ValueKey<int>(index),
-        child: const SizedBox(width: indicatorWidth),
+        child: const SizedBox(width: .fixed(indicatorWidth)),
       );
     });
 

@@ -135,7 +135,11 @@ void main() {
                 itemExtent: 100.0,
                 controller: controller,
                 children: List<Widget>.generate(100, (int index) {
-                  return SizedBox(height: 100.0, width: 400.0, child: Text('Item $index'));
+                  return SizedBox(
+                    height: const .fixed(100.0),
+                    width: const .fixed(400.0),
+                    child: Text('Item $index'),
+                  );
                 }).toList(),
               ),
             ),
@@ -248,7 +252,11 @@ void main() {
             onSelectedItemChanged: (_) {},
             childDelegate: ListWheelChildLoopingListDelegate(
               children: List<Widget>.generate(10, (int index) {
-                return SizedBox(width: 400.0, height: 100.0, child: Text(index.toString()));
+                return SizedBox(
+                  width: const .fixed(400.0),
+                  height: const .fixed(100.0),
+                  child: Text(index.toString()),
+                );
               }),
             ),
           ),
@@ -290,7 +298,11 @@ void main() {
             onSelectedItemChanged: (_) {},
             childDelegate: ListWheelChildBuilderDelegate(
               builder: (BuildContext context, int index) {
-                return SizedBox(width: 400.0, height: 100.0, child: Text(index.toString()));
+                return SizedBox(
+                  width: const .fixed(400.0),
+                  height: const .fixed(100.0),
+                  child: Text(index.toString()),
+                );
               },
             ),
           ),
@@ -334,8 +346,8 @@ void main() {
                   return null;
                 }
                 return SizedBox(
-                  width: 400.0,
-                  height: 100.0,
+                  width: const .fixed(400.0),
+                  height: const .fixed(100.0),
                   child: CustomPaint(
                     painter: TestCallbackPainter(
                       onPaint: () {
@@ -366,45 +378,47 @@ void main() {
   });
 
   group('layout', () {
-    testWidgets(
-      'Flings with high velocity should not break the children lower and upper limits',
-      (WidgetTester tester) async {
-        // Regression test for https://github.com/flutter/flutter/issues/112526
-        final controller = FixedExtentScrollController();
-        addTearDown(controller.dispose);
+    testWidgets('Flings with high velocity should not break the children lower and upper limits', (
+      WidgetTester tester,
+    ) async {
+      // Regression test for https://github.com/flutter/flutter/issues/112526
+      final controller = FixedExtentScrollController();
+      addTearDown(controller.dispose);
 
-        Widget buildFrame() {
-          return Directionality(
-            textDirection: TextDirection.ltr,
-            child: ListWheelScrollView.useDelegate(
-              physics: const FixedExtentScrollPhysics(),
-              controller: controller,
-              itemExtent: 400.0,
-              onSelectedItemChanged: (_) {},
-              childDelegate: ListWheelChildBuilderDelegate(
-                builder: (BuildContext context, int index) {
-                  if (index < 0 || index > 5) {
-                    return null;
-                  }
-                  return SizedBox(width: 400.0, height: 400.0, child: Text(index.toString()));
-                },
-              ),
+      Widget buildFrame() {
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: ListWheelScrollView.useDelegate(
+            physics: const FixedExtentScrollPhysics(),
+            controller: controller,
+            itemExtent: 400.0,
+            onSelectedItemChanged: (_) {},
+            childDelegate: ListWheelChildBuilderDelegate(
+              builder: (BuildContext context, int index) {
+                if (index < 0 || index > 5) {
+                  return null;
+                }
+                return SizedBox(
+                  width: const .fixed(400.0),
+                  height: const .fixed(400.0),
+                  child: Text(index.toString()),
+                );
+              },
             ),
-          );
-        }
+          ),
+        );
+      }
 
-        await tester.pumpWidget(buildFrame());
-        expect(tester.renderObject(find.text('0')).attached, true);
-        expect(tester.renderObject(find.text('1')).attached, true);
-        expect(find.text('2'), findsNothing);
-        expect(controller.selectedItem, 0);
+      await tester.pumpWidget(buildFrame());
+      expect(tester.renderObject(find.text('0')).attached, true);
+      expect(tester.renderObject(find.text('1')).attached, true);
+      expect(find.text('2'), findsNothing);
+      expect(controller.selectedItem, 0);
 
-        // Flings with high velocity and stop at the child boundary.
-        await tester.fling(find.byType(ListWheelScrollView), const Offset(0.0, 40000.0), 8000.0);
-        expect(controller.selectedItem, 0);
-      },
-      variant: TargetPlatformVariant(TargetPlatform.values.toSet()),
-    );
+      // Flings with high velocity and stop at the child boundary.
+      await tester.fling(find.byType(ListWheelScrollView), const Offset(0.0, 40000.0), 8000.0);
+      expect(controller.selectedItem, 0);
+    }, variant: TargetPlatformVariant(TargetPlatform.values.toSet()));
 
     // Regression test for https://github.com/flutter/flutter/issues/90953
     testWidgets('ListWheelScrollView childDelegate update test 2', (WidgetTester tester) async {
@@ -421,7 +435,11 @@ void main() {
             childDelegate: ListWheelChildBuilderDelegate(
               childCount: childCount,
               builder: (BuildContext context, int index) {
-                return SizedBox(width: 400.0, height: 400.0, child: Text(index.toString()));
+                return SizedBox(
+                  width: const .fixed(400.0),
+                  height: const .fixed(400.0),
+                  child: Text(index.toString()),
+                );
               },
             ),
           ),
@@ -481,7 +499,11 @@ void main() {
             childDelegate: ListWheelChildBuilderDelegate(
               childCount: childCount,
               builder: (BuildContext context, int index) {
-                return SizedBox(width: 400.0, height: 100.0, child: Text(index.toString()));
+                return SizedBox(
+                  width: const .fixed(400.0),
+                  height: const .fixed(100.0),
+                  child: Text(index.toString()),
+                );
               },
             ),
           ),
@@ -543,7 +565,11 @@ void main() {
           child: ListWheelScrollView(
             itemExtent: 50.0,
             children: const <Widget>[
-              SizedBox(height: 200.0, width: 200.0, child: Center(child: Text('blah'))),
+              SizedBox(
+                height: .fixed(200.0),
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
             ],
           ),
         ),
@@ -569,7 +595,11 @@ void main() {
                 expect(builtChildren.contains(index), false);
                 builtChildren.add(index);
 
-                return SizedBox(width: 400.0, height: 100.0, child: Text(index.toString()));
+                return SizedBox(
+                  width: const .fixed(400.0),
+                  height: const .fixed(100.0),
+                  child: Text(index.toString()),
+                );
               },
             ),
           ),
@@ -681,7 +711,7 @@ void main() {
               itemExtent: 100.0,
               children: <Widget>[
                 SizedBox(
-                  width: width,
+                  width: .fixed(width),
                   child: const Center(child: Text('blah')),
                 ),
               ],
@@ -871,7 +901,12 @@ void main() {
           textDirection: TextDirection.ltr,
           child: ListWheelScrollView(
             itemExtent: 100.0,
-            children: const <Widget>[SizedBox(width: 200.0, child: Center(child: Text('blah')))],
+            children: const <Widget>[
+              SizedBox(
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
+            ],
           ),
         ),
       );
@@ -942,7 +977,12 @@ void main() {
           child: ListWheelScrollView(
             controller: controller,
             itemExtent: 100.0,
-            children: const <Widget>[SizedBox(width: 200.0, child: Center(child: Text('blah')))],
+            children: const <Widget>[
+              SizedBox(
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
+            ],
           ),
         ),
       );
@@ -981,7 +1021,12 @@ void main() {
             controller: controller,
             diameterRatio: 3.0,
             itemExtent: 100.0,
-            children: const <Widget>[SizedBox(width: 200.0, child: Center(child: Text('blah')))],
+            children: const <Widget>[
+              SizedBox(
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
+            ],
           ),
         ),
       );
@@ -1018,7 +1063,12 @@ void main() {
             controller: controller,
             perspective: 0.0001,
             itemExtent: 100.0,
-            children: const <Widget>[SizedBox(width: 200.0, child: Center(child: Text('blah')))],
+            children: const <Widget>[
+              SizedBox(
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
+            ],
           ),
         ),
       );
@@ -1055,7 +1105,12 @@ void main() {
           child: ListWheelScrollView(
             controller: controller,
             itemExtent: 100.0,
-            children: const <Widget>[SizedBox(width: 200.0, child: Center(child: Text('blah')))],
+            children: const <Widget>[
+              SizedBox(
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
+            ],
           ),
         ),
       );
@@ -1096,7 +1151,12 @@ void main() {
             controller: controller,
             itemExtent: 100.0,
             offAxisFraction: 0.5,
-            children: const <Widget>[SizedBox(width: 200.0, child: Center(child: Text('blah')))],
+            children: const <Widget>[
+              SizedBox(
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
+            ],
           ),
         ),
       );
@@ -1138,7 +1198,12 @@ void main() {
             offAxisFraction: 0.5,
             useMagnifier: true,
             magnification: 1.5,
-            children: const <Widget>[SizedBox(width: 200.0, child: Center(child: Text('blah')))],
+            children: const <Widget>[
+              SizedBox(
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
+            ],
           ),
         ),
       );
@@ -1182,7 +1247,12 @@ void main() {
           child: ListWheelScrollView(
             itemExtent: 100.0,
             onSelectedItemChanged: onItemChange,
-            children: const <Widget>[SizedBox(width: 200.0, child: Center(child: Text('blah')))],
+            children: const <Widget>[
+              SizedBox(
+                width: .fixed(200.0),
+                child: Center(child: Text('blah')),
+              ),
+            ],
           ),
         ),
       );
@@ -1715,15 +1785,15 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 500.0,
-            width: 300.0,
+            height: const .fixed(500.0),
+            width: const .fixed(300.0),
             child: ListWheelScrollView(
               controller: controller,
               itemExtent: 100.0,
               children: outerChildren = List<Widget>.generate(10, (int i) {
                 return Center(
                   child: innerChildren[i] = SizedBox.square(
-                    dimension: 50.0,
+                    dimension: const .fixed(50.0),
                     child: Text('Item $i'),
                   ),
                 );
@@ -1800,13 +1870,19 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 500.0,
-            width: 300.0,
+            height: const .fixed(500.0),
+            width: const .fixed(300.0),
             child: ListWheelScrollView(
               controller: controller,
               itemExtent: 100.0,
               children: List<Widget>.generate(10, (int i) {
-                return Center(child: SizedBox(height: 50.0, width: 50.0, child: Text('Item $i')));
+                return Center(
+                  child: SizedBox(
+                    height: const .fixed(50.0),
+                    width: const .fixed(50.0),
+                    child: Text('Item $i'),
+                  ),
+                );
               }),
             ),
           ),
@@ -1832,15 +1908,15 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            height: 500.0,
-            width: 300.0,
+            height: const .fixed(500.0),
+            width: const .fixed(300.0),
             child: ListWheelScrollView(
               controller: controller,
               itemExtent: 100.0,
               children: outerChildren = List<Widget>.generate(10, (int i) {
                 return Center(
                   child: innerChildren[i] = SizedBox.square(
-                    dimension: 50.0,
+                    dimension: const .fixed(50.0),
                     child: Text('Item $i'),
                   ),
                 );
@@ -1899,7 +1975,7 @@ void main() {
                       tappedChildren.add(index);
                     },
                     child: SizedBox.square(
-                      dimension: 100.0,
+                      dimension: const .fixed(100.0),
                       child: CustomPaint(
                         painter: TestCallbackPainter(
                           onPaint: () {
@@ -1971,7 +2047,7 @@ void main() {
             textDirection: TextDirection.ltr,
             child: Center(
               child: SizedBox(
-                height: 120,
+                height: const .fixed(120),
                 child: ListWheelScrollView.useDelegate(
                   controller: controller,
                   physics: const FixedExtentScrollPhysics(),
@@ -1987,7 +2063,7 @@ void main() {
                               tappedChildren.add(index);
                             },
                             child: SizedBox.square(
-                              dimension: 55,
+                              dimension: const .fixed(55),
                               child: CustomPaint(
                                 painter: TestCallbackPainter(
                                   onPaint: () {

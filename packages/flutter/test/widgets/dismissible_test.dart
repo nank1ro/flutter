@@ -63,7 +63,11 @@ Widget buildTest({
                 ? <DismissDirection, double>{}
                 : <DismissDirection, double>{DismissDirection.startToEnd: startToEndThreshold},
             crossAxisEndOffset: crossAxisEndOffset,
-            child: SizedBox(width: 100.0, height: 100.0, child: Text(item.toString())),
+            child: SizedBox(
+              width: const .fixed(100.0),
+              height: const .fixed(100.0),
+              child: Text(item.toString()),
+            ),
           );
         }
 
@@ -615,8 +619,8 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox(
-            width: 100.0,
-            height: 1000.0,
+            width: .fixed(100.0),
+            height: .fixed(1000.0),
             child: Column(
               children: <Widget>[Test1215DismissibleWidget('1'), Test1215DismissibleWidget('2')],
             ),
@@ -908,7 +912,7 @@ void main() {
           onResize: () {
             resized = true;
           },
-          child: const SizedBox(width: 100.0, height: 100.0, child: Text('0')),
+          child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0), child: Text('0')),
         ),
       ),
     );
@@ -942,7 +946,11 @@ void main() {
                     });
                   },
                   crossAxisEndOffset: crossAxisEndOffset,
-                  child: SizedBox(width: 100.0, height: 100.0, child: Text(1.toString())),
+                  child: SizedBox(
+                    width: const .fixed(100.0),
+                    height: const .fixed(100.0),
+                    child: Text(1.toString()),
+                  ),
                 ),
               ],
             );
@@ -1000,7 +1008,7 @@ void main() {
       buildStack(
         child: const Dismissible(
           key: ValueKey<int>(1),
-          child: SizedBox(width: 100.0, height: 100.0),
+          child: SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ),
       ),
     );
@@ -1013,7 +1021,7 @@ void main() {
           child: Dismissible(
             key: const ValueKey<int>(1),
             behavior: behavior,
-            child: const SizedBox(width: 100.0, height: 100.0),
+            child: const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           ),
         ),
       );
@@ -1135,7 +1143,11 @@ void main() {
           direction: direction,
           key: const Key('Dismissible'),
           resizeDuration: null,
-          child: const SizedBox(width: 100.0, height: 100.0, child: Text('I Love Flutter!')),
+          child: const SizedBox(
+            width: .fixed(100.0),
+            height: .fixed(100.0),
+            child: Text('I Love Flutter!'),
+          ),
         ),
       );
     }

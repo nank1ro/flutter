@@ -36,7 +36,7 @@ class _GestureDetectorExampleState extends State<GestureDetectorExample> {
           mainAxisAlignment: .center,
           children: <Widget>[
             Padding(
-              padding: const .all(8.0),
+              padding: const .fixed(.all(8.0)),
               child: Icon(
                 Icons.lightbulb_outline,
                 color: _lightIsOn ? Colors.yellow.shade600 : Colors.black,

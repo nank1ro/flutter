@@ -99,9 +99,9 @@ class _NavRailExampleState extends State<NavRailExample> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text('selectedIndex: $_selectedIndex'),
-                const SizedBox(height: 20),
+                const SizedBox(height: .fixed(20)),
                 Text('Label type: ${labelType.name}'),
-                const SizedBox(height: 10),
+                const SizedBox(height: .fixed(10)),
                 OverflowBar(
                   spacing: 10.0,
                   children: <Widget>[
@@ -131,9 +131,9 @@ class _NavRailExampleState extends State<NavRailExample> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: .fixed(20)),
                 Text('Group alignment: $groupAlignment'),
-                const SizedBox(height: 10),
+                const SizedBox(height: .fixed(10)),
                 OverflowBar(
                   spacing: 10.0,
                   children: <Widget>[
@@ -163,7 +163,7 @@ class _NavRailExampleState extends State<NavRailExample> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: .fixed(20)),
                 OverflowBar(
                   spacing: 10.0,
                   children: <Widget>[

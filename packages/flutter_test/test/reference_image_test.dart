@@ -68,7 +68,7 @@ void main() {
       await tester.pumpWidget(
         const RepaintBoundary(
           key: repaintBoundaryKey,
-          child: ColoredBox(color: red),
+          child: ColoredBox(color: .fixed(red)),
         ),
       );
 
@@ -125,7 +125,7 @@ void main() {
       await tester.pumpWidget(
         const RepaintBoundary(
           key: repaintBoundaryKey,
-          child: ColoredBox(color: red),
+          child: ColoredBox(color: .fixed(red)),
         ),
       );
 
@@ -137,7 +137,7 @@ void main() {
       await tester.pumpWidget(
         const RepaintBoundary(
           key: repaintBoundaryKey,
-          child: ColoredBox(color: green),
+          child: ColoredBox(color: .fixed(green)),
         ),
       );
 

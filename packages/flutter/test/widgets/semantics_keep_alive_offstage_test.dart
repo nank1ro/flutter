@@ -100,7 +100,7 @@ Widget _buildTestWidget({
       children: <Widget>[
         Expanded(child: Container()),
         SizedBox(
-          height: 500.0,
+          height: const .fixed(500.0),
           child: ListView(
             controller: controller,
             children: <Widget>[
@@ -139,7 +139,11 @@ class ProblemWidgetState extends State<ProblemWidget>
     if (widget.extraPadding) {
       child = Semantics(
         container: true,
-        child: Padding(key: paddingWidget, padding: const EdgeInsets.all(20.0), child: child),
+        child: Padding(
+          key: paddingWidget,
+          padding: const .fixed(EdgeInsets.all(20.0)),
+          child: child,
+        ),
       );
     }
     return child;

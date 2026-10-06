@@ -214,16 +214,18 @@ class _SettingsPageState extends State<SettingsPage> {
     return Material(
       color: colorScheme.secondaryContainer,
       child: Padding(
-        padding: isDesktop ? EdgeInsets.zero : const EdgeInsets.only(bottom: galleryHeaderHeight),
+        padding: .fixed(
+          isDesktop ? EdgeInsets.zero : const EdgeInsets.only(bottom: galleryHeaderHeight),
+        ),
         // Remove ListView top padding as it is already accounted for.
         child: MediaQuery.removePadding(
           removeTop: isDesktop,
           context: context,
           child: ListView(
             children: <Widget>[
-              if (isDesktop) const SizedBox(height: firstHeaderDesktopTopPadding),
+              if (isDesktop) const SizedBox(height: .fixed(firstHeaderDesktopTopPadding)),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
+                padding: const .fixed(EdgeInsets.symmetric(horizontal: 32)),
                 child: ExcludeSemantics(
                   child: Header(
                     color: Theme.of(context).colorScheme.onSurface,
@@ -238,12 +240,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   animation: _staggerSettingsItemsAnimation,
                   children: settingsListItems,
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: .fixed(16)),
                 Divider(thickness: 2, height: 0, color: colorScheme.outline),
-                const SizedBox(height: 12),
+                const SizedBox(height: .fixed(12)),
                 const SettingsAbout(),
                 const SettingsFeedback(),
-                const SizedBox(height: 12),
+                const SizedBox(height: .fixed(12)),
                 Divider(thickness: 2, height: 0, color: colorScheme.outline),
                 const SettingsAttribution(),
               ],
@@ -297,11 +299,13 @@ class SettingsAttribution extends StatelessWidget {
     final verticalPadding = isDesktop ? 0.0 : 28.0;
     return MergeSemantics(
       child: Padding(
-        padding: EdgeInsetsDirectional.only(
-          start: isDesktop ? 24 : 32,
-          end: isDesktop ? 0 : 32,
-          top: verticalPadding,
-          bottom: verticalPadding,
+        padding: .fixed(
+          EdgeInsetsDirectional.only(
+            start: isDesktop ? 24 : 32,
+            end: isDesktop ? 0 : 32,
+            top: verticalPadding,
+            bottom: verticalPadding,
+          ),
         ),
         child: SelectableText(
           GalleryLocalizations.of(context)!.settingsAttribution,
@@ -331,14 +335,14 @@ class _SettingsLink extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: isDesktop ? 24 : 32),
+        padding: .fixed(EdgeInsets.symmetric(horizontal: isDesktop ? 24 : 32)),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Icon(icon, color: colorScheme.onSecondary.withOpacity(0.5), size: 24),
             Flexible(
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(start: 16, top: 12, bottom: 12),
+                padding: const .fixed(EdgeInsetsDirectional.only(start: 16, top: 12, bottom: 12)),
                 child: Text(
                   title,
                   style: textTheme.titleSmall!.apply(color: colorScheme.onSecondary),
@@ -366,7 +370,7 @@ class _AnimateSettingsListItems extends StatelessWidget {
     final dividerTween = Tween<double>(begin: 0, end: dividingPadding);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const .fixed(EdgeInsets.symmetric(vertical: 16.0)),
       child: Column(
         children: <Widget>[
           for (final Widget child in children)
@@ -374,7 +378,7 @@ class _AnimateSettingsListItems extends StatelessWidget {
               animation: animation,
               builder: (BuildContext context, Widget? child) {
                 return Padding(
-                  padding: EdgeInsets.only(top: dividerTween.animate(animation).value),
+                  padding: .fixed(EdgeInsets.only(top: dividerTween.animate(animation).value)),
                   child: child,
                 );
               },

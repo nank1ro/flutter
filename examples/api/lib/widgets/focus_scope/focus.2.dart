@@ -53,7 +53,7 @@ class _FocusExampleState extends State<FocusExample> {
 
     children.add(
       Padding(
-        padding: const .all(2.0),
+        padding: const .fixed(.all(2.0)),
         child: ActionChip(
           focusNode: childFocusNodes.last,
           label: Text('CHILD ${children.length}'),

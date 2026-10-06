@@ -69,7 +69,7 @@ class _NavigationExampleState extends State<NavigationExample> {
 
         /// Notifications page
         const Padding(
-          padding: .all(8.0),
+          padding: .fixed(.all(8.0)),
           child: Column(
             children: <Widget>[
               Card(

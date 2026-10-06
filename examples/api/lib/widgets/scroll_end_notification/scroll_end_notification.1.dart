@@ -104,7 +104,7 @@ class _SliverAutoScrollExampleState extends State<SliverAutoScrollExample> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const .symmetric(horizontal: 4),
+          padding: const .fixed(.symmetric(horizontal: 4)),
           child: NotificationListener<ScrollNotification>(
             onNotification: handleScrollNotification,
             child: Scrollbar(
@@ -150,11 +150,11 @@ class BigOrangeSliver extends StatelessWidget {
         key: sliverChildKey,
         color: Colors.orange,
         child: const SizedBox(
-          width: 300,
+          width: .fixed(300),
           child: ListTile(
             textColor: Colors.white,
             title: Padding(
-              padding: .symmetric(vertical: 32),
+              padding: .fixed(.symmetric(vertical: 32)),
               child: Text('Aligned Item'),
             ),
           ),
@@ -179,7 +179,7 @@ class ItemList extends StatelessWidget {
         return Card(
           color: colorScheme.onSecondary,
           child: SizedBox(
-            width: 100,
+            width: .fixed(100),
             child: ListTile(
               textColor: colorScheme.secondary,
               title: Text('Item $index.$itemCount'),

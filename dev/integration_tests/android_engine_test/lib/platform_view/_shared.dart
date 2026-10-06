@@ -34,17 +34,25 @@ class _MainAppState extends State<MainApp> {
           TextButton(
             key: const ValueKey<String>('AddOverlay'),
             onPressed: _togglePlatformView,
-            child: const SizedBox(width: 190, height: 190, child: ColoredBox(color: Colors.green)),
+            child: const SizedBox(
+              width: .fixed(190),
+              height: .fixed(190),
+              child: ColoredBox(color: .fixed(Colors.green)),
+            ),
           ),
           if (showPlatformView) ...<Widget>[
-            SizedBox(width: 200, height: 200, child: widget.platformView),
+            SizedBox(
+              width: const .fixed(200),
+              height: const .fixed(200),
+              child: widget.platformView,
+            ),
             TextButton(
               key: const ValueKey<String>('RemoveOverlay'),
               onPressed: _togglePlatformView,
               child: const SizedBox(
-                width: 800,
-                height: 25,
-                child: ColoredBox(color: Colors.yellow),
+                width: .fixed(800),
+                height: .fixed(25),
+                child: ColoredBox(color: .fixed(Colors.yellow)),
               ),
             ),
           ],

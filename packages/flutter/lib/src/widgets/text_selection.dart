@@ -2115,8 +2115,8 @@ class _SelectionHandleOverlayState extends State<_SelectionHandleOverlay>
       child: FadeTransition(
         opacity: _opacity,
         child: SizedBox(
-          width: interactiveRect.width,
-          height: interactiveRect.height,
+          width: .fixed(interactiveRect.width),
+          height: .fixed(interactiveRect.height),
           child: Align(
             alignment: Alignment.topLeft,
             child: RawGestureDetector(
@@ -2145,11 +2145,13 @@ class _SelectionHandleOverlayState extends State<_SelectionHandleOverlay>
                 ),
               },
               child: Padding(
-                padding: EdgeInsets.only(
-                  left: padding.left,
-                  top: padding.top,
-                  right: padding.right,
-                  bottom: padding.bottom,
+                padding: .fixed(
+                  EdgeInsets.only(
+                    left: padding.left,
+                    top: padding.top,
+                    right: padding.right,
+                    bottom: padding.bottom,
+                  ),
                 ),
                 child: widget.selectionControls.buildHandle(
                   context,

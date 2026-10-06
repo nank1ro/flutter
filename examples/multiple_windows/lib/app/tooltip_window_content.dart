@@ -49,7 +49,7 @@ class TooltipWindowContent extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: const Icon(Icons.info, color: Color(0xFFFFFFFF), size: 20),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: .fixed(12)),
               const Text(
                 'Tooltip Window',
                 style: TextStyle(

@@ -427,12 +427,12 @@ class AboutDialog extends StatelessWidget {
               if (icon != null) IconTheme(data: themeData.iconTheme, child: icon),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const .fixed(EdgeInsets.symmetric(horizontal: 24.0)),
                   child: ListBody(
                     children: <Widget>[
                       Text(name, style: themeData.textTheme.headlineSmall),
                       Text(version, style: themeData.textTheme.bodyMedium),
-                      const SizedBox(height: _textVerticalSeparation),
+                      const SizedBox(height: .fixed(_textVerticalSeparation)),
                       Text(applicationLegalese ?? '', style: themeData.textTheme.bodySmall),
                     ],
                   ),
@@ -575,12 +575,12 @@ class _AdaptiveAboutDialog extends AboutDialog {
               if (icon != null) IconTheme(data: themeData.iconTheme, child: icon),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const .fixed(EdgeInsets.symmetric(horizontal: 24.0)),
                   child: ListBody(
                     children: <Widget>[
                       Text(name, style: themeData.textTheme.headlineSmall),
                       Text(version, style: themeData.textTheme.bodyMedium),
-                      const SizedBox(height: _textVerticalSeparation),
+                      const SizedBox(height: .fixed(_textVerticalSeparation)),
                       Text(applicationLegalese ?? '', style: themeData.textTheme.bodySmall),
                     ],
                   ),
@@ -706,14 +706,14 @@ class _AboutProgram extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: _getGutterSize(context), vertical: 24.0),
+      padding: .fixed(EdgeInsets.symmetric(horizontal: _getGutterSize(context), vertical: 24.0)),
       child: Column(
         children: <Widget>[
           Text(name, style: Theme.of(context).textTheme.headlineSmall, textAlign: TextAlign.center),
           if (icon != null) IconTheme(data: Theme.of(context).iconTheme, child: icon!),
           if (version != '')
             Padding(
-              padding: const EdgeInsets.only(bottom: _textVerticalSeparation),
+              padding: const .fixed(EdgeInsets.only(bottom: _textVerticalSeparation)),
               child: Text(
                 version,
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -726,7 +726,7 @@ class _AboutProgram extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall,
               textAlign: TextAlign.center,
             ),
-          const SizedBox(height: _textVerticalSeparation),
+          const SizedBox(height: .fixed(_textVerticalSeparation)),
           Text(
             'Powered by Flutter',
             style: Theme.of(context).textTheme.bodyMedium,
@@ -789,7 +789,7 @@ class _PackagesViewState extends State<_PackagesView> {
                         color: Theme.of(context).cardColor,
                         elevation: 4.0,
                         child: ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 600.0),
+                          constraints: const .fixed(BoxConstraints(maxWidth: 600.0)),
                           child: _packagesList(
                             context,
                             selectedId,
@@ -1033,12 +1033,12 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
         return;
       }
       setState(() {
-        _licenses.add(const Padding(padding: EdgeInsets.all(18.0), child: Divider()));
+        _licenses.add(const Padding(padding: .fixed(EdgeInsets.all(18.0)), child: Divider()));
         for (final paragraph in paragraphs) {
           if (paragraph.indent == LicenseParagraph.centeredIndent) {
             _licenses.add(
               Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+                padding: const .fixed(EdgeInsets.only(top: 16.0)),
                 child: Text(
                   paragraph.text,
                   style: const TextStyle(fontWeight: FontWeight.bold),
@@ -1050,7 +1050,9 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
             assert(paragraph.indent >= 0);
             _licenses.add(
               Padding(
-                padding: EdgeInsetsDirectional.only(top: 8.0, start: 16.0 * paragraph.indent),
+                padding: .fixed(
+                  EdgeInsetsDirectional.only(top: 8.0, start: 16.0 * paragraph.indent),
+                ),
                 child: Text(paragraph.text),
               ),
             );
@@ -1085,7 +1087,7 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
       ..._licenses,
       if (!_loaded)
         const Padding(
-          padding: EdgeInsets.symmetric(vertical: 24.0),
+          padding: .fixed(EdgeInsets.symmetric(vertical: 24.0)),
           child: Center(child: CircularProgressIndicator()),
         ),
     ];
@@ -1107,7 +1109,7 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
             color: theme.cardColor,
             elevation: 4.0,
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600.0),
+              constraints: const .fixed(BoxConstraints(maxWidth: 600.0)),
               child: Localizations.override(
                 locale: const Locale('en', 'US'),
                 context: context,
@@ -1576,11 +1578,11 @@ class _MasterDetailScaffoldState extends State<_MasterDetailScaffold> implements
               child: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: masterViewWidth,
+                    width: .fixed(masterViewWidth),
                     child: IconTheme(
                       data: Theme.of(context).primaryIconTheme,
                       child: Padding(
-                        padding: const EdgeInsets.all(8),
+                        padding: const .fixed(EdgeInsets.all(8)),
                         child: Align(
                           alignment: AlignmentDirectional.centerEnd,
                           child: OverflowBar(
@@ -1601,9 +1603,11 @@ class _MasterDetailScaffoldState extends State<_MasterDetailScaffold> implements
         // Detail view stacked above main scaffold and master view.
         SafeArea(
           child: Padding(
-            padding: EdgeInsetsDirectional.only(
-              start: masterViewWidth - _kCardElevation,
-              end: detailPageFABlessGutterWidth,
+            padding: .fixed(
+              EdgeInsetsDirectional.only(
+                start: masterViewWidth - _kCardElevation,
+                end: detailPageFABlessGutterWidth,
+              ),
             ),
             child: ValueListenableBuilder<Object?>(
               valueListenable: _detailArguments,
@@ -1636,7 +1640,7 @@ class _MasterDetailScaffoldState extends State<_MasterDetailScaffold> implements
 
   ConstrainedBox _masterPanel(BuildContext context, {bool needsScaffold = false}) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: masterViewWidth),
+      constraints: .fixed(BoxConstraints(maxWidth: masterViewWidth)),
       child: needsScaffold
           ? Scaffold(
               appBar: AppBar(

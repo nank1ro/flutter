@@ -57,13 +57,13 @@ class _MouseRegionExampleState extends State<MouseRegionExample> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints.tight(const Size(300.0, 200.0)),
+      constraints: .fixed(BoxConstraints.tight(const Size(300.0, 200.0))),
       child: MouseRegion(
         onEnter: _incrementEnter,
         onHover: _updateLocation,
         onExit: _incrementExit,
         child: ColoredBox(
-          color: Colors.lightBlueAccent,
+          color: .fixed(Colors.lightBlueAccent),
           child: Column(
             mainAxisAlignment: .center,
             children: <Widget>[

@@ -124,7 +124,7 @@ void main() {
     final Padding paddingWidget = tester.widget<Padding>(
       find.descendant(of: find.byType(BottomAppBar), matching: find.byType(Padding).at(1)),
     );
-    expect(paddingWidget.padding, padding);
+    expect(paddingWidget.padding.value, padding);
   });
 
   group('Material 2 tests', () {

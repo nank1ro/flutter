@@ -45,7 +45,7 @@ class NavDrawerDemo extends StatelessWidget {
         container: true,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(50.0),
+            padding: const .fixed(EdgeInsets.all(50.0)),
             child: Text(localization.demoNavigationDrawerText),
           ),
         ),

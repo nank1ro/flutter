@@ -81,7 +81,7 @@ class _SearchDemoState extends State<SearchDemo> {
                 ],
               ),
             ),
-            const SizedBox(height: 64.0),
+            const SizedBox(height: .fixed(64.0)),
             Text('Last selected integer: ${_lastIntegerSelected ?? 'NONE'}.'),
           ],
         ),
@@ -217,7 +217,7 @@ class _ResultCard extends StatelessWidget {
       },
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const .fixed(EdgeInsets.all(8.0)),
           child: Column(
             children: <Widget>[
               Text(title!),

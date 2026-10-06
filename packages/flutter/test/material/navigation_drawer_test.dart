@@ -556,7 +556,7 @@ void main() {
         _buildWidget(
           scaffoldKey,
           NavigationDrawer(
-            footer: const Padding(padding: EdgeInsets.all(16.0), child: Text('Footer')),
+            footer: const Padding(padding: .fixed(EdgeInsets.all(16.0)), child: Text('Footer')),
             children: <Widget>[
               for (int i = 0; i < 10; i++)
                 NavigationDrawerDestination(icon: const Icon(Icons.home), label: Text('Item $i')),

@@ -24,7 +24,7 @@ void main() {
       const Directionality(
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
         ),
       ),
     );
@@ -64,9 +64,9 @@ void main() {
           child: const SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SizedBox(
-              width: 600.0,
+              width: .fixed(600.0),
               child: CustomScrollView(
-                slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+                slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
               ),
             ),
           ),
@@ -89,7 +89,7 @@ void main() {
       const Directionality(
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
         ),
       ),
     );
@@ -137,7 +137,7 @@ void main() {
       const Directionality(
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
         ),
       ),
     );
@@ -177,7 +177,7 @@ void main() {
           textDirection: TextDirection.ltr,
           child: CustomScrollView(
             physics: AlwaysScrollableScrollPhysics(),
-            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 20.0))],
+            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(20.0)))],
           ),
         ),
       );
@@ -206,7 +206,7 @@ void main() {
           child: CustomScrollView(
             reverse: true,
             physics: AlwaysScrollableScrollPhysics(),
-            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 20.0))],
+            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(20.0)))],
           ),
         ),
       );
@@ -235,7 +235,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
           physics: AlwaysScrollableScrollPhysics(),
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 20.0))],
+          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(20.0)))],
         ),
       ),
     );
@@ -273,7 +273,7 @@ void main() {
             color: Color(0xFF0000FF),
             child: CustomScrollView(
               physics: AlwaysScrollableScrollPhysics(),
-              slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 20.0))],
+              slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(20.0)))],
             ),
           ),
         ),
@@ -296,7 +296,7 @@ void main() {
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           physics: AlwaysScrollableScrollPhysics(),
-          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 20.0))],
+          slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(20.0)))],
         ),
       ),
     );
@@ -363,7 +363,7 @@ void main() {
             scrollDirection: Axis.horizontal,
             physics: AlwaysScrollableScrollPhysics(),
             reverse: true,
-            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 20.0))],
+            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(20.0)))],
           ),
         ),
       ),
@@ -394,7 +394,7 @@ void main() {
           child: CustomScrollView(
             scrollDirection: Axis.horizontal,
             physics: AlwaysScrollableScrollPhysics(),
-            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 20.0))],
+            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(20.0)))],
           ),
         ),
       ),
@@ -533,7 +533,7 @@ void main() {
             return false;
           },
           child: const CustomScrollView(
-            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+            slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
           ),
         ),
       ),
@@ -655,7 +655,7 @@ void main() {
               return false;
             },
             child: const CustomScrollView(
-              slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+              slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
             ),
           ),
         ),
@@ -697,7 +697,7 @@ void main() {
               return false;
             },
             child: const CustomScrollView(
-              slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: 2000.0))],
+              slivers: <Widget>[SliverToBoxAdapter(child: SizedBox(height: .fixed(2000.0)))],
             ),
           ),
         ),

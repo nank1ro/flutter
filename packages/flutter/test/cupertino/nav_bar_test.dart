@@ -638,7 +638,7 @@ void main() {
             slivers: <Widget>[
               CupertinoSliverNavigationBar(
                 middle: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200.0),
+                  constraints: const .fixed(BoxConstraints(maxWidth: 200.0)),
                   child: CupertinoSegmentedControl<int>(
                     key: segmentedControlsKey,
                     children: const <int, Widget>{0: Text('Option A'), 1: Text('Option B')},
@@ -697,7 +697,7 @@ void main() {
                   middle: Text('Middle'),
                   alwaysShowMiddle: false,
                 ),
-                SliverToBoxAdapter(child: SizedBox(height: 1200.0)),
+                SliverToBoxAdapter(child: SizedBox(height: .fixed(1200.0))),
               ],
             ),
           ),
@@ -954,9 +954,9 @@ void main() {
                 )
                 .first
             as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
     expect(decoration.border, isNotNull);
 
     final BorderSide side = decoration.border!.bottom;
@@ -984,9 +984,9 @@ void main() {
                 )
                 .first
             as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
     expect(decoration.border, isNotNull);
 
     final BorderSide side = decoration.border!.bottom;
@@ -1009,9 +1009,9 @@ void main() {
                 )
                 .first
             as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
     expect(decoration.border, isNull);
   });
 
@@ -1036,9 +1036,9 @@ void main() {
                 )
                 .first
             as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
     expect(decoration.border, isNotNull);
 
     final BorderSide bottom = decoration.border!.bottom;
@@ -1068,9 +1068,9 @@ void main() {
                 )
                 .first
             as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
     expect(decoration.border, isNull);
   });
 
@@ -1176,9 +1176,9 @@ void main() {
                 )
                 .first
             as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    final decoration = decoratedBox.decoration as BoxDecoration;
+    final decoration = decoratedBox.decoration.value as BoxDecoration;
     expect(decoration.border, isNotNull);
 
     final BorderSide top = decoration.border!.top;
@@ -1307,9 +1307,9 @@ void main() {
                   )
                   .first
               as DecoratedBox;
-      expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+      expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-      final decoration = decoratedBox.decoration as BoxDecoration;
+      final decoration = decoratedBox.decoration.value as BoxDecoration;
       final BorderSide side = decoration.border!.bottom;
       expect(side.color.opacity, 0.0);
 
@@ -1329,10 +1329,10 @@ void main() {
                   )
                   .first
               as DecoratedBox;
-      expect(decoratedBoxAfterScroll.decoration.runtimeType, BoxDecoration);
+      expect(decoratedBoxAfterScroll.decoration.value.runtimeType, BoxDecoration);
 
       final BorderSide borderAfterScroll =
-          (decoratedBoxAfterScroll.decoration as BoxDecoration).border!.bottom;
+          (decoratedBoxAfterScroll.decoration.value as BoxDecoration).border!.bottom;
 
       expect(borderAfterScroll.color.opacity, 1.0);
 
@@ -1363,9 +1363,9 @@ void main() {
                   )
                   .first
               as DecoratedBox;
-      expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+      expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-      final decoration = decoratedBox.decoration as BoxDecoration;
+      final decoration = decoratedBox.decoration.value as BoxDecoration;
       final BorderSide side = decoration.border!.bottom;
       expect(side.color, const Color(0xFFAABBCC));
 
@@ -1400,9 +1400,9 @@ void main() {
                 )
                 .first
             as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    var decoration = decoratedBox.decoration as BoxDecoration;
+    var decoration = decoratedBox.decoration.value as BoxDecoration;
     BorderSide side = decoration.border!.bottom;
     expect(side.color, const Color(0xFFAABBCC));
 
@@ -1436,9 +1436,9 @@ void main() {
                 )
                 .first
             as DecoratedBox;
-    expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+    expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-    decoration = decoratedBox.decoration as BoxDecoration;
+    decoration = decoratedBox.decoration.value as BoxDecoration;
     side = decoration.border!.bottom;
     expect(side.color, const Color(0xFFAABBCC));
 
@@ -1482,9 +1482,9 @@ void main() {
                   )
                   .first
               as DecoratedBox;
-      expect(decoratedBox.decoration.runtimeType, BoxDecoration);
+      expect(decoratedBox.decoration.value.runtimeType, BoxDecoration);
 
-      final decoration = decoratedBox.decoration as BoxDecoration;
+      final decoration = decoratedBox.decoration.value as BoxDecoration;
       final BorderSide side = decoration.border!.bottom;
       expect(side.color.opacity, 0.0);
 
@@ -1507,10 +1507,10 @@ void main() {
                   )
                   .first
               as DecoratedBox;
-      expect(decoratedBoxAfterScroll.decoration.runtimeType, BoxDecoration);
+      expect(decoratedBoxAfterScroll.decoration.value.runtimeType, BoxDecoration);
 
       final BorderSide borderAfterScroll =
-          (decoratedBoxAfterScroll.decoration as BoxDecoration).border!.bottom;
+          (decoratedBoxAfterScroll.decoration.value as BoxDecoration).border!.bottom;
 
       expect(borderAfterScroll.color.opacity, 1.0);
 
@@ -2430,7 +2430,7 @@ void main() {
                 middle: Text('middle'),
                 alwaysShowMiddle: false,
               ),
-              SliverFillRemaining(child: SizedBox(height: 1000.0)),
+              SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
             ],
           ),
         ),
@@ -2476,7 +2476,7 @@ void main() {
                 middle: Text('middle'),
                 alwaysShowMiddle: false,
               ),
-              SliverFillRemaining(child: SizedBox(height: 1000.0)),
+              SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
             ],
           ),
         ),
@@ -2527,7 +2527,7 @@ void main() {
                 ),
                 bottomMode: NavigationBarBottomMode.automatic,
               ),
-              SliverFillRemaining(child: SizedBox(height: 1000.0)),
+              SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
             ],
           ),
         ),
@@ -2592,7 +2592,7 @@ void main() {
                 ),
                 bottomMode: NavigationBarBottomMode.automatic,
               ),
-              SliverFillRemaining(child: SizedBox(height: 1000.0)),
+              SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
             ],
           ),
         ),
@@ -2661,7 +2661,7 @@ void main() {
                 ),
                 bottomMode: NavigationBarBottomMode.always,
               ),
-              SliverFillRemaining(child: SizedBox(height: 1000.0)),
+              SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
             ],
           ),
         ),
@@ -2725,7 +2725,7 @@ void main() {
                 bottom: PreferredSize(preferredSize: Size.fromHeight(100.0), child: Placeholder()),
                 bottomMode: NavigationBarBottomMode.always,
               ),
-              SliverFillRemaining(child: SizedBox(height: 1000.0)),
+              SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
             ],
           ),
         ),
@@ -2922,7 +2922,7 @@ void main() {
               middle: Text('middle'),
               searchField: CupertinoSearchTextField(),
             ),
-            SliverFillRemaining(child: SizedBox(height: 1000.0)),
+            SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
           ],
         ),
       ),
@@ -2990,7 +2990,7 @@ void main() {
                 largeTitle: Text('Large title'),
                 searchField: CupertinoSearchTextField(),
               ),
-              SliverFillRemaining(child: SizedBox(height: 300.0)),
+              SliverFillRemaining(child: SizedBox(height: .fixed(300.0))),
             ],
           ),
         ),
@@ -3057,7 +3057,7 @@ void main() {
                 ),
                 SliverFillRemaining(
                   child: ColoredBox(
-                    color: isSearchActive ? activeSearchColor : inactiveSearchColor,
+                    color: .fixed(isSearchActive ? activeSearchColor : inactiveSearchColor),
                     child: Text(text),
                   ),
                 ),
@@ -3074,7 +3074,7 @@ void main() {
     expect(find.widgetWithText(CupertinoSearchTextField, 'Search'), findsOneWidget);
     expect(
       find.byWidgetPredicate((Widget widget) {
-        return widget is ColoredBox && widget.color == inactiveSearchColor;
+        return widget is ColoredBox && widget.color.value == inactiveSearchColor;
       }),
       findsOneWidget,
     );
@@ -3089,7 +3089,7 @@ void main() {
     expect(find.widgetWithText(CupertinoButton, 'Cancel'), findsOneWidget);
     expect(
       find.byWidgetPredicate((Widget widget) {
-        return widget is ColoredBox && widget.color == activeSearchColor;
+        return widget is ColoredBox && widget.color.value == activeSearchColor;
       }),
       findsOneWidget,
     );
@@ -3115,7 +3115,7 @@ void main() {
                 middle: Text('Middle'),
                 searchField: CupertinoSearchTextField(),
               ),
-              SliverFillRemaining(child: SizedBox(height: 1000.0)),
+              SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
             ],
           ),
         ),
@@ -3194,7 +3194,7 @@ void main() {
               middle: Text(middle),
               searchField: CupertinoSearchTextField(),
             ),
-            SliverFillRemaining(child: SizedBox(height: 1000.0)),
+            SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
           ],
         ),
       ),
@@ -3217,7 +3217,7 @@ void main() {
               largeTitle: Text(largeTitle),
               searchField: CupertinoSearchTextField(),
             ),
-            SliverFillRemaining(child: SizedBox(height: 1000.0)),
+            SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
           ],
         ),
       ),
@@ -3251,7 +3251,7 @@ void main() {
               SliverToBoxAdapter(
                 child: SizedBox(
                   // This height will trigger the issue if the target exceeds maxScrollExtent.
-                  height: 805,
+                  height: const .fixed(805),
                   child: Center(
                     child: CupertinoButton(
                       child: const Text('Press me!'),
@@ -3312,7 +3312,7 @@ void main() {
                   largeTitle: const Text('Large title'),
                   middle: Text(middle),
                 ),
-                const SliverFillRemaining(child: SizedBox(height: 1000.0)),
+                const SliverFillRemaining(child: SizedBox(height: .fixed(1000.0))),
               ],
             );
           },

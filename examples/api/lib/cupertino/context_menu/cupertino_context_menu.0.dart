@@ -31,7 +31,7 @@ class ContextMenuExample extends StatelessWidget {
       ),
       child: Center(
         child: SizedBox.square(
-          dimension: 100,
+          dimension: .fixed(100),
           child: CupertinoContextMenu(
             actions: <Widget>[
               CupertinoContextMenuAction(
@@ -66,7 +66,7 @@ class ContextMenuExample extends StatelessWidget {
               ),
             ],
             child: const ColoredBox(
-              color: CupertinoColors.systemYellow,
+              color: .fixed(CupertinoColors.systemYellow),
               child: FlutterLogo(size: 500.0),
             ),
           ),

@@ -251,9 +251,9 @@ void main() {
                       showA,
                       showB,
                       showC,
-                      const SizedBox(height: 24.0),
+                      const SizedBox(height: .fixed(24.0)),
                       showABC,
-                      const SizedBox(height: 24.0),
+                      const SizedBox(height: .fixed(24.0)),
                       TestButton(
                         child: const Text('Increment a'),
                         onPressed: () {
@@ -374,9 +374,9 @@ void main() {
                       showA,
                       showB,
                       showC,
-                      const SizedBox(height: 24.0),
+                      const SizedBox(height: .fixed(24.0)),
                       showABC,
-                      const SizedBox(height: 24.0),
+                      const SizedBox(height: .fixed(24.0)),
                       TestButton(
                         child: const Text('Increment a'),
                         onPressed: () {

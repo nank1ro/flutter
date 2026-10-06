@@ -274,9 +274,9 @@ class SliverList extends SliverMultiBoxAdaptorWidget {
   ///   },
   ///   separatorBuilder: (BuildContext context, int index) {
   ///     return const SizedBox(
-  ///       height: 1.0,
-  ///       width: double.infinity,
-  ///       child: ColoredBox(color: Color(0xFF000000)),
+  ///       height: .fixed(1.0),
+  ///       width: .fixed(double.infinity),
+  ///       child: ColoredBox(color: .fixed(Color(0xFF000000))),
   ///     );
   ///   },
   /// )
@@ -968,6 +968,10 @@ class SliverMultiBoxAdaptorElement extends RenderObjectElement
   @override
   void performRebuild() {
     super.performRebuild();
+    // Every materialized child is rebuilt below, so the signals read by the
+    // previous round of item builders are about to be read again. Drop them
+    // first; _build appends to what is left.
+    trackSignalReads(() {});
     _currentBeforeChild = null;
     var childrenUpdated = false;
     assert(_currentlyUpdatingChildIndex == null);
@@ -1058,7 +1062,15 @@ class SliverMultiBoxAdaptorElement extends RenderObjectElement
   }
 
   Widget? _build(int index, SliverMultiBoxAdaptorWidget widget) {
-    return widget.delegate.build(this, index);
+    // The delegate's builder runs from layout, not from a tracked build, so a
+    // signal it reads would otherwise be invisible to the framework. Track it
+    // against this element: a change rebuilds the whole adaptor, which rebuilds
+    // every materialized child.
+    //
+    // The dependencies are retained across calls because the children are
+    // built one index at a time, over many layout passes, and together they
+    // make up one logical run. performRebuild clears them and starts over.
+    return trackSignalReads(() => widget.delegate.build(this, index), retainDeps: true);
   }
 
   @override

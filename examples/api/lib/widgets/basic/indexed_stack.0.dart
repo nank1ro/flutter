@@ -46,7 +46,7 @@ class _IndexedStackExampleState extends State<IndexedStackExample> {
       mainAxisAlignment: .center,
       children: <Widget>[
         SizedBox(
-          width: 300,
+          width: .fixed(300),
           child: TextField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -61,7 +61,7 @@ class _IndexedStackExampleState extends State<IndexedStackExample> {
             controller: fieldText,
           ),
         ),
-        const SizedBox(height: 50),
+        const SizedBox(height: .fixed(50)),
         Row(
           mainAxisAlignment: .center,
           children: <Widget>[

@@ -59,11 +59,11 @@ void main() {
         textDirection: TextDirection.ltr,
         children: <Widget>[
           ColoredBox(
-            color: green,
+            color: const .fixed(green),
             child: StateMarker(key: left),
           ),
           ColoredBox(
-            color: green,
+            color: const .fixed(green),
             child: StateMarker(key: right, child: grandchild),
           ),
         ],
@@ -85,11 +85,11 @@ void main() {
         textDirection: TextDirection.ltr,
         children: <Widget>[
           ColoredBox(
-            color: green,
+            color: const .fixed(green),
             child: StateMarker(key: right, child: newGrandchild),
           ),
           ColoredBox(
-            color: green,
+            color: const .fixed(green),
             child: StateMarker(key: left),
           ),
         ],
@@ -109,7 +109,7 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: ColoredBox(
-          color: green,
+          color: const .fixed(green),
           child: StateMarker(key: left, child: Container()),
         ),
       ),
@@ -168,7 +168,7 @@ void main() {
     await tester.pumpWidget(
       Center(
         child: ColoredBox(
-          color: green,
+          color: const .fixed(green),
           child: StateMarker(key: left, child: Container()),
         ),
       ),
@@ -195,7 +195,7 @@ void main() {
           children: <Widget>[
             SizedBox(
               key: const Key('container'),
-              height: 100.0,
+              height: const .fixed(100.0),
               child: StateMarker(key: key),
             ),
           ],
@@ -220,7 +220,7 @@ void main() {
         textDirection: TextDirection.ltr,
         children: <Widget>[
           StateMarker(key: key),
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -232,7 +232,7 @@ void main() {
       Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           StateMarker(key: key),
         ],
       ),
@@ -246,7 +246,7 @@ void main() {
         textDirection: TextDirection.ltr,
         children: <Widget>[
           StateMarker(key: key),
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -262,9 +262,9 @@ void main() {
       Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           StateMarker(key: key),
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -276,8 +276,12 @@ void main() {
       Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          SizedBox(width: 100.0, height: 100.0, child: StateMarker(key: key)),
-          const SizedBox(width: 100.0, height: 100.0),
+          SizedBox(
+            width: const .fixed(100.0),
+            height: const .fixed(100.0),
+            child: StateMarker(key: key),
+          ),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -289,9 +293,9 @@ void main() {
       Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           StateMarker(key: key),
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ],
       ),
     );
@@ -303,8 +307,12 @@ void main() {
       Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          const SizedBox(width: 100.0, height: 100.0),
-          SizedBox(width: 100.0, height: 100.0, child: StateMarker(key: key)),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
+          SizedBox(
+            width: const .fixed(100.0),
+            height: const .fixed(100.0),
+            child: StateMarker(key: key),
+          ),
         ],
       ),
     );
@@ -316,9 +324,9 @@ void main() {
       Stack(
         textDirection: TextDirection.ltr,
         children: <Widget>[
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
           StateMarker(key: key),
-          const SizedBox(width: 100.0, height: 100.0),
+          const SizedBox(width: .fixed(100.0), height: .fixed(100.0)),
         ],
       ),
     );

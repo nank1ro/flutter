@@ -147,7 +147,11 @@ void main() {
             body: ZoomablePreviewArea(
               transformationController: controller,
               errorThrownDuringTreeConstruction: false,
-              child: const SizedBox(key: childKey, width: 100, height: 100),
+              child: const SizedBox(
+                key: childKey,
+                width: .fixed(100),
+                height: .fixed(100),
+              ),
             ),
           ),
         ),
@@ -169,7 +173,11 @@ void main() {
               body: ZoomablePreviewArea(
                 transformationController: controller,
                 errorThrownDuringTreeConstruction: true,
-                child: const SizedBox(key: childKey, width: 100, height: 100),
+                child: const SizedBox(
+                  key: childKey,
+                  width: .fixed(100),
+                  height: .fixed(100),
+                ),
               ),
             ),
           ),

@@ -71,7 +71,7 @@ class TestNonVisitingRenderObject extends RenderBox with RenderObjectWithChildMi
 
 void main() {
   testWidgets('RenderObjectWidget smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(DecoratedBox(decoration: kBoxDecorationA));
+    await tester.pumpWidget(DecoratedBox(decoration: .fixed(kBoxDecorationA)));
     SingleChildRenderObjectElement element = tester.element(
       find.byElementType(SingleChildRenderObjectElement),
     );
@@ -81,7 +81,7 @@ void main() {
     expect(renderObject.decoration, equals(kBoxDecorationA));
     expect(renderObject.position, equals(DecorationPosition.background));
 
-    await tester.pumpWidget(DecoratedBox(decoration: kBoxDecorationB));
+    await tester.pumpWidget(DecoratedBox(decoration: .fixed(kBoxDecorationB)));
     element = tester.element(find.byElementType(SingleChildRenderObjectElement));
     expect(element, isNotNull);
     expect(element.renderObject, isA<RenderDecoratedBox>());
@@ -122,8 +122,8 @@ void main() {
 
     await tester.pumpWidget(
       DecoratedBox(
-        decoration: kBoxDecorationA,
-        child: DecoratedBox(decoration: kBoxDecorationB),
+        decoration: .fixed(kBoxDecorationA),
+        child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
       ),
     );
 
@@ -131,8 +131,8 @@ void main() {
 
     await tester.pumpWidget(
       DecoratedBox(
-        decoration: kBoxDecorationA,
-        child: TestWidget(child: DecoratedBox(decoration: kBoxDecorationB)),
+        decoration: .fixed(kBoxDecorationA),
+        child: TestWidget(child: DecoratedBox(decoration: .fixed(kBoxDecorationB))),
       ),
     );
 
@@ -140,29 +140,29 @@ void main() {
 
     await tester.pumpWidget(
       DecoratedBox(
-        decoration: kBoxDecorationA,
-        child: DecoratedBox(decoration: kBoxDecorationB),
+        decoration: .fixed(kBoxDecorationA),
+        child: DecoratedBox(decoration: .fixed(kBoxDecorationB)),
       ),
     );
 
     checkFullTree();
 
-    await tester.pumpWidget(DecoratedBox(decoration: kBoxDecorationA));
+    await tester.pumpWidget(DecoratedBox(decoration: .fixed(kBoxDecorationA)));
 
     childBareTree();
 
     await tester.pumpWidget(
       DecoratedBox(
-        decoration: kBoxDecorationA,
+        decoration: .fixed(kBoxDecorationA),
         child: TestWidget(
-          child: TestWidget(child: DecoratedBox(decoration: kBoxDecorationB)),
+          child: TestWidget(child: DecoratedBox(decoration: .fixed(kBoxDecorationB))),
         ),
       ),
     );
 
     checkFullTree();
 
-    await tester.pumpWidget(DecoratedBox(decoration: kBoxDecorationA));
+    await tester.pumpWidget(DecoratedBox(decoration: .fixed(kBoxDecorationA)));
 
     childBareTree();
   });
@@ -170,10 +170,10 @@ void main() {
   testWidgets('Detached render tree is intact', (WidgetTester tester) async {
     await tester.pumpWidget(
       DecoratedBox(
-        decoration: kBoxDecorationA,
+        decoration: .fixed(kBoxDecorationA),
         child: DecoratedBox(
-          decoration: kBoxDecorationB,
-          child: DecoratedBox(decoration: kBoxDecorationC),
+          decoration: .fixed(kBoxDecorationB),
+          child: DecoratedBox(decoration: .fixed(kBoxDecorationC)),
         ),
       ),
     );
@@ -191,7 +191,7 @@ void main() {
     expect(grandChild.decoration, equals(kBoxDecorationC));
     expect(grandChild.child, isNull);
 
-    await tester.pumpWidget(DecoratedBox(decoration: kBoxDecorationA));
+    await tester.pumpWidget(DecoratedBox(decoration: .fixed(kBoxDecorationA)));
 
     element = tester.element(find.byElementType(SingleChildRenderObjectElement));
     expect(element.renderObject, isA<RenderDecoratedBox>());

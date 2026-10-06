@@ -630,7 +630,7 @@ void main() {
             controller: scrollController,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(width: 1000.0, height: 1000.0),
+              child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
             ),
           ),
         ),
@@ -681,7 +681,9 @@ void main() {
         child: MediaQuery(
           data: MediaQueryData(),
           child: RawScrollbar(
-            child: SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+            child: SingleChildScrollView(
+              child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+            ),
           ),
         ),
       ),
@@ -730,7 +732,9 @@ void main() {
         child: MediaQuery(
           data: MediaQueryData(),
           child: RawScrollbar(
-            child: SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+            child: SingleChildScrollView(
+              child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+            ),
           ),
         ),
       ),
@@ -773,7 +777,9 @@ void main() {
         child: MediaQuery(
           data: MediaQueryData(),
           child: RawScrollbar(
-            child: SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+            child: SingleChildScrollView(
+              child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+            ),
           ),
         ),
       ),
@@ -827,7 +833,9 @@ void main() {
         child: MediaQuery(
           data: MediaQueryData(),
           child: RawScrollbar(
-            child: SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+            child: SingleChildScrollView(
+              child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+            ),
           ),
         ),
       ),
@@ -863,7 +871,9 @@ void main() {
             child: RawScrollbar(
               thumbVisibility: true,
               controller: scrollController,
-              child: const SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -916,7 +926,9 @@ void main() {
             child: RawScrollbar(
               thumbVisibility: true,
               controller: scrollController,
-              child: const SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -971,7 +983,7 @@ void main() {
                   controller: scrollController,
                   child: const SingleChildScrollView(
                     primary: true,
-                    child: SizedBox(width: 4000.0, height: 4000.0),
+                    child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
                   ),
                 ),
               ),
@@ -1043,7 +1055,7 @@ void main() {
                   thumbVisibility: true,
                   controller: scrollController,
                   child: const SingleChildScrollView(
-                    child: SizedBox(width: 4000.0, height: 4000.0),
+                    child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
                   ),
                 ),
               ),
@@ -1111,22 +1123,22 @@ void main() {
             child: SingleChildScrollView(
               key: outerKey,
               child: SizedBox(
-                height: 1000.0,
-                width: double.infinity,
+                height: const .fixed(1000.0),
+                width: const .fixed(double.infinity),
                 child: Column(
                   children: <Widget>[
                     RawScrollbar(
                       key: key1,
                       thumbColor: const Color(0x22222222),
                       child: SizedBox(
-                        height: 300.0,
-                        width: double.infinity,
+                        height: const .fixed(300.0),
+                        width: const .fixed(double.infinity),
                         child: SingleChildScrollView(
                           key: innerKey,
                           child: const SizedBox(
                             key: Key('Inner scrollable'),
-                            height: 1000.0,
-                            width: double.infinity,
+                            height: .fixed(1000.0),
+                            width: .fixed(double.infinity),
                           ),
                         ),
                       ),
@@ -1167,7 +1179,9 @@ void main() {
             child: RawScrollbar(
               thumbVisibility: true,
               controller: scrollController,
-              child: const SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -1253,8 +1267,8 @@ void main() {
                 child: GestureDetector(
                   onTap: () => onTap = true,
                   child: const SizedBox.square(
-                    dimension: 4000.0,
-                    child: ColoredBox(color: Color(0x00000000)),
+                    dimension: .fixed(4000.0),
+                    child: ColoredBox(color: .fixed(Color(0x00000000))),
                   ),
                 ),
               ),
@@ -1302,7 +1316,9 @@ void main() {
             thumbVisibility: true,
             controller: controller,
             thumbColor: const Color(0x11111111),
-            child: const SingleChildScrollView(child: SizedBox(height: 1000.0, width: 50.0)),
+            child: const SingleChildScrollView(
+              child: SizedBox(height: .fixed(1000.0), width: .fixed(50.0)),
+            ),
           ),
         ),
       ),
@@ -1339,7 +1355,9 @@ void main() {
             thumbVisibility: true,
             controller: controller,
             thumbColor: const Color(0x11111111),
-            child: const SingleChildScrollView(child: SizedBox(height: 1000.0, width: 50.0)),
+            child: const SingleChildScrollView(
+              child: SizedBox(height: .fixed(1000.0), width: .fixed(50.0)),
+            ),
           ),
         ),
       ),
@@ -1374,7 +1392,7 @@ void main() {
             child: RawScrollbar(
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: const SizedBox(height: 1000.0, width: 1000.0),
+                child: const SizedBox(height: .fixed(1000.0), width: .fixed(1000.0)),
               ),
             ),
           ),
@@ -1419,11 +1437,15 @@ To use the PrimaryScrollController explicitly, set ScrollView.primary to true on
               children: <Widget>[
                 RawScrollbar(
                   controller: scrollController,
-                  child: const SingleChildScrollView(child: SizedBox(width: 10.0, height: 4000.0)),
+                  child: const SingleChildScrollView(
+                    child: SizedBox(width: .fixed(10.0), height: .fixed(4000.0)),
+                  ),
                 ),
                 RawScrollbar(
                   controller: scrollController,
-                  child: const SingleChildScrollView(child: SizedBox(width: 10.0, height: 4000.0)),
+                  child: const SingleChildScrollView(
+                    child: SizedBox(width: .fixed(10.0), height: .fixed(4000.0)),
+                  ),
                 ),
               ],
             ),
@@ -1465,7 +1487,9 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             child: RawScrollbar(
               thumbVisibility: true,
               controller: scrollController,
-              child: const SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -1615,7 +1639,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               controller: scrollController,
               child: const SingleChildScrollView(
                 reverse: true,
-                child: SizedBox(width: 4000.0, height: 4000.0),
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
               ),
             ),
           ),
@@ -1691,7 +1715,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             controller: scrollController,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(width: 1000.0, height: 1000.0),
+              child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
             ),
           ),
         ),
@@ -1726,7 +1750,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             thumbVisibility: true,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(height: 1000.0),
+              child: const SizedBox(height: .fixed(1000.0)),
             ),
           ),
         ),
@@ -1759,7 +1783,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             thumbVisibility: true,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(width: 1000.0, height: 50000.0),
+              child: const SizedBox(width: .fixed(1000.0), height: .fixed(50000.0)),
             ),
           ),
         ),
@@ -1791,7 +1815,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             thumbVisibility: true,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(height: 1000.0, width: 1000),
+              child: const SizedBox(height: .fixed(1000.0), width: .fixed(1000)),
             ),
           ),
         ),
@@ -1823,7 +1847,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             thumbVisibility: true,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(width: 1000.0, height: 1000.0),
+              child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
             ),
           ),
         ),
@@ -1857,7 +1881,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             thumbVisibility: true,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(height: 1000.0, width: 1000.0),
+              child: const SizedBox(height: .fixed(1000.0), width: .fixed(1000.0)),
             ),
           ),
         ),
@@ -1897,7 +1921,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               controller: scrollController,
-              child: const SizedBox(height: 10000),
+              child: const SizedBox(height: .fixed(10000)),
             ),
           ),
         ),
@@ -1932,7 +1956,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               thumbVisibility: true,
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: const SizedBox(height: 1000.0),
+                child: const SizedBox(height: .fixed(1000.0)),
               ),
             ),
           ),
@@ -1964,7 +1988,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             thumbVisibility: true,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: SizedBox(width: double.infinity, height: height),
+              child: SizedBox(width: const .fixed(double.infinity), height: .fixed(height)),
             ),
           ),
         ),
@@ -2000,7 +2024,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               thumbVisibility: true,
               controller: scrollController,
               child: const SingleChildScrollView(
-                child: SizedBox(width: double.infinity, height: 600.0),
+                child: SizedBox(width: .fixed(double.infinity), height: .fixed(600.0)),
               ),
             ),
           ),
@@ -2055,7 +2079,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   controller: horizontalScrollController,
-                  child: const SizedBox(width: 1000.0, height: 1000.0),
+                  child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
                 ),
               ),
             ),
@@ -2432,7 +2456,9 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               thumbVisibility: true,
               trackVisibility: true,
               controller: scrollController,
-              child: const SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -2471,7 +2497,9 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               trackColor: const Color(0xFF2196F3),
               trackBorderColor: const Color(0xFFFFEB3B),
               controller: scrollController,
-              child: const SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -2511,7 +2539,9 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               trackRadius: const Radius.circular(1.0),
               radius: const Radius.circular(2.0),
               controller: scrollController,
-              child: const SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -2549,7 +2579,9 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               thumbVisibility: false,
               trackVisibility: true,
               controller: scrollController,
-              child: const SingleChildScrollView(child: SizedBox(width: 4000.0, height: 4000.0)),
+              child: const SingleChildScrollView(
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
+              ),
             ),
           ),
         ),
@@ -2577,7 +2609,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 Widget content = const SingleChildScrollView(
-                  child: SizedBox(width: 4000.0, height: 4000.0),
+                  child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
                 );
                 if (buildBar) {
                   content = RawScrollbar(thumbVisibility: true, child: content);
@@ -2613,7 +2645,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             thumbVisibility: true,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(width: 1000.0, height: 50000.0),
+              child: const SizedBox(width: .fixed(1000.0), height: .fixed(50000.0)),
             ),
           ),
         ),
@@ -2644,7 +2676,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             padding: const EdgeInsets.all(100),
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(width: 1000.0, height: 50000.0),
+              child: const SizedBox(width: .fixed(1000.0), height: .fixed(50000.0)),
             ),
           ),
         ),
@@ -2676,7 +2708,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               controller: scrollController,
               child: const SingleChildScrollView(
                 physics: NeverScrollableScrollPhysics(),
-                child: SizedBox(width: 4000.0, height: 4000.0),
+                child: SizedBox(width: .fixed(4000.0), height: .fixed(4000.0)),
               ),
             ),
           ),
@@ -2732,7 +2764,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
                         } else {
                           height = 500;
                         }
-                        return SizedBox(height: height, child: Text('$index'));
+                        return SizedBox(height: .fixed(height), child: Text('$index'));
                       },
                     ),
                   ],
@@ -2801,7 +2833,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
                       } else {
                         height = 100;
                       }
-                      return SizedBox(height: height, child: Text('$index'));
+                      return SizedBox(height: .fixed(height), child: Text('$index'));
                     },
                   ),
                 ],
@@ -2851,7 +2883,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               controller: scrollController,
               child: const SingleChildScrollView(
                 primary: true,
-                child: SizedBox(width: double.infinity, height: 1200.0),
+                child: SizedBox(width: .fixed(double.infinity), height: .fixed(1200.0)),
               ),
             ),
           ),
@@ -3186,7 +3218,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             controller: scrollController,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: SizedBox(width: 100.0, height: sizedBoxHeight),
+              child: SizedBox(width: const .fixed(100.0), height: .fixed(sizedBoxHeight)),
             ),
           ),
         ),
@@ -3246,7 +3278,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               child: SingleChildScrollView(
                 scrollDirection: scrollDirection,
                 controller: scrollController,
-                child: const SizedBox(width: 1600, height: 1200),
+                child: const SizedBox(width: .fixed(1600), height: .fixed(1200)),
               ),
             ),
           ),
@@ -3336,21 +3368,24 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
               key: outerListViewKey,
               controller: scrollControllerY,
               children: <Widget>[
-                const SizedBox(width: 200, height: 200),
+                const SizedBox(width: .fixed(200), height: .fixed(200)),
                 SizedBox(
-                  height: 200,
+                  height: const .fixed(200),
                   child: ListView(
                     // vertically centered within the 600 high viewport
                     scrollDirection: Axis.horizontal,
                     controller: scrollControllerX,
                     children: List<Widget>.generate(5, (int index) {
-                      return SizedBox(width: 200, child: Center(child: Text('item $index')));
+                      return SizedBox(
+                        width: const .fixed(200),
+                        child: Center(child: Text('item $index')),
+                      );
                     }),
                   ),
                 ),
-                const SizedBox(width: 200, height: 200),
-                const SizedBox(width: 200, height: 200),
-                const SizedBox(width: 200, height: 200),
+                const SizedBox(width: .fixed(200), height: .fixed(200)),
+                const SizedBox(width: .fixed(200), height: .fixed(200)),
+                const SizedBox(width: .fixed(200), height: .fixed(200)),
               ],
             ),
           ),
@@ -3414,7 +3449,10 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
                 child: StatefulBuilder(
                   builder: (BuildContext context, StateSetter setState) {
                     rebuildScrollViewChild = setState;
-                    return SizedBox(width: childSize.width, height: childSize.height);
+                    return SizedBox(
+                      width: .fixed(childSize.width),
+                      height: .fixed(childSize.height),
+                    );
                   },
                 ),
               ),
@@ -3489,7 +3527,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
             controller: scrollController,
             child: SingleChildScrollView(
               controller: scrollController,
-              child: const SizedBox(height: 600.0, width: 800.0),
+              child: const SizedBox(height: .fixed(600.0), width: .fixed(800.0)),
             ),
           ),
         ),
@@ -3582,7 +3620,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   controller: horizontalScrollController,
-                  child: const SizedBox(width: 1000.0, height: 1000.0),
+                  child: const SizedBox(width: .fixed(1000.0), height: .fixed(1000.0)),
                 ),
               ),
             ),
@@ -3622,46 +3660,44 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
   });
 
   // Regression test for https://github.com/flutter/flutter/issues/141348.
-  testWidgets(
-    'Scrollbar should not shown due to precision error on desktop',
-    (WidgetTester tester) async {
-      Widget buildFrame(Size size) {
-        tester.view.physicalSize = size;
-        tester.view.devicePixelRatio = 1.0;
-        addTearDown(tester.view.reset);
-        return MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: DatePickerDialog(
-                initialDate: DateTime(2020, DateTime.may), // Month with six rows.
-                firstDate: DateTime(2010),
-                lastDate: DateTime(2030),
-              ),
+  testWidgets('Scrollbar should not shown due to precision error on desktop', (
+    WidgetTester tester,
+  ) async {
+    Widget buildFrame(Size size) {
+      tester.view.physicalSize = size;
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+      return MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: DatePickerDialog(
+              initialDate: DateTime(2020, DateTime.may), // Month with six rows.
+              firstDate: DateTime(2010),
+              lastDate: DateTime(2030),
             ),
           ),
-        );
-      }
+        ),
+      );
+    }
 
-      const screenSizePortrait = Size(400, 600);
-      await tester.pumpWidget(buildFrame(screenSizePortrait));
-      await tester.pumpAndSettle();
+    const screenSizePortrait = Size(400, 600);
+    await tester.pumpWidget(buildFrame(screenSizePortrait));
+    await tester.pumpAndSettle();
 
-      // Scrollbar is not shown.
-      expect(find.byType(Scrollbar), findsOneWidget);
-      expect(find.byType(Scrollbar), isNot(paints..rect()));
+    // Scrollbar is not shown.
+    expect(find.byType(Scrollbar), findsOneWidget);
+    expect(find.byType(Scrollbar), isNot(paints..rect()));
 
-      // Scroll on the Scrollbar.
-      final pointer = TestPointer(1, ui.PointerDeviceKind.mouse);
-      pointer.hover(tester.getCenter(find.byType(Scrollbar)));
-      await tester.sendEventToBinding(pointer.scroll(const Offset(0.0, 10.0)));
-      await tester.pumpAndSettle();
+    // Scroll on the Scrollbar.
+    final pointer = TestPointer(1, ui.PointerDeviceKind.mouse);
+    pointer.hover(tester.getCenter(find.byType(Scrollbar)));
+    await tester.sendEventToBinding(pointer.scroll(const Offset(0.0, 10.0)));
+    await tester.pumpAndSettle();
 
-      // Scrollbar is still not shown.
-      expect(find.byType(Scrollbar), findsOneWidget);
-      expect(find.byType(Scrollbar), isNot(paints..rect()));
-    },
-    variant: TargetPlatformVariant.desktop(),
-  );
+    // Scrollbar is still not shown.
+    expect(find.byType(Scrollbar), findsOneWidget);
+    expect(find.byType(Scrollbar), isNot(paints..rect()));
+  }, variant: TargetPlatformVariant.desktop());
 
   test('with EdgeInsetsDirectional', () {
     const size = Size(60, 80);
@@ -3770,7 +3806,7 @@ The provided ScrollController cannot be shared by multiple ScrollView widgets.''
                         interactive: interactive,
                         child: SingleChildScrollView(
                           controller: useController ? scrollController : null,
-                          child: const SizedBox(height: 2000.0, width: 100.0),
+                          child: const SizedBox(height: .fixed(2000.0), width: .fixed(100.0)),
                         ),
                       ),
                     ),

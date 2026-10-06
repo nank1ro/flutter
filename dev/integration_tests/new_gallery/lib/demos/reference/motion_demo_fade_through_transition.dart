@@ -89,9 +89,9 @@ class _ExampleCard extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: ColoredBox(
-                    color: Colors.black26,
+                    color: const .fixed(Colors.black26),
                     child: Padding(
-                      padding: const EdgeInsets.all(30),
+                      padding: const .fixed(EdgeInsets.all(30)),
                       child: Ink.image(
                         image: const AssetImage(
                           'placeholders/placeholder_image.png',
@@ -102,7 +102,7 @@ class _ExampleCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: const .fixed(EdgeInsets.all(8)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

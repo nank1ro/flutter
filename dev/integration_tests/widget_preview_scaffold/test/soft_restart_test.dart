@@ -61,8 +61,8 @@ void main() {
       final Finder placeholderBoxFinder = find.byWidgetPredicate(
         (Widget widget) =>
             widget is SizedBox &&
-            widget.height == originalSize.height &&
-            widget.width == originalSize.width,
+            widget.height?.value == originalSize.height &&
+            widget.width?.value == originalSize.width,
       );
       expect(placeholderBoxFinder, findsOne);
       expect(fooTextFinder, findsNothing);

@@ -36,9 +36,9 @@ void main() {
 
   testWidgets('ConstrainedBox intrinsics - minHeight', (WidgetTester tester) async {
     await tester.pumpWidget(
-      ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 20.0),
-        child: const Placeholder(),
+      const ConstrainedBox(
+        constraints: .fixed(BoxConstraints(minHeight: 20.0)),
+        child: Placeholder(),
       ),
     );
     expect(
@@ -69,7 +69,10 @@ void main() {
 
   testWidgets('ConstrainedBox intrinsics - minWidth', (WidgetTester tester) async {
     await tester.pumpWidget(
-      ConstrainedBox(constraints: const BoxConstraints(minWidth: 20.0), child: const Placeholder()),
+      const ConstrainedBox(
+        constraints: .fixed(BoxConstraints(minWidth: 20.0)),
+        child: Placeholder(),
+      ),
     );
     expect(
       tester
@@ -99,9 +102,9 @@ void main() {
 
   testWidgets('ConstrainedBox intrinsics - maxHeight', (WidgetTester tester) async {
     await tester.pumpWidget(
-      ConstrainedBox(
-        constraints: const BoxConstraints(maxHeight: 20.0),
-        child: const Placeholder(),
+      const ConstrainedBox(
+        constraints: .fixed(BoxConstraints(maxHeight: 20.0)),
+        child: Placeholder(),
       ),
     );
     expect(
@@ -132,7 +135,10 @@ void main() {
 
   testWidgets('ConstrainedBox intrinsics - maxWidth', (WidgetTester tester) async {
     await tester.pumpWidget(
-      ConstrainedBox(constraints: const BoxConstraints(maxWidth: 20.0), child: const Placeholder()),
+      const ConstrainedBox(
+        constraints: .fixed(BoxConstraints(maxWidth: 20.0)),
+        child: Placeholder(),
+      ),
     );
     expect(
       tester
@@ -162,9 +168,9 @@ void main() {
 
   testWidgets('ConstrainedBox intrinsics - tight', (WidgetTester tester) async {
     await tester.pumpWidget(
-      ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(width: 10.0, height: 30.0),
-        child: const Placeholder(),
+      const ConstrainedBox(
+        constraints: .fixed(BoxConstraints.tightFor(width: 10.0, height: 30.0)),
+        child: Placeholder(),
       ),
     );
     expect(
@@ -197,9 +203,9 @@ void main() {
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
-      ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: double.infinity, minHeight: 20.0),
-        child: const Placeholder(),
+      const ConstrainedBox(
+        constraints: .fixed(BoxConstraints(minWidth: double.infinity, minHeight: 20.0)),
+        child: Placeholder(),
       ),
     );
     expect(
@@ -232,9 +238,9 @@ void main() {
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
-      ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 20.0, minHeight: double.infinity),
-        child: const Placeholder(),
+      const ConstrainedBox(
+        constraints: .fixed(BoxConstraints(minWidth: 20.0, minHeight: double.infinity)),
+        child: Placeholder(),
       ),
     );
     expect(
@@ -265,9 +271,11 @@ void main() {
 
   testWidgets('ConstrainedBox intrinsics - infinite', (WidgetTester tester) async {
     await tester.pumpWidget(
-      ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(width: double.infinity, height: double.infinity),
-        child: const Placeholder(),
+      const ConstrainedBox(
+        constraints: .fixed(
+          BoxConstraints.tightFor(width: double.infinity, height: double.infinity),
+        ),
+        child: Placeholder(),
       ),
     );
     expect(
@@ -300,10 +308,10 @@ void main() {
     tester.view.physicalSize = Size.zero;
     addTearDown(tester.view.reset);
     await tester.pumpWidget(
-      Directionality(
+      const Directionality(
         textDirection: TextDirection.ltr,
         child: Center(
-          child: ConstrainedBox(constraints: const BoxConstraints(minWidth: 200, maxWidth: 400)),
+          child: ConstrainedBox(constraints: .fixed(BoxConstraints(minWidth: 200, maxWidth: 400))),
         ),
       ),
     );

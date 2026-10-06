@@ -66,7 +66,7 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
         return Column(
           children: <Widget>[
             CircularProgressIndicator(semanticsLabel: GalleryLocalizations.of(context)!.loading),
-            const SizedBox(height: 32),
+            const SizedBox(height: .fixed(32)),
             CircularProgressIndicator(value: _animation.value),
           ],
         );
@@ -74,7 +74,7 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
         return Column(
           children: <Widget>[
             const LinearProgressIndicator(),
-            const SizedBox(height: 32),
+            const SizedBox(height: .fixed(32)),
             LinearProgressIndicator(value: _animation.value),
           ],
         );

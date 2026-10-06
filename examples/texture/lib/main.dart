@@ -47,8 +47,8 @@ class _TexturePageState extends State<TexturePage> {
                 }
 
                 return SizedBox(
-                  width: textureWidth.toDouble(),
-                  height: textureHeight.toDouble(),
+                  width: .fixed(textureWidth.toDouble()),
+                  height: .fixed(textureHeight.toDouble()),
                   child: Texture(textureId: snapshot.data!),
                 );
               },

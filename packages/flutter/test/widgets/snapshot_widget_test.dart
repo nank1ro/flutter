@@ -83,7 +83,7 @@ void main() {
               child: SnapshotWidget(
                 controller: controller,
                 painter: painter,
-                child: const SizedBox(width: 100, height: 100),
+                child: const SizedBox(width: .fixed(100), height: .fixed(100)),
               ),
             ),
           );
@@ -120,7 +120,7 @@ void main() {
               child: SnapshotWidget(
                 controller: controller,
                 painter: painter,
-                child: const SizedBox(width: 100, height: 100),
+                child: const SizedBox(width: .fixed(100), height: .fixed(100)),
               ),
             ),
           );
@@ -227,7 +227,11 @@ void main() {
         child: TestDependencies(
           child: SnapshotWidget(
             controller: controller,
-            child: const SizedBox(width: 100, height: 100, child: TestPlatformView()),
+            child: const SizedBox(
+              width: .fixed(100),
+              height: .fixed(100),
+              child: TestPlatformView(),
+            ),
           ),
         ),
       ),
@@ -255,7 +259,11 @@ void main() {
           child: SnapshotWidget(
             controller: controller,
             mode: SnapshotMode.forced,
-            child: const SizedBox(width: 100, height: 100, child: TestPlatformView()),
+            child: const SizedBox(
+              width: .fixed(100),
+              height: .fixed(100),
+              child: TestPlatformView(),
+            ),
           ),
         ),
       ),
@@ -276,7 +284,11 @@ void main() {
             child: SnapshotWidget(
               controller: controller,
               mode: SnapshotMode.permissive,
-              child: const SizedBox(width: 100, height: 100, child: TestPlatformView()),
+              child: const SizedBox(
+                width: .fixed(100),
+                height: .fixed(100),
+                child: TestPlatformView(),
+              ),
             ),
           ),
         ),

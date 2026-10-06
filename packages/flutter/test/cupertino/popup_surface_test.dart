@@ -38,16 +38,13 @@ class _FilterTest extends StatelessWidget {
                     height: tileHeight,
                     width: tileWidth,
                     child: ColoredBox(
-                      color: HSVColor.fromAHSV(
-                        0.5 + a / 8,
-                        h * 45,
-                        0.5 + s / 8,
-                        0.5 + b / 8,
-                      ).toColor(),
+                      color: .fixed(
+                        HSVColor.fromAHSV(0.5 + a / 8, h * 45, 0.5 + s / 8, 0.5 + b / 8).toColor(),
+                      ),
                     ),
                   ),
           Padding(
-            padding: const EdgeInsets.all(32),
+            padding: const .fixed(EdgeInsets.all(32)),
             child: CupertinoTheme(
               data: CupertinoThemeData(brightness: brightness),
               child: _child,
@@ -266,42 +263,40 @@ void main() {
   });
 
   // Regression test for https://github.com/flutter/flutter/issues/154887.
-  testWidgets(
-    "Applying a FadeTransition to the CupertinoPopupSurface doesn't cause transparency",
-    (WidgetTester tester) async {
-      final controller = AnimationController(
-        duration: const Duration(milliseconds: 100),
-        vsync: const TestVSync(),
-      );
-      addTearDown(controller.dispose);
-      controller.forward();
+  testWidgets("Applying a FadeTransition to the CupertinoPopupSurface doesn't cause transparency", (
+    WidgetTester tester,
+  ) async {
+    final controller = AnimationController(
+      duration: const Duration(milliseconds: 100),
+      vsync: const TestVSync(),
+    );
+    addTearDown(controller.dispose);
+    controller.forward();
 
-      await tester.pumpWidget(
-        _FilterTest(
-          FadeTransition(
-            opacity: controller,
-            child: const CupertinoPopupSurface(child: SizedBox()),
-          ),
+    await tester.pumpWidget(
+      _FilterTest(
+        FadeTransition(
+          opacity: controller,
+          child: const CupertinoPopupSurface(child: SizedBox()),
         ),
-      );
+      ),
+    );
 
-      await tester.pump(const Duration(milliseconds: 50));
+    await tester.pump(const Duration(milliseconds: 50));
 
-      // Golden should display a CupertinoPopupSurface with no transparency
-      // directly underneath the surface. A small amount of transparency should be
-      // present on the upper-left corner of the screen.
-      //
-      // If transparency (gray and white grid) is present underneath the surface,
-      // the blendmode is being incorrectly applied.
-      await expectLater(
-        find.byType(CupertinoApp),
-        matchesGoldenFile('cupertinoPopupSurface.blendmode-fix.0.png'),
-      );
+    // Golden should display a CupertinoPopupSurface with no transparency
+    // directly underneath the surface. A small amount of transparency should be
+    // present on the upper-left corner of the screen.
+    //
+    // If transparency (gray and white grid) is present underneath the surface,
+    // the blendmode is being incorrectly applied.
+    await expectLater(
+      find.byType(CupertinoApp),
+      matchesGoldenFile('cupertinoPopupSurface.blendmode-fix.0.png'),
+    );
 
-      await tester.pumpAndSettle();
-    },
-    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
-  );
+    await tester.pumpAndSettle();
+  }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
   // Golden displays a CupertinoPopupSurface with all enabled features.
   //

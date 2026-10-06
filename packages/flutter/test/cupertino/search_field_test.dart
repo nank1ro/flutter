@@ -18,6 +18,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(decoration.borderRadius, const BorderRadius.all(Radius.circular(9)));
@@ -43,6 +44,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(decoration.color, const Color.fromARGB(1, 1, 1, 1));
@@ -68,6 +70,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as BoxDecoration;
 
     expect(decoration.borderRadius, BorderRadius.zero);
@@ -228,7 +231,7 @@ void main() {
       const CupertinoApp(
         home: Center(
           child: CupertinoSearchTextField(
-            prefixIcon: SizedBox(key: prefixIcon, width: 50, height: 50),
+            prefixIcon: SizedBox(key: prefixIcon, width: .fixed(50), height: .fixed(50)),
           ),
         ),
       ),
@@ -639,13 +642,15 @@ void main() {
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       equals(1.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: suffixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       equals(1.0),
     );
     // The default placeholder color is semi-transparent.
@@ -664,25 +669,29 @@ void main() {
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       greaterThan(0.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       lessThan(1.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: suffixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       greaterThan(0.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: suffixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       lessThan(1.0),
     );
     expect(tester.widget<Text>(placeholderFinder).style?.color?.a, greaterThan(0.0));
@@ -699,13 +708,15 @@ void main() {
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       equals(0.0),
     );
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: suffixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       equals(0.0),
     );
     expect(tester.widget<Text>(placeholderFinder).style?.color?.a, equals(0.0));
@@ -778,7 +789,7 @@ void main() {
                   largeTitle: Text('Large title'),
                   searchField: CupertinoSearchTextField(),
                 ),
-                SliverToBoxAdapter(child: SizedBox(height: 1000)),
+                SliverToBoxAdapter(child: SizedBox(height: .fixed(1000))),
               ],
             ),
           ),
@@ -820,7 +831,8 @@ void main() {
     expect(
       tester
           .widget<Opacity>(find.ancestor(of: prefixIconFinder, matching: find.byType(Opacity)))
-          .opacity,
+          .opacity
+          .value,
       lessThan(1.0),
     );
   });

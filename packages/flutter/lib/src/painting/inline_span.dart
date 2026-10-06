@@ -197,7 +197,7 @@ List<InlineSpanSemanticsInformation> combineSemanticsInfo(
 ///         alignment: PlaceholderAlignment.baseline,
 ///         baseline: TextBaseline.alphabetic,
 ///         child: ConstrainedBox(
-///           constraints: const BoxConstraints(maxWidth: 100),
+///           constraints: .fixed(const BoxConstraints(maxWidth: 100)),
 ///           child: const TextField(),
 ///         )
 ///       ),

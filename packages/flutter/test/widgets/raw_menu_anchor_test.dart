@@ -323,7 +323,7 @@ void main() {
               ),
               // Menu should not need to be a direct descendent.
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const .fixed(EdgeInsets.all(8.0)),
                 child: Menu(
                   menuPanel: Panel(children: <Widget>[Text(Tag.b.a.text)]),
                   child: const AnchorButton(Tag.b),
@@ -1056,7 +1056,7 @@ void main() {
     await tester.pumpWidget(
       App(
         Transform(
-          transform: Matrix4.translationValues(-50, 50, 0)..scale(1.2),
+          transform: .fixed(Matrix4.translationValues(-50, 50, 0)..scale(1.2)),
           child: RawMenuAnchor(
             controller: controller,
             overlayBuilder: (BuildContext context, RawMenuOverlayInfo position) {
@@ -1450,7 +1450,7 @@ void main() {
           controller: controller,
           child: Padding(
             key: Tag.anchor.key,
-            padding: const EdgeInsets.all(8.0),
+            padding: const .fixed(EdgeInsets.all(8.0)),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -1830,7 +1830,7 @@ void main() {
   testWidgets('[Group] diagnostics', (WidgetTester tester) async {
     final Widget menuNode = RawMenuAnchorGroup(
       controller: controller,
-      child: const SizedBox(height: 30, width: 30),
+      child: const SizedBox(height: .fixed(30), width: .fixed(30)),
     );
 
     await tester.pumpWidget(App(menuNode));
@@ -2532,7 +2532,7 @@ void main() {
               return Positioned(
                 top: info.position?.dy ?? 0,
                 left: info.position?.dx ?? 0,
-                child: SizedBox.square(key: Tag.a.key, dimension: 300),
+                child: SizedBox.square(key: Tag.a.key, dimension: const .fixed(300)),
               );
             },
             child: const AnchorButton(Tag.anchor),
@@ -2574,7 +2574,7 @@ void main() {
               showMenuOverlay = showOverlay;
             },
             overlayBuilder: (BuildContext context, RawMenuOverlayInfo info) {
-              return const SizedBox.square(dimension: 300, child: Text('Overlay'));
+              return const SizedBox.square(dimension: .fixed(300), child: Text('Overlay'));
             },
             child: const AnchorButton(Tag.anchor),
           ),
@@ -2677,7 +2677,7 @@ void main() {
               Timer(const Duration(milliseconds: 100), hideOverlay);
             },
             overlayBuilder: (BuildContext context, RawMenuOverlayInfo info) {
-              return const SizedBox.square(dimension: 300, child: Text('Overlay'));
+              return const SizedBox.square(dimension: .fixed(300), child: Text('Overlay'));
             },
             child: const AnchorButton(Tag.anchor),
           ),
@@ -2716,7 +2716,7 @@ void main() {
               hideMenuOverlay = hideOverlay;
             },
             overlayBuilder: (BuildContext context, RawMenuOverlayInfo info) {
-              return const SizedBox.square(dimension: 300, child: Text('Overlay'));
+              return const SizedBox.square(dimension: .fixed(300), child: Text('Overlay'));
             },
             child: const AnchorButton(Tag.anchor),
           ),
@@ -3086,7 +3086,7 @@ void main() {
           SingleChildScrollView(
             controller: scrollController,
             child: SizedBox(
-              height: 1000,
+              height: const .fixed(1000),
               child: Menu(
                 onCloseRequested: (VoidCallback hideOverlay) {
                   onCloseRequestedCalled += 1;
@@ -3179,7 +3179,7 @@ void main() {
             setState = setter;
             return Column(
               children: <Widget>[
-                if (showAdditionalWidget) const SizedBox(width: 100, height: 100),
+                if (showAdditionalWidget) const SizedBox(width: .fixed(100), height: .fixed(100)),
                 RawMenuAnchor(
                   overlayBuilder: (BuildContext context, RawMenuOverlayInfo position) {
                     overlayPosition = position;
@@ -3578,7 +3578,7 @@ class Panel extends StatelessWidget {
     );
 
     if (constraints != null) {
-      child = ConstrainedBox(constraints: constraints!, child: child);
+      child = ConstrainedBox(constraints: .fixed(constraints!), child: child);
     }
 
     // The menu's items can grow beyond the size of the overlay, but will be
@@ -3722,7 +3722,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: const Color(0xff000000),
+      color: const .fixed(Color(0xff000000)),
       child: WidgetsApp(
         color: const Color(0xff000000),
         onGenerateRoute: (RouteSettings settings) {

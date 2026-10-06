@@ -31,7 +31,7 @@ class _AnimatedSwitcherExampleState extends State<AnimatedSwitcherExample> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.white,
+      color: .fixed(Colors.white),
       child: Column(
         mainAxisAlignment: .center,
         children: <Widget>[

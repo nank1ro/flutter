@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(title: const Text('Star Border'), backgroundColor: const Color(0xff323232)),
         body: Column(
           children: <Widget>[
-            ColoredBox(color: Colors.grey.shade200, child: Options(_model)),
+            ColoredBox(color: .fixed(Colors.grey.shade200), child: Options(_model)),
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -262,7 +262,7 @@ class _OptionsState extends State<Options> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 10.0),
+      padding: const .fixed(EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 10.0)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -352,7 +352,7 @@ class _OptionsState extends State<Options> {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 8.0),
+                  padding: const .fixed(EdgeInsetsDirectional.only(end: 8.0)),
                   child: ControlSlider(
                     label: 'Lerp',
                     value: widget.model.lerpAmount,
@@ -363,7 +363,7 @@ class _OptionsState extends State<Options> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.only(start: 8.0, end: 20.0),
+                padding: const .fixed(EdgeInsetsDirectional.only(start: 8.0, end: 20.0)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -453,7 +453,7 @@ class ControlSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const .fixed(EdgeInsets.all(4.0)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

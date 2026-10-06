@@ -580,7 +580,7 @@ class TestWidget extends StatefulWidget {
 
 class TestWidgetState extends State<TestWidget> {
   @override
-  Widget build(BuildContext context) => const SizedBox(height: 50);
+  Widget build(BuildContext context) => const SizedBox(height: .fixed(50));
 }
 
 class RecordingPhysics extends ScrollPhysics {

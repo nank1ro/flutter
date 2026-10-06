@@ -86,7 +86,7 @@ class _MyCheckboxMenuState extends State<MyCheckboxMenu> {
                 mainAxisAlignment: .center,
                 children: <Widget>[
                   Padding(
-                    padding: const .all(12.0),
+                    padding: const .fixed(.all(12.0)),
                     child: Text(
                       _showingMessage ? widget.message : '',
                       style: Theme.of(context).textTheme.headlineSmall,

@@ -13,8 +13,8 @@ void main() {
       Align(
         alignment: Alignment.bottomRight,
         child: SizedBox(
-          width: 10.0,
-          height: 20.0,
+          width: const .fixed(10.0),
+          height: const .fixed(20.0),
           child: OverflowBox(
             minWidth: 0.0,
             maxWidth: 100.0,
@@ -39,7 +39,9 @@ void main() {
 
           final child = Column(
             mainAxisSize: MainAxisSize.min,
-            children: <Widget>[SizedBox(width: 100, height: contentSuperLong ? 10000 : 100)],
+            children: <Widget>[
+              SizedBox(width: const .fixed(100), height: .fixed(contentSuperLong ? 10000 : 100)),
+            ],
           );
 
           await tester.pumpWidget(
@@ -121,7 +123,7 @@ void main() {
           child: SizedOverflowBox(
             size: const Size(100.0, 100.0),
             alignment: Alignment.topRight,
-            child: SizedBox(height: 50.0, width: 50.0, key: inner),
+            child: SizedBox(height: const .fixed(50.0), width: const .fixed(50.0), key: inner),
           ),
         ),
       ),
@@ -148,7 +150,7 @@ void main() {
           child: SizedOverflowBox(
             size: const Size(100.0, 100.0),
             alignment: AlignmentDirectional.bottomStart,
-            child: SizedBox(height: 50.0, width: 50.0, key: inner),
+            child: SizedBox(height: const .fixed(50.0), width: const .fixed(50.0), key: inner),
           ),
         ),
       ),

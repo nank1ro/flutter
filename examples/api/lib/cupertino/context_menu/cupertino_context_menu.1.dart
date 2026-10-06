@@ -56,7 +56,7 @@ class ContextMenuExample extends StatelessWidget {
       ),
       child: Center(
         child: SizedBox.square(
-          dimension: 100,
+          dimension: .fixed(100),
           child: CupertinoContextMenu.builder(
             actions: <Widget>[
               CupertinoContextMenuAction(

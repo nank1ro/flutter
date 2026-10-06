@@ -64,7 +64,7 @@ class _FrontLayerState extends State<_FrontLayer> {
     return Align(
       alignment: AlignmentDirectional.centerStart,
       child: Padding(
-        padding: const EdgeInsets.only(top: 20, bottom: 22),
+        padding: const .fixed(EdgeInsets.only(top: 20, bottom: 22)),
         child: SelectableText(widget.title, style: Theme.of(context).textTheme.titleSmall),
       ),
     );
@@ -79,7 +79,7 @@ class _FrontLayerState extends State<_FrontLayer> {
     return FocusTraversalGroup(
       policy: ReadingOrderTraversalPolicy(),
       child: Padding(
-        padding: isDesktop ? EdgeInsets.zero : EdgeInsets.only(top: widget.mobileTopOffset),
+        padding: .fixed(isDesktop ? EdgeInsets.zero : EdgeInsets.only(top: widget.mobileTopOffset)),
         child: PhysicalShape(
           elevation: 16,
           color: cranePrimaryWhite,
@@ -92,11 +92,13 @@ class _FrontLayerState extends State<_FrontLayer> {
             ),
           ),
           child: Padding(
-            padding: isDesktop
-                ? EdgeInsets.symmetric(
-                    horizontal: isSmallDesktop ? appPaddingSmall : appPaddingLarge,
-                  ).add(bottomPadding)
-                : const EdgeInsets.symmetric(horizontal: 20).add(bottomPadding),
+            padding: .fixed(
+              isDesktop
+                  ? EdgeInsets.symmetric(
+                      horizontal: isSmallDesktop ? appPaddingSmall : appPaddingLarge,
+                    ).add(bottomPadding)
+                  : const EdgeInsets.symmetric(horizontal: 20).add(bottomPadding),
+            ),
             child: Column(
               children: <Widget>[
                 _header(),
@@ -210,7 +212,7 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin, Rest
     return Material(
       color: cranePurple800,
       child: Padding(
-        padding: const EdgeInsets.only(top: 12),
+        padding: const .fixed(EdgeInsets.only(top: 12)),
         child: FocusTraversalGroup(
           policy: ReadingOrderTraversalPolicy(),
           child: Scaffold(
@@ -309,8 +311,10 @@ class _CraneAppBarState extends State<CraneAppBar> {
 
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: isDesktop && !isSmallDesktop ? appPaddingLarge : appPaddingSmall,
+        padding: .fixed(
+          EdgeInsets.symmetric(
+            horizontal: isDesktop && !isSmallDesktop ? appPaddingLarge : appPaddingSmall,
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -322,14 +326,14 @@ class _CraneAppBarState extends State<CraneAppBar> {
                   width: 40,
                   height: 60,
                 ),
-                placeholder: SizedBox(width: 40, height: 60),
+                placeholder: SizedBox(width: .fixed(40), height: .fixed(60)),
                 width: 40,
                 height: 60,
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(start: 24),
+                padding: const .fixed(EdgeInsetsDirectional.only(start: 24)),
                 child: Theme(
                   data: Theme.of(context).copyWith(splashColor: Colors.transparent),
                   child: TabBar(

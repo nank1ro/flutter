@@ -7,10 +7,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const List<Widget> children = <Widget>[
-  SizedBox(width: 200.0, height: 150.0),
-  SizedBox(width: 200.0, height: 150.0),
-  SizedBox(width: 200.0, height: 150.0),
-  SizedBox(width: 200.0, height: 150.0),
+  SizedBox(width: .fixed(200.0), height: .fixed(150.0)),
+  SizedBox(width: .fixed(200.0), height: .fixed(150.0)),
+  SizedBox(width: .fixed(200.0), height: .fixed(150.0)),
+  SizedBox(width: .fixed(200.0), height: .fixed(150.0)),
 ];
 
 void expectRects(WidgetTester tester, List<Rect> expected) {
@@ -111,7 +111,7 @@ void main() {
     try {
       await tester.pumpWidget(
         const SizedBox.square(
-          dimension: 100.0,
+          dimension: .fixed(100.0),
           child: Directionality(
             textDirection: TextDirection.rtl,
             child: ListBody(mainAxis: Axis.horizontal, children: children),

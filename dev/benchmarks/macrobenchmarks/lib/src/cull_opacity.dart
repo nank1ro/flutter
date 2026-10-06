@@ -46,7 +46,7 @@ class _CullOpacityPageState extends State<CullOpacityPage> with SingleTickerProv
           left: 0,
           top: (200 * i).toDouble() + _offsetY.value,
           child: Opacity(
-            opacity: 0.5,
+            opacity: const .fixed(0.5),
             child: RepaintBoundary(
               child: Container(
                 // Slightly change width to invalidate raster cache.

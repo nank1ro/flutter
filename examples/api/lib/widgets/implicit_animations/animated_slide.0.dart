@@ -34,7 +34,7 @@ class _AnimatedSlideExampleState extends State<AnimatedSlideExample> {
     return Scaffold(
       appBar: AppBar(title: const Text('AnimatedSlide Sample')),
       body: Padding(
-        padding: const .all(16.0),
+        padding: const .fixed(.all(16.0)),
         child: Column(
           mainAxisSize: .min,
           children: <Widget>[
@@ -92,7 +92,7 @@ class _AnimatedSlideExampleState extends State<AnimatedSlideExample> {
                     },
                   ),
                 ),
-                const SizedBox(width: 48.0),
+                const SizedBox(width: .fixed(48.0)),
               ],
             ),
           ],

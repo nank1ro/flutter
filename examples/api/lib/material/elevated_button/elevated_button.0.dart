@@ -45,7 +45,7 @@ class _ElevatedButtonExampleState extends State<ElevatedButtonExample> {
             onPressed: null,
             child: const Text('Disabled'),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: .fixed(30)),
           ElevatedButton(
             style: style,
             onPressed: () {},

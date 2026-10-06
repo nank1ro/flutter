@@ -229,7 +229,14 @@ class _LayoutBuilderElement<LayoutInfoType> extends RenderObjectElement {
       Widget built;
       try {
         assert(layoutInfo == renderObject.layoutInfo);
-        built = (widget as AbstractLayoutBuilder<LayoutInfoType>).builder(this, layoutInfo);
+        // The builder runs from layout rather than from performRebuild, so it
+        // is outside the tracked scope that ComponentElement.build gets. Track
+        // it here instead, on the same node: a signal read by the builder
+        // invalidates it, and this element's markNeedsBuild schedules another
+        // layout callback, which runs the builder again.
+        built = trackSignalReads(
+          () => (widget as AbstractLayoutBuilder<LayoutInfoType>).builder(this, layoutInfo),
+        );
         debugWidgetBuilderValue(widget, built);
       } catch (e, stack) {
         built = ErrorWidget.builder(

@@ -203,7 +203,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   TextFormField(
                     textCapitalization: TextCapitalization.words,
                     decoration: const InputDecoration(
@@ -218,7 +218,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                     },
                     validator: _validateName,
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   TextFormField(
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
@@ -240,7 +240,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                       _phoneNumberFormatter,
                     ],
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   TextFormField(
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
@@ -254,7 +254,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                       person.email = value;
                     },
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   TextFormField(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -265,7 +265,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                     ),
                     maxLines: 3,
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
@@ -276,7 +276,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                       suffixStyle: TextStyle(color: Colors.green),
                     ),
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   PasswordField(
                     fieldKey: _passwordFieldKey,
                     helperText: 'No more than 8 characters.',
@@ -287,7 +287,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                       });
                     },
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   TextFormField(
                     enabled: person.password.isNotEmpty,
                     decoration: const InputDecoration(
@@ -299,13 +299,13 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                     obscureText: true,
                     validator: _validatePassword,
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   Center(
                     child: ElevatedButton(onPressed: _handleSubmitted, child: const Text('SUBMIT')),
                   ),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                   Text('* indicates required field', style: Theme.of(context).textTheme.bodySmall),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: .fixed(24.0)),
                 ],
               ),
             ),

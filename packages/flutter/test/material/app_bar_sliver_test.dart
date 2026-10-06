@@ -1554,7 +1554,7 @@ void main() {
                   itemCount: 20,
                   itemBuilder: (BuildContext context, int index) {
                     return SizedBox(
-                      height: appBarHeight,
+                      height: const .fixed(appBarHeight),
                       child: index == 0
                           ? Align(
                               alignment: Alignment.topCenter,

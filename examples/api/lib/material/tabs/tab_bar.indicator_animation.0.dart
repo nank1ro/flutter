@@ -60,7 +60,7 @@ class _IndicatorAnimationExampleState extends State<IndicatorAnimationExample> {
         ),
         body: Column(
           children: <Widget>[
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             SegmentedButton<TabIndicatorAnimation>(
               selected: _animationStyleSelection,
               onSelectionChanged: (Set<TabIndicatorAnimation> styles) {
@@ -80,7 +80,7 @@ class _IndicatorAnimationExampleState extends State<IndicatorAnimationExample> {
                   })
                   .toList(),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: .fixed(16)),
             const Expanded(
               child: TabBarView(
                 children: <Widget>[

@@ -226,7 +226,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: SizedBox.square(
-            dimension: 100,
+            dimension: const .fixed(100),
             child: Stack(
               children: <Widget>[
                 Positioned.fromRelativeRect(

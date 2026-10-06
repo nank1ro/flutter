@@ -641,7 +641,7 @@ void main() {
           const PopupMenuItem<int>(value: 3, child: Text('CCC')),
         ];
       },
-      child: const SizedBox(height: 100.0, width: 100.0, child: Text('XXX')),
+      child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0), child: Text('XXX')),
     );
 
     bool popupMenu(Widget widget) => widget.runtimeType.toString() == '_PopupMenu<int?>';
@@ -925,7 +925,7 @@ void main() {
         home: Scaffold(
           appBar: AppBar(title: const Text('Example')),
           body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const .fixed(EdgeInsets.all(8.0)),
             child: Overlay(
               initialEntries: <OverlayEntry>[
                 entry = OverlayEntry(
@@ -964,13 +964,13 @@ void main() {
         home: Scaffold(
           appBar: AppBar(title: const Text('Example')),
           body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const .fixed(EdgeInsets.all(8.0)),
             child: Navigator(
               onGenerateRoute: (RouteSettings settings) {
                 return MaterialPageRoute<dynamic>(
                   builder: (BuildContext context) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const .fixed(EdgeInsets.all(8.0)),
                       child: Center(
                         child: PopupMenuButton<int>(
                           key: buttonKey,
@@ -1009,13 +1009,13 @@ void main() {
         home: Scaffold(
           appBar: AppBar(title: const Text('Example')),
           body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const .fixed(EdgeInsets.all(8.0)),
             child: Navigator(
               onGenerateRoute: (RouteSettings settings) {
                 return MaterialPageRoute<dynamic>(
                   builder: (BuildContext context) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const .fixed(EdgeInsets.all(8.0)),
                       child: Center(
                         child: PopupMenuButton<int>(
                           key: buttonKey,
@@ -1107,7 +1107,7 @@ void main() {
                   builder: (BuildContext context) {
                     return Padding(
                       // Position the button in the top-right of the first "virtual screen"
-                      padding: const EdgeInsets.only(right: 390.0),
+                      padding: const .fixed(EdgeInsets.only(right: 390.0)),
                       child: Align(
                         alignment: Alignment.topRight,
                         child: PopupMenuButton<int>(
@@ -1164,7 +1164,11 @@ void main() {
                   ),
                 ];
               },
-              child: const SizedBox(height: 100.0, width: 100.0, child: Text('XXX')),
+              child: const SizedBox(
+                height: .fixed(100.0),
+                width: .fixed(100.0),
+                child: Text('XXX'),
+              ),
             ),
           ),
         ),
@@ -1256,7 +1260,7 @@ void main() {
                 const PopupMenuItem<int>(value: 5, child: Text('5')),
               ];
             },
-            child: const SizedBox(height: 100.0, width: 100.0, child: Text('XXX')),
+            child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0), child: Text('XXX')),
           ),
         ),
       ),
@@ -1398,7 +1402,7 @@ void main() {
                 const PopupMenuItem<int>(value: 2, child: Text('Item 2')),
               ];
             },
-            child: const SizedBox(height: 100.0, width: 100.0, child: Text('XXX')),
+            child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0), child: Text('XXX')),
           ),
         ),
       ),
@@ -1469,7 +1473,7 @@ void main() {
                 ),
               ];
             },
-            child: const SizedBox(height: 100.0, width: 100.0, child: Text('XXX')),
+            child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0), child: Text('XXX')),
           ),
         ),
       ),
@@ -1551,7 +1555,7 @@ void main() {
                 const PopupMenuItem<int>(value: 5, child: Text('5')),
               ];
             },
-            child: const SizedBox(height: 100.0, width: 100.0, child: Text('XXX')),
+            child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0), child: Text('XXX')),
           ),
         ),
       ),
@@ -1688,7 +1692,7 @@ void main() {
                 const CheckedPopupMenuItem<int>(value: 2, child: Text('Unchecked Item')),
               ];
             },
-            child: const SizedBox(height: 100.0, width: 100.0, child: Text('XXX')),
+            child: const SizedBox(height: .fixed(100.0), width: .fixed(100.0), child: Text('XXX')),
           ),
         ),
       ),
@@ -1796,7 +1800,7 @@ void main() {
                   const PopupMenuItem<String>(
                     height: 50,
                     value: '1',
-                    child: SizedBox(height: 40, child: Text('Item 1')),
+                    child: SizedBox(height: .fixed(40), child: Text('Item 1')),
                   ),
                   // This menu item's height parameter specifies its minimum height, so the
                   // overall height of the menu item will be 75.
@@ -1808,7 +1812,7 @@ void main() {
                   // This menu item's height will be 100.
                   const PopupMenuItem<String>(
                     value: '3',
-                    child: SizedBox(height: 100, child: Text('Item 3')),
+                    child: SizedBox(height: .fixed(100), child: Text('Item 3')),
                   ),
                 ];
               },
@@ -1872,7 +1876,7 @@ void main() {
     await tester.pumpAndSettle();
 
     EdgeInsetsGeometry paddingFor(String text) {
-      return tester.widget<Padding>(find.widgetWithText(Padding, 'Item 0').first).padding;
+      return tester.widget<Padding>(find.widgetWithText(Padding, 'Item 0').first).padding.value;
     }
 
     expect(paddingFor('Item 0'), const EdgeInsets.symmetric(horizontal: 12.0));
@@ -1940,7 +1944,7 @@ void main() {
     await tester.pumpAndSettle();
 
     EdgeInsetsGeometry paddingFor(String text) {
-      return tester.widget<Padding>(find.widgetWithText(Padding, 'Item 0').first).padding;
+      return tester.widget<Padding>(find.widgetWithText(Padding, 'Item 0').first).padding.value;
     }
 
     expect(paddingFor('Item 0'), const EdgeInsets.symmetric(horizontal: 16.0));
@@ -2058,7 +2062,7 @@ void main() {
           ),
         ),
       );
-      return (widget.child! as Padding).padding;
+      return (widget.child! as Padding).padding.value;
     }
 
     expect(paddingFor('Item 0'), EdgeInsets.zero);
@@ -2097,7 +2101,7 @@ void main() {
                     checked: true,
                     height: 60,
                     value: '1',
-                    child: SizedBox(height: 40, child: Text('Item 1')),
+                    child: SizedBox(height: .fixed(40), child: Text('Item 1')),
                   ),
                   // This menu item's height parameter specifies its minimum height, so the
                   // overall height of the menu item will be 75.
@@ -2227,7 +2231,7 @@ void main() {
           ),
         ),
       );
-      return (widget.child! as Padding).padding;
+      return (widget.child! as Padding).padding.value;
     }
 
     expect(paddingFor('Item 0'), EdgeInsets.zero);
@@ -2885,9 +2889,9 @@ void main() {
               PopupMenuButton<int>(
                 child: SizedBox(
                   key: buttonKey,
-                  height: height,
-                  width: width,
-                  child: const ColoredBox(color: Colors.pink),
+                  height: .fixed(height),
+                  width: .fixed(width),
+                  child: const ColoredBox(color: .fixed(Colors.pink)),
                 ),
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<int>>[
                   const PopupMenuItem<int>(value: 1, child: Text('-1-')),
@@ -2940,9 +2944,9 @@ void main() {
               PopupMenuButton<int>(
                 child: SizedBox(
                   key: buttonKey,
-                  height: height,
-                  width: width,
-                  child: const ColoredBox(color: Colors.pink),
+                  height: .fixed(height),
+                  width: .fixed(width),
+                  child: const ColoredBox(color: .fixed(Colors.pink)),
                 ),
                 itemBuilder: (BuildContext context) {
                   return <PopupMenuEntry<int>>[
@@ -3002,8 +3006,8 @@ void main() {
     Widget widget({required Size viewSize}) {
       return Center(
         child: SizedBox(
-          width: viewSize.width,
-          height: viewSize.height,
+          width: .fixed(viewSize.width),
+          height: .fixed(viewSize.height),
           child: MaterialApp(
             home: Material(
               child: StatefulBuilder(
@@ -3177,7 +3181,7 @@ void main() {
                 child: const Text('press'),
               ),
               SizedBox.square(
-                dimension: 10,
+                dimension: const .fixed(10),
                 child: Navigator(
                   key: navigator,
                   onGenerateRoute: (RouteSettings settings) => MaterialPageRoute<void>(
@@ -3206,20 +3210,20 @@ void main() {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                const SizedBox(height: 100),
+                const SizedBox(height: .fixed(100)),
                 PopupMenuButton<int>(
                   child: SizedBox(
                     key: buttonKey,
-                    height: 10.0,
-                    width: 10.0,
-                    child: const ColoredBox(color: Colors.pink),
+                    height: const .fixed(10.0),
+                    width: const .fixed(10.0),
+                    child: const ColoredBox(color: .fixed(Colors.pink)),
                   ),
                   itemBuilder: (BuildContext context) => <PopupMenuEntry<int>>[
                     const PopupMenuItem<int>(value: 1, child: Text('-1-')),
                     const PopupMenuItem<int>(value: 2, child: Text('-2-')),
                   ],
                 ),
-                const SizedBox(height: 600),
+                const SizedBox(height: .fixed(600)),
               ],
             ),
           ),
@@ -3752,7 +3756,7 @@ void main() {
                 itemBuilder: (BuildContext context) {
                   return <PopupMenuEntry<void>>[const PopupMenuItem<void>(child: Text('Example'))];
                 },
-                child: SizedBox(key: childKey, height: 50, width: 50),
+                child: SizedBox(key: childKey, height: const .fixed(50), width: const .fixed(50)),
               ),
             ],
           ),
@@ -3784,7 +3788,7 @@ void main() {
                         context: context,
                         builder: (BuildContext context) {
                           return const SizedBox(
-                            height: 200.0,
+                            height: .fixed(200.0),
                             child: Center(child: Text('ModalBottomSheet')),
                           );
                         },
@@ -4455,7 +4459,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: Padding(
-            padding: const EdgeInsets.all(50),
+            padding: const .fixed(EdgeInsets.all(50)),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: PopupMenuButton<int>(
@@ -4568,7 +4572,7 @@ void main() {
               itemBuilder: (_) => <PopupMenuEntry<String>>[
                 const PopupMenuItem<String>(value: 'value', child: Text('Item 0')),
               ],
-              child: const SizedBox(height: buttonSize, width: buttonSize),
+              child: const SizedBox(height: .fixed(buttonSize), width: .fixed(buttonSize)),
             ),
           ),
         ),

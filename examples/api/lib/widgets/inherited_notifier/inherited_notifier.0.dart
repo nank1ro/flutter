@@ -36,7 +36,7 @@ class Spinner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
-      angle: SpinModel.of(context) * 2.0 * math.pi,
+      angle: .fixed(SpinModel.of(context) * 2.0 * math.pi),
       child: Container(
         width: 100,
         height: 100,

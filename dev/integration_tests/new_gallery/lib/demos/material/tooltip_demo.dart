@@ -17,12 +17,12 @@ class TooltipDemo extends StatelessWidget {
       appBar: AppBar(automaticallyImplyLeading: false, title: Text(localizations.demoTooltipTitle)),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const .fixed(EdgeInsets.all(8)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(localizations.demoTooltipInstructions, textAlign: TextAlign.center),
-              const SizedBox(height: 16),
+              const SizedBox(height: .fixed(16)),
               Tooltip(
                 message: localizations.starterAppTooltipSearch,
                 child: IconButton(

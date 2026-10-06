@@ -352,10 +352,10 @@ class _GestureTransformableState extends State<GestureTransformable> with Ticker
       child: ClipRect(
         // The scene is panned/zoomed/rotated using this Transform widget.
         child: Transform(
-          transform: _transform,
+          transform: .fixed(_transform),
           child: SizedBox(
-            height: widget.size.height,
-            width: widget.size.width,
+            height: .fixed(widget.size.height),
+            width: .fixed(widget.size.width),
             child: widget.child,
           ),
         ),

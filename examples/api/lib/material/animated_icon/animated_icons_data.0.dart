@@ -88,7 +88,7 @@ class _AnimatedIconExampleState extends State<AnimatedIconExample>
                     size: 72.0,
                     semanticLabel: entry.key,
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: .fixed(8.0)),
                   Text(entry.key),
                 ],
               ),

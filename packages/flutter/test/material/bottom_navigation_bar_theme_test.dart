@@ -172,7 +172,7 @@ void main() {
     expect(selectedFontStyle.fontSize, selectedFontStyle.fontSize);
     // Unselected label has a font size of 22 but is scaled down to be font size 21.
     expect(
-      tester.firstWidget<Transform>(findAlarmTransform).transform,
+      tester.firstWidget<Transform>(findAlarmTransform).transform.value,
       equals(
         Matrix4.diagonal3(Vector3.all(unselectedTextStyle.fontSize! / selectedTextStyle.fontSize!)),
       ),
@@ -303,7 +303,8 @@ void main() {
               find.ancestor(of: find.text('Alarm'), matching: find.byType(Transform)),
             ),
           )
-          .transform,
+          .transform
+          .value,
       equals(
         Matrix4.diagonal3(Vector3.all(unselectedTextStyle.fontSize! / selectedTextStyle.fontSize!)),
       ),

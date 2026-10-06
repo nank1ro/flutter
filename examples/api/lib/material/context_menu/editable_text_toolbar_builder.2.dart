@@ -54,7 +54,7 @@ class _EditableTextToolbarBuilderExampleAppState
         body: Center(
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 20.0),
+              const SizedBox(height: .fixed(20.0)),
               TextField(
                 controller: _controller,
                 contextMenuBuilder:

@@ -17,15 +17,21 @@ void main() {
         child: CustomScrollView(
           center: centerKey,
           slivers: <Widget>[
-            const SliverToBoxAdapter(key: Key('a'), child: SizedBox(height: 100.0)),
+            const SliverToBoxAdapter(
+              key: Key('a'),
+              child: SizedBox(height: .fixed(100.0)),
+            ),
             StatefulBuilder(
               key: centerKey,
               builder: (BuildContext context, StateSetter setter) {
                 setState = setter;
                 if (hasKey) {
-                  return const SliverToBoxAdapter(key: Key('b'), child: SizedBox(height: 100.0));
+                  return const SliverToBoxAdapter(
+                    key: Key('b'),
+                    child: SizedBox(height: .fixed(100.0)),
+                  );
                 } else {
-                  return const SliverToBoxAdapter(child: SizedBox(height: 100.0));
+                  return const SliverToBoxAdapter(child: SizedBox(height: .fixed(100.0)));
                 }
               },
             ),
@@ -48,15 +54,33 @@ void main() {
 
   testWidgets('CustomScrollView.center update test 2', (WidgetTester tester) async {
     const slivers1 = <Widget>[
-      SliverToBoxAdapter(key: Key('a'), child: SizedBox(height: 100.0)),
-      SliverToBoxAdapter(key: Key('b'), child: SizedBox(height: 100.0)),
-      SliverToBoxAdapter(key: Key('c'), child: SizedBox(height: 100.0)),
+      SliverToBoxAdapter(
+        key: Key('a'),
+        child: SizedBox(height: .fixed(100.0)),
+      ),
+      SliverToBoxAdapter(
+        key: Key('b'),
+        child: SizedBox(height: .fixed(100.0)),
+      ),
+      SliverToBoxAdapter(
+        key: Key('c'),
+        child: SizedBox(height: .fixed(100.0)),
+      ),
     ];
 
     const slivers2 = <Widget>[
-      SliverToBoxAdapter(key: Key('c'), child: SizedBox(height: 100.0)),
-      SliverToBoxAdapter(key: Key('d'), child: SizedBox(height: 100.0)),
-      SliverToBoxAdapter(key: Key('a'), child: SizedBox(height: 100.0)),
+      SliverToBoxAdapter(
+        key: Key('c'),
+        child: SizedBox(height: .fixed(100.0)),
+      ),
+      SliverToBoxAdapter(
+        key: Key('d'),
+        child: SizedBox(height: .fixed(100.0)),
+      ),
+      SliverToBoxAdapter(
+        key: Key('a'),
+        child: SizedBox(height: .fixed(100.0)),
+      ),
     ];
 
     Widget buildFrame(List<Widget> slivers, Key center) {
@@ -81,8 +105,14 @@ void main() {
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
           slivers: <Widget>[
-            SliverToBoxAdapter(key: Key('a'), child: SizedBox(height: 100.0)),
-            SliverToBoxAdapter(key: Key('b'), child: SizedBox(height: 100.0)),
+            SliverToBoxAdapter(
+              key: Key('a'),
+              child: SizedBox(height: .fixed(100.0)),
+            ),
+            SliverToBoxAdapter(
+              key: Key('b'),
+              child: SizedBox(height: .fixed(100.0)),
+            ),
           ],
           center: Key('a'),
         ),
@@ -109,8 +139,14 @@ void main() {
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
           slivers: <Widget>[
-            SliverToBoxAdapter(key: Key('a'), child: SizedBox(height: 100.0)),
-            SliverToBoxAdapter(key: Key('b'), child: SizedBox(height: 100.0)),
+            SliverToBoxAdapter(
+              key: Key('a'),
+              child: SizedBox(height: .fixed(100.0)),
+            ),
+            SliverToBoxAdapter(
+              key: Key('b'),
+              child: SizedBox(height: .fixed(100.0)),
+            ),
           ],
           center: Key('b'),
         ),
@@ -140,8 +176,14 @@ void main() {
         textDirection: TextDirection.ltr,
         child: CustomScrollView(
           slivers: <Widget>[
-            SliverToBoxAdapter(key: Key('a'), child: SizedBox(height: 100.0)),
-            SliverToBoxAdapter(key: Key('b'), child: SizedBox(height: 100.0)),
+            SliverToBoxAdapter(
+              key: Key('a'),
+              child: SizedBox(height: .fixed(100.0)),
+            ),
+            SliverToBoxAdapter(
+              key: Key('b'),
+              child: SizedBox(height: .fixed(100.0)),
+            ),
           ],
           center: Key('b'),
           anchor: 1.0,

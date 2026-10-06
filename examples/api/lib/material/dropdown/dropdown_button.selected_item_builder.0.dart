@@ -48,7 +48,7 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
         children: <Widget>[
           Text('Select a city:', style: Theme.of(context).textTheme.bodyLarge),
           Padding(
-            padding: const .symmetric(horizontal: 8.0),
+            padding: const .fixed(.symmetric(horizontal: 8.0)),
             child: DropdownButton<String>(
               value: selectedItem,
               onChanged: (String? value) {

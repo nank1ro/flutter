@@ -25,6 +25,6 @@ final class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Draw a full-screen blue rectangle.
-    return const DecoratedBox(decoration: BoxDecoration(color: Colors.blue));
+    return const DecoratedBox(decoration: .fixed(BoxDecoration(color: Colors.blue)));
   }
 }

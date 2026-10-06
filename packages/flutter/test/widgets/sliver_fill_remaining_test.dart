@@ -37,8 +37,8 @@ enum _TestVisualDensity {
 Widget _sizedTestButton({required Widget child, required VoidCallback onPressed}) {
   final _TestVisualDensity density = _TestVisualDensity.adaptivePlatformDensity;
   return SizedBox(
-    width: 116.0 + math.max(0, density.horizontal) * 8.0,
-    height: 48.0 + density.vertical * 4.0,
+    width: .fixed(116.0 + math.max(0, density.horizontal) * 8.0),
+    height: .fixed(48.0 + density.vertical * 4.0),
     child: TestButton(
       onPressed: onPressed,
       child: Center(child: child),
@@ -103,7 +103,7 @@ void main() {
             child: CustomScrollView(
               controller: controller,
               slivers: <Widget>[
-                const SliverToBoxAdapter(child: SizedBox(height: 100.0)),
+                const SliverToBoxAdapter(child: SizedBox(height: .fixed(100.0))),
                 SliverFillRemaining(child: Container()),
               ],
             ),
@@ -131,7 +131,7 @@ void main() {
         final slivers = <Widget>[
           sliverBox,
           const SliverFillRemaining(
-            child: ColoredBox(key: fillKey, color: _debugRed),
+            child: ColoredBox(key: fillKey, color: .fixed(_debugRed)),
           ),
         ];
         await tester.pumpWidget(boilerplate(slivers, controller: controller));
@@ -163,7 +163,10 @@ void main() {
                   ),
                   // This sliver is within viewport
                   const SliverFillRemaining(
-                    child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                    child: SizedBox(
+                      height: .fixed(100),
+                      child: Text('Text in SliverFillRemaining'),
+                    ),
                   ),
                 ],
               ),
@@ -198,7 +201,10 @@ void main() {
                   ),
                   // This sliver is not within viewport but is within remaining cacheExtent
                   const SliverFillRemaining(
-                    child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                    child: SizedBox(
+                      height: .fixed(100),
+                      child: Text('Text in SliverFillRemaining'),
+                    ),
                   ),
                 ],
               ),
@@ -236,7 +242,10 @@ void main() {
                   ),
                   // This sliver is not within viewport and not within remaining cacheExtent
                   const SliverFillRemaining(
-                    child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                    child: SizedBox(
+                      height: .fixed(100),
+                      child: Text('Text in SliverFillRemaining'),
+                    ),
                   ),
                 ],
               ),
@@ -263,7 +272,7 @@ void main() {
           sliverBox,
           const SliverFillRemaining(
             hasScrollBody: false,
-            child: ColoredBox(key: fillKey, color: _debugRed),
+            child: ColoredBox(key: fillKey, color: .fixed(_debugRed)),
           ),
         ];
 
@@ -284,7 +293,7 @@ void main() {
           sliverBox,
           const SliverFillRemaining(
             hasScrollBody: false,
-            child: ColoredBox(key: fillKey, color: _debugRed),
+            child: ColoredBox(key: fillKey, color: .fixed(_debugRed)),
           ),
         ];
 
@@ -305,7 +314,7 @@ void main() {
             hasScrollBody: false,
             child: ColoredBox(
               key: key,
-              color: _debugRed,
+              color: const .fixed(_debugRed),
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: _sizedTestButton(child: const Text('bottomCenter button'), onPressed: () {}),
@@ -351,16 +360,17 @@ void main() {
             SliverFixedExtentList.builder(
               itemExtent: 150,
               itemCount: 5,
-              itemBuilder: (BuildContext context, int index) => const ColoredBox(color: _debugRed),
+              itemBuilder: (BuildContext context, int index) =>
+                  const ColoredBox(color: .fixed(_debugRed)),
             ),
             SliverFillRemaining(
               hasScrollBody: false,
               child: ColoredBox(
                 key: key,
-                color: _debugRed,
+                color: const .fixed(_debugRed),
                 child: Align(
                   child: Padding(
-                    padding: const EdgeInsets.all(50.0),
+                    padding: const .fixed(EdgeInsets.all(50.0)),
                     child: _sizedTestButton(child: const Text('center button'), onPressed: () {}),
                   ),
                 ),
@@ -456,7 +466,10 @@ void main() {
                   // This sliver is within viewport
                   const SliverFillRemaining(
                     hasScrollBody: false,
-                    child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                    child: SizedBox(
+                      height: .fixed(100),
+                      child: Text('Text in SliverFillRemaining'),
+                    ),
                   ),
                 ],
               ),
@@ -492,7 +505,10 @@ void main() {
                   // This sliver is not within viewport but is within remaining cacheExtent
                   const SliverFillRemaining(
                     hasScrollBody: false,
-                    child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                    child: SizedBox(
+                      height: .fixed(100),
+                      child: Text('Text in SliverFillRemaining'),
+                    ),
                   ),
                 ],
               ),
@@ -531,7 +547,10 @@ void main() {
                   // This sliver is not within viewport and not within remaining cacheExtent
                   const SliverFillRemaining(
                     hasScrollBody: false,
-                    child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                    child: SizedBox(
+                      height: .fixed(100),
+                      child: Text('Text in SliverFillRemaining'),
+                    ),
                   ),
                 ],
               ),
@@ -561,7 +580,7 @@ void main() {
                 hasScrollBody: false,
                 fillOverscroll: true,
                 child: SizedBox.expand(
-                  child: ColoredBox(key: ValueKey<String>('fill'), color: _debugRed),
+                  child: ColoredBox(key: ValueKey<String>('fill'), color: .fixed(_debugRed)),
                 ),
               ),
             ];
@@ -605,7 +624,7 @@ void main() {
                 fillOverscroll: true,
                 child: ColoredBox(
                   key: key,
-                  color: _debugRed,
+                  color: const .fixed(_debugRed),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: _sizedTestButton(
@@ -650,17 +669,17 @@ void main() {
                 itemExtent: 150,
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) =>
-                    const ColoredBox(color: _debugRed),
+                    const ColoredBox(color: .fixed(_debugRed)),
               ),
               SliverFillRemaining(
                 hasScrollBody: false,
                 fillOverscroll: true,
                 child: ColoredBox(
                   key: key,
-                  color: _debugRed,
+                  color: const .fixed(_debugRed),
                   child: Align(
                     child: Padding(
-                      padding: const EdgeInsets.all(50.0),
+                      padding: const .fixed(EdgeInsets.all(50.0)),
                       child: _sizedTestButton(child: const Text('center button'), onPressed: () {}),
                     ),
                   ),
@@ -716,14 +735,14 @@ void main() {
                 itemBuilder: (BuildContext context, int index) {
                   return Semantics(
                     label: index.toString(),
-                    child: const ColoredBox(color: _debugRed),
+                    child: const ColoredBox(color: .fixed(_debugRed)),
                   );
                 },
               ),
               SliverFillRemaining(
                 hasScrollBody: false,
                 fillOverscroll: true,
-                child: ColoredBox(key: key, color: _debugRed),
+                child: ColoredBox(key: key, color: const .fixed(_debugRed)),
               ),
             ];
 
@@ -860,7 +879,10 @@ void main() {
                       const SliverFillRemaining(
                         hasScrollBody: false,
                         fillOverscroll: true,
-                        child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                        child: SizedBox(
+                          height: .fixed(100),
+                          child: Text('Text in SliverFillRemaining'),
+                        ),
                       ),
                     ],
                   ),
@@ -904,7 +926,10 @@ void main() {
                       const SliverFillRemaining(
                         hasScrollBody: false,
                         fillOverscroll: true,
-                        child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                        child: SizedBox(
+                          height: .fixed(100),
+                          child: Text('Text in SliverFillRemaining'),
+                        ),
                       ),
                     ],
                   ),
@@ -951,7 +976,10 @@ void main() {
                       const SliverFillRemaining(
                         hasScrollBody: false,
                         fillOverscroll: true,
-                        child: SizedBox(height: 100, child: Text('Text in SliverFillRemaining')),
+                        child: SizedBox(
+                          height: .fixed(100),
+                          child: Text('Text in SliverFillRemaining'),
+                        ),
                       ),
                     ],
                   ),
@@ -982,7 +1010,7 @@ void main() {
             const SliverFillRemaining(
               hasScrollBody: false,
               fillOverscroll: true,
-              child: ColoredBox(key: ValueKey<String>('fill'), color: _debugRed),
+              child: ColoredBox(key: ValueKey<String>('fill'), color: .fixed(_debugRed)),
             ),
           ];
           await tester.pumpWidget(boilerplate(slivers));
@@ -1010,7 +1038,7 @@ void main() {
               fillOverscroll: true,
               child: ColoredBox(
                 key: key,
-                color: _debugRed,
+                color: const .fixed(_debugRed),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: _sizedTestButton(
@@ -1045,17 +1073,17 @@ void main() {
                 itemExtent: 150,
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) =>
-                    const ColoredBox(color: _debugRed),
+                    const ColoredBox(color: .fixed(_debugRed)),
               ),
               SliverFillRemaining(
                 hasScrollBody: false,
                 fillOverscroll: true,
                 child: ColoredBox(
                   key: key,
-                  color: _debugRed,
+                  color: const .fixed(_debugRed),
                   child: Align(
                     child: Padding(
-                      padding: const EdgeInsets.all(50.0),
+                      padding: const .fixed(EdgeInsets.all(50.0)),
                       child: _sizedTestButton(child: const Text('center button'), onPressed: () {}),
                     ),
                   ),
@@ -1097,14 +1125,14 @@ void main() {
               itemBuilder: (BuildContext context, int index) {
                 return Semantics(
                   label: index.toString(),
-                  child: const ColoredBox(color: _debugRed),
+                  child: const ColoredBox(color: .fixed(_debugRed)),
                 );
               },
             ),
             SliverFillRemaining(
               hasScrollBody: false,
               fillOverscroll: true,
-              child: ColoredBox(key: key, color: _debugRed),
+              child: ColoredBox(key: key, color: const .fixed(_debugRed)),
             ),
           ];
 

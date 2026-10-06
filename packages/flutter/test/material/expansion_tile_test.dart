@@ -113,13 +113,14 @@ void main() {
       expect(getHeight(topKey), getHeight(collapsedKey) - 2.0);
       expect(getHeight(topKey), getHeight(defaultKey) - 2.0);
 
-      var expandedContainerDecoration = getDecoratedBox(expandedKey).decoration as ShapeDecoration;
+      var expandedContainerDecoration =
+          getDecoratedBox(expandedKey).decoration.value as ShapeDecoration;
       expect(expandedContainerDecoration.color, Colors.red);
       expect((expandedContainerDecoration.shape as Border).top.color, dividerColor);
       expect((expandedContainerDecoration.shape as Border).bottom.color, dividerColor);
 
       var collapsedContainerDecoration =
-          getDecoratedBox(collapsedKey).decoration as ShapeDecoration;
+          getDecoratedBox(collapsedKey).decoration.value as ShapeDecoration;
       expect(collapsedContainerDecoration.color, Colors.transparent);
       expect((collapsedContainerDecoration.shape as Border).top.color, Colors.transparent);
       expect((collapsedContainerDecoration.shape as Border).bottom.color, Colors.transparent);
@@ -133,7 +134,7 @@ void main() {
       // Pump to the middle of the animation for expansion.
       await tester.pump(const Duration(milliseconds: 100));
       final collapsingContainerDecoration =
-          getDecoratedBox(collapsedKey).decoration as ShapeDecoration;
+          getDecoratedBox(collapsedKey).decoration.value as ShapeDecoration;
       expect(collapsingContainerDecoration.color, Colors.transparent);
       expect(
         (collapsingContainerDecoration.shape as Border).top.color,
@@ -152,13 +153,15 @@ void main() {
       expect(getHeight(topKey), getHeight(defaultKey) - getHeight(tileKey) - 2.0);
 
       // Expanded should be collapsed now.
-      expandedContainerDecoration = getDecoratedBox(expandedKey).decoration as ShapeDecoration;
+      expandedContainerDecoration =
+          getDecoratedBox(expandedKey).decoration.value as ShapeDecoration;
       expect(expandedContainerDecoration.color, Colors.transparent);
       expect((expandedContainerDecoration.shape as Border).top.color, Colors.transparent);
       expect((expandedContainerDecoration.shape as Border).bottom.color, Colors.transparent);
 
       // Collapsed should be expanded now.
-      collapsedContainerDecoration = getDecoratedBox(collapsedKey).decoration as ShapeDecoration;
+      collapsedContainerDecoration =
+          getDecoratedBox(collapsedKey).decoration.value as ShapeDecoration;
       expect(collapsedContainerDecoration.color, Colors.transparent);
       expect((collapsedContainerDecoration.shape as Border).top.color, dividerColor);
       expect((collapsedContainerDecoration.shape as Border).bottom.color, dividerColor);
@@ -317,8 +320,8 @@ void main() {
               title: Text('title'),
               expandedAlignment: Alignment.centerLeft,
               children: <Widget>[
-                SizedBox(height: 100, width: 100),
-                SizedBox(height: 100, width: 80),
+                SizedBox(height: .fixed(100), width: .fixed(100)),
+                SizedBox(height: .fixed(100), width: .fixed(80)),
               ],
             ),
           ),
@@ -350,8 +353,8 @@ void main() {
                 title: Text('title'),
                 expandedAlignment: AlignmentDirectional.topEnd,
                 children: <Widget>[
-                  SizedBox(height: 100, width: 100),
-                  SizedBox(height: 100, width: 80),
+                  SizedBox(height: .fixed(100), width: .fixed(100)),
+                  SizedBox(height: .fixed(100), width: .fixed(80)),
                 ],
               ),
             ),
@@ -389,8 +392,8 @@ void main() {
               expandedAlignment: Alignment.centerRight,
               expandedCrossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 100, width: 100, key: child0Key),
-                SizedBox(height: 100, width: 80, key: child1Key),
+                SizedBox(height: .fixed(100), width: .fixed(100), key: child0Key),
+                SizedBox(height: .fixed(100), width: .fixed(80), key: child1Key),
               ],
             ),
           ),
@@ -439,8 +442,8 @@ void main() {
                 expandedAlignment: AlignmentDirectional.centerStart,
                 expandedCrossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
-                  SizedBox(height: 100, width: 100, key: child0Key),
-                  SizedBox(height: 100, width: 80, key: child1Key),
+                  SizedBox(height: .fixed(100), width: .fixed(100), key: child0Key),
+                  SizedBox(height: .fixed(100), width: .fixed(80), key: child1Key),
                 ],
               ),
             ),
@@ -508,8 +511,8 @@ void main() {
             child: ExpansionTile(
               title: Text('title'),
               children: <Widget>[
-                SizedBox(height: 100, width: 100),
-                SizedBox(height: 100, width: 80, key: child1Key),
+                SizedBox(height: .fixed(100), width: .fixed(100)),
+                SizedBox(height: .fixed(100), width: .fixed(80), key: child1Key),
               ],
             ),
           ),
@@ -540,7 +543,7 @@ void main() {
           child: Center(
             child: ExpansionTile(
               title: Text('title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -569,7 +572,7 @@ void main() {
             child: ExpansionTile(
               title: Text('title'),
               childrenPadding: EdgeInsets.fromLTRB(10, 8, 12, 4),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -603,7 +606,7 @@ void main() {
             title: Text('Title'),
             backgroundColor: backgroundColor,
             collapsedBackgroundColor: collapsedBackgroundColor,
-            children: <Widget>[SizedBox(height: 100, width: 100)],
+            children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
           ),
         ),
       ),
@@ -618,6 +621,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as ShapeDecoration;
 
     expect(shapeDecoration.color, collapsedBackgroundColor);
@@ -634,6 +638,7 @@ void main() {
                   ),
                 )
                 .decoration
+                .value
             as ShapeDecoration;
 
     expect(shapeDecoration.color, backgroundColor);
@@ -649,7 +654,7 @@ void main() {
           child: ExpansionTile(
             title: TestText('title'),
             trailing: TestIcon(),
-            children: <Widget>[SizedBox(height: 100, width: 100)],
+            children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
           ),
         ),
       ),
@@ -686,7 +691,7 @@ void main() {
             collapsedTextColor: collapsedTextColor,
             title: TestText('title'),
             trailing: TestIcon(),
-            children: <Widget>[SizedBox(height: 100, width: 100)],
+            children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
           ),
         ),
       ),
@@ -949,7 +954,7 @@ void main() {
           home: Material(
             child: ExpansionTile(
               title: Text('Title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1032,7 +1037,7 @@ void main() {
           home: Material(
             child: ExpansionTile(
               title: Text('Title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1054,46 +1059,44 @@ void main() {
   });
 
   // This is a regression test for https://github.com/flutter/flutter/issues/132264.
-  testWidgets(
-    'ExpansionTile Semantics announcement is delayed on iOS',
-    (WidgetTester tester) async {
-      final SemanticsHandle handle = tester.ensureSemantics();
-      const localizations = DefaultMaterialLocalizations();
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Material(
-            child: ExpansionTile(
-              title: Text('Title'),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
-            ),
+  testWidgets('ExpansionTile Semantics announcement is delayed on iOS', (
+    WidgetTester tester,
+  ) async {
+    final SemanticsHandle handle = tester.ensureSemantics();
+    const localizations = DefaultMaterialLocalizations();
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Material(
+          child: ExpansionTile(
+            title: Text('Title'),
+            children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
           ),
         ),
-      );
+      ),
+    );
 
-      // There is no semantics announcement without tap action.
-      expect(tester.takeAnnouncements(), isEmpty);
+    // There is no semantics announcement without tap action.
+    expect(tester.takeAnnouncements(), isEmpty);
 
-      // Tap the title to expand ExpansionTile.
-      await tester.tap(find.text('Title'));
-      await tester.pump(const Duration(seconds: 1)); // Wait for the announcement to be made.
+    // Tap the title to expand ExpansionTile.
+    await tester.tap(find.text('Title'));
+    await tester.pump(const Duration(seconds: 1)); // Wait for the announcement to be made.
 
-      expect(
-        tester.takeAnnouncements().first,
-        isAccessibilityAnnouncement(localizations.collapsedHint),
-      );
+    expect(
+      tester.takeAnnouncements().first,
+      isAccessibilityAnnouncement(localizations.collapsedHint),
+    );
 
-      // Tap the title to collapse ExpansionTile.
-      await tester.tap(find.text('Title'));
-      await tester.pump(const Duration(seconds: 1)); // Wait for the announcement to be made.
+    // Tap the title to collapse ExpansionTile.
+    await tester.tap(find.text('Title'));
+    await tester.pump(const Duration(seconds: 1)); // Wait for the announcement to be made.
 
-      expect(
-        tester.takeAnnouncements().first,
-        isAccessibilityAnnouncement(localizations.expandedHint),
-      );
-      handle.dispose();
-    },
-    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
-  );
+    expect(
+      tester.takeAnnouncements().first,
+      isAccessibilityAnnouncement(localizations.expandedHint),
+    );
+    handle.dispose();
+  }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 
   testWidgets('Semantics with the onTapHint is an ancestor of ListTile', (
     WidgetTester tester,
@@ -1212,7 +1215,7 @@ void main() {
                     collapsedIconColor: collapsedIconColor,
                     title: const TestText('title'),
                     trailing: const TestIcon(),
-                    children: const <Widget>[SizedBox(height: 100, width: 100)],
+                    children: const <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
                   ),
                   // This button is used to update the ExpansionTile properties.
                   FilledButton(
@@ -1306,7 +1309,7 @@ void main() {
                     iconColor: iconColor,
                     title: const TestText('title'),
                     trailing: const TestIcon(),
-                    children: const <Widget>[SizedBox(height: 100, width: 100)],
+                    children: const <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
                   ),
                   // This button is used to update the ExpansionTile properties.
                   FilledButton(
@@ -1391,7 +1394,7 @@ void main() {
               key: expansionTileKey,
               expansionAnimationStyle: animationStyle,
               title: const TestText('title'),
-              children: const <Widget>[SizedBox(height: 100, width: 100)],
+              children: const <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1536,7 +1539,7 @@ void main() {
         home: Material(
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              padding: .fixed(EdgeInsets.symmetric(horizontal: 24.0)),
               child: ExpansionTile(
                 key: expansionTileKey,
                 shape: shape,
@@ -1545,7 +1548,7 @@ void main() {
                 collapsedShape: collapsedShape,
                 title: TestText('title'),
                 trailing: TestIcon(),
-                children: <Widget>[SizedBox(height: 100, width: 100)],
+                children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
               ),
             ),
           ),
@@ -1622,7 +1625,7 @@ void main() {
             child: ExpansionTile(
               title: TestText('title'),
               trailing: TestIcon(),
-              children: <Widget>[SizedBox(height: 100, width: 100)],
+              children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
             ),
           ),
         ),
@@ -1661,7 +1664,7 @@ void main() {
           home: const Material(
             child: Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                padding: .fixed(EdgeInsets.symmetric(horizontal: 24.0)),
                 child: ExpansionTile(
                   key: expansionTileKey,
                   shape: shape,
@@ -1670,7 +1673,7 @@ void main() {
                   collapsedShape: collapsedShape,
                   title: TestText('title'),
                   trailing: TestIcon(),
-                  children: <Widget>[SizedBox(height: 100, width: 100)],
+                  children: <Widget>[SizedBox(height: .fixed(100), width: .fixed(100))],
                 ),
               ),
             ),
@@ -1915,7 +1918,7 @@ void main() {
             child: ExpansionTile(
               enabled: false,
               tilePadding: EdgeInsets.zero,
-              title: ColoredBox(color: Colors.red, child: Text('Title')),
+              title: ColoredBox(color: .fixed(Colors.red), child: Text('Title')),
               showTrailingIcon: false,
             ),
           ),
@@ -1940,7 +1943,7 @@ void main() {
             child: ExpansionTile(
               enabled: false,
               tilePadding: EdgeInsets.zero,
-              title: ColoredBox(color: Colors.red, child: Text('Title')),
+              title: ColoredBox(color: .fixed(Colors.red), child: Text('Title')),
               trailing: SizedBox.shrink(),
             ),
           ),
@@ -2232,65 +2235,63 @@ void main() {
     );
   });
   group('Semantics tests for android platform', () {
-    testWidgets(
-      'Semantics liveregion updates when expansion state changes',
-      (WidgetTester tester) async {
-        final SemanticsHandle handle = tester.ensureSemantics();
-        const localizations = DefaultMaterialLocalizations();
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Material(
-              child: ExpansionTile(title: Text('Test Tile'), children: <Widget>[Text('Child')]),
-            ),
+    testWidgets('Semantics liveregion updates when expansion state changes', (
+      WidgetTester tester,
+    ) async {
+      final SemanticsHandle handle = tester.ensureSemantics();
+      const localizations = DefaultMaterialLocalizations();
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Material(
+            child: ExpansionTile(title: Text('Test Tile'), children: <Widget>[Text('Child')]),
           ),
-        );
+        ),
+      );
 
-        // Initially collapsed - live region label is "Collapsed".
+      // Initially collapsed - live region label is "Collapsed".
 
-        SemanticsNode liveRegionSemantics = tester.getSemantics(
-          find.ancestor(
-            of: find.byType(ListTile),
-            matching: find.byWidgetPredicate(
-              (Widget widget) => widget is Semantics && (widget.properties.liveRegion ?? false),
-            ),
+      SemanticsNode liveRegionSemantics = tester.getSemantics(
+        find.ancestor(
+          of: find.byType(ListTile),
+          matching: find.byWidgetPredicate(
+            (Widget widget) => widget is Semantics && (widget.properties.liveRegion ?? false),
           ),
-        );
-        expect(liveRegionSemantics.label, localizations.expandedHint);
+        ),
+      );
+      expect(liveRegionSemantics.label, localizations.expandedHint);
 
-        // Tap to expand.
-        await tester.tap(find.text('Test Tile'));
-        await tester.pumpAndSettle();
+      // Tap to expand.
+      await tester.tap(find.text('Test Tile'));
+      await tester.pumpAndSettle();
 
-        // Now expanded - should show "Expanded".
-        liveRegionSemantics = tester.getSemantics(
-          find.ancestor(
-            of: find.byType(ListTile),
-            matching: find.byWidgetPredicate(
-              (Widget widget) => widget is Semantics && (widget.properties.liveRegion ?? false),
-            ),
+      // Now expanded - should show "Expanded".
+      liveRegionSemantics = tester.getSemantics(
+        find.ancestor(
+          of: find.byType(ListTile),
+          matching: find.byWidgetPredicate(
+            (Widget widget) => widget is Semantics && (widget.properties.liveRegion ?? false),
           ),
-        );
-        expect(liveRegionSemantics.label, localizations.collapsedHint);
+        ),
+      );
+      expect(liveRegionSemantics.label, localizations.collapsedHint);
 
-        // Tap to collapse.
-        await tester.tap(find.text('Test Tile'));
-        await tester.pumpAndSettle();
+      // Tap to collapse.
+      await tester.tap(find.text('Test Tile'));
+      await tester.pumpAndSettle();
 
-        // Back to collapsed - should show "Collapsed" again.
-        liveRegionSemantics = tester.getSemantics(
-          find.ancestor(
-            of: find.byType(ListTile),
-            matching: find.byWidgetPredicate(
-              (Widget widget) => widget is Semantics && (widget.properties.liveRegion ?? false),
-            ),
+      // Back to collapsed - should show "Collapsed" again.
+      liveRegionSemantics = tester.getSemantics(
+        find.ancestor(
+          of: find.byType(ListTile),
+          matching: find.byWidgetPredicate(
+            (Widget widget) => widget is Semantics && (widget.properties.liveRegion ?? false),
           ),
-        );
-        expect(liveRegionSemantics.label, localizations.expandedHint);
+        ),
+      );
+      expect(liveRegionSemantics.label, localizations.expandedHint);
 
-        handle.dispose();
-      },
-      variant: const TargetPlatformVariant(<TargetPlatform>{TargetPlatform.android}),
-    );
+      handle.dispose();
+    }, variant: const TargetPlatformVariant(<TargetPlatform>{TargetPlatform.android}));
   });
 
   testWidgets('ExpansionTile forwards statesController to ListTile', (tester) async {

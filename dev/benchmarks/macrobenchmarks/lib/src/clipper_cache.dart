@@ -61,11 +61,11 @@ class _ClipperCachePageState extends State<ClipperCachePage> with TickerProvider
       body: ListView(
         controller: _controller,
         children: <Widget>[
-          SizedBox(height: _topMargin),
+          SizedBox(height: .fixed(_topMargin)),
           ClipPath(clipBehavior: Clip.antiAliasWithSaveLayer, child: _makeChild(0, _isComplex)),
           ClipRect(clipBehavior: Clip.antiAliasWithSaveLayer, child: _makeChild(1, _isComplex)),
           ClipRRect(clipBehavior: Clip.antiAliasWithSaveLayer, child: _makeChild(2, _isComplex)),
-          const SizedBox(height: 1000),
+          const SizedBox(height: .fixed(1000)),
         ],
       ),
     );

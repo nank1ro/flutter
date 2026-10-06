@@ -173,8 +173,8 @@ void main() {
     const key = Key('Container');
 
     final children = <int, Widget>{};
-    children[0] = const SizedBox(height: double.infinity, child: Text('Child 1'));
-    children[1] = const SizedBox(height: double.infinity, child: Text('Child 2'));
+    children[0] = const SizedBox(height: .fixed(double.infinity), child: Text('Child 1'));
+    children[1] = const SizedBox(height: .fixed(double.infinity), child: Text('Child 2'));
 
     Future<void> verifyPadding({EdgeInsets? padding}) async {
       final EdgeInsets effectivePadding = padding ?? const EdgeInsets.symmetric(horizontal: 16);
@@ -441,7 +441,7 @@ void main() {
         child: Align(
           alignment: Alignment.topLeft,
           child: SizedBox.square(
-            dimension: 200.0,
+            dimension: const .fixed(200.0),
             child: CupertinoSegmentedControl<int>(
               children: children,
               onValueChanged: (int newValue) {},
@@ -972,7 +972,7 @@ void main() {
       onTapDown: (TapDownDetails details) {
         tapDownDetails = details;
       },
-      child: const SizedBox(width: 200, height: 200),
+      child: const SizedBox(width: .fixed(200), height: .fixed(200)),
     );
     children[1] = const Text('Child 2');
 
@@ -1566,7 +1566,7 @@ void main() {
           builder: (BuildContext context, StateSetter setState) {
             return boilerplate(
               child: SizedBox(
-                width: 800.0,
+                width: const .fixed(800.0),
                 child: CupertinoSegmentedControl<int>(
                   key: const ValueKey<String>('Segmented Control'),
                   children: children,
@@ -1600,7 +1600,7 @@ void main() {
           builder: (BuildContext context, StateSetter setState) {
             return boilerplate(
               child: SizedBox(
-                width: 800.0,
+                width: const .fixed(800.0),
                 child: CupertinoSegmentedControl<int>(
                   key: const ValueKey<String>('Segmented Control'),
                   children: children,
@@ -1644,7 +1644,7 @@ void main() {
           builder: (BuildContext context, StateSetter setState) {
             return boilerplate(
               child: SizedBox(
-                width: 800.0,
+                width: const .fixed(800.0),
                 child: CupertinoSegmentedControl<int>(
                   key: const ValueKey<String>('Segmented Control'),
                   children: children,

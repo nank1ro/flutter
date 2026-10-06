@@ -42,7 +42,7 @@ void main() {
                 itemBuilder: (BuildContext context, int index) {
                   return SizedBox(
                     key: ValueKey<int>(items[index]),
-                    height: 100,
+                    height: const .fixed(100),
                     child: ReorderableDragStartListener(
                       index: index,
                       child: Text('item ${items[index]}'),
@@ -97,7 +97,7 @@ void main() {
                 itemBuilder: (BuildContext context, int index) {
                   return SizedBox(
                     key: ValueKey<int>(items[index]),
-                    height: 100,
+                    height: const .fixed(100),
                     child: ReorderableDragStartListener(
                       index: index,
                       child: Text('item ${items[index]}'),
@@ -152,7 +152,7 @@ void main() {
                 itemBuilder: (BuildContext context, int index) {
                   return SizedBox(
                     key: ValueKey<int>(items[index]),
-                    height: 100,
+                    height: const .fixed(100),
                     child: ReorderableDragStartListener(
                       index: index,
                       child: Text('item ${items[index]}'),
@@ -235,7 +235,7 @@ void main() {
               index: index,
               key: ValueKey<int>(items[index]),
               child: SizedBox(
-                height: 100,
+                height: const .fixed(100),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[Text('item ${items[index]}')],
@@ -280,7 +280,7 @@ void main() {
                     });
                   },
                   itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: 100, child: Text('item ${items[index]}'));
+                    return SizedBox(height: const .fixed(100), child: Text('item ${items[index]}'));
                   },
                 ),
               ],
@@ -312,7 +312,7 @@ void main() {
                     });
                   },
                   itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: 100, child: Text('item ${items[index]}'));
+                    return SizedBox(height: const .fixed(100), child: Text('item ${items[index]}'));
                   },
                 ),
                 SliverFixedExtentList.list(
@@ -972,7 +972,7 @@ void main() {
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
               key: ValueKey<int>(items[index]),
-              height: 100,
+              height: const .fixed(100),
               child: ReorderableDelayedDragStartListener(
                 index: index,
                 child: Text('item ${items[index]}'),
@@ -1052,7 +1052,7 @@ void main() {
               itemBuilder: (BuildContext context, int index) {
                 return SizedBox(
                   key: ValueKey<int>(items[index]),
-                  height: 100,
+                  height: const .fixed(100),
                   child: ReorderableDragStartListener(
                     index: index,
                     child: Text('item ${items[index]}'),
@@ -1112,7 +1112,7 @@ void main() {
               itemBuilder: (BuildContext context, int index) {
                 return SizedBox(
                   key: ValueKey<int>(items[index]),
-                  height: 100,
+                  height: const .fixed(100),
                   child: ReorderableDragStartListener(
                     index: index,
                     child: Text('item ${items[index]}'),
@@ -1198,7 +1198,7 @@ void main() {
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
               key: ValueKey<int>(items[index]),
-              height: 100,
+              height: const .fixed(100),
               child: ReorderableDragStartListener(
                 index: index,
                 child: Text('item ${items[index]}'),
@@ -1254,7 +1254,7 @@ void main() {
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
               key: ValueKey<int>(items[index]),
-              height: 100,
+              height: const .fixed(100),
               child: ReorderableDragStartListener(
                 index: index,
                 child: Text('item ${items[index]}'),
@@ -1323,7 +1323,7 @@ void main() {
         itemBuilder: (BuildContext context, int index) {
           return SizedBox(
             key: ValueKey<int>(numbers[index]),
-            height: 20 + numbers[index] * 10,
+            height: .fixed(20 + numbers[index] * 10),
             child: ReorderableDragStartListener(
               index: index,
               child: Text(numbers[index].toString()),
@@ -1384,7 +1384,7 @@ void main() {
         itemBuilder: (BuildContext context, int index) {
           return SizedBox(
             key: ValueKey<int>(numbers[index]),
-            height: 20 + numbers[index] * 10,
+            height: .fixed(20 + numbers[index] * 10),
             child: ReorderableDragStartListener(
               index: index,
               child: Text(numbers[index].toString()),
@@ -1414,7 +1414,7 @@ void main() {
                 return SizedBox(
                   key: ValueKey<int>(numbers[index]),
                   // children with different heights
-                  height: 20 + numbers[index] * 10,
+                  height: .fixed(20 + numbers[index] * 10),
                   child: ReorderableDragStartListener(
                     index: index,
                     child: Text(numbers[index].toString()),
@@ -1456,7 +1456,7 @@ void main() {
                 return SizedBox(
                   key: ValueKey<int>(numbers[index]),
                   // children with different heights
-                  height: 20 + numbers[index] * 10,
+                  height: .fixed(20 + numbers[index] * 10),
                   child: ReorderableDragStartListener(
                     index: index,
                     child: Text(numbers[index].toString()),
@@ -1464,7 +1464,7 @@ void main() {
                 );
               },
               itemCount: numbers.length,
-              prototypeItem: const SizedBox(height: 30, child: Text('3')),
+              prototypeItem: const SizedBox(height: .fixed(30), child: Text('3')),
               onReorderItem: (_, _) {},
             );
           },
@@ -1502,7 +1502,7 @@ void main() {
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
                 key: ValueKey<int>(items[index]),
-                height: 100,
+                height: const .fixed(100),
                 child: ReorderableDragStartListener(
                   index: index,
                   child: Text('item ${items[index]}'),
@@ -1548,7 +1548,7 @@ void main() {
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
                 key: ValueKey<int>(items[index]),
-                height: 100,
+                height: const .fixed(100),
                 child: ReorderableDragStartListener(
                   index: index,
                   enabled: false,
@@ -1597,7 +1597,7 @@ void main() {
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
                 key: ValueKey<int>(items[index]),
-                height: 100,
+                height: const .fixed(100),
                 child: ReorderableDelayedDragStartListener(
                   index: index,
                   child: Text('item ${items[index]}'),
@@ -1644,7 +1644,7 @@ void main() {
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
                 key: ValueKey<int>(items[index]),
-                height: 100,
+                height: const .fixed(100),
                 child: ReorderableDelayedDragStartListener(
                   index: index,
                   enabled: false,
@@ -1890,7 +1890,7 @@ void main() {
                       index: index,
                       child: Builder(
                         builder: (BuildContext context) {
-                          return SizedBox(width: itemSize, child: Text('$index'));
+                          return SizedBox(width: .fixed(itemSize), child: Text('$index'));
                         },
                       ),
                     );
@@ -1937,12 +1937,16 @@ void main() {
                         child: Builder(
                           builder: (BuildContext context) {
                             return SizedBox(
-                              height: scrollDirection == Axis.vertical
-                                  ? itemSizes[index]
-                                  : double.infinity,
-                              width: scrollDirection == Axis.horizontal
-                                  ? itemSizes[index]
-                                  : double.infinity,
+                              height: .fixed(
+                                scrollDirection == Axis.vertical
+                                    ? itemSizes[index]
+                                    : double.infinity,
+                              ),
+                              width: .fixed(
+                                scrollDirection == Axis.horizontal
+                                    ? itemSizes[index]
+                                    : double.infinity,
+                              ),
                               child: Text('$index'),
                             );
                           },
@@ -2011,7 +2015,7 @@ void main() {
                   return ReorderableDragStartListener(
                     key: ValueKey<int>(index),
                     index: index,
-                    child: SizedBox(height: 100, child: Text('$index')),
+                    child: SizedBox(height: const .fixed(100), child: Text('$index')),
                   );
                 },
                 itemCount: 5,
@@ -2037,7 +2041,13 @@ void main() {
     }
 
     await testFor();
-    await testFor(prototypeItem: const SizedBox(height: 100, width: 100, child: Text('prototype')));
+    await testFor(
+      prototypeItem: const SizedBox(
+        height: .fixed(100),
+        width: .fixed(100),
+        child: Text('prototype'),
+      ),
+    );
     await testFor(itemExtent: 100);
   });
 
@@ -2056,7 +2066,7 @@ void main() {
                   builder: (BuildContext context, BoxConstraints constraints) {
                     itemLayoutConstraints[index] = constraints;
                     return SizedBox(
-                      height: 100,
+                      height: const .fixed(100),
                       child: ReorderableDragStartListener(index: index, child: Text('$index')),
                     );
                   },

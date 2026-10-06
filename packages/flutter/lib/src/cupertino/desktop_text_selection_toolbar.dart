@@ -112,14 +112,16 @@ class CupertinoDesktopTextSelectionToolbar extends StatelessWidget {
           inner: ImageFilter.blur(sigmaX: _kToolbarBlurSigma, sigmaY: _kToolbarBlurSigma),
         ),
         child: DecoratedBox(
-          decoration: ShapeDecoration(
-            color: _kToolbarBackgroundColor.resolveFrom(context),
-            shape: RoundedSuperellipseBorder(
-              side: BorderSide(color: _kToolbarBorderColor.resolveFrom(context)),
-              borderRadius: const BorderRadius.all(_kToolbarBorderRadius),
+          decoration: .fixed(
+            ShapeDecoration(
+              color: _kToolbarBackgroundColor.resolveFrom(context),
+              shape: RoundedSuperellipseBorder(
+                side: BorderSide(color: _kToolbarBorderColor.resolveFrom(context)),
+                borderRadius: const BorderRadius.all(_kToolbarBorderRadius),
+              ),
             ),
           ),
-          child: Padding(padding: _kToolbarPadding, child: child),
+          child: Padding(padding: const .fixed(_kToolbarPadding), child: child),
         ),
       ),
     );
@@ -133,11 +135,13 @@ class CupertinoDesktopTextSelectionToolbar extends StatelessWidget {
     final localAdjustment = Offset(_kToolbarScreenPadding, paddingAbove);
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        _kToolbarScreenPadding,
-        paddingAbove,
-        _kToolbarScreenPadding,
-        _kToolbarScreenPadding,
+      padding: .fixed(
+        EdgeInsets.fromLTRB(
+          _kToolbarScreenPadding,
+          paddingAbove,
+          _kToolbarScreenPadding,
+          _kToolbarScreenPadding,
+        ),
       ),
       child: CustomSingleChildLayout(
         delegate: DesktopTextSelectionToolbarLayoutDelegate(anchor: anchor - localAdjustment),

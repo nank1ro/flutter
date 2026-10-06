@@ -543,7 +543,7 @@ class _SegmentedControlState<T extends Object> extends State<CupertinoSegmentedC
           }
         },
         child: Padding(
-          padding: widget.padding ?? _kHorizontalItemPadding,
+          padding: .fixed(widget.padding ?? _kHorizontalItemPadding),
           child: UnconstrainedBox(constrainedAxis: Axis.horizontal, child: box),
         ),
       ),

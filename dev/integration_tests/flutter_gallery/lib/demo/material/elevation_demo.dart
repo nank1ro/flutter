@@ -27,7 +27,7 @@ class _ElevationDemoState extends State<ElevationDemo> {
           margin: const EdgeInsets.all(20.0),
           elevation: _showElevation ? elevation : 0.0,
           child: SizedBox.square(
-            dimension: 100.0,
+            dimension: const .fixed(100.0),
             child: Center(child: Text('${elevation.toStringAsFixed(0)} pt')),
           ),
         ),
