@@ -28,13 +28,15 @@ before the first framework edit (Phase 0).
 | B7 | Existing `bench_build_material_checkbox` from macrobenchmarks | Compatibility cost: the reactive `Element` must not slow down ordinary Material builds. |
 | B8 | Mount and unmount 10,000 nodes | Owner/effect lifecycle overhead, and the disposal path. |
 | B9 | Scene mode: move-one, move-all, particles and mount/dispose, each against the matched Phase 3 leaf and Phase 5 collapsed variants in the same process | The payoff of skipping widgets, elements, and render objects. |
+| B10 | 2,000 cards of stock `Padding`, `Opacity`, `Transform.rotate` and `SizedBox` with `.fixed` values, against private plain-value copies, in the same process | What `ReadonlySignal` props cost a widget that never receives a signal: mount, rebuild with new values, unmount. |
+| B11 | 2,000 cards of static stock widgets, const and per-card values, including `Container` | Absolute mount, rebuild and unmount cost, to compare two commits. |
 
 B7 is the guard that matters most politically inside the fork: the whole
 premise is that per-element tracking costs nothing when no signal is read.
 
 ## Running
 
-The B1-B9 harness (build, layout and paint-record cost, no device required).
+The B1-B11 harness (build, layout and paint-record cost, no device required).
 One file per scenario, every variant of that scenario inside it, run one file
 at a time with `-j 1`:
 
@@ -76,7 +78,7 @@ why the earlier numbers are not comparable and are not reproduced.
 ### Methodology
 
 **The harness.** `dev/benchmarks/microbenchmarks/test/reactivity/` holds one
-file per scenario, B1-B9, over a shared harness in
+file per scenario, B1-B11, over a shared harness in
 `reactivity_bench_common.dart`. Every variant of a scenario -- the
 best-practice baseline, the naive baseline, Phase 2's signal-in-build, Phase
 3's leaf binding, Phase 5's collapsed node tree, and Phase 4's scene where it
@@ -127,6 +129,8 @@ the reactive leaves is gone. Per-scenario counts:
 | B7 | 10x10 Material checkbox grid, identical in both variants | n/a | identical |
 | B8 | `Positioned > (Reactive)ColoredBox` | `RPositioned > RBox` | 1 |
 | B9 | `Positioned > ReactiveOffset > ColoredBox` | `RPositioned > ROffset > RBox` | 2 (scene: none) |
+| B10 | `Padding > Opacity > Transform > SizedBox > SizedBox` | n/a (plain copies of the same five) | 5 |
+| B11 | const: `Padding > Opacity > ColoredBox > SizedBox`; dynamic: `Padding > Container > Opacity > Transform > SizedBox` | n/a | identical |
 
 Element counts cannot be matched and are the mechanism, not the shape: a
 `ValueListenableBuilder` adds a `StatefulElement` per item, Phase 2 a
@@ -287,3 +291,50 @@ is now in-process. Some conclusions survived the correction (Phase 3's B2 win,
 scene mode's advantage, the Phase 5 recommendation); several did not (Phase
 2's B4/B5 "1.4x", Phase 3's B8 mount/unmount "win", Phase 5's B4 "0.76x
 slower").
+
+## Signal props on static values (B10, B11)
+
+`Opacity`, `Padding`, `SizedBox`, `ConstrainedBox`, `ColoredBox`,
+`DecoratedBox` and `Transform` take `ReadonlySignal` properties, so a static
+value is a `FixedSignal` and every such widget runs a `hasReactiveProps` check
+on mount and rebuild. B10 and B11 measure what that costs code that never
+passes a signal.
+
+Profile mode, macOS arm64, 2,000 cards per variant, microseconds per `pump()`.
+B11 ran on a loaded machine (load average about 14), so its run-to-run spread is
+10-60% and only differences well above that are resolvable.
+
+**B10, in process** (three runs, median per run, load average about 5):
+
+| Phase | plain-value copies | stock widgets, `.fixed` | difference |
+| --- | --- | --- | --- |
+| mount | 42629 / 42632 / 41340 | 37007 / 39750 / 40725 | -1% to -13% |
+| rebuild, all values changed | 24556 / 27113 / 24041 | 24263 / 27455 / 23780 | within 1.3% |
+| unmount | 2495 / 2643 / 2464 | 2338 / 2404 / 2396 | -3% to -9% |
+
+The stock widgets read faster on mount and unmount in every run, and within
+1.3% either way on rebuild. The faster readings are within the run-to-run
+spread and are not claimed as a win. An earlier run against a copy of
+`Transform` that skipped three setters read unmount 7-12% slower; that was the
+unequal copy plus noise. The `RenderObjectElement` type check that every element
+now runs is in both columns and is not measured here.
+
+**B11, across builds**: `34c388b` (before the change, plain values) against
+`7c49657` (after, `.fixed`), six valid process runs each, alternating which
+build ran first. Min per run, in milliseconds:
+
+| Phase | before | after |
+| --- | --- | --- |
+| const mount | 24.0-25.1 | 24.5-27.0 |
+| dynamic mount | 60.6-105.6 | 52.1-66.1 |
+| dynamic rebuild | 41.0-65.2 | 41.4-51.6 |
+| unmount, const / dynamic | 2.0 / 3.6-5.1 | 1.9 / 3.7-4.7 |
+
+The ranges overlap on const mount and on unmount, so no difference is resolved
+there. The "after" build reads lower on dynamic mount and rebuild; the signal
+machinery only adds work, so that is treated as noise or a compilation side
+effect, not a win.
+
+**Conclusion:** the cost of `ReadonlySignal` props on static values is below
+what this harness resolves on mount, rebuild and unmount. Performance is not an
+argument for or against the API; its ergonomics and the source break are.

@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 //
-// Profile-mode entry point for the B1-B9 fine-grained-reactivity benchmarks.
+// Profile-mode entry point for the B1-B11 fine-grained-reactivity benchmarks.
 //
 // The same scenario files run under `flutter test` produce debug-JIT numbers
 // (the test runner cannot do AOT). This file registers those same tests
@@ -23,6 +23,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
+import 'reactivity/b10_prop_overhead_test.dart' as b10;
+import 'reactivity/b11_static_mount_test.dart' as b11;
 import 'reactivity/b1_single_sprite_update_test.dart' as b1;
 import 'reactivity/b2_all_sprites_update_test.dart' as b2;
 import 'reactivity/b3_particle_field_batch_test.dart' as b3;
@@ -53,4 +55,6 @@ void main() {
   b7.main();
   b8.main();
   b9.main();
+  b10.main();
+  b11.main();
 }
